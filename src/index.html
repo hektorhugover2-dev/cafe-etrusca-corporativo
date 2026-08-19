@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototipo Café Etrusca</title>
+  <base href="/">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <style>
+    /* ==================================================
+       ESTILOS GLOBALES (Mantengo todos tus estilos intactos)
+       ================================================== */
+    :root {
+      --bg: #F8F2E5;
+      --bg-soft: #efe9df;
+      --text: #1f1b18;
+      --wine: #5b0016;
+      --olive: #cfdc7e;
+      --pink: #f5c9cd;
+      --yellow: #f2de7f;
+      --blue: #b9d3eb;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --container: 1200px;
+      
+      --chat--message--font-size : .8rem;
+      --chat--color-typing: none;
+      --chat--spacing: .8rem;
+      --chat--header--padding: .8rem;
+      --chat--window--width: 500px;
+      --chat--window--height: 700px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); line-height: 1.4; }
+    img { max-width: 100%; display: block; }
+
+    /* ESTILOS DE CHAT N8N */
+    .n8n-chat-launcher { background-color: #8A2BE2 !important; }
+    .n8n-chat-header { background-color: #6A1B9A !important; color: white; }
+    .n8n-chat-launcher::before { content: '💬'; font-size: 20px; color: white; }
+    
+    /* ANIMACIÓN DE 3 PATITAS REBOTANDO (TYPING) */
+    .chat-message-typing {
+      display: flex !important;
+      align-items: center;
+      gap: 4px; 
+      padding: 10px 14px !important;
+      background: #f1f1f1 !important;
+      border-radius: 15px !important;
+      width: fit-content;
+    }
+
+    .chat-message-typing .chat-message-typing-circle {
+      background-color: transparent !important; 
+      background-image: url('https://desarrollo.cafeetrusca.com/assets/huellita.png'); 
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 22px !important;
+      height: 22px !important;
+      margin: 0 !important;
+      border-radius: 0 !important; 
+      animation: bouncePaws 1.2s infinite ease-in-out both !important;
+      display: inline-block;
+    }
+
+    .chat-message-typing .chat-message-typing-circle:nth-child(1) { animation-delay: -0.32s !important; }
+    .chat-message-typing .chat-message-typing-circle:nth-child(2) { animation-delay: -0.16s !important; }
+    .chat-message-typing .chat-message-typing-circle:nth-child(3) { animation-delay: 0s !important; }
+
+    @keyframes bouncePaws {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); } 
+    }
+
+    .chat-message-markdown img{ max-width: 50% !important; height: auto; margin-left: 5vw; }
+  </style>
+</head>
+<body>
+  <app-root></app-root>
+<!-- ==============================================
+       SCRIPT GLOBAL DEL CHAT N8N Y LUCKY
+       ============================================== -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+        webhookUrl: 'https://n8n.cafeetrusca.com/webhook/86206c5e-1a01-4e6a-bcb8-66ea24eccd64/chat',
+        botName: 'Asistente Etrusca'
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Observamos todo el BODY para detectar cuando n8n abre la ventana del chat
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType !== 1) return;
+
+                    // 1. INTERCEPTAR MENSAJES Y TRADUCIRLOS AL ESPAÑOL
+                    if (node.classList.contains("chat-message-from-bot")) {
+                        const markdown = node.querySelector(".chat-message-markdown");
+                        if (!markdown || markdown.dataset.rendered) return;
+                        markdown.dataset.rendered = "true";
+                        
+                        let text = markdown.textContent || markdown.innerText;
+
+                        // Traducción automática de los saludos por defecto de n8n
+                        if (text.includes('Hi there!')) {
+                            text = '¡Hola! <span class="SalesPersonName"></span>';
+                        }
+                        if (text.includes('My name is n8n') || text.includes('how can I assist')) {
+                            text = 'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?';
+                        }
+
+                        // Formatear saltos de línea a HTML
+                        let html = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\n/g, "<br>");
+                        markdown.innerHTML = html;
+                    }
+
+                    // 2. INYECTAR A LUCKY Y TEXTOS AL ABRIR EL CHAT
+                    if (node.classList.contains("chat-window")) {
+                        // Un pequeño retraso para permitir que n8n pinte los textos originales antes de sobreescribirlos
+                        setTimeout(() => {
+                            // Cambiar el Header por el Avatar en video de Lucky
+                            const heading = node.querySelector('.chat-heading > h1, .n8n-chat-header h1');
+                            if (heading && !heading.dataset.luckyAdded) {
+                                heading.dataset.luckyAdded = "true";
+                                heading.innerHTML = `
+                                    <div style="display: flex; align-items: center; gap: 10px; position: relative;">
+                                        <div id="avatar-wrapper" style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('https://intranet.cafeetrusca.com/video/elia.jpg?v=1.2'); background-size: cover; background-position: center; overflow: hidden;"></div>
+                                        <span style="font-weight: bold;">Lucky</span>
+                                        <span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>
+                                    </div>
+                                `;
+
+                                // Lógica del Video de Lucky
+                                const avatarWrapper = heading.querySelector("#avatar-wrapper");
+                                const videoList = ["https://intranet.cafeetrusca.com/video/elia-1.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-2.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-3.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-4.mp4?v=1.2"];
+                                let currentIndex = 0;
+
+                                function showVideo() {
+                                    if (!document.contains(avatarWrapper)) return; // Se detiene si cierran el chat
+                                    const videoSrc = videoList[currentIndex];
+                                    currentIndex = (currentIndex + 1) % videoList.length;
+                                    const video = document.createElement('video');
+                                    video.src = videoSrc;
+                                    video.autoplay = true;
+                                    video.muted = true;
+                                    video.playsInline = true;
+                                    video.style.cssText = `position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 1;`;
+                                    avatarWrapper.appendChild(video);
+                                    video.onended = () => {
+                                        if(avatarWrapper.contains(video)) avatarWrapper.removeChild(video);
+                                        setTimeout(showVideo, 5000);
+                                    };
+                                }
+                                setTimeout(showVideo, 5000);
+                            }
+
+                            // Ocultar el título antiguo que dice "Hi there! 👋" en el encabezado
+                            const headingTitle = node.querySelector('.chat-header > p');
+                            if (headingTitle) headingTitle.style.display = 'none';
+
+                            // Cambiar el subtítulo "Start a chat..." a Español
+                            const subtitle = node.querySelector('.n8n-chat-header-subtitle');
+                            if (subtitle) subtitle.textContent = 'Estamos en línea para ayudarte';
+
+                            // Cambiar el placeholder "Type your message..." a Español
+                            const inputtext = node.querySelector('.chat-inputs textarea, .n8n-chat-input textarea');
+                            if (inputtext) inputtext.placeholder = "Escribe tu pregunta aquí...";
+
+                        }, 2500); // 2500ms es suficiente para que n8n renderice y nosotros modifiquemos
+                    }
+                });
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+
+    // 3. WIDGET DE AYUDA Y BOTÓN BURBUJA FLOTANTE
+    setTimeout(() => {
+        const help = `<div id="etrusca-help-widget" style="position: fixed; bottom: 20px; right: 96px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 16px; max-width: 280px; font-family: sans-serif; font-size: 14px; z-index: 9999; display: flex; align-items: flex-start; gap: 10px;">
+          <button onclick="document.getElementById('etrusca-help-widget').style.display='none'" style="border: none; background: transparent; font-size: 16px; font-weight: bold; cursor: pointer; position: absolute; top: 6px; right: 8px; color: #999;">&times;</button>
+          <div style="padding-right: 20px;">
+            <strong>¿Necesitas ayuda?</strong><br>
+            Habla con <strong>Lucky</strong>, tu experto en Café Etrusca, y descubre beneficios exclusivos pensados para ti.
+          </div>
+        </div>`;
+
+        const n8nChat = document.querySelector('.n8n-chat');
+        if (n8nChat) {
+            n8nChat.insertAdjacentHTML('afterbegin', help);
+            const hideHelpWidget = () => {
+                const widget = document.getElementById('etrusca-help-widget');
+                if (widget) widget.style.display = 'none';
+            };
+            setTimeout(hideHelpWidget, 10000); // Se oculta solo en 10 segundos
+            n8nChat.addEventListener('click', hideHelpWidget); // O si hacen click
+        }
+
+        const toggle = document.querySelector(".chat-window-toggle");
+        if (toggle) {
+            const originalSVG = `<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8"></path></svg>`;
+            const originalSVGminimizar = `<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"></path></svg>`;
+            let estado = 'imagen';
+
+            toggle.innerHTML = `<div style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('https://intranet.cafeetrusca.com/video/elia.jpg?v=1.2')!important; background-size: cover; background-position: center; overflow: hidden;"></div><span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>`;
+
+            toggle.addEventListener("click", function () {
+                if (estado === 'imagen') {
+                    toggle.innerHTML = originalSVGminimizar;
+                    estado = 'minimizar';
+                } else if (estado === 'minimizar') {
+                    toggle.innerHTML = originalSVG;
+                    estado = 'globo';
+                } else {
+                    toggle.innerHTML = originalSVGminimizar;
+                    estado = 'minimizar';
+                }
+            });
+        }
+    }, 2500);
+  </script>
+</body>
+</html>

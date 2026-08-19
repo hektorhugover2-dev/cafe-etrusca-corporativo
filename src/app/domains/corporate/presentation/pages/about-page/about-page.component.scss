@@ -1,0 +1,150 @@
+// =====================================
+// BANNER HERO (NOSOTROS)
+// =====================================
+// =====================================
+// BANNER HERO (SPLIT CON VIDEO)
+// =====================================
+.hero-nosotros-split {
+  // Ajustamos el padding superior para que el menú de navegación (Header) no tape el texto
+  padding-top: 100px; 
+  
+  .hero-split-row {
+    min-height: 55vh; // Altura ideal para que se vea bien en monitor
+  }
+
+  .title-quienes {
+    line-height: 1.1; // Junta un poco más las líneas "¿QUIÉNES" y "SOMOS?"
+    font-size: clamp(3.5rem, 6vw, 6rem); // Se hace más chico en celulares y gigante en PC
+  }
+
+  .hero-video-col {
+    height: 55vh; // Debe coincidir con la altura del row
+    background-color: #faf7f8; // Fondo blanco por si el video tarda un segundo en cargar
+  }
+
+  .hero-video {
+    object-position: center; // Centra el video
+    // Si tu video tiene fondo blanco, esto ayuda a que se fusione perfecto
+    mix-blend-mode: multiply; 
+  }
+
+  .hero-subtitle-bar {
+    // Recreamos el gradiente beige suave de tu diseño
+    background: #faf7f8;
+    position: relative;
+    z-index: 2;
+  }
+}
+// OLA BLANCA BAJO EL HERO
+.custom-shape-divider-bottom {
+  position: absolute;
+  bottom: -1px; // El -1px evita que se vea una línea fea entre secciones
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2; // Tiene que estar arriba del overlay oscuro
+
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 70px; // Aquí puedes subirlo a 90px si quieres la ola más pronunciada
+  }
+
+  .shape-fill {
+    fill: #ffffff; // Blanco exacto para mezclarse con la siguiente sección
+  }
+}
+
+// =====================================
+// TARJETAS Y VALORES (INTERACTIVIDAD)
+// =====================================
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+  }
+}
+
+.valor-badge {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    transform: scale(1.05);
+    
+    // Efecto de relleno interactivo al hacer hover
+    &[style*="border-color: #ff6b81"] { background-color: #ff6b81 !important; color: white !important; }
+    &[style*="border-color: #00d2d3"] { background-color: #00d2d3 !important; color: white !important; }
+    &[style*="border-color: #badc58"] { background-color: #badc58 !important; color: #09102c !important; }
+    &[style*="border-color: #ffeba1"] { background-color: #ffeba1 !important; color: #09102c !important; }
+    &[style*="border-color: #ffffff"] { background-color: #ffffff !important; color: #09102c !important; }
+  }
+}
+
+// =====================================
+// SECCIÓN INTRODUCCIÓN DIVIDIDA
+// =====================================
+.intro-split {
+  position: relative;
+  
+  .intro-image-col {
+    min-height: 450px; // Altura mínima para que la foto luzca en pantallas grandes
+    
+    img {
+      object-fit: cover; // Asegura que la imagen no se distorsione
+    }
+  }
+  
+  .intro-text-col {
+    background-color: #6ee1df; // Tono Cyan claro (ajústalo a tu pantone exacto si es necesario)
+    padding: 100px 0; // Da espacio suficiente arriba y abajo para que las olas no toquen el texto
+  }
+
+  // Ola Superior
+  .custom-shape-divider-top-intro {
+    position: absolute;
+    top: -1px; // Evita una línea fina renderizada por algunos navegadores
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 60px; // Grosor de la ola
+    }
+    
+    .shape-fill-top {
+      fill: #ffffff; // Se pinta de blanco para continuar la sección Hero de arriba
+    }
+  }
+
+  // Ola Inferior
+  .custom-shape-divider-bottom-intro {
+    position: absolute;
+    bottom: -1px; // Evita la línea fina
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 60px;
+    }
+    
+    .shape-fill-bottom {
+      fill: #f8f9fa; // Se pinta de gris claro para coincidir con la sección "Misión y Visión"
+    }
+  }
+}

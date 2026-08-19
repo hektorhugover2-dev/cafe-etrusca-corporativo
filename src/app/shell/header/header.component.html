@@ -1,0 +1,49 @@
+<header class="header-transparent" [ngClass]="{'scrolled': isScrolled}">
+  <nav class="navbar navbar-expand-lg navbar-dark py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      
+      <!-- Botón hamburguesa para móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarNav">
+        
+        <!-- MITAD IZQUIERDA -->
+        <ul class="navbar-nav align-items-center gap-3 gap-xl-4 mx-auto">
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/nosotros">Nosotros</a></li>
+          
+          <!-- Dropdown PRODUCTOS -->
+          <li class="nav-item dropdown custom-hover-dropdown">
+            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" routerLink="/productos" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Productos
+            </a>
+            <ul class="dropdown-menu border-0 shadow-sm custom-dropdown-menu" aria-labelledby="navbarDropdownProductos">
+              <li><a class="dropdown-item" routerLink="/productos/cafe">Café</a></li>
+              <li><a class="dropdown-item" routerLink="/productos/insumos">Insumos</a></li>
+              <li><a class="dropdown-item" routerLink="/productos/accesorios">Accesorios</a></li>
+              <li><a class="dropdown-item" routerLink="/productos/maquinas">Máquinas</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/educacion">Educación</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/servicio">Servicio</a></li>
+        </ul>
+
+        <!-- LOGO CENTRAL -->
+        <a class="navbar-brand mx-4 d-none d-lg-block" routerLink="/">
+          <img src="https://cafeetrusca.com/img/logo_etrusca.webp" alt="Logo Café Etrusca" height="70">
+        </a>
+
+        <!-- MITAD DERECHA -->
+        <ul class="navbar-nav align-items-center gap-3 gap-xl-4 mx-auto">
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/contacto">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/videoteca">Videoteca</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/etrusca-biz">Etrusca Biz</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/ecommerce">Ecommerce</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>

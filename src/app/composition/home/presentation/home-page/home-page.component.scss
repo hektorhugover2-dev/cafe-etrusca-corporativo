@@ -1,0 +1,442 @@
+// =====================================
+// ESTILOS DE LA SECCIÓN HERO
+// =====================================
+.hero-section {
+  height: 100vh;
+  min-height: 600px;
+  // Ruta directa a una imagen de cafetería, si tienes una en assets cámbiala aquí
+  background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(9, 16, 44, 0.4); // Oscurecido con el azul corporativo
+    z-index: 1;
+  }
+}
+
+.title-hero {
+  text-shadow: 2px 4px 8px rgba(0,0,0,0.6);
+  letter-spacing: 2px;
+}
+
+// OLA BLANCA BAJO EL HERO
+.custom-shape-divider-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 2;
+
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 90px;
+  }
+
+  .shape-fill {
+    fill: #ffffff; // Une el hero con la siguiente sección blanca
+  }
+}
+
+// =====================================
+// NAVEGACIÓN DE PRODUCTOS
+// =====================================
+.product-nav a {
+  color: #a4b0be;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+  
+  &:hover { color: #09102c; }
+  
+  &.active {
+    color: #09102c;
+    border-bottom: 3px solid #ff6b81;
+    padding-bottom: 5px;
+  }
+}
+
+// =====================================
+// TARJETAS (CARDS)
+// =====================================
+.recipe-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.15) !important;
+  }
+}
+// =====================================
+// SECCIÓN: CATEGORÍAS DE PRODUCTOS (BOTONES)
+// =====================================
+.product-category {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px); // Efecto de elevación al pasar el mouse
+  }
+
+  .img-wrapper {
+    height: 150px; 
+    display: flex;
+    align-items: flex-end; // Alinea todas las imágenes por la base
+    justify-content: center;
+  }
+  
+  .category-badge {
+    display: inline-block;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid transparent;
+  }
+  
+  &:hover .category-badge {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transform: scale(1.05); // El botón crece un poquito
+  }
+}
+
+// Colores personalizados de los botones estilo "píldora"
+.badge-cafe { background-color: #aae0e5 !important; }       // Cian claro
+.badge-insumos { background-color: #ffeba1 !important; }    // Amarillo mostaza claro
+.badge-accesorios { background-color: #ffb8b8 !important; } // Rosa claro
+.badge-maquinas { background-color: #dcedc1 !important; }   // Verde lima claro
+.ratio-16x9 {
+  background-color: #2c3e50 !important; // Fondo para los videos vacíos
+}
+
+// =====================================
+// ESTILOS DE LA SECCIÓN HERO (SLIDER)
+// =====================================
+.hero-section {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+  background-color: #09102c; 
+  
+  .img-slider {
+    object-fit: cover; // Hace que la imagen llene el espacio sin deformarse
+    height: 100vh;
+    width: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(9, 16, 44, 0.4); 
+    z-index: 1;
+  }
+}
+
+// Asegura que los botones del slide se puedan clickear por encima del overlay
+.pointer-event-auto {
+  pointer-events: auto;
+}
+
+.title-hero {
+  text-shadow: 2px 4px 8px rgba(0,0,0,0.8);
+  letter-spacing: 2px;
+}
+
+// OLA BLANCA BAJO EL HERO
+.custom-shape-divider-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 4; // Z-index alto para tapar la parte inferior del slider
+
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 90px;
+  }
+
+  .shape-fill {
+    fill: #ffffff;
+  }
+}
+
+// =====================================
+// TARJETAS DE RECETAS (NUEVO DISEÑO)
+// =====================================
+.recipe-item {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px); // Elevación de todo el bloque
+    
+    .recipe-img-wrapper {
+      box-shadow: 0 15px 25px rgba(0,0,0,0.15); // Sombra más fuerte en la imagen
+    }
+  }
+}
+
+.recipe-img-wrapper {
+  width: 200px; // Ancho fijo para simular el PDF
+  height: 280px; // Altura fija para hacerlas verticales
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.08); // Sombra suave original
+  transition: box-shadow 0.3s ease;
+  
+  .recipe-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Asegura que la foto llene el espacio sin deformarse
+  }
+}
+
+// Botones de Recetas
+.btn-receta {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+// Colores de los botones basados en el PDF
+.btn-rosa { background-color: #ffb8b8; }
+.btn-verde { background-color: #dcedc1; }
+.btn-amarillo { background-color: #ffeba1; }
+
+// =====================================
+// SECCIÓN: PROMOCIONES
+// =====================================
+.promo-item {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px); // Elevación al pasar el cursor
+    
+    .circle-bg {
+      transform: scale(1.05); // El círculo entero crece ligeramente
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08); // Sombra suave para darle profundidad
+    }
+  }
+}
+
+// Estilos del círculo de fondo
+.circle-bg {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%; // Esto lo hace completamente redondo
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  .promo-img {
+    max-height: 85%; // Ajusta la imagen para que quepa bien dentro del círculo
+    object-fit: contain;
+  }
+}
+
+// Colores de los círculos
+.circle-green { background-color: #dcedc1; }
+.circle-yellow { background-color: #ffeba1; }
+.circle-blue { background-color: #aae0e5; }
+
+// Botón Rosa de Promociones
+.btn-promociones {
+  background-color: #ffb8b8; 
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    background-color: #ff6b81; 
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(255, 107, 129, 0.3);
+  }
+}
+
+
+// =====================================
+// SECCIÓN COMPROMISO (ESTADÍSTICAS)
+// =====================================
+.compromiso-section {
+  
+  .fw-black {
+    font-weight: 900;
+    letter-spacing: -1px;
+  }
+
+  // Ola Superior Blanca
+  .custom-shape-divider-top-compromiso {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 70px; 
+    }
+    
+    .shape-fill { fill: #ffffff; }
+  }
+
+  // Ola Inferior Blanca
+  .custom-shape-divider-bottom-compromiso {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 70px;
+    }
+    
+    .shape-fill { fill: #ffffff; }
+  }
+}
+
+
+// =====================================
+// SECCIÓN: NUEVO
+// =====================================
+.nuevo-card {
+  width: 100%;
+  max-width: 320px; // Mantiene el ancho controlado para que no se deformen
+  height: 500px;    // Altura fija para hacerlas verticales tipo "historia"
+  border-radius: 25px; // Esquinas súper redondeadas
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+    
+    // Zoom suave a la foto al pasar el mouse
+    .nuevo-img-wrapper img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.nuevo-img-wrapper {
+  flex: 1; // Empuja el contenido de color hacia abajo, tomando el espacio sobrante
+  overflow: hidden;
+
+  img {
+    transition: transform 0.5s ease;
+  }
+}
+
+.nuevo-content {
+  padding: 25px 20px;
+  min-height: 170px; // Altura mínima para la caja de color
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h5 {
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+  }
+}
+
+// Botón "Saber más"
+.btn-saber-mas {
+  background-color: #09102c; // Tu azul oscuro corporativo
+  border: none;
+  font-size: 0.85rem;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  
+  &:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+// Colores de la base de las tarjetas
+.bg-verde { background-color: #dcedc1; } // Verde Lima
+.bg-cian  { background-color: #aae0e5; } // Cian Claro
+.bg-rosa  { background-color: #ffb8b8; } // Rosa Claro
+
+
+
+// =====================================
+// SECCIÓN: DESCARGABLES
+// =====================================
+
+// Botones de filtro
+.filter-badge {
+  transition: transform 0.2s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+  
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+}
+
+// Colores de los botones
+.bg-verde { background-color: #dcedc1 !important; }
+.bg-cian  { background-color: #aae0e5 !important; }
+.bg-rosa  { background-color: #ffb8b8 !important; }
+
+// Tarjetas de descargas
+.descargable-card {
+  border-radius: 0.75rem; // Bordes redondeados más sutiles para parecerse a los libros
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  
+  img {
+    transition: transform 0.5s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+    z-index: 2; // Pone la tarjeta encima de las demás al hacer hover
+    
+    // Pequeño zoom en la foto interior
+    img {
+      transform: scale(1.03);
+    }
+  }
+  
+}
+.catalogo-cuadrado {
+    padding-top: 18vh;
+    padding-bottom: 18vh;
+     border-radius: 0.75rem; // Bordes redondeados más sutiles para parecerse a los libros
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+

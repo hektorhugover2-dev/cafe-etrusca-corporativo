@@ -1,0 +1,7 @@
+.main-content {
+  // Asegura que el contenido central ocupe al menos el alto de la pantalla 
+  // menos un aproximado de lo que miden el header y el footer juntos.
+  min-height: calc(100vh - 400px); 
+  display: flex;
+  flex-direction: column;
+}
