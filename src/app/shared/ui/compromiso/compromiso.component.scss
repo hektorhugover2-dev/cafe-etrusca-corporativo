@@ -1,0 +1,51 @@
+
+// =====================================
+// SECCIÓN COMPROMISO (ESTADÍSTICAS)
+// =====================================
+.compromiso-section {
+  
+  .fw-black {
+    font-weight: 900;
+    letter-spacing: -1px;
+  }
+
+  // Ola Superior Blanca
+  .custom-shape-divider-top-compromiso {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 70px; 
+    }
+    
+    .shape-fill { fill: #ffffff; }
+  }
+
+  // Ola Inferior Blanca
+  .custom-shape-divider-bottom-compromiso {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 1;
+    
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 70px;
+    }
+    
+    .shape-fill { fill: #ffffff; }
+  }
+}

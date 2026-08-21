@@ -1,3 +1,52 @@
+@import 'leaflet/dist/leaflet.css';
+
+:root {
+  /* ========================================
+     CAFÉ ETRUSCA · DESIGN TOKENS
+     ======================================== */
+
+  /* NAVY / BRAND */
+  --etrusca-navy-900: #070C3B;
+  --etrusca-navy-700: #192966;
+  --etrusca-navy-600: #202C59;
+  --etrusca-navy-500: #344689;
+
+  /* YELLOW */
+  --etrusca-yellow-100: #FFE88D;
+  --etrusca-yellow-300: #FFE270;
+  --etrusca-yellow-500: #FDDB4F;
+  --etrusca-yellow-600: #FDD640;
+
+  /* LIME */
+  --etrusca-lime-100: #D7EA73;
+  --etrusca-lime-300: #CFE658;
+  --etrusca-lime-500: #D0EB42;
+  --etrusca-lime-700: #B1CC2A;
+
+  /* CYAN */
+  --etrusca-cyan-100: #A7E3E6;
+  --etrusca-cyan-300: #96DDE1;
+  --etrusca-cyan-500: #62E0E9;
+  --etrusca-cyan-700: #71C2C5;
+
+  /* PINK */
+  --etrusca-pink-100: #FFA9AB;
+  --etrusca-pink-300: #FF9496;
+  --etrusca-pink-500: #FD96A1;
+  --etrusca-pink-700: #E88789;
+
+  /* ORANGE */
+  --etrusca-orange-100: #ECC981;
+  --etrusca-orange-300: #E7B756;
+  --etrusca-orange-500: #FDB745;
+  --etrusca-orange-700: #E4A62A;
+
+  /* CARAMEL */
+  --etrusca-caramel-100: #EFBC89;
+  --etrusca-caramel-500: #E19334;
+  --etrusca-caramel-700: #B9721C;
+  --etrusca-caramel-800: #AC6611;
+}
 /* ==================================================
    ANIMACIÓN DE 3 PATITAS REBOTANDO (TYPING)
    ================================================== */
@@ -37,3 +86,4 @@
   0%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-8px); } /* Qué tan alto saltan las patitas */
 }
+

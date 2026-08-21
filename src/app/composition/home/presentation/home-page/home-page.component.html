@@ -1,299 +1,275 @@
 <div class="home-container">
   <!-- SECCIÓN HERO CON SLIDER (CARRUSEL) -->
-  <!-- SECCIÓN HERO CON SLIDER -->
-<section class="hero-section position-relative">
-  
-  <!-- Carrusel de Bootstrap -->
-  <div id="heroCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="5000">
+  <section class="hero-section position-relative">
     
-    <!-- Indicadores (Puntitos de navegación) -->
-    <div class="carousel-indicators z-3">
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    </div>
-
-    <div class="carousel-inner h-100">
+    <!-- Carrusel de Bootstrap -->
+    <div id="heroCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="5000">
       
-      <!-- SLIDE 1: Banner La Fenice (Activo) -->
-      <div class="carousel-item active h-100">
-        <a href="https://tienda.cafeetrusca.com/productos?search=BREW%20LA%20FENICE" target="_blank" title="Tienda Online Café Etrusca Kit La Fenice">
-          <picture>
-            <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(max-width: 480px)">
-            <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(max-width: 2559px)">
-            <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(min-width: 2560px)">
-            <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
-          </picture>
-        </a>
+      <!-- Indicadores (Puntitos de navegación) -->
+      <div class="carousel-indicators z-3">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
       </div>
 
-      <!-- SLIDE 2: Hero Tradicional Café Etrusca -->
-      <div class="carousel-item h-100">
-        <!-- Capa oscura para que resalte el texto solo en este slide -->
-        <div class="overlay pe-none"></div>
-        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" class="d-block w-100 img-slider" alt="Café Etrusca">
+      <div class="carousel-inner h-100">
         
-        <!-- Textos y botones centrados -->
-        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 z-2" style="top: 0; bottom: 0;">
-          <h1 class="display-1 fw-bold mb-4 title-hero text-white">CAFÉ ETRUSCA</h1>
-          <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
-            <button class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold pointer-event-auto" href="/Contacto">CONTACTO</button>
-            <button class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold pointer-event-auto" href="#descargables">DESCARGABLES</button>
-            <button class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold pointer-event-auto" href="https://tienda.cafeetrusca.com/">ECOMMERCE</button>
+        <!-- SLIDE 1: Banner La Fenice (Activo) -->
+        <div class="carousel-item active h-100">
+          <a href="https://tienda.cafeetrusca.com/productos?search=BREW%20LA%20FENICE" target="_blank" title="Tienda Online Café Etrusca Kit La Fenice">
+            <picture>
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(max-width: 480px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(max-width: 2559px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(min-width: 2560px)">
+              <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
+            </picture>
+          </a>
+        </div>
+
+        <!-- SLIDE 2: Hero Tradicional Café Etrusca -->
+        <div class="carousel-item h-100">
+          <div class="overlay pe-none"></div>
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" class="d-block w-100 img-slider" alt="Café Etrusca">
+          
+          <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 z-2" style="top: 0; bottom: 0;">
+            <h1 class="display-1 fw-bold mb-4 title-hero text-white">CAFÉ ETRUSCA</h1>
+            <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+              <a class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold pointer-event-auto" href="/Contacto">CONTACTO</a>
+              <a class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold pointer-event-auto" href="#descargables">DESCARGABLES</a>
+              <a class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold pointer-event-auto" href="https://tienda.cafeetrusca.com/" target="_blank">ECOMMERCE</a>
+            </div>
           </div>
         </div>
+
+        <!-- SLIDE 3: Banner Barista Básico -->
+        <div class="carousel-item h-100">
+          <a href="https://tienda.cafeetrusca.com/producto/detalle/KIT-002/BARISTA-BASICO" target="_blank" title="Tienda Online Café Etrusca Kit Barista básico">
+            <picture>
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME.webp?v=1.0" media="(max-width: 480px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME.webp?v=1.0" media="(max-width: 2559px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME.webp?v=1.0" media="(min-width: 2560px)">
+              <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
+            </picture>
+          </a>
+        </div>
+
+        <!-- SLIDE 4: Banner Hario -->
+        <div class="carousel-item h-100">
+          <a href="https://tienda.cafeetrusca.com/productos?search=BREW%20HARIO" target="_blank" title="Tienda Online Café Etrusca Hario">
+            <picture>
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_HARIO.webp?v=1.0" media="(max-width: 480px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_HARIO.webp?v=1.0" media="(max-width: 2559px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_HARIO.webp?v=1.0" media="(min-width: 2560px)">
+              <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_HARIO.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
+            </picture>
+          </a>
+        </div>
+
+        <!-- SLIDE 5: Banner Bubble Tea -->
+        <div class="carousel-item h-100">
+          <a href="https://tienda.cafeetrusca.com/productos?search=bubble-tea" target="_blank" title="Tienda Online Café Etrusca Kit BUBBLE TEA">
+            <picture>
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_BUBBLE_TEA.webp?v=1.0" media="(max-width: 480px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_BUBBLE_TEA.webp?v=1.0" media="(max-width: 2559px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_BUBBLE_TEA.webp?v=1.0" media="(min-width: 2560px)">
+              <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_BUBBLE_TEA.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
+            </picture>
+          </a>
+        </div>
+
+        <!-- SLIDE 6: Banner Toddy 1 -->
+        <div class="carousel-item h-100">
+          <a href="https://tienda.cafeetrusca.com/productos?search=COLD%20BREW%20TODDY" target="_blank" title="Tienda Online Café Etrusca Kit Toddy 1">
+            <picture>
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1.webp?v=1.0" media="(max-width: 480px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1.webp?v=1.0" media="(max-width: 2559px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1.webp?v=1.0" media="(min-width: 2560px)">
+              <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
+            </picture>
+          </a>
+        </div>
+
+        <!-- SLIDE 7: Banner Toddy 2 -->
+        <div class="carousel-item h-100">
+          <a href="https://tienda.cafeetrusca.com/productos?search=COLD%20BREW%20TODDY" target="_blank" title="Tienda Online Café Etrusca Kit Toddy 2">
+            <picture>
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1_2.webp?v=1.0" media="(max-width: 480px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1_2.webp?v=1.0" media="(max-width: 2559px)">
+              <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1_2.webp?v=1.0" media="(min-width: 2560px)">
+              <img src="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_TODDY_1_2.webp?v=1.0" class="d-block w-100 img-slider" alt="Nuevos Productos en E-Commerce">
+            </picture>
+          </a>
+        </div>
+
       </div>
 
+      <!-- Flechas de navegación -->
+      <button class="carousel-control-prev z-3" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next z-3" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
     </div>
 
-    <!-- Controles (Flechas Izquierda y Derecha) -->
-    <button class="carousel-control-prev z-3" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next z-3" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Siguiente</span>
-    </button>
-  </div>
-
-  <!-- Ola Inferior (Divisor) -->
-  <div class="custom-shape-divider-bottom">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M0,60 C200,100 200,20 400,60 C600,100 600,20 800,60 C1000,100 1000,20 1200,60 L1200,120 L0,120 Z" class="shape-fill"></path>
-    </svg>
-  </div>
-</section>
- <!-- SECCIÓN: NUESTROS PRODUCTOS Y RECETAS -->
-<section class="py-5 bg-white">
-  <div class="container text-center">
-    
-    <!-- Título con imagen separadora -->
-    <h2 class="fw-bold mb-2" style="color: #09102c; font-size: 2.2rem;">NUESTROS PRODUCTOS</h2>
-    <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid" style="margin-left:26vw;max-width: 300px;">
-
-    <!-- Fila de Categorías de Productos -->
-    <!-- Fila de Categorías de Productos -->
-    <div class="row justify-content-center mb-5 pb-4 g-4">
-      
-      <!-- Categoría 1: Café -->
-      <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
-        <a href="#" class="text-decoration-none text-center">
-          <div class="img-wrapper mb-3">
-            <img src="/assets/images/icon-cafe.png" alt="Café" class="img-fluid" style="height: 130px; object-fit: contain;">
-          </div>
-          <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-cafe">Café</span>
-        </a>
-      </div>
-      
-      <!-- Categoría 2: Insumos -->
-      <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
-        <a href="#" class="text-decoration-none text-center">
-          <div class="img-wrapper mb-3">
-            <img src="/assets/images/icon-insumos.png" alt="Insumos" class="img-fluid" style="height: 130px; object-fit: contain;">
-          </div>
-          <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-insumos">Insumos</span>
-        </a>
-      </div>
-
-      <!-- Categoría 3: Accesorios -->
-      <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
-        <a href="#" class="text-decoration-none text-center">
-          <div class="img-wrapper mb-3">
-            <img src="/assets/images/icon-accesorios.png" alt="Accesorios" class="img-fluid" style="height: 130px; object-fit: contain;">
-          </div>
-          <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-accesorios">Accesorios</span>
-        </a>
-      </div>
-
-      <!-- Categoría 4: Máquinas -->
-      <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
-        <a href="#" class="text-decoration-none text-center">
-          <div class="img-wrapper mb-3">
-            <img src="/assets/images/icon-maquinas.png" alt="Máquinas" class="img-fluid" style="height: 130px; object-fit: contain;">
-          </div>
-          <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-maquinas">Máquinas</span>
-        </a>
-      </div>
-
-    </div>
-
-    <!-- Título Recetas con imagen separadora -->
-    <h2 class="fw-bold mt-4 mb-2" style="color: #09102c; font-size: 2.2rem;">RECETAS</h2>
-    <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid" style="margin-left:26vw;max-width: 300px;">
-    <p class="text-muted mb-5 w-75 mx-auto fs-5">Aprende a preparar las mejores recetas de temporada con la calidad de Café Etrusca.</p>
-    
-   <div class="row g-4 justify-content-center mt-3">
-      
-      <!-- Receta 1: Soda Italiana -->
-      <div class="col-md-4 d-flex flex-column align-items-center text-center recipe-item">
-        <div class="recipe-img-wrapper mb-4">
-          <img src="/assets/images/receta-card.png" alt="Soda Italiana" class="recipe-img">
-        </div>
-        <h5 class="fw-bold mb-1" style="color: #09102c;">Soda Italiana</h5>
-        <!-- Usamos el color rosa para que haga juego con el botón -->
-        <p class="small mb-3 fw-bold" style="color: #ffb8b8;">ChillOut pearl sabor fresa</p>
-        <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 text-decoration-none btn-receta btn-rosa">Ver receta &rarr;</a>
-      </div>
-
-      <!-- Receta 2: Matcha Frappé -->
-      <div class="col-md-4 d-flex flex-column align-items-center text-center recipe-item">
-        <div class="recipe-img-wrapper mb-4">
-          <img src="/assets/images/nuevo-chillout.png" alt="Matcha Frappé" class="recipe-img">
-        </div>
-        <h5 class="fw-bold mb-1" style="color: #09102c;">Matcha Frappé</h5>
-        <!-- Usamos el color verde lima para que haga juego -->
-        <p class="small mb-3 fw-bold" style="color: #dcedc1;">David Rio tea frost base en polvo sabor matcha</p>
-        <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 text-decoration-none btn-receta btn-verde">Ver receta &rarr;</a>
-      </div>
-
-      <!-- Receta 3: Mocha Latte -->
-      <div class="col-md-4 d-flex flex-column align-items-center text-center recipe-item">
-        <div class="recipe-img-wrapper mb-4">
-          <img src="/assets/images/nuevo-latte.png" alt="Mocha latte fancy" class="recipe-img">
-        </div>
-        <h5 class="fw-bold mb-1" style="color: #09102c;">Mocha latte fancy</h5>
-        <!-- Usamos el color amarillo mostaza para que haga juego -->
-        <p class="small mb-3 fw-bold" style="color: #ffeba1;">Salsa Chocolate Oscuro Torani</p>
-        <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 text-decoration-none btn-receta btn-amarillo">Ver receta &rarr;</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-  <!-- SECCIÓN: PROMOCIONES -->
-  <section class="py-5 bg-white text-center">
-    <div class="container">
-      
-      <!-- Título con imagen separadora -->
-      <h2 class="fw-bold mb-2" style="color: #09102c; font-size: 2.2rem;">PROMOCIONES</h2>
-      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-4 img-fluid" style="max-width: 150px;">
-      
-      <!-- Subtítulo -->
-      <p class="text-muted mx-auto fs-5 mb-5" style="max-width: 800px;">
-        Selección de temporada para impulsar tu barra. Conoce las promociones vigentes y encuentra soluciones para impulsar tu barra.
-      </p>
-
-      <!-- Fila de Productos -->
-      <!-- Fila de Productos -->
-      <div class="row justify-content-center g-4 mt-2">
-        
-        <!-- Producto 1 -->
-        <div class="col-md-4 d-flex flex-column align-items-center promo-item">
-          <!-- Círculo Verde -->
-          <div class="circle-bg circle-green mb-4">
-            <img src="/assets/images/circulo-producto1.png" alt="Jarabe Sabor Mango Torani" class="img-fluid promo-img">
-          </div>
-          <p class="fw-bold text-dark px-3 fs-6">Jarabe Sabor Mango Torani</p>
-        </div>
-        
-        <!-- Producto 2 -->
-        <div class="col-md-4 d-flex flex-column align-items-center promo-item">
-          <!-- Círculo Amarillo -->
-          <div class="circle-bg circle-yellow mb-4">
-            <img src="/assets/images/circulo-producto2.png" alt="ChillOut pearl sabor Fresa" class="img-fluid promo-img">
-          </div>
-          <p class="fw-bold text-dark px-3 fs-6">ChillOut pearl sabor Fresa</p>
-        </div>
-        
-        <!-- Producto 3 -->
-        <div class="col-md-4 d-flex flex-column align-items-center promo-item">
-          <!-- Círculo Azul -->
-          <div class="circle-bg circle-blue mb-4">
-            <img src="/assets/images/circulo-producto3.png" alt="Frappé Matcha David Rio" class="img-fluid promo-img">
-          </div>
-          <p class="fw-bold text-dark px-3 fs-6">Frappé Matcha David Rio</p>
-        </div>
-
-      </div>
-
-      <!-- Botón Conocer Más -->
-      <div class="mt-5 pt-3">
-        <a href="#" class="badge rounded-pill text-white fw-bold px-5 py-3 fs-6 text-decoration-none btn-promociones">Conocer más &rarr;</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECCIÓN: COMPROMISO (Estadísticas) -->
-  <!-- SECCIÓN: COMPROMISO (Estadísticas) -->
-  <section class="compromiso-section position-relative py-5 text-white" style="background-color: #09102c;">
-    
-    <!-- Ola Superior -->
-    <div class="custom-shape-divider-top-compromiso">
-      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,60 C200,100 200,20 400,60 C600,100 600,20 800,60 C1000,100 1000,20 1200,60 L1200,0 L0,0 Z" class="shape-fill"></path>
-      </svg>
-    </div>
-
-    <div class="container text-center position-relative z-2" style="padding-top: 60px; padding-bottom: 60px;">
-      <h2 class="fw-bold mb-2 text-uppercase" style="letter-spacing: 1px;">NUESTRO COMPROMISO</h2>
-      <div class="mx-auto mb-4" style="width: 80px; height: 3px; background-color: #ffb8b8;"></div>
-      
-      <p class="mb-5 fs-5 mx-auto" style="max-width: 800px; color: #d1d8e0;">
-        Creamos experiencias, impulsamos talentos y construimos un legado que se refleja en nuestros resultados.
-      </p>
-      
-      <div class="row g-4 mt-2">
-        <div class="col-6 col-md-3">
-          <!-- Color Cian -->
-          <h3 class="display-4 fw-black mb-2" style="color: #00d2d3;">
-            <span #counter data-target="26">0</span>
-          </h3>
-          <p class="fs-6 px-md-3" style="color: #a4b0be;">Sucursales y distribuidores en el pais</p>
-        </div>
-        <div class="col-6 col-md-3">
-          <!-- Color Naranja -->
-          <h3 class="display-4 fw-black mb-2" style="color: #ffa502;">
-            <span #counter data-prefix="+" data-target="30">+0</span>
-          </h3>
-          <p class="fs-6 px-md-3" style="color: #a4b0be;">Años de experiencia</p>
-        </div>
-        <div class="col-6 col-md-3">
-          <!-- Color Verde Lima -->
-          <h3 class="display-4 fw-black mb-2" style="color: #badc58;">
-            <span #counter data-prefix="+" data-target="60000">+0</span>
-          </h3>
-          <p class="fs-6 px-md-3" style="color: #a4b0be;">Historias de aprendizajes</p>
-        </div>
-        <div class="col-6 col-md-3">
-          <!-- Color Rosa -->
-          <h3 class="display-4 fw-black mb-2" style="color: #ffb8b8;">
-            <span #counter data-prefix="+" data-target="50000">+0</span>
-          </h3>
-          <p class="fs-6 px-md-3" style="color: #a4b0be;">Amantes del café atendidos</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ola Inferior -->
-    <div class="custom-shape-divider-bottom-compromiso">
+    <!-- Ola Inferior Decorativa -->
+    <div class="custom-shape-divider-bottom">
       <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M0,60 C200,100 200,20 400,60 C600,100 600,20 800,60 C1000,100 1000,20 1200,60 L1200,120 L0,120 Z" class="shape-fill"></path>
       </svg>
     </div>
   </section>
 
- <!-- SECCIÓN: NUEVO -->
+  <!-- SECCIÓN: NUESTROS PRODUCTOS Y RECETAS -->
+  <section class="py-5 bg-white">
+       
+    <div class="container text-center">
+      <h2 class="fw-bold mb-2" style="color: #09102c; font-size: 2.2rem;">NUESTROS PRODUCTOS</h2>
+      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+
+      <div class="row justify-content-center mb-5 pb-4 g-4">
+        
+        <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
+          <a href="#" class="text-decoration-none text-center">
+            <div class="img-wrapper mb-3">
+              <img src="/assets/images/icon-cafe.png" alt="Café" class="img-fluid" style="height: 180px; object-fit: contain;">
+            </div>
+            <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-cafe">Café</span>
+          </a>
+        </div>
+        
+        <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
+          <a href="#" class="text-decoration-none text-center">
+            <div class="img-wrapper mb-3">
+              <img src="/assets/images/icon-insumos.png" alt="Insumos" class="img-fluid" style="height: 180px; object-fit: contain;">
+            </div>
+            <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-insumos">Insumos</span>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
+          <a href="#" class="text-decoration-none text-center">
+            <div class="img-wrapper mb-3">
+              <img src="/assets/images/icon-accesorios.png" alt="Accesorios" class="img-fluid" style="height: 180px; object-fit: contain;">
+            </div>
+            <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-accesorios">Accesorios</span>
+          </a>
+        </div>
+
+        <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
+          <a href="#" class="text-decoration-none text-center">
+            <div class="img-wrapper mb-3">
+              <img src="/assets/images/icon-maquinas.png" alt="Máquinas" class="img-fluid" style="height: 180px; object-fit: contain;">
+            </div>
+            <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-maquinas">Máquinas</span>
+          </a>
+        </div>
+
+      </div>
+
+      <h2 class="fw-bold mt-4 mb-2" style="color: #09102c; font-size: 2.2rem;">RECETAS</h2>
+      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <p class="text-muted mb-5 w-75 mx-auto fs-5">Aprende a preparar las mejores recetas de temporada con la calidad de Café Etrusca.</p>
+      
+      <div class="row g-4 justify-content-center mt-3">
+        
+        <div class="col-md-4 d-flex flex-column align-items-center text-center recipe-item">
+          <div class="recipe-img-wrapper mb-4">
+            <img src="/assets/images/receta-card.png" alt="Soda Italiana" class="recipe-img">
+          </div>
+          <h5 class="fw-bold mb-1" style="color: #09102c;">SODA ITALIANA</h5>
+          <p class="small mb-3 fw-bold" style="color: #ffb8b8;">ChillOut pearl sabor fresa</p>
+          <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 text-decoration-none btn-receta btn-rosa">Ver receta →</a>
+        </div>
+
+        <div class="col-md-4 d-flex flex-column align-items-center text-center recipe-item">
+          <div class="recipe-img-wrapper mb-4">
+            <img src="/assets/images/nuevo-chillout.png" alt="Matcha Frappé" class="recipe-img">
+          </div>
+          <h5 class="fw-bold mb-1" style="color: #09102c;">Matcha Frappé</h5>
+          <p class="small mb-3 fw-bold" style="color: #a8d08d;">David Rio tea frost base en polvo sabor matcha</p>
+          <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 text-decoration-none btn-receta btn-verde">Ver receta →</a>
+        </div>
+
+        <div class="col-md-4 d-flex flex-column align-items-center text-center recipe-item">
+          <div class="recipe-img-wrapper mb-4">
+            <img src="/assets/images/nuevo-latte.png" alt="Mocha latte fancy" class="recipe-img">
+          </div>
+          <h5 class="fw-bold mb-1" style="color: #09102c;">Mocha Latte Fancy</h5>
+          <p class="small mb-3 fw-bold" style="color: #e8c547;">Salsa Chocolate Oscuro Torani</p>
+          <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 text-decoration-none btn-receta btn-amarillo">Ver receta →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: PROMOCIONES -->
+  <section class="py-5 bg-white text-center">
+    <div class="container">
+      
+      <h2 class="fw-bold mb-2" style="color: #09102c; font-size: 2.2rem;">PROMOCIONES</h2>
+    <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+
+      <p class="text-muted mx-auto fs-5 mb-5" style="max-width: 800px;">
+        Selección de temporada para impulsar tu barra. Conoce las promociones vigentes y encuentra soluciones para impulsar tu barra.
+      </p>
+
+      <div class="row justify-content-center g-4 mt-2">
+        
+        <div class="col-md-4 d-flex flex-column align-items-center promo-item">
+          <div class="circle-bg circle-green mb-4">
+            <img src="/assets/images/circulo-producto1.png" alt="Jarabe Sabor Mango Torani" class="img-fluid promo-img">
+          </div>
+          <p class="fw-bold text-dark px-3 fs-6">Jarabe Sabor Mango<br>Torani</p>
+        </div>
+        
+        <div class="col-md-4 d-flex flex-column align-items-center promo-item">
+          <div class="circle-bg circle-yellow mb-4">
+            <img src="/assets/images/circulo-producto2.png" alt="ChillOut pearl sabor Fresa" class="img-fluid promo-img">
+          </div>
+          <p class="fw-bold text-dark px-3 fs-6">ChillOut pearl sabor<br>Fresa</p>
+        </div>
+        
+        <div class="col-md-4 d-flex flex-column align-items-center promo-item">
+          <div class="circle-bg circle-blue mb-4">
+            <img src="/assets/images/circulo-producto3.png" alt="Frappé Matcha David Rio" class="img-fluid promo-img">
+          </div>
+          <p class="fw-bold text-dark px-3 fs-6">Frappé Matcha David<br>Rio</p>
+        </div>
+
+      </div>
+
+      <div class="mt-5 pt-3">
+        <a href="#" class="badge rounded-pill text-white fw-bold px-5 py-3 fs-6 text-decoration-none btn-promociones">Conocer más →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <app-compromiso></app-compromiso>
+  <!-- SECCIÓN: NUEVO -->
   <section class="py-5 bg-white text-center">
     <div class="container py-4">
       
-      <!-- Título con separador -->
       <h2 class="fw-bold mb-2 text-uppercase" style="color: #09102c; font-size: 2.2rem;">NUEVO</h2>
-      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-4 img-fluid" style="max-width: 150px;">
-      
+      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+
       <p class="text-muted mx-auto mb-5 fs-5" style="max-width: 900px;">
         La evolución de tu barra comienza aquí. Te invitamos a conocer nuestras novedades de temporada: una selección pensada especialmente para ti, con insumos, cursos y experiencias educativas enfocadas en las tendencias que están definiendo el futuro del café.
       </p>
       
-      <!-- Fila de Tarjetas -->
       <div class="row g-4 justify-content-center mt-4">
         
-        <!-- Tarjeta 1: Barista (Verde) -->
         <div class="col-md-4">
           <div class="nuevo-card shadow-sm mx-auto">
             <div class="nuevo-img-wrapper">
-              <!-- Reemplaza el src con la foto real de tu máquina de espresso -->
               <img src="/assets/images/nuevo-barista.png" alt="Taller Barista" class="w-100 h-100 object-fit-cover">
             </div>
             <div class="nuevo-content bg-verde">
@@ -303,11 +279,9 @@
           </div>
         </div>
 
-        <!-- Tarjeta 2: ChillOut (Cian - DESFASADA HACIA ABAJO) -->
         <div class="col-md-4 mt-md-5 pt-md-4">
           <div class="nuevo-card shadow-sm mx-auto">
             <div class="nuevo-img-wrapper">
-              <!-- Reemplaza el src con la foto real de las bebidas ChillOut -->
               <img src="/assets/images/nuevo-chillout.png" alt="ChillOut Mix Leche Condensada" class="w-100 h-100 object-fit-cover">
             </div>
             <div class="nuevo-content bg-cian">
@@ -317,11 +291,9 @@
           </div>
         </div>
 
-        <!-- Tarjeta 3: Arte Latte (Rosa) -->
         <div class="col-md-4">
           <div class="nuevo-card shadow-sm mx-auto">
             <div class="nuevo-img-wrapper">
-              <!-- Reemplaza el src con la foto real del arte latte -->
               <img src="/assets/images/nuevo-latte.png" alt="Taller Arte Latte" class="w-100 h-100 object-fit-cover">
             </div>
             <div class="nuevo-content bg-rosa">
@@ -335,100 +307,373 @@
     </div>
   </section>
 
-  <!-- SECCIÓN: VISÍTANOS Y CONTACTO -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row g-5">
-        <!-- Visítanos -->
-        <div class="col-md-6">
-          <h2 class="fw-bold">visítanos</h2>
-          <p class="text-muted">Estamos cerca de ti en cada paso. Lleva todo lo que necesitas a tu barra con un par de clics. Compra en línea o encuentra tu sucursal más cercana y vive la experiencia Café Etrusca.</p>
-          
-          <div class="bg-light p-4 rounded mt-4 border-start border-5 border-primary">
-            <h5 class="fw-bold">sucursal Guadalajara</h5>
-            <ul class="list-unstyled mb-0 text-muted">
-              <li class="mb-2">📍 Dirección: Av. Niños Héroes 2161, Col. Americana, Moderna, Guadalajara, Jal., C.P. 44190.</li>
-              <li class="mb-2">📞 Contáctanos: (33) 3827 5286 / 3827 5287</li>
-              <li class="mb-2">✉️ Email: guadalajara&#64;cafeetrusca.com</li>
-              <li>🕒 Horario: Lunes a viernes de 09:00 a 18:00 hrs. Sábados de 09:00 a 13:00 hrs</li>
-            </ul>
-          </div>
+ <!-- ============================================ -->
+  <!-- SECCIÓN NUEVA: ÚLTIMOS VIDEOS                -->
+  <!-- ============================================ -->
+  <section class="py-5 bg-white text-center videos-section">
+    <div class="container py-3">
+      
+      <p class="text-muted mb-2 fs-6">Mantente a la vanguardia con nosotros</p>
+      <h2 class="fw-bold mb-2 text-uppercase" style="color: #09102c; font-size: 2.2rem;">ÚLTIMOS VIDEOS</h2>
+     <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+ 
+      <p class="text-muted mx-auto mb-4 fs-5" style="max-width: 700px;">
+        ¡Únete a la experiencia! Síguenos y descubre por qué somos los favoritos.
+      </p>
+
+      <!-- Botones Redes Sociales -->
+      <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
+        <a href="https://www.youtube.com/@CafeEtrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-rosa">Youtube</a>
+        <a href="https://www.facebook.com/CafeEtrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-amarillo">Facebook</a>
+        <a href="https://www.tiktok.com/@cafeetrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-verde">TikTok</a>
+        <a href="https://www.instagram.com/cafeetrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-cian">Instagram</a>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        
+        <!-- Video 1: Julio Etrusca Biz (Facebook) -->
+        <div class="col-6 col-md-3">
+          <a href="https://www.facebook.com/reel/829904386783499" target="_blank" class="video-card d-block text-decoration-none">
+            <div class="video-thumb position-relative">
+              <img src="/assets/images/julio-etrusca-biz.webp" alt="Julio Etrusca Biz" class="w-100 h-100 object-fit-cover rounded-3" 
+                   onerror="this.src='https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400&h=500&fit=crop'">
+              <div class="play-overlay">
+                <div class="play-btn">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-0 fw-semibold text-dark small">Julio Etrusca Biz <span class="text-muted fw-normal">(Facebook)</span></p>
+          </a>
+        </div>
+
+       
+
+        <!-- Video 8: Carrusel Barista Champ (TikTok) -->
+        <div class="col-6 col-md-3">
+          <a href="https://www.tiktok.com/@cafe_etrusca/photo/7672420219696024840" target="_blank" class="video-card d-block text-decoration-none">
+            <div class="video-thumb position-relative">
+              <img src="/assets/images/barista-champ-tik-tok.webp" alt="Carrusel Barista Champ" class="w-100 h-100 object-fit-cover rounded-3" 
+                   onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=500&fit=crop'">
+              <div class="play-overlay">
+                <div class="play-btn">
+                  <!-- Ícono de Galería/Foto ya que este link es un carrusel de fotos -->
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-0 fw-semibold text-dark small">Barista Champ <span class="text-muted fw-normal">(TikTok)</span></p>
+          </a>
+        </div>
+        <!-- Video 2: Fernando Etrusca Biz (Facebook) -->
+        <div class="col-6 col-md-3">
+          <a href="https://www.facebook.com/reel/2537634683323925" target="_blank" class="video-card d-block text-decoration-none">
+            <div class="video-thumb position-relative">
+              <img src="/assets/images/fernando-etrusca-biz.webp" alt="Fernando Etrusca Biz" class="w-100 h-100 object-fit-cover rounded-3"
+                   onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=500&fit=crop'">
+              <div class="play-overlay">
+                <div class="play-btn">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-0 fw-semibold text-dark small">Fernando Etrusca Biz <span class="text-muted fw-normal">(Facebook)</span></p>
+          </a>
+        </div>
+
+        <!-- Video 4: Podcast (TikTok) -->
+        <div class="col-6 col-md-3">
+          <a href="https://www.tiktok.com/@cafe_etrusca/video/7670934790228708615" target="_blank" class="video-card d-block text-decoration-none">
+            <div class="video-thumb position-relative">
+              <img src="/assets/images/paloma.webp" alt="Podcast" class="w-100 h-100 object-fit-cover rounded-3"
+                   onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=500&fit=crop'">
+              <div class="play-overlay">
+                <div class="play-btn">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+            <p class="mt-2 mb-0 fw-semibold text-dark small">Podcast <span class="text-muted fw-normal">(TikTok)</span></p>
+          </a>
         </div>
         
-        <!-- Contacto y Descargas -->
-        <div class="col-md-6">
-          <h2 class="fw-bold">¿EN QUÉ PODEMOS AYUDARTE?</h2>
-          <p class="text-muted">Selecciona una opción y te guiaremos paso a paso.</p>
-          <div class="d-grid gap-2 mb-5">
-            <button class="btn btn-outline-primary">Quiero suscribirme</button>
-            <button class="btn btn-outline-primary">Tengo una duda o comentario</button>
-          </div>
 
-          <h2 class="fw-bold">DESCARGABLES</h2>
-          <p class="text-muted">Lleva nuestra experiencia a tu equipo. Encuentra aquí tus calendarios, catálogos y guías de consulta rápida listos para descargar y usar en tu proyecto cuando lo necesites.</p>
-          <div class="d-flex gap-3">
-            <a href="#" class="btn btn-secondary btn-sm">Catálogos</a>
-            <a href="#" class="btn btn-secondary btn-sm">Calendario</a>
-            <a href="#" class="btn btn-secondary btn-sm">Recursos</a>
+
+      </div>
+    </div>
+  </section>
+
+ <!-- ============================================ -->
+  <!-- SECCIÓN: ¿EN QUÉ PODEMOS AYUDARTE?           -->
+  <!-- ============================================ -->
+  <section class="ayuda-section position-relative py-5">
+    <app-scroll-wave position="top" fillColor="#dcedc1"></app-scroll-wave>
+ 
+
+    <div class="container text-center position-relative z-2" style="padding-top: 80px; padding-bottom: 80px;">
+      <h2 class="fw-bold mb-3 text-uppercase" style="color: #09102c; font-size: 2.2rem;">¿EN QUÉ PODEMOS AYUDARTE?</h2>
+      <p class="text-dark mb-5 fs-5">Selecciona una opción y te guiaremos paso a paso.</p>
+      
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          
+          <!-- Contenedor Interactivo -->
+          <div class="d-flex flex-column gap-3">
+            
+            <!-- Opción 1: Suscribirse -->
+            <div class="ayuda-item shadow-sm">
+              <button class="ayuda-header w-100 d-flex align-items-center justify-content-between p-3 border-0 bg-white" (click)="toggleOption('suscribir')" [class.active]="activeOption === 'suscribir'">
+                <span class="fw-bold text-dark fs-5 mx-auto">Quiero suscribirme</span>
+                <span class="ayuda-icon text-warning fs-3 fw-bold">+</span>
+              </button>
+              
+              <!-- Formulario Desplegable (Se muestra si activeOption == 'suscribir') -->
+              <div class="ayuda-body bg-white px-4 py-4" [class.d-none]="activeOption !== 'suscribir'">
+                <form class="text-start">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+                    <input type="text" class="form-control bg-light border-0" id="nombre" placeholder="Tu nombre">
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+                    <input type="email" class="form-control bg-light border-0" id="email" placeholder="ejemplo@correo.com">
+                  </div>
+                  <div class="text-center mt-4">
+                    <button type="button" class="btn btn-warning rounded-pill px-5 fw-bold text-white shadow-sm" style="background-color: #ffa502;">Enviar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Opción 2: Duda o Comentario -->
+            <!-- Opción 2: Duda o Comentario -->
+            <div class="ayuda-item shadow-sm">
+              <button class="ayuda-header w-100 d-flex align-items-center justify-content-between p-3 border-0 bg-white rounded-bottom" (click)="toggleOption('duda')" [class.active]="activeOption === 'duda'" [class.rounded-bottom-0]="activeOption === 'duda'">
+                <span class="fw-bold text-dark fs-5 mx-auto">Tengo una duda o comentario</span>
+                <span class="ayuda-icon text-warning fs-3 fw-bold">+</span>
+              </button>
+              
+              <!-- Formulario Desplegable -->
+              <div class="ayuda-body bg-white px-4 py-4 rounded-bottom" [class.d-none]="activeOption !== 'duda'">
+                <form class="text-start">
+                  
+                  <!-- Nombre y Correo -->
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="duda-nombre" class="form-label fw-semibold">Nombre</label>
+                      <input type="text" class="form-control bg-light border-0" id="duda-nombre" placeholder="Tu nombre">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="duda-email" class="form-label fw-semibold">Correo electrónico</label>
+                      <input type="email" class="form-control bg-light border-0" id="duda-email" placeholder="ejemplo@correo.com">
+                    </div>
+                  </div>
+
+                  <!-- Select: Selecciona una opción -->
+                  <div class="mb-3">
+                    <label for="asunto" class="form-label fw-semibold">Asunto</label>
+                    <select class="form-select bg-light border-0" id="asunto">
+                      <option selected disabled>Selecciona una opción</option>
+                      <option value="productos">Información de productos</option>
+                      <option value="pedidos">Dudas sobre mi pedido</option>
+                      <option value="soporte">Soporte técnico de máquinas</option>
+                      <option value="otro">Otro comentario</option>
+                    </select>
+                  </div>
+
+                  <!-- Textarea: Mensaje -->
+                  <div class="mb-3">
+                    <label for="mensaje" class="form-label fw-semibold">¿Cómo podemos ayudarte?</label>
+                    <textarea class="form-control bg-light border-0" id="mensaje" rows="4" placeholder="Escribe aquí tu mensaje..."></textarea>
+                  </div>
+
+                  <!-- Checkbox: Aviso de Privacidad -->
+                  <div class="form-check mb-4">
+                    <!-- Bootstrap se encarga de poner la palomita automáticamente -->
+                    <input class="form-check-input border-secondary" type="checkbox" value="" id="avisoPrivacidad">
+                    <label class="form-check-label text-muted" for="avisoPrivacidad" style="font-size: 0.9rem;">
+                      Acepto el <a href="#" class="text-decoration-none fw-bold" style="color: #ffa502;">aviso de privacidad</a>
+                    </label>
+                  </div>
+
+                  <!-- Botón Enviar -->
+                  <div class="text-center mt-2">
+                    <button type="button" class="btn btn-warning rounded-pill px-5 fw-bold text-white shadow-sm" style="background-color: #ffa502;">Enviar mensaje</button>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+
+    <app-scroll-wave position="bottom" fillColor="#dcedc1"></app-scroll-wave>
   </section>
-<!-- SECCIÓN: DESCARGABLES -->
-  <section class="py-5 bg-white text-center">
+
+  <section class="py-5 bg-white">
+  <div class="container py-4">
+    <!-- Encabezado -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-2 text-uppercase" style="color: #09102c; font-size: 2.2rem;">VISÍTANOS</h2>
+      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <p class="text-muted mx-auto fs-5" style="max-width: 800px;">
+        Estamos cerca de ti en cada paso. Lleva todo lo que necesitas a tu barra con un par de clics. Compra en línea o encuentra tu sucursal más cercana y vive la experiencia Café Etrusca.
+      </p>
+    </div>
+
+    <div class="row g-5">
+      <!-- Sección Izquierda: Selectores y Mapa -->
+      <div class="col-lg-6">
+        <div class="mapa-wrapper position-relative d-flex flex-column gap-3">
+          
+          <!-- Selectores (Agrupados en una fila para mejor diseño) -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <select class="form-select bg-light border-0 shadow-sm py-2 px-3 rounded-pill" (change)="onCityChange($event)">
+                <option value="" selected>Selecciona la ciudad</option>
+                <option value="Ciudad de México">Ciudad de México</option>
+                <option value="Guadalajara">Guadalajara</option>
+                <option value="Monterrey">Monterrey</option>
+                <option value="Puebla">Puebla</option>
+                <option value="Querétaro">Querétaro</option>
+                <option value="Tijuana">Tijuana</option>
+                <option value="Xalapa">Xalapa</option>
+                <option value="León">León</option>
+                <option value="Toluca">Toluca</option>
+                <option value="Yucatán">Mérida</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <select class="form-select bg-light border-0 shadow-sm py-2 px-3 rounded-pill" (change)="onBranchChange($event)" [disabled]="filteredBranches.length === 0">
+                <option value="">Selecciona la sucursal</option>
+                <option *ngFor="let branch of filteredBranches" [value]="branch.nombre">
+                  {{ branch.nombre }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Contenedor del Mapa -->
+          <div id="map" class="rounded-4 shadow-sm w-100" style="height: 420px; background-color: #f5f5f5; z-index: 1;"></div>
+        </div>
+      </div>
+
+      <!-- Sección Derecha: Compra Online e Info Sucursal -->
+      <div class="col-lg-6 d-flex flex-column align-items-center">
+        
+        <!-- Contenedor Hover: Imagen a Video -->
+        <a href="https://tienda.cafeetrusca.com/" class="video-hover-container mb-4  text-decoration-none"
+           (mouseenter)="videoEl.play()" 
+           (mouseleave)="videoEl.pause(); videoEl.currentTime = 0">
+          <!-- Imagen por defecto -->
+          <img src="/assets/images/compra-en-linea-bg.webp" alt="Compra en linea" class="default-img">
+          <!-- Video oculto que se muestra en hover (Asegúrate de poner la ruta correcta) -->
+          <video #videoEl src="/assets/videos/compra-en-linea.mp4" loop muted playsinline class="hover-video"></video>
+        </a>
+
+        <!-- Botones (Badges) -->
+        <div class="d-flex justify-content-center gap-3 mb-4 w-100">
+          <a href="https://www.instagram.com/cafeetrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none shadow-sm" style="background-color: #00d2d3;">Sucursales</a>
+          <a href="https://www.instagram.com/cafeetrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none shadow-sm" style="background-color: #feca57;">Distribuidores</a>
+        </div>
+
+        <!-- Tarjeta de Información de la Sucursal -->
+        <div class="sucursal-card p-4 p-md-5 rounded-4 bg-light shadow-sm w-100 text-start">
+          <h4 class="fw-bold mb-4" style="color: #09102c;">{{ currentBranch?.nombre || 'Nuestras Sucursales' }}</h4>
+          
+          <ul class="list-unstyled mb-0">
+            <li class="d-flex align-items-start mb-3">
+              <span class="icon-sucursal me-3 fs-4">📍</span>
+              <div>
+                <strong class="d-block text-dark">Dirección</strong>
+                <span class="text-muted">{{ currentBranch?.direccion || 'Selecciona una sucursal para ver la dirección.' }}</span>
+              </div>
+            </li>
+            <li class="d-flex align-items-start mb-3">
+              <span class="icon-sucursal me-3 fs-4">📞</span>
+              <div>
+                <strong class="d-block text-dark">Teléfono</strong>
+                <a [href]="'tel:' + currentBranch?.telefono" class="text-muted text-decoration-none" *ngIf="currentBranch">{{ currentBranch?.telefono }}</a>
+                <span class="text-muted" *ngIf="!currentBranch">---</span>
+              </div>
+            </li>
+            <li class="d-flex align-items-start mb-3">
+              <span class="icon-sucursal me-3 fs-4">✉️</span>
+              <div>
+                <strong class="d-block text-dark">E-mail</strong>
+                <a [href]="'mailto:' + currentBranch?.email" class="text-muted text-decoration-none" *ngIf="currentBranch">{{ currentBranch?.email }}</a>
+                <span class="text-muted" *ngIf="!currentBranch">---</span>
+              </div>
+            </li>
+            <li class="d-flex align-items-start">
+              <span class="icon-sucursal me-3 fs-4">🕒</span>
+              <div>
+                <strong class="d-block text-dark">Horario</strong>
+                <span class="text-muted">{{ currentBranch?.horarios || '---' }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Botón de comprar general -->
+        <div class="mt-4">
+           <a href="#" class="btn btn-warning rounded-pill px-5 py-2 fw-bold text-white shadow-sm" style="background-color: #ffa502;">Comprar en línea</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- SECCIÓN: DESCARGABLES -->
+  <section id="descargables" class="py-5 bg-white text-center">
     <div class="container py-4">
       
-      <!-- Título con separador -->
       <h2 class="fw-bold mb-2 text-uppercase" style="color: #09102c; font-size: 2.2rem;">DESCARGABLES</h2>
-      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-4 img-fluid" style="max-width: 150px;">
-      
-      <!-- Subtítulo -->
+      <img src="/assets/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+
       <p class="text-muted mx-auto mb-4 fs-5" style="max-width: 900px;">
         Lleva nuestra experiencia a tu equipo. Encuentra aquí tus calendarios, catálogos y guías de consulta rápida listas para descargar y usar en tu proyecto cuando lo necesites.
       </p>
 
-      <!-- Botones / Filtros -->
       <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
         <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none filter-badge bg-verde">Catálogos</a>
         <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none filter-badge bg-cian">Calendario</a>
         <a href="#" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none filter-badge bg-rosa">Recursos</a>
       </div>
 
-      <!-- Galería (Grid Layout) -->
       <div class="row g-3 justify-content-center align-items-stretch" style="min-height: 480px;">
         
-        <!-- Columna 1: Tarjeta Alta (Insumos) -->
         <div class="col-6 col-md-3">
-          <a href="https://insumos.cafeetrusca.com/" class="d-block h-100 catalogo-cuadrado">
-            <img src="/assets/images/catalogo-insumos.webp" alt="Catálogo Insumos" class="w-100 h-100  rounded-3">
+          <a href="https://insumos.cafeetrusca.com/" target="_blank" class="d-block h-100 catalogo-cuadrado">
+            <img src="/assets/images/catalogo-insumos.webp" alt="Catálogo Insumos" class="w-100 h-100 rounded-3 object-fit-cover">
           </a>
         </div>
 
-        <!-- Columna 2: Dos Tarjetas Apiladas (Accesorios y Barista Champ) -->
         <div class="col-6 col-md-3 d-flex flex-column gap-3">
-          <a href="https://equipos-accesorios.cafeetrusca.com/" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
+          <a href="https://equipos-accesorios.cafeetrusca.com/" target="_blank" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
             <img src="/assets/images/catalogo-accesorios.webp" alt="Catálogo Equipos y Accesorios" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
-          <a href="https://barista-champ.cafeetrusca.com/" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
+          <a href="https://barista-champ.cafeetrusca.com/" target="_blank" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
             <img src="/assets/images/catalogo-barista-champ.webp" alt="Catálogo Barista Champ" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
         </div>
 
-        <!-- Columna 3: Dos Tarjetas Apiladas (Sesiones Sabatinas y Bubble Tea) -->
         <div class="col-6 col-md-3 d-flex flex-column gap-3">
-          <a href="https://calendario-cursos.cafeetrusca.com/web/viewer.html?file=CALENDARIO_SESIONES-JUL-SEP-2026.pdf" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
+          <a href="https://calendario-cursos.cafeetrusca.com/web/viewer.html?file=CALENDARIO_SESIONES-JUL-SEP-2026.pdf" target="_blank" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
             <img src="/assets/images/calendario-sesiones-sabatinas.webp" alt="Calendario sesiones sabatinas" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
-          <a href="https://revista.cafeetrusca.com/web/viewer.html?file=BUBBLE_TEA_WEB.pdf" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
+          <a href="https://revista.cafeetrusca.com/web/viewer.html?file=BUBBLE_TEA_WEB.pdf" target="_blank" class="d-block flex-fill descargable-card shadow-sm" style="height: 50%;">
             <img src="/assets/images/catalogo-bubble-tea.webp" alt="Catálogo Bubble Tea" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
         </div>
 
-        <!-- Columna 4: Tarjeta Alta (Calendario) -->
         <div class="col-6 col-md-3">
-          <a href="https://calendario-cursos.cafeetrusca.com" class="d-block h-100  catalogo-cuadrado">
-            <img src="/assets/images/calendario-jul-sep-2026.webp" alt="Calendario cursos" class="w-100 h-100  rounded-3">
+          <a href="https://calendario-cursos.cafeetrusca.com" target="_blank" class="d-block h-100 catalogo-cuadrado">
+            <img src="/assets/images/calendario-jul-sep-2026.webp" alt="Calendario cursos" class="w-100 h-100 rounded-3 object-fit-cover">
           </a>
         </div>
 

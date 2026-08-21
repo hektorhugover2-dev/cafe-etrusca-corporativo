@@ -1,4 +1,4 @@
-$bg-footer-blue: #09102c;
+$bg-footer-blue: var(--etrusca-navy-900);
 $text-white: #ffffff;
 
 .custom-footer {
@@ -169,6 +169,6 @@ $text-white: #ffffff;
   }
   
   .shape-fill {
-    fill: #09102c; 
+    fill: var(--etrusca-navy-900); // La ola ahora es del mismo color que el fondo del footer
   }
 }

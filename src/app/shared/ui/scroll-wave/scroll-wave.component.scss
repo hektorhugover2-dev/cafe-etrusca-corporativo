@@ -1,0 +1,31 @@
+.scroll-wave-divider {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 5;
+
+   &.bottom {
+    bottom: -12vh;
+    transform: rotate(180deg); // ¡Esto voltea la ola por completo para que apunte hacia abajo!
+  }
+  
+  &.top {
+    top: -12vh;
+    transform: rotate(0deg); // Si usas una ola arriba, esta apuntará normal
+  }
+
+  .scroll-wave-track {
+    display: flex;
+    width: 200%;
+    will-change: transform;
+  }
+
+  svg {
+    flex: 1;
+    height: 20vh; // Altura de la ola (puedes hacerla más alta si quieres)
+    display: block;
+    transition: fill 0.3s ease; // Transición suave si cambia el color
+  }
+}

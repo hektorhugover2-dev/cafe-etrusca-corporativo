@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { ScrollWaveComponent } from '../../shared/ui/scroll-wave/scroll-wave.component'
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [ScrollWaveComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
