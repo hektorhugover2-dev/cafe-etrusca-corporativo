@@ -1,0 +1,97 @@
+@if (cat) {
+<div class="edu-page">
+  <section class="edu-hero">
+    <div class="edu-hero-copy">
+      <h1>{{ cat.title }}</h1>
+      <p class="lead">{{ cat.subtitle }}</p>
+      <p>{{ cat.body }}</p>
+    </div>
+    <div class="edu-hero-media">
+      <img src="/assets/images/educacion/cursos-photo.png" [alt]="cat.title">
+    </div>
+  </section>
+
+  <app-edu-nav></app-edu-nav>
+
+  <section class="edu-section">
+    <h2>Programas</h2>
+    <div class="edu-cards">
+      @for (c of courses; track c.slug) {
+        <article class="edu-card">
+          <img [src]="c.image" [alt]="c.title">
+          <div class="body">
+            <div class="kicker">{{ c.kicker }}</div>
+            <h3>{{ c.title }}</h3>
+            <p>{{ c.summary }}</p>
+            <div class="row">
+              <span>{{ c.duration }} · {{ c.hours }}</span>
+              <a class="btn-pink" [routerLink]="['/educacion', c.kind, c.slug]">Me interesa</a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  @if (cat.slug === 'cursos' && courses.length > 1) {
+    <section class="edu-section">
+      <h2>¿Cuál curso es para ti?</h2>
+      <div class="edu-grid-2">
+        @for (c of courses; track c.slug) {
+          <article class="edu-path">
+            <h3>{{ c.title }}</h3>
+            <p>{{ c.ideal }}</p>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <section class="edu-section">
+    <h2>Qué aprenderás</h2>
+    <div class="edu-grid-6">
+      @for (i of learn; track i.label) {
+        <div class="edu-tile">
+          <img [src]="i.icon" [alt]="i.label">
+          <span>{{ i.label }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>Nuestra metodología</h2>
+    <p class="sub">70% práctica y 30% teórica. Menos teoría aburrida, más manos en la masa. Al finalizar, recibirás un diploma con valor curricular.</p>
+    <div class="edu-grid-2" style="grid-template-columns: repeat(4, 1fr);">
+      @for (m of method; track m.n) {
+        <article class="edu-step">
+          <div class="n">{{ m.n }}</div>
+          <h3>{{ m.title }}</h3>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>¿A quién va dirigido?</h2>
+    <ul>
+      @for (a of audience; track a) { <li>{{ a }}</li> }
+    </ul>
+  </section>
+
+  <section class="edu-section">
+    <h2>Preguntas frecuentes</h2>
+    <p class="sub">Para ayudarte, hemos preparado esta guía con las respuestas a las preguntas más comunes de nuestra comunidad.</p>
+    <div class="edu-faq">
+      @for (f of faq; track f.q) {
+        <details>
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <app-edu-cta></app-edu-cta>
+</div>
+}

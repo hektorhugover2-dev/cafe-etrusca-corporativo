@@ -56,6 +56,24 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./domains/catalog/presentation/pages/insumos-category-page/insumos-category-page.component')
             .then(m => m.InsumosCategoryPageComponent)
+      },
+      {
+        path: 'educacion',
+        loadComponent: () =>
+          import('./domains/education/presentation/pages/education-page/education-page.component')
+            .then(m => m.EducationPageComponent)
+      },
+      {
+        path: 'educacion/:kind',
+        loadComponent: () =>
+          import('./domains/education/presentation/pages/education-category-page/education-category-page.component')
+            .then(m => m.EducationCategoryPageComponent)
+      },
+      {
+        path: 'educacion/:kind/:slug',
+        loadComponent: () =>
+          import('./domains/education/presentation/pages/course-detail-page/course-detail-page.component')
+            .then(m => m.CourseDetailPageComponent)
       }
     ]
   },

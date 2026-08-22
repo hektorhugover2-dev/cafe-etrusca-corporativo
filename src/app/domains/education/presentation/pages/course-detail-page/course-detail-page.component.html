@@ -1,0 +1,114 @@
+@if (course) {
+<div class="edu-page">
+  <section class="edu-hero">
+    <div class="edu-hero-copy">
+      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">{{ course.kicker }} presencial</p>
+      <h1>{{ course.title }}</h1>
+      <p class="lead">{{ course.summary }}</p>
+      <div class="meta">
+        <div><strong>Duración</strong>{{ course.duration }} · {{ course.hours }}</div>
+        @if (course.schedule) {
+          <div><strong>Horario</strong>{{ course.schedule }}</div>
+        }
+      </div>
+      <div class="edu-actions">
+        <a class="btn-pink" href="/assets/images/calendario-jul-sep-2026.webp" target="_blank" rel="noopener">Ver fechas disponibles</a>
+        <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      </div>
+    </div>
+    <div class="edu-hero-media">
+      <img src="/assets/images/educacion/curso-banner.png" [alt]="course.title">
+    </div>
+  </section>
+
+  <app-edu-nav></app-edu-nav>
+
+  <section class="edu-section">
+    <div class="edu-grid-3">
+      <article class="edu-path">
+        <h3>Planeación estratégica</h3>
+        <p>Define tu propuesta de valor, analiza el mercado y construye un plan sólido.</p>
+      </article>
+      <article class="edu-path">
+        <h3>Herramientas operativas</h3>
+        <p>Estandariza procesos, controla costos y asegura la eficiencia de tu operación.</p>
+      </article>
+      <article class="edu-path">
+        <h3>Modelos de negocio flexibles</h3>
+        <p>Explora formatos como Matcha Bar, Bubble Tea Lab, barras de café por olas y otras.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>Sinopsis</h2>
+    <p class="sub">{{ course.summary }} Nuestro objetivo es ofrecerte una ruta clara para comprender los factores clave que determinan la viabilidad y rentabilidad de tu emprendimiento.</p>
+    <h2>Temario</h2>
+    <div class="edu-faq">
+      @for (item of syllabus; track item; let i = $index) {
+        <details>
+          <summary>{{ item }}</summary>
+          <p>Bloque práctico y teórico guiado por instructores Etrusca.</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>¿Qué aprenderás?</h2>
+    <div class="edu-grid-2">
+      <article class="edu-path"><h3>Gestión y rentabilidad del negocio</h3></article>
+      <article class="edu-path"><h3>Operación de equipos profesionales</h3></article>
+      <article class="edu-path"><h3>Estándares de calidad internacionales (SCA)</h3></article>
+      <article class="edu-path"><h3>Catación y atributos del café</h3></article>
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>¿A quién va dirigido?</h2>
+    <ul>
+      @for (a of audience; track a) { <li>{{ a }}</li> }
+    </ul>
+    <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
+    <div class="edu-grid-6">
+      @for (i of includes; track i) {
+        <div class="edu-tile"><span>{{ i }}</span></div>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>Calendario</h2>
+    <div class="edu-dates">
+      @for (d of dates; track d.branch + d.month) {
+        <article class="edu-date">
+          <div class="when">{{ d.days }} <small>{{ d.month }}</small></div>
+          <div>
+            <strong>Sucursal {{ d.branch }}</strong>
+            <div>{{ d.duration }} · {{ d.hours }}</div>
+          </div>
+          <a class="btn-pink" routerLink="/contacto">Me interesa</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>Te puede interesar</h2>
+    <div class="edu-cards">
+      @for (c of related; track c.slug) {
+        <article class="edu-card">
+          <img [src]="c.image" [alt]="c.title">
+          <div class="body">
+            <div class="kicker">{{ c.kicker }}</div>
+            <h3>{{ c.title }}</h3>
+            <a class="btn-navy" [routerLink]="['/educacion', c.kind, c.slug]">Ver más</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <app-edu-cta></app-edu-cta>
+</div>
+}

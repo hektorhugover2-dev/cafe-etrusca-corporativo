@@ -17,6 +17,31 @@ export const serverRoutes: ServerRoute[] = [
     }
   },
   {
+    path: 'educacion/:kind',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return [
+        { kind: 'cursos' },
+        { kind: 'experiencias' },
+        { kind: 'talleres' },
+        { kind: 'sesiones' }
+      ];
+    }
+  },
+  {
+    path: 'educacion/:kind/:slug',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return [
+        { kind: 'cursos', slug: 'formacion-de-emprendedores' },
+        { kind: 'cursos', slug: 'tostado-basico' },
+        { kind: 'experiencias', slug: 'inmersiona-te' },
+        { kind: 'talleres', slug: 'arte-latte' },
+        { kind: 'sesiones', slug: 'sesion-sabatina' }
+      ];
+    }
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }

@@ -30,7 +30,18 @@
             </ul>
           </li>
 
-          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/educacion">Educación</a></li>
+          <li class="nav-item dropdown custom-hover-dropdown">
+            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" routerLink="/educacion" id="navbarDropdownEducacion" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Educación
+            </a>
+            <ul class="dropdown-menu border-0 shadow-sm custom-dropdown-menu" aria-labelledby="navbarDropdownEducacion">
+              <li><a class="dropdown-item" routerLink="/educacion">Toda la oferta</a></li>
+              <li><a class="dropdown-item" routerLink="/educacion/cursos">Cursos</a></li>
+              <li><a class="dropdown-item" routerLink="/educacion/experiencias">Experiencias</a></li>
+              <li><a class="dropdown-item" routerLink="/educacion/talleres">Talleres</a></li>
+              <li><a class="dropdown-item" routerLink="/educacion/sesiones">Sesiones sabatinas</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/servicio">Servicio</a></li>
         </ul>
 
