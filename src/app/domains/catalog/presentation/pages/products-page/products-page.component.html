@@ -1,0 +1,48 @@
+<div class="ins-page">
+  <section class="ins-hero">
+    <div class="ins-hero-copy">
+      <h1>Impulsamos<br>experiencias<br>extraordinarias</h1>
+      <p class="body">Equipos, insumos y accesorios profesionales para crear, servir e inspirar.</p>
+    </div>
+    <div class="ins-hero-media">
+      <img src="/assets/images/insumos/baristas.png" alt="Baristas Café Etrusca">
+    </div>
+  </section>
+
+  <section class="ins-section">
+    <h2>Explora nuestras categorías</h2>
+    <div class="prod-cats">
+      @for (c of cats; track c.slug) {
+        <a class="prod-cat" [class]="c.cls" [routerLink]="['/productos', c.slug]"
+           [style.background-image]="'linear-gradient(180deg, rgba(7,12,59,.15), rgba(7,12,59,.72)), url(' + c.img + ')'">
+          <div>
+            <h3>{{ c.title }}</h3>
+            <p>{{ c.text }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+
+  <app-compromiso></app-compromiso>
+
+  <section class="ins-section">
+    <h2>Qué nos caracteriza</h2>
+    <div class="ins-brands" style="grid-template-columns: repeat(4, 1fr);">
+      @for (t of traits; track t.label) {
+        <article class="ins-brand" style="align-items:center;text-align:center;">
+          <img [src]="t.icon" [alt]="t.label" style="width:48px;height:48px;object-fit:contain;margin-bottom:0.8rem;">
+          <h3 style="font-size:1.05rem;">{{ t.label }}</h3>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="ins-cta-band">
+    <div class="card">
+      <h2>Asesoría especializada</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto">Más información</a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,43 @@
+<div class="ins-page">
+  <section class="ins-hero">
+    <div class="ins-hero-copy">
+      <h1>INSUMOS</h1>
+      <p class="lead">Sabores, bases y texturas para crear bebidas memorables</p>
+      <p class="body">Ingredientes y soluciones profesionales para elevar tu creatividad y tener consistencia en cada preparación.</p>
+      <a class="btn-catalog" href="https://cafeetrusca.com" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="ins-hero-media">
+      <img src="/assets/images/insumos/kiwi-hero.png" alt="Kiwi lemonade">
+    </div>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="ins-section">
+    <h2>Marcas destacadas</h2>
+    <div class="ins-brands">
+      @for (b of brands; track b.name) {
+        <article class="ins-brand">
+          <img class="shot" [src]="b.image" [alt]="b.name">
+          <h3>{{ b.name }}</h3>
+          <p>{{ b.text }}</p>
+          <a [routerLink]="b.link">Ver línea completa</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="ins-section ins-inspira">
+    <h2>Inspira tu menú</h2>
+    <div class="ins-inspira-grid">
+      @for (d of menu; track d.title) {
+        <article class="ins-drink">
+          <img [src]="d.image" [alt]="d.title">
+          <span>{{ d.title }}</span>
+        </article>
+      }
+    </div>
+  </section>
+
+  <app-insumos-cta></app-insumos-cta>
+</div>

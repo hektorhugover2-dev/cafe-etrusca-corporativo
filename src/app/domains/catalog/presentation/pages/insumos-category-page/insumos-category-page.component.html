@@ -1,0 +1,160 @@
+@if (cat) {
+<div class="ins-page">
+  <section class="ins-hero">
+    <div class="ins-hero-copy">
+      <h1>
+        @if (cat.kicker) { <span>{{ cat.kicker }}</span> }
+        {{ cat.title }}
+      </h1>
+      <p class="lead">{{ cat.subtitle }}</p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-catalog" href="https://cafeetrusca.com" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="ins-hero-media">
+      <img [src]="cat.heroImage" [alt]="cat.heroAlt">
+    </div>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  @if (cat.lines.length) {
+    <section class="ins-section">
+      <h2>Líneas</h2>
+      <div class="ins-lines">
+        @for (line of cat.lines; track line.name) {
+          <article class="ins-line">
+            <h3>{{ line.name }}</h3>
+            <p>{{ line.description }}</p>
+            <div class="ins-meta">
+              <div><strong>Sabores</strong> · {{ line.sabores }}</div>
+              <div><strong>Presentación</strong> · {{ line.presentacion }}</div>
+              <div><strong>Rendimiento</strong> · {{ line.rendimiento }}</div>
+            </div>
+            <div class="ins-actions">
+              <a class="buy" routerLink="/ecommerce">Comprar</a>
+              <a class="help" routerLink="/contacto">Asesoría</a>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  @if (cat.layout === 'jarabes') {
+    <section class="ins-section">
+      <h2>¿Qué jarabe elegir?</h2>
+      <p class="ins-note">{{ cat.extra?.['note'] }}</p>
+      <div class="ins-table-wrap">
+        <table class="ins-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ChillOut</th>
+              <th>Sugar Free</th>
+              <th>Puremade</th>
+              <th>Clásico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Formulación</th>
+              @for (row of asCompare(cat.extra); track row['linea']) {
+                <td>{{ row['formulacion'] }}</td>
+              }
+            </tr>
+            <tr>
+              <th>Característica</th>
+              @for (row of asCompare(cat.extra); track row['linea']) {
+                <td>{{ row['caracteristica'] }}</td>
+              }
+            </tr>
+            <tr>
+              <th>Aplicaciones</th>
+              @for (row of asCompare(cat.extra); track row['linea']) {
+                <td>{{ row['aplicaciones'] }}</td>
+              }
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+
+  @if (cat.layout === 'salsas') {
+    <section class="ins-section">
+      <h2>Producto de temporada</h2>
+      @if (asSeasonal(cat.extra); as s) {
+        <article class="ins-seasonal">
+          <div class="copy">
+            <span class="tag">{{ s.tag }}</span>
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.text }}</p>
+          </div>
+          <img [src]="s.image" [alt]="s.title">
+        </article>
+      }
+      <div class="ins-steps">
+        @for (step of asSteps(cat.extra); track step.n) {
+          <article class="ins-step">
+            <img [src]="step.image" [alt]="step.title">
+            <div class="body">
+              <div class="n">{{ step.n }}</div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.text }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  @if (cat.layout === 'pures') {
+    <section class="ins-section">
+      <h2>Presentaciones ChillOut Jam</h2>
+      <p class="ins-note">{{ cat.extra?.['yieldNote'] }}</p>
+      <div class="ins-table-wrap">
+        <table class="ins-table">
+          <thead>
+            <tr>
+              <th>Presentación</th>
+              <th>Rendimiento aprox.</th>
+              <th>Sabores disponibles</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of asJam(cat.extra); track row['presentacion']) {
+              <tr>
+                <td>{{ row['presentacion'] }}</td>
+                <td>{{ row['rendimiento'] }}</td>
+                <td>{{ row['sabores'] }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="ins-note" style="margin-top:1.2rem;font-weight:800;color:#070c3b;">
+        Disfruta en
+        @for (e of asEnjoy(cat.extra); track e; let last = $last) {
+          {{ e }}@if (!last) { · }
+        }
+      </p>
+    </section>
+  }
+
+  @if (cat.layout !== 'generic') {
+    <section class="ins-section ins-inspira">
+      <h2>Inspira tu menú</h2>
+      <div class="ins-inspira-grid">
+        @for (d of menu; track d.title) {
+          <article class="ins-drink">
+            <img [src]="d.image" [alt]="d.title">
+            <span>{{ d.title }}</span>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <app-insumos-cta></app-insumos-cta>
+</div>
+}
