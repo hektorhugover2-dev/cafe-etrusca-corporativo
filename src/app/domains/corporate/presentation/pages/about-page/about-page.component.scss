@@ -233,7 +233,8 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 .ns-valor {
   position: relative;
   background: $yellow;
-  padding: 4.5rem 1.25rem 5.5rem;
+  padding: 8.5rem 1.25rem 9rem;
+  overflow: hidden;
 }
 
 .ns-valor-inner {
@@ -241,7 +242,7 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   margin: 0 auto;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 6;
 }
 
 .ns-valor h2 {

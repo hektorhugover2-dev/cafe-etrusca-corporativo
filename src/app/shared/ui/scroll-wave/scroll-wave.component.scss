@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .scroll-wave-divider {
   position: absolute;
   left: 0;
@@ -30,9 +34,15 @@
   }
 
   &.compact {
-    &.top { top: -1px; }
-    &.bottom { bottom: -1px; }
+    &.top {
+      top: -1px;
+      transform: rotate(180deg);
+    }
+    &.bottom {
+      bottom: -1px;
+      transform: rotate(0deg);
+    }
 
-    svg { height: 88px; }
+    svg { height: 120px; }
   }
 }
