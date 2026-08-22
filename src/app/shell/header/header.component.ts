@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Necesario para usar [ngClass]
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,31 @@ import { CommonModule } from '@angular/common'; // Necesario para usar [ngClass]
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
   isScrolled = false;
+  isHome = true;
+  private sub: Subscription;
 
-  // Detecta el scroll de la ventana
+  constructor(private router: Router) {
+    this.isHome = this.isHomeUrl(this.router.url);
+    this.sub = this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        this.isHome = this.isHomeUrl(e.urlAfterRedirects);
+      });
+  }
+
+  private isHomeUrl(url: string): boolean {
+    const path = url.split('?')[0];
+    return path === '/' || path === '';
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Si el usuario baja más de 50px, se activa el estado "scrolled"
-    this.isScrolled = window.scrollY > 50;
+    this.isScrolled = typeof window !== 'undefined' && window.scrollY > 50;
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 }

@@ -138,6 +138,20 @@
   }
 }
 
+.hero-splash-slide {
+  background: #07080c;
+  overflow: hidden;
+}
+
+.hero-splash-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: screen;
+  filter: contrast(1.15) brightness(1.05);
+}
+
 // Asegura que los botones del slide se puedan clickear por encima del overlay
 .pointer-event-auto {
   pointer-events: auto;

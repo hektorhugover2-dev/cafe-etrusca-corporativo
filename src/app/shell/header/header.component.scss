@@ -1,18 +1,21 @@
 .header-transparent {
-  position: fixed; // Cambiamos de 'absolute' a 'fixed' para que siempre siga a la pantalla
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   background-color: transparent !important;
-  transition: background-color 0.4s ease, box-shadow 0.4s ease; // Transición suave
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-// NUEVA CLASE: Se activa por Angular cuando hacemos scroll
-.header-transparent.scrolled {
-  background-color: rgba(9, 16, 44, 0.85) !important; // Tu azul corporativo semi-transparente
-  backdrop-filter: blur(8px); // Efecto cristal que desenfoca lo que hay detrás (se ve muy premium)
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Sombra para separar el header del contenido
+.header-transparent.scrolled,
+.header-transparent.inner {
+  background-color: rgba(9, 16, 44, 0.92) !important;
+  background-image: url('/assets/images/Fondo-navbar.png');
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link {
@@ -27,7 +30,6 @@
   }
 }
 
-// Borde inferior a la barra en móviles
 @media (max-width: 991px) {
   .navbar-collapse {
     background-color: rgba(9, 16, 44, 0.95);
@@ -37,7 +39,6 @@
   }
 }
 
-/* Lógica para mostrar el dropdown al hacer hover o foco (solo en escritorio) */
 @media all and (min-width: 992px) {
   .custom-hover-dropdown:hover .dropdown-menu,
   .custom-hover-dropdown:focus-within .dropdown-menu {
@@ -46,23 +47,20 @@
   }
 }
 
-/* Estilos del contenedor del menú */
 .custom-dropdown-menu {
-  background-color: rgba(9, 16, 44, 0.85) !important; /* Tu azul corporativo semi-transparente */
-  border-radius: 0;          /* Bordes cuadrados */
-  padding: 0;                /* Quitar padding por defecto */
+  background-color: rgba(9, 16, 44, 0.85) !important;
+  border-radius: 0;
+  padding: 0;
 }
 
-/* Estilos de cada enlace dentro del menú */
 .custom-dropdown-menu .dropdown-item {
-  color: #ffffff !important; /* ¡AQUÍ ESTÁ EL CAMBIO! Texto blanco para que resalte sobre el azul */
+  color: #ffffff !important;
   padding: 10px 20px;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Estado de hover o foco sobre los elementos internos (Ej. al pasar el cursor por "Insumos") */
 .custom-dropdown-menu .dropdown-item:hover,
 .custom-dropdown-menu .dropdown-item:focus {
-  background-color: #e5ded3; /* Fondo beige claro al pasar el mouse */
-  color: #000000 !important; /* Cambiamos el texto a negro en hover para que se lea bien sobre el beige */
+  background-color: #e5ded3;
+  color: #000000 !important;
 }

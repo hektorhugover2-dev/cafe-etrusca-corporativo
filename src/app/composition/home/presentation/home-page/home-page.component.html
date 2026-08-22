@@ -14,12 +14,21 @@
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
       </div>
 
       <div class="carousel-inner h-100">
+
+        <!-- SLIDE 0: Splash de café fundido con el slider -->
+        <div class="carousel-item active h-100 hero-splash-slide">
+          <video class="hero-splash-video" autoplay muted loop playsinline preload="auto"
+                 poster="/assets/images/cafe-splash-cup.png">
+            <source src="/assets/videos/cafe-splash.mp4" type="video/mp4">
+          </video>
+        </div>
         
-        <!-- SLIDE 1: Banner La Fenice (Activo) -->
-        <div class="carousel-item active h-100">
+        <!-- SLIDE 1: Banner La Fenice -->
+        <div class="carousel-item h-100">
           <a href="https://tienda.cafeetrusca.com/productos?search=BREW%20LA%20FENICE" target="_blank" title="Tienda Online Café Etrusca Kit La Fenice">
             <picture>
               <source srcset="https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp?v=1.0" media="(max-width: 480px)">

@@ -1,150 +1,461 @@
-// =====================================
-// BANNER HERO (NOSOTROS)
-// =====================================
-// =====================================
-// BANNER HERO (SPLIT CON VIDEO)
-// =====================================
-.hero-nosotros-split {
-  // Ajustamos el padding superior para que el menú de navegación (Header) no tape el texto
-  padding-top: 100px; 
-  
-  .hero-split-row {
-    min-height: 55vh; // Altura ideal para que se vea bien en monitor
-  }
+$cream: #f7f1e4;
+$ink: #1a1612;
+$cyan: #73dbe3;
+$lime: #d4ea6c;
+$orange: #f0b24a;
+$pink: #f3a3ad;
+$vision: #e3c9a4;
+$yellow: #f6e48a;
+$navy: var(--etrusca-navy-900);
+$ns-body: clamp(1.25rem, 2vw, 1.65rem);
+$ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 
-  .title-quienes {
-    line-height: 1.1; // Junta un poco más las líneas "¿QUIÉNES" y "SOMOS?"
-    font-size: clamp(3.5rem, 6vw, 6rem); // Se hace más chico en celulares y gigante en PC
-  }
-
-  .hero-video-col {
-    height: 55vh; // Debe coincidir con la altura del row
-    background-color: #faf7f8; // Fondo blanco por si el video tarda un segundo en cargar
-  }
-
-  .hero-video {
-    object-position: center; // Centra el video
-    // Si tu video tiene fondo blanco, esto ayuda a que se fusione perfecto
-    mix-blend-mode: multiply; 
-  }
-
-  .hero-subtitle-bar {
-    // Recreamos el gradiente beige suave de tu diseño
-    background: #faf7f8;
-    position: relative;
-    z-index: 2;
-  }
+.nosotros-page {
+  background: #fff;
+  color: $ink;
+  overflow-x: hidden;
 }
-// OLA BLANCA BAJO EL HERO
-.custom-shape-divider-bottom {
+
+.ns-wave {
   position: absolute;
-  bottom: -1px; // El -1px evita que se vea una línea fea entre secciones
   left: 0;
   width: 100%;
-  overflow: hidden;
   line-height: 0;
-  z-index: 2; // Tiene que estar arriba del overlay oscuro
+  z-index: 3;
+  pointer-events: none;
 
   svg {
-    position: relative;
     display: block;
-    width: calc(100% + 1.3px);
-    height: 70px; // Aquí puedes subirlo a 90px si quieres la ola más pronunciada
+    width: 100%;
+    height: 72px;
   }
+  path { fill: #fff; }
 
-  .shape-fill {
-    fill: #ffffff; // Blanco exacto para mezclarse con la siguiente sección
-  }
+  &.ns-wave-bottom { bottom: -1px; }
+  &.ns-wave-top { top: -1px; }
+  &.ns-wave-cream path { fill: $yellow; }
+  &.ns-wave-cream-b path { fill: #fff; }
 }
 
-// =====================================
-// TARJETAS Y VALORES (INTERACTIVIDAD)
-// =====================================
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
-  }
-}
-
-.valor-badge {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  cursor: default;
-
-  &:hover {
-    transform: scale(1.05);
-    
-    // Efecto de relleno interactivo al hacer hover
-    &[style*="border-color: #ff6b81"] { background-color: #ff6b81 !important; color: white !important; }
-    &[style*="border-color: #00d2d3"] { background-color: #00d2d3 !important; color: white !important; }
-    &[style*="border-color: #badc58"] { background-color: #badc58 !important; color: #09102c !important; }
-    &[style*="border-color: #ffeba1"] { background-color: #ffeba1 !important; color: #09102c !important; }
-    &[style*="border-color: #ffffff"] { background-color: #ffffff !important; color: #09102c !important; }
-  }
-}
-
-// =====================================
-// SECCIÓN INTRODUCCIÓN DIVIDIDA
-// =====================================
-.intro-split {
+/* ========== HERO ========== */
+.ns-hero {
   position: relative;
-  
-  .intro-image-col {
-    min-height: 450px; // Altura mínima para que la foto luzca en pantallas grandes
-    
-    img {
-      object-fit: cover; // Asegura que la imagen no se distorsione
-    }
-  }
-  
-  .intro-text-col {
-    background-color: #6ee1df; // Tono Cyan claro (ajústalo a tu pantone exacto si es necesario)
-    padding: 100px 0; // Da espacio suficiente arriba y abajo para que las olas no toquen el texto
-  }
+  background: #fff;
+  padding-top: 108px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
 
-  // Ola Superior
-  .custom-shape-divider-top-intro {
+.ns-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: min(62vh, 680px);
+  align-items: center;
+}
+
+.ns-hero-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem 1rem;
+  height: 100%;
+}
+
+.ns-title {
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(3.1rem, 7.2vw, 6.4rem);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: #111;
+  text-align: center;
+}
+
+.ns-hero-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: min(62vh, 680px);
+  background: #fff;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.ns-hero-video {
+  grid-area: 1 / 1;
+  width: auto;
+  height: auto;
+  max-width: 86%;
+  max-height: 92%;
+  object-fit: contain;
+  object-position: center center;
+  pointer-events: none;
+  user-select: none;
+  justify-self: center;
+  align-self: center;
+  background: transparent;
+}
+
+.ns-hero-caption {
+  background: #fff;
+  text-align: center;
+  padding: 1.8rem 1.25rem 1.1rem;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+
+  p {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(1.15rem, 2.4vw, 1.85rem);
+    line-height: 1.25;
+    color: #1a1612;
+  }
+  span { display: inline-block; }
+}
+
+/* ========== MOSAICO ========== */
+.ns-mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  margin-top: 0;
+
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
-    top: -1px; // Evita una línea fina renderizada por algunos navegadores
     left: 0;
     width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    z-index: 1;
-    
-    svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 60px; // Grosor de la ola
-    }
-    
-    .shape-fill-top {
-      fill: #ffffff; // Se pinta de blanco para continuar la sección Hero de arriba
-    }
+    height: 88px;
+    z-index: 4;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 
-  // Ola Inferior
-  .custom-shape-divider-bottom-intro {
-    position: absolute;
-    bottom: -1px; // Evita la línea fina
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    z-index: 1;
-    
-    svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 60px;
-    }
-    
-    .shape-fill-bottom {
-      fill: #f8f9fa; // Se pinta de gris claro para coincidir con la sección "Misión y Visión"
-    }
+  /* ola del caption crema, llevada por esta sección */
+  &::before {
+    top: -1px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'><path fill='%23ffffff' d='M0,50 C120,80 180,20 300,50 C420,80 480,20 600,50 C720,80 780,20 900,50 C1020,80 1080,20 1200,50 C1320,80 1380,20 1440,50 L1440,0 L0,0 Z'/></svg>");
   }
+
+  /* ola blanca inferior hacia misión */
+  &::after {
+    bottom: -1px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'><path fill='%23ffffff' d='M0,40 C120,10 180,70 300,40 C420,10 480,70 600,40 C720,10 780,70 900,40 C1020,10 1080,70 1200,40 C1320,10 1380,70 1440,40 L1440,90 L0,90 Z'/></svg>");
+  }
+}
+
+.ns-cell {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.ns-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 520px;
+}
+
+.ns-cyan,
+.ns-lime,
+.ns-orange {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ns-cell-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3.2rem 3.4rem;
+  font-size: $ns-body;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+  color: $ink;
+
+  p { margin: 0 0 1.5rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 800; }
+}
+
+.ns-cyan { background: $cyan; }
+.ns-lime { background: $lime; }
+.ns-orange { background: $orange; }
+
+/* ========== MISIÓN / VISIÓN ========== */
+.ns-mv {
+  background: #fff;
+  padding: 4.5rem 1.25rem 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.ns-card {
+  border-radius: 28px;
+  padding: 2.4rem 2.6rem;
+  width: 100%;
+  max-width: 640px;
+  min-height: 400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10px 28px rgba(26, 22, 18, 0.08);
+
+  h2 {
+    margin: 0 0 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-size: $ns-heading;
+  }
+  p {
+    margin: 0;
+    font-size: $ns-body;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+}
+
+.ns-mision {
+  background: $pink;
+  color: #fff;
+  align-self: flex-start;
+}
+
+.ns-vision {
+  background: $vision;
+  color: #3b2a1c;
+  align-self: flex-end;
+
+  .ns-rule {
+    display: block;
+    width: 42px;
+    height: 3px;
+    background: #3b2a1c;
+    margin: 0 0 0.85rem;
+  }
+}
+
+/* ========== VALOR ========== */
+.ns-valor {
+  position: relative;
+  background: $yellow;
+  padding: 4.5rem 1.25rem 5.5rem;
+}
+
+.ns-valor-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ns-valor h2 {
+  margin: 0 0 1.2rem;
+  font-weight: 900;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: $navy;
+
+  span { color: $pink; }
+}
+
+.ns-valor-lead {
+  margin: 0 auto 2.2rem;
+  max-width: 720px;
+  font-size: $ns-body;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.ns-drinks {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(1.6rem, 5vw, 3.6rem);
+  margin-bottom: 2.4rem;
+
+  img {
+    height: 92px;
+    width: auto;
+    max-width: 92px;
+    object-fit: contain;
+    object-position: bottom center;
+  }
+}
+
+.ns-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.ns-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 118px;
+  padding: 0.55rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+
+  &[data-tone='blue'] { background: #7eb7e4; }
+  &[data-tone='lime'] { background: #b7d64a; color: #24300a; }
+  &[data-tone='pink'] { background: #f3a3ad; }
+  &[data-tone='yellow'] { background: #f3d45c; color: #3a2c08; }
+  &[data-tone='orange'] { background: #f0b24a; color: #3a2408; }
+}
+
+/* ========== MARCAS ========== */
+.ns-marcas {
+  background: #fff;
+  padding: 4.2rem 1.25rem 3rem;
+
+  h2 {
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    margin: 0 0 2.4rem;
+    font-size: $ns-heading;
+    color: #1a1612;
+  }
+}
+
+.ns-marcas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.brand-card {
+  border: 1.5px solid #ead9c2;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.brand-body {
+  padding: 1.6rem 1.45rem 1.2rem;
+  flex: 1;
+
+  p {
+    font-size: $ns-body;
+    line-height: 1.5;
+    margin: 0 0 0.9rem;
+    color: #3a322c;
+  }
+  p:last-child { margin-bottom: 0; }
+}
+
+.brand-band {
+  height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+
+  img {
+    max-height: 86px;
+    max-width: 86%;
+    object-fit: contain;
+  }
+}
+
+.band-fenice { background: #f3e4b8; }
+.band-barista { background: #2c241c; }
+.band-chill {
+  background: #5fd3dc;
+}
+
+/* ========== SELLOS ========== */
+.ns-sellos {
+  background: #fff;
+  text-align: center;
+  padding: 1rem 1.25rem 5.5rem;
+
+  h3 {
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-size: $ns-heading;
+    margin: 0 0 1.6rem;
+  }
+}
+
+.ns-sellos-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
+  flex-wrap: wrap;
+
+  img {
+    height: 92px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 991px) {
+  .ns-hero-grid,
+  .ns-mosaic,
+  .ns-marcas-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ns-hero-media,
+  .ns-photo img,
+  .ns-cell {
+    min-height: 320px;
+    height: auto;
+  }
+
+  .ns-hero-media { height: 52vw; min-height: 280px; }
+
+  .ns-title { text-align: center; }
+
+  .ns-mision,
+  .ns-vision { align-self: stretch; max-width: none; }
+
+  .ns-cell-copy {
+    padding: 3rem 1.6rem;
+    font-size: $ns-body;
+  }
+
+  .ns-card {
+    min-height: 320px;
+    max-width: none;
+    padding: 2rem 1.6rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .ns-hero { padding-top: 88px; }
+  .ns-drinks img { height: 72px; max-width: 72px; }
+  .ns-sellos-row img { height: 72px; }
+  .ns-pill { min-width: 0; }
 }
