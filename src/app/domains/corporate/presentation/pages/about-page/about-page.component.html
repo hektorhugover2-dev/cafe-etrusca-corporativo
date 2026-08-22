@@ -24,7 +24,11 @@
 
   <!-- ================= MOSAICO ================= -->
   <section class="ns-mosaic">
-    <app-scroll-wave position="top" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+    <div class="ns-wave ns-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+        <path d="M0,50 C120,80 180,20 300,50 C420,80 480,20 600,50 C720,80 780,20 900,50 C1020,80 1080,20 1200,50 C1320,80 1380,20 1440,50 L1440,0 L0,0 Z"/>
+      </svg>
+    </div>
     <div class="ns-mosaic-grid">
     <article class="ns-cell ns-photo">
       <img src="/assets/images/soy-etrusca.png" alt="Soy Etrusca">
@@ -58,11 +62,21 @@
       </div>
     </article>
     </div>
-    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+    <div class="ns-wave ns-wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+        <path d="M0,40 C120,10 180,70 300,40 C420,10 480,70 600,40 C720,10 780,70 900,40 C1020,10 1080,70 1200,40 C1320,10 1380,70 1440,40 L1440,90 L0,90 Z"/>
+      </svg>
+    </div>
   </section>
 
   <!-- ================= MISIÓN / VISIÓN ================= -->
-  <section class="ns-mv">
+  <section class="ns-mv-wrap">
+    <div class="ns-wave ns-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+        <path d="M0,50 C120,80 180,20 300,50 C420,80 480,20 600,50 C720,80 780,20 900,50 C1020,80 1080,20 1200,50 C1320,80 1380,20 1440,50 L1440,0 L0,0 Z"/>
+      </svg>
+    </div>
+    <div class="ns-mv">
     <article class="ns-card ns-mision">
       <h2>MISIÓN</h2>
       <p>Somos una empresa comercializadora que promueve y asesora a los negocios de café en México y el extranjero; ayudando a pequeños, medianos y grandes empresarios para que progresen y se desarrollen en el segmento de café de manera competitiva.</p>
@@ -73,6 +87,12 @@
       <span class="ns-rule"></span>
       <p>Ser una empresa certificada que innove dentro del sector de café y bebidas, fomentando nuestra pasión y excelencia. Socialmente responsable en la cadena productiva. Ofreciendo productos y equipos de alta calidad que cuiden el medio ambiente y el uso eficiente de los recursos.</p>
     </article>
+    </div>
+    <div class="ns-wave ns-wave-bottom" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+        <path d="M0,40 C120,10 180,70 300,40 C420,10 480,70 600,40 C720,10 780,70 900,40 C1020,10 1080,70 1200,40 C1320,10 1380,70 1440,40 L1440,90 L0,90 Z"/>
+      </svg>
+    </div>
   </section>
 
   <!-- ================= VALOR EN CADA BEBIDA ================= -->
