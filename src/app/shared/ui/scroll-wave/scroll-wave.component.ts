@@ -10,8 +10,9 @@ import { isPlatformBrowser, CommonModule } from '@angular/common';
 })
 export class ScrollWaveComponent {
   // Propiedades que puedes modificar desde el HTML cuando uses la etiqueta
-  @Input() fillColor: string = '#ffffff'; // Color por defecto (blanco)
-  @Input() position: 'top' | 'bottom' = 'bottom'; // Posición por defecto
+  @Input() fillColor: string = '#ffffff';
+  @Input() position: 'top' | 'bottom' = 'bottom';
+  @Input() compact = false;
 
   waveOffset = 0;
 

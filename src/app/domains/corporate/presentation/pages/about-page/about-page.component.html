@@ -24,6 +24,8 @@
 
   <!-- ================= MOSAICO ================= -->
   <section class="ns-mosaic">
+    <app-scroll-wave position="top" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+    <div class="ns-mosaic-grid">
     <article class="ns-cell ns-photo">
       <img src="/assets/images/soy-etrusca.png" alt="Soy Etrusca">
     </article>
@@ -55,6 +57,8 @@
         <p>Por eso <strong>reunimos</strong> insumos de calidad, accesorios especializados y equipos de alto nivel para que tu cafetería funcione y crezca.</p>
       </div>
     </article>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
   </section>
 
   <!-- ================= MISIÓN / VISIÓN ================= -->
@@ -73,11 +77,7 @@
 
   <!-- ================= VALOR EN CADA BEBIDA ================= -->
   <section class="ns-valor">
-    <div class="ns-wave ns-wave-top ns-wave-cream" aria-hidden="true">
-      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
-        <path d="M0,40 C120,10 180,70 300,40 C420,10 480,70 600,40 C720,10 780,70 900,40 C1020,10 1080,70 1200,40 C1320,10 1380,70 1440,40 L1440,0 L0,0 Z"/>
-      </svg>
-    </div>
+    <app-scroll-wave position="top" fillColor="#f6e48a" [compact]="true"></app-scroll-wave>
 
     <div class="ns-valor-inner">
       <h2>VALOR EN<br><span>CADA BEBIDA</span></h2>
@@ -102,11 +102,7 @@
       </div>
     </div>
 
-    <div class="ns-wave ns-wave-bottom ns-wave-cream-b" aria-hidden="true">
-      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
-        <path d="M0,50 C120,80 180,20 300,50 C420,80 480,20 600,50 C720,80 780,20 900,50 C1020,80 1080,20 1200,50 C1320,80 1380,20 1440,50 L1440,90 L0,90 Z"/>
-      </svg>
-    </div>
+    <app-scroll-wave position="bottom" fillColor="#f6e48a" [compact]="true"></app-scroll-wave>
   </section>
 
   <!-- ================= NUESTRAS MARCAS ================= -->

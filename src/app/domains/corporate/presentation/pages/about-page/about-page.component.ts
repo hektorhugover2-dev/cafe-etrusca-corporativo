@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
 
 @Component({
   selector: 'app-about-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollWaveComponent],
   templateUrl: './about-page.component.html',
   styleUrl: './about-page.component.scss'
 })

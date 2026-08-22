@@ -1,4 +1,4 @@
-<div class="scroll-wave-divider" [ngClass]="position">
+<div class="scroll-wave-divider" [ngClass]="[position, compact ? 'compact' : '']">
   <!-- Este contenedor es el que se mueve con la variable waveOffset -->
   <div class="scroll-wave-track" [style.transform]="'translateX(-' + waveOffset + '%)'">
     

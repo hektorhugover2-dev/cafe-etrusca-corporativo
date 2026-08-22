@@ -24,8 +24,15 @@
 
   svg {
     flex: 1;
-    height: 20vh; // Altura de la ola (puedes hacerla más alta si quieres)
+    height: 20vh;
     display: block;
-    transition: fill 0.3s ease; // Transición suave si cambia el color
+    transition: fill 0.3s ease;
+  }
+
+  &.compact {
+    &.top { top: -1px; }
+    &.bottom { bottom: -1px; }
+
+    svg { height: 88px; }
   }
 }
