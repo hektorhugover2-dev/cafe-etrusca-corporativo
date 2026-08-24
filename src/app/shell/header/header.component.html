@@ -1,56 +1,165 @@
 <header class="header-transparent" [ngClass]="{'scrolled': isScrolled, 'inner': !isHome}">
   <nav class="navbar navbar-expand-lg navbar-dark py-3">
     <div class="container d-flex justify-content-between align-items-center">
-      
-      <!-- Botón hamburguesa para móviles -->
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse w-100 justify-content-center" id="navbarNav">
-        
-        <!-- MITAD IZQUIERDA -->
+
         <ul class="navbar-nav align-items-center gap-3 gap-xl-4 mx-auto">
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/nosotros">Nosotros</a></li>
-          
-          <!-- Dropdown PRODUCTOS -->
-          <li class="nav-item dropdown custom-hover-dropdown">
+
+          <li class="nav-item dropdown custom-hover-dropdown mega-dropdown">
             <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" routerLink="/productos" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Productos
             </a>
-            <ul class="dropdown-menu border-0 shadow-sm custom-dropdown-menu" aria-labelledby="navbarDropdownProductos">
-              <li><a class="dropdown-item" routerLink="/productos">Todos los productos</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/cafe">Café</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/insumos">Insumos</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/insumos/jarabes">Jarabes</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/insumos/salsas">Salsas</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/insumos/pures">Purés y concentrados</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/accesorios">Accesorios</a></li>
-              <li><a class="dropdown-item" routerLink="/productos/maquinas">Máquinas</a></li>
-            </ul>
+            <div class="dropdown-menu mega-menu border-0" aria-labelledby="navbarDropdownProductos">
+              <div class="mega-grid">
+                <aside class="mega-cats">
+                  <h3>Categorías</h3>
+                  @for (c of productCats; track c.id) {
+                    <a class="mega-cat" [class.active]="productPanel === c.id" [attr.data-tone]="c.tone"
+                       [routerLink]="c.link" (mouseenter)="productPanel = c.id">
+                      <span class="mega-bar"></span>
+                      <span class="mega-cup" aria-hidden="true"></span>
+                      {{ c.label }}
+                    </a>
+                  }
+                </aside>
+
+                <div class="mega-main">
+                  @if (productPanel === 'insumos') {
+                    <h3>
+                      <span class="mega-bottle" aria-hidden="true"></span>
+                      Insumos
+                    </h3>
+                    <div class="mega-links">
+                      @for (item of insumoLinks; track item.title) {
+                        <a class="mega-link" [routerLink]="item.link">
+                          <span class="mega-ico" [attr.data-icon]="item.icon"></span>
+                          <span>
+                            <strong>{{ item.title }}</strong>
+                            <small>{{ item.desc }}</small>
+                          </span>
+                        </a>
+                      }
+                    </div>
+                    <a class="mega-cta" routerLink="/productos/insumos">Ver todos los insumos ›</a>
+                  } @else {
+                    <h3>{{ activeProductCat.label }}</h3>
+                    <p class="mega-copy">Explora la línea completa y encuentra el producto ideal para tu barra.</p>
+                    <a class="mega-cta" [routerLink]="activeProductCat.link">Ver categoría</a>
+                  }
+                </div>
+
+                <aside class="mega-side">
+                  <h3 class="mega-gold">Destacado</h3>
+                  <div class="mega-feat">
+                    <div class="mega-feat-img">
+                      <img src="/assets/images/nav/torani-pina.png" alt="Jarabe sabor Piña Torani">
+                    </div>
+                    <div>
+                      <strong>Jarabe sabor Piña</strong>
+                      <em>Torani</em>
+                      <p>Ideal para bebidas frías y calientes.</p>
+                      <a routerLink="/productos/insumos/jarabes">Ver producto ›</a>
+                    </div>
+                  </div>
+                  <h3 class="mega-gold">Marcas destacadas</h3>
+                  <div class="mega-brands">
+                    <span>MOCAFE</span>
+                    <span class="accent">TORANI</span>
+                    <span>DAVID RIO</span>
+                    <span>CHILLOUT</span>
+                  </div>
+                </aside>
+              </div>
+            </div>
           </li>
 
-          <li class="nav-item dropdown custom-hover-dropdown">
+          <li class="nav-item dropdown custom-hover-dropdown mega-dropdown">
             <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" routerLink="/educacion" id="navbarDropdownEducacion" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Educación
             </a>
-            <ul class="dropdown-menu border-0 shadow-sm custom-dropdown-menu" aria-labelledby="navbarDropdownEducacion">
-              <li><a class="dropdown-item" routerLink="/educacion">Toda la oferta</a></li>
-              <li><a class="dropdown-item" routerLink="/educacion/cursos">Cursos</a></li>
-              <li><a class="dropdown-item" routerLink="/educacion/experiencias">Experiencias</a></li>
-              <li><a class="dropdown-item" routerLink="/educacion/talleres">Talleres</a></li>
-              <li><a class="dropdown-item" routerLink="/educacion/sesiones">Sesiones sabatinas</a></li>
-            </ul>
+            <div class="dropdown-menu mega-menu border-0" aria-labelledby="navbarDropdownEducacion">
+              <div class="mega-grid">
+                <aside class="mega-cats">
+                  <h3>Formación</h3>
+                  @for (c of eduCats; track c.id) {
+                    <a class="mega-cat" [class.active]="eduPanel === c.id" [attr.data-tone]="c.tone"
+                       [routerLink]="c.link" (mouseenter)="eduPanel = c.id">
+                      <span class="mega-bar"></span>
+                      <span class="mega-cup" aria-hidden="true"></span>
+                      {{ c.label }}
+                    </a>
+                  }
+                </aside>
+
+                <div class="mega-main">
+                  <h3>
+                    <span class="mega-bottle" aria-hidden="true"></span>
+                    Te recomendamos
+                  </h3>
+                  <div class="mega-cards">
+                    <a class="mega-card" [routerLink]="activeEduCat.link">
+                      <div class="mega-card-photo">
+                        <span>Bebidas frías</span>
+                        <b>Nuevo taller</b>
+                        <img src="/assets/images/nav/bebidas-frias.jpg" alt="Bebidas frías">
+                      </div>
+                      <strong>Bebidas frías</strong>
+                      <small>Taller</small>
+                      <p>Ideal para esta temporada y darle un nuevo giro al menú.</p>
+                      <span class="more">Saber más ›</span>
+                    </a>
+                    <a class="mega-card alt" [routerLink]="activeEduCat.link">
+                      <div class="mega-card-photo">
+                        <span>Bebidas frías</span>
+                        <b>Nuevo taller</b>
+                        <img src="/assets/images/nav/bebidas-frias.jpg" alt="Bebidas frías">
+                      </div>
+                      <strong>Bebidas frías</strong>
+                      <small>Taller</small>
+                      <p>Ideal para esta temporada y darle un nuevo giro al menú.</p>
+                      <span class="more">Saber más ›</span>
+                    </a>
+                  </div>
+                </div>
+
+                <aside class="mega-side">
+                  <h3 class="mega-gold">Producto destacado</h3>
+                  <div class="mega-feat">
+                    <div class="mega-feat-img">
+                      <img src="/assets/images/nav/torani-pina.png" alt="Jarabe sabor Piña Torani">
+                    </div>
+                    <div>
+                      <strong>Jarabe sabor Piña</strong>
+                      <em>Torani</em>
+                      <p>Ideal para bebidas frías y calientes.</p>
+                      <a routerLink="/productos/insumos/jarabes">Ver producto ›</a>
+                    </div>
+                  </div>
+                  <h3 class="mega-gold">Marcas destacadas</h3>
+                  <div class="mega-brands">
+                    <span>MOCAFE</span>
+                    <span class="accent">TORANI</span>
+                    <span>DAVID RIO</span>
+                    <span>CHILLOUT</span>
+                  </div>
+                </aside>
+              </div>
+            </div>
           </li>
+
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/servicio">Servicio</a></li>
         </ul>
 
-        <!-- LOGO CENTRAL -->
         <a class="navbar-brand mx-4 d-none d-lg-block" routerLink="/">
           <img src="https://cafeetrusca.com/img/logo_etrusca.webp" alt="Logo Café Etrusca" height="70">
         </a>
 
-        <!-- MITAD DERECHA -->
         <ul class="navbar-nav align-items-center gap-3 gap-xl-4 mx-auto">
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/contacto">Contacto</a></li>
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/videoteca">Videoteca</a></li>
