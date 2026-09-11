@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <path d="M28 78c8 14 56 14 64 0" fill="#FFE56A" opacity=".55"/>
+  <ellipse cx="60" cy="82" rx="34" ry="14" fill="#FFE56A" opacity=".35"/>
+  <!-- ice cubes -->
+  <rect x="18" y="34" width="14" height="12" rx="2" stroke="#1B2A4A" stroke-width="2.2" fill="#E8F4FF" transform="rotate(-12 25 40)"/>
+  <rect x="88" y="42" width="12" height="10" rx="2" stroke="#1B2A4A" stroke-width="2.2" fill="#E8F4FF" transform="rotate(18 94 47)"/>
+  <rect x="92" y="28" width="11" height="9" rx="2" stroke="#1B2A4A" stroke-width="2.2" fill="#E8F4FF" transform="rotate(-8 97 32)"/>
+  <!-- blender -->
+  <path d="M42 22h36l2 8H40l2-8z" stroke="#1B2A4A" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M44 30h32l-4 42c-1 8-7 12-12 12s-11-4-12-12l-4-42z" stroke="#1B2A4A" stroke-width="2.4" stroke-linejoin="round" fill="#FFF8C8"/>
+  <path d="M48 48c4 6 20 6 24 0" stroke="#1B2A4A" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M50 58c3 4 17 4 20 0" stroke="#1B2A4A" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="38" y="84" width="44" height="14" rx="3" stroke="#1B2A4A" stroke-width="2.4" fill="#fff"/>
+  <path d="M46 91h28" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round"/>
+  <!-- droplets -->
+  <path d="M26 58c0-4 4-7 4-7s4 3 4 7a4 4 0 1 1-8 0z" fill="#7EC8FF" stroke="#1B2A4A" stroke-width="1.5"/>
+</svg>

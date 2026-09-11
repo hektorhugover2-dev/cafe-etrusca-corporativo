@@ -92,6 +92,12 @@ $text-white: #ffffff;
 }
 
 .social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px;
   transition: transform 0.2s ease;
   &:hover {
     transform: scale(1.1);
@@ -171,4 +177,39 @@ $text-white: #ffffff;
   .shape-fill {
     fill: var(--etrusca-navy-900); // La ola ahora es del mismo color que el fondo del footer
   }
+}
+
+.footer-legal {
+  text-align: center;
+}
+
+.footer-legal__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem 1.5rem;
+  max-width: 640px;
+  margin: 0 auto 0.85rem;
+}
+
+.footer-legal__links a {
+  color: #ffc107;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+.footer-legal__links a:hover {
+  color: #fff;
+}
+
+.footer-legal__copy {
+  display: block;
+  width: 100%;
+  margin: 0;
+  color: #ffc107;
+  font-size: 0.85rem;
+  font-weight: 700;
 }

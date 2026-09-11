@@ -1,0 +1,19 @@
+.ev-map {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(27, 42, 74, 0.12);
+  background: #eee;
+  min-height: 280px;
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 360px;
+    border: 0;
+  }
+}
+
+.ev-page .edu-path a {
+  color: inherit;
+  text-decoration: none;
+}

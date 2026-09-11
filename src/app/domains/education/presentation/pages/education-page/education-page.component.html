@@ -1,110 +1,262 @@
 <div class="edu-page">
   <section class="edu-hero">
     <div class="edu-hero-copy">
-      <h1>Aprende, emprende y sorprende</h1>
+      <h1>Aprende, <em>emprende</em> y sorprende</h1>
       <p class="lead">Formación, experiencias y encuentros diseñados para todos los que quieren llevar su pasión por el café más allá.</p>
+      <a class="btn-burgundy" href="#oferta">Conoce nuestra oferta</a>
     </div>
     <div class="edu-hero-media">
       <img src="/assets/images/educacion/hero-banner.png" alt="Formación Café Etrusca">
     </div>
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
   </section>
 
-  <section class="edu-section">
-    <h2>Conoce nuestra oferta</h2>
-    <p class="sub">En Café Etrusca, nuestro compromiso es ofrecerte una amplia gama de opciones formativas. Contamos con Cursos, Talleres, Experiencias y Sesiones Sabatinas, cada uno diseñado para brindarte conocimiento de una manera única.</p>
-    <div class="edu-offer">
-      @for (c of cats; track c.slug) {
-        <a class="edu-cat" [class]="c.tone" [routerLink]="['/educacion', c.slug]">
-          <img [src]="c.icon" [alt]="c.label">
-          <h3>{{ c.label }}</h3>
-        </a>
-      }
+  <section class="edu-section edu-offer-sec" id="oferta">
+    <p class="offer-intro">En Café Etrusca, nuestro compromiso es ofrecerte una amplia gama de <strong>opciones formativas</strong>. Contamos con <strong>Cursos, Talleres, Experiencias y Sesiones Sabatinas</strong>, cada uno diseñado para brindarte conocimiento de una manera única.</p>
+    <div class="edu-offer-wrap">
+      <div class="edu-offer">
+        @for (c of cats; track c.slug) {
+          <a class="edu-cat" [class]="c.slug" [routerLink]="['/educacion', c.slug]">
+            <span class="ico"><img [src]="c.icon" alt="Café con arte latte"></span>
+            <h3>{{ c.label }}</h3>
+          </a>
+        }
+      </div>
+      <div class="edu-offer-phone">
+        <img src="/assets/images/educacion/quiz-phone-julio.webp" alt="Formación Café Etrusca">
+      </div>
     </div>
   </section>
 
   <app-compromiso></app-compromiso>
 
-  <section class="edu-section">
-    <h2>Este mes</h2>
-    <p class="sub">Descubre qué opciones formativas tenemos este mes para ti.</p>
+  <section class="edu-section edu-month-sec">
+    <header class="edu-heading">
+      <h2>Este mes</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="sub">Descubre qué opciones formativas tenemos este mes para ti.</p>
+    </header>
     <div class="edu-cards">
-      @for (c of month; track c.slug) {
-        <article class="edu-card">
-          <img [src]="c.image" [alt]="c.title">
+      @for (c of month; track c.slug; let i = $index) {
+        <article class="edu-card" [class]="'tone-' + c.kind">
+          <div class="media">
+            <span class="stripe" aria-hidden="true"></span>
+            <img [src]="c.image" [alt]="c.title">
+            <span class="ico"><img [src]="iconFor(c.kind)" alt=""></span>
+            <span class="kind">{{ c.kicker }}</span>
+          </div>
           <div class="body">
-            <div class="kicker">{{ c.kicker }}</div>
             <h3>{{ c.title }}</h3>
-            <p>{{ c.summary }}</p>
-            <div class="row">
-              <span>{{ c.duration }} · {{ c.hours }}</span>
-              <a class="btn-pink" [routerLink]="['/educacion', c.kind, c.slug]">Me interesa</a>
+            <span class="rule" aria-hidden="true"></span>
+            <div class="meta">
+              <span>{{ c.duration }}</span>
+              <span>{{ c.hours }}</span>
             </div>
+            <button type="button" class="btn-interest" (click)="openInterest(c)">Me interesa</button>
           </div>
         </article>
       }
     </div>
   </section>
 
-  <section class="edu-section">
-    <h2>Elige tu camino</h2>
+  <section class="edu-section edu-quiz-sec">
+    <header class="edu-heading">
+      <h2>Elige tu camino</h2>
+      <span class="rule" aria-hidden="true"></span>
+    </header>
     <div class="edu-quiz">
-      <div>
-        @if (step < quiz.length) {
-          <p class="kicker" style="color:#f5d56a;font-weight:800;">Pregunta {{ step + 1 }} de {{ quiz.length }}</p>
-          <h2>{{ quiz[step].q }}</h2>
-          <div class="opts">
-            @for (opt of quiz[step].options; track opt.label) {
-              <button type="button" (click)="choose(opt.path)">
-                <strong>{{ opt.label }}</strong>
-                <small>{{ opt.hint }}</small>
-              </button>
+      @if (step < quiz.length) {
+        <p class="progress-label">Pregunta {{ step + 1 }} de {{ quiz.length }}</p>
+        <div class="progress" aria-hidden="true">
+          <span [style.width.%]="((step + 1) / quiz.length) * 100"></span>
+        </div>
+        <h3>{{ quiz[step].q }}</h3>
+        <div class="opts">
+          @for (opt of quiz[step].options; track opt.label) {
+            <button type="button" class="opt" [class.picked]="picked === opt.path && pickedLabel === opt.label" (click)="pick(opt.path, opt.label)">
+              <strong>{{ opt.label }}</strong>
+              <small>{{ opt.hint }}</small>
+            </button>
+          }
+        </div>
+        <div class="quiz-next">
+          <button type="button" class="btn-burgundy" [disabled]="!picked" (click)="next()">Siguiente</button>
+        </div>
+      } @else {
+        <h3>Tu ruta recomendada</h3>
+        <p>Con tus respuestas, el mejor siguiente paso es la línea de {{ result }}.</p>
+        <div class="edu-actions" style="margin-top:1rem;">
+          <a class="btn-burgundy" [routerLink]="['/educacion', result]">Ver {{ result }}</a>
+          <button class="btn-ghost" type="button" (click)="resetQuiz()">Volver a empezar</button>
+        </div>
+      }
+    </div>
+  </section>
+
+      <section class="edu-cta-banner">
+    <div class="photo">
+      <img src="/assets/images/educacion/cta-cafe.webp" alt="">
+    </div>
+    <app-scroll-wave position="top" fillColor="#182247"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿Quieres comenzar tu camino?</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p>Explora nuestro calendario y encuentra la opción ideal para ti.</p>
+      <div class="edu-actions">
+        <a class="btn-gold" href="https://calendario-cursos.cafeetrusca.com/web/viewer.html?file=CALENDARIO_SESIONES-OCT-DIC-2026.pdf" target="_blank" rel="noopener">Ver calendario completo</a>
+        <a class="btn-ghost-light" routerLink="/contacto">Hablar con un asesor</a>
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+  </section>
+
+<section class="edu-section edu-paths-sec">
+    <header class="edu-heading">
+      <h2>Líneas de formación</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="sub">Programa educativo para expertos en café</p>
+    </header>
+    <div class="edu-tree">
+      <a class="tree-start" routerLink="/educacion/cursos/formacion-de-emprendedores">curso inicial: <strong>formación de emprendedores</strong></a>
+      <span class="tree-stem" aria-hidden="true"></span>
+      <p class="tree-hub">talleres de especialización</p>
+      <span class="tree-branch" aria-hidden="true"></span>
+      <div class="edu-paths">
+        @for (p of paths; track p.name) {
+          <article class="edu-path" [class]="p.tone">
+            <h3>{{ p.name }}</h3>
+            <ul>
+              @for (i of p.items; track i.label + (i.link || '')) {
+                <li>
+                  @if (i.link) {
+                    <a [routerLink]="i.link">{{ i.label }}</a>
+                  } @else {
+                    <span>{{ i.label }}</span>
+                  }
+                </li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="edu-section edu-baristas-sec" id="baristas">
+    <header class="edu-heading">
+      <h2>Nuestros baristas</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="sub">Impulsamos la capacitación continua de nuestro equipo; por ello nuestros baristas se encuentran capacitados frecuentemente y cuentan con certificaciones internacionales principalmente por la Specialty Coffee Association (SCA).</p>
+    </header>
+
+    <div class="sca-cert-bar">
+      <h3>Certificaciones SCA</h3>
+      <div class="sca-cert-row">
+        @for (c of certs; track c.id) {
+          <div class="sca-cert">
+            <img [src]="c.icon" [alt]="c.label">
+            @for (line of c.lines; track line) {
+              <span>{{ line }}</span>
             }
-          </div>
-        } @else {
-          <h2>Tu ruta recomendada</h2>
-          <p>Con tus respuestas, el mejor siguiente paso es la línea de {{ result }}.</p>
-          <div class="edu-actions" style="margin-top:1rem;">
-            <a class="btn-pink" [routerLink]="['/educacion', result]">Ver {{ result }}</a>
-            <button class="btn-ghost" type="button" (click)="resetQuiz()">Volver a empezar</button>
           </div>
         }
       </div>
-      <img src="/assets/images/educacion/quiz-phone.png" alt="Elige tu camino">
     </div>
-  </section>
 
-  <section class="edu-section">
-    <h2>Líneas de formación</h2>
-    <p class="sub">Programa educativo para expertos en café. Formación de emprendedores, curso inicial y talleres de especialización.</p>
-    <div class="edu-paths">
-      @for (p of paths; track p.name) {
-        <article class="edu-path">
-          <h3>{{ p.name }}</h3>
-          <ul>
-            @for (i of p.items; track i) { <li>{{ i }}</li> }
-          </ul>
+    <div class="barista-filters">
+      <strong>Filtros</strong>
+      <button type="button" class="pill" [class.active]="!branchFilter" (click)="filterBranch('')">Todos</button>
+      <label class="pill select">
+        <span class="sr-only">Seleccionar sucursal</span>
+        <select #branchSel [value]="branchFilter" (change)="filterBranch(branchSel.value)">
+          <option value="">Seleccionar sucursal</option>
+          @for (b of branches; track b) {
+            <option [value]="b">{{ b }}</option>
+          }
+        </select>
+      </label>
+    </div>
+
+    @if (featured) {
+      <div class="barista-showcase" (mouseenter)="pauseBaristas()" (mouseleave)="resumeBaristas()">
+        <article class="barista-featured">
+          <div class="photo">
+            <img [src]="featured.photo" [alt]="featured.name">
+          </div>
+          <div class="copy">
+            <h3>{{ featured.name }}</h3>
+            <p class="place">{{ featured.place }}</p>
+            @if (featured.role) {
+              <p class="role">{{ featured.role }}</p>
+            }
+            <p class="cert-kicker">Certificación SCA</p>
+            <div class="certs">
+              @for (id of featured.certs; track id) {
+                <img [src]="certIcon(id)" [alt]="certLabel(id)">
+              }
+            </div>
+          </div>
         </article>
-      }
+        <div class="barista-grid">
+          @for (b of others; track b.name) {
+            <button type="button" class="barista-mini" (click)="selectBarista(b.name)">
+              <span class="avatar"><img [src]="b.photo" [alt]="b.name"></span>
+              <h3>{{ b.name }}</h3>
+              <p>{{ b.place }}</p>
+              <div class="certs">
+                @for (id of b.certs; track id) {
+                  <img [src]="certIcon(id)" alt="">
+                }
+              </div>
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="barista-nav">
+      <button type="button" class="nav-btn" (click)="prevBarista()" aria-label="Anterior"></button>
+      <button type="button" class="nav-btn next" (click)="nextBarista()" aria-label="Siguiente"></button>
     </div>
+    <p class="baristas-hint">El destacado cambia solo. También puedes elegir a alguien de la cuadrícula.</p>
   </section>
 
-  <section class="edu-section">
-    <h2>Nuestros baristas</h2>
-    <p class="sub">Impulsamos la capacitación continua de nuestro equipo; por ello nuestros baristas se encuentran capacitados frecuentemente y cuentan con certificaciones internacionales principalmente por la Specialty Coffee Association (SCA).</p>
-    <div class="edu-baristas">
-      @for (b of baristas; track b.name) {
-        <article class="edu-barista">
-          <h3>{{ b.name }}</h3>
-          <p>{{ b.place }}</p>
-          <p>{{ b.role }}</p>
-        </article>
-      }
+    <section class="edu-section edu-reviews-sec">
+    <header class="edu-heading reviews-head">
+      <h2>Opiniones de clientes</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="sub">Nos encanta ver cómo nuestra comunidad crece con cada taza y cada práctica. Aquí algunas reseñas reales de personas que han vivido la experiencia Café Etrusca.</p>
+    </header>
+    <div class="reviews-slider" (mouseenter)="pauseReviews()" (mouseleave)="resumeReviews()">
+      <button type="button" class="rev-arrow prev" (click)="prevReview()" aria-label="Anterior"></button>
+      <div class="rev-viewport">
+        <div class="rev-track">
+          @for (r of visibleReviews; track r.id) {
+            <article class="rev-card">
+              <div class="rev-who">
+                <span class="rev-avatar">{{ r.initials }}</span>
+                <div>
+                  <strong>{{ r.name }}</strong>
+                  <div class="rev-stars" [attr.aria-label]="r.rating + ' de 5'">
+                    @for (s of starSlots; track s) {
+                      <span class="star" [class.on]="s <= r.rating">★</span>
+                    }
+                  </div>
+                </div>
+              </div>
+              <p>{{ r.text }}</p>
+            </article>
+          }
+        </div>
+      </div>
+      <button type="button" class="rev-arrow next" (click)="nextReview()" aria-label="Siguiente"></button>
     </div>
-    <h2 style="margin-top:2.2rem;">Certificaciones SCA</h2>
-    <div class="edu-certs">
-      @for (c of certs; track c) { <span>{{ c }}</span> }
-    </div>
-  </section>
-
-  <app-edu-cta></app-edu-cta>
+    </section>
 </div>
+
+<app-course-interest-modal
+  [open]="interestOpen"
+  [courseTitle]="interestTitle"
+  [date]="interestDate"
+  (closed)="closeInterest()">
+</app-course-interest-modal>

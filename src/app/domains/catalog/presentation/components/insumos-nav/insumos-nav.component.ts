@@ -7,17 +7,23 @@ import { INSUMOS_NAV } from '../../insumos.data';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   template: `
-    <nav class="ins-nav" aria-label="Categorías de insumos">
+    <nav class="ins-nav" [class.all-color]="allColor" aria-label="Categorías de insumos">
       @for (item of items; track item.slug) {
-        <a class="ins-pill"
+        <a class="ins-cat"
+           [class]="'ins-cat ins-cat-' + item.slug"
            [routerLink]="['/productos/insumos', item.slug]"
-           routerLinkActive="active">{{ item.label }}</a>
+           routerLinkActive="active">
+          <span class="ins-cat-icon" aria-hidden="true">
+            <img [src]="item.icon" alt="">
+          </span>
+          <span class="ins-cat-label">{{ item.label }}</span>
+        </a>
       }
     </nav>
   `,
   styleUrls: ['../../insumos-theme.scss']
 })
 export class InsumosNavComponent {
-  @Input() active = '';
+  @Input() allColor = false;
   items = INSUMOS_NAV;
 }

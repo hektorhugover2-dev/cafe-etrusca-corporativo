@@ -37,6 +37,31 @@
     border-radius: 10px;
     margin-top: 10px;
   }
+
+  .navbar-collapse .dropdown-menu.show {
+    display: block !important;
+  }
+
+  .mega-menu {
+    position: static !important;
+    float: none;
+    width: 100%;
+    max-height: min(70vh, 520px);
+    overflow-y: auto;
+    box-shadow: none;
+    background: transparent;
+    padding: 0.5rem 0 0;
+  }
+
+  .mega-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mega-side {
+    display: none;
+  }
 }
 
 @media all and (min-width: 992px) {
@@ -380,4 +405,52 @@
     border: 0;
     padding: 0.6rem 0;
   }
+}
+
+.navbar-toggler {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+}
+
+
+.mega-link img.mega-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+  color: inherit;
+}
+
+.nav-link-swap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+
+  .nav-label-hover {
+    display: none;
+  }
+
+  &:hover .nav-label,
+  &:focus-visible .nav-label {
+    display: none;
+  }
+
+  &:hover .nav-label-hover,
+  &:focus-visible .nav-label-hover {
+    display: inline;
+  }
+}
+
+
+
+.navbar-brand-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
 }

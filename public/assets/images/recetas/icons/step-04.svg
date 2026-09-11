@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <ellipse cx="58" cy="74" rx="36" ry="28" fill="#A8E6A1" opacity=".45"/>
+  <path d="M36 34h46l-5 62c-1 8-6 12-18 12s-17-4-18-12l-5-62z" stroke="#1B2A4A" stroke-width="2.4" stroke-linejoin="round" fill="#FFE8C8"/>
+  <!-- chamoy drizzle -->
+  <path d="M42 44c5 12 3 22-1 32" stroke="#E23B6B" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M74 42c-4 10-2 22 2 30" stroke="#E23B6B" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- logo -->
+  <path d="M54 72c0-7 0-12 4-12s3 4 3 9c0-7 4-9 6-7" stroke="#1B2A4A" stroke-width="2" stroke-linecap="round"/>
+  <!-- boba pearls on top -->
+  <circle cx="48" cy="30" r="6" fill="#1B2A4A"/>
+  <circle cx="48" cy="30" r="2.2" fill="#fff" opacity=".35"/>
+  <circle cx="60" cy="26" r="6.5" fill="#1B2A4A"/>
+  <circle cx="60" cy="26" r="2.3" fill="#fff" opacity=".35"/>
+  <circle cx="72" cy="30" r="6" fill="#1B2A4A"/>
+  <circle cx="72" cy="30" r="2.2" fill="#fff" opacity=".35"/>
+  <circle cx="54" cy="38" r="5" fill="#1B2A4A"/>
+  <circle cx="66" cy="38" r="5" fill="#1B2A4A"/>
+  <!-- green leaf accents -->
+  <ellipse cx="92" cy="48" rx="5" ry="9" fill="#5FCF6A" transform="rotate(25 92 48)"/>
+  <ellipse cx="98" cy="58" rx="4" ry="8" fill="#5FCF6A" transform="rotate(40 98 58)"/>
+</svg>

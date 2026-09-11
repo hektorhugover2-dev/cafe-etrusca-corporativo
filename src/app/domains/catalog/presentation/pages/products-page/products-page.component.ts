@@ -1,50 +1,71 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CompromisoComponent } from '../../../../../shared/ui/compromiso/compromiso.component';
+import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
+import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 
 @Component({
   selector: 'app-products-page',
   standalone: true,
-  imports: [RouterLink, CompromisoComponent],
+  imports: [RouterLink, CompromisoComponent, ScrollWaveComponent],
   templateUrl: './products-page.component.html',
-  styleUrls: ['../../insumos-theme.scss']
+  styleUrls: ['./products-page.component.scss']
 })
-export class ProductsPageComponent {
+export class ProductsPageComponent implements OnInit {
+  private seo = inject(SeoService);
+
+  ngOnInit() {
+    this.seo.set({
+      title: 'Productos para cafeterías | Café Etrusca',
+      description: 'Café, insumos, maquinaria, equipo y accesorios para poner, renovar o innovar tu cafetería.',
+      keywords: 'productos para cafetería,café de especialidad,insumos,maquinaria,accesorios,Café Etrusca'
+    });
+  }
+
   cats = [
     {
       slug: 'cafe',
-      cls: 'cafe',
-      title: 'café',
-      text: 'Perfiles que despiertan los sentidos.',
-      img: '/assets/images/insumos/cafe-bag.png'
+      title: 'Café',
+      text: 'Perfiles que despiertan sentidos.',
+      img: '/assets/images/productos/cat-cafe.webp',
+      alt: 'Bolsa de Café Etrusca de 1 kg'
     },
     {
       slug: 'insumos',
-      cls: 'insumos',
       title: 'Insumos',
       text: 'Ingredientes que convierten ideas en experiencias.',
-      img: '/assets/images/insumos/kiwi-hero.png'
+      img: '/assets/images/productos/cat-insumos.webp',
+      alt: 'Bebida de matcha con hielo'
     },
     {
       slug: 'maquinas',
-      cls: 'maquinas',
-      title: 'máquinas',
+      link: '/maquinaria-y-equipo-para-cafeterias',
+      title: 'Máquinas',
       text: 'Rendimiento y tecnología para tu operación.',
-      img: '/assets/images/insumos/baristas.png'
+      img: '/assets/images/productos/cat-maquinas.webp',
+      alt: 'Molino profesional para café'
     },
     {
       slug: 'accesorios',
-      cls: 'accesorios',
-      title: 'accesorios',
+      title: 'Accesorios',
       text: 'Diseñados para facilitar cada preparación.',
-      img: '/assets/images/insumos/hero-products-left.png'
+      img: '/assets/images/productos/cat-accesorios.webp',
+      alt: 'Prensa francesa de cobre'
     }
   ];
 
+  brands = [
+    { src: '/assets/images/productos/logo-reneka.webp', alt: 'Reneka' },
+    { src: '/assets/images/productos/logo-torani.webp', alt: 'Torani' },
+    { src: '/assets/images/productos/logo-pietro.webp', alt: 'Pietro Grinders' },
+    { src: '/assets/images/productos/logo-lafenice.webp', alt: 'La Fenice' },
+    { src: '/assets/images/productos/logo-chillout.webp', alt: 'Chill Out' }
+  ];
+
   traits = [
-    { icon: '/assets/images/insumos/icon-medal.png', label: 'Calidad profesional' },
-    { icon: '/assets/images/insumos/icon-idea.png', label: 'Innovación constante' },
-    { icon: '/assets/images/insumos/icon-trust.png', label: 'Respaldo confiable' },
-    { icon: '/assets/images/insumos/icon-heart.png', label: 'Pasión por lo que hacemos' }
+    { key: 'calidad', label: 'Calidad Profesional' },
+    { key: 'innovacion', label: 'Innovación Constante' },
+    { key: 'respaldo', label: 'Respaldo Confiable' },
+    { key: 'pasion', label: 'Pasión por lo que hacemos' }
   ];
 }

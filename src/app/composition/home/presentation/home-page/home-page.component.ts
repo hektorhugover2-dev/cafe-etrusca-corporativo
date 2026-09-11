@@ -1,15 +1,37 @@
-import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { DISTRIBUTORS } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
+import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, OnDestroy, OnInit, Inject, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common'; // Agregamos isPlatformBrowser
 import { CompromisoComponent } from '../../../../shared/ui/compromiso/compromiso.component';
+import { SeoService } from '../../../../shared/kernel/services/seo.service';
 import { ScrollWaveComponent } from '../../../../shared/ui/scroll-wave/scroll-wave.component';
+import { RouterLink } from '@angular/router';
+import { Recipe, publishedRecipes } from '../../../../domains/catalog/presentation/pages/recipes-page/recetas.data';
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule,CompromisoComponent,ScrollWaveComponent],
+  imports: [CommonModule, CompromisoComponent, ScrollWaveComponent, RouterLink],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
-export class HomePageComponent implements AfterViewInit, OnDestroy {
+export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
+  homeRecipes: Recipe[] = ['miche-cero', 'mi-mero-mole', 'diablito-de-fresa', 'horchata-mexa']
+    .map((slug) => publishedRecipes().find((r) => r.slug === slug))
+    .filter((r): r is Recipe => !!r);
+
+  displayTitle(r: Recipe): string {
+    return [r.title, r.titleAccent].filter(Boolean).join(' ');
+  }
+
+  btnClass(i: number): string {
+    return ['btn-rosa', 'btn-rosa', 'btn-verde', 'btn-amarillo'][i % 4];
+  }
+
+  subtitleClass(i: number): string {
+    return ['sub-rosa', 'sub-rosa', 'sub-verde', 'sub-amarillo'][i % 4];
+  }
+
+  private seo = inject(SeoService);
+
   // ==========================================
   // VARIABLES ESTADÍSTICAS Y AYUDA
   // ==========================================
@@ -121,13 +143,56 @@ export class HomePageComponent implements AfterViewInit, OnDestroy {
     }
   ];
 
+  mapKind: 'sucursal' | 'distribuidor' = 'sucursal';
   filteredBranches: any[] = [];
   currentBranch: any = null;
 
   // Inyectamos PLATFORM_ID para saber si estamos en el Servidor o Navegador
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
- async ngAfterViewInit() {
+ ngOnInit() {
+    const brand = 'Café Etrusca';
+    this.seo.set({
+      title: brand + ' | Todo Para Tu Cafetería - (55) 4166 8777',
+      description:
+        brand +
+        ' Todo Para Tu Cafetería: Cursos para Baristas, Talleres para Cafeterías, Insumos, Maquinaria, Equipo, Accesorios y más para potenciar tu negocio',
+      keywords:
+        'arte latte,Brew Bar,Cold Brew,Mezcla Personalizada,Cafés especiales,Mezclas especiales,Café Etrusca,insumos,cafeterías,equipo para cafetería,barras de café,cursos para barista,maquinas de espresso,certificaciones',
+      image: 'https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp',
+      ogType: 'website',
+      jsonLd: ({ origin }) => [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          '@id': origin + '/#organization',
+          name: brand,
+          url: origin + '/',
+          logo: 'https://cafeetrusca.com/img/logo_etrusca.webp',
+          telephone: '+52-55-4166-8777',
+          email: 'atencion@cafeetrusca.com',
+          sameAs: [
+            'https://www.facebook.com/CafeEtrusca',
+            'https://www.instagram.com/cafeetrusca',
+            'https://www.youtube.com/@CafeEtrusca',
+            'https://www.tiktok.com/@cafeetrusca'
+          ]
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          '@id': origin + '/#website',
+          name: brand,
+          url: origin + '/',
+          inLanguage: 'es-MX',
+          publisher: { '@id': origin + '/#organization' }
+        }
+      ]
+    });
+    this.applyDefaultCity();
+  }
+
+  async ngAfterViewInit() {
 
     
     if (isPlatformBrowser(this.platformId)) {
@@ -138,12 +203,7 @@ export class HomePageComponent implements AfterViewInit, OnDestroy {
       const leafletModule = await import('leaflet');
       this.L = leafletModule.default || leafletModule;
       
-      this.customIcon = this.L.icon({
-        iconUrl: 'https://cafeetrusca.com/img/LOCATION-ETRUSCA.svg',
-        iconSize: [42, 42],
-        iconAnchor: [21, 42],
-        popupAnchor: [0, -42]
-      });
+      this.customIcon = this.makeMarkerIcon(0);
 
       this.initMap();
 
@@ -170,34 +230,132 @@ export class HomePageComponent implements AfterViewInit, OnDestroy {
   // ==========================================
   // LÓGICA DEL MAPA
   // ==========================================
+  
+  get places() {
+    return this.mapKind === 'distribuidor' ? DISTRIBUTORS : this.branches;
+  }
+
+  get mapCities(): string[] {
+    return [...new Set(this.places.map((b) => b.ciudad))];
+  }
+
+  
+  get placeSelectLabel(): string {
+    return this.mapKind === 'distribuidor' ? 'Seleccione un distribuidor' : 'Selecciona la sucursal';
+  }
+
+  get placeSelectHint(): string {
+    return this.mapKind === 'distribuidor'
+      ? 'Seleccione un distribuidor para ver la dirección.'
+      : 'Selecciona una sucursal para ver la dirección.';
+  }
+setMapKind(kind: 'sucursal' | 'distribuidor') {
+    if (this.mapKind === kind) return;
+    this.mapKind = kind;
+    const city = this.places.some((b) => b.ciudad === 'Ciudad de México')
+      ? 'Ciudad de México'
+      : (this.mapCities[0] || '');
+    this.applyCity(city);
+  }
+
+  private applyCity(city: string) {
+    this.filteredBranches = city ? this.places.filter((b) => b.ciudad === city) : [];
+    this.currentBranch = this.filteredBranches[0] || null;
+    if (this.map) {
+      this.addMarkers(this.filteredBranches);
+      this.fitToBranches(this.filteredBranches);
+    }
+  }
+
+private applyDefaultCity() {
+    const defaultBranch = this.branches.find(b => b.nombre.indexOf('CEDIS') !== -1) || this.branches[0];
+    this.currentBranch = defaultBranch || null;
+    this.filteredBranches = defaultBranch
+      ? this.places.filter((b) => b.ciudad === defaultBranch.ciudad)
+      : [];
+  }
+
+  private makeMarkerIcon(offsetX = 0, blue = false) {
+    return this.L.divIcon({
+      className: 'etrusca-map-marker',
+      html: '<span class="etrusca-map-marker__hit"><img src="' + (blue ? '/assets/images/pin-distribuidor.svg' : 'https://cafeetrusca.com/img/LOCATION-ETRUSCA.svg') + '" alt=""></span>',
+      iconSize: [40, 48],
+      iconAnchor: [20 - offsetX, 48],
+      popupAnchor: [offsetX, -48]
+    });
+  }
+
+  private markerOffsets(branchArray: any[]): number[] {
+    const n = branchArray.length;
+    const offsets = new Array(n).fill(0);
+    const close = 0.003;
+    const used = new Set();
+    for (let i = 0; i < n; i++) {
+      if (used.has(i)) continue;
+      const group = [i];
+      used.add(i);
+      for (let j = i + 1; j < n; j++) {
+        if (used.has(j)) continue;
+        const dlat = branchArray[i].lat - branchArray[j].lat;
+        const dlng = branchArray[i].lng - branchArray[j].lng;
+        if ((dlat * dlat + dlng * dlng) < (close * close)) {
+          group.push(j);
+          used.add(j);
+        }
+      }
+      if (group.length > 1) {
+        group.forEach((idx, k) => {
+          offsets[idx] = (k - (group.length - 1) / 2) * 64;
+        });
+      }
+    }
+    return offsets;
+  }
+
+  private fitToBranches(branchArray: any[]) {
+    if (!this.map || !branchArray.length) return;
+    if (branchArray.length === 1) {
+      this.map.setView([branchArray[0].lat, branchArray[0].lng], 15);
+      return;
+    }
+    const bounds = this.L.latLngBounds(branchArray.map((b) => [b.lat, b.lng]));
+    this.map.fitBounds(bounds, { padding: [48, 48], maxZoom: 15 });
+  }
+
   private initMap() {
-    this.map = this.L.map('map').setView([23.6345, -102.5528], 5);
+    this.applyDefaultCity();
+    const start = this.currentBranch || this.branches[0];
+    this.map = this.L.map('map', { zoomControl: true }).setView(
+      start ? [start.lat, start.lng] : [23.6345, -102.5528],
+      start ? 15 : 5
+    );
 
     this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map);
 
-    this.addMarkers(this.branches);
-    
-    const defaultBranch = this.branches.find(b => b.nombre === 'Café Etrusca CEDIS Vallejo');
-    if (defaultBranch) this.currentBranch = defaultBranch;
+    this.addMarkers(this.filteredBranches.length ? this.filteredBranches : []);
+    if (start) this.map.setView([start.lat, start.lng], 15);
   }
 
   private addMarkers(branchArray: any[]) {
     this.markers.forEach(marker => this.map?.removeLayer(marker));
     this.markers = [];
+    const offsets = this.markerOffsets(branchArray);
 
-    branchArray.forEach(branch => {
-      const popupContent = `<b>${branch.nombre}</b><br>${branch.direccion}`;
+    branchArray.forEach((branch, index) => {
+      const popupContent = '<b>' + branch.nombre + '</b><br>' + branch.direccion;
       if (this.map) {
-         // Insertamos el PIN
-         const marker = this.L.marker([branch.lat, branch.lng], { icon: this.customIcon }).addTo(this.map);
+         const marker = this.L.marker([branch.lat, branch.lng], {
+           icon: this.makeMarkerIcon(offsets[index], branch.tipo === 'distribuidor'),
+           title: branch.nombre,
+           alt: branch.nombre,
+           keyboard: true
+         }).addTo(this.map);
          marker.bindPopup(popupContent);
-         
          marker.on('click', () => {
              this.currentBranch = branch;
          });
-         
          this.markers.push(marker);
       }
     });
@@ -207,20 +365,16 @@ export class HomePageComponent implements AfterViewInit, OnDestroy {
     const selectedCity = (event.target as HTMLSelectElement).value;
     
     if (selectedCity) {
-      this.filteredBranches = this.branches.filter(b => b.ciudad === selectedCity);
-      const coords = this.cityCoordinates[selectedCity];
-      
-      if (coords && this.map) {
-         this.map.setView(coords, 11);
-         this.addMarkers(this.filteredBranches);
-         if(this.filteredBranches.length > 0) this.currentBranch = this.filteredBranches[0];
-      }
+      this.filteredBranches = this.places.filter((b) => b.ciudad === selectedCity);
+      this.addMarkers(this.filteredBranches);
+      if (this.filteredBranches.length > 0) this.currentBranch = this.filteredBranches[0];
+      this.fitToBranches(this.filteredBranches);
     } else {
       this.filteredBranches = [];
       this.currentBranch = null;
       if (this.map) {
         this.map.setView([23.6345, -102.5528], 5);
-        this.addMarkers(this.branches);
+        this.addMarkers([]);
       }
     }
   }

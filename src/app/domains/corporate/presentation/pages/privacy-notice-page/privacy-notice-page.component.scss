@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.poppins_bold {
+  font-weight: 700;
+}
+
+.poppins_light {
+  font-weight: 400;
+}
+
+.m-t-4 {
+  margin-top: 1.5rem;
+}
+
+.justify-align {
+  text-align: justify;
+}
+
+.ul_li,
+.ul_li_num {
+  padding-left: 1.25rem;
+}
+
+.ul_li {
+  list-style-type: disc;
+}
+
+.ul_li_num {
+  list-style-type: decimal;
+}
+
+.center-align {
+  text-align: center;
+}
+
+.btn-idioma {
+  margin: 0.5rem;
+}
+
+.center-all-element {
+  justify-content: center;
+}
+
+h1,
+h2,
+h4 {
+  line-height: 1.3;
+}
+
+.container.mt-4 > ul > li {
+  font-size: 1em !important;
+  list-style-type: circle !important;
+  margin-left: 1.5vw;
+}

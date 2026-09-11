@@ -13,7 +13,7 @@
       
       <!-- Columna 1: Nosotros -->
       <div class="col-md-3 mb-4">
-        <h5 class="footer-heading heading-nosotros mb-3">NOSOTROS</h5>
+        <h3 class="footer-heading heading-nosotros mb-3">NOSOTROS</h3>
         <ul class="list-unstyled">
           <li class="mb-2"><a routerLink="/nosotros" class="footer-link">Quiénes somos</a></li>
           <li class="mb-2"><a href="#" class="footer-link">Blog</a></li>
@@ -24,9 +24,10 @@
 
       <!-- Columna 2: Mi Cafetería -->
       <div class="col-md-3 mb-4">
-        <h5 class="footer-heading heading-cafeteria mb-3">MI CAFETERÍA</h5>
+        <h3 class="footer-heading heading-cafeteria mb-3">MI CAFETERÍA</h3>
         <ul class="list-unstyled">
-          <li class="mb-2"><a routerLink="/educacion" class="footer-link">Educación</a></li>
+          <li class="mb-2"><a routerLink="/cursos-para-baristas-y-talleres-para-cafeterias" class="footer-link">Educación</a></li>
+          <li class="mb-2"><a routerLink="/politicas-externas-cursos" class="footer-link">Políticas de cursos</a></li>
           <li class="mb-2"><a href="#" class="footer-link">Servicios y refacciones</a></li>
           <li class="mb-2"><a href="#" class="footer-link">Calculadora de precios</a></li>
           <li class="mb-2"><a href="#" class="footer-link">Recetas</a></li>
@@ -35,12 +36,12 @@
 
       <!-- Columna 3: Productos -->
       <div class="col-md-3 mb-4">
-        <h5 class="footer-heading heading-productos mb-3">PRODUCTOS</h5>
+        <h3 class="footer-heading heading-productos mb-3">PRODUCTOS</h3>
         <ul class="list-unstyled">
           <li class="mb-2"><a routerLink="/productos/cafe" class="footer-link">Café</a></li>
           <li class="mb-2"><a routerLink="/productos/insumos" class="footer-link">Insumos</a></li>
           <li class="mb-2"><a routerLink="/productos/accesorios" class="footer-link">Accesorios</a></li>
-          <li class="mb-2"><a routerLink="/productos/maquinas" class="footer-link">Máquinas</a></li>
+          <li class="mb-2"><a routerLink="/maquinaria-y-equipo-para-cafeterias" class="footer-link">Máquinas</a></li>
         </ul>
       </div>
 
@@ -67,18 +68,22 @@
 
       <div class="col-md-5 text-center my-3 my-md-0 d-flex justify-content-center align-items-center gap-4">
         <!-- Rutas de insignias apuntando a /assets/images/ -->
-        <img src="/assets/images/insignia1.png" alt="Mejores Empresas Mexicanas" height="70">
-        <img src="/assets/images/insignia-top-2026.png" alt="Certificación Empresa TOP 2026" height="70">
+        <img src="/assets/images/nosotros/MEM 2.png" alt="Mejores Empresas Mexicanas" height="100">
+        <img src="/assets/images/nosotros/Insignia 2026 Color 1.png" alt="Certificación Empresa TOP 2026" height="120">
       </div>
     </div>
 
     <!-- Legales -->
-    <div class="row mt-3 text-center pt-3">
-      <div class="col-12 text-warning fw-bold" style="font-size: 0.85rem;">
-        <a href="#" class="text-warning text-decoration-none">Aviso de privacidad y Términos y Condiciones</a> <br class="d-md-none">
-        <span class="ms-md-2">Todos los derechos reservados 2026 Copyright Café Etrusca</span>
+    <div class="row mt-3 pt-3 footer-legal">
+      <div class="col-12">
+        <nav class="footer-legal__links" aria-label="Políticas del sitio">
+          <a routerLink="/aviso-de-privacidad">Aviso de privacidad</a>
+          <a routerLink="/terminos-y-condiciones">Términos y condiciones</a>
+          <a routerLink="/politicas-externas-cursos">Políticas de cursos</a>
+          <a routerLink="/politica-de-productos-perecederos">Política de productos perecederos</a>
+        </nav>
+        <p class="footer-legal__copy">Todos los derechos reservados 2026 Copyright Café Etrusca</p>
       </div>
     </div>
   </div>
 </footer>
-

@@ -187,7 +187,8 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   border-radius: 28px;
   padding: 2.4rem 2.6rem;
   width: 100%;
-  max-width: 640px;
+  max-width: 812px;
+  text-align: justify;
   min-height: 400px;
   box-sizing: border-box;
   display: flex;
@@ -325,54 +326,165 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 .ns-marcas-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.4rem;
-  max-width: 1180px;
+  gap: 1.8rem;
+  max-width: 80vw;
   margin: 0 auto;
 }
 
+// Estructura base de la tarjeta
 .brand-card {
-  border: 1.5px solid #ead9c2;
+  border: 2px solid #ead9c2; // Borde por defecto
   border-radius: 26px;
   overflow: hidden;
   background: #fff;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(26, 22, 18, 0.08);
+  }
+}
+
+// 🎨 COLORES DINÁMICOS POR TARJETA (Borde y Negritas)
+.card-fenice {
+  border-color: #eab435; // Amarillo Oro
+  .brand-body strong { color: #eab435; }
+}
+
+.card-barista {
+  border-color: #b58548; // Café Claro/Bronce
+  .brand-body strong { color: #b58548; }
+}
+
+.card-chill {
+  border-color: #5fd3dc; // Cyan
+  .brand-body strong { color: #5fd3dc; }
 }
 
 .brand-body {
-  padding: 1.6rem 1.45rem 1.2rem;
+  padding: 2rem 1.8rem 1.2rem;
   flex: 1;
 
   p {
     font-size: $ns-body;
     line-height: 1.5;
-    margin: 0 0 0.9rem;
+    margin: 0 0 1.2rem;
     color: #3a322c;
   }
   p:last-child { margin-bottom: 0; }
+  
+  strong {
+    font-weight: 800; // Asegura que resalte la negrita coloreada
+  }
 }
 
+// Área de imagen (Fondo blanco en todas)
 .brand-band {
-  height: 118px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 1.2rem;
+  padding: 1rem 1.2rem 2rem;
+  background: #fff; // Se elimina el fondo de color
+ 
+  img {
+    max-height: 95px;
+    max-width: 86%;
+    object-fit: contain;
+    z-index: 10;
+  }
+}
+
+/* ========== RESPONSIVE PARA MARCAS ========== */
+@media (max-width: 1024px) {
+  .ns-marcas-grid {
+    grid-template-columns: 1fr 1fr; 
+    max-width: 80vw !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ns-marcas-grid {
+    grid-template-columns: 1fr; 
+    
+  }
+}
+// 🎨 COLORES DINÁMICOS POR TARJETA (Borde, Negritas y Franja Inferior)
+.card-fenice {
+  border-color: #eab435; 
+  .brand-body strong { color: #eab435; }
+  .brand-bottom-bar { background-color: #eab435; }
+}
+
+.card-barista {
+  border-color: #b58548; 
+  .brand-body strong { color: #b58548; }
+  .brand-bottom-bar { background-color: #b58548; }
+}
+
+.card-chill {
+  border-color: #5fd3dc; 
+  .brand-body strong { color: #5fd3dc; }
+  .brand-bottom-bar { background-color: #5fd3dc; }
+}
+
+.brand-body {
+  padding: 2rem 1.8rem 1.2rem;
+  flex: 1;
+
+  p {
+    font-size: $ns-body;
+    line-height: 1.5;
+    margin: 0 0 1.2rem;
+    color: #3a322c;
+  }
+  p:last-child { margin-bottom: 0; }
+  
+  strong {
+    font-weight: 800; 
+  }
+}
+
+// Área de imagen
+.brand-band {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.2rem 1.5rem;
+  background: #fff; 
 
   img {
-    max-height: 86px;
+    max-height: 95px;
     max-width: 86%;
     object-fit: contain;
   }
 }
 
-.band-fenice { background: #f3e4b8; }
-.band-barista { background: #2c241c; }
-.band-chill {
-  background: #5fd3dc;
+// NUEVA FRANJA INFERIOR
+.brand-bottom-bar {
+  width: 24%;
+  height: 8vh; // Ajusta este valor si la quieres más gruesa o más delgada
+  margin-top: auto; // Asegura que siempre se quede pegada al fondo
+  position: absolute;
+  z-index: 9;
 }
 
+/* ========== RESPONSIVE PARA MARCAS ========== */
+@media (max-width: 1024px) {
+  .ns-marcas-grid {
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+@media (max-width: 768px) {
+  .ns-marcas-grid {
+    grid-template-columns: 1fr; 
+  }
+}
 /* ========== SELLOS ========== */
 .ns-sellos {
   background: #fff;
@@ -401,11 +513,21 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   }
 }
 
+/* ========== RESPONSIVE ========== */
 @media (max-width: 991px) {
   .ns-hero-grid,
-  .ns-mosaic-grid,
-  .ns-marcas-grid {
+  .ns-mosaic-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Primera parte: imagen → texto → imagen → texto (y sigue imagen → texto) */
+  .ns-mosaic-grid {
+    .ns-cell:nth-child(1) { order: 1; } /* foto Soy */
+    .ns-cell:nth-child(2) { order: 2; } /* texto cyan */
+    .ns-cell:nth-child(4) { order: 3; } /* foto lattes */
+    .ns-cell:nth-child(3) { order: 4; } /* texto lime */
+    .ns-cell:nth-child(5) { order: 5; } /* foto máquina */
+    .ns-cell:nth-child(6) { order: 6; } /* texto orange */
   }
 
   .ns-hero-media,
@@ -431,6 +553,10 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
     min-height: 320px;
     max-width: none;
     padding: 2rem 1.6rem;
+  }
+
+  .brand-card {
+    width: 320px; 
   }
 }
 

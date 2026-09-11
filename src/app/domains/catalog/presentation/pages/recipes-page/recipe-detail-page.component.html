@@ -1,0 +1,195 @@
+@if (recipe) {
+<div class="co-page" [class.origin-septiembre-2026]="recipe.origin === 'septiembre-2026'" [class.origin-verano-2026]="recipe.origin === 'verano-2026'">
+  <nav class="co-crumbs container" aria-label="Miga de pan">
+    <a routerLink="/">Inicio</a>
+    <span aria-hidden="true">›</span>
+    <a routerLink="/recetas">Recetario</a>
+    <span aria-hidden="true">›</span>
+    <span>{{ recipe.category }}</span>
+    <span aria-hidden="true">›</span>
+    <strong>{{ displayTitle(recipe) }}</strong>
+  </nav>
+
+  <section class="co-hero">
+    <div class="container co-hero-grid">
+      <div class="co-hero-copy">
+        <span class="co-badge">{{ recipe.kicker }}</span>
+        <h1>
+          <span class="t1">{{ recipe.title }}</span>
+          @if (recipe.titleAccent) {
+            <span class="t2">{{ recipe.titleAccent }}</span>
+          }
+        </h1>
+        <div class="co-stats">
+          @if (recipe.time) {
+            <div><span class="ico" aria-hidden="true">⏱</span><span>{{ recipe.time }}</span></div>
+          }
+          @if (recipe.yield) {
+            <div><span class="ico" aria-hidden="true">🥤</span><span>{{ recipe.yield }}</span></div>
+          }
+          @if (recipe.difficulty) {
+            <div><span class="ico" aria-hidden="true">★</span><span>{{ recipe.difficulty }}</span></div>
+          }
+        </div>
+        <p class="co-lead">{{ recipe.summary }}</p>
+        @if (recipe.bubble) {
+          <div class="co-bubble" aria-hidden="true">
+            <span>{{ recipe.bubble }}</span>
+            <small>❤️</small>
+          </div>
+        }
+      </div>
+
+      <div class="co-hero-visual">
+        <div class="co-arch">
+          <img [src]="recipe.banner" [alt]="displayTitle(recipe)">
+        </div>
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fffaf4"></app-scroll-wave>
+  </section>
+
+  <section class="co-ing">
+    <div class="container">
+      <div class="co-ing-grid">
+        <div>
+          @if (recipe.escarchado?.length) {
+            <h2>Escarchado <i></i></h2>
+            <ul class="co-checks co-checks-static">
+              @for (item of recipe.escarchado; track item) {
+                <li>
+                  <span class="box static" aria-hidden="true"></span>
+                  <span class="ing-text" [innerHTML]="brandHtml(item)"></span>
+                </li>
+              }
+            </ul>
+          }
+          <h2>Ingredientes <i></i></h2>
+          <ul class="co-checks">
+            @for (item of recipe.ingredients; track item; let i = $index) {
+              <li>
+                <button type="button" class="box" [class.on]="checked[i]" (click)="toggleIngredient(i)" [attr.aria-pressed]="!!checked[i]"></button>
+                <span class="ing-text" [class.done]="checked[i]" [innerHTML]="brandHtml(item)"></span>
+              </li>
+            }
+          </ul>
+        </div>
+        <div>
+          <h2>Necesitas <i></i></h2>
+          <div class="co-tools">
+            @for (tool of recipe.tools; track tool) {
+              <div class="co-tool">
+                <div class="co-tool-ico" aria-hidden="true">
+                  <img [src]="recipe.toolIcon || '/assets/images/recetas/icons/tool-licuadora.svg'" [alt]="tool">
+                </div>
+                <span>{{ tool }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="co-actions">
+        <a class="btn-yellow" href="https://wa.me/525541668777" target="_blank" rel="noopener">
+          <svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.47 1.34 4.98L2 22l5.2-1.36a9.93 9.93 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.8 14.24c-.24.68-1.4 1.25-1.93 1.33-.5.08-1.13.11-1.82-.11-.42-.14-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.39-.14-.2-1.15-1.53-1.15-2.92s.73-2.07.99-2.36c.24-.27.53-.34.71-.34h.51c.16 0 .38-.06.59.45.22.53.74 1.83.8 1.96.07.14.11.3.02.48-.09.2-.14.31-.27.48-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.2 2.17 1.34.27.14.43.11.59-.07.16-.18.7-.81.88-1.09.18-.27.37-.23.62-.14.27.09 1.7.8 1.99.95.29.14.48.21.55.33.07.13.07.74-.17 1.42z"/></svg>
+          Comprar por WhatsApp
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="btn-outline" href="https://tienda.cafeetrusca.com/" target="_blank" rel="noopener">
+          <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          Comprar en Ecommerce
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="co-prep">
+    <div class="container">
+      <h2 class="co-prep-title">
+        Modo de <span>preparación</span>
+      </h2>
+      <div class="co-steps">
+        @for (step of recipe.steps; track step.title; let i = $index) {
+          <article class="co-step" [ngClass]="'tone-' + step.tone">
+            <div class="num">{{ stepNum(i) }}</div>
+            <div class="ico" aria-hidden="true">
+              @if (step.icon) {
+                <img [src]="step.icon" [alt]="step.title">
+              }
+            </div>
+            @if (i < (recipe.steps?.length || 0) - 1) {
+              <span class="arrow" aria-hidden="true"></span>
+            }
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.text }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="co-more">
+    <div class="container">
+      <div class="co-row-head">
+        <h2 class="co-section-title co-title-marks yellow">
+          Más recetas
+        </h2>
+        <a class="co-see-all" routerLink="/recetas">Ver todas →</a>
+      </div>
+      <div class="co-recipe-slider">
+        @for (r of featuredRelated; track r.slug) {
+          <article class="co-recipe-card" [ngClass]="'tone-' + r.tone">
+            <div class="body">
+              <h3>{{ displayTitle(r) }}</h3>
+              <p>{{ r.time || '5 min' }} <span aria-hidden="true">•</span> {{ r.category }}</p>
+              @if (r.published) {
+                <a class="go" [routerLink]="['/recetas', r.slug]" aria-label="Ver receta">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                </a>
+              } @else {
+                <span class="go soon" aria-label="Próximamente">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+                </span>
+              }
+            </div>
+            <div class="media">
+              <img [src]="r.image" [alt]="displayTitle(r)">
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="co-products">
+    <div class="container">
+      <div class="co-row-head">
+        <h2 class="co-section-title co-title-marks teal">
+          Productos de esta receta
+        </h2>
+        <a class="co-see-all" routerLink="/productos/insumos">Ver todos los productos →</a>
+      </div>
+      <div class="co-product-grid">
+        @for (p of recipe.products; track p.label) {
+          <article class="co-product-card">
+            <div class="media">
+              <img [src]="p.image" [alt]="p.label">
+            </div>
+            <div class="info">
+              <h3>{{ p.label }}</h3>
+              <p>{{ p.description }}</p>
+            </div>
+            <a class="cart" [routerLink]="p.link" [attr.aria-label]="'Ver ' + p.label">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="20" r="1.4"/>
+                <circle cx="17" cy="20" r="1.4"/>
+                <path d="M3 4h2l2.2 11h10.3l2-8H7"/>
+              </svg>
+            </a>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+</div>
+}
