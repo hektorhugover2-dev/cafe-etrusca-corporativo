@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prototipo Café Etrusca</title>
+  <meta name="robots" content="index, follow">
+  <title>Café Etrusca | Todo Para Tu Cafetería - (55) 4166 8777</title>
   <base href="/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
@@ -42,6 +43,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); line-height: 1.4; }
     img { max-width: 100%; display: block; }
+    .leaflet-container img { max-width: none !important; max-height: none !important; }
 
     /* ESTILOS DE CHAT N8N */
     .n8n-chat-launcher { background-color: #8A2BE2 !important; }
@@ -189,8 +191,8 @@
 
     // 3. WIDGET DE AYUDA Y BOTÓN BURBUJA FLOTANTE
     setTimeout(() => {
-        const help = `<div id="etrusca-help-widget" style="position: fixed; bottom: 20px; right: 96px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 16px; max-width: 280px; font-family: sans-serif; font-size: 14px; z-index: 9999; display: flex; align-items: flex-start; gap: 10px;">
-          <button onclick="document.getElementById('etrusca-help-widget').style.display='none'" style="border: none; background: transparent; font-size: 16px; font-weight: bold; cursor: pointer; position: absolute; top: 6px; right: 8px; color: #999;">&times;</button>
+        const help = `<div id="etrusca-help-widget" style="position: fixed; bottom: 20px; right: 96px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 16px; max-width: 280px; font-family: 'Poppins', sans-serif; font-size: 14px; z-index: 9999; display: flex; align-items: flex-start; gap: 10px;">
+          <button onclick="document.getElementById('etrusca-help-widget').style.display='none'" style="border: none; background: transparent; font-size: 16px; font-weight: bold; cursor: pointer; position: absolute; top: 4px; right: 4px; color: #999; min-width: 32px; min-height: 32px; line-height: 32px;">&times;</button>
           <div style="padding-right: 20px;">
             <strong>¿Necesitas ayuda?</strong><br>
             Habla con <strong>Lucky</strong>, tu experto en Café Etrusca, y descubre beneficios exclusivos pensados para ti.

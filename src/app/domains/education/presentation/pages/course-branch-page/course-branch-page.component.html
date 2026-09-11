@@ -1,0 +1,146 @@
+@if (course) {
+<div class="edu-page">
+  <section class="edu-hero">
+    <div class="edu-hero-copy">
+      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">
+        {{ course.kicker }} presencial
+        @if (landing) {
+          <span> · {{ landing.cityLabel }}</span>
+        }
+      </p>
+      <h1>{{ pageTitle }}</h1>
+      <p class="lead">{{ course.summary }}</p>
+      <div class="meta">
+        <div><strong>Duración</strong>{{ course.duration }} · {{ course.hours }}</div>
+        <div><strong>Horario</strong>{{ course.schedule }}</div>
+        @if (landing) {
+          <div><strong>Sucursal</strong>{{ landing.cityLabel }}</div>
+        }
+      </div>
+      <div class="edu-actions">
+        <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
+        <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      </div>
+    </div>
+    <div class="edu-hero-media">
+      <img [src]="course.banner" [alt]="pageTitle">
+    </div>
+  </section>
+
+  <app-edu-nav></app-edu-nav>
+
+  <section class="edu-section">
+    <div class="edu-grid-3">
+      @for (h of course.highlights; track h.title) {
+        <article class="edu-path">
+          <h3>{{ h.title }}</h3>
+          <p>{{ h.text }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>Sinopsis</h2>
+    <p class="sub">{{ course.synopsis }}</p>
+    <h2>Temario</h2>
+    <div class="edu-faq">
+      @for (item of course.syllabus; track item.title) {
+        <details>
+          <summary>{{ item.title }}</summary>
+          <p>{{ item.text }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>¿Qué aprenderás?</h2>
+    <div class="edu-grid-2">
+      @for (l of course.learn; track l) {
+        <article class="edu-path"><h3>{{ l }}</h3></article>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>¿A quién va dirigido?</h2>
+    <ul>
+      @for (a of course.audience; track a) { <li>{{ a }}</li> }
+    </ul>
+    <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
+    <div class="edu-grid-6">
+      @for (i of course.includes; track i) {
+        <div class="edu-tile"><span>{{ i }}</span></div>
+      }
+    </div>
+  </section>
+
+  <section class="edu-section" id="calendario">
+    <h2>
+      Calendario
+      @if (landing) {
+        <span>en {{ landing.cityLabel }}</span>
+      }
+    </h2>
+    <div class="edu-filters">
+      <label>
+        Mes
+        <select [(ngModel)]="month">
+          <option value="">Todos los meses</option>
+          @for (m of months; track m) { <option [value]="m">{{ m }}</option> }
+        </select>
+      </label>
+      <button type="button" class="btn-ghost" (click)="clearFilters()">Limpiar filtros</button>
+    </div>
+    <div class="edu-dates">
+      @for (d of filteredDates; track d.branch + d.month + d.days + (d.start || '')) {
+        <article class="edu-date-card">
+          <div class="date-block">
+            <span class="days">{{ d.days }}</span>
+            <span class="month">{{ d.month }}</span>
+          </div>
+          <div class="info-block">
+            <div class="location">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <strong>Sucursal {{ d.branch }}</strong>
+            </div>
+            <hr class="divider">
+            <div class="details">
+              <span class="detail-item">{{ course.duration }}</span>
+              <span class="detail-item">{{ d.hours }}</span>
+            </div>
+            <button type="button" class="btn-outline-pink" (click)="openInterest($event, d)">Me interesa</button>
+          </div>
+        </article>
+      }
+      @if (filteredDates.length === 0) {
+        <div class="edu-dates-empty">
+          <p>
+            Por el momento no hay fechas publicadas
+            @if (landing) {
+              <span>en {{ landing.cityLabel }}</span>
+            }.
+          </p>
+          <button type="button" class="btn-pink" (click)="openInterestEmpty()">Infórmate aquí</button>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="edu-cta">
+    <h2>¿Quieres comenzar tu camino?</h2>
+    <p>Entérate de las nuevas fechas en sucursal o habla con un asesor.</p>
+    <div class="edu-actions" style="justify-content:center;">
+      <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+    </div>
+  </section>
+
+  <app-course-interest-modal
+    [open]="interestOpen"
+    [courseTitle]="pageTitle"
+    [date]="interestDate"
+    (closed)="closeInterest()">
+  </app-course-interest-modal>
+</div>
+}

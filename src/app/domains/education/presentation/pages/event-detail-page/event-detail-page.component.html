@@ -1,0 +1,91 @@
+@if (event) {
+<div class="edu-page ev-page">
+  <section class="edu-hero">
+    <div class="edu-hero-copy">
+      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">
+        {{ categoryName }} presencial
+      </p>
+      <h1>{{ event.title }}</h1>
+      <p class="lead">{{ seo.description }}</p>
+      <div class="meta">
+        <div><strong>Fecha</strong>{{ event.dateString || dateLabel }}</div>
+        <div><strong>Sucursal</strong>{{ locationName }}</div>
+        @if (priceLabel) {
+          <div><strong>Inversión</strong>{{ priceLabel }}</div>
+        }
+      </div>
+      <div class="edu-actions">
+        <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
+        <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      </div>
+    </div>
+    <div class="edu-hero-media">
+      <img [src]="imageUrl" [alt]="event.title">
+    </div>
+  </section>
+
+  <app-edu-nav></app-edu-nav>
+
+  <section class="edu-section">
+    <h2>Sobre el taller</h2>
+    <p class="sub">{{ categoryDescription || seo.description }}</p>
+    <div class="edu-grid-3" style="margin-top:2rem;">
+      <article class="edu-path">
+        <h3>Horario</h3>
+        <p>{{ interestDate?.hours || 'Consultar horario' }}</p>
+      </article>
+      <article class="edu-path">
+        <h3>Sede</h3>
+        <p>{{ location?.locationAdress || locationName }}</p>
+      </article>
+      <article class="edu-path">
+        <h3>Contacto de sucursal</h3>
+        <p>
+          @if (location?.telephone) {
+            <a [href]="telHref(location.telephone)">{{ location.telephone }}</a><br>
+          }
+          @if (location?.email) {
+            <a [href]="'mailto:' + location.email">{{ location.email }}</a>
+          }
+        </p>
+      </article>
+    </div>
+  </section>
+
+  @if (mapSrc) {
+    <section class="edu-section">
+      <h2>Cómo llegar</h2>
+      <div class="ev-map">
+        <iframe
+          [src]="mapSrc"
+          title="Mapa de la sucursal"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+      @if (location?.url) {
+        <p class="sub" style="margin-top:1rem;">
+          <a [href]="location.url" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        </p>
+      }
+    </section>
+  }
+
+  <section class="edu-cta">
+    <h2>¿Quieres reservar este curso?</h2>
+    <p>Déjanos tus datos y un asesor te confirma disponibilidad en {{ locationName }}.</p>
+    <div class="edu-actions" style="justify-content:center;">
+      <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
+      <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+    </div>
+  </section>
+
+  <app-course-interest-modal
+    [open]="interestOpen"
+    [courseTitle]="event.title"
+    [date]="interestDate"
+    (closed)="closeInterest()">
+  </app-course-interest-modal>
+</div>
+}

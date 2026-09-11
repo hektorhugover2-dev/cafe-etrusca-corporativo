@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
       <div class="card">
         <h2>¿No sabes qué necesitas?</h2>
         <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-        <a routerLink="/contacto">Más información</a>
+        <a routerLink="/contacto" fragment="contacto-form">Más información</a>
       </div>
     </section>
   `,

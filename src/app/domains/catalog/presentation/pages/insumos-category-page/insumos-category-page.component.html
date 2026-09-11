@@ -1,4 +1,988 @@
 @if (cat) {
+@if (cat.layout === 'jarabes') {
+<div class="ins-page layout-jarabes">
+  <section class="jar-hero">
+    <img class="jar-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy">
+      <h1>JARABES</h1>
+      <p class="lead"><span class="accent">Sabor y versatilidad</span> para cada bebida</p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/insumos/jarabes/hero-collage.webp" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid">
+      @for (line of jarabesLines; track line.name) {
+        <article class="jar-card" [class]="line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+            @if (slideCount(line) > 1) {
+              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+            }
+          </div>
+          <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="help" routerLink="/contacto">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-note">
+    <app-scroll-wave fillColor="#f6efe4" position="top"></app-scroll-wave>
+    <p class="jar-note-inner">
+      Gracias a su fácil integración, permiten desarrollar
+      <strong>preparaciones consistentes, atractivas y adaptables a distintas temporadas, conceptos y perfiles de cliente.</strong>
+    </p>
+    <app-scroll-wave fillColor="#f6efe4" position="bottom"></app-scroll-wave>
+    
+  </section>
+
+  <section class="jar-choose">
+    <div class="jar-head">
+      <h2>¿Qué jarabe elegir?</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-compare">
+      <div class="jar-compare-labels">
+        <div class="spacer"></div>
+        <span>Formulación</span>
+        <span>Característica</span>
+        <span>Aplicaciones</span>
+      </div>
+      @for (col of asCompare(cat.extra); track col['linea']) {
+        <article class="jar-col" [class]="compareTone(col['linea'])">
+          <h3>{{ col['linea'] }}</h3>
+          <p>{{ col['formulacion'] }}</p>
+          <p>{{ col['caracteristica'] }}</p>
+          <p>{{ col['aplicaciones'] }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of jarabesMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta">
+    <app-scroll-wave position="top" fillColor="#9fe4ea"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
+  </section>
+
+  <section class="jar-seleccion">
+    <div class="jar-head">
+      <h2>Nuestra selección</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-sel-grid">
+      @for (s of seleccion; track s.image) {
+        <article class="jar-sel" [class]="s.tone">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+</div>
+} @else if (cat.layout === 'salsas') {
+<div class="ins-page layout-jarabes layout-salsas">
+  <section class="sal-hero">
+    <img class="sal-hero-blob" src="/assets/images/insumos/salsas-hero-blob.webp" alt="" aria-hidden="true">
+    <div class="sal-hero-copy">
+      <h1>SALSAS</h1>
+      <p class="lead">Textura y sabor <span class="accent">para dar el toque final</span></p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="sal-hero-media">
+      <img class="photo" src="/assets/images/insumos/salsas-hero-drink.png" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#f4eee4"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid">
+      @for (line of salsasLines; track line.name) {
+        <article class="jar-card" [class]="line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+            @if (slideCount(line) > 1) {
+              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+            }
+          </div>
+          <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="help" routerLink="/contacto">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  @if (asSeasonal(cat.extra); as s) {
+    <section class="sal-seasonal-wrap">
+      <article class="ins-seasonal">
+        <img [src]="s.image" [alt]="s.title">
+        <div class="copy">
+          <span class="tag">Producto de temporada</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.text }}</p>
+          <span class="limited">{{ s.tag }}</span>
+        </div>
+      </article>
+    </section>
+  }
+
+  <section class="sal-steps-wrap">
+    <div class="ins-steps">
+      @for (step of asSteps(cat.extra); track step.n) {
+        <article class="ins-step">
+          <img [src]="step.image" [alt]="step.title">
+          <div class="body">
+            <div class="n">{{ step.n }}</div>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta sal-cta">
+    <app-scroll-wave position="top" fillColor="#c8e84a"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/insumos/salsas-barista.png" alt="Asesor de Café Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#c8e84a"></app-scroll-wave>
+  </section>
+
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of jarabesMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-seleccion">
+    <div class="jar-head">
+      <h2>Nuestra selección</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-sel-grid">
+      @for (s of salsasSeleccion; track s.image) {
+        <article class="jar-sel" [class]="s.tone">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+</div>
+} @else if (cat.layout === 'pures') {
+<div class="ins-page layout-pures">
+  <section class="pur-hero">
+    <img class="pur-hero-blob" src="/assets/images/insumos/pures-blob-hero.png" alt="" aria-hidden="true">
+        <div class="pur-hero-copy">
+      <h1>Purés y<br>Concentrados</h1>
+      <p class="lead"><span class="accent">Sabor auténtico y consistente</span>, altamente concentrados</p>
+      <p class="body">Soluciones líquidas y purés de fruta que elevan el sabor, aportan consistencia y te permiten crear bebidas únicas y personalizadas.</p>
+      <a class="btn-pur" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="pur-hero-media">
+      <img class="photo" src="/assets/images/insumos/pures-drink-2.png" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#a4f6fb"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+    <section class="pur-lines" id="pur-lineas">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid">
+      @for (line of puresLines; track line.name) {
+        <article class="jar-card" [class]="line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+            @if (slideCount(line) > 1) {
+              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+            }
+          </div>
+          <h3 class="brand">{{ line.brand }}</h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="help" routerLink="/contacto">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="pur-note">{{ cat.extra?.['yieldNote'] }}</p>
+  </section>
+
+<section class="pur-table-sec">
+    <div class="pur-table-copy">
+      <h2>Presentaciones Chillout Jam</h2>
+      <table class="pur-table">
+        <thead>
+          <tr>
+            <th>Presentación</th>
+            <th>Rendimiento</th>
+            <th>Sabores disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of asJam(cat.extra); track row['presentacion']) {
+            <tr>
+              <td>{{ row['presentacion'] }}</td>
+              <td>{{ row['rendimiento'] }}</td>
+              <td>{{ row['sabores'] }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <p class="pur-note">** Las presentaciones de ChillOut Jam varían según el sabor. Consulta la tabla.</p>
+    </div>
+    <div class="pur-table-photo">
+      <img src="/assets/images/insumos/pures-drink-1.png" alt="Bebida roja preparada con ChillOut Jam">
+    </div>
+  </section>
+
+  <section class="pur-enjoy">
+    <div class="pur-head">
+      <h2>Disfruta en</h2>
+    </div>
+    <div class="pur-enjoy-grid">
+      @for (use of puresEnjoy; track use.label) {
+        <article class="pur-use">
+          <img [src]="use.image" [alt]="use.label">
+          <span>{{ use.label }}</span>
+        </article>
+      }
+    </div>
+    <p class="pur-hint">*Sugerencia de preparación.</p>
+  </section>
+
+  <section class="pur-inspira">
+    <div class="pur-head">
+      <h2>Inspira tu menú</h2>
+    </div>
+    <div class="pur-inspira-grid">
+      @for (d of puresMenu; track d.title) {
+        <article class="pur-drink">
+          <img [src]="d.image" [alt]="d.title">
+          <h3>{{ d.title }}</h3>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="pur-cta">
+    <app-scroll-wave position="top" fillColor="#ff7eab"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#ff7eab"></app-scroll-wave>
+  </section>
+
+  <section class="pur-seleccion">
+    <div class="pur-head">
+      <h2>Nuestra selección</h2>
+    </div>
+    <div class="pur-sel-grid">
+      @for (s of puresSeleccion; track s.image) {
+        <article class="pur-sel">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+</div>
+} @else if (cat.layout === 'te') {
+<div class="ins-page layout-jarabes layout-te">
+  <section class="jar-hero">
+    <img class="jar-hero-blob" src="/assets/images/insumos/te/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy">
+      <h1>TÉS</h1>
+      <p class="lead"><span class="accent">Aromas y perfiles</span> para disfrutar en cada taza</p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/insumos/te/hero-teapot.webp" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffe566"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid">
+      @for (line of teLines; track line.name) {
+        <article class="jar-card" [class]="line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+            @if (slideCount(line) > 1) {
+              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+            }
+          </div>
+          <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="help" routerLink="/contacto">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-note">
+    <app-scroll-wave fillColor="#f6efe4" position="top"></app-scroll-wave>
+    <p class="jar-note-inner">
+      Gracias a su fácil integración, permiten desarrollar
+      <strong>preparaciones consistentes, atractivas y adaptables a distintas temporadas, conceptos y perfiles de cliente.</strong>
+    </p>
+    <app-scroll-wave fillColor="#f6efe4" position="bottom"></app-scroll-wave>
+  </section>
+
+  <section class="jar-choose">
+    <div class="jar-head">
+      <h2>¿Qué té elegir?</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-compare">
+      <div class="jar-compare-labels">
+        <div class="spacer"></div>
+        <span>Formulación</span>
+        <span>Característica</span>
+        <span>Aplicaciones</span>
+      </div>
+      @for (col of asCompare(cat.extra); track col['linea']) {
+        <article class="jar-col" [class]="compareTone(col['linea'])">
+          <h3>{{ col['linea'] }}</h3>
+          <p>{{ col['formulacion'] }}</p>
+          <p>{{ col['caracteristica'] }}</p>
+          <p>{{ col['aplicaciones'] }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of teMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta">
+    <app-scroll-wave position="top" fillColor="#9fe4ea"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
+  </section>
+
+  <section class="jar-seleccion">
+    <div class="jar-head">
+      <h2>Nuestra selección</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-sel-grid">
+      @for (s of teSeleccion; track s.image) {
+        <article class="jar-sel" [class]="s.tone">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+</div>
+} @else if (cat.layout === 'tisanas') {
+<div class="ins-page layout-jarabes layout-tisanas">
+  <section class="jar-hero">
+    <img class="jar-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy">
+      <h1>TISANAS</h1>
+      <p class="lead"><span class="accent">Mezclas que llenan de sabor</span> cada infusión</p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/insumos/tisanas/hero-drinks.webp" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#f2a8a8"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid">
+      @for (line of tisanasLines; track line.name) {
+        <article class="jar-card" [class]="line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+            @if (slideCount(line) > 1) {
+              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+            }
+          </div>
+          <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="help" routerLink="/contacto">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-note">
+    <app-scroll-wave fillColor="#f6efe4" position="top"></app-scroll-wave>
+    <p class="jar-note-inner">
+      Una tisana es una infusión de ingredientes botánicos —frutas, flores, hierbas o especias—
+      <strong>naturalmente libres de cafeína</strong>, ideales para cartas calientes y frías.
+    </p>
+    <app-scroll-wave fillColor="#f6efe4" position="bottom"></app-scroll-wave>
+  </section>
+
+  <section class="jar-choose">
+    <div class="jar-head">
+      <h2>¿Qué tisana elegir?</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-compare">
+      <div class="jar-compare-labels">
+        <div class="spacer"></div>
+        <span>Formulación</span>
+        <span>Característica</span>
+        <span>Aplicaciones</span>
+      </div>
+      @for (col of asCompare(cat.extra); track col['linea']) {
+        <article class="jar-col" [class]="compareTone(col['linea'])">
+          <h3>{{ col['linea'] }}</h3>
+          <p>{{ col['formulacion'] }}</p>
+          <p>{{ col['caracteristica'] }}</p>
+          <p>{{ col['aplicaciones'] }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of tisanasMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta">
+    <app-scroll-wave position="top" fillColor="#9fe4ea"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
+  </section>
+
+  <section class="jar-seleccion">
+    <div class="jar-head">
+      <h2>Nuestra selección</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-sel-grid">
+      @for (s of tisanasSeleccion; track s.image) {
+        <article class="jar-sel" [class]="s.tone">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+</div>
+} @else if (cat.layout === 'bases') {
+<div class="ins-page layout-jarabes layout-bases">
+  <section class="jar-hero">
+    <img class="jar-hero-blob" src="/assets/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy">
+      <h1>BASES EN<br>POLVO</h1>
+      <p class="lead"><span class="accent">Una base,</span> muchas posibilidades</p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/insumos/bases/hero-drink.webp" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid">
+      @for (line of basesLines; track line.name) {
+        <article class="jar-card" [class]="line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+            @if (slideCount(line) > 1) {
+              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+            }
+          </div>
+          <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="help" routerLink="/contacto">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-note">
+    <app-scroll-wave fillColor="#f6efe4" position="top"></app-scroll-wave>
+    <p class="jar-note-inner">
+      Una base, muchas posibilidades: polvos y premezclas para
+      <strong>incorporar sabor y consistencia</strong> a café, chai, matcha, chocolate, frappés y más.
+    </p>
+    <app-scroll-wave fillColor="#f6efe4" position="bottom"></app-scroll-wave>
+  </section>
+
+  <section class="jar-choose">
+    <div class="jar-head">
+      <h2>¿Qué base elegir?</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-compare">
+      <div class="jar-compare-labels">
+        <div class="spacer"></div>
+        <span>Formulación</span>
+        <span>Característica</span>
+        <span>Aplicaciones</span>
+      </div>
+      @for (col of asCompare(cat.extra); track col['linea']) {
+        <article class="jar-col" [class]="compareTone(col['linea'])">
+          <h3>{{ col['linea'] }}</h3>
+          <p>{{ col['formulacion'] }}</p>
+          <p>{{ col['caracteristica'] }}</p>
+          <p>{{ col['aplicaciones'] }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of basesMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta">
+    <app-scroll-wave position="top" fillColor="#9fe4ea"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
+  </section>
+
+  <section class="jar-seleccion">
+    <div class="jar-head">
+      <h2>Nuestra selección</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-sel-grid">
+      @for (s of basesSeleccion; track s.image) {
+        <article class="jar-sel" [class]="s.tone">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+</div>
+} @else if (cat.layout === 'toppings') {
+<div class="ins-page layout-jarabes layout-toppings">
+  <section class="jar-hero">
+    <img class="jar-hero-blob" src="/assets/images/insumos/toppings/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy">
+      <h1>TOPPINGS</h1>
+      <p class="lead"><span class="accent">Textura y sabor</span> para dar el toque final</p>
+      <p class="body">{{ cat.body }}</p>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+    </div>
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/insumos/toppings/hero-drink.webp" [alt]="cat.heroAlt">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#b4b4fa"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  
+  <section class="toppings-tipos" aria-label="Tipos de toppings">
+    <p class="toppings-tipos-note">*Rendimiento estimado con una dosificación de 30 g por bebida. Puede variar según la preparación y la presentación.</p>
+    <div class="toppings-tipos-grid">
+      @for (t of toppingsTipos; track t.title) {
+        <article class="toppings-tipo" [class]="t.tone">
+          <img [src]="t.image" [alt]="t.title">
+          <h3>{{ t.title }}</h3>
+          <p>{{ t.description }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+<section class="jar-lines">
+    <div class="jar-head">
+      <h2>Líneas</h2>
+      <div class="rule"></div>
+    </div>
+    @for (block of toppingsBloques; track block.num) {
+      <div class="toppings-bloque" [attr.data-tone]="block.tone">
+        <div class="toppings-bloque-head">
+          <span class="toppings-bloque-num">Bloque {{ block.num }}</span>
+          <h3>{{ block.label }}</h3>
+        </div>
+        <div class="jar-lines-grid">
+          @for (line of linesForBlock(block); track line.name) {
+            <article class="jar-card" [class]="line.tone">
+              <img class="blob" [src]="line.blob" alt="">
+              <div class="shot-slider">
+                <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+                @if (slideCount(line) > 1) {
+                  <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
+                  <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
+                  <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+                }
+              </div>
+              <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+              <p>{{ line.description }}</p>
+              <div class="jar-feat">
+                <div>
+                  <img [src]="line.icons.sabor" alt="">
+                  <span><strong>Sabores</strong>{{ line.sabores }}</span>
+                </div>
+                <div>
+                  <img [src]="line.icons.pres" alt="">
+                  <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+                </div>
+                <div>
+                  <img [src]="line.icons.rend" alt="">
+                  <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+                </div>
+              </div>
+              <div class="jar-actions">
+                <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+                <a class="help" routerLink="/contacto">Asesoría</a>
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="jar-note">
+    <app-scroll-wave fillColor="#f6efe4" position="top"></app-scroll-wave>
+    <p class="jar-note-inner">
+      *Rendimiento estimado con una dosificación de 30 g por bebida. Puede variar según la preparación y la presentación.
+      Ideal para <strong>bubble tea, fríos, frappés y coctelería</strong>.
+    </p>
+    <app-scroll-wave fillColor="#f6efe4" position="bottom"></app-scroll-wave>
+  </section>
+
+  <section class="jar-choose">
+    <div class="jar-head">
+      <h2>¿Qué topping elegir?</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-compare">
+      <div class="jar-compare-labels">
+        <div class="spacer"></div>
+        <span>Formulación</span>
+        <span>Característica</span>
+        <span>Aplicaciones</span>
+      </div>
+      @for (col of asCompare(cat.extra); track col['linea']) {
+        <article class="jar-col" [class]="compareTone(col['linea'])">
+          <h3>{{ col['linea'] }}</h3>
+          <p>{{ col['formulacion'] }}</p>
+          <p>{{ col['caracteristica'] }}</p>
+          <p>{{ col['aplicaciones'] }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of toppingsMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta">
+    <app-scroll-wave position="top" fillColor="#9fe4ea"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿No sabes qué necesitas?</h2>
+      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
+  </section>
+
+  <section class="jar-seleccion">
+    <div class="jar-head">
+      <h2>Nuestra selección</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-sel-grid">
+      @for (s of toppingsSeleccion; track s.image) {
+        <article class="jar-sel" [class]="s.tone">
+          <img [src]="s.image" [alt]="s.alt">
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="toppings-recomienda" aria-label="Te recomendamos">
+    <div class="jar-head">
+      <h2>Te recomendamos</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="toppings-recomienda-lead">Te podría interesar este equipo para complementar tu barra de toppings.</p>
+    <div class="toppings-recomienda-grid">
+      @for (m of toppingsMaquinasRec; track m.title) {
+        <a class="toppings-recomienda-card" [class]="m.tone" [routerLink]="m.link" [fragment]="m.fragment">
+          <div class="media">
+            <img [src]="m.image" [alt]="m.title">
+          </div>
+          <div class="body">
+            <h3>{{ m.title }}</h3>
+            <p>{{ m.desc }}</p>
+            <span class="more">Ver máquinas</span>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+
+</div>
+} @else {
 <div class="ins-page">
   <section class="ins-hero">
     <div class="ins-hero-copy">
@@ -8,7 +992,7 @@
       </h1>
       <p class="lead">{{ cat.subtitle }}</p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-catalog" href="https://cafeetrusca.com" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-catalog" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="ins-hero-media">
       <img [src]="cat.heroImage" [alt]="cat.heroAlt">
@@ -22,7 +1006,10 @@
       <h2>Líneas</h2>
       <div class="ins-lines">
         @for (line of cat.lines; track line.name) {
-          <article class="ins-line">
+          <article class="ins-line" [class]="'ins-line' + (line.tone ? ' tone-' + line.tone : '')">
+            @if (line.image) {
+              <img class="ins-line-shot" [src]="line.image" [alt]="line.name">
+            }
             <h3>{{ line.name }}</h3>
             <p>{{ line.description }}</p>
             <div class="ins-meta">
@@ -31,7 +1018,7 @@
               <div><strong>Rendimiento</strong> · {{ line.rendimiento }}</div>
             </div>
             <div class="ins-actions">
-              <a class="buy" routerLink="/ecommerce">Comprar</a>
+              <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
               <a class="help" routerLink="/contacto">Asesoría</a>
             </div>
           </article>
@@ -40,106 +1027,6 @@
     </section>
   }
 
-  @if (cat.layout === 'jarabes') {
-    <section class="ins-section">
-      <h2>¿Qué jarabe elegir?</h2>
-      <p class="ins-note">{{ cat.extra?.['note'] }}</p>
-      <div class="ins-table-wrap">
-        <table class="ins-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>ChillOut</th>
-              <th>Sugar Free</th>
-              <th>Puremade</th>
-              <th>Clásico</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Formulación</th>
-              @for (row of asCompare(cat.extra); track row['linea']) {
-                <td>{{ row['formulacion'] }}</td>
-              }
-            </tr>
-            <tr>
-              <th>Característica</th>
-              @for (row of asCompare(cat.extra); track row['linea']) {
-                <td>{{ row['caracteristica'] }}</td>
-              }
-            </tr>
-            <tr>
-              <th>Aplicaciones</th>
-              @for (row of asCompare(cat.extra); track row['linea']) {
-                <td>{{ row['aplicaciones'] }}</td>
-              }
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  }
-
-  @if (cat.layout === 'salsas') {
-    <section class="ins-section">
-      <h2>Producto de temporada</h2>
-      @if (asSeasonal(cat.extra); as s) {
-        <article class="ins-seasonal">
-          <div class="copy">
-            <span class="tag">{{ s.tag }}</span>
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.text }}</p>
-          </div>
-          <img [src]="s.image" [alt]="s.title">
-        </article>
-      }
-      <div class="ins-steps">
-        @for (step of asSteps(cat.extra); track step.n) {
-          <article class="ins-step">
-            <img [src]="step.image" [alt]="step.title">
-            <div class="body">
-              <div class="n">{{ step.n }}</div>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.text }}</p>
-            </div>
-          </article>
-        }
-      </div>
-    </section>
-  }
-
-  @if (cat.layout === 'pures') {
-    <section class="ins-section">
-      <h2>Presentaciones ChillOut Jam</h2>
-      <p class="ins-note">{{ cat.extra?.['yieldNote'] }}</p>
-      <div class="ins-table-wrap">
-        <table class="ins-table">
-          <thead>
-            <tr>
-              <th>Presentación</th>
-              <th>Rendimiento aprox.</th>
-              <th>Sabores disponibles</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (row of asJam(cat.extra); track row['presentacion']) {
-              <tr>
-                <td>{{ row['presentacion'] }}</td>
-                <td>{{ row['rendimiento'] }}</td>
-                <td>{{ row['sabores'] }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-      <p class="ins-note" style="margin-top:1.2rem;font-weight:800;color:#070c3b;">
-        Disfruta en
-        @for (e of asEnjoy(cat.extra); track e; let last = $last) {
-          {{ e }}@if (!last) { · }
-        }
-      </p>
-    </section>
-  }
 
   @if (cat.layout !== 'generic') {
     <section class="ins-section ins-inspira">
@@ -157,4 +1044,5 @@
 
   <app-insumos-cta></app-insumos-cta>
 </div>
+}
 }

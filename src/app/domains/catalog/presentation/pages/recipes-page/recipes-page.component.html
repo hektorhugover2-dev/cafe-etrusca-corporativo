@@ -1,0 +1,100 @@
+<div class="rc-page">
+  <section class="rc-hero">
+    <div class="rc-hero-bg" aria-hidden="true">
+      <img src="/assets/images/recetas/recetas-hero-bg.webp" alt="">
+    </div>
+    <div class="container rc-hero-copy">
+      <p class="rc-kicker">Café Etrusca</p>
+      <h1>Recetas</h1>
+      <p class="rc-lead">
+        Recetario ChillOut, Fiestas Patrias y Verano 2026: ideas listas para tu barra.
+      </p>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffffff"></app-scroll-wave>
+  </section>
+
+  @if (featured) {
+    <section class="rc-featured">
+      <div class="container">
+        <article class="rc-feature-card">
+          <div class="rc-feature-media">
+            <img [src]="featured.image" [alt]="displayTitle(featured)">
+          </div>
+          <div class="rc-feature-body">
+            <p class="rc-kicker">{{ featured.kicker }}</p>
+            <h2>{{ displayTitle(featured) }}</h2>
+            <p>{{ featured.summary }}</p>
+            <div class="rc-meta">
+              @if (featured.time) { <span>{{ featured.time }}</span> }
+              @if (featured.yield) { <span>{{ featured.yield }}</span> }
+              @if (featured.difficulty) { <span>{{ featured.difficulty }}</span> }
+            </div>
+            <a class="rc-btn" [routerLink]="['/recetas', featured.slug]">Ver receta</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  }
+
+  @if (temporada.length) {
+    <section class="rc-grid-sec">
+      <div class="container">
+        <h2>Fiestas Patrias 2026</h2>
+        <img src="/assets/images/separador.png" alt="" class="rc-sep">
+        <div class="rc-grid">
+          @for (r of temporada; track r.slug) {
+            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+              <div class="rc-card-media">
+                <img [src]="r.image" [alt]="displayTitle(r)">
+              </div>
+              <h3>{{ displayTitle(r) }}</h3>
+              <p class="rc-sub">{{ r.summary }}</p>
+              <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+
+  @if (verano.length) {
+    <section class="rc-grid-sec">
+      <div class="container">
+        <h2>Verano 2026</h2>
+        <img src="/assets/images/separador.png" alt="" class="rc-sep">
+        <div class="rc-grid">
+          @for (r of verano; track r.slug) {
+            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+              <div class="rc-card-media">
+                <img [src]="r.image" [alt]="displayTitle(r)">
+              </div>
+              <h3>{{ displayTitle(r) }}</h3>
+              <p class="rc-sub">{{ r.summary }}</p>
+              <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="rc-grid-sec">
+    <div class="container">
+      <h2>Todas las recetas</h2>
+      <img src="/assets/images/separador.png" alt="" class="rc-sep">
+      <div class="rc-grid">
+        @for (r of recipes; track r.slug) {
+          <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+            <div class="rc-card-media">
+              <img [src]="r.image" [alt]="displayTitle(r)">
+            </div>
+            <h3>{{ displayTitle(r) }}</h3>
+            <p class="rc-sub">{{ r.summary }}</p>
+            <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+</div>

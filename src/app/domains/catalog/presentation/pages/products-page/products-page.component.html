@@ -1,24 +1,49 @@
-<div class="ins-page">
-  <section class="ins-hero">
-    <div class="ins-hero-copy">
-      <h1>Impulsamos<br>experiencias<br>extraordinarias</h1>
-      <p class="body">Equipos, insumos y accesorios profesionales para crear, servir e inspirar.</p>
+<div class="prod-page">
+  <section class="prod-hero">
+    <img class="prod-hero__blob" src="/assets/images/productos/hero-blob.webp" alt="" aria-hidden="true">
+    <div class="prod-hero__inner">
+      <div class="prod-hero__copy">
+        <h1>
+          Impulsamos<br>
+          experiencias<br>
+          <span>extraordinarias</span>
+        </h1>
+        <p>Equipos, insumos y accesorios profesionales para crear, servir e inspirar.</p>
+      </div>
+      <div class="prod-hero__media">
+        <svg class="prod-hero__seal" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <path id="seal-circle" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" />
+          </defs>
+          <circle cx="60" cy="60" r="58" fill="none" stroke="#F5D56A" stroke-width="2" />
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#F5D56A" stroke-width="1" />
+          <polygon points="60,28 66,50 88,50 70,64 76,86 60,72 44,86 50,64 32,50 54,50" fill="#F5D56A" />
+          <text fill="#F5D56A" font-size="9" font-weight="700" letter-spacing="2">
+            <textPath href="#seal-circle" startOffset="0%">CALIDAD  ·  CONFIANZA  ·  INNOVACIÓN  ·</textPath>
+          </text>
+        </svg>
+        <img src="/assets/images/productos/hero-drink.webp" alt="Bebida de café con crema y caramelo">
+      </div>
     </div>
-    <div class="ins-hero-media">
-      <img src="/assets/images/insumos/baristas.png" alt="Baristas Café Etrusca">
-    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
   </section>
 
-  <section class="ins-section">
-    <h2>Explora nuestras categorías</h2>
+  <section class="prod-section">
+    <header class="prod-section__head">
+      <h2>Explora nuestras categorías</h2>
+      <img src="/assets/images/separador.png" alt="" class="prod-sep">
+    </header>
     <div class="prod-cats">
       @for (c of cats; track c.slug) {
-        <a class="prod-cat" [class]="c.cls" [routerLink]="['/productos', c.slug]"
-           [style.background-image]="'linear-gradient(180deg, rgba(7,12,59,.15), rgba(7,12,59,.72)), url(' + c.img + ')'">
-          <div>
+        <a class="prod-cat" [class]="'prod-cat--' + c.slug" [routerLink]="c.link || ['/productos', c.slug]">
+          <img class="prod-cat__img" [src]="c.img" [alt]="c.alt">
+          <div class="prod-cat__copy">
             <h3>{{ c.title }}</h3>
             <p>{{ c.text }}</p>
           </div>
+          <span class="prod-cat__go" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#fff" d="M5 12h12M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
         </a>
       }
     </div>
@@ -26,23 +51,58 @@
 
   <app-compromiso></app-compromiso>
 
-  <section class="ins-section">
-    <h2>Qué nos caracteriza</h2>
-    <div class="ins-brands" style="grid-template-columns: repeat(4, 1fr);">
-      @for (t of traits; track t.label) {
-        <article class="ins-brand" style="align-items:center;text-align:center;">
-          <img [src]="t.icon" [alt]="t.label" style="width:48px;height:48px;object-fit:contain;margin-bottom:0.8rem;">
-          <h3 style="font-size:1.05rem;">{{ t.label }}</h3>
-        </article>
+  <section class="prod-section prod-brands">
+    <header class="prod-section__head">
+      <h2>Marcas destacadas</h2>
+      <img src="/assets/images/separador.png" alt="" class="prod-sep">
+      <p>Un portafolio de marcas aliadas, creadas para brindar soluciones integrales en cada etapa de tu proyecto.</p>
+    </header>
+    <div class="prod-brands__row">
+      @for (b of brands; track b.alt) {
+        <img [src]="b.src" [alt]="b.alt">
       }
     </div>
+    <a class="prod-more" routerLink="/nosotros">Ver más <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="ins-cta-band">
-    <div class="card">
-      <h2>Asesoría especializada</h2>
-      <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto">Más información</a>
+  <section class="prod-asesoria">
+    <app-scroll-wave position="top" fillColor="#ffe270"></app-scroll-wave>
+    <div class="prod-asesoria__inner">
+      <img src="/assets/images/productos/asesoria-baristas.webp" alt="Asesores de Café Etrusca revisando un tablero en tablet">
+      <div class="prod-asesoria__copy">
+        <h2>Asesoría especializada</h2>
+        <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
+        <a class="prod-btn" routerLink="/contacto" fragment="contacto-form">Más información <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+  </section>
+
+  <section class="prod-section prod-traits">
+    <header class="prod-section__head">
+      <h2>Qué nos caracteriza</h2>
+      <img src="/assets/images/separador.png" alt="" class="prod-sep">
+    </header>
+    <div class="prod-traits__row">
+      @for (t of traits; track t.key) {
+        <article class="prod-trait">
+          <span class="prod-trait__icon" [class]="'is-' + t.key" aria-hidden="true">
+            @if (t.key === 'calidad') {
+              <svg viewBox="0 0 24 24"><path fill="none" stroke="#192966" stroke-width="1.7" d="M12 3.5l1.6 3.4 3.7.5-2.7 2.6.6 3.7L12 12.8 8.8 14.7l.6-3.7-2.7-2.6 3.7-.5z"/><path fill="none" stroke="#192966" stroke-width="1.7" d="M8.5 14.8v5.2L12 18.2l3.5 1.8v-5.2"/></svg>
+            }
+            @if (t.key === 'innovacion') {
+              <svg viewBox="0 0 24 24"><path fill="none" stroke="#192966" stroke-width="1.7" d="M9 18h6M10 21h4"/><path fill="none" stroke="#192966" stroke-width="1.7" d="M12 3a6 6 0 0 1 3.6 10.8c-.7.5-1.1 1.2-1.2 2.2H9.6c-.1-1-.5-1.7-1.2-2.2A6 6 0 0 1 12 3z"/><path fill="none" stroke="#192966" stroke-width="1.7" d="M19 5l1.4-1.4M5 5 3.6 3.6"/></svg>
+            }
+            @if (t.key === 'respaldo') {
+              <svg viewBox="0 0 24 24"><path fill="none" stroke="#192966" stroke-width="1.7" d="M12 3.5 5 6.2v5.3c0 4.3 2.8 7.2 7 8.8 4.2-1.6 7-4.5 7-8.8V6.2z"/><path fill="none" stroke="#192966" stroke-width="1.7" stroke-linecap="round" d="m8.6 12.1 2.3 2.3 4.6-4.8"/></svg>
+            }
+            @if (t.key === 'pasion') {
+              <svg viewBox="0 0 24 24"><path fill="none" stroke="#192966" stroke-width="1.7" d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20z"/></svg>
+            }
+          </span>
+          <h3>{{ t.label }}</h3>
+        </article>
+      }
     </div>
   </section>
 </div>

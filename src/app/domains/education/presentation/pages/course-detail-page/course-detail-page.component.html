@@ -7,17 +7,15 @@
       <p class="lead">{{ course.summary }}</p>
       <div class="meta">
         <div><strong>Duración</strong>{{ course.duration }} · {{ course.hours }}</div>
-        @if (course.schedule) {
-          <div><strong>Horario</strong>{{ course.schedule }}</div>
-        }
+        <div><strong>Horario</strong>{{ course.schedule }}</div>
       </div>
       <div class="edu-actions">
-        <a class="btn-pink" href="/assets/images/calendario-jul-sep-2026.webp" target="_blank" rel="noopener">Ver fechas disponibles</a>
+        <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
       </div>
     </div>
     <div class="edu-hero-media">
-      <img src="/assets/images/educacion/curso-banner.png" [alt]="course.title">
+      <img [src]="course.banner" [alt]="course.title">
     </div>
   </section>
 
@@ -25,30 +23,24 @@
 
   <section class="edu-section">
     <div class="edu-grid-3">
-      <article class="edu-path">
-        <h3>Planeación estratégica</h3>
-        <p>Define tu propuesta de valor, analiza el mercado y construye un plan sólido.</p>
-      </article>
-      <article class="edu-path">
-        <h3>Herramientas operativas</h3>
-        <p>Estandariza procesos, controla costos y asegura la eficiencia de tu operación.</p>
-      </article>
-      <article class="edu-path">
-        <h3>Modelos de negocio flexibles</h3>
-        <p>Explora formatos como Matcha Bar, Bubble Tea Lab, barras de café por olas y otras.</p>
-      </article>
+      @for (h of course.highlights; track h.title) {
+        <article class="edu-path">
+          <h3>{{ h.title }}</h3>
+          <p>{{ h.text }}</p>
+        </article>
+      }
     </div>
   </section>
 
   <section class="edu-section">
     <h2>Sinopsis</h2>
-    <p class="sub">{{ course.summary }} Nuestro objetivo es ofrecerte una ruta clara para comprender los factores clave que determinan la viabilidad y rentabilidad de tu emprendimiento.</p>
+    <p class="sub">{{ course.synopsis }}</p>
     <h2>Temario</h2>
     <div class="edu-faq">
-      @for (item of syllabus; track item; let i = $index) {
+      @for (item of course.syllabus; track item.title) {
         <details>
-          <summary>{{ item }}</summary>
-          <p>Bloque práctico y teórico guiado por instructores Etrusca.</p>
+          <summary>{{ item.title }}</summary>
+          <p>{{ item.text }}</p>
         </details>
       }
     </div>
@@ -57,38 +49,101 @@
   <section class="edu-section">
     <h2>¿Qué aprenderás?</h2>
     <div class="edu-grid-2">
-      <article class="edu-path"><h3>Gestión y rentabilidad del negocio</h3></article>
-      <article class="edu-path"><h3>Operación de equipos profesionales</h3></article>
-      <article class="edu-path"><h3>Estándares de calidad internacionales (SCA)</h3></article>
-      <article class="edu-path"><h3>Catación y atributos del café</h3></article>
+      @for (l of course.learn; track l) {
+        <article class="edu-path"><h3>{{ l }}</h3></article>
+      }
     </div>
   </section>
 
   <section class="edu-section">
     <h2>¿A quién va dirigido?</h2>
     <ul>
-      @for (a of audience; track a) { <li>{{ a }}</li> }
+      @for (a of course.audience; track a) { <li>{{ a }}</li> }
     </ul>
     <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
     <div class="edu-grid-6">
-      @for (i of includes; track i) {
+      @for (i of course.includes; track i) {
         <div class="edu-tile"><span>{{ i }}</span></div>
       }
     </div>
   </section>
 
-  <section class="edu-section">
+  @if (course.quote) {
+    <section class="edu-section">
+      <blockquote class="edu-quote">
+        <p>“{{ course.quote.text }}”</p>
+        <cite>{{ course.quote.name }} · {{ course.quote.place }}</cite>
+      </blockquote>
+    </section>
+  }
+
+  <section class="edu-section" id="calendario">
     <h2>Calendario</h2>
+    <div class="edu-filters">
+      <label>
+        Mes
+        <select [(ngModel)]="month">
+          <option value="">Todos los meses</option>
+          @for (m of months; track m) { <option [value]="m">{{ m }}</option> }
+        </select>
+      </label>
+      <label>
+        Sucursal
+        <select [(ngModel)]="branch">
+          <option value="">Todas las sucursales</option>
+          @for (b of branches; track b) { <option [value]="b">{{ b }}</option> }
+        </select>
+      </label>
+      <button type="button" class="btn-ghost" (click)="clearFilters()">Limpiar filtros</button>
+    </div>
     <div class="edu-dates">
-      @for (d of dates; track d.branch + d.month) {
-        <article class="edu-date">
-          <div class="when">{{ d.days }} <small>{{ d.month }}</small></div>
-          <div>
-            <strong>Sucursal {{ d.branch }}</strong>
-            <div>{{ d.duration }} · {{ d.hours }}</div>
+      @for (d of filteredDates; track d.branch + d.month + d.days) {
+        <article class="edu-date-card">
+          
+          <!-- Bloque Izquierdo: Fecha -->
+          <div class="date-block">
+            <span class="days">{{ d.days }}</span>
+            <span class="month">{{ d.month }}</span>
           </div>
-          <a class="btn-pink" routerLink="/contacto">Me interesa</a>
+
+          <!-- Bloque Derecho: Información -->
+          <div class="info-block">
+            
+            <div class="location">
+              <!-- Ícono de Ubicación -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <strong>Sucursal {{ d.branch }}</strong>
+            </div>
+
+            <hr class="divider">
+
+            <div class="details">
+              <span class="detail-item">
+                <!-- Ícono de Calendario -->
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                {{ course.duration }} 
+              </span>
+              <span class="detail-item">
+                <!-- Ícono de Reloj -->
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                {{ d.hours }}
+              </span>
+            </div>
+
+            <button type="button" class="btn-outline-pink" (click)="openInterest($event, d)">
+              <!-- Ícono de Corazón -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              Me interesa
+            </button>
+          </div>
+          
         </article>
+      }
+      @if (filteredDates.length === 0) {
+        <div class="edu-dates-empty">
+          <p>Por el momento no hay fechas disponibles con estos filtros.</p>
+          <button type="button" class="btn-pink" (click)="openInterestEmpty()">Infórmate aquí</button>
+        </div>
       }
     </div>
   </section>
@@ -98,7 +153,7 @@
     <div class="edu-cards">
       @for (c of related; track c.slug) {
         <article class="edu-card">
-          <img [src]="c.image" [alt]="c.title">
+          <img [src]="c.image" [alt]="'Foto del ' + c.kicker">
           <div class="body">
             <div class="kicker">{{ c.kicker }}</div>
             <h3>{{ c.title }}</h3>
@@ -109,6 +164,19 @@
     </div>
   </section>
 
-  <app-edu-cta></app-edu-cta>
+  <section class="edu-cta">
+    <h2>¿Quieres comenzar tu camino?</h2>
+    <p>Entérate antes que nadie de las nuevas fechas. Únete a la lista VIP o habla con un asesor.</p>
+    <div class="edu-actions" style="justify-content:center;">
+      <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      <a class="btn-ghost" routerLink="/contacto">Unirte a la lista VIP</a>
+    </div>
+  </section>
+  <app-course-interest-modal
+    [open]="interestOpen"
+    [courseTitle]="course.title"
+    [date]="interestDate"
+    (closed)="closeInterest()">
+  </app-course-interest-modal>
 </div>
 }

@@ -1,0 +1,232 @@
+.rc-page {
+  --navy: var(--etrusca-navy-900, #1b2a4a);
+  background: #fff;
+  color: #2c2c2c;
+}
+
+.rc-hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #f4efe6;
+}
+
+.rc-hero-bg {
+  position: absolute;
+  inset: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(27, 42, 74, 0.15), rgba(27, 42, 74, 0.72));
+  }
+}
+
+.rc-hero-copy {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 4.5rem 0 5rem;
+}
+
+.rc-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  opacity: 0.85;
+}
+
+.rc-hero h1 {
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 0 0.6rem;
+}
+
+.rc-lead {
+  max-width: 34rem;
+  font-size: 1.1rem;
+  opacity: 0.92;
+}
+
+.rc-featured {
+  padding: 3.5rem 0 1rem;
+}
+
+.rc-feature-card {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: #fff8f0;
+  border-radius: 1.6rem;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(27, 42, 74, 0.08);
+}
+
+.rc-feature-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+}
+
+.rc-feature-body {
+  padding: 1.5rem 2rem 1.5rem 0.5rem;
+
+  h2 {
+    color: var(--navy);
+    font-weight: 800;
+    margin: 0.2rem 0 0.8rem;
+  }
+}
+
+.rc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.4rem;
+
+  span {
+    background: #ffe2c8;
+    color: #7a2e12;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+}
+
+.rc-btn {
+  display: inline-flex;
+  background: #ff7a45;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.5rem;
+}
+
+.rc-grid-sec {
+  padding: 2rem 0 5rem;
+
+  h2 {
+    text-align: center;
+    color: var(--navy);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+}
+
+.rc-sep {
+  display: block;
+  margin: 0.4rem auto 2rem;
+  max-height: 18px;
+}
+
+.rc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.rc-card {
+  text-align: center;
+  padding: 1rem;
+
+  h3 {
+    color: var(--navy);
+    font-weight: 800;
+    margin: 0.8rem 0 0.35rem;
+  }
+}
+
+.rc-card-media {
+  border-radius: 1.2rem;
+  overflow: hidden;
+  background: #f6f1e8;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.85rem;
+
+  img {
+    width: auto;
+    max-width: 88%;
+    height: auto;
+    max-height: 92%;
+    object-fit: contain;
+    object-position: center center;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
+  }
+}
+
+.rc-card.origin-septiembre-2026 .rc-card-media {
+  background-color: #0f4d2e;
+  background-image: url('/assets/images/recetas/origen-septiembre-2026.webp');
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.rc-sub {
+  color: #666;
+  font-size: 0.95rem;
+  min-height: 3rem;
+}
+
+.rc-pill {
+  display: inline-flex;
+  margin-top: 0.6rem;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: #ffc7c7;
+  color: #1b2a4a;
+}
+
+.rc-pill.is-soon {
+  background: #eee8dc;
+  color: #7a7468;
+}
+
+.tone-lime .rc-pill { background: #cfe8b8; }
+.tone-gold .rc-pill { background: #f0d98a; }
+.tone-navy .rc-pill { background: #c9d6ef; }
+
+@media (max-width: 991px) {
+  .rc-feature-card {
+    grid-template-columns: 1fr;
+  }
+  .rc-feature-body {
+    padding: 0 1.25rem 1.5rem;
+  }
+  .rc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.rc-card.origin-verano-2026 .rc-card-media {
+  background-color: #57b7e8;
+  background-image:
+    linear-gradient(180deg, rgba(87, 183, 232, 0.35), rgba(233, 216, 192, 0.55)),
+    url('/assets/images/recetas/origen-verano-2026.webp');
+  background-size: cover, 220px 220px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}

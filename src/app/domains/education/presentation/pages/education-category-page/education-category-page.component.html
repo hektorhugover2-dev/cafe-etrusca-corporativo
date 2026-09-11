@@ -1,24 +1,42 @@
 @if (cat) {
-<div class="edu-page">
-  <section class="edu-hero">
-    <div class="edu-hero-copy">
+<div class="edu-page cat-page">
+  <section class="cat-hero">
+    <div class="cat-hero-copy">
       <h1>{{ cat.title }}</h1>
-      <p class="lead">{{ cat.subtitle }}</p>
-      <p>{{ cat.body }}</p>
+      <span class="cat-rule" aria-hidden="true"></span>
+      <p>{{ cat.subtitle }}</p>
     </div>
-    <div class="edu-hero-media">
-      <img src="/assets/images/educacion/cursos-photo.png" [alt]="cat.title">
+    <div class="cat-hero-media">
+      <img [src]="cat.heroImage" [alt]="cat.title">
     </div>
+    <aside class="cat-info">
+      @for (s of cat.stats; track s.label) {
+        <div class="cat-info-item">
+          <span class="cat-info-ico" [attr.data-k]="s.label">
+            @if (s.label === 'Metodología') {
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v2H7V3zm1 4h8l1 12H7L8 7zm3 3h2v6h-2v-6z"/></svg>
+            } @else if (s.label === 'Duración') {
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M8 3v3M16 3v3M5 9.5h14"/></svg>
+            } @else {
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.4" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M12 8.2V12l2.8 1.7"/></svg>
+            }
+          </span>
+          <div>
+            <strong>{{ s.label }}</strong>
+            <span>{{ s.value }} @if (s.hint) { {{ s.hint }} }</span>
+          </div>
+        </div>
+      }
+    </aside>
   </section>
 
   <app-edu-nav></app-edu-nav>
 
   <section class="edu-section">
-    <h2>Programas</h2>
     <div class="edu-cards">
       @for (c of courses; track c.slug) {
         <article class="edu-card">
-          <img [src]="c.image" [alt]="c.title">
+          <img [src]="c.image" [alt]="'Foto del ' + c.kicker">
           <div class="body">
             <div class="kicker">{{ c.kicker }}</div>
             <h3>{{ c.title }}</h3>
@@ -33,14 +51,15 @@
     </div>
   </section>
 
-  @if (cat.slug === 'cursos' && courses.length > 1) {
+  @if (courses.length > 1) {
     <section class="edu-section">
-      <h2>¿Cuál curso es para ti?</h2>
+      <h2>¿Cuál {{ cat.label.toLowerCase() }} es para ti?</h2>
       <div class="edu-grid-2">
-        @for (c of courses; track c.slug) {
+        @for (c of courses; track c.slug; let last = $last) {
           <article class="edu-path">
             <h3>{{ c.title }}</h3>
-            <p>{{ c.ideal }}</p>
+            <p>{{ c.ideal || c.summary }}</p>
+            <a class="btn-navy" [routerLink]="['/educacion', c.kind, c.slug]">Ver detalle</a>
           </article>
         }
       </div>
@@ -49,10 +68,11 @@
 
   <section class="edu-section">
     <h2>Qué aprenderás</h2>
+    <p class="sub">Aprende, practica y aplica desde el primer día.</p>
     <div class="edu-grid-6">
       @for (i of learn; track i.label) {
         <div class="edu-tile">
-          <img [src]="i.icon" [alt]="i.label">
+          <img [src]="i.icon" alt="">
           <span>{{ i.label }}</span>
         </div>
       }
@@ -61,7 +81,6 @@
 
   <section class="edu-section">
     <h2>Nuestra metodología</h2>
-    <p class="sub">70% práctica y 30% teórica. Menos teoría aburrida, más manos en la masa. Al finalizar, recibirás un diploma con valor curricular.</p>
     <div class="edu-grid-2" style="grid-template-columns: repeat(4, 1fr);">
       @for (m of method; track m.n) {
         <article class="edu-step">
@@ -72,11 +91,16 @@
     </div>
   </section>
 
+  <section class="edu-banner">
+    <h2>Vive la experiencia Etrusca</h2>
+    <p>70% práctica y 30% teórica. Menos teoría aburrida, más manos en la masa. Al finalizar, recibirás un diploma con valor curricular que respalda tus nuevas habilidades.</p>
+  </section>
+
   <section class="edu-section">
     <h2>¿A quién va dirigido?</h2>
-    <ul>
-      @for (a of audience; track a) { <li>{{ a }}</li> }
-    </ul>
+    <div class="edu-chips">
+      @for (a of audience; track a) { <span>{{ a }}</span> }
+    </div>
   </section>
 
   <section class="edu-section">

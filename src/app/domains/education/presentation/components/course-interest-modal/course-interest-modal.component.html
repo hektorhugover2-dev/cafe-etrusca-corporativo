@@ -1,0 +1,183 @@
+@if (isBrowser && open) {
+  <div class="cim-backdrop" (click)="onBackdropClick($event)">
+    <div
+      #dialogEl
+      class="cim-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cim-title"
+      tabindex="-1"
+      (click)="$event.stopPropagation()">
+      <button type="button" class="cim-close" (click)="close()" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <div class="cim-grid">
+        <section class="cim-col cim-info" aria-label="Horario y dirección">
+          <h3 class="cim-heading">Horario</h3>
+          <p class="cim-line">{{ dateRangeLabel }}</p>
+          <p class="cim-line">{{ hoursLabel }}</p>
+          <p class="cim-line">
+            <a [href]="'mailto:' + emailLabel">{{ emailLabel }}</a>
+          </p>
+          @if (phoneLabel) {
+            <p class="cim-line">
+              @if (telHref(phoneLabel)) {
+                <a [href]="telHref(phoneLabel)">{{ phoneLabel }}</a>
+              } @else {
+                {{ phoneLabel }}
+              }
+            </p>
+          }
+
+          <h3 class="cim-heading">Dirección</h3>
+          @if (branchLabel) {
+            <p class="cim-line">{{ branchLabel }}</p>
+          }
+          @if (mapAvailable) {
+            <div class="cim-map">
+              <iframe
+                [src]="safeMapSrc"
+                title="Mapa de la sucursal"
+                width="450"
+                height="150"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+              </iframe>
+            </div>
+            @if (mapHref) {
+              <p class="cim-line">
+                <a [href]="mapHref" target="_blank" rel="noopener noreferrer">Ver mapa</a>
+              </p>
+            }
+          }
+        </section>
+
+        <section class="cim-col cim-form-col">
+          <h2 id="cim-title" class="cim-title">{{ displayTitle }}</h2>
+          <p class="cim-lead">¡Recibirás noticias nuestras muy pronto!</p>
+
+          @if (successMessage) {
+            <p class="cim-success" role="status">{{ successMessage }}</p>
+          }
+          @if (errorMessage) {
+            <p class="cim-error" role="alert">{{ errorMessage }}</p>
+          }
+
+          <form #interestForm="ngForm" (ngSubmit)="submit(interestForm)" novalidate>
+            <div class="cim-field">
+              <label for="cim-name">Nombre</label>
+              <input
+                #nameInput
+                id="cim-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                [(ngModel)]="name"
+                required
+                maxlength="255">
+              @if (submitted && interestForm.controls['name'].invalid) {
+                <span class="cim-hint">Escribe tu nombre.</span>
+              }
+            </div>
+
+            <div class="cim-field">
+              <label for="cim-phone">Teléfono</label>
+              <input
+                id="cim-phone"
+                name="telephone"
+                type="tel"
+                autocomplete="tel"
+                [(ngModel)]="telephone"
+                required
+                maxlength="255">
+              @if (submitted && interestForm.controls['telephone'].invalid) {
+                <span class="cim-hint">Escribe tu teléfono.</span>
+              }
+            </div>
+
+            <div class="cim-field">
+              <label for="cim-email">e-mail</label>
+              <input
+                id="cim-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                [(ngModel)]="email"
+                required
+                maxlength="255">
+              @if (submitted && interestForm.controls['email'].invalid) {
+                <span class="cim-hint">Escribe un e-mail válido.</span>
+              }
+            </div>
+
+            <fieldset class="cim-field cim-checks">
+              <legend>Me identifico como</legend>
+              <label class="cim-check">
+                <input type="checkbox" name="ocupacionEmprendedor" [(ngModel)]="ocupacionEmprendedor">
+                <span>Emprendedor</span>
+              </label>
+              <label class="cim-check">
+                <input type="checkbox" name="ocupacionBarista" [(ngModel)]="ocupacionBarista">
+                <span>Barista</span>
+              </label>
+              <label class="cim-check">
+                <input type="checkbox" name="ocupacionConsumidor" [(ngModel)]="ocupacionConsumidor">
+                <span>Consumidor</span>
+              </label>
+            </fieldset>
+
+            <div class="cim-field">
+              <label for="cim-message">Mensaje</label>
+              <textarea
+                id="cim-message"
+                name="message"
+                rows="4"
+                maxlength="1000"
+                [(ngModel)]="message"></textarea>
+            </div>
+
+            <div class="cim-hp" aria-hidden="true">
+              <label for="cim-website">Sitio web</label>
+              <input
+                id="cim-website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+                [(ngModel)]="website">
+            </div>
+
+            <label class="cim-check cim-legal">
+              <input type="checkbox" name="privacy" [(ngModel)]="privacy" required>
+              <span>
+                Acepto el
+                <a routerLink="/aviso-de-privacidad" (click)="$event.stopPropagation()">aviso de privacidad</a>
+              </span>
+            </label>
+            @if (submitted && !privacy) {
+              <span class="cim-hint">El aviso de privacidad debe quedar aceptado.</span>
+            }
+
+            <label class="cim-check cim-legal">
+              <input type="checkbox" name="newsletter" [(ngModel)]="newsletter">
+              <span>Quiero recibir el newsletter</span>
+            </label>
+
+            <button
+              type="submit"
+              class="cim-submit"
+              [disabled]="submitting || !privacy">
+              @if (submitting) {
+                Enviando...
+              } @else {
+                Enviar
+              }
+            </button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+}

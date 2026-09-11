@@ -1,0 +1,10 @@
+{
+  "/etrusca-api": {
+    "target": "https://cafeetrusca.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/etrusca-api": ""
+    }
+  }
+}

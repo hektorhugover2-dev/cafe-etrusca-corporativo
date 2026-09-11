@@ -1,12 +1,34 @@
 @import 'leaflet/dist/leaflet.css';
 
+/* POPPINS GLOBAL */
+:root {
+  --etrusca-font: 'Poppins', sans-serif;
+  --bs-font-sans-serif: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+}
+
+html,
+body {
+  font-family: var(--etrusca-font);
+}
+
+button,
+input,
+select,
+textarea,
+.btn {
+  font-family: inherit;
+}
+
+
 :root {
   /* ========================================
      CAFÉ ETRUSCA · DESIGN TOKENS
      ======================================== */
 
   /* NAVY / BRAND */
-  --etrusca-navy-900: #070C3B;
+  --etrusca-navy-900: #283039;
+  --etrusca-navy: var(--etrusca-navy-900);
   --etrusca-navy-700: #192966;
   --etrusca-navy-600: #202C59;
   --etrusca-navy-500: #344689;
@@ -87,3 +109,143 @@
   40% { transform: translateY(-8px); } /* Qué tan alto saltan las patitas */
 }
 
+
+/* Leaflet markers are injected outside Angular encapsulation.
+   Bootstrap/index.html img { max-width:100%; height:auto } shrinks pins. */
+.leaflet-container img {
+  max-width: none !important;
+  max-height: none !important;
+}
+.leaflet-marker-icon {
+  min-width: 24px;
+  min-height: 24px;
+}
+.etrusca-map-marker {
+  background: none !important;
+  border: none !important;
+}
+.etrusca-map-marker__hit {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 40px;
+  height: 48px;
+  min-width: 24px;
+  min-height: 24px;
+  pointer-events: none;
+}
+.etrusca-map-marker__hit img {
+  width: 40px;
+  height: 40px;
+  max-width: none !important;
+  max-height: none !important;
+  display: block;
+}
+.leaflet-control-zoom a {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px;
+  min-height: 32px;
+  line-height: 32px !important;
+}
+.leaflet-control-attribution a {
+  display: inline-block;
+  min-height: 24px;
+  padding: 4px 6px;
+  line-height: 16px;
+}
+
+
+/* Legal / policy pages: clear the fixed navbar, readable type */
+.legal-page {
+  display: block;
+  padding: 120px 0 4.5rem;
+  color: #1a1612;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  background: #fff;
+}
+.legal-page .container {
+  max-width: 960px;
+}
+.legal-page__header {
+  margin: 0 0 2rem;
+  padding: 0 0 1.25rem;
+  border-bottom: 2px solid #ead9c2;
+}
+.legal-page__header h1,
+.legal-page h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #111;
+  scroll-margin-top: 120px;
+}
+.legal-page__kicker,
+.legal-page__header h2 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: #5b534a;
+  line-height: 1.35;
+}
+.legal-page__langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1.75rem;
+}
+.legal-page__langs .btn-idioma {
+  min-height: 44px;
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  background: #f6e07a;
+  color: #1a1612;
+  border: 0;
+}
+.legal-page h2:not(.legal-page__header h2) {
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-weight: 800;
+  margin: 2rem 0 0.75rem;
+  line-height: 1.3;
+}
+.legal-page h3,
+.legal-page h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 1.75rem 0 0.65rem;
+  line-height: 1.35;
+}
+.legal-page p,
+.legal-page li {
+  font-size: 1.2rem;
+  line-height: 1.75;
+}
+.legal-page p {
+  margin-bottom: 1rem;
+}
+.legal-page ul,
+.legal-page ol {
+  padding-left: 1.4rem;
+  margin-bottom: 1.1rem;
+}
+.legal-page table {
+  font-size: 1.05rem;
+  width: 100%;
+}
+.legal-page .table-responsive,
+.legal-page .col-md-12 {
+  overflow-x: auto;
+}
+.legal-page a {
+  color: #c45c12;
+  font-weight: 600;
+}
+@media (max-width: 575px) {
+  .legal-page {
+    padding-top: 100px;
+  }
+}

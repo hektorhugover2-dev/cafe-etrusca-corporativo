@@ -1,0 +1,295 @@
+<div class="contacto-page">
+  <section class="ct-hero">
+    <div class="container">
+      <p class="ct-kicker">Café Etrusca</p>
+      <h1>Contacto</h1>
+      <p class="ct-lead">
+        Encuentra tu sucursal, escríbenos o visita a un distribuidor autorizado.
+        Estamos cerca de ti en cada paso.
+      </p>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#f7f3ea"></app-scroll-wave>
+  </section>
+
+  <section class="ct-map-sec">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2>Sucursales</h2>
+        <img src="/assets/images/separador.png" alt="" class="ct-sep" />
+        <p class="ct-sub">
+          Por defecto ves todos los puntos en México. Elige ciudad y sucursal para acercarte.
+        </p>
+      </div>
+
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-6">
+          <div class="mapa-wrapper d-flex flex-column gap-3">
+                <div class="map-actions">
+        <a href="https://tienda.cafeetrusca.com/" class="video-hover-container text-decoration-none"
+           (mouseenter)="videoEl.play()"
+           (mouseleave)="videoEl.pause(); videoEl.currentTime = 0">
+          <img src="/assets/images/compra-en-linea-bg.webp" alt="Compra en linea" class="default-img">
+          <video #videoEl src="/assets/videos/compra-en-linea.mp4" loop muted playsinline class="hover-video"></video>
+        </a>
+        <div class="map-kind-btns">
+          <button type="button" class="badge rounded-pill fw-bold px-4 py-2 fs-6 border-0 shadow-sm map-kind-btn is-sucursal" [class.is-on]="mapKind === 'sucursal'" (click)="setMapKind('sucursal')">Sucursal</button>
+          <button type="button" class="badge rounded-pill fw-bold px-4 py-2 fs-6 border-0 shadow-sm map-kind-btn is-distribuidor" [class.is-on]="mapKind === 'distribuidor'" (click)="setMapKind('distribuidor')">Distribuidor</button>
+        </div>
+        </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="visually-hidden" for="contacto-ciudad">Selecciona la ciudad</label>
+                <select
+                  id="contacto-ciudad"
+                  class="form-select bg-light border-0 shadow-sm py-2 px-3 rounded-pill"
+                  [value]="selectedCity"
+                  (change)="onCityChange($event)"
+                >
+                  <option value="">Todo México</option>
+                  @for (city of mapCities; track city) {
+                    <option [value]="city" [selected]="city === selectedCity">{{ cityLabel(city) }}</option>
+                  }
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="visually-hidden" for="contacto-sucursal">{{ placeSelectLabel }}</label>
+                <select
+                  id="contacto-sucursal"
+                  class="form-select bg-light border-0 shadow-sm py-2 px-3 rounded-pill"
+                  (change)="onBranchChange($event)"
+                  [disabled]="filteredBranches.length === 0"
+                >
+                  <option value="">{{ placeSelectLabel }}</option>
+                  @for (branch of filteredBranches; track branch.nombre) {
+                    <option
+                      [value]="branch.nombre"
+                      [selected]="currentBranch?.nombre === branch.nombre"
+                    >
+                      {{ branch.nombre }}
+                    </option>
+                  }
+                </select>
+              </div>
+            </div>
+            <div
+              id="contacto-map"
+              class="rounded-4 shadow-sm w-100 ct-map"
+              role="application"
+              aria-label="Mapa de sucursales Café Etrusca"
+            ></div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 d-flex">
+          <div class="sucursal-card p-4 p-md-5 rounded-4 shadow-sm w-100">
+            <h3>{{ currentBranch?.nombre || 'Nuestras sucursales' }}</h3>
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex align-items-start mb-3">
+                <span class="ct-ico" aria-hidden="true">📍</span>
+                <div>
+                  <strong>Dirección</strong>
+                  <span>{{ currentBranch?.direccion || placeSelectHint }}</span>
+                </div>
+              </li>
+              <li class="d-flex align-items-start mb-3">
+                <span class="ct-ico" aria-hidden="true">📞</span>
+                <div>
+                  <strong>Teléfono</strong>
+                  @if (currentBranch) {
+                    <a [href]="telHref(currentBranch.telefono)">{{ currentBranch.telefono }}</a>
+                  } @else {
+                    <span>---</span>
+                  }
+                </div>
+              </li>
+              <li class="d-flex align-items-start mb-3">
+                <span class="ct-ico" aria-hidden="true">✉️</span>
+                <div>
+                  <strong>E-mail</strong>
+                  @if (currentBranch) {
+                    <a [href]="'mailto:' + currentBranch.email">{{ currentBranch.email }}</a>
+                  } @else {
+                    <span>---</span>
+                  }
+                </div>
+              </li>
+              <li class="d-flex align-items-start">
+                <span class="ct-ico" aria-hidden="true">🕒</span>
+                <div>
+                  <strong>Horario</strong>
+                  <span>{{ currentBranch?.horarios || '---' }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto-form" class="ct-form-sec">
+    <app-scroll-wave position="top" fillColor="var(--navy)"></app-scroll-wave>
+    <div class="container">
+      <div class="row g-5 align-items-start">
+        <div class="col-lg-5">
+          <h2>Escríbenos</h2>
+          <img src="/assets/images/separador.png" alt="" class="ct-sep ct-sep-left" />
+          <p class="ct-sub">
+            Cuéntanos qué necesitas para tu cafetería. Un asesor te contacta con la información de sucursales, insumos o maquinaria.
+          </p>
+          <p class="ct-phone">
+            Atención a clientes
+            <a href="tel:5541668777">55 41 66 8777</a>
+          </p>
+          <div class="ct-lucky" aria-hidden="true">
+            <img [src]="luckyWriting ? '/assets/images/lucky-writing.png' : '/assets/images/lucky-idle.png'" alt="">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <form class="ct-form" (input)="onFormTouch()" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+            <div class="ct-hp" aria-hidden="true">
+              <label for="nickname">No llenar</label>
+              <input id="nickname" name="nickname" type="text" [(ngModel)]="nickname" tabindex="-1" autocomplete="off" />
+            </div>
+            <input type="hidden" name="ocupacion" [(ngModel)]="ocupacion" />
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="ct-name">Nombre</label>
+                <input
+                  id="ct-name"
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="name"
+                  required
+                  minlength="2"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="ct-tel">Teléfono</label>
+                <input
+                  id="ct-tel"
+                  name="telephone"
+                  type="tel"
+                  class="form-control"
+                  [(ngModel)]="telephone"
+                  required
+                  minlength="8"
+                  autocomplete="tel"
+                />
+              </div>
+              <div class="col-12">
+                <label for="ct-email">Correo</label>
+                <input
+                  id="ct-email"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  [(ngModel)]="email"
+                  required
+                  email
+                  autocomplete="email"
+                />
+              </div>
+              <div class="col-12">
+                <label for="ct-msg">Mensaje</label>
+                <textarea
+                  id="ct-msg"
+                  name="message"
+                  class="form-control"
+                  rows="5"
+                  [(ngModel)]="message"
+                  required
+                  minlength="8"
+                ></textarea>
+              </div>
+              <div class="col-12">
+                <label class="ct-check">
+                  <input type="checkbox" name="privacy" [(ngModel)]="privacy" required />
+                  <span>
+                    He leído y acepto el
+                    <a routerLink="/aviso-de-privacidad" target="_blank" rel="noopener">aviso de privacidad</a>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            @if (successMessage) {
+              <p class="ct-ok" role="status">{{ successMessage }}</p>
+            }
+            @if (errorMessage) {
+              <p class="ct-err" role="alert">{{ errorMessage }}</p>
+            }
+
+            <button type="submit" class="ct-submit" [disabled]="submitting">
+              {{ submitting ? 'Enviando…' : 'Enviar' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="var(--navy)"></app-scroll-wave>
+  </section>
+
+  <section class="ct-table-sec">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
+        <div>
+          <h2>Sucursales y distribuidores</h2>
+          <img src="/assets/images/separador.png" alt="" class="ct-sep ct-sep-left" />
+        </div>
+        <div class="ct-chips" role="tablist" aria-label="Filtrar directorio">
+          @for (kind of locatorKinds; track kind) {
+            <button
+              type="button"
+              class="ct-chip"
+              [class.is-on]="locatorFilter === kind"
+              (click)="locatorFilter = kind"
+            >
+              {{ kind }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="ct-table-wrap">
+        <table class="ct-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Teléfono</th>
+              <th>Correo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of visibleLocators; track row.name) {
+              <tr>
+                <td>
+                  <span class="ct-kind">{{ row.kind }}</span>
+                  <strong>{{ row.name }}</strong>
+                </td>
+                <td>{{ row.address }}</td>
+                <td>
+                  @for (phone of row.phones; track phone) {
+                    <a [href]="telHref(phone)">{{ phone }}</a>
+                  }
+                </td>
+                <td>
+                  @if (row.email) {
+                    <a [href]="'mailto:' + row.email">{{ row.email }}</a>
+                  } @else {
+                    <span class="text-muted">—</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
