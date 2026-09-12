@@ -1001,118 +1001,133 @@ $white: #ffffff;
 
 
 
-  .cp-value-bar {
-
-
-
-    margin-top: 2rem;
-
-
-
+  .cp-profile-cols {
     display: grid;
-
-
-
     grid-template-columns: repeat(3, 1fr);
-
-
-
     gap: 0.85rem;
 
+    .k {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(26, 23, 20, 0.62);
+      margin-bottom: 0.25rem;
+    }
+    strong { display: block; font-size: 0.98rem; color: $premium-dark; margin-bottom: 0.25rem; }
+    p { margin: 0; font-size: 0.86rem; line-height: 1.4; max-width: none; color: rgba(26, 23, 20, 0.78); }
 
+    @media (max-width: 800px) { grid-template-columns: 1fr; }
+  }
 
+  .cp-value-bar {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
     background: $cream;
-
-
-
-    border-radius: 22px;
-
-
-
-    padding: 1.1rem;
-
-
-
-
-
-
+    border-radius: 0;
+    padding: 1.1rem 0.4rem;
+    text-align: center;
+    font-weight: 800;
+    color: $navy;
 
     > div {
-
-
-
-      display: flex;
-
-
-
-      flex-direction: column;
-
-
-
-      gap: 0.25rem;
-
-
-
-      padding: 0.55rem 0.7rem;
-
-
-
-      border-radius: 16px;
-
-
-
-      background: $white;
-
-
-
-
-
-
-
-      strong {
-
-
-
-        font-weight: 900;
-
-
-
-        color: $navy;
-
-
-
-        font-size: 0.98rem;
-
-
-
-      }
-
-
-
-
-
-
-
-      span {
-
-
-
-        font-size: 0.88rem;
-
-
-
-        color: rgba(20, 17, 14, 0.7);
-
-
-
-      }
-
-
-
+      background: transparent;
+      border-radius: 0;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.98rem;
+      line-height: 1.3;
+      border-right: 1.5px solid rgba(20, 17, 14, 0.12);
+      &:last-child { border-right: 0; }
     }
 
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr;
+      > div { border-right: 0; border-bottom: 1.5px solid rgba(20, 17, 14, 0.12); }
+    }
+  }
 
+  .cp-ideal {
+    background: $white;
 
+    .cp-bullets li {
+      background: #fde8ee;
+      border-radius: 18px;
+    }
+  }
+
+  .cp-ideal-foot {
+    margin: 1.1rem 0 0;
+    font-weight: 800;
+    color: #e36a1a;
+  }
+
+  .cp-line-claim {
+    margin: 2.2rem auto 0;
+    max-width: 46rem;
+    text-align: center;
+    font-weight: 800;
+    color: $navy;
+    line-height: 1.4;
+  }
+
+  .cp-blends {
+    .cp-card {
+      background: $white;
+      display: grid;
+      gap: 0.7rem;
+
+      .intro {
+        margin: 0;
+        color: rgba(20, 17, 14, 0.75);
+        line-height: 1.45;
+      }
+
+      .spec {
+        background: #fff8ea;
+        border-radius: 14px;
+        padding: 0.7rem 0.8rem;
+
+        p { margin: 0.2rem 0 0; font-size: 0.88rem; line-height: 1.4; }
+        strong { color: $navy; }
+      }
+
+      .spec-k {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #c48912;
+        margin-bottom: 0.35rem;
+      }
+    }
+
+    .roast {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.25rem;
+      position: relative;
+
+      > i {
+        height: 8px;
+        border-radius: 99px;
+        background: #f3e2b4;
+        display: block;
+        &.on { background: #f0a429; }
+      }
+    }
+    .roast-labels {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 0.25rem;
+      font-size: 0.68rem;
+      color: rgba(20, 17, 14, 0.55);
+      text-align: center;
+    }
   }
 
 
