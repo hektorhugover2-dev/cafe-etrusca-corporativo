@@ -97,7 +97,22 @@
 
     createChat({
         webhookUrl: 'https://n8n.cafeetrusca.com/webhook/86206c5e-1a01-4e6a-bcb8-66ea24eccd64/chat',
-        botName: 'Asistente Etrusca'
+        botName: 'Lucky',
+        defaultLanguage: 'en',
+        initialMessages: [
+            '¡Hola! 👋',
+            'Soy Lucky, tu asistente virtual de Café Etrusca. ¿En qué puedo ayudarte hoy?'
+        ],
+        i18n: {
+            en: {
+                title: '¡Hola! 👋',
+                subtitle: 'Estamos en línea para ayudarte 24/7.',
+                footer: '',
+                getStarted: 'Nueva conversación',
+                inputPlaceholder: 'Escribe tu pregunta aquí...',
+                closeButtonTooltip: 'Cerrar chat'
+            }
+        }
     });
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -115,12 +130,17 @@
                         
                         let text = markdown.textContent || markdown.innerText;
 
-                        // Traducción automática de los saludos por defecto de n8n
+                        // Traducción de los saludos por defecto de n8n
                         if (text.includes('Hi there!')) {
-                            text = '¡Hola! <span class="SalesPersonName"></span>';
+                            text = '¡Hola! 👋';
                         }
-                        if (text.includes('My name is n8n') || text.includes('how can I assist')) {
-                            text = 'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?';
+                        if (
+                            text.includes('My name is Nathan') ||
+                            text.includes('My name is n8n') ||
+                            text.includes('how can I assist') ||
+                            text.includes('How can I assist')
+                        ) {
+                            text = 'Soy Lucky, tu asistente virtual de Café Etrusca. ¿En qué puedo ayudarte hoy?';
                         }
 
                         // Formatear saltos de línea a HTML
@@ -129,8 +149,46 @@
                     }
 
                     // 2. INYECTAR A LUCKY Y TEXTOS AL ABRIR EL CHAT
-                    if (node.classList.contains("chat-window")) {
-                        // Un pequeño retraso para permitir que n8n pinte los textos originales antes de sobreescribirlos
+                    if (
+                        node.classList.contains("chat-window") ||
+                        node.classList.contains("chat-message-wrapper") ||
+                        node.querySelector?.('.chat-header, .chat-heading, .n8n-chat-header')
+                    ) {
+                        const applySpanishUi = (root) => {
+                            const headingTitle = root.querySelector('.chat-header > p, .chat-heading + p, .n8n-chat-header p');
+                            if (headingTitle && /Hi there|Start a chat/i.test(headingTitle.textContent || '')) {
+                                headingTitle.textContent = 'Estamos en línea para ayudarte 24/7.';
+                            }
+
+                            const subtitle = root.querySelector('.n8n-chat-header-subtitle, .chat-header p, .chat-subtitle');
+                            if (subtitle && /Start a chat|help you 24/i.test(subtitle.textContent || '')) {
+                                subtitle.textContent = 'Estamos en línea para ayudarte 24/7.';
+                            }
+
+                            const titles = root.querySelectorAll('h1, h2, .chat-heading, .n8n-chat-header');
+                            titles.forEach((el) => {
+                                if ((el.textContent || '').includes('Hi there')) {
+                                    el.childNodes.forEach((n) => {
+                                        if (n.nodeType === 3 && n.textContent.includes('Hi there')) {
+                                            n.textContent = n.textContent.replace(/Hi there!?\s*👋?/g, '¡Hola! 👋');
+                                        }
+                                    });
+                                    if (el.childNodes.length === 0 || el.textContent.includes('Hi there')) {
+                                        el.textContent = (el.textContent || '').replace(/Hi there!?\s*👋?/g, '¡Hola! 👋');
+                                    }
+                                }
+                            });
+
+                            const inputtext = root.querySelector('.chat-inputs textarea, .n8n-chat-input textarea, textarea');
+                            if (inputtext && /Type your/i.test(inputtext.placeholder || '')) {
+                                inputtext.placeholder = "Escribe tu pregunta aquí...";
+                            }
+                        };
+
+                        applySpanishUi(node.nodeType === 1 ? node : document.body);
+                        setTimeout(() => applySpanishUi(document.body), 200);
+                        setTimeout(() => applySpanishUi(document.body), 800);
+
                         setTimeout(() => {
                             // Cambiar el Header por el Avatar en video de Lucky
                             const heading = node.querySelector('.chat-heading > h1, .n8n-chat-header h1');
@@ -168,19 +226,15 @@
                                 setTimeout(showVideo, 5000);
                             }
 
-                            // Ocultar el título antiguo que dice "Hi there! 👋" en el encabezado
-                            const headingTitle = node.querySelector('.chat-header > p');
-                            if (headingTitle) headingTitle.style.display = 'none';
+                            const subtitle = node.querySelector('.n8n-chat-header-subtitle, .chat-header > p');
+                            if (subtitle && /Start a chat|help you 24|Hi there/i.test(subtitle.textContent || '')) {
+                                subtitle.textContent = 'Estamos en línea para ayudarte 24/7.';
+                            }
 
-                            // Cambiar el subtítulo "Start a chat..." a Español
-                            const subtitle = node.querySelector('.n8n-chat-header-subtitle');
-                            if (subtitle) subtitle.textContent = 'Estamos en línea para ayudarte';
-
-                            // Cambiar el placeholder "Type your message..." a Español
                             const inputtext = node.querySelector('.chat-inputs textarea, .n8n-chat-input textarea');
                             if (inputtext) inputtext.placeholder = "Escribe tu pregunta aquí...";
 
-                        }, 2500); // 2500ms es suficiente para que n8n renderice y nosotros modifiquemos
+                        }, 400);
                     }
                 });
             });
