@@ -100,13 +100,13 @@
         botName: 'Lucky',
         defaultLanguage: 'en',
         initialMessages: [
-            '¡Hola! 👋',
-            'Soy Lucky, tu asistente virtual de Café Etrusca. ¿En qué puedo ayudarte hoy?'
+            '¡Hola!',
+            'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?'
         ],
         i18n: {
             en: {
-                title: '¡Hola! 👋',
-                subtitle: 'Estamos en línea para ayudarte 24/7.',
+                title: '¡Hola!',
+                subtitle: 'Estamos en línea para ayudarte.',
                 footer: '',
                 getStarted: 'Nueva conversación',
                 inputPlaceholder: 'Escribe tu pregunta aquí...',
@@ -132,7 +132,7 @@
 
                         // Traducción de los saludos por defecto de n8n
                         if (text.includes('Hi there!')) {
-                            text = '¡Hola! 👋';
+                            text = '¡Hola!';
                         }
                         if (
                             text.includes('My name is Nathan') ||
@@ -140,7 +140,7 @@
                             text.includes('how can I assist') ||
                             text.includes('How can I assist')
                         ) {
-                            text = 'Soy Lucky, tu asistente virtual de Café Etrusca. ¿En qué puedo ayudarte hoy?';
+                            text = 'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?';
                         }
 
                         // Formatear saltos de línea a HTML
@@ -157,12 +157,12 @@
                         const applySpanishUi = (root) => {
                             const headingTitle = root.querySelector('.chat-header > p, .chat-heading + p, .n8n-chat-header p');
                             if (headingTitle && /Hi there|Start a chat/i.test(headingTitle.textContent || '')) {
-                                headingTitle.textContent = 'Estamos en línea para ayudarte 24/7.';
+                                headingTitle.textContent = 'Estamos en línea para ayudarte.';
                             }
 
                             const subtitle = root.querySelector('.n8n-chat-header-subtitle, .chat-header p, .chat-subtitle');
                             if (subtitle && /Start a chat|help you 24/i.test(subtitle.textContent || '')) {
-                                subtitle.textContent = 'Estamos en línea para ayudarte 24/7.';
+                                subtitle.textContent = 'Estamos en línea para ayudarte.';
                             }
 
                             const titles = root.querySelectorAll('h1, h2, .chat-heading, .n8n-chat-header');
@@ -170,11 +170,11 @@
                                 if ((el.textContent || '').includes('Hi there')) {
                                     el.childNodes.forEach((n) => {
                                         if (n.nodeType === 3 && n.textContent.includes('Hi there')) {
-                                            n.textContent = n.textContent.replace(/Hi there!?\s*👋?/g, '¡Hola! 👋');
+                                            n.textContent = n.textContent.replace(/Hi there!?\s*👋?/g, '¡Hola!');
                                         }
                                     });
                                     if (el.childNodes.length === 0 || el.textContent.includes('Hi there')) {
-                                        el.textContent = (el.textContent || '').replace(/Hi there!?\s*👋?/g, '¡Hola! 👋');
+                                        el.textContent = (el.textContent || '').replace(/Hi there!?\s*👋?/g, '¡Hola!');
                                     }
                                 }
                             });
@@ -228,7 +228,7 @@
 
                             const subtitle = node.querySelector('.n8n-chat-header-subtitle, .chat-header > p');
                             if (subtitle && /Start a chat|help you 24|Hi there/i.test(subtitle.textContent || '')) {
-                                subtitle.textContent = 'Estamos en línea para ayudarte 24/7.';
+                                subtitle.textContent = 'Estamos en línea para ayudarte.';
                             }
 
                             const inputtext = node.querySelector('.chat-inputs textarea, .n8n-chat-input textarea');
