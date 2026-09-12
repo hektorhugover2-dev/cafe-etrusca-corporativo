@@ -22,6 +22,8 @@ export interface SeoInput {
     | Record<string, unknown>[]
     | ((ctx: SeoUrlContext) => Record<string, unknown> | Record<string, unknown>[]);
   ogType?: string;
+  /** Absolute canonical URL. Defaults to current origin + router path. */
+  canonical?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -54,9 +56,10 @@ export class SeoService {
   }
 
   set(input: SeoInput) {
-    const origin = this.resolveOrigin();
+    const liveOrigin = this.resolveOrigin();
     const path = this.router.url.split('?')[0] || '/';
-    const url = `${origin}${path}`;
+    const url = input.canonical || `${liveOrigin}${path === '/' ? '/' : path}`;
+    const origin = input.canonical ? new URL(input.canonical).origin : liveOrigin;
     const imagePath = input.image || this.defaultImage;
     const image = imagePath.startsWith('http') ? imagePath : `${origin}${imagePath}`;
 

@@ -91,7 +91,8 @@ export class EducationPageComponent implements OnInit, OnDestroy {
       title,
       description,
       keywords,
-      image: '/assets/images/educacion/icon-cursos.png',
+      image: '/assets/images/educacion/hero-banner.png',
+      canonical: 'https://cafeetrusca.com/cursos-para-baristas-y-talleres-para-cafeterias',
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {

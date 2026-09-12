@@ -9,7 +9,7 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
   { path: '/nosotros', changefreq: 'monthly', priority: '0.7' },
   { path: '/productos', changefreq: 'weekly', priority: '0.8' },
   { path: '/productos/cafe', changefreq: 'weekly', priority: '0.7' },
-  { path: '/productos/insumos', changefreq: 'weekly', priority: '0.7' },
+  { path: '/insumos-para-cafeterias', changefreq: 'weekly', priority: '0.7' },
   { path: '/maquinaria-y-equipo-para-cafeterias', changefreq: 'weekly', priority: '0.7' },
   { path: '/cursos-para-baristas-y-talleres-para-cafeterias', changefreq: 'weekly', priority: '0.9' },
   { path: '/educacion/cursos', changefreq: 'weekly', priority: '0.8' },

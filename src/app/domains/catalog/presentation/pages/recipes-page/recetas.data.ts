@@ -112,13 +112,13 @@ export const RECIPES: Recipe[] = [
         label: 'ChillOut Mix Limón',
         description: 'Ideal para preparar la base fresca.',
         image: '/assets/images/insumos/cafe-bag.png',
-        link: '/productos/insumos'
+        link: '/insumos-para-cafeterias'
       },
       {
         label: 'ChillOut Jam Mango',
         description: 'Sabor intenso y auténtico.',
         image: '/assets/images/insumos/matcha-can.png',
-        link: '/productos/insumos'
+        link: '/insumos-para-cafeterias'
       },
       {
         label: 'Crystal Boba Mango',

@@ -160,6 +160,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
       keywords:
         'arte latte,Brew Bar,Cold Brew,Mezcla Personalizada,Cafés especiales,Mezclas especiales,Café Etrusca,insumos,cafeterías,equipo para cafetería,barras de café,cursos para barista,maquinas de espresso,certificaciones',
       image: 'https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp',
+      canonical: 'https://cafeetrusca.com/',
       ogType: 'website',
       jsonLd: ({ origin }) => [
         {

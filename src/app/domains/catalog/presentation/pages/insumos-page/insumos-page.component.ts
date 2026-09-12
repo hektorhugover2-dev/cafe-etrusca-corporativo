@@ -17,10 +17,27 @@ export class InsumosPageComponent implements OnInit {
   private seo = inject(SeoService);
 
   ngOnInit() {
+    const title = 'Insumos Para Cafeterías - Café, Bases, Polvos, Jarabes, Salsas, Concentrados';
+    const description =
+      'Insumos Para Cafeterías como café, bases, polvos, jarabes, salsas, concentrados, tés, tisanas, chai, popotes, popping, perlas explosivas, jaleas y más.';
     this.seo.set({
-      title: "Insumos Para Cafeterías - Café, Bases, Polvos, Jarabes, Salsas, Concentrados",
-      description: "Insumos Para Cafeterías como café, bases, polvos, jarabes, salsas, concentrados, tés, tisanas, chai, popotes, popping, perlas explosivas, jaleas y más.",
-      keywords: "Insumos Para Cafeterías, café, bases, polvos, jarabes, salsas, concentrados, tés, tisanas, chai, popping, perlas explosivas"
+      title,
+      description,
+      keywords: 'Insumos Para Cafeterías, café, bases, polvos, jarabes, salsas, concentrados, tés, tisanas, chai, popping, perlas explosivas',
+      canonical: 'https://cafeetrusca.com/insumos-para-cafeterias',
+      ogType: 'website',
+      jsonLd: ({ origin, url }) => [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          '@id': url + '#insumos',
+          name: title,
+          description,
+          url,
+          isPartOf: { '@id': origin + '/#website' },
+          about: { '@type': 'Thing', name: 'Insumos para cafeterías' }
+        }
+      ]
     });
   }
 

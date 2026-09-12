@@ -682,7 +682,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((params) => {
       const found = findCategory(params.get('slug'));
       if (!found) {
-        this.router.navigate(['/productos/insumos']);
+        this.router.navigate(['/insumos-para-cafeterias']);
         return;
       }
       this.cat = found;

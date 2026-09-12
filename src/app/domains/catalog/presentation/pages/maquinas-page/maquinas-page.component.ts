@@ -23,7 +23,8 @@ export class MaquinasPageComponent implements OnInit {
       title: 'Maquina y Equipo para poner una cafetería - Encuentra todo lo que necesitas',
       description: 'Maquina y Equipo para poner una cafetería: En Etrusca encontrarás todo lo que necesitas para poner, renovar o innovar en tu negocio de cafetería',
       keywords: 'Maquina y Equipo para poner una cafetería, cafeteria,como iniciar una cafeteria,como poner una cafeteria,maquinas de espresso,molinos,licuadoras,tostadores',
-      image: '/assets/images/maquinas/hero.webp'
+      image: '/assets/images/maquinas/hero.webp',
+      canonical: 'https://cafeetrusca.com/maquinaria-y-equipo-para-cafeterias'
     });
   }
 }
