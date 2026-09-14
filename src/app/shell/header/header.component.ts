@@ -43,6 +43,14 @@ export class HeaderComponent implements OnDestroy {
     { icon: '/assets/images/cafe/icon-verde.png', title: 'Café en verde', desc: 'Materia prima con trazabilidad', link: '/productos/cafe/verde' }
   ];
 
+  maquinaLinks: MegaLink[] = [
+    { icon: '/assets/images/maquinas/cat-espresso.png', title: 'Espresso', desc: 'Máquinas Reneka para barra profesional', link: '/productos/maquinas/espresso' },
+    { icon: '/assets/images/maquinas/cat-espresso.png', title: 'Autoservicio', desc: 'Equipos Melitta de alto volumen', link: '/productos/maquinas/autoservicio' },
+    { icon: '/assets/images/maquinas/cat-licuadoras.png', title: 'Licuadoras', desc: 'Hamilton Beach y Blendtec para barra', link: '/productos/maquinas/licuadoras' },
+    { icon: '/assets/images/maquinas/cat-molinos.png', title: 'Molinos', desc: 'Ceado, Eureka, Pietro, Fiorenzato y más', link: '/productos/maquinas/molinos' },
+    { icon: '/assets/images/maquinas/cat-tostadores.png', title: 'Tostadores', desc: 'Tostadores Coffee Tech de laboratorio a tienda', link: '/productos/maquinas/tostadores' }
+  ];
+
   insumoLinks: MegaLink[] = [
     { icon: '/assets/images/insumos/categorias/bases-en-polvo.png', title: 'Polvos', desc: 'Bases y sabores en polvo', link: '/productos/insumos/bases-en-polvo' },
     { icon: '/assets/images/insumos/categorias/pures.png', title: 'Purés y concentrados', desc: 'Textura y sabor', link: '/productos/insumos/pures' },

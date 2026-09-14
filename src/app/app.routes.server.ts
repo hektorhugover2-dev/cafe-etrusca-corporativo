@@ -27,6 +27,19 @@ export const serverRoutes: ServerRoute[] = [
     }
   },
   {
+    path: 'productos/maquinas/:slug',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return [
+        { slug: 'espresso' },
+        { slug: 'autoservicio' },
+        { slug: 'licuadoras' },
+        { slug: 'molinos' },
+        { slug: 'tostadores' }
+      ];
+    }
+  },
+  {
     path: 'educacion/:kind',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {

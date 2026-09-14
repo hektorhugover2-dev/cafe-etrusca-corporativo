@@ -2,6 +2,7 @@ import { slugFromEventUrl } from './app/domains/education/presentation/pages/eve
 import { EMPRENDE_BRANCHES, EMPRENDE_PATH } from './app/domains/education/presentation/pages/course-branch-page/course-branch.data';
 import { publishedRecipes } from './app/domains/catalog/presentation/pages/recipes-page/recetas.data';
 import { INSUMOS_NAV } from './app/domains/catalog/presentation/insumos.data';
+import { MAQ_NAV } from './app/domains/catalog/presentation/maquinas.data';
 import { COURSES } from './app/domains/education/presentation/education.data';
 
 const SITE = 'https://cafeetrusca.com';
@@ -72,6 +73,10 @@ export async function buildSitemapXml(): Promise<string> {
 
   for (const cat of INSUMOS_NAV) {
     push(`/productos/insumos/${cat.slug}`, 'weekly', '0.7');
+  }
+
+  for (const cat of MAQ_NAV) {
+    push(cat.link, 'weekly', '0.7');
   }
 
   for (const branch of EMPRENDE_BRANCHES) {

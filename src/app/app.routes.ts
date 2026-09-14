@@ -166,6 +166,12 @@ export const routes: Routes = [
         redirectTo: '/maquinaria-y-equipo-para-cafeterias'
       },
       {
+        path: 'productos/maquinas/:slug',
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/maquinas-page/maquinas-page.component')
+            .then(m => m.MaquinasPageComponent)
+      },
+      {
         path: 'insumos-para-cafeterias',
         loadComponent: () =>
           import('./domains/catalog/presentation/pages/insumos-page/insumos-page.component')

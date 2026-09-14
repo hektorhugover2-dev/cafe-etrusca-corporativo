@@ -40,6 +40,10 @@
     height: 42px;
     object-fit: contain;
   }
+  &.active {
+    background: #f5d56a;
+    box-shadow: 0 8px 22px rgba(245, 213, 106, 0.45);
+  }
 }
 
 .maq-sec {

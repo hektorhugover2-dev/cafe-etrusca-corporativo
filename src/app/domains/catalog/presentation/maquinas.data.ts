@@ -21,13 +21,80 @@ export interface MaqSection {
   blocks: MaqBrandBlock[];
 }
 
-export const MAQ_NAV = [
-  { id: 'espresso', label: 'Espresso', icon: '/assets/images/maquinas/cat-espresso.png' },
-  { id: 'autoservicio', label: 'Autoservicio', icon: '/assets/images/maquinas/cat-espresso.png' },
-  { id: 'licuadoras', label: 'Licuadoras', icon: '/assets/images/maquinas/cat-licuadoras.png' },
-  { id: 'molinos', label: 'Molinos', icon: '/assets/images/maquinas/cat-molinos.png' },
-  { id: 'tostadores', label: 'Tostadores', icon: '/assets/images/maquinas/cat-tostadores.png' }
+export interface MaqNavItem {
+  id: string;
+  label: string;
+  icon: string;
+  desc: string;
+  link: string;
+  seoTitle: string;
+  seoDescription: string;
+  seoKeywords: string;
+}
+
+export const MAQ_HUB = '/maquinaria-y-equipo-para-cafeterias';
+
+export const MAQ_NAV: MaqNavItem[] = [
+  {
+    id: 'espresso',
+    label: 'Espresso',
+    icon: '/assets/images/maquinas/cat-espresso.png',
+    desc: 'Máquinas Reneka para barra profesional',
+    link: '/productos/maquinas/espresso',
+    seoTitle: 'Máquinas de espresso para cafeterías - Reneka | Café Etrusca',
+    seoDescription:
+      'Máquinas de espresso profesionales para cafetería. Reneka con instalación, preventivo y servicio para tu barra.',
+    seoKeywords: 'máquinas de espresso, Reneka, espresso para cafetería, máquina de café profesional'
+  },
+  {
+    id: 'autoservicio',
+    label: 'Autoservicio',
+    icon: '/assets/images/maquinas/cat-espresso.png',
+    desc: 'Equipos Melitta de alto volumen',
+    link: '/productos/maquinas/autoservicio',
+    seoTitle: 'Máquinas de autoservicio para cafeterías - Melitta | Café Etrusca',
+    seoDescription:
+      'Equipos Melitta de autoservicio para cafeterías, oficinas y food service. Consistencia, rapidez y menú amplio.',
+    seoKeywords: 'máquinas de autoservicio, Melitta, autoservicio cafetería, equipo self service café'
+  },
+  {
+    id: 'licuadoras',
+    label: 'Licuadoras',
+    icon: '/assets/images/maquinas/cat-licuadoras.png',
+    desc: 'Hamilton Beach y Blendtec para barra',
+    link: '/productos/maquinas/licuadoras',
+    seoTitle: 'Licuadoras para cafeterías - Hamilton Beach y Blendtec | Café Etrusca',
+    seoDescription:
+      'Licuadoras profesionales Hamilton Beach y Blendtec para barra, salsas, batidos y bebidas de cafetería.',
+    seoKeywords: 'licuadoras para cafetería, Hamilton Beach, Blendtec, licuadora profesional barista'
+  },
+  {
+    id: 'molinos',
+    label: 'Molinos',
+    icon: '/assets/images/maquinas/cat-molinos.png',
+    desc: 'Ceado, Eureka, Pietro, Fiorenzato y más',
+    link: '/productos/maquinas/molinos',
+    seoTitle: 'Molinos de café para cafeterías - Ceado, Eureka, Pietro | Café Etrusca',
+    seoDescription:
+      'Molinos profesionales para espresso y filtro. Ceado, Eureka, Pietro, Comandante, Fiorenzato, Anfim y Mahlkönig.',
+    seoKeywords: 'molinos de café, molino espresso, Ceado, Eureka, Pietro, Fiorenzato, Comandante, Mahlkönig'
+  },
+  {
+    id: 'tostadores',
+    label: 'Tostadores',
+    icon: '/assets/images/maquinas/cat-tostadores.png',
+    desc: 'Tostadores Coffee Tech de laboratorio a tienda',
+    link: '/productos/maquinas/tostadores',
+    seoTitle: 'Tostadores de café para cafeterías - Coffee Tech | Café Etrusca',
+    seoDescription:
+      'Tostadores Coffee Tech para laboratorio, tienda y producción. Del lote pequeño a la operación continua.',
+    seoKeywords: 'tostadores de café, Coffee Tech, tostador para cafetería, tueste de café'
+  }
 ];
+
+export function findMaqNav(id: string): MaqNavItem | undefined {
+  return MAQ_NAV.find((n) => n.id === id);
+}
 
 const img = (f: string) => `/assets/images/maquinas/${f}`;
 

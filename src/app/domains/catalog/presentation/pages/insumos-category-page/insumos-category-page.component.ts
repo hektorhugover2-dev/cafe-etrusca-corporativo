@@ -506,7 +506,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       title: 'Licuadoras profesionales',
       desc: 'Potencia y rendimiento para frappés, smoothies y bebidas con toppings.',
       image: '/assets/images/maquinas/hbb908r.webp',
-      link: '/maquinaria-y-equipo-para-cafeterias',
+      link: '/productos/maquinas/licuadoras',
       fragment: 'licuadoras',
       tone: 'cyan'
     },
@@ -514,7 +514,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       title: 'Máquinas de espresso',
       desc: 'Equipo confiable para tu barra: calidad, instalación y servicio Etrusca.',
       image: '/assets/images/maquinas/viva.webp',
-      link: '/maquinaria-y-equipo-para-cafeterias',
+      link: '/productos/maquinas/espresso',
       fragment: 'espresso',
       tone: 'coral'
     }

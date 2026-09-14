@@ -1,9 +1,9 @@
 <div class="ins-page maq-page">
   <section class="ins-hero">
     <div class="ins-hero-copy">
-      <h1>MÁQUINAS</h1>
-      <p class="lead">Rendimiento y tecnología para tu operación</p>
-      <p class="body">Máquina y equipo para poner, renovar o innovar tu cafetería. Cada equipo se eligió por calidad, desempeño y durabilidad: te asesoramos, instalamos y damos servicio para alargar su vida útil.</p>
+      <h1>{{ heroTitle }}</h1>
+      <p class="lead">{{ heroLead }}</p>
+      <p class="body">{{ heroBody }}</p>
       <a class="btn-catalog" href="https://equipos-accesorios.cafeetrusca.com/" target="_blank" rel="noopener">Explora el catálogo</a>
     </div>
     <div class="ins-hero-media">
@@ -13,7 +13,7 @@
 
   <nav class="maq-nav" aria-label="Categorías de máquinas">
     @for (n of nav; track n.id) {
-      <a class="maq-chip" [href]="'#' + n.id">
+      <a class="maq-chip" [routerLink]="n.link" routerLinkActive="active">
         <img [src]="n.icon" [alt]="n.label">
         <span>{{ n.label }}</span>
       </a>
@@ -22,11 +22,13 @@
 
   @for (sec of sections; track sec.id) {
     <section class="maq-sec ins-section" [id]="sec.id">
-      <header class="maq-sec__head">
-        <p class="maq-kicker">{{ sec.kicker }}</p>
-        <h2>{{ sec.title }}</h2>
-        <p class="maq-intro">{{ sec.intro }}</p>
-      </header>
+      @if (!slug) {
+        <header class="maq-sec__head">
+          <p class="maq-kicker">{{ sec.kicker }}</p>
+          <h2>{{ sec.title }}</h2>
+          <p class="maq-intro">{{ sec.intro }}</p>
+        </header>
+      }
 
       @for (g of slidersOf(sec); track g.id) {
         <app-grinder-slider [brand]="g"></app-grinder-slider>

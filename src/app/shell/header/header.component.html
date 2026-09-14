@@ -65,6 +65,23 @@
                       }
                     </div>
                     <a class="mega-cta" routerLink="/productos/cafe">Ver categoría de café ›</a>
+                  } @else if (productPanel === 'maquinas') {
+                    <h3>
+                      <span class="mega-bottle" aria-hidden="true"></span>
+                      Máquinas
+                    </h3>
+                    <div class="mega-links">
+                      @for (item of maquinaLinks; track item.title) {
+                        <a class="mega-link" [routerLink]="item.link">
+                          <img class="mega-ico" [src]="item.icon" alt="" width="44" height="44">
+                          <span>
+                            <strong>{{ item.title }}</strong>
+                            <small>{{ item.desc }}</small>
+                          </span>
+                        </a>
+                      }
+                    </div>
+                    <a class="mega-cta" routerLink="/maquinaria-y-equipo-para-cafeterias">Ver todas las máquinas ›</a>
                   } @else {
                     <h3>{{ activeProductCat.label }}</h3>
                     <p class="mega-copy">Explora la línea completa y encuentra el producto ideal para tu barra.</p>
