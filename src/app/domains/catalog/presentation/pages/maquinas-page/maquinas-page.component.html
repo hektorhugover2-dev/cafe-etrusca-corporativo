@@ -1,14 +1,16 @@
-<div class="ins-page maq-page">
-  <section class="ins-hero">
-    <div class="ins-hero-copy">
+<div class="ins-page maq-page layout-jarabes">
+  <section class="jar-hero maq-hero" [style.background]="heroColor">
+    <img class="jar-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy">
       <h1>{{ heroTitle }}</h1>
-      <p class="lead">{{ heroLead }}</p>
+      <p class="lead"><span class="accent" [style.color]="heroAccent">{{ heroLead }}</span></p>
       <p class="body">{{ heroBody }}</p>
-      <a class="btn-catalog" href="https://equipos-accesorios.cafeetrusca.com/" target="_blank" rel="noopener">Explora el catálogo</a>
+      <a class="btn-jar" href="https://equipos-accesorios.cafeetrusca.com/" target="_blank" rel="noopener">Explora el catálogo</a>
     </div>
-    <div class="ins-hero-media">
-      <img src="/assets/images/maquinas/hero.webp" alt="Máquinas y equipo para cafeterías">
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/maquinas/hero.webp" alt="Máquinas y equipo para cafeterías">
     </div>
+    <app-scroll-wave position="bottom" [fillColor]="heroColor"></app-scroll-wave>
   </section>
 
   <nav class="maq-nav" aria-label="Categorías de máquinas">

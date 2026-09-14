@@ -13,7 +13,7 @@ import { SeoService } from '../../../../../shared/kernel/services/seo.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, InsumosCtaComponent, ScrollWaveComponent, GrinderSliderComponent],
   templateUrl: './maquinas-page.component.html',
-  styleUrls: ['../../insumos-theme.scss', './maquinas-page.component.scss']
+  styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './maquinas-page.component.scss']
 })
 export class MaquinasPageComponent implements OnInit, OnDestroy {
   private seo = inject(SeoService);
@@ -39,6 +39,22 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
 
   slidersOf(sec: MaqSection): GrinderBrand[] {
     return this.slidersBySection[sec.id] || [];
+  }
+
+  get firstBrand(): GrinderBrand | null {
+    for (const sec of this.sections) {
+      const list = this.slidersOf(sec);
+      if (list.length) return list[0];
+    }
+    return null;
+  }
+
+  get heroColor(): string {
+    return '#f4eee4';
+  }
+
+  get heroAccent(): string {
+    return this.firstBrand?.leadColor || '#c45c4a';
   }
 
   ngOnInit() {

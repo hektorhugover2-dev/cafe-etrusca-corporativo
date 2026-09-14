@@ -3,6 +3,17 @@
   overflow-x: hidden;
 }
 
+.maq-hero {
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
 .maq-sec:has(app-grinder-slider) {
   padding-left: 0;
   padding-right: 0;
@@ -20,7 +31,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px 18px;
-  padding: 8px 20px 28px;
+  padding: 1.6rem 20px 28px;
+  position: relative;
+  z-index: 2;
 }
 
 .maq-chip {
@@ -47,7 +60,7 @@
 }
 
 .maq-sec {
-  padding-top: 12px;
+  padding-top: 2.8rem;
   scroll-margin-top: 96px;
 }
 

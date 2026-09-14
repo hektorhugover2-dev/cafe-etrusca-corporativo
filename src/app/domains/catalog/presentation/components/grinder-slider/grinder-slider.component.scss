@@ -1,16 +1,30 @@
+:host {
+  display: block;
+  overflow: visible;
+}
+
 .grinder-brand {
   --padx: clamp(16px, 6vw, 80px);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
   min-height: 88svh;
-  margin: 2.4rem calc(50% - 50vw) 0;
+  margin: 0 calc(50% - 50vw);
   width: 100vw;
-  padding: clamp(22px, 4vw, 48px) var(--padx) 3rem;
+  padding: clamp(22px, 4vw, 48px) var(--padx) 7rem;
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 3vw, 28px);
   color: #0f172a;
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
 }
 
 .grinder-bg {
