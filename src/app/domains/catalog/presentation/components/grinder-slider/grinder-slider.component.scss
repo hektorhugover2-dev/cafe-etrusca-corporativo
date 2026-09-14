@@ -23,6 +23,21 @@
     var(--grinder-bg, #222);
 }
 
+.grinder-logo {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.grinder-logo img {
+  height: clamp(48px, 7vw, 84px);
+  width: auto;
+  max-width: min(280px, 70vw);
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px #00000033);
+}
+
 .grinder-marquee-wrap {
   position: relative;
   overflow: hidden;

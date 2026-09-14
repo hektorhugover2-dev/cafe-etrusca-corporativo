@@ -1,6 +1,12 @@
 <section class="grinder-brand" [attr.id]="'grinder-' + brand.id" [style.--grinder-bg]="brand.bg" [style.--grinder-lead]="brand.leadColor">
   <div class="grinder-bg" aria-hidden="true"></div>
 
+  @if (brand.logo) {
+    <div class="grinder-logo">
+      <img [src]="brand.logo" [alt]="brand.name">
+    </div>
+  }
+
   <div class="grinder-marquee-wrap">
     <div class="grinder-marquee">
       @for (n of marqueeLoop; track n) {
@@ -58,7 +64,7 @@
         }
       </div>
 
-      @if (slide?.colores?.length) {
+      @if ((slide?.colores?.length || 0) > 1) {
         <div class="grinder-dots" role="tablist" aria-label="Colores">
           @for (c of slide!.colores; track c.name; let i = $index) {
             <button

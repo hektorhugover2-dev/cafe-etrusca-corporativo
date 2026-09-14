@@ -20,17 +20,44 @@ export interface GrinderSlide {
 }
 
 export interface GrinderBrand {
-  id: 'pietro' | 'comandante' | 'fiorenzato';
+  id: string;
   name: string;
   marquee: string;
   lead: string;
   bg: string;
   leadColor: string;
+  logo?: string;
   api?: string;
   slides: GrinderSlide[];
 }
 
 const img = (file: string) => `/assets/images/maquinas/${file}`;
+
+function specRows(brand: string, name: string, sku: string | undefined, specs: string[]): GrinderSpec[] {
+  const rows: GrinderSpec[] = [['Marca', brand], ['Modelo', name]];
+  if (sku) rows.push(['SKU', sku]);
+  for (const s of specs) {
+    if (/tolva/i.test(s)) rows.push(['Tolva', s.replace(/tolva\s*/i, '').trim()]);
+    else if (/\d+\s*v/i.test(s)) rows.push(['Voltaje', s]);
+    else rows.push(['Detalle', s]);
+  }
+  return rows;
+}
+
+function slidesFromProducts(
+  brand: string,
+  lead: string,
+  products: Array<{ name: string; sku?: string; image: string; specs: string[] }>
+): GrinderSlide[] {
+  return products.map((p) => ({
+    titulo: p.name.toUpperCase(),
+    descripcion: lead,
+    sku: p.sku,
+    img: p.image,
+    colores: [],
+    ficha: specRows(brand, p.name, p.sku, p.specs)
+  }));
+}
 
 const PIETRO_COLORS: GrinderColor[] = [
   { name: 'black', hex: '#0b0b0b', img: img('pietro-negro.webp'), titulo: 'MOLINO MANUAL PIETRO B-MODAL NEGRO', descripcion: 'Molino Manual Vertical para café de origen Italiano. Fresas verticales planas de 58 mm.', sku: 'AAB-211' },
@@ -63,12 +90,44 @@ const COMANDANTE_FICHA: GrinderSpec[] = [
 
 export const GRINDER_BRANDS: GrinderBrand[] = [
   {
+    id: 'ceado',
+    name: 'Ceado',
+    marquee: 'CEADO',
+    lead: 'Marca italiana líder en equipos profesionales para café. Precisión e innovación para resaltar el sabor en cada taza.',
+    bg: '#DDB07A',
+    leadColor: '#6b3b12',
+    logo: img('logo-ceado.svg'),
+    slides: slidesFromProducts('Ceado', 'Marca italiana líder en equipos profesionales para café. Precisión e innovación para resaltar el sabor en cada taza.', [
+      { name: 'E37Z', sku: 'MMO-105', image: img('ceado-e37z.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
+      { name: 'E37S', sku: 'MMO-104', image: img('ceado-e37s.webp'), specs: ['Negro · 110 V', 'Tolva 1.6 kg'] },
+      { name: 'LEON 800', sku: 'MMO-107', image: img('ceado-leon800.webp'), specs: ['Negro · 110 V', 'Tolva 1.6 kg'] },
+      { name: 'LEON 800 RS', sku: 'MMO-108', image: img('ceado-leon800rs.webp'), specs: ['Negro · 110 V', 'Tolva 1.6 kg'] },
+      { name: 'LEON 700', sku: 'MMO-106', image: img('ceado-leon700.webp'), specs: ['Negro · 110 V', 'Tolva 1.6 kg'] }
+    ])
+  },
+  {
+    id: 'eureka',
+    name: 'Eureka',
+    marquee: 'EUREKA',
+    lead: 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.',
+    bg: '#E07A5F',
+    leadColor: '#6b2410',
+    logo: img('logo-eureka.webp'),
+    slides: slidesFromProducts('Eureka', 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.', [
+      { name: 'ZENITH 65 NEO', sku: 'MMO-095', image: img('eureka-zenith.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
+      { name: 'HELIOS 65', sku: 'MMO-096', image: img('eureka-helios.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
+      { name: 'ATOM 65', sku: 'MMO-097', image: img('eureka-atom.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
+      { name: 'PROMETHEUS', sku: 'MMO-098', image: img('eureka-prometheus.webp'), specs: ['Negro · 127 V', 'Tolva 1.2 kg'] }
+    ])
+  },
+  {
     id: 'pietro',
     name: 'Pietro',
     marquee: 'PIETRO GRINDERS',
     lead: 'Pietro no es simplemente un molinillo de café manual; es un estilo que brinda a los amantes del café la máxima libertad de expresión.',
     bg: '#E3B27A',
     leadColor: '#ac6112',
+    logo: img('logo-pietro-white.svg'),
     slides: [
       {
         titulo: 'MOLINO MANUAL PIETRO B-MODAL NEGRO',
@@ -103,6 +162,7 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     lead: 'COMANDANTE® se especializa en el desarrollo y fabricación de molinillos de café de alto rendimiento.',
     bg: '#8CC03D',
     leadColor: '#3d5203',
+    logo: img('logo-comandante.webp'),
     slides: [
       {
         titulo: 'MOLINO MANUAL DE COMANDANTE NEGRO',
@@ -137,6 +197,7 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     lead: 'Preciso, fiable, fácil de usar. Fiorenzato se ha diseñado para simplificar el trabajo de los baristas y obtener resultados perfectos.',
     bg: '#9595F1',
     leadColor: '#0c1d68',
+    logo: img('logo-fiorenzato.webp'),
     api: 'https://lista-de-precios.cafeetrusca.com/api/v1/ficha-tecnica/Fiorenzato',
     slides: [
       {
@@ -163,6 +224,33 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'anfim',
+    name: 'Anfim',
+    marquee: 'ANFIM',
+    lead: 'Diseño funcional y cultura del espresso italiano, para barra profesional y uso doméstico.',
+    bg: '#8FA0B5',
+    leadColor: '#243044',
+    logo: img('logo-anfim.webp'),
+    slides: slidesFromProducts('Anfim', 'Diseño funcional y cultura del espresso italiano, para barra profesional y uso doméstico.', [
+      { name: 'Caimano On Demand', image: img('anfim-caimano.webp'), specs: ['Negro · 110 V', 'Tolva 2000 g'] }
+    ])
+  },
+  {
+    id: 'mahlkonig',
+    name: 'Mahlkönig',
+    marquee: 'MAHLKÖNIG',
+    lead: 'Referente mundial en molienda premium. La elección de baristas en todo el mundo.',
+    bg: '#E57373',
+    leadColor: '#6b1212',
+    logo: img('logo-mahlkonig.webp'),
+    slides: slidesFromProducts('Mahlkönig', 'Referente mundial en molienda premium. La elección de baristas en todo el mundo.', [
+      { name: 'E65S', image: img('mahlkonig-e65s.webp'), specs: ['Molino profesional Mahlkönig'] },
+      { name: 'E65S GbW', image: img('mahlkonig-e65s-gbw.webp'), specs: ['Negro/blanco · 110 V', 'Tolva 1.2 kg'] },
+      { name: 'EK43', image: img('mahlkonig-ek43.webp'), specs: ['Negro · 110 V', 'Tolva 1.5 kg'] },
+      { name: 'EK43S', image: img('mahlkonig-ek43s.webp'), specs: ['Molino profesional Mahlkönig'] }
+    ])
   }
 ];
 
