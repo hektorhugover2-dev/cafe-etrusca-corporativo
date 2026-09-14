@@ -20,6 +20,7 @@ import {
 })
 export class GrinderSliderComponent implements OnInit {
   @Input({ required: true }) brand!: GrinderBrand;
+  @Input() topWave = false;
 
   private http = inject(HttpClient);
   private cdr = inject(ChangeDetectorRef);

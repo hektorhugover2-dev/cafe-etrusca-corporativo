@@ -1,5 +1,8 @@
-<section class="grinder-brand" [attr.id]="'grinder-' + brand.id" [style.--grinder-bg]="brand.bg" [style.--grinder-lead]="brand.leadColor">
+<section class="grinder-brand" [class.has-top-wave]="topWave" [attr.id]="'grinder-' + brand.id" [style.--grinder-bg]="brand.bg" [style.--grinder-lead]="brand.leadColor">
   <div class="grinder-bg" aria-hidden="true"></div>
+  @if (topWave) {
+    <app-scroll-wave class="grinder-wave-top" position="top" [fillColor]="brand.bg"></app-scroll-wave>
+  }
 
   @if (brand.logo) {
     <div class="grinder-logo">
@@ -85,6 +88,4 @@
       }
     </div>
   </div>
-
-  <app-scroll-wave position="bottom" [fillColor]="brand.bg"></app-scroll-wave>
 </section>

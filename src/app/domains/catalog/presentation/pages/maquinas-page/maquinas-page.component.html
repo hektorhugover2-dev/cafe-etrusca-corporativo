@@ -32,14 +32,13 @@
         </header>
       }
 
-      @for (g of slidersOf(sec); track g.id) {
-        <app-grinder-slider [brand]="g"></app-grinder-slider>
+      @for (g of slidersOf(sec); track g.id; let first = $first) {
+        <app-grinder-slider [brand]="g" [topWave]="first"></app-grinder-slider>
       }
 
+      <app-scroll-wave class="maq-sec-wave" position="bottom" [fillColor]="waveOf(sec)"></app-scroll-wave>
     </section>
   }
 
-  <app-scroll-wave fillColor="#f5d56a" position="top"></app-scroll-wave>
   <app-insumos-cta></app-insumos-cta>
-  <app-scroll-wave fillColor="#f5d56a" position="bottom"></app-scroll-wave>
 </div>
