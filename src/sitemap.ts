@@ -13,6 +13,7 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
   { path: '/productos', changefreq: 'weekly', priority: '0.8' },
   { path: '/productos/cafe', changefreq: 'weekly', priority: '0.7' },
   { path: '/productos/cafe/premium', changefreq: 'weekly', priority: '0.7' },
+  { path: '/productos/cafe/especialidad', changefreq: 'weekly', priority: '0.7' },
   { path: '/productos/cafe/verde', changefreq: 'weekly', priority: '0.7' },
   { path: '/insumos-para-cafeterias', changefreq: 'weekly', priority: '0.8' },
   { path: '/accesorios-para-poner-una-cafeteria', changefreq: 'weekly', priority: '0.6' },

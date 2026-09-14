@@ -21,7 +21,7 @@ interface HubSubcat {
           <h1>{{ title }}</h1>
           <p class="lead">{{ lead }}</p>
           @if (hubKey === 'cafe' && subcats.length) {
-            <p class="body">Explora nuestras líneas de café: Premium para barra diaria y Café en verde como materia prima con trazabilidad.</p>
+            <p class="body">Explora nuestras líneas de café: Premium para barra diaria, Café de especialidad Barista Champ y Café en verde como materia prima con trazabilidad.</p>
           } @else {
             <p class="body">Estamos armando esta categoría con el mismo detalle que Insumos. Mientras tanto explora el catálogo o pide asesoría.</p>
             <a class="btn-catalog" routerLink="/insumos-para-cafeterias">Ver insumos</a>
@@ -143,6 +143,12 @@ export class ProductHubPageComponent {
           desc: 'Línea confiable y balanceada para espresso, leche y menú diario.',
           link: '/productos/cafe/premium',
           icon: '/assets/images/cafe/icon-premium.png'
+        },
+        {
+          title: 'Café de especialidad',
+          desc: 'Barista Champ: orígenes mexicanos con trazabilidad y más de 80 puntos SCA.',
+          link: '/productos/cafe/especialidad',
+          icon: '/assets/images/cafe/icon-especialidad.png'
         },
         {
           title: 'Café en verde',

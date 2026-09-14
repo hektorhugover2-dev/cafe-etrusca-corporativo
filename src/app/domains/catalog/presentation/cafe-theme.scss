@@ -2298,6 +2298,324 @@ $white: #ffffff;
   }
 }
 
+.cafe-especialidad {
+  --ce-cyan: #c8f4fb;
+  --ce-cyan-deep: #7ad7e0;
+  --ce-ink: #1a1714;
+  --ce-teal: #0e6d82;
+  color: var(--ce-ink);
+
+  h2 {
+    margin: 0 0 0.7rem;
+    font-weight: 900;
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .section-lead {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 1.8rem;
+    color: rgba(26, 23, 20, 0.75);
+  }
+
+  .ce-hero {
+    position: relative;
+    background: var(--ce-cyan);
+    padding: 2.2rem clamp(1.2rem, 5vw, 5.5rem) 11rem;
+    overflow: visible;
+
+    app-scroll-wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  .ce-hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 1.5rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ce-kicker {
+    display: none;
+  }
+
+  .ce-hero-copy h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 5.6rem);
+    line-height: 0.86;
+    letter-spacing: -0.05em;
+    color: var(--ce-ink);
+    span { display: block; }
+  }
+
+  .ce-sub {
+    margin: 0.55rem 0 1rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #e38b12;
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  }
+
+  .ce-hero-copy .lead {
+    margin: 0 0 0.85rem;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .ce-hero-copy .body {
+    margin: 0;
+    max-width: 34rem;
+    line-height: 1.5;
+    strong { color: var(--ce-teal); }
+  }
+
+  .ce-hero-media img {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 28px rgba(20, 17, 14, 0.16));
+  }
+
+  .ce-story {
+    background: #fff;
+    padding: clamp(4.5rem, 10vh, 6.5rem) clamp(1.2rem, 5vw, 5.5rem) 3.2rem;
+    max-width: 52rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ce-quote {
+    font-size: clamp(1.12rem, 2.2vw, 1.4rem);
+    line-height: 1.45;
+    margin: 0 0 1.2rem;
+    strong { color: var(--ce-teal); }
+  }
+
+  .ce-sca {
+    display: flex;
+    gap: 0.9rem;
+    text-align: left;
+    background: #fff4c8;
+    border-radius: 18px;
+    padding: 1rem 1.15rem;
+    margin-top: 1.6rem;
+    p { margin: 0; font-size: 0.95rem; line-height: 1.45; }
+  }
+
+  .ce-sca-i {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f0c94a;
+    color: #1a1714;
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+  }
+
+  .ce-origen {
+    position: relative;
+    background: var(--ce-cyan);
+    padding: 11rem clamp(1.2rem, 5vw, 5.5rem);
+    overflow: visible;
+
+    app-scroll-wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    app-scroll-wave:first-of-type { top: 0; }
+    app-scroll-wave:last-of-type { bottom: 0; }
+  }
+
+  .ce-origen-inner { position: relative; z-index: 2; }
+
+  .ce-origen h2::after {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 4px;
+    background: #e38b12;
+    margin: 0.55rem auto 1.6rem;
+    border-radius: 4px;
+  }
+
+  .ce-origen-copy {
+    p { font-size: 1.08rem; line-height: 1.55; }
+    strong { color: var(--ce-teal); }
+  }
+
+  .ce-origen-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 980px;
+    margin: 0 auto;
+    p { font-size: 1.05rem; line-height: 1.5; }
+  }
+
+  .ce-map {
+    width: min(100%, 480px);
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    background: var(--ce-cyan);
+  }
+
+  .ce-states {
+    background: #fff;
+    padding: 3.2rem clamp(1.2rem, 5vw, 5.5rem) 2.4rem;
+  }
+
+  .ce-states-lead {
+    text-align: center;
+    max-width: 46rem;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+  }
+
+  .ce-states-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.2rem;
+    article {
+      text-align: center;
+      h3 { margin: 0.5rem 0 0.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+      p { margin: 0; font-size: 0.92rem; color: #4a453e; }
+      img, svg { width: 110px; height: 110px; object-fit: contain; margin: 0 auto; display: block; }
+    }
+  }
+
+  .ce-finca {
+    padding: 1rem clamp(1.2rem, 5vw, 5.5rem) 2.6rem;
+  }
+
+  .ce-finca-card {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.4rem;
+    align-items: center;
+    border: 3px solid #f3a0b8;
+    border-radius: 28px;
+    padding: 1.2rem 1.4rem;
+    background: #fff;
+    img { width: 100%; height: auto; object-fit: contain; }
+    h2 { text-align: left; text-transform: none; letter-spacing: -0.03em; }
+    ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.55rem; }
+    li {
+      background: #fff4c8;
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .ce-process {
+    padding: 1.4rem clamp(1.2rem, 5vw, 5.5rem) 2.4rem;
+  }
+
+  .ce-process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    article {
+      border-radius: 22px;
+      padding: 1.1rem 1rem 1.2rem;
+      h3 { margin: 0.4rem 0 0.7rem; text-transform: none; letter-spacing: 0; font-size: 1.15rem; }
+      p { margin: 0 0 0.55rem; font-size: 0.86rem; line-height: 1.4; }
+      img { width: 72px; height: 72px; object-fit: contain; }
+      &.tone-blue { background: #d9f4fb; }
+      &.tone-yellow { background: #fff3b0; }
+      &.tone-pink { background: #fde0ea; }
+      &.tone-green { background: #e4f5c8; }
+    }
+  }
+
+  .ce-explain, .ce-cup, .ce-brew {
+    padding: 1.6rem clamp(1.2rem, 5vw, 5.5rem) 2.2rem;
+  }
+
+  .ce-explain-grid, .ce-cup-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.1rem;
+    article {
+      h3 { margin: 0 0 0.4rem; text-transform: none; letter-spacing: 0; font-size: 1.1rem; text-align: left; }
+      p { margin: 0; font-size: 0.92rem; line-height: 1.45; color: #4a453e; }
+    }
+  }
+
+  .ce-note {
+    text-align: center;
+    margin: 1.4rem auto 0;
+    max-width: 40rem;
+    font-weight: 600;
+  }
+
+  .ce-brew-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    text-align: center;
+    figure { margin: 0; }
+    img, svg { width: 88px; height: 88px; object-fit: contain; margin: 0 auto 0.5rem; display: block; }
+    figcaption { font-weight: 800; }
+  }
+
+  .ce-cta {
+    padding: 0 clamp(1.2rem, 5vw, 5.5rem) 3.4rem;
+  }
+
+  .ce-cta-inner {
+    background: var(--ce-cyan);
+    border-radius: 28px;
+    padding: 2rem 1.6rem;
+    text-align: center;
+    h2 { text-transform: none; letter-spacing: -0.03em; }
+    p { max-width: 36rem; margin: 0 auto 1.2rem; }
+  }
+
+  .ce-btn-fill {
+    background: var(--ce-teal);
+    color: #fff !important;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 0.7rem 1.25rem;
+    text-decoration: none;
+  }
+
+  .ce-btn-outline {
+    background: #fff;
+    color: var(--ce-ink) !important;
+    font-weight: 800;
+    border-radius: 999px;
+    padding: 0.7rem 1.25rem;
+    text-decoration: none;
+    border: 1.5px solid rgba(20, 17, 14, 0.2);
+  }
+}
+
 /* Responsive */
 
 
@@ -2323,7 +2641,10 @@ $white: #ffffff;
 
 
   .cafe-verde .cv-hero-inner,
-  .cafe-verde .cv-cta-banner {
+  .cafe-verde .cv-cta-banner,
+  .cafe-especialidad .ce-hero-inner,
+  .cafe-especialidad .ce-origen-grid,
+  .cafe-especialidad .ce-finca-card {
     grid-template-columns: 1fr;
   }
 
@@ -2347,7 +2668,12 @@ $white: #ffffff;
 
   .cafe-verde .cv-steps,
   .cafe-verde .cv-audience-grid,
-  .cafe-verde .cv-icons {
+  .cafe-verde .cv-icons,
+  .cafe-especialidad .ce-states-grid,
+  .cafe-especialidad .ce-process-grid,
+  .cafe-especialidad .ce-explain-grid,
+  .cafe-especialidad .ce-cup-grid,
+  .cafe-especialidad .ce-brew-grid {
     grid-template-columns: 1fr 1fr;
   }
 

@@ -7,7 +7,8 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       return [
         { slug: 'premium' },
-        { slug: 'verde' }
+        { slug: 'verde' },
+        { slug: 'especialidad' }
       ];
     }
   },

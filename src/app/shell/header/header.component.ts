@@ -40,6 +40,7 @@ export class HeaderComponent implements OnDestroy {
 
   cafeLinks: MegaLink[] = [
     { icon: '/assets/images/cafe/icon-premium.png', title: 'Café Premium', desc: 'Línea confiable y balanceada', link: '/productos/cafe/premium' },
+    { icon: '/assets/images/cafe/icon-especialidad.png', title: 'Café de especialidad', desc: 'Barista Champ, orígenes con historia', link: '/productos/cafe/especialidad' },
     { icon: '/assets/images/cafe/icon-verde.png', title: 'Café en verde', desc: 'Materia prima con trazabilidad', link: '/productos/cafe/verde' }
   ];
 
