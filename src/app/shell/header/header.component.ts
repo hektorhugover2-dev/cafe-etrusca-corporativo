@@ -34,7 +34,7 @@ export class HeaderComponent implements OnDestroy {
   productCats: MegaCat[] = [
     { id: 'cafe', label: 'Café', tone: 'lime', link: '/productos/cafe' },
     { id: 'insumos', label: 'Insumos', tone: 'yellow', link: '/insumos-para-cafeterias' },
-    { id: 'accesorios', label: 'Accesorios', tone: 'cyan', link: '/productos/accesorios' },
+    { id: 'accesorios', label: 'Accesorios', tone: 'cyan', link: '/accesorios-para-poner-una-cafeteria' },
     { id: 'maquinas', label: 'Máquinas', tone: 'pink', link: '/maquinaria-y-equipo-para-cafeterias' }
   ];
 
@@ -115,13 +115,18 @@ export class HeaderComponent implements OnDestroy {
     toggler?.classList.add('collapsed');
   }
 
+  /** En desktop navega al hub; en móvil solo abre/cierra el submenú. */
+  onMegaRootClick(ev: MouseEvent) {
+    if (typeof window !== 'undefined' && window.innerWidth < 992) {
+      ev.preventDefault();
+    }
+  }
 
   onMobileNavClick(ev: Event) {
     if (typeof window === 'undefined' || window.innerWidth >= 992) return;
     const a = (ev.target as HTMLElement | null)?.closest?.('a');
     if (!a) return;
     if (a.classList.contains('dropdown-toggle')) return;
-    // Opción del submenú o ítem simple → cerrar
     this.closeMobileMenu();
   }
 

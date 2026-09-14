@@ -125,17 +125,16 @@ export const routes: Routes = [
       },
 
       {
-
-        path: 'productos/accesorios',
-
+        path: 'accesorios-para-poner-una-cafeteria',
         loadComponent: () =>
-
           import('./domains/catalog/presentation/pages/product-hub-page/product-hub-page.component')
-
             .then(m => m.ProductHubPageComponent),
-
         data: { hub: 'accesorios' }
-
+      },
+      {
+        path: 'productos/accesorios',
+        pathMatch: 'full',
+        redirectTo: '/accesorios-para-poner-una-cafeteria'
       },
 
       {

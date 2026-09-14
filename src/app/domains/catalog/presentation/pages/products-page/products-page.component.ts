@@ -47,6 +47,7 @@ export class ProductsPageComponent implements OnInit {
     },
     {
       slug: 'accesorios',
+      link: '/accesorios-para-poner-una-cafeteria',
       title: 'Accesorios',
       text: 'Diseñados para facilitar cada preparación.',
       img: '/assets/images/productos/cat-accesorios.webp',

@@ -174,6 +174,17 @@ export class ProductHubPageComponent {
       }
     };
     const seo = seoMap[key];
-    if (seo) this.seo.set({ ...seo, image: this.img });
+    if (seo) {
+      this.seo.set({
+        ...seo,
+        image: this.img,
+        canonical:
+          key === 'accesorios'
+            ? 'https://cafeetrusca.com/accesorios-para-poner-una-cafeteria'
+            : key === 'cafe'
+              ? 'https://cafeetrusca.com/productos/cafe'
+              : undefined
+      });
+    }
   }
 }

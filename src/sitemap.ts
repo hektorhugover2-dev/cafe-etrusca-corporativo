@@ -15,7 +15,7 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
   { path: '/productos/cafe/premium', changefreq: 'weekly', priority: '0.7' },
   { path: '/productos/cafe/verde', changefreq: 'weekly', priority: '0.7' },
   { path: '/insumos-para-cafeterias', changefreq: 'weekly', priority: '0.8' },
-  { path: '/productos/accesorios', changefreq: 'weekly', priority: '0.6' },
+  { path: '/accesorios-para-poner-una-cafeteria', changefreq: 'weekly', priority: '0.6' },
   { path: '/maquinaria-y-equipo-para-cafeterias', changefreq: 'weekly', priority: '0.7' },
   { path: '/cursos-para-baristas-y-talleres-para-cafeterias', changefreq: 'weekly', priority: '0.9' },
   { path: '/educacion/cursos', changefreq: 'weekly', priority: '0.8' },

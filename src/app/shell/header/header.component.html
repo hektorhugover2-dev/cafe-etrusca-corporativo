@@ -13,13 +13,21 @@
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/nosotros">Nosotros</a></li>
 
           <li class="nav-item dropdown custom-hover-dropdown mega-dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" (click)="$event.preventDefault()">
+            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" id="navbarDropdownProductos" role="button"
+               routerLink="/productos"
+               data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"
+               (click)="onMegaRootClick($event)">
               Productos
             </a>
             <div class="dropdown-menu mega-menu border-0" aria-labelledby="navbarDropdownProductos">
               <div class="mega-grid">
                 <aside class="mega-cats">
                   <h3>Categorías</h3>
+                  <a class="mega-cat d-lg-none" routerLink="/productos" data-tone="lime">
+                      <span class="mega-bar"></span>
+                      <span class="mega-cup" aria-hidden="true"></span>
+                      Inicio
+                    </a>
                   @for (c of productCats; track c.id) {
                     <a class="mega-cat" [class.active]="productPanel === c.id" [attr.data-tone]="c.tone"
                        [routerLink]="c.link" (mouseenter)="productPanel = c.id">
@@ -115,13 +123,21 @@
           </li>
 
           <li class="nav-item dropdown custom-hover-dropdown mega-dropdown">
-            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" href="#" id="navbarDropdownEducacion" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" (click)="$event.preventDefault()">
+            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" id="navbarDropdownEducacion" role="button"
+               routerLink="/cursos-para-baristas-y-talleres-para-cafeterias"
+               data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"
+               (click)="onMegaRootClick($event)">
               Educación
             </a>
             <div class="dropdown-menu mega-menu border-0" aria-labelledby="navbarDropdownEducacion">
               <div class="mega-grid">
                 <aside class="mega-cats">
                   <h3>Formación</h3>
+                  <a class="mega-cat d-lg-none" routerLink="/cursos-para-baristas-y-talleres-para-cafeterias" data-tone="lime">
+                      <span class="mega-bar"></span>
+                      <span class="mega-cup" aria-hidden="true"></span>
+                      Inicio
+                    </a>
                   @for (c of eduCats; track c.id) {
                     <a class="mega-cat" [class.active]="eduPanel === c.id" [attr.data-tone]="c.tone"
                        [routerLink]="c.link" (mouseenter)="eduPanel = c.id">
@@ -157,7 +173,6 @@
                       <span class="more">Saber más</span>
                     </a>
                   </div>
-                    <a class="mega-cta" routerLink="/cursos-para-baristas-y-talleres-para-cafeterias">Ver todos los cursos y talleres ›</a>
                 </div>
 
                 <aside class="mega-side">
