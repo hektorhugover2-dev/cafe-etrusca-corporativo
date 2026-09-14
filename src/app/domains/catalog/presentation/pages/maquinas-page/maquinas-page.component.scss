@@ -3,6 +3,18 @@
   overflow-x: hidden;
 }
 
+.maq-sec:has(app-grinder-slider) {
+  padding-left: 0;
+  padding-right: 0;
+  overflow: visible;
+}
+
+.maq-sec:has(app-grinder-slider) > .maq-sec__head,
+.maq-sec:has(app-grinder-slider) > .maq-brand {
+  padding-left: clamp(1.2rem, 5vw, 5rem);
+  padding-right: clamp(1.2rem, 5vw, 5rem);
+}
+
 .maq-nav {
   display: flex;
   flex-wrap: wrap;

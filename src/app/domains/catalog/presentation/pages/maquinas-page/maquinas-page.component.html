@@ -68,7 +68,13 @@
             }
           </div>
         </div>
+        @if (sec.id === 'molinos' && block.brand === 'Eureka') {
+          @for (g of grinders; track g.id) {
+            <app-grinder-slider [brand]="g"></app-grinder-slider>
+          }
+        }
       }
+
     </section>
   }
 

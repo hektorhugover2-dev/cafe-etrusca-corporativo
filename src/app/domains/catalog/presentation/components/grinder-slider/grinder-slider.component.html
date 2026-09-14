@@ -1,0 +1,82 @@
+<section class="grinder-brand" [attr.id]="'grinder-' + brand.id" [style.--grinder-bg]="brand.bg" [style.--grinder-lead]="brand.leadColor">
+  <div class="grinder-bg" aria-hidden="true"></div>
+
+  <div class="grinder-marquee-wrap">
+    <div class="grinder-marquee">
+      @for (n of marqueeLoop; track n) {
+        <span>{{ brand.marquee }}</span>
+      }
+    </div>
+  </div>
+
+  <p class="grinder-lead">{{ lead }}</p>
+
+  <div class="grinder-carousel">
+    <div class="grinder-copy">
+      <h3 class="grinder-title">{{ titulo }}</h3>
+      <p class="grinder-desc">{{ descripcion }}</p>
+
+      @if (ficha.length) {
+        <div class="grinder-specs">
+          <h5>FICHA TÉCNICA</h5>
+          <div class="grinder-specs-grid">
+            <table>
+              <tbody>
+                @for (row of fichaLeft; track row[0]) {
+                  <tr>
+                    <th>{{ row[0] }}</th>
+                    <td>{{ row[1] }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            @if (fichaRight.length) {
+              <table>
+                <tbody>
+                  @for (row of fichaRight; track row[0]) {
+                    <tr>
+                      <th>{{ row[0] }}</th>
+                      <td>{{ row[1] }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="grinder-media">
+      <div class="grinder-img-card">
+        @if (img) {
+          <img [src]="img" [alt]="titulo">
+        }
+        @if (slides.length > 1) {
+          <button class="arrow prev" type="button" aria-label="Anterior" (click)="prev()">‹</button>
+          <button class="arrow next" type="button" aria-label="Siguiente" (click)="next()">›</button>
+        }
+      </div>
+
+      @if (slide?.colores?.length) {
+        <div class="grinder-dots" role="tablist" aria-label="Colores">
+          @for (c of slide!.colores; track c.name; let i = $index) {
+            <button
+              type="button"
+              class="dot"
+              [class.active]="colorAt === i"
+              [style.background]="c.hex"
+              [attr.title]="c.name"
+              [attr.aria-label]="c.name"
+              (click)="pickColor(i)">
+            </button>
+          }
+        </div>
+      }
+
+      @if (sku) {
+        <div class="grinder-sku">SKU: {{ sku }}</div>
+      }
+    </div>
+  </div>
+</section>

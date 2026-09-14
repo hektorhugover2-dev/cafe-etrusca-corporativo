@@ -173,35 +173,6 @@ export const MAQ_SECTIONS: MaqSection[] = [
         ]
       },
       {
-        brand: 'Pietro',
-        logo: img('logo-pietro.svg'),
-        text: 'Molinillo manual que combina pasión, diseño y tecnología. Libertad de expresión para espresso y filtro.',
-        products: [
-          { name: 'Pietro B-Modal Blanco', image: img('pietro-blanco.webp'), specs: ['21 × 11.5 × 8 cm · 1.5 kg', 'Capacidad 60 g', 'Acero M340 Böhler', 'Espresso y filtro · Italia'] },
-          { name: 'Pietro B-Modal Verde', image: img('pietro-verde.webp'), specs: ['21 × 11.5 × 8 cm · 1.5 kg', 'Capacidad 60 g', 'Acero M340 Böhler', 'Espresso y filtro · Italia'] },
-          { name: 'Pietro B-Modal Negro', image: img('pietro-negro.webp'), specs: ['21 × 11.5 × 8 cm · 1.5 kg', 'Capacidad 60 g', 'Acero M340 Böhler', 'Espresso y filtro · Italia'] }
-        ]
-      },
-      {
-        brand: 'Comandante',
-        logo: img('logo-comandante.webp'),
-        text: 'Molinillos de alto rendimiento para profesionales y entusiastas, década tras década.',
-        products: [
-          { name: 'Cherry', image: img('comandante-cherry.webp'), specs: ['Molino manual Comandante'] },
-          { name: 'Rojo', image: img('comandante-rojo.webp'), specs: ['Molino manual Comandante'] },
-          { name: 'Negro', image: img('comandante-negro.webp'), specs: ['Molino manual Comandante'] }
-        ]
-      },
-      {
-        brand: 'Fiorenzato',
-        logo: img('logo-fiorenzato.webp'),
-        text: 'Preciso, fiable y fácil de usar. Diseñado para simplificar el trabajo del barista.',
-        products: [
-          { name: 'F4E', image: img('fiorenzato-f4e.webp'), specs: ['Molino profesional Fiorenzato'] },
-          { name: 'F4 EVO', image: img('fiorenzato-f4evo.webp'), specs: ['Negro · 110 V', 'Tolva 500 g'] }
-        ]
-      },
-      {
         brand: 'Anfim',
         logo: img('logo-anfim.webp'),
         text: 'Diseño funcional y cultura del espresso italiano, para barra profesional y uso doméstico.',

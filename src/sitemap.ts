@@ -33,11 +33,11 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
 
 function xmlEscape(value: string): string {
   return value
-    .replace(/&/g, '&')
-    .replace(/</g, '<')
-    .replace(/>/g, '>')
-    .replace(/"/g, '"')
-    .replace(/'/g, ''');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 function urlEntry(loc: string, lastmod: string, changefreq: string, priority: string): string {

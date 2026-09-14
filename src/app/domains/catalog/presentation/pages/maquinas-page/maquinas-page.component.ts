@@ -2,13 +2,15 @@ import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { InsumosCtaComponent } from '../../components/insumos-cta/insumos-cta.component';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
+import { GrinderSliderComponent } from '../../components/grinder-slider/grinder-slider.component';
 import { MAQ_NAV, MAQ_SECTIONS } from '../../maquinas.data';
+import { GRINDER_BRANDS } from '../../grinders.data';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 
 @Component({
   selector: 'app-maquinas-page',
   standalone: true,
-  imports: [RouterLink, InsumosCtaComponent, ScrollWaveComponent],
+  imports: [RouterLink, InsumosCtaComponent, ScrollWaveComponent, GrinderSliderComponent],
   templateUrl: './maquinas-page.component.html',
   styleUrls: ['../../insumos-theme.scss', './maquinas-page.component.scss']
 })
@@ -17,6 +19,7 @@ export class MaquinasPageComponent implements OnInit {
 
   nav = MAQ_NAV;
   sections = MAQ_SECTIONS;
+  grinders = GRINDER_BRANDS;
 
   ngOnInit() {
     this.seo.set({
