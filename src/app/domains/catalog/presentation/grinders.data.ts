@@ -37,7 +37,13 @@ function specRows(brand: string, name: string, sku: string | undefined, specs: s
   const rows: GrinderSpec[] = [['Marca', brand], ['Modelo', name]];
   if (sku) rows.push(['SKU', sku]);
   for (const s of specs) {
-    if (/tolva/i.test(s)) rows.push(['Tolva', s.replace(/tolva\s*/i, '').trim()]);
+    if (s.includes(':')) {
+      const i = s.indexOf(':');
+      rows.push([s.slice(0, i).trim(), s.slice(i + 1).trim()]);
+    } else if (/tolva/i.test(s)) rows.push(['Tolva', s.replace(/tolva\s*/i, '').trim()]);
+    else if (/cap\.?\s*de lote/i.test(s)) rows.push(['Capacidad de lote', s.replace(/cap\.?\s*de lote\s*/i, '').trim()]);
+    else if (/ciclo/i.test(s)) rows.push(['Ciclo', s.replace(/ciclo\s*/i, '').trim()]);
+    else if (/\bhp\b/i.test(s)) rows.push(['Potencia', s]);
     else if (/\d+\s*v/i.test(s)) rows.push(['Voltaje', s]);
     else rows.push(['Detalle', s]);
   }
@@ -47,16 +53,52 @@ function specRows(brand: string, name: string, sku: string | undefined, specs: s
 function slidesFromProducts(
   brand: string,
   lead: string,
-  products: Array<{ name: string; sku?: string; image: string; specs: string[] }>
+  products: Array<{ name: string; sku?: string; image?: string; specs: string[] }>
 ): GrinderSlide[] {
   return products.map((p) => ({
     titulo: p.name.toUpperCase(),
     descripcion: lead,
     sku: p.sku,
-    img: p.image,
+    img: p.image || '',
     colores: [],
     ficha: specRows(brand, p.name, p.sku, p.specs)
   }));
+}
+
+const THEMES: Record<string, { bg: string; leadColor: string }> = {
+  Reneka: { bg: '#D4B06A', leadColor: '#5c3a10' },
+  Melitta: { bg: '#E07A6A', leadColor: '#6b2218' },
+  'Hamilton Beach': { bg: '#7EB6D9', leadColor: '#16324a' },
+  Blendtec: { bg: '#E8C44A', leadColor: '#5a4308' },
+  'Coffee Tech': { bg: '#C49A6C', leadColor: '#4a3014' },
+  Ceado: { bg: '#DDB07A', leadColor: '#6b3b12' },
+  Eureka: { bg: '#E07A5F', leadColor: '#6b2410' },
+  Anfim: { bg: '#8FA0B5', leadColor: '#243044' },
+  Mahlkönig: { bg: '#E57373', leadColor: '#6b1212' }
+};
+
+export function sliderFromBlock(block: {
+  brand: string;
+  logo: string;
+  text: string;
+  products: Array<{ name: string; sku?: string; image?: string; specs: string[] }>;
+}): GrinderBrand {
+  const theme = THEMES[block.brand] || { bg: '#C8B89A', leadColor: '#3d2a14' };
+  const id = block.brand
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-');
+  return {
+    id,
+    name: block.brand,
+    marquee: block.brand.toUpperCase(),
+    lead: block.text,
+    bg: theme.bg,
+    leadColor: theme.leadColor,
+    logo: block.logo,
+    slides: slidesFromProducts(block.brand, block.text, block.products)
+  };
 }
 
 const PIETRO_COLORS: GrinderColor[] = [

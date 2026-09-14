@@ -23,57 +23,13 @@
   @for (sec of sections; track sec.id) {
     <section class="maq-sec ins-section" [id]="sec.id">
       <header class="maq-sec__head">
-        @if (sec.brandLogo) {
-          <img class="maq-sec__logo" [src]="sec.brandLogo" [alt]="sec.kicker">
-        }
         <p class="maq-kicker">{{ sec.kicker }}</p>
         <h2>{{ sec.title }}</h2>
         <p class="maq-intro">{{ sec.intro }}</p>
       </header>
 
-      @if (sec.id === 'molinos') {
-        @for (g of grinders; track g.id) {
-          <app-grinder-slider [brand]="g"></app-grinder-slider>
-        }
-      } @else {
-        @for (block of sec.blocks; track block.brand) {
-          <div class="maq-brand">
-            @if (sec.blocks.length > 1) {
-              <div class="maq-brand__bar">
-                <img [src]="block.logo" [alt]="block.brand">
-                <div>
-                  <h3>{{ block.brand }}</h3>
-                  <p>{{ block.text }}</p>
-                </div>
-              </div>
-            }
-            <div class="maq-grid">
-              @for (p of block.products; track p.name) {
-                <article class="maq-card">
-                  <div class="maq-card__media" [class.is-empty]="!p.image">
-                    @if (p.image) {
-                      <img [src]="p.image" [alt]="p.name">
-                    } @else {
-                      <img class="fallback-logo" [src]="block.logo" [alt]="block.brand">
-                    }
-                  </div>
-                  <div class="maq-card__body">
-                    @if (p.sku) {
-                      <span class="sku">{{ p.sku }}</span>
-                    }
-                    <h3>{{ p.name }}</h3>
-                    <ul>
-                      @for (s of p.specs; track s) {
-                        <li>{{ s }}</li>
-                      }
-                    </ul>
-                    <a class="maq-help" routerLink="/contacto">Pedir asesoría</a>
-                  </div>
-                </article>
-              }
-            </div>
-          </div>
-        }
+      @for (g of slidersOf(sec); track g.id) {
+        <app-grinder-slider [brand]="g"></app-grinder-slider>
       }
 
     </section>
