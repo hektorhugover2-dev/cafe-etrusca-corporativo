@@ -10,7 +10,7 @@
     <div class="jar-hero-media">
       <img class="photo" src="/assets/images/maquinas/hero.webp" alt="Máquinas y equipo para cafeterías">
     </div>
-    <app-scroll-wave position="bottom" [fillColor]="heroColor"></app-scroll-wave>
+    <app-scroll-wave position="bottom" [fillColor]="heroColor" [compact]="true"></app-scroll-wave>
   </section>
 
   <nav class="maq-nav" aria-label="Categorías de máquinas">
@@ -32,8 +32,20 @@
         </header>
       }
 
+      @if (firstOf(sec); as first) {
+        @if (first.logo) {
+          <div class="maq-sec-logo">
+            <img [src]="first.logo" [alt]="first.name">
+          </div>
+        }
+      }
+
+      <div class="maq-wave-top">
+        <app-scroll-wave position="top" [fillColor]="waveTopOf(sec)"></app-scroll-wave>
+      </div>
+
       @for (g of slidersOf(sec); track g.id; let first = $first) {
-        <app-grinder-slider [brand]="g" [topWave]="first"></app-grinder-slider>
+        <app-grinder-slider [brand]="g" [hideLogo]="first"></app-grinder-slider>
       }
 
       <app-scroll-wave class="maq-sec-wave" position="bottom" [fillColor]="waveOf(sec)"></app-scroll-wave>

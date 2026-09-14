@@ -4,7 +4,7 @@
 }
 
 .maq-hero {
-  padding-bottom: 11rem;
+  padding-bottom: 5.5rem;
 
   app-scroll-wave {
     position: absolute;
@@ -19,6 +19,53 @@
 .maq-sec {
   position: relative;
   padding-bottom: 6rem;
+}
+
+.maq-sec-logo {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 8;
+  padding: 0.2rem 1rem 0.6rem;
+
+  img {
+    height: clamp(110px, 16vw, 180px);
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.16));
+  }
+}
+
+.maq-wave-top {
+  position: relative;
+  z-index: 2;
+  height: 120px;
+  margin-bottom: -2px;
+  pointer-events: none;
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 120px;
+  }
+
+  ::ng-deep .scroll-wave-divider.top {
+    top: 0;
+    transform: none;
+    svg { height: 120px; }
+  }
+}
+
+.maq-sec app-grinder-slider:first-of-type {
+  position: relative;
+  z-index: 3;
+}
+
+.maq-sec app-grinder-slider:first-of-type ::ng-deep .grinder-logo {
+  display: none;
 }
 
 .maq-sec-wave {
@@ -47,7 +94,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px 18px;
-  padding: clamp(7.5rem, 14vh, 11rem) 20px 2.4rem;
+  padding: 3.2rem 20px 2.4rem;
   position: relative;
   z-index: 4;
 }

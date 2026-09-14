@@ -46,6 +46,14 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
     return list[list.length - 1]?.bg || '#f4eee4';
   }
 
+  firstOf(sec: MaqSection): GrinderBrand | null {
+    return this.slidersOf(sec)[0] || null;
+  }
+
+  waveTopOf(sec: MaqSection): string {
+    return this.firstOf(sec)?.bg || '#f4eee4';
+  }
+
   get firstBrand(): GrinderBrand | null {
     for (const sec of this.sections) {
       const list = this.slidersOf(sec);

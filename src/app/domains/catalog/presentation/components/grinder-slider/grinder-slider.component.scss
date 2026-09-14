@@ -17,28 +17,11 @@
   color: #0f172a;
 }
 
-.grinder-brand.has-top-wave {
-  overflow: visible;
-  padding-top: clamp(5rem, 10vh, 8rem);
-
-  .grinder-wave-top {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 4;
-    pointer-events: none;
-  }
-}
-
 .grinder-bg {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, #ffffff18, transparent 60%),
-    linear-gradient(180deg, #00000010, transparent 50%),
-    var(--grinder-bg, #222);
+  background: var(--grinder-bg, #222);
 }
 
 .grinder-logo {
@@ -49,11 +32,11 @@
 }
 
 .grinder-logo img {
-  height: clamp(48px, 7vw, 84px);
+  height: clamp(72px, 11vw, 128px);
   width: auto;
-  max-width: min(280px, 70vw);
+  max-width: min(380px, 76vw);
   object-fit: contain;
-  filter: drop-shadow(0 8px 16px #00000033);
+  filter: drop-shadow(0 8px 16px #00000022);
 }
 
 .grinder-marquee-wrap {

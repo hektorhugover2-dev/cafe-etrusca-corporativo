@@ -1,7 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnInit, PLATFORM_ID, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
 import {
   GrinderBrand,
   GrinderColor,
@@ -14,13 +13,12 @@ import {
 @Component({
   selector: 'app-grinder-slider',
   standalone: true,
-  imports: [ScrollWaveComponent],
   templateUrl: './grinder-slider.component.html',
   styleUrls: ['./grinder-slider.component.scss']
 })
 export class GrinderSliderComponent implements OnInit {
   @Input({ required: true }) brand!: GrinderBrand;
-  @Input() topWave = false;
+  @Input() hideLogo = false;
 
   private http = inject(HttpClient);
   private cdr = inject(ChangeDetectorRef);
