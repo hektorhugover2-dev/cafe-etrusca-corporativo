@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
@@ -14,6 +15,7 @@ import { Recipe, recipeBySlug, relatedRecipes } from './recetas.data';
 })
 export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   private seo = inject(SeoService);
+  private sanitizer = inject(DomSanitizer);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private document = inject(DOCUMENT);
@@ -62,6 +64,12 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
 
   brandHtml(text: string): string {
     return text.replace(/ChillOut/g, '<b class="co-brand">ChillOut</b>');
+  }
+
+  get safeVideoUrl(): SafeResourceUrl | null {
+    const url = this.recipe?.videoUrl;
+    if (!url) return null;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   displayTitle(recipe: Recipe): string {
