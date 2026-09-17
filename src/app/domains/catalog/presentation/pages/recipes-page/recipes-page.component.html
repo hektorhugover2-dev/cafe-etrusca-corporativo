@@ -7,7 +7,7 @@
       <p class="rc-kicker">Café Etrusca</p>
       <h1>Recetas</h1>
       <p class="rc-lead">
-        Recetario ChillOut, Fiestas Patrias y Verano 2026: ideas listas para tu barra.
+        Recetario ChillOut, calabaza, Fiestas Patrias y Verano 2026: ideas listas para tu barra.
       </p>
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffffff"></app-scroll-wave>
@@ -36,6 +36,27 @@
     </section>
   }
 
+  @if (calabaza.length) {
+    <section class="rc-grid-sec">
+      <div class="container">
+        <h2>Temporada de calabaza</h2>
+        <img src="/assets/images/separador.png" alt="" class="rc-sep">
+        <div class="rc-grid">
+          @for (r of calabaza; track r.slug) {
+            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'" [class.origin-calabaza]="r.origin === 'calabaza'">
+              <div class="rc-card-media">
+                <img [src]="r.image" [alt]="displayTitle(r)">
+              </div>
+              <h3>{{ displayTitle(r) }}</h3>
+              <p class="rc-sub">{{ r.summary }}</p>
+              <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
   @if (temporada.length) {
     <section class="rc-grid-sec">
       <div class="container">
@@ -43,7 +64,7 @@
         <img src="/assets/images/separador.png" alt="" class="rc-sep">
         <div class="rc-grid">
           @for (r of temporada; track r.slug) {
-            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'" [class.origin-calabaza]="r.origin === 'calabaza'">
               <div class="rc-card-media">
                 <img [src]="r.image" [alt]="displayTitle(r)">
               </div>
@@ -65,7 +86,7 @@
         <img src="/assets/images/separador.png" alt="" class="rc-sep">
         <div class="rc-grid">
           @for (r of verano; track r.slug) {
-            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'" [class.origin-calabaza]="r.origin === 'calabaza'">
               <div class="rc-card-media">
                 <img [src]="r.image" [alt]="displayTitle(r)">
               </div>
@@ -85,7 +106,7 @@
       <img src="/assets/images/separador.png" alt="" class="rc-sep">
       <div class="rc-grid">
         @for (r of recipes; track r.slug) {
-          <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+          <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'" [class.origin-calabaza]="r.origin === 'calabaza'">
             <div class="rc-card-media">
               <img [src]="r.image" [alt]="displayTitle(r)">
             </div>
