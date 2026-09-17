@@ -14,6 +14,7 @@ import { Recipe, publishedRecipes, recipesByCollection } from './recetas.data';
 export class RecipesPageComponent implements OnInit {
   private seo = inject(SeoService);
   recipes: Recipe[] = publishedRecipes();
+  calabaza = recipesByCollection('calabaza');
   temporada = recipesByCollection('fiestas-patrias-2026');
   verano = recipesByCollection('verano-2026');
   featured =
@@ -23,9 +24,9 @@ export class RecipesPageComponent implements OnInit {
   ngOnInit() {
     const brand = 'Caf\u00e9 Etrusca';
     this.seo.set({
-      title: 'Recetas para cafeter\u00eda | Fiestas Patrias y Verano 2026 | ' + brand,
+      title: 'Recetas para cafeter\u00eda | Calabaza, Fiestas Patrias y Verano 2026 | ' + brand,
       description:
-        'Recetario ChillOut, Fiestas Patrias y Verano 2026: mangonada, micheladas, cold brew, sodas y m\u00e1s bebidas de barra.',
+        'Recetario ChillOut, calabaza, Fiestas Patrias y Verano 2026: mangonada, micheladas, cold brew, sodas y m\u00e1s bebidas de barra.',
       keywords:
         'recetas cafeter\u00eda, Fiestas Patrias, Verano 2026, ChillOut, mangonada, cold brew, Caf\u00e9 Etrusca, recetas barista',
       image: '/assets/images/recetas/mangonada-card.webp',
