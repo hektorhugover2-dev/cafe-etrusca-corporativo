@@ -17,114 +17,11 @@
         <h2>Sucursales</h2>
         <img src="/assets/images/separador.png" alt="" class="ct-sep" />
         <p class="ct-sub">
-          Por defecto ves todos los puntos en México. Elige ciudad y sucursal para acercarte.
+          Elige una sede para ver su mapa de Google, sus datos de contacto y cómo llegar.
         </p>
       </div>
 
-      <div class="row g-5 align-items-stretch">
-        <div class="col-lg-6">
-          <div class="mapa-wrapper d-flex flex-column gap-3">
-                <div class="map-actions">
-        <a href="https://tienda.cafeetrusca.com/" class="video-hover-container text-decoration-none"
-           (mouseenter)="videoEl.play()"
-           (mouseleave)="videoEl.pause(); videoEl.currentTime = 0">
-          <img src="/assets/images/compra-en-linea-bg.webp" alt="Compra en linea" class="default-img">
-          <video #videoEl src="/assets/videos/compra-en-linea.mp4" loop muted playsinline class="hover-video"></video>
-        </a>
-        <div class="map-kind-btns">
-          <button type="button" class="badge rounded-pill fw-bold px-4 py-2 fs-6 border-0 shadow-sm map-kind-btn is-sucursal" [class.is-on]="mapKind === 'sucursal'" (click)="setMapKind('sucursal')">Sucursal</button>
-          <button type="button" class="badge rounded-pill fw-bold px-4 py-2 fs-6 border-0 shadow-sm map-kind-btn is-distribuidor" [class.is-on]="mapKind === 'distribuidor'" (click)="setMapKind('distribuidor')">Distribuidor</button>
-        </div>
-        </div>
-
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="visually-hidden" for="contacto-ciudad">Selecciona la ciudad</label>
-                <select
-                  id="contacto-ciudad"
-                  class="form-select bg-light border-0 shadow-sm py-2 px-3 rounded-pill"
-                  [value]="selectedCity"
-                  (change)="onCityChange($event)"
-                >
-                  <option value="">Todo México</option>
-                  @for (city of mapCities; track city) {
-                    <option [value]="city" [selected]="city === selectedCity">{{ cityLabel(city) }}</option>
-                  }
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="visually-hidden" for="contacto-sucursal">{{ placeSelectLabel }}</label>
-                <select
-                  id="contacto-sucursal"
-                  class="form-select bg-light border-0 shadow-sm py-2 px-3 rounded-pill"
-                  (change)="onBranchChange($event)"
-                  [disabled]="filteredBranches.length === 0"
-                >
-                  <option value="">{{ placeSelectLabel }}</option>
-                  @for (branch of filteredBranches; track branch.nombre) {
-                    <option
-                      [value]="branch.nombre"
-                      [selected]="currentBranch?.nombre === branch.nombre"
-                    >
-                      {{ branch.nombre }}
-                    </option>
-                  }
-                </select>
-              </div>
-            </div>
-            <div
-              id="contacto-map"
-              class="rounded-4 shadow-sm w-100 ct-map"
-              role="application"
-              aria-label="Mapa de sucursales Café Etrusca"
-            ></div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 d-flex">
-          <div class="sucursal-card p-4 p-md-5 rounded-4 shadow-sm w-100">
-            <h3>{{ currentBranch?.nombre || 'Nuestras sucursales' }}</h3>
-            <ul class="list-unstyled mb-0">
-              <li class="d-flex align-items-start mb-3">
-                <span class="ct-ico" aria-hidden="true">📍</span>
-                <div>
-                  <strong>Dirección</strong>
-                  <span>{{ currentBranch?.direccion || placeSelectHint }}</span>
-                </div>
-              </li>
-              <li class="d-flex align-items-start mb-3">
-                <span class="ct-ico" aria-hidden="true">📞</span>
-                <div>
-                  <strong>Teléfono</strong>
-                  @if (currentBranch) {
-                    <a [href]="telHref(currentBranch.telefono)">{{ currentBranch.telefono }}</a>
-                  } @else {
-                    <span>---</span>
-                  }
-                </div>
-              </li>
-              <li class="d-flex align-items-start mb-3">
-                <span class="ct-ico" aria-hidden="true">✉️</span>
-                <div>
-                  <strong>E-mail</strong>
-                  @if (currentBranch) {
-                    <a [href]="'mailto:' + currentBranch.email">{{ currentBranch.email }}</a>
-                  } @else {
-                    <span>---</span>
-                  }
-                </div>
-              </li>
-              <li class="d-flex align-items-start">
-                <span class="ct-ico" aria-hidden="true">🕒</span>
-                <div>
-                  <strong>Horario</strong>
-                  <span>{{ currentBranch?.horarios || '---' }}</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <app-sede-map [places]="mapPlaces" [(selected)]="currentBranch" idPrefix="contacto-sede"></app-sede-map>
     </div>
   </section>
 
@@ -143,7 +40,7 @@
             <a href="tel:5541668777">55 41 66 8777</a>
           </p>
           <div class="ct-lucky" aria-hidden="true">
-            <img [src]="luckyWriting ? '/assets/images/lucky-writing.png' : '/assets/images/lucky-idle.png'" alt="">
+            <img [src]="luckyWriting ? '/assets/images/lucky-writing.webp' : '/assets/images/lucky-idle.webp'" alt="">
           </div>
         </div>
         <div class="col-lg-7">
@@ -203,7 +100,7 @@
                   rows="5"
                   [(ngModel)]="message"
                   required
-                  minlength="8"
+                  minlength="5"
                 ></textarea>
               </div>
               <div class="col-12">
@@ -225,7 +122,7 @@
             }
 
             <button type="submit" class="ct-submit" [disabled]="submitting">
-              {{ submitting ? 'Enviando…' : 'Enviar' }}
+              {{ submitting ? 'Enviandoâ€¦' : 'Enviar' }}
             </button>
           </form>
         </div>
@@ -282,7 +179,7 @@
                   @if (row.email) {
                     <a [href]="'mailto:' + row.email">{{ row.email }}</a>
                   } @else {
-                    <span class="text-muted">—</span>
+                    <span class="text-muted">â€”</span>
                   }
                 </td>
               </tr>

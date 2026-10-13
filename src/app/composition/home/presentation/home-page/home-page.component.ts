@@ -1,20 +1,27 @@
-import { DISTRIBUTORS } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
-import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, OnDestroy, OnInit, Inject, PLATFORM_ID, inject } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common'; // Agregamos isPlatformBrowser
+﻿import { DISTRIBUTORS } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
+import { Component, ElementRef, QueryList, ViewChildren, OnDestroy, OnInit, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { swalToast } from '../../../../shared/kernel/utils/swal-toast';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CompromisoComponent } from '../../../../shared/ui/compromiso/compromiso.component';
 import { SeoService } from '../../../../shared/kernel/services/seo.service';
 import { ScrollWaveComponent } from '../../../../shared/ui/scroll-wave/scroll-wave.component';
+import { HomeHelpFormComponent } from '../home-help-form/home-help-form.component';
+import { SedeMapComponent } from '../../../../shared/ui/sede-map/sede-map.component';
 import { RouterLink } from '@angular/router';
 import { Recipe, publishedRecipes } from '../../../../domains/catalog/presentation/pages/recipes-page/recetas.data';
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, CompromisoComponent, ScrollWaveComponent, RouterLink],
+  imports: [FormsModule, CommonModule, CompromisoComponent, ScrollWaveComponent, RouterLink, SedeMapComponent, HomeHelpFormComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
-export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
-  homeRecipes: Recipe[] = ['miche-cero', 'mi-mero-mole', 'diablito-de-fresa', 'horchata-mexa']
+export class HomePageComponent implements OnInit, OnDestroy {
+  private http = inject(HttpClient);
+
+  homeRecipes: Recipe[] = ['pumpkin-cold-brew', 'dirty-pumpkin-chai', 'mokalabaza-latte', 'bubble-pumpkin']
     .map((slug) => publishedRecipes().find((r) => r.slug === slug))
     .filter((r): r is Recipe => !!r);
 
@@ -38,27 +45,16 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('counter') counters!: QueryList<ElementRef>;
   private observer: IntersectionObserver | null = null;
   activeOption: 'suscribir' | 'duda' | null = null;
+  ayudaLuckySrc = '';
+  private readonly luckyNewsletter = '/assets/images/lucky-newsletter.webp';
+  private readonly luckyPool = [
+    '/assets/images/lucky-idle.webp',
+    '/assets/images/lucky-writing.webp',
+    '/assets/images/mascota.png'
+  ];
+  private luckyRotateTimer: ReturnType<typeof setInterval> | null = null;
 
-  // ==========================================
-  // VARIABLES MAPA
-  // ==========================================
-  private map: any;
-  private markers: any[] = [];
-  private L: any; // Instancia dinámica de Leaflet
-  private customIcon: any; // Pin personalizado
-
-  private cityCoordinates: { [key: string]: [number, number] } = {
-    'Ciudad de México': [19.4326, -99.1332],
-    'Guadalajara': [20.66651, -103.37203],
-    'Monterrey': [25.6866, -100.3161],
-    'Puebla': [19.0414, -98.2063],
-    'Querétaro': [20.5881, -100.3880],
-    'Tijuana': [32.5149, -117.0382],
-    'León': [21.1606, -101.7116],
-    'Toluca': [19.2826, -99.6557],
-    'Yucatán': [21.0568604, -89.644909],
-    'Xalapa': [19.530488, -96.934478] 
-  };
+  // Mapa: Google Maps embebido (sin API ni llave), ver SedeMapComponent. Sin Leaflet.
 
   branches = [
     {
@@ -143,12 +139,12 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  mapKind: 'sucursal' | 'distribuidor' = 'sucursal';
-  filteredBranches: any[] = [];
+  /** Sedes del mapa «Visítanos»: sucursales + distribuidores (el componente filtra por tipo y estado). */
+  readonly mapPlaces: any[] = [
+    ...this.branches.map((b) => ({ ...b, tipo: 'sucursal' })),
+    ...DISTRIBUTORS
+  ];
   currentBranch: any = null;
-
-  // Inyectamos PLATFORM_ID para saber si estamos en el Servidor o Navegador
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
  ngOnInit() {
     const brand = 'Café Etrusca';
@@ -159,7 +155,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
         ' Todo Para Tu Cafetería: Cursos para Baristas, Talleres para Cafeterías, Insumos, Maquinaria, Equipo, Accesorios y más para potenciar tu negocio',
       keywords:
         'arte latte,Brew Bar,Cold Brew,Mezcla Personalizada,Cafés especiales,Mezclas especiales,Café Etrusca,insumos,cafeterías,equipo para cafetería,barras de café,cursos para barista,maquinas de espresso,certificaciones',
-      image: 'https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp',
+      image: '/assets/images/home/banners/banner_home_la_fenice.webp',
       ogType: 'website',
       jsonLd: ({ origin }) => [
         {
@@ -168,7 +164,7 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
           '@id': origin + '/#organization',
           name: brand,
           url: origin + '/',
-          logo: 'https://cafeetrusca.com/img/logo_etrusca.webp',
+          logo: origin + '/assets/images/logo-etrusca.webp',
           telephone: '+52-55-4166-8777',
           email: 'atencion@cafeetrusca.com',
           sameAs: [
@@ -192,38 +188,8 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.applyDefaultCity();
   }
 
-  async ngAfterViewInit() {
-
-    
-    if (isPlatformBrowser(this.platformId)) {
-      
-      // ... (Aquí se queda igual tu código del Observer para los contadores) ...
-
-      // LÓGICA DEL MAPA (Leaflet)
-      const leafletModule = await import('leaflet');
-      this.L = leafletModule.default || leafletModule;
-      
-      this.customIcon = this.makeMarkerIcon(0);
-
-      this.initMap();
-
-      // TRUCO: Disparamos la actualización del tamaño en dos momentos diferentes
-      // para asegurar que Bootstrap ya haya terminado de pintar la cuadrícula.
-      setTimeout(() => {
-        if (this.map) {
-          this.map.invalidateSize();
-        }
-      }, 100);
-
-      setTimeout(() => {
-        if (this.map) {
-          this.map.invalidateSize();
-        }
-      }, 1000); // 1 segundo después asegura que todo cargó al 100%
-    }
-  }
-
   ngOnDestroy() {
+    this.stopLuckyRotate();
     if (this.observer) this.observer.disconnect();
   }
 
@@ -231,173 +197,223 @@ export class HomePageComponent implements OnInit, AfterViewInit, OnDestroy {
   // LÓGICA DEL MAPA
   // ==========================================
   
-  get places() {
-    return this.mapKind === 'distribuidor' ? DISTRIBUTORS : this.branches;
-  }
-
-  get mapCities(): string[] {
-    return [...new Set(this.places.map((b) => b.ciudad))];
-  }
-
-  
-  get placeSelectLabel(): string {
-    return this.mapKind === 'distribuidor' ? 'Seleccione un distribuidor' : 'Selecciona la sucursal';
-  }
-
-  get placeSelectHint(): string {
-    return this.mapKind === 'distribuidor'
-      ? 'Seleccione un distribuidor para ver la dirección.'
-      : 'Selecciona una sucursal para ver la dirección.';
-  }
-setMapKind(kind: 'sucursal' | 'distribuidor') {
-    if (this.mapKind === kind) return;
-    this.mapKind = kind;
-    const city = this.places.some((b) => b.ciudad === 'Ciudad de México')
-      ? 'Ciudad de México'
-      : (this.mapCities[0] || '');
-    this.applyCity(city);
-  }
-
-  private applyCity(city: string) {
-    this.filteredBranches = city ? this.places.filter((b) => b.ciudad === city) : [];
-    this.currentBranch = this.filteredBranches[0] || null;
-    if (this.map) {
-      this.addMarkers(this.filteredBranches);
-      this.fitToBranches(this.filteredBranches);
-    }
-  }
-
-private applyDefaultCity() {
-    const defaultBranch = this.branches.find(b => b.nombre.indexOf('CEDIS') !== -1) || this.branches[0];
-    this.currentBranch = defaultBranch || null;
-    this.filteredBranches = defaultBranch
-      ? this.places.filter((b) => b.ciudad === defaultBranch.ciudad)
-      : [];
-  }
-
-  private makeMarkerIcon(offsetX = 0, blue = false) {
-    return this.L.divIcon({
-      className: 'etrusca-map-marker',
-      html: '<span class="etrusca-map-marker__hit"><img src="' + (blue ? '/assets/images/pin-distribuidor.svg' : 'https://cafeetrusca.com/img/LOCATION-ETRUSCA.svg') + '" alt=""></span>',
-      iconSize: [40, 48],
-      iconAnchor: [20 - offsetX, 48],
-      popupAnchor: [offsetX, -48]
-    });
-  }
-
-  private markerOffsets(branchArray: any[]): number[] {
-    const n = branchArray.length;
-    const offsets = new Array(n).fill(0);
-    const close = 0.003;
-    const used = new Set();
-    for (let i = 0; i < n; i++) {
-      if (used.has(i)) continue;
-      const group = [i];
-      used.add(i);
-      for (let j = i + 1; j < n; j++) {
-        if (used.has(j)) continue;
-        const dlat = branchArray[i].lat - branchArray[j].lat;
-        const dlng = branchArray[i].lng - branchArray[j].lng;
-        if ((dlat * dlat + dlng * dlng) < (close * close)) {
-          group.push(j);
-          used.add(j);
-        }
-      }
-      if (group.length > 1) {
-        group.forEach((idx, k) => {
-          offsets[idx] = (k - (group.length - 1) / 2) * 64;
-        });
-      }
-    }
-    return offsets;
-  }
-
-  private fitToBranches(branchArray: any[]) {
-    if (!this.map || !branchArray.length) return;
-    if (branchArray.length === 1) {
-      this.map.setView([branchArray[0].lat, branchArray[0].lng], 15);
-      return;
-    }
-    const bounds = this.L.latLngBounds(branchArray.map((b) => [b.lat, b.lng]));
-    this.map.fitBounds(bounds, { padding: [48, 48], maxZoom: 15 });
-  }
-
-  private initMap() {
-    this.applyDefaultCity();
-    const start = this.currentBranch || this.branches[0];
-    this.map = this.L.map('map', { zoomControl: true }).setView(
-      start ? [start.lat, start.lng] : [23.6345, -102.5528],
-      start ? 15 : 5
-    );
-
-    this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(this.map);
-
-    this.addMarkers(this.filteredBranches.length ? this.filteredBranches : []);
-    if (start) this.map.setView([start.lat, start.lng], 15);
-  }
-
-  private addMarkers(branchArray: any[]) {
-    this.markers.forEach(marker => this.map?.removeLayer(marker));
-    this.markers = [];
-    const offsets = this.markerOffsets(branchArray);
-
-    branchArray.forEach((branch, index) => {
-      const popupContent = '<b>' + branch.nombre + '</b><br>' + branch.direccion;
-      if (this.map) {
-         const marker = this.L.marker([branch.lat, branch.lng], {
-           icon: this.makeMarkerIcon(offsets[index], branch.tipo === 'distribuidor'),
-           title: branch.nombre,
-           alt: branch.nombre,
-           keyboard: true
-         }).addTo(this.map);
-         marker.bindPopup(popupContent);
-         marker.on('click', () => {
-             this.currentBranch = branch;
-         });
-         this.markers.push(marker);
-      }
-    });
-  }
-
-  onCityChange(event: Event) {
-    const selectedCity = (event.target as HTMLSelectElement).value;
-    
-    if (selectedCity) {
-      this.filteredBranches = this.places.filter((b) => b.ciudad === selectedCity);
-      this.addMarkers(this.filteredBranches);
-      if (this.filteredBranches.length > 0) this.currentBranch = this.filteredBranches[0];
-      this.fitToBranches(this.filteredBranches);
-    } else {
-      this.filteredBranches = [];
-      this.currentBranch = null;
-      if (this.map) {
-        this.map.setView([23.6345, -102.5528], 5);
-        this.addMarkers([]);
-      }
-    }
-  }
-
-  onBranchChange(event: Event) {
-    const selectedBranchName = (event.target as HTMLSelectElement).value;
-    if(selectedBranchName) {
-        const branch = this.filteredBranches.find(b => b.nombre === selectedBranchName);
-        if(branch && this.map) {
-            this.currentBranch = branch;
-            this.map.setView([branch.lat, branch.lng], 15);
-            
-            const marker = this.markers.find(m => m.getLatLng().lat === branch.lat && m.getLatLng().lng === branch.lng);
-            if(marker) marker.openPopup();
-        }
-    }
+  private applyDefaultCity() {
+    this.currentBranch = this.mapPlaces.find((b) => b.nombre.indexOf('CEDIS') !== -1) || this.mapPlaces[0] || null;
   }
 
   // ==========================================
   // OTRAS SECCIONES
   // ==========================================
+  
+  newsletterName = '';
+  newsletterEmail = '';
+  newsletterSubmitting = false;
+
+  
+  dudaName = '';
+  dudaEmail = '';
+  dudaTelephone = '';
+  dudaSubject = '';
+  dudaMessage = '';
+  dudaPrivacy = false;
+  dudaSubmitting = false;
+
+  private readonly contactUsUrl = 'https://cafeetrusca.com/api/ContactUs';
+
+  sendHomeContact() {
+    const name = (this.dudaName || '').trim();
+    const email = (this.dudaEmail || '').trim();
+    const telephone = (this.dudaTelephone || '').trim();
+    const subject = (this.dudaSubject || '').trim();
+    const messageBody = (this.dudaMessage || '').trim();
+
+    if (!name || !email || !messageBody) {
+      void swalToast('info', 'Por favor, completa nombre, correo y mensaje.');
+      return;
+    }
+    if (!this.dudaPrivacy) {
+      void swalToast('info', 'Debes aceptar el aviso de privacidad.');
+      return;
+    }
+
+    const subjectLabel: Record<string, string> = {
+      productos: 'Información de productos',
+      pedidos: 'Dudas sobre mi pedido',
+      soporte: 'Soporte técnico de máquinas',
+      otro: 'Otro comentario'
+    };
+    const message = subject
+      ? '[' + (subjectLabel[subject] || subject) + '] ' + messageBody
+      : messageBody;
+
+    const payload = {
+      name,
+      fatherlastname: 'vacio',
+      motherlastname: 'vacio',
+      email,
+      telephone: telephone || '0',
+      ocupacion: '0',
+      url: typeof window !== 'undefined' ? window.location.href : '',
+      message
+    };
+
+    this.dudaSubmitting = true;
+
+    const finishOk = () => {
+      void swalToast('success', 'Gracias por tus datos, en un momento un asesor se comunicará contigo.');
+      this.dudaName = '';
+      this.dudaEmail = '';
+      this.dudaTelephone = '';
+      this.dudaSubject = '';
+      this.dudaMessage = '';
+      this.dudaPrivacy = false;
+      this.dudaSubmitting = false;
+    };
+
+    const host = (typeof window !== 'undefined' ? window.location.hostname : '').toLowerCase();
+    const isLocal =
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host === '::1' ||
+      host.endsWith('.local');
+
+    if (isLocal) {
+      console.info('[ContactUs/home] POST skipped on local hostname', host, payload);
+      finishOk();
+      return;
+    }
+
+    this.http
+      .post(this.contactUsUrl, payload, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .subscribe({
+        next: () => finishOk(),
+        error: (err) => {
+          console.error(err);
+          void swalToast('error', 'No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde.');
+          this.dudaSubmitting = false;
+        }
+      });
+  }
+
+  sendNewsletter() {
+    const first_name = (this.newsletterName || '').trim();
+    const email = (this.newsletterEmail || '').trim();
+    const last_name = '';
+
+    if (!first_name || !email) {
+      void swalToast('info', 'Por favor, completa tu nombre y correo electrónico.');
+      return;
+    }
+
+    this.newsletterSubmitting = true;
+
+    const finishOk = () => {
+      void swalToast('success', '¡Gracias por suscribirte!');
+      this.newsletterName = '';
+      this.newsletterEmail = '';
+      this.newsletterSubmitting = false;
+    };
+
+    const host = (typeof window !== 'undefined' ? window.location.hostname : '').toLowerCase();
+    const isLocal =
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host === '::1' ||
+      host.endsWith('.local');
+
+    if (isLocal) {
+      console.info('[Newsletter] POST skipped on local hostname', host);
+      finishOk();
+      return;
+    }
+
+    this.http
+      .post(
+        'https://cafeetrusca.com/api/newsletter',
+        { first_name, last_name, email },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .subscribe({
+        next: () => finishOk(),
+        error: (err) => {
+          console.error(err);
+          void swalToast('error', 'Ocurrió un error al enviar tu información.');
+          this.newsletterSubmitting = false;
+        }
+      });
+  }
+
+
+  onHelpModeChange(mode: 'newsletter' | 'contact' | null) {
+    this.activeOption = mode === 'newsletter' ? 'suscribir' : mode === 'contact' ? 'duda' : null;
+  }
+
+  onHelpFormTouch(ev: { mode: 'newsletter' | 'contact' | null; filling: boolean }) {
+    this.stopLuckyRotate();
+    if (ev.mode === 'newsletter') {
+      this.ayudaLuckySrc = ev.filling ? this.luckyNewsletter : '';
+      return;
+    }
+    if (ev.mode === 'contact') {
+      if (!ev.filling) {
+        this.ayudaLuckySrc = '';
+        return;
+      }
+      this.pickRandomLucky();
+      this.luckyRotateTimer = setInterval(() => this.pickRandomLucky(), 2800);
+      return;
+    }
+    this.ayudaLuckySrc = '';
+  }
   toggleOption(option: 'suscribir' | 'duda') {
     this.activeOption = this.activeOption === option ? null : option;
+    this.onAyudaFormTouch();
+  }
+
+  onAyudaFormTouch() {
+    this.stopLuckyRotate();
+    if (this.activeOption === 'suscribir') {
+      const filling = [this.newsletterName, this.newsletterEmail].some((v) => (v || '').trim().length > 0);
+      this.ayudaLuckySrc = filling ? this.luckyNewsletter : '';
+      return;
+    }
+    if (this.activeOption === 'duda') {
+      const filling = [this.dudaName, this.dudaEmail, this.dudaTelephone, this.dudaSubject, this.dudaMessage].some(
+        (v) => (v || '').trim().length > 0
+      );
+      if (!filling) {
+        this.ayudaLuckySrc = '';
+        return;
+      }
+      this.pickRandomLucky();
+      this.luckyRotateTimer = setInterval(() => this.pickRandomLucky(), 2800);
+      return;
+    }
+    this.ayudaLuckySrc = '';
+  }
+
+  private pickRandomLucky() {
+    const pool = this.luckyPool;
+    if (!pool.length) return;
+    let next = pool[Math.floor(Math.random() * pool.length)];
+    if (pool.length > 1) {
+      let guard = 0;
+      while (next === this.ayudaLuckySrc && guard++ < 8) {
+        next = pool[Math.floor(Math.random() * pool.length)];
+      }
+    }
+    this.ayudaLuckySrc = next;
+  }
+
+  private stopLuckyRotate() {
+    if (this.luckyRotateTimer) {
+      clearInterval(this.luckyRotateTimer);
+      this.luckyRotateTimer = null;
+    }
   }
 
 

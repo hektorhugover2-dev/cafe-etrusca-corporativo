@@ -64,12 +64,6 @@
   margin-left: 0;
 }
 
-.ct-map {
-  height: 420px;
-  background: #f5f5f5;
-  z-index: 1;
-}
-
 .sucursal-card {
   background: #fff;
 
@@ -300,12 +294,6 @@
   font-weight: 800;
 }
 
-@media (max-width: 767px) {
-  .ct-map {
-    height: 320px;
-  }
-}
-
 .map-kind-btn {
   color: #1b2a4a;
 }
@@ -421,3 +409,24 @@
   }
 }
 
+
+.ct-ico {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e8e8e8;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  margin-right: 0.75rem;
+  img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+}
+.sucursal-card li:nth-child(1) .ct-ico { background: #ffd19a; }
+.sucursal-card li:nth-child(2) .ct-ico { background: #8fe8f4; }
+.sucursal-card li:nth-child(3) .ct-ico { background: #dff08a; }
+/* Horario: reloj (reloj.png, mismo trazo #111 que los otros 3) sobre lila, siguiente tono de la paleta del sitio. */
+.sucursal-card li:nth-child(4) .ct-ico { background: #d3b5ff; }

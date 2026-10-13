@@ -1,14 +1,26 @@
 @if (course) {
 <div class="edu-page">
+  <nav class="edu-crumbs" aria-label="Breadcrumb">
+    @for (c of crumbs; track c.label; let last = $last) {
+      @if (!last && c.path) {
+        <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+      } @else {
+        <span aria-current="page">{{ c.label }}</span>
+      }
+    }
+  </nav>
   <section class="edu-hero">
     <div class="edu-hero-copy">
       <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">{{ course.kicker }} presencial</p>
       <h1>{{ course.title }}</h1>
+      @if (course.clave) { <p class="edu-clave">Clave: {{ course.clave }}</p> }
       <p class="lead">{{ course.summary }}</p>
       <div class="meta">
         <div><strong>Duración</strong>{{ course.duration }} · {{ course.hours }}</div>
         <div><strong>Horario</strong>{{ course.schedule }}</div>
+        @if (priceLabel) { <div><strong>Inversión</strong>{{ priceLabel }}</div> }
       </div>
+      @if (combo) { <p class="edu-combo">{{ combo }}</p> }
       <div class="edu-actions">
         <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
@@ -60,12 +72,21 @@
     <ul>
       @for (a of course.audience; track a) { <li>{{ a }}</li> }
     </ul>
-    <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
-    <div class="edu-grid-6">
-      @for (i of course.includes; track i) {
-        <div class="edu-tile"><span>{{ i }}</span></div>
-      }
-    </div>
+    @if (course.kind === 'experiencias') {
+      <div class="edu-incluye">
+        <h2>¿Qué incluye la "Experiencia"?</h2>
+        <ul class="edu-incluye-list">
+          @for (b of experienceIncludes; track b) { <li>{{ b }}</li> }
+        </ul>
+      </div>
+    } @else {
+      <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
+      <div class="edu-grid-6">
+        @for (i of course.includes; track i) {
+          <div class="edu-tile"><span>{{ i }}</span></div>
+        }
+      </div>
+    }
   </section>
 
   @if (course.quote) {
@@ -135,14 +156,27 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
               Me interesa
             </button>
+            @if (d.eventPath) { <a class="edu-date-link" [routerLink]="d.eventPath">Ver detalle de la fecha</a> }
           </div>
           
         </article>
       }
       @if (filteredDates.length === 0) {
         <div class="edu-dates-empty">
-          <p>Por el momento no hay fechas disponibles con estos filtros.</p>
-          <button type="button" class="btn-pink" (click)="openInterestEmpty()">Infórmate aquí</button>
+          @if (hasDates) {
+            <p><strong>No hay fechas con estos filtros.</strong> Hay otras fechas en otras sedes o meses.</p>
+            <div class="edu-actions">
+              <button type="button" class="btn-pink" (click)="clearFilters()">Ver otras sedes</button>
+              <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+            </div>
+          } @else {
+            <p><strong>Por ahora no hay fechas publicadas para este curso.</strong> Déjanos tus datos y te avisamos cuando se abra un grupo, o habla con un asesor.</p>
+            <div class="edu-actions">
+              <button type="button" class="btn-pink" (click)="openInterestEmpty()">Me interesa</button>
+              <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+              <a class="btn-ghost" routerLink="/sucursales">Ver sucursales</a>
+            </div>
+          }
         </div>
       }
     </div>
@@ -157,7 +191,8 @@
           <div class="body">
             <div class="kicker">{{ c.kicker }}</div>
             <h3>{{ c.title }}</h3>
-            <a class="btn-navy" [routerLink]="['/educacion', c.kind, c.slug]">Ver más</a>
+            @if (c.clave) { <p class="edu-clave">Clave: {{ c.clave }}</p> }
+            <a class="btn-navy" [routerLink]="relatedLink(c)">Ver más</a>
           </div>
         </article>
       }

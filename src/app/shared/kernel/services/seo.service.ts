@@ -2,11 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { SITE_ORIGIN, siteAssetUrl, siteUrl } from '../config/site-url';
 
 export interface SeoUrlContext {
-  /** Current site origin, e.g. http://127.0.0.1:4200 or https://cafeetrusca.com */
+  /** Canonical site origin (environment.siteOrigin), e.g. https://cafeetrusca.com */
   origin: string;
-  /** Absolute canonical URL for this route */
+  /** Absolute canonical URL for this route (always with trailing slash) */
   url: string;
 }
 
@@ -16,12 +17,16 @@ export interface SeoInput {
   keywords?: string;
   /** Absolute URL or site-relative path. Falls back to brand OG image. */
   image?: string;
-  /** schema.org JSON-LD, or a factory that receives the live origin/url */
+  /** schema.org JSON-LD, or a factory that receives the canonical origin/url */
   jsonLd?:
     | Record<string, unknown>
     | Record<string, unknown>[]
     | ((ctx: SeoUrlContext) => Record<string, unknown> | Record<string, unknown>[]);
   ogType?: string;
+  /** Optional site path to use as canonical instead of the current router URL. */
+  path?: string;
+  /** robots meta (default index,follow). Never combine noindex with a canonical to another URL. */
+  robots?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -33,39 +38,35 @@ export class SeoService {
 
   /** Default social share image (landscape hero on CDN). */
   private readonly defaultImage =
-    'https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp';
+    '/assets/images/home/banners/banner_home_la_fenice.webp';
 
-  /** Local → 127.0.0.1; elsewhere → the host that is actually serving the app. */
+  /**
+   * Canonical origin. Deliberately NOT the request/window host: prerender runs on
+   * 127.0.0.1:<port> and the dev site runs on desarrollo.cafeetrusca.com, and neither
+   * must ever appear in canonical / og:url / JSON-LD.
+   */
   resolveOrigin(): string {
-    const loc = this.document.defaultView?.location || this.document.location;
-    const host = (loc?.hostname || '').toLowerCase();
-    const port = loc?.port || '';
+    return SITE_ORIGIN;
+  }
 
-    if (host === 'localhost' || host === '127.0.0.1') {
-      const p = port ? `:${port}` : '';
-      return `http://127.0.0.1${p}`;
-    }
-
-    if (loc?.origin && loc.origin !== 'null') {
-      return loc.origin;
-    }
-
-    return 'https://cafeetrusca.com';
+  /** Absolute canonical URL (with trailing slash) for a path or the current route. */
+  canonicalUrl(path?: string): string {
+    return siteUrl(path ?? this.router.url);
   }
 
   set(input: SeoInput) {
     const origin = this.resolveOrigin();
-    const path = this.router.url.split('?')[0] || '/';
-    const url = `${origin}${path}`;
-    const imagePath = input.image || this.defaultImage;
-    const image = imagePath.startsWith('http') ? imagePath : `${origin}${imagePath}`;
+    const url = this.canonicalUrl(input.path);
+    const image = siteAssetUrl(input.image || this.defaultImage);
 
     this.title.setTitle(input.title);
     this.meta.updateTag({ name: 'description', content: input.description });
     if (input.keywords) {
       this.meta.updateTag({ name: 'keywords', content: input.keywords });
     }
-    this.meta.updateTag({ name: 'robots', content: 'index,follow' });
+    // Dev/staging hosts are blocked with X-Robots-Tag + robots.txt at server/hosting level
+    // (see src/server.ts and deploy/iis/web.config); the HTML stays identical for production.
+    this.meta.updateTag({ name: 'robots', content: input.robots || 'index,follow' });
     this.meta.updateTag({ name: 'author', content: 'Café Etrusca' });
     this.meta.updateTag({ name: 'language', content: 'es' });
 
@@ -83,6 +84,27 @@ export class SeoService {
     this.meta.updateTag({ name: 'twitter:description', content: input.description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
 
+    this.setCanonical(url);
+
+    if (input.jsonLd) {
+      const data = typeof input.jsonLd === 'function' ? input.jsonLd({ origin, url }) : input.jsonLd;
+      this.setJsonLd('app-jsonld', data);
+    }
+  }
+
+  /** Update the robots meta after the page data arrives (e.g. course × sede pages without dates). */
+  setRobots(content: string) {
+    this.meta.updateTag({ name: 'robots', content });
+  }
+
+  /** Canonical + og:url to another primary URL (site path or absolute). */
+  setCanonicalPath(path: string) {
+    const url = /^https?:/.test(path) ? path : this.canonicalUrl(path);
+    this.setCanonical(url);
+    this.meta.updateTag({ property: 'og:url', content: url });
+  }
+
+  setCanonical(url: string) {
     let canonical = this.document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canonical) {
       canonical = this.document.createElement('link');
@@ -90,11 +112,6 @@ export class SeoService {
       this.document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', url);
-
-    if (input.jsonLd) {
-      const data = typeof input.jsonLd === 'function' ? input.jsonLd({ origin, url }) : input.jsonLd;
-      this.setJsonLd('app-jsonld', data);
-    }
   }
 
   setJsonLd(id: string, data: Record<string, unknown> | Record<string, unknown>[]) {

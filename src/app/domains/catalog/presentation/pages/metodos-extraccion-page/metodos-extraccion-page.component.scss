@@ -1,0 +1,454 @@
+// Accesorios › Métodos de extracción — estructura y estilos copiados de accesorios-page.component.scss
+// (hero tipo Jarabes, .jar-head, .acc-frame, .acc-help, escala --u a 1440 px); colores del PDF
+// "Métodos de extracción". En escritorio (>= 1024 px) las medidas del diseño se escalan con --u.
+
+// Píldoras de marca/subcategoría, tarjetas de producto y modo marca (API): parcial compartido con
+// app-acc-brand-products (las tarjetas estáticas de esta página usan las mismas clases).
+@use '../../styles/acc-products';
+
+$hero-ink: #251818;   // título y texto del hero (PDF)
+$hero-beige: #ddd0c3; // tono de la foto (respaldo mientras carga)
+$btn: #71c2c5;        // "Explorar accesorios"
+$heading: #323232;
+$pill-bg: #d2f9fa;
+$pill-text: #2f3a40;
+$all-bg: #006171;
+$sub-bg: #ffd0d1;
+$sub-text: #0a1931;
+$sub-all: #ff9496;
+$card-border: #bababa;
+$brand: #b86e00;      // etiqueta de marca: #fdb745 del PDF oscurecido para AA sobre blanco
+$title: #0a1931;
+$desc: #252525;
+$course-badge: #13235b;
+$help-bg: #dae699;
+$help-ink: #2d2d2d;
+$help-text: #2d2d2d;
+
+// circle = círculo detrás del producto; btn = botón "Comprar" y borde/texto de "Asesoría";
+// ink = texto sobre el botón relleno (AA), outline = texto del botón con borde (AA sobre blanco).
+$tones: (
+  'yellow': (circle: #ffe78c, btn: #f4d661, ink: #3a2f00, outline: #8a6d00),
+  'pink':   (circle: #fdabb3, btn: #ff9496, ink: #3d0a0d, outline: #c2323a),
+  'teal':   (circle: #a8e2e6, btn: #71c2c5, ink: #062f31, outline: #1d7478),
+  'lime':   (circle: #d9ef67, btn: #d1e275, ink: #2a3300, outline: #5f7000),
+  'purple': (circle: #d3b5ff, btn: #b48feb, ink: #24084d, outline: #6a3cb5),
+  'beige':  (circle: #f7debe, btn: #e0c29e, ink: #3b2a14, outline: #8a5f2b)
+);
+
+@function u($n) {
+  @return calc(var(--u) * #{$n});
+}
+
+:host {
+  display: block;
+}
+
+.acc-page {
+  --u: 1px;
+  padding-top: 112px; // igual que Accesorios/Jarabes: el hero empieza bajo el header fijo
+  background: #fff;
+  color: #000;
+  overflow-x: clip;
+  overflow-y: visible;
+  font-family: 'Poppins', sans-serif;
+}
+
+.acc-br {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Títulos de sección: copiados de Accesorios/Jarabes (.jar-head h2 + .rule) ---------- */
+.jar-head {
+  text-align: center;
+  margin: 0 0 1.8rem;
+}
+
+.jar-head h2 {
+  margin: 0 0 0.35rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--etrusca-navy-900, #283039);
+  line-height: 1.15;
+}
+
+.jar-head .rule {
+  width: min(549px, 80%);
+  height: 30px;
+  margin: 0.35rem auto 1.6rem;
+  border-radius: 0;
+  background: url('/assets/images/separador.png') center / contain no-repeat;
+}
+
+/* ================= HERO =================
+   Estructura de Accesorios/Jarabes (.jar-hero, .jar-hero-copy, .btn-jar, ola dinámica). En lugar del
+   fondo azul + blob, la foto entregada cubre todo el hero (object-fit: cover) y el texto es oscuro. */
+.jar-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1rem;
+  align-items: center;
+  background: $hero-beige;
+  color: $hero-ink;
+  padding: 2.2rem clamp(1.2rem, 5vw, 5rem) 11rem;
+  overflow: hidden;
+  isolation: isolate;
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+
+.met-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 60%;
+    display: block;
+  }
+}
+
+.jar-hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 50rem;
+
+  h1 {
+    margin: 0 0 1.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.9rem, 7vw, 6.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: $hero-ink;
+  }
+
+  .body {
+    // El texto cruza el sifón de la foto (igual que en el PDF): halo claro sutil para legibilidad.
+    text-shadow: 0 0 10px rgba(240, 229, 219, 0.9), 0 0 2px rgba(240, 229, 219, 0.9);
+    margin: 0 0 2.2rem;
+    font-size: clamp(1.05rem, 1.8vw, 1.65rem);
+    line-height: 1.5;
+    color: $hero-ink;
+  }
+}
+
+.btn-jar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  background: $btn;
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.95rem 1.8rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  // Blanco sobre #71c2c5 no llega a AA: sombra de texto sutil + peso 700 (texto grande del diseño).
+  text-shadow: 0 1px 2px rgba(0, 60, 64, 0.45);
+
+  svg { width: 20px; height: 20px; flex: 0 0 auto; }
+
+  &:hover { color: #fff; filter: brightness(0.95); transform: translateY(-1px); }
+  &:focus-visible { outline: 3px solid $hero-ink; outline-offset: 3px; }
+}
+
+
+/* ================= TE PUEDE INTERESAR ================= */
+.met-courses__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: u(52);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.met-course {
+  display: flex;
+  width: max(250px, #{u(268)});
+  min-height: max(100px, #{u(107)});
+  border-radius: u(10);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.met-course__media {
+  position: relative;
+  flex: 0 0 45%;
+
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+
+.met-course__badge {
+  position: absolute;
+  left: 10%;
+  top: 8%;
+  padding: 2px 10px;
+  border-radius: 4px;
+  background: $course-badge;
+  color: #fff;
+  font-size: 0.62rem;
+}
+
+.met-course__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.7rem;
+}
+
+.met-course__title {
+  margin: 0;
+  font-size: max(0.85rem, #{u(14)});
+  font-weight: 700;
+  line-height: 1.35;
+  color: #000;
+}
+
+.met-course__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $course-badge;
+
+  &:hover { color: $course-badge; text-decoration: underline; }
+  &:focus-visible { outline: 2px solid $course-badge; outline-offset: 2px; }
+}
+
+/* ================= ASESORÍA (copiado de Accesorios; colores del PDF) ================= */
+.acc-help {
+  background: $help-bg;
+  color: $help-text;
+}
+
+.acc-help__title {
+  margin: 0;
+  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: max(2rem, #{u(65)});
+  line-height: 1.2;
+  color: $help-ink;
+}
+
+.acc-help__text {
+  margin: 0;
+  font-family: 'Figtree', 'Poppins', sans-serif;
+  font-size: max(1.05rem, #{u(24.5)});
+  line-height: 1.35;
+  color: $help-text;
+}
+
+.acc-help__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: u(17);
+}
+
+.acc-help__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: u(12);
+  font-family: 'Figtree', 'Poppins', sans-serif;
+  text-decoration: none;
+  border-radius: u(8);
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+
+  &:hover { transform: translateY(-1px); }
+  &:focus-visible { outline: 3px solid $help-ink; outline-offset: 3px; }
+
+  &--solid {
+    height: max(48px, #{u(58)});
+    padding: 0 u(24);
+    background: $help-ink;
+    color: #fff;
+    font-weight: 600;
+    font-size: max(1.05rem, #{u(25.8)});
+
+    &:hover { background: #000; color: #fff; }
+  }
+
+  &--outline {
+    height: max(52px, #{u(66)});
+    padding: 0 u(18) 0 u(20);
+    gap: u(24);
+    border: 1.5px solid $help-ink;
+    color: $help-ink;
+    font-weight: 500;
+    font-size: max(1.05rem, #{u(25)});
+
+    svg { width: u(24); height: u(24); }
+    &:hover { background: rgba(255, 255, 255, 0.3); color: $help-ink; }
+  }
+}
+
+/* =====================================================================
+   ESCRITORIO (>= 1024 px): frame 1440 escalado con --u
+   ===================================================================== */
+@media (min-width: 1024px) {
+  .acc-page {
+    --u: min(1px, calc(100vw / 1440));
+  }
+
+  .acc-br { display: inline; }
+
+  .acc-frame {
+    position: relative;
+    width: u(1440);
+    margin: 0 auto;
+    padding-left: u(41);
+    padding-right: u(41);
+  }
+
+  .jar-hero {
+    grid-template-columns: 1fr;
+    min-height: u(830);
+    padding: u(60) u(55) u(190);
+    align-items: start;
+  }
+
+  .jar-hero-copy {
+    max-width: none;
+    width: u(860);
+    padding-top: u(28);
+
+    h1 { font-size: u(118); margin-bottom: u(44); }
+    .body { font-size: u(27); margin: 0 0 u(48) u(33); }
+  }
+
+  .met-hero__btn {
+    margin-left: u(17);
+    min-width: u(324);
+    height: u(58);
+    padding: 0 u(28);
+    font-size: u(20);
+    gap: u(34);
+  }
+
+  .met-products { padding-top: u(40); }
+
+  .met-top { padding-top: u(120); }
+  .met-courses { padding-top: u(110); }
+
+  .acc-help {
+    margin-top: u(120);
+    margin-bottom: u(160);
+  }
+
+  .acc-help__inner {
+    height: u(320);
+    padding: u(46) 0 0 u(70);
+  }
+
+  .acc-help__text { margin-top: u(14); }
+  .acc-help__actions { margin-top: u(34); }
+}
+
+/* =====================================================================
+   TABLET / MÓVIL (< 1024 px)
+   ===================================================================== */
+@media (max-width: 1023.98px) {
+  .acc-frame {
+    padding-left: clamp(1.1rem, 5vw, 2.5rem);
+    padding-right: clamp(1.1rem, 5vw, 2.5rem);
+  }
+
+  .jar-hero {
+    grid-template-columns: 1fr;
+    min-height: 560px;
+    padding-bottom: 9rem;
+    align-items: start;
+  }
+
+  .met-products { padding-top: 2.5rem; }
+  .met-top, .met-courses { padding-top: 4rem; }
+  .met-courses__list { gap: 1.2rem; }
+
+  .acc-help { margin: 4rem 0 3rem; }
+  .acc-help__inner { padding-top: 2.6rem; padding-bottom: 2.8rem; }
+  .acc-help__title { font-size: clamp(2rem, 8.4vw, 3.6rem); }
+  .acc-help__text { margin-top: 0.9rem; font-size: clamp(1.05rem, 3.2vw, 1.5rem); }
+  .acc-help__actions { margin-top: 1.6rem; gap: 0.8rem; }
+
+  .acc-help__btn--solid,
+  .acc-help__btn--outline {
+    padding: 0 1.2rem;
+    gap: 0.6rem;
+    font-size: clamp(1rem, 3.2vw, 1.4rem);
+
+    svg { width: 22px; height: 22px; }
+  }
+}
+
+// Una columna: el texto va arriba sobre el beige liso de la pared de la foto y la foto completa
+// (todos los productos visibles) ocupa la parte baja del hero, fundida con el beige.
+@media (max-width: 800px) {
+  .jar-hero {
+    min-height: 0;
+    padding-top: 1.6rem;
+    padding-bottom: calc(min(150vw, 1200px) * 941 / 1672 + 1rem);
+  }
+
+  .met-hero__bg {
+    inset: auto -8vw 0 auto;
+    width: min(150vw, 1200px);
+    aspect-ratio: 1672 / 941;
+
+    img { object-position: center; }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #{$hero-beige} 0%, rgba(221, 208, 195, 0) 22%);
+    }
+  }
+
+  // Ola más baja en móvil para no tapar la base de los productos.
+  .jar-hero app-scroll-wave ::ng-deep .scroll-wave-divider.compact svg { height: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-jar,
+  .acc-help__btn { transition: none; }
+  .btn-jar:hover,
+  .acc-help__btn:hover { transform: none; }
+}

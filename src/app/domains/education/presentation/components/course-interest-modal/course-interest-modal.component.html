@@ -15,7 +15,9 @@
       <div class="cim-grid">
         <section class="cim-col cim-info" aria-label="Horario y dirección">
           <h3 class="cim-heading">Horario</h3>
-          <p class="cim-line">{{ dateRangeLabel }}</p>
+          @if (!hideDate) {
+            <p class="cim-line">{{ dateRangeLabel }}</p>
+          }
           <p class="cim-line">{{ hoursLabel }}</p>
           <p class="cim-line">
             <a [href]="'mailto:' + emailLabel">{{ emailLabel }}</a>
@@ -30,7 +32,9 @@
             </p>
           }
 
-          <h3 class="cim-heading">Dirección</h3>
+          @if (!hideDate || branchLabel || mapAvailable) {
+            <h3 class="cim-heading">Dirección</h3>
+          }
           @if (branchLabel) {
             <p class="cim-line">{{ branchLabel }}</p>
           }

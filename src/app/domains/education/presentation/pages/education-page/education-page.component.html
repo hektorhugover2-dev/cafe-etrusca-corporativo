@@ -47,6 +47,7 @@
           </div>
           <div class="body">
             <h3>{{ c.title }}</h3>
+            @if (c.clave) { <p class="edu-clave">Clave: {{ c.clave }}</p> }
             <span class="rule" aria-hidden="true"></span>
             <div class="meta">
               <span>{{ c.duration }}</span>
@@ -64,29 +65,57 @@
       <h2>Elige tu camino</h2>
       <span class="rule" aria-hidden="true"></span>
     </header>
-    <div class="edu-quiz">
+    <div class="edu-quiz" role="group" aria-label="Elige tu camino">
       @if (step < quiz.length) {
-        <p class="progress-label">Pregunta {{ step + 1 }} de {{ quiz.length }}</p>
-        <div class="progress" aria-hidden="true">
+        <p class="progress-label" aria-live="polite">Paso {{ step + 1 }} de {{ quiz.length }}</p>
+        <div class="progress" role="progressbar" aria-label="Progreso" aria-valuemin="1" [attr.aria-valuemax]="quiz.length" [attr.aria-valuenow]="step + 1" [attr.aria-valuetext]="'Paso ' + (step + 1) + ' de ' + quiz.length">
           <span [style.width.%]="((step + 1) / quiz.length) * 100"></span>
         </div>
-        <h3>{{ quiz[step].q }}</h3>
-        <div class="opts">
-          @for (opt of quiz[step].options; track opt.label) {
-            <button type="button" class="opt" [class.picked]="picked === opt.path && pickedLabel === opt.label" (click)="pick(opt.path, opt.label)">
-              <strong>{{ opt.label }}</strong>
-              <small>{{ opt.hint }}</small>
+        <ol class="quiz-steps" aria-hidden="true">
+          @for (q of quiz; track $index; let i = $index) {
+            <li [class.done]="i < step" [class.current]="i === step">{{ i + 1 }}</li>
+          }
+        </ol>
+        <h3 #quizHeading tabindex="-1" id="quiz-q">{{ quiz[step].q }}</h3>
+        <div class="opts" role="radiogroup" aria-labelledby="quiz-q">
+          @for (opt of quiz[step].options; track opt.key; let i = $index) {
+            <button type="button" class="opt" role="radio"
+              [class.picked]="picked === i"
+              [attr.aria-checked]="picked === i"
+              [tabindex]="optionTabIndex(i)"
+              (click)="pick(i)"
+              (keydown)="onOptionKey($event, i)">
+              <span class="opt-key" aria-hidden="true">{{ opt.key }}</span>
+              <span class="opt-text">{{ opt.text }}</span>
             </button>
           }
         </div>
         <div class="quiz-next">
-          <button type="button" class="btn-burgundy" [disabled]="!picked" (click)="next()">Siguiente</button>
+          @if (step > 0) { <button type="button" class="btn-ghost quiz-back" (click)="back()">Atrás</button> }
+          <button type="button" class="btn-burgundy" [disabled]="picked === null" (click)="next()">
+            {{ step === quiz.length - 1 ? 'Ver mi resultado' : 'Siguiente' }}
+          </button>
         </div>
       } @else {
-        <h3>Tu ruta recomendada</h3>
-        <p>Con tus respuestas, el mejor siguiente paso es la línea de {{ result }}.</p>
-        <div class="edu-actions" style="margin-top:1rem;">
-          <a class="btn-burgundy" [routerLink]="['/educacion', result]">Ver {{ result }}</a>
+        <p class="progress-label" aria-live="polite">Resultado</p>
+        <div class="progress" aria-hidden="true"><span style="width:100%"></span></div>
+        <p class="quiz-profile">Perfil: {{ quizResult.label }}</p>
+        <h3 #quizHeading tabindex="-1">{{ quizResult.heading }}</h3>
+        <p class="quiz-text">{{ quizResult.text }}</p>
+        @if (quizCourse(quizResult.course, true); as c) {
+          <div class="quiz-result-card">
+            <span class="quiz-kicker">{{ recommendedLabel(c.kicker) }}</span>
+            <strong>{{ c.title }}</strong>
+            <div class="edu-actions">
+              <a class="btn-burgundy" [routerLink]="c.path">Ver {{ c.kicker.toLowerCase() }}</a>
+              <a class="btn-ghost" [routerLink]="c.path" fragment="calendario">Ver próximas fechas</a>
+            </div>
+          </div>
+        }
+        @if (quizCourse(quizResult.secondary); as s2) {
+          <p class="quiz-secondary">También te puede interesar: <a [routerLink]="s2.path">{{ s2.title.startsWith(s2.kicker) ? s2.title : s2.kicker + ' ' + s2.title }}</a></p>
+        }
+        <div class="quiz-next">
           <button class="btn-ghost" type="button" (click)="resetQuiz()">Volver a empezar</button>
         </div>
       }
@@ -117,7 +146,7 @@
       <p class="sub">Programa educativo para expertos en café</p>
     </header>
     <div class="edu-tree">
-      <a class="tree-start" routerLink="/educacion/cursos/formacion-de-emprendedores">curso inicial: <strong>formación de emprendedores</strong></a>
+      <a class="tree-start" routerLink="/emprendiendo-mi-negocio-de-barra-de-cafe-y-cafeteria">curso inicial: <strong>formación de emprendedores</strong></a>
       <span class="tree-stem" aria-hidden="true"></span>
       <p class="tree-hub">talleres de especialización</p>
       <span class="tree-branch" aria-hidden="true"></span>
@@ -258,5 +287,6 @@
   [open]="interestOpen"
   [courseTitle]="interestTitle"
   [date]="interestDate"
+  [hideDate]="interestHideDate"
   (closed)="closeInterest()">
 </app-course-interest-modal>

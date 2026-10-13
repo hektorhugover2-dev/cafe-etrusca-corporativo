@@ -1,0 +1,133 @@
+<div class="acc-page met-page">
+  <!-- ============ HERO (estructura de Accesorios/Jarabes: .jar-hero + copy + ola dinámica).
+       Fondo = foto del cliente a todo el hero (cover); texto oscuro sobre el beige. ============ -->
+  <section class="jar-hero met-hero" aria-labelledby="met-hero-title">
+    <picture class="met-hero__bg" aria-hidden="true">
+      <source media="(max-width: 800px)" [attr.srcset]="hero.bgMobile" type="image/webp">
+      <img [src]="hero.bg" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
+    </picture>
+
+    <div class="jar-hero-copy met-hero__copy">
+      <h1 id="met-hero-title" class="met-hero__title">Métodos de<br> extracción</h1>
+      <p class="body met-hero__body">
+        Herramientas para un café filtrado excepcional.<br class="acc-br">
+        Descubre una selección diseñada para entusiastas y<br class="acc-br">
+        profesionales.
+      </p>
+      <a class="btn-jar met-hero__btn" [href]="catalogUrl" target="_blank" rel="noopener">
+        Explorar accesorios
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+      </a>
+    </div>
+
+    <!-- Ola dinámica blanca (se desplaza con el scroll) que entra desde la sección blanca sobre la foto -->
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+  </section>
+
+  <!-- ============ PRODUCTOS ============ -->
+  <section class="met-products acc-frame" id="productos-metodos" aria-labelledby="met-products-title">
+    <div class="jar-head">
+      <h2 id="met-products-title">Productos</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
+    <!-- Marcas y subcategorías (PDF de secciones) → productos desde /api/Product; sin selección, tarjetas del diseño -->
+    <app-acc-brand-products section="metodo-extraccion" idPrefix="met" [brands]="brands" [catalogUrl]="catalogUrl"
+                            [allBrandsLink]="allBrands">
+      <ul class="met-grid">
+        @for (p of products; track p.id) {
+          <li>
+            <ng-container *ngTemplateOutlet="card; context: { $implicit: p }"></ng-container>
+          </li>
+        }
+      </ul>
+    </app-acc-brand-products>
+  </section>
+
+  <!-- ============ MÁS BUSCADOS ============ -->
+  <section class="met-top acc-frame" aria-labelledby="met-top-title">
+    <div class="jar-head">
+      <h2 id="met-top-title">Mas buscados</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+    <ul class="met-grid">
+      @for (p of top; track p.id) {
+        <li>
+          <ng-container *ngTemplateOutlet="card; context: { $implicit: p }"></ng-container>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <!-- ============ TE PUEDE INTERESAR ============ -->
+  <section class="met-courses acc-frame" aria-labelledby="met-courses-title">
+    <div class="jar-head">
+      <h2 id="met-courses-title">Te puede interesar</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+    <ul class="met-courses__list">
+      @for (c of courses; track c.slug) {
+        <li class="met-course">
+          <div class="met-course__media">
+            <img [src]="c.image" alt="" width="160" height="107" loading="lazy" decoding="async">
+            <span class="met-course__badge">{{ c.kicker }}</span>
+          </div>
+          <div class="met-course__body">
+            <h3 class="met-course__title">{{ c.title }}</h3>
+            <a class="met-course__link" [routerLink]="courseLink(c)">
+              Ver más<span class="visually-hidden"> sobre {{ c.title }}</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+                <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <!-- ============ ASESORÍA (copiado de Accesorios) ============ -->
+  <section class="acc-help met-help" aria-labelledby="met-help-title">
+    <div class="acc-frame acc-help__inner">
+      <h2 id="met-help-title" class="acc-help__title">Asesoría especializada</h2>
+      <p class="acc-help__text">
+        Te acompañamos a elegir los accesorios ideales para tu negocio.<br class="acc-br">
+        Hablemos y diseñemos juntos tu espacio.
+      </p>
+      <div class="acc-help__actions">
+        <a class="acc-help__btn acc-help__btn--solid" routerLink="/contacto" fragment="contacto-form">Solicitar asesoría</a>
+        <a class="acc-help__btn acc-help__btn--outline" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          </svg>
+          Escríbenos por WhatsApp
+          <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #card let-p>
+  <article [class]="'met-card met-card--' + p.tone">
+    <p class="met-card__brand">{{ p.brand }}</p>
+    <div class="met-card__media">
+      <img [src]="p.image.src" [attr.srcset]="srcset(p.image)" [alt]="p.imageAlt"
+           [attr.width]="p.image.width" [attr.height]="p.image.height" loading="lazy" decoding="async">
+    </div>
+    <h3 class="met-card__title">{{ p.title }}</h3>
+    <p class="met-card__desc">{{ p.desc }}</p>
+    <div class="met-card__actions">
+      <!-- Comprar → modal (en línea: catálogo, sin código de producto en el PDF; o en sucursal) -->
+      <button type="button" class="met-card__btn met-card__btn--solid" aria-haspopup="dialog" (click)="buy(p, $event)">
+        Comprar<span class="visually-hidden"> {{ p.title }}</span>
+      </button>
+      <a class="met-card__btn met-card__btn--outline" routerLink="/contacto" fragment="contacto-form">
+        Asesoría<span class="visually-hidden"> sobre {{ p.title }}</span>
+      </a>
+    </div>
+  </article>
+</ng-template>

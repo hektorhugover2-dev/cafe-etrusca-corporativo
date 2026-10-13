@@ -15,6 +15,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { swalToast } from '../../../../../shared/kernel/utils/swal-toast';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CourseDate } from '../../education.data';
 
@@ -34,6 +35,11 @@ export class CourseInterestModalComponent implements OnChanges {
   @Input() open = false;
   @Input() courseTitle = '';
   @Input() date: CourseDate | null = null;
+  /**
+   * General information request (e.g. a past/unknown event URL with no course page): the course
+   * date is neither shown nor sent (no `fecha` in the payload). Everything else is identical.
+   */
+  @Input() hideDate = false;
   @Output() closed = new EventEmitter<void>();
 
   @ViewChild('dialogEl') dialogEl?: ElementRef<HTMLElement>;
@@ -154,7 +160,7 @@ export class CourseInterestModalComponent implements OnChanges {
     }
 
     const ocupacion = this.joinedOccupations();
-    const payload = {
+    const payload: Record<string, unknown> = {
       name: this.name.trim(),
       email: this.email.trim(),
       fatherlastname: '-',
@@ -174,6 +180,9 @@ export class CourseInterestModalComponent implements OnChanges {
       website: this.website || '',
       subject: this.website || ''
     };
+    if (this.hideDate) {
+      delete payload['fecha'];
+    }
 
     this.submitting = true;
 
@@ -181,6 +190,7 @@ export class CourseInterestModalComponent implements OnChanges {
       console.info('[CourseContact] POST skipped on local hostname', this.document.location?.hostname);
       this.submitting = false;
       this.successMessage = 'Gracias por su mensaje';
+      void swalToast('success', 'Gracias por su mensaje');
       form.resetForm({ newsletter: true, privacy: true, website: '' });
       this.resetFieldsKeepFlags();
       return;
@@ -194,12 +204,14 @@ export class CourseInterestModalComponent implements OnChanges {
         next: () => {
           this.submitting = false;
           this.successMessage = 'Gracias por su mensaje';
+          void swalToast('success', 'Gracias por su mensaje');
           form.resetForm({ newsletter: true, privacy: true, website: '' });
           this.resetFieldsKeepFlags();
         },
         error: () => {
           this.submitting = false;
           this.errorMessage = 'No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde.';
+          void swalToast('error', 'No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde.');
         }
       });
   }

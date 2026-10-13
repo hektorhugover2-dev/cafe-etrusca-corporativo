@@ -1,0 +1,259 @@
+.vt-page {
+  background: #fff;
+  color: #1f2a44;
+}
+
+/* Hero sized/spaced like jarabes (.jar-hero), colors kept from Videoteca */
+.vt-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1rem;
+  align-items: center;
+  background: #1f2a44;
+  color: #fff;
+  padding: 5rem clamp(1.2rem, 5vw, 5rem) 12rem;
+  overflow: visible;
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+.vt-hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: 50rem;
+}
+
+.vt-kicker,
+.vt-series {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e23b7a;
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+}
+
+.vt-player-sec .vt-series {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.vt-hero-copy h1 {
+  margin: 0.85rem 0 0.35rem;
+  font-weight: 900;
+  font-size: clamp(3.2rem, 8vw, 5.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.vt-lead {
+  margin: 0 0 1.1rem;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  line-height: 1.2;
+  color: #fff;
+
+  .accent { color: #e23b7a; }
+}
+
+.vt-body {
+  margin: 0 0 1.75rem;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  max-width: 32rem;
+  opacity: 0.92;
+}
+
+.vt-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  background: #e23b7a;
+  color: #fff;
+  border: 2px solid #e23b7a;
+  transition: 0.15s ease;
+
+  &:hover {
+    color: #fff;
+    filter: brightness(1.08);
+  }
+
+  &.ghost {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+.vt-hero-media {
+  position: relative;
+  z-index: 8;
+  min-height: 340px;
+  display: grid;
+  place-items: center;
+
+  .photo {
+    position: relative;
+    z-index: 8;
+    max-width: 100%;
+    max-height: 420px;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    filter: drop-shadow(0 18px 28px rgba(20, 17, 14, 0.28));
+  }
+}
+
+@media (max-width: 800px) {
+  .vt-hero {
+    grid-template-columns: 1fr;
+    padding-top: 3.5rem;
+  }
+}
+
+.vt-player-sec {
+  padding: 4.5rem 0 1rem;
+}
+
+.vt-player-sec h2 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+
+.vt-meta {
+  color: #5b6472;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+.vt-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow: 0 18px 40px rgba(31, 42, 68, 0.18);
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.vt-grid-sec {
+  padding: 2rem 0 4rem;
+}
+
+.vt-grid-sec h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.vt-sep {
+  display: block;
+  height: 10px;
+  width: min(220px, 40%);
+  object-fit: contain;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.vt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+
+.vt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e8ecf2;
+  border-radius: 1rem;
+  padding: 0.65rem;
+  cursor: pointer;
+  transition: 0.15s ease;
+  color: inherit;
+
+  &:hover,
+  &.active {
+    border-color: #e23b7a;
+    box-shadow: 0 10px 24px rgba(226, 59, 122, 0.12);
+  }
+}
+
+.vt-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #111;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.vt-play {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: rgba(226, 59, 122, 0.92);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  padding-left: 2px;
+}
+
+.vt-dur {
+  position: absolute;
+  right: 0.45rem;
+  bottom: 0.45rem;
+  background: rgba(15, 23, 42, 0.82);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.35rem;
+}
+
+.vt-card-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  padding: 0 0.2rem 0.35rem;
+}

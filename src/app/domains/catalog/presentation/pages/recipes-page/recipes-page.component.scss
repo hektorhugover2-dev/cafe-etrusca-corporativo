@@ -1,141 +1,444 @@
-.rc-page {
+/* /recetas/
+   - Hero, H2 y línea: vienen de Jarabes (insumos-theme.scss + jarabes-theme.scss, cargados en styleUrls).
+     Aquí solo el color del hero (igual que .layout-te / .layout-bases) y el eyebrow.
+   - Receta del mes, filtros del recetario y tarjetas del grid. */
+
+$rc-ink: #2b2b2b;
+$rc-navy: #070c3b;
+$rc-navy-2: #192966;
+
+.layout-recetas {
   --navy: var(--etrusca-navy-900, #1b2a4a);
-  background: #fff;
-  color: #2c2c2c;
 }
 
-.rc-hero {
+/* ================= HERO (estructura Jarabes) ================= */
+.layout-recetas .jar-hero {
+  background: #ffe270;
+}
+.layout-recetas .jar-hero-copy {
+  .eyebrow {
+    margin: 0 0 0.9rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: $rc-ink;
+  }
+  .lead {
+    font-weight: 500;
+    max-width: 30rem;
+  }
+}
+
+/* ================= RECETA DEL MES ================= */
+.rc-mes {
+  /* la ola del hero cuelga 12vh sobre esta sección */
+  padding: calc(12vh + 2.6rem) clamp(1.2rem, 5vw, 5rem) 2.5rem;
+}
+.rc-mes-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #ffe39a;
+  box-shadow: 0 18px 40px rgba(7, 12, 59, 0.08);
+}
+.rc-mes-media {
   position: relative;
   min-height: 420px;
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+  }
+}
+.rc-mes-body {
   display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: #f4efe6;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(2rem, 4vw, 3.4rem);
+  h3 {
+    margin: 1rem 0 0.9rem;
+    font-weight: 800;
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #111;
+  }
+  p {
+    margin: 0;
+    max-width: 30rem;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: $rc-ink;
+  }
+}
+.rc-mes-pill {
+  display: inline-block;
+  background: #fdd640;
+  color: $rc-ink;
+  border-radius: 99px;
+  padding: 0.35rem 0.95rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.rc-mes-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+.rc-mes-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 2px solid $rc-navy;
+  border-radius: 99px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    .fill { fill: currentColor; stroke: none; }
+  }
+  &.is-solid {
+    background: $rc-navy;
+    color: #fff;
+    &:hover { background: $rc-navy-2; border-color: $rc-navy-2; color: #fff; }
+  }
+  &.is-outline {
+    background: transparent;
+    color: $rc-navy;
+    &:hover { background: $rc-navy; color: #fff; }
+  }
 }
 
-.rc-hero-bg {
-  position: absolute;
-  inset: 0;
+/* ================= RECETARIO + FILTROS ================= */
+.rc-recetario {
+  /* abajo deja espacio a la ola superior de "Aprende viendo" (cuelga 12vh) */
+  padding: 4.5rem 0 calc(12vh + 3rem);
+}
+.rc-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 2.2rem;
+  margin: 0 0 2.2rem;
+}
+.rc-tab {
+  position: relative;
+  background: none;
+  border: 0;
+  padding: 0.3rem 0.1rem 0.45rem;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #6b6b6b;
+  cursor: pointer;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    border-radius: 99px;
+    background: #62e0e9;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+  &:hover { color: $rc-ink; }
+  &.is-active {
+    color: #111;
+    font-weight: 700;
+    &::after { transform: scaleX(1); }
+  }
+}
+.rc-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 0 0 1.6rem;
+}
+.rc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.1rem;
+}
+.rc-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 74px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: $rc-ink;
+  .rc-chip-ico {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #f3f3f3;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: $rc-ink;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    .fill { fill: $rc-ink; stroke: none; }
+  }
+  .rc-chip-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+  }
+  &:hover .rc-chip-ico { transform: translateY(-2px); }
+  &.is-active {
+    .rc-chip-ico { box-shadow: 0 0 0 3px #fff, 0 0 0 5px $rc-navy; }
+    .rc-chip-label { font-weight: 700; }
+  }
+  &.is-small {
+    width: 62px;
+    .rc-chip-ico { width: 44px; height: 44px; }
+    svg { width: 22px; height: 22px; }
+    .rc-chip-label { font-size: 0.72rem; }
+  }
+  &:focus-visible {
+    outline: none;
+    .rc-chip-ico { box-shadow: 0 0 0 3px #fff, 0 0 0 5px #62e0e9; }
+  }
+}
+.rc-chip.tone-yellow .rc-chip-ico { background: #ffe270; }
+.rc-chip.tone-gold .rc-chip-ico { background: #fecf54; }
+.rc-chip.tone-coral .rc-chip-ico { background: #ff9496; }
+.rc-chip.tone-lime .rc-chip-ico { background: #cde35f; }
+.rc-chip.tone-cyan .rc-chip-ico { background: #a8eef3; }
+.rc-chip.tone-peach .rc-chip-ico { background: #ffc48a; }
+.rc-chip.tone-lilac .rc-chip-ico { background: #d9c2ff; }
 
+.rc-season {
+  flex-shrink: 0;
+  border-left: 1px solid #e6e6e6;
+  padding-left: 2rem;
+}
+.rc-season-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: $rc-ink;
+}
+.rc-season-list {
+  display: flex;
+  gap: 0.5rem;
+}
+.rc-results {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.6rem;
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
+.rc-active-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffc48a; /* mismo tono que el chip Otoño */
+  color: #2b2b2b;
+  border-radius: 99px;
+  padding: 0.3rem 0.4rem 0.3rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  strong { font-weight: 700; }
+}
+.rc-active-x {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  color: $rc-navy;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  &:hover { background: #fff; }
+  &:focus-visible { outline: 2px solid $rc-navy; outline-offset: 2px; }
+}
+.rc-clear {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-weight: 600;
+  color: $rc-navy;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.rc-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 0;
+  color: #6b6b6b;
+  .rc-clear { margin-left: 0.4rem; }
+}
+
+/* ================= APRENDE VIENDO ================= */
+.rc-videos {
+  position: relative;
+  background: #fffaf0;
+  padding: 2.5rem 0 5rem;
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+  .jar-head {
+    margin-bottom: 0.4rem;
+  }
+}
+.rc-videos-sub {
+  margin: 0 auto 2.4rem;
+  max-width: 36rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #6b6b6b;
+}
+.rc-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+.rc-video {
+  h3 {
+    margin: 0.9rem 0 0.25rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #111;
+  }
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #6b6b6b;
+  }
+}
+.rc-video-thumb {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #eee;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
+    transition: transform 0.35s ease;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(27, 42, 74, 0.15), rgba(27, 42, 74, 0.72));
-  }
+  &:hover img { transform: scale(1.04); }
+  &:focus-visible { outline: 3px solid #62e0e9; outline-offset: 3px; }
 }
-
-.rc-hero-copy {
-  position: relative;
-  z-index: 1;
-  color: #fff;
-  padding: 4.5rem 0 5rem;
-}
-
-.rc-kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.78rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-  opacity: 0.85;
-}
-
-.rc-hero h1 {
-  font-size: clamp(2.6rem, 5vw, 3.8rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  margin: 0 0 0.6rem;
-}
-
-.rc-lead {
-  max-width: 34rem;
-  font-size: 1.1rem;
-  opacity: 0.92;
-}
-
-.rc-featured {
-  padding: 3.5rem 0 1rem;
-}
-
-.rc-feature-card {
+.rc-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  background: #fff8f0;
-  border-radius: 1.6rem;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgba(27, 42, 74, 0.08);
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  svg { width: 24px; height: 24px; fill: #fdb913; margin-left: 3px; }
 }
-
-.rc-feature-media img {
-  width: 100%;
-  height: 100%;
-  min-height: 360px;
-  object-fit: cover;
-}
-
-.rc-feature-body {
-  padding: 1.5rem 2rem 1.5rem 0.5rem;
-
-  h2 {
-    color: var(--navy);
-    font-weight: 800;
-    margin: 0.2rem 0 0.8rem;
-  }
-}
-
-.rc-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1rem 0 1.4rem;
-
-  span {
-    background: #ffe2c8;
-    color: #7a2e12;
-    border-radius: 999px;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-  }
-}
-
-.rc-btn {
-  display: inline-flex;
-  background: #ff7a45;
+.rc-video-time {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  background: $rc-navy;
   color: #fff;
-  font-weight: 800;
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 0.7rem 1.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.15rem 0.45rem;
+}
+.rc-videos-cta {
+  text-align: center;
+  margin-top: 2.6rem;
+}
+.rc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: rgba(7, 12, 59, 0.78);
+}
+.rc-modal-box {
+  position: relative;
+  width: min(960px, 100%);
+}
+.rc-modal-frame {
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  iframe { width: 100%; height: 100%; border: 0; display: block; }
+}
+.rc-modal-close {
+  position: absolute;
+  top: -2.8rem;
+  right: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: $rc-navy;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.rc-grid-sec {
-  padding: 2rem 0 5rem;
-
-  h2 {
-    text-align: center;
-    color: var(--navy);
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-}
-
-.rc-sep {
-  display: block;
-  margin: 0.4rem auto 2rem;
-  max-height: 18px;
-}
-
+/* ================= TARJETAS (sin cambios de diseño) ================= */
 .rc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -154,6 +457,8 @@
 }
 
 .rc-card-media {
+  position: relative;
+  overflow: hidden;
   border-radius: 1.2rem;
   overflow: hidden;
   background: #f6f1e8;
@@ -209,14 +514,53 @@
 .tone-navy .rc-pill { background: #c9d6ef; }
 
 @media (max-width: 991px) {
-  .rc-feature-card {
+  .rc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rc-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.4rem;
+  }
+  .rc-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.4rem 0.2rem 0.6rem;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+  .rc-chip { flex: 0 0 auto; }
+  .rc-season {
+    border-left: 0;
+    border-top: 1px solid #e6e6e6;
+    padding: 1.2rem 0 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .rc-videos-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .rc-mes-card {
     grid-template-columns: 1fr;
   }
-  .rc-feature-body {
-    padding: 0 1.25rem 1.5rem;
+  .rc-mes-media {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
+}
+
+@media (max-width: 575px) {
   .rc-grid {
     grid-template-columns: 1fr;
+  }
+  .rc-tabs {
+    gap: 0.4rem 1.3rem;
+  }
+  .rc-tab {
+    font-size: 0.98rem;
   }
 }
 
@@ -229,4 +573,124 @@
   background-size: cover, 220px 220px;
   background-position: center, center;
   background-repeat: no-repeat, repeat;
+}
+.rc-card.origin-san-valentin-2026 .rc-card-media {
+  background-color: #c42a5c;
+  background-image:
+    linear-gradient(180deg, rgba(196, 42, 92, 0.28), rgba(255, 150, 175, 0.45)),
+    url('/assets/images/recetas/origen-san-valentin-2026.webp');
+  background-size: cover, 180px 180px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.rc-card.origin-navidad-2023 .rc-card-media {
+  background-color: #1c345c;
+  background-image:
+    linear-gradient(180deg, rgba(28, 52, 92, 0.28), rgba(200, 220, 245, 0.45)),
+    url('/assets/images/recetas/origen-navidad-2023.webp');
+  background-size: cover, 180px 180px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+
+.rc-card.origin-calabaza .rc-card-media {
+  background-color: #c45c26;
+  background-image:
+    linear-gradient(180deg, rgba(196, 92, 38, 0.28), rgba(232, 165, 75, 0.45)),
+    url('/assets/images/recetas/origen-calabaza.webp');
+  background-size: cover, 180px 180px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+
+
+.recipe-legend {
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.55rem;
+  margin: 0;
+  padding: 0.28rem 0.45rem;
+  border-radius: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(2px);
+  text-align: center;
+  pointer-events: none;
+}
+
+
+/* ================= FONDOS POR FILTRO =================
+   Cuando hay un filtro de temporada o de tipo de bebida activo, .rc-grid recibe una clase
+   fondo-temporada-* / fondo-tipo-* (recipes-page.component.ts → fondoFiltro) y el fondo de
+   todas las tarjetas cambia al de ese filtro. Tiene prioridad sobre los patrones origin-*
+   (selector más específico); sin filtro se quedan los patrones de cada colección.
+   Las reglas origin-* de arriba no se tocan. */
+$rc-fondos: '/assets/images/recetas/fondos';
+
+/* --- Temporadas: patrones en mosaico (mismo formato que los origin-*) --- */
+.rc-grid.fondo-temporada-primavera .rc-card .rc-card-media {
+  background-color: #78b278;
+  background-image:
+    linear-gradient(180deg, rgba(120, 178, 120, 0.28), rgba(236, 246, 214, 0.45)),
+    url('#{$rc-fondos}/temporada-primavera.webp');
+  background-size: cover, 200px 200px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.rc-grid.fondo-temporada-verano .rc-card .rc-card-media {
+  background-color: #57b7e8;
+  background-image:
+    linear-gradient(180deg, rgba(87, 183, 232, 0.35), rgba(233, 216, 192, 0.55)),
+    url('/assets/images/recetas/origen-verano-2026.webp');
+  background-size: cover, 220px 220px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.rc-grid.fondo-temporada-otono .rc-card .rc-card-media {
+  background-color: #dc641e;
+  background-image:
+    linear-gradient(180deg, rgba(196, 92, 38, 0.28), rgba(232, 165, 75, 0.45)),
+    url('#{$rc-fondos}/temporada-otono.webp');
+  background-size: cover, 200px 200px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.rc-grid.fondo-temporada-invierno .rc-card .rc-card-media {
+  background-color: #1c345c;
+  background-image:
+    linear-gradient(180deg, rgba(28, 52, 92, 0.28), rgba(200, 220, 245, 0.45)),
+    url('/assets/images/recetas/origen-navidad-2023.webp');
+  background-size: cover, 180px 180px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+/* --- Tipos de bebida: patrones de iconos en mosaico (mismo formato que las temporadas) ---
+   (tipo, color base, color de arriba del degradado, color de abajo del degradado) */
+$rc-fondos-tipo: (
+  ('cafe', #5c3a28, rgba(92, 58, 40, 0.28), rgba(150, 105, 75, 0.4)),
+  ('te', #8ca08c, rgba(140, 160, 140, 0.28), rgba(225, 232, 220, 0.45)),
+  ('matcha', #b8ca78, rgba(184, 202, 120, 0.28), rgba(240, 244, 210, 0.45)),
+  ('frias', #a8d6e8, rgba(168, 214, 232, 0.28), rgba(235, 246, 250, 0.5)),
+  ('calientes', #a65240, rgba(166, 82, 64, 0.28), rgba(230, 170, 140, 0.45)),
+  ('bubble-tea', #b6a0d4, rgba(182, 160, 212, 0.28), rgba(238, 228, 248, 0.45)),
+  ('cocteleria', #5e2034, rgba(94, 32, 52, 0.28), rgba(160, 80, 105, 0.4))
+);
+@each $tipo, $base, $top, $bot in $rc-fondos-tipo {
+  .rc-grid.fondo-tipo-#{$tipo} .rc-card .rc-card-media {
+    background-color: $base;
+    background-image:
+      linear-gradient(180deg, $top, $bot),
+      url('#{$rc-fondos}/tipo-#{$tipo}.webp');
+    background-size: cover, 200px 200px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+  }
 }

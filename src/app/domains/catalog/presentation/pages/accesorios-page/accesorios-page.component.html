@@ -1,0 +1,130 @@
+<div class="acc-page">
+  <!-- ============ HERO (estructura de Jarabes: .jar-hero + copy + ola dinámica). Mismo tratamiento que
+       Métodos de extracción: la foto cubre todo el hero, texto oscuro, ola blanca hacia la sección. ============ -->
+  <section class="jar-hero acc-hero" aria-labelledby="acc-hero-title">
+    <picture class="acc-hero__bg" aria-hidden="true">
+      <source media="(max-width: 800px)" [attr.srcset]="heroBg.mobile" type="image/webp">
+      <img [src]="heroBg.desktop" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
+    </picture>
+
+    <div class="jar-hero-copy acc-hero__copy">
+      @if (active) {
+        <h1 id="acc-hero-title" class="acc-hero__title acc-hero__title--sub">
+          <span class="acc-hero__kicker">Accesorios</span>
+          {{ titleOf(active) }}
+        </h1>
+        <p class="lead acc-hero__lead acc-hero__lead--sub">{{ active.descLines.join(' ') }}</p>
+      } @else {
+        <h1 id="acc-hero-title" class="acc-hero__title">Accesorios</h1>
+        <p class="lead acc-hero__lead">
+          Herramientas para <span class="accent">preparar,<br class="acc-br">
+          medir, servir y mantener</span> tu barra.
+        </p>
+      }
+      <p class="body acc-hero__body">
+        Equipa tu negocio con una selección completa<br class="acc-br">
+        de accesorios de calidad para llevar cada taza al<br class="acc-br">
+        siguiente nivel.
+      </p>
+      <a class="btn-jar acc-hero__btn" [href]="catalogUrl" target="_blank" rel="noopener">
+        Explorar accesorios
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Ola dinámica blanca (se desplaza con el scroll) que entra desde la sección blanca sobre la foto -->
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+  </section>
+
+  <!-- ============ CATEGORÍAS ============ -->
+  <section class="acc-cats acc-frame" id="categorias-accesorios" aria-labelledby="acc-cats-title">
+    <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
+    <div class="jar-head">
+      <h2 id="acc-cats-title">Categorías</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="acc-cards">
+      @for (c of categories; track c.slug) {
+        <article class="acc-card" [class]="'acc-card acc-card--' + c.tone" [class.is-active]="active?.slug === c.slug">
+          <img class="acc-card__img" [src]="c.image.src" [attr.srcset]="srcset(c.image)" [alt]="c.imageAlt"
+               [attr.width]="c.image.width" [attr.height]="c.image.height" loading="lazy" decoding="async">
+          <h3 class="acc-card__title">
+            <a [routerLink]="link(c)" class="acc-card__link" [attr.aria-current]="active?.slug === c.slug ? 'page' : null">
+              <span>{{ c.titleLines[0] }}</span> <span>{{ c.titleLines[1] }}</span>
+            </a>
+          </h3>
+          <p class="acc-card__desc"><span>{{ c.descLines[0] }}</span> <span>{{ c.descLines[1] }}</span></p>
+          <!-- TODO(contenido): el PDF no define destino para estas etiquetas -->
+          <ul class="acc-card__tags" [attr.aria-label]="'Productos de ' + titleOf(c)">
+            @for (t of c.tags; track t) {
+              <li>{{ t }}</li>
+            }
+          </ul>
+          <span class="acc-card__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+              <path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- ============ MARCAS ============ -->
+  <section class="acc-brands acc-frame" aria-labelledby="acc-brands-title">
+    <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
+    <div class="jar-head">
+      <h2 id="acc-brands-title">Marcas</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
+    <ul class="acc-logos">
+      @for (b of logos; track b.id) {
+        <li [class]="'acc-logo acc-logo--' + b.id">
+          <img [src]="b.image.src" [attr.srcset]="srcset(b.image)" [alt]="b.name"
+               [attr.width]="b.image.width" [attr.height]="b.image.height" [style.max-width.px]="b.image.width"
+               loading="lazy" decoding="async">
+        </li>
+      }
+    </ul>
+
+    <!-- TODO(contenido): el PDF no define URL por marca en esta tira -->
+    <div class="acc-strip">
+      <ul class="acc-strip__list" aria-label="Marcas de accesorios">
+        @for (s of strip; track s) {
+          <li class="acc-strip__item">{{ s }}</li>
+        }
+      </ul>
+      <a class="acc-strip__all" [routerLink]="allBrands.path" [fragment]="allBrands.fragment">
+        <span>Ver todos las marcas</span>
+        <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false">
+          <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ASESORÍA ============ -->
+  <section class="acc-help" aria-labelledby="acc-help-title">
+    <div class="acc-frame acc-help__inner">
+      <h2 id="acc-help-title" class="acc-help__title">Asesoría especializada</h2>
+      <p class="acc-help__text">
+        Te acompañamos a elegir los accesorios ideales para tu negocio.<br class="acc-br">
+        Hablemos y diseñemos juntos tu espacio.
+      </p>
+      <div class="acc-help__actions">
+        <a class="acc-help__btn acc-help__btn--solid" routerLink="/contacto" fragment="contacto-form">Solicitar asesoría</a>
+        <a class="acc-help__btn acc-help__btn--outline" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          </svg>
+          Escríbenos por WhatsApp
+          <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

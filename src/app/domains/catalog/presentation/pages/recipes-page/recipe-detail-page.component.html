@@ -1,5 +1,5 @@
 @if (recipe) {
-<div class="co-page" [class.origin-septiembre-2026]="recipe.origin === 'septiembre-2026'" [class.origin-verano-2026]="recipe.origin === 'verano-2026'">
+<div class="co-page" [class.origin-septiembre-2026]="recipe.origin === 'septiembre-2026'" [class.origin-verano-2026]="recipe.origin === 'verano-2026'" [class.origin-san-valentin-2026]="recipe.origin === 'san-valentin-2026'" [class.origin-navidad-2023]="recipe.origin === 'navidad-2023' || recipe.origin === 'invierno-2024'" [class.origin-calabaza]="recipe.origin === 'calabaza'">
   <nav class="co-crumbs container" aria-label="Miga de pan">
     <a routerLink="/">Inicio</a>
     <span aria-hidden="true">›</span>
@@ -43,6 +43,7 @@
       <div class="co-hero-visual">
         <div class="co-arch">
           <img [src]="recipe.banner" [alt]="displayTitle(recipe)">
+          <p class="recipe-legend">Sugerencia de preparación</p>
         </div>
       </div>
     </div>
@@ -154,6 +155,7 @@
             </div>
             <div class="media">
               <img [src]="r.image" [alt]="displayTitle(r)">
+              <p class="recipe-legend">Sugerencia de preparación</p>
             </div>
           </article>
         }
@@ -167,7 +169,7 @@
         <h2 class="co-section-title co-title-marks teal">
           Productos de esta receta
         </h2>
-        <a class="co-see-all" routerLink="/productos/insumos">Ver todos los productos →</a>
+        <a class="co-see-all" routerLink="/insumos-para-cafeterias">Ver todos los productos →</a>
       </div>
       <div class="co-product-grid">
         @for (p of recipe.products; track p.label) {

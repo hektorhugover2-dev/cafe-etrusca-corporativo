@@ -1,0 +1,253 @@
+<div class="ins-page layout-jarabes tor-page">
+  <section class="jar-hero tor-hero">
+    <img class="jar-hero-blob tor-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy tor-hero-copy">
+      <nav class="tor-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias">Insumos</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias/jarabes">Jarabes</a><span aria-hidden="true">›</span>
+        <span aria-current="page">Torani</span>
+      </nav>
+      <img class="tor-logo" src="/assets/images/insumos/logo-torani.png" alt="Torani" width="150" height="60">
+      <h1><span class="tor-h1-main">Jarabes Torani </span><span class="tor-h1-sub">para cafetería</span></h1>
+      <p class="lead"><span class="accent">Sabores, Sugar Free y salsas</span> para tu menú</p>
+      <p class="body">
+        En Café Etrusca encuentras jarabes Torani Clásico, Sugar Free y Puremade, además de salsas Torani,
+        para dar sabor a cafés, bebidas frías, coctelería y postres. Elige tus sabores y compra en línea,
+        o pide ayuda a un asesor para armar tu menú.
+      </p>
+      <div class="tor-ctas">
+        <a class="btn-jar" [href]="storeUrl" target="_blank" rel="noopener">Comprar en tienda en línea</a>
+        <a class="tor-btn-ghost" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <ul class="tor-facts" aria-label="Datos de las líneas Torani">
+        <li><strong>60</strong><span>opciones Clásico</span></li>
+        <li><strong>17</strong><span>opciones Sugar Free</span></li>
+        <li><strong>750 ml</strong><span>por botella</span></li>
+      </ul>
+    </div>
+    <div class="jar-hero-media tor-hero-media">
+      @for (b of heroBottles; track b.src) {
+        <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
+      }
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines tor-lines" aria-labelledby="tor-lineas">
+    <div class="jar-head">
+      <h2 id="tor-lineas">Líneas de jarabes Torani</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid tor-lines-grid">
+      @for (line of lines; track line.sub) {
+        <article class="jar-card" [class]="'jar-card ' + line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="line.image" [alt]="'Torani ' + line.sub">
+          </div>
+          <h3 class="brand">{{ line.name }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" [routerLink]="path" [fragment]="line.anchor">Ver sabores</a>
+            <a class="help" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="tor-section" id="sabores" aria-labelledby="tor-sabores">
+    <header class="tor-head">
+      <p class="tor-kicker">Torani Clásico</p>
+      <h2 id="tor-sabores">Sabores más buscados</h2>
+      <p class="tor-intro">Los sabores de jarabe Torani que más se buscan para cafés, bebidas frías y postres. Cada tarjeta te lleva a su ficha en la tienda, con precio y disponibilidad actualizados.</p>
+    </header>
+    <div class="tor-grid">
+      @for (p of clasico; track p.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + tone(i)">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">Torani {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="tor-band" id="sugar-free" aria-labelledby="tor-sf">
+    <app-scroll-wave position="top" fillColor="#fff3ec"></app-scroll-wave>
+    <div class="tor-band-inner">
+      <div class="tor-split">
+        <div class="tor-split-copy">
+          <p class="tor-kicker">Sin azúcar</p>
+          <h2 id="tor-sf">Torani Sugar Free</h2>
+          <p>Formulación sin azúcar, con sucralosa, para cafés, coctelería y postres con el mismo perfil de sabor. Ideal para ofrecer en tu menú una opción sin azúcar.</p>
+          <ul class="tor-chips">
+            <li>17 opciones</li>
+            <li>Botella de 750 ml</li>
+            <li>Salsas Sugar Free</li>
+          </ul>
+        </div>
+        <div class="tor-split-media">
+          <img src="/assets/images/insumos/jarabes/torani-sugar-free-almendra.webp" alt="Jarabe Torani Sugar Free" loading="lazy">
+        </div>
+      </div>
+      <div class="tor-grid">
+        @for (p of sugarFree; track p.code; let i = $index) {
+          <article class="tor-card" [class]="'tor-card ' + tone(i + 1)">
+            <div class="tor-card-media">
+              <span class="tor-card-blob" aria-hidden="true"></span>
+              <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+            </div>
+            <div class="tor-card-body">
+              <span class="tor-line">Torani {{ p.line }}</span>
+              <h3>{{ p.flavor }}</h3>
+              <p class="tor-pres">{{ p.presentation }}</p>
+              <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
+              <div class="tor-actions">
+                <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+                <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fff3ec"></app-scroll-wave>
+  </section>
+
+  <section class="tor-enjoy" aria-labelledby="tor-disfruta">
+    <h2 id="tor-disfruta">Disfruta en</h2>
+    <ul>
+      <li class="coral">Cafés</li>
+      <li class="yellow">Coctelería</li>
+      <li class="coral">Postres</li>
+    </ul>
+  </section>
+
+  <section class="tor-section" id="salsas" aria-labelledby="tor-salsas">
+    <header class="tor-head">
+      <p class="tor-kicker">Textura y decoración</p>
+      <h2 id="tor-salsas">Salsas Torani</h2>
+      <p class="tor-intro">Salsas para complementar, mezclar y decorar bebidas y postres, en versión Puremade y Sugar Free.</p>
+    </header>
+    <div class="tor-salsa-lines">
+      @for (s of salsaLines; track s.sub) {
+        <article class="tor-salsa-line">
+          <h3>Torani <span>{{ s.sub }}</span></h3>
+          <p>{{ s.description }}</p>
+          <dl>
+            <div><dt>Sabores</dt><dd>{{ s.sabores }}</dd></div>
+            <div><dt>Presentación</dt><dd>{{ s.presentacion }}</dd></div>
+          </dl>
+        </article>
+      }
+    </div>
+    <div class="tor-grid">
+      @for (p of salsas; track p.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + tone(i)">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">Torani {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="tor-more"><a routerLink="/insumos-para-cafeterias/salsas">Ver todas las salsas ›</a></p>
+  </section>
+
+  @if (recipes.length) {
+    <section class="jar-inspira tor-inspira" aria-labelledby="tor-recetas">
+      <div class="jar-head">
+        <h2 id="tor-recetas">Inspira tu menú</h2>
+        <div class="rule"></div>
+      </div>
+      <p class="tor-intro tor-intro-center">Recetas de Café Etrusca preparadas con Torani.</p>
+      <div class="jar-inspira-grid">
+        @for (r of recipes; track r.slug; let i = $index) {
+          <article class="jar-drink" [class]="'jar-drink ' + drinkTone(i)">
+            <div class="bar">{{ r.title }} {{ r.titleAccent || '' }}</div>
+            <img [src]="r.image" [alt]="r.title + ' ' + (r.titleAccent || '')" loading="lazy">
+            <a class="more" [routerLink]="recipeLink(r)">Ver receta →</a>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <section class="tor-course" aria-labelledby="tor-taller">
+    <div>
+      <p class="tor-kicker">Educación Café Etrusca</p>
+      <h2 id="tor-taller">Lleva Torani a tu barra</h2>
+      <p>En el taller de Mixología exploras técnicas para crear bebidas en tendencia, incluyendo alternativas de café y opciones sin alcohol.</p>
+    </div>
+    <a class="tor-btn tor-btn-navy" [routerLink]="mixologiaPath">Ver taller de Mixología</a>
+  </section>
+
+  <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="tor-faq-title">
+    <div class="jar-head">
+      <h2 id="tor-faq-title">Preguntas frecuentes</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tor-faq-list">
+      @for (f of faq; track f.q; let first = $first) {
+        <details [attr.open]="first ? '' : null">
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta tor-cta">
+    <app-scroll-wave position="top" fillColor="#ffd4c8"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿Buscas Torani para tu negocio?</h2>
+      <p>Compra en línea o habla con un asesor para compras por volumen y para elegir los sabores de tu menú.</p>
+      <div class="tor-ctas">
+        <a [href]="storeUrl" target="_blank" rel="noopener">Ir a la tienda en línea</a>
+        <a class="tor-cta-alt" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <a class="tor-back" routerLink="/insumos-para-cafeterias/jarabes">Ver todos los jarabes ›</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
+  </section>
+</div>

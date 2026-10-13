@@ -14,6 +14,7 @@ import {
   coursesByKind,
   type EduKind
 } from '../../education.data';
+import { coursePublicPath } from '../../course-public-paths';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 
 @Component({
@@ -65,5 +66,8 @@ export class EducationCategoryPageComponent implements OnInit {
         ]
       });
     });
+  }
+  courseLink(c: { slug: string; kind: string }) {
+    return coursePublicPath(c as any);
   }
 }

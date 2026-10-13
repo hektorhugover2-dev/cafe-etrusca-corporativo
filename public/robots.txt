@@ -1,3 +1,20 @@
+# Café Etrusca — robots.txt de producción (cafeetrusca.com).
+# Hosts que no son producción (desarrollo., IPs) reciben robots-noindex.txt vía web.config.
+
+# Bloqueo de uso para IA de Google (igual que el robots.txt actual de producción).
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GoogleOther
+Disallow: /
+
+User-agent: GoogleOther-Image
+Disallow: /
+
+User-agent: GoogleOther-Video
+Disallow: /
+
+# Todos los demás (Googlebot, Bingbot, etc.): rastreo permitido.
 User-agent: *
 Allow: /
 

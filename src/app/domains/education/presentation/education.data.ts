@@ -1,3 +1,5 @@
+import { catalogByCourseSlug, daysLabel, hoursLabel } from '../../../shared/kernel/data/course-catalog.data';
+
 export type EduKind = 'cursos' | 'experiencias' | 'talleres' | 'sesiones';
 
 export interface EduCategory {
@@ -28,6 +30,8 @@ export interface CourseDate {
   locationName?: string;
   categoryName?: string;
   emailBarista?: string;
+  /** Event detail page (/cursos-y-talleres/<slug>) when the date comes from /api/Event. */
+  eventPath?: string;
 }
 
 export interface Course {
@@ -51,6 +55,10 @@ export interface Course {
   includes: string[];
   quote?: { text: string; name: string; place: string };
   dates: CourseDate[];
+  /** Clave SAP (course-catalog.data.ts); set for courses in the official table. */
+  clave?: string;
+  /** Official price in MXN (course-catalog.data.ts). */
+  price?: number;
   // NUEVO: Agregamos el objeto SEO
   seo?: {
     title: string;
@@ -67,18 +75,8 @@ const INCLUDES_BASE = [
   'Acompañamiento del instructor'
 ];
 
-const DATES_WEEKEND: CourseDate[] = [
-  { days: '18-19', month: 'Junio', branch: 'Viaducto', duration: '2 días', hours: '14 hrs' },
-  { days: '18-19', month: 'Junio', branch: 'Zona Rosa', duration: '2 días', hours: '14 hrs' },
-  { days: '18-19', month: 'Junio', branch: 'Mérida', duration: '2 días', hours: '14 hrs' },
-  { days: '25-26', month: 'Julio', branch: 'Vallejo', duration: '2 días', hours: '14 hrs' }
-];
-
-const DATES_DAY: CourseDate[] = [
-  { days: '06', month: 'Junio', branch: 'Viaducto', duration: '1 día', hours: '6 hrs' },
-  { days: '13', month: 'Junio', branch: 'Zona Rosa', duration: '1 día', hours: '6 hrs' },
-  { days: '20', month: 'Julio', branch: 'Vallejo', duration: '1 día', hours: '6 hrs' }
-];
+// Course dates come ONLY from /api/Event (live in the browser; public/data/events.json snapshot
+// while prerendering). The old sample arrays (June/July "Viaducto / Zona Rosa / Vallejo") were removed.
 
 export const EDU_NAV: EduCategory[] = [
   {
@@ -90,7 +88,7 @@ export const EDU_NAV: EduCategory[] = [
     body: 'Formación completa para quienes quieren construir bases sólidas, profesionalizarse y llevar su pasión por el café al siguiente nivel.',
     icon: '/assets/images/educacion/icon-cursos.png',
     tone: 'lime',
-    heroImage: '/assets/images/educacion/cursos-photo.png',
+    heroImage: '/assets/images/educacion/cursos-card.png',
     stats: [
       { label: 'Metodología', value: '100% integral', hint: '(Teoría + Práctica)' },
       { label: 'Duración', value: '2 días', hint: '(14 horas)' },
@@ -164,7 +162,7 @@ const sesionGdl = (days: string, month: string) =>
     ...SESION_H
   }));
 
-export const COURSES: Course[] = [
+const RAW_COURSES: Course[] = [
   {
     id: 10,
     slug: 'formacion-de-emprendedores',
@@ -208,7 +206,7 @@ export const COURSES: Course[] = [
       name: 'Javier S.',
       place: 'Querétaro'
     },
-    dates: DATES_WEEKEND,
+    dates: [],
     seo: {
       title: "Emprendiendo Mi Negocio de Barra de Café y Cafetería",
       description: "Emprendiendo Mi Negocio de Barra de Café y Cafetería es un taller donde aprenderás cómo abrir correctamente tu cafetería iniciándote como Barista.",
@@ -253,7 +251,7 @@ export const COURSES: Course[] = [
       'Baristas que buscan entender el grano más allá de la barra.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_WEEKEND,
+    dates: [],
     seo: {
       title: "Taller básico de tostado de café | impartido por SCA Trainers",
       description: "Taller básico de tostado de café: Un taller teórico-práctico donde aprenderás los procesos de calidad en el tostado y cómo desarrollar perfiles de tueste.",
@@ -261,6 +259,10 @@ export const COURSES: Course[] = [
     }
   },
   {
+    // TODO(SEO fase 1 — requiere a Héctor): precio y fechas CDMX de este taller no están en el código.
+    // El sitio viejo (/curso-de-barista-cdmx, revisado 25 sep 2026) muestra "$2000 MXN precio de promoción,
+    // precio de lista $2750 MXN" y "1 día / 6 horas"; aquí dice 2 días / 14 horas. Confirmar antes de publicar.
+    // Las fechas reales llegan de la API de eventos (categoryId = id).
     id: 1, 
     slug: 'formacion-barista',
     kind: 'talleres',
@@ -298,7 +300,7 @@ export const COURSES: Course[] = [
       'Emprendedores que van a operar su propia barra.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_WEEKEND,
+    dates: [],
     seo: {
       title: "Taller básico para baristas - Impartido por instructores de la SCA",
       description: "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
@@ -306,7 +308,7 @@ export const COURSES: Course[] = [
     }
   },
   {
-    id: 21,
+    id: 41, // categoryId BD (event_category 41 INMERSIONA-TE NAVIDAD, slug BD experiencia-inmersiona-te): fechas desde /api/Event?categoryId=41; las fechas estáticas de abajo son fallback
     slug: 'inmersiona-te',
     kind: 'experiencias',
     kicker: 'Experiencia',
@@ -349,7 +351,7 @@ export const COURSES: Course[] = [
     }
   },
   {
-    id: null,
+    id: 42, // categoryId BD (event_category 42, slug BD experiencia-mixologia): fechas desde /api/Event?categoryId=42; las fechas estáticas de abajo son fallback
     slug: 'arte-creatividad-mixologia',
     kind: 'experiencias',
     kicker: 'Experiencia',
@@ -383,7 +385,7 @@ export const COURSES: Course[] = [
     }
   },
   {
-    id: null,
+    id: 40, // categoryId BD (event_category 40 COFFEE LOVERS INVIERNO, slug BD experiencia-coffee-lovers-primavera): fechas desde /api/Event?categoryId=40; las fechas estáticas de abajo son fallback
     slug: 'coffee-lover-en-invierno',
     kind: 'experiencias',
     kicker: 'Experiencia',
@@ -427,7 +429,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/cursos-card.png',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/cursos-card.png',
     highlights: [
       { title: 'Aromas de referencia', text: 'Identifica notas con kits y ejercicios guiados.' },
       { title: 'Rueda de sabores', text: 'Pasa de “me gusta” a un vocabulario preciso.' },
@@ -451,7 +453,7 @@ export const COURSES: Course[] = [
       'Equipos de calidad.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: "Experiencia sensorial de café | Café Etrusca",
       description: "Adquiere las habilidades para evaluar, describir y diferenciar las características de un café de especialidad. Cata guiada con rueda de sabores.",
@@ -469,7 +471,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '9:00 a.m. - 1:00 p.m.',
     image: '/assets/images/educacion/cursos-photo.png',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/cursos-photo.png',
     highlights: [
       { title: 'Protocolo SCA', text: 'Tostión de muestra, molienda, tiempo y puntaje.' },
       { title: 'Defectos en taza', text: 'Reconoce fermento, fenólico, rio y más.' },
@@ -493,7 +495,7 @@ export const COURSES: Course[] = [
       'Baristas avanzados.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: "Catación de café | Protocolo SCA - Café Etrusca",
       description: "Aprende el protocolo SCA de catación: fragancia, aroma, sabor, acidez, cuerpo y balance. Reconoce defectos en taza y calibra criterios de mesa.",
@@ -538,7 +540,7 @@ export const COURSES: Course[] = [
       'Equipos que compran café de especialidad.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Experiencia ¡Aprende a crear tu propia mezcla de café!',
       description: 'Adquiere las habilidades para evaluar, describir y diferenciar las características de un café de especialidad, y crea tu propia mezcla.',
@@ -582,7 +584,7 @@ export const COURSES: Course[] = [
       'Coffee lovers interesados en mixología sin alcohol.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Experiencia el oasis del sabor con bebidas frías',
       description: 'En esta experiencia aprenderás sobre la elaboración de bebidas frías con y sin café, integrando técnicas actuales, ingredientes de calidad, tendencias de mercado y creatividad para la oferta del menú.',
@@ -627,7 +629,7 @@ export const COURSES: Course[] = [
       'Coffee lovers con práctica previa de leche.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: "Taller básico de arte latte - Aprende a realizar figuras en taza",
       description: "Taller de arte latte está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
@@ -645,7 +647,7 @@ export const COURSES: Course[] = [
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
     image: '/assets/images/educacion/cursos-photo.png',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/cursos-photo.png',
     highlights: [
       { title: 'Filtro caliente', text: 'V60, chemex y batch brew con recetas repetibles.' },
       { title: 'Cold brew y toddy', text: 'Ratios, tiempo y servicio en barra.' },
@@ -669,7 +671,7 @@ export const COURSES: Course[] = [
       'Equipos de barra completa.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: "Taller de Brew Bar & Cold Brew",
       description: "Taller de brew bar donde aprenderás a utilizar los métodos artesanales para la preparación de cafés y podrás descubrir las tendencias en Brew Bar.",
@@ -716,7 +718,7 @@ export const COURSES: Course[] = [
       'Equipos que buscan estandarizar recetas y porciones.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Taller Bebidas Frías',
       description: 'Domina las categorías de bebidas para el menú frío: frappés, smoothies, sodas italianas y preparaciones previas. Optimiza la operación y ganancias de tu barra.',
@@ -762,7 +764,7 @@ export const COURSES: Course[] = [
       'Dueños que buscan un producto estrella para el menú.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Taller de Bubble tea & iced coffee',
       description: 'Taller de Bubble tea & iced, combina diferentes aspectos que lo hacen único: toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.',
@@ -808,7 +810,7 @@ export const COURSES: Course[] = [
       'Emprendedores que van a profesionalizar su operación.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Taller básico para baristas especializado - Curso con instructores certificados SCA',
       description: 'Aprende espresso, extracción, calibración, leche, estándares de la SCA y servicio al cliente en nuestro taller para baristas especializados. Ideal para principiantes y cafeterías.',
@@ -853,7 +855,7 @@ export const COURSES: Course[] = [
       'Baristas que buscan el estándar SCA de latte art.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Taller Especializado de arte latte - Aprende a realizar figuras en taza',
       description: 'Taller de arte latte especializado está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.',
@@ -898,7 +900,7 @@ export const COURSES: Course[] = [
       'Equipos que ya operan y quieren estandarizar e innovar.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Taller de Bubble Tea Especializado',
       description: 'Únete al Taller de Bubble Tea Especializado, diseñado para elevar tu negocio al siguiente nivel con nuevas técnicas, sabores, texturas y presentaciones atractivas que captarán la atención en redes sociales y atraerán a más clientes.',
@@ -943,7 +945,7 @@ export const COURSES: Course[] = [
       'Equipos que buscan bebidas de tendencia sin montar un bar completo.'
     ],
     includes: INCLUDES_BASE,
-    dates: DATES_DAY,
+    dates: [],
     seo: {
       title: 'Taller de mixología con café sin alcohol',
       description: 'Taller de mixología con café sin alcohol donde aprenderás a crear bebidas de tendencia y desarrollarás usos alternativos a los insumos que tiene tu negocio.',
@@ -962,7 +964,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-verano-chillout.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-verano-chillout.webp',
     highlights: [
       { title: 'Menú de verano', text: 'Bebidas frías y combinaciones ChillOut para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -995,7 +997,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-bubble-power-session.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-bubble-power-session.webp',
     highlights: [
       { title: 'Bubble tea', text: 'Perlas, tes y ensamble de vaso.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1028,7 +1030,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-tisanas-en-verano.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-tisanas-en-verano.webp',
     highlights: [
       { title: 'Tisanas', text: 'Infusiones, hielo y servicio de verano.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1061,7 +1063,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-versatilidad-mezcla-especial-1.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-versatilidad-mezcla-especial-1.webp',
     highlights: [
       { title: 'Una mezcla, varios usos', text: 'Espresso, filtro y menú con la Especial No. 1.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1101,7 +1103,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-orgullo-mexicano.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-orgullo-mexicano.webp',
     highlights: [
       { title: 'Origen México', text: 'Cafés galardonados y su historia en taza.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1141,7 +1143,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-bubble-lab.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-bubble-lab.webp',
     highlights: [
       { title: 'Lab de bubble', text: 'Pruebas de receta y texturas.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1174,7 +1176,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-innovacion-en-jarabes.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-innovacion-en-jarabes.webp',
     highlights: [
       { title: 'Jarabes', text: 'Usos, dosificación y menú de temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1215,7 +1217,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-matchamania.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-matchamania.webp',
     highlights: [
       { title: 'Matcha', text: 'Preparación, textura y recetas de barra.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1256,7 +1258,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-elixir-del-terror.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-elixir-del-terror.webp',
     highlights: [
       { title: 'Temporada de terror', text: 'Bebidas creativas con vibe Halloween.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1289,7 +1291,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-pumpkin-vibes.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-pumpkin-vibes.webp',
     highlights: [
       { title: 'Pumpkin season', text: 'Sabores y texturas de calabaza para barra.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1328,7 +1330,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-un-otono-calido.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-un-otono-calido.webp',
     highlights: [
       { title: 'Otoño en taza', text: 'Bebidas calientes y especiadas para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1367,7 +1369,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-sorbos-de-chillout-en-otono.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-sorbos-de-chillout-en-otono.webp',
     highlights: [
       { title: 'ChillOut de otoño', text: 'Recetas frías con vibe de temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1400,7 +1402,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-cafe-de-temporada.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-cafe-de-temporada.webp',
     highlights: [
       { title: 'Café de temporada', text: 'Perfiles y recetas para nov-dic.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1440,7 +1442,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-tisanas-para-las-posadas.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-tisanas-para-las-posadas.webp',
     highlights: [
       { title: 'Tisanas de posadas', text: 'Infusiones y servicio para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1473,7 +1475,7 @@ export const COURSES: Course[] = [
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
     image: '/assets/images/educacion/sesion-nochebuena-calida.webp',
-    banner: '/assets/images/educacion/curso-banner.png',
+    banner: '/assets/images/educacion/sesion-nochebuena-calida.webp',
     highlights: [
       { title: 'Nochebuena', text: 'Bebidas cálidas y festivas para diciembre.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1504,6 +1506,16 @@ export const COURSES: Course[] = [
 
 ];
 
+/**
+ * Official SAP table (shared/kernel/data/course-catalog.data.ts) wins over the values above:
+ * duration, effective hours, schedule, price and clave.
+ */
+export const COURSES: Course[] = RAW_COURSES.map((c) => {
+  const cat = catalogByCourseSlug(c.slug);
+  if (!cat) return c;
+  return { ...c, duration: daysLabel(cat), hours: hoursLabel(cat), schedule: cat.schedule, clave: cat.clave, price: cat.price };
+});
+
 export const THIS_MONTH = [
   COURSES[0],
   COURSES[3],
@@ -1527,13 +1539,13 @@ export const PATHS: FormationPath[] = [
     tone: 'barista',
     items: [
       { label: 'Formación básico', link: '/educacion/talleres/formacion-barista' },
-      { label: 'Especializado', link: '/educacion/talleres/formacion-barista-especializado' },
-      { label: 'Arte latte básico', link: '/educacion/talleres/arte-latte' },
-      { label: 'Especializado', link: '/educacion/talleres/arte-latte-especializado' },
-      { label: 'Bubble tea básico / especializado', link: '/educacion/talleres/bubble-tea-iced-coffee' },
+      { label: 'Especializado', link: '/taller-para-baristas-especializados' },
+      { label: 'Arte latte básico', link: '/taller-de-arte-latte-nivel-basico' },
+      { label: 'Especializado', link: '/taller-de-arte-latte-especializados' },
+      { label: 'Bubble tea básico / especializado', link: '/taller-de-bubble-tea-&-iced-coffee' },
       { label: 'Bebidas frías', link: '/educacion/talleres/bebidas-frias' },
       { label: 'Experiencias', link: '/educacion/experiencias' },
-      { label: 'Brew & Cold Brew', link: '/educacion/talleres/metodos-de-extraccion' }
+      { label: 'Brew & Cold Brew', link: '/taller-de-brew-bar' }
     ]
   },
   {
@@ -1541,7 +1553,7 @@ export const PATHS: FormationPath[] = [
     tone: 'catador',
     items: [
       { label: 'Experiencias', link: '/educacion/experiencias' },
-      { label: 'Tostado', link: '/educacion/cursos/tostado-basico' }
+      { label: 'Tostado', link: '/taller-basico-de-tostado-de-cafe' }
     ]
   },
   {
@@ -1556,10 +1568,10 @@ export const PATHS: FormationPath[] = [
     tone: 'lover',
     items: [
       { label: 'Formación básico', link: '/educacion/talleres/formacion-barista' },
-      { label: 'Arte latte básico', link: '/educacion/talleres/arte-latte' },
-      { label: 'Brew / Cold Brew', link: '/educacion/talleres/metodos-de-extraccion' },
+      { label: 'Arte latte básico', link: '/taller-de-arte-latte-nivel-basico' },
+      { label: 'Brew / Cold Brew', link: '/taller-de-brew-bar' },
       { label: 'Experiencias', link: '/educacion/experiencias' },
-      { label: 'Bubble tea básico / especializado', link: '/educacion/talleres/bubble-tea-iced-coffee' },
+      { label: 'Bubble tea básico / especializado', link: '/taller-de-bubble-tea-&-iced-coffee' },
       { label: 'Bebidas frías', link: '/educacion/talleres/bebidas-frias' }
     ]
   }
@@ -1740,10 +1752,13 @@ export function upcomingCourseDates(dates: CourseDate[] | undefined, ref: Date =
   return (dates || []).filter((d) => !isCourseDatePast(d, ref));
 }
 
-/** true si no hay fechas, o si queda al menos una fecha vigente. */
+/**
+ * true solo si queda al menos una fecha vigente. Sin fechas (placeholder) → false: la sesión/experiencia
+ * sale del hub y del sitemap hasta tener fechas reales (tarea 7, punto 2).
+ */
 export function hasUpcomingCourseDates(course: Pick<Course, 'dates'>, ref: Date = new Date()): boolean {
   const dates = course.dates || [];
-  if (!dates.length) return true;
+  if (!dates.length) return false;
   return upcomingCourseDates(dates, ref).length > 0;
 }
 export function coursesByKind(kind: EduKind) {

@@ -16,9 +16,11 @@
         <h3 class="footer-heading heading-nosotros mb-3">NOSOTROS</h3>
         <ul class="list-unstyled">
           <li class="mb-2"><a routerLink="/nosotros" class="footer-link">Quiénes somos</a></li>
-          <li class="mb-2"><a href="#" class="footer-link">Blog</a></li>
-          <li class="mb-2"><a href="#" class="footer-link">Nuestras marcas</a></li>
-          <li class="mb-2"><a href="#" class="footer-link">Ecommerce</a></li>
+          <!-- SEO fase 1: /Blog no existe en el sitio nuevo (404 tras la migración). Oculto hasta definir destino. -->
+          <!-- <li class="mb-2"><a href="https://cafeetrusca.com/Blog" target="_blank" rel="noopener" class="footer-link">Blog</a></li> -->
+          <li class="mb-2"><a routerLink="/nosotros" fragment="nuestras-marcas" class="footer-link">Nuestras marcas</a></li>
+          <li class="mb-2"><a routerLink="/sucursales" class="footer-link">Sucursales</a></li>
+          <li class="mb-2"><a href="https://tienda.cafeetrusca.com/" target="_blank" rel="noopener" class="footer-link">Ecommerce</a></li>
         </ul>
       </div>
 
@@ -28,9 +30,9 @@
         <ul class="list-unstyled">
           <li class="mb-2"><a routerLink="/cursos-para-baristas-y-talleres-para-cafeterias" class="footer-link">Educación</a></li>
           <li class="mb-2"><a routerLink="/politicas-externas-cursos" class="footer-link">Políticas de cursos</a></li>
-          <li class="mb-2"><a href="#" class="footer-link">Servicios y refacciones</a></li>
-          <li class="mb-2"><a href="#" class="footer-link">Calculadora de precios</a></li>
-          <li class="mb-2"><a href="#" class="footer-link">Recetas</a></li>
+          <li class="mb-2"><a href="https://servicio-y-refacciones.cafeetrusca.com/" target="_blank" rel="noopener" class="footer-link">Servicios y refacciones</a></li>
+          <li class="mb-2"><a routerLink="/" fragment="nuestros-productos" class="footer-link">Calculadora de precios</a></li>
+          <li class="mb-2"><a routerLink="/recetas" class="footer-link">Recetas</a></li>
         </ul>
       </div>
 
@@ -39,8 +41,8 @@
         <h3 class="footer-heading heading-productos mb-3">PRODUCTOS</h3>
         <ul class="list-unstyled">
           <li class="mb-2"><a routerLink="/productos/cafe" class="footer-link">Café</a></li>
-          <li class="mb-2"><a routerLink="/productos/insumos" class="footer-link">Insumos</a></li>
-          <li class="mb-2"><a routerLink="/productos/accesorios" class="footer-link">Accesorios</a></li>
+          <li class="mb-2"><a routerLink="/insumos-para-cafeterias" class="footer-link">Insumos</a></li>
+          <li class="mb-2"><a routerLink="/accesorios-para-poner-una-cafeteria" class="footer-link">Accesorios</a></li>
           <li class="mb-2"><a routerLink="/maquinaria-y-equipo-para-cafeterias" class="footer-link">Máquinas</a></li>
         </ul>
       </div>
@@ -60,9 +62,9 @@
         <p class="text-warning mb-2 fw-bold" style="font-size: 0.9rem;">Nuestras Redes Sociales</p>
         <div class="social-icons d-flex justify-content-center justify-content-md-start gap-3">
           <!-- Rutas de íconos sociales apuntando a /assets/images/ -->
-          <a href="#"><img src="/assets/images/icon-face.png" alt="Facebook" width="35"></a>
-          <a href="#"><img src="/assets/images/icon-youtube.png" alt="Youtube" width="35"></a>
-          <a href="#"><img src="/assets/images/icon-ig.png" alt="Instagram" width="35"></a>
+          <a href="https://www.facebook.com/CafeEtrusca" target="_blank" rel="noopener"><img src="/assets/images/icon-face.png" alt="Facebook" width="35"></a>
+          <a href="https://www.youtube.com/@CafeEtrusca" target="_blank" rel="noopener"><img src="/assets/images/icon-youtube.png" alt="Youtube" width="35"></a>
+          <a href="https://www.instagram.com/cafeetrusca" target="_blank" rel="noopener"><img src="/assets/images/icon-ig.png" alt="Instagram" width="35"></a>
         </div>
       </div>
 

@@ -51,6 +51,759 @@ const ICO = {
 
 export const RECIPES: Recipe[] = [
   {
+    slug: "pumpkin-cold-brew",
+    title: "Pumpkin",
+    titleAccent: "cold brew",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Cold brew 480 ml con Torani pumpkin pie, leche, agua e hielo, terminado con canela.",
+    image: '/assets/images/recetas/calabaza/pumpkin-cold-brew.webp',
+    banner: '/assets/images/recetas/calabaza/pumpkin-cold-brew.webp',
+    tone: "gold",
+    brand: "Torani",
+    time: "4 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+      "150 ml de cold brew preparado con Mezcla especial No. 1",
+      "30 ml de salsa Torani pumpkin pie",
+      "150 ml de agua",
+      "100 ml de leche",
+      "4 piezas de hielo",
+      "Canela para decorar"
+    ],
+    tools: ["Jarra de acero", "Vaso"],
+    steps: [
+      {
+        title: "Espuma",
+        text: "Espuma la leche junto con la salsa pumpkin en una jarra de acero hasta la temperatura deseada y reserva.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Arma",
+        text: "Decora el vaso con salsa pumpkin. Agrega el cold brew, el agua y los hielos.",
+        tone: "pink",
+        icon: ICO.blend
+      },
+      {
+        title: "Termina",
+        text: "Vierte la mezcla de leche con salsa y decora con canela.",
+        tone: "blue",
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Pumpkin cold brew 480 ml | Otoño | Café Etrusca",
+      description: "Cold brew de calabaza con Torani pumpkin pie, leche e hielo. Receta de otoño Café Etrusca.",
+      keywords: "pumpkin cold brew, torani pumpkin pie, cold brew, otoño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "dirty-pumpkin-chai",
+    title: "Dirty",
+    titleAccent: "pumpkin chai",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Chai latte 480 ml con David Rio panda rojo, espresso Mezcla especial No. 1 y Torani pumpkin pie.",
+    image: '/assets/images/recetas/calabaza/dirty-pumpkin-chai.webp',
+    banner: '/assets/images/recetas/calabaza/dirty-pumpkin-chai.webp',
+    tone: "gold",
+    brand: "David Rio",
+    time: "4 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+      "30 g de David Rio panda rojo",
+      "60 ml de espresso preparado con Mezcla especial No. 1",
+      "15 ml de jarabe Torani pumpkin pie",
+      "300 ml de leche"
+    ],
+    tools: ["Máquina espresso", "Jarra de acero", "Vaporizador"],
+    steps: [
+      {
+        title: "Espresso",
+        text: "Prepara el espresso en la taza de tu elección.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Espuma",
+        text: "En una jarra de acero agrega el chai, el jarabe pumpkin y la leche; espuma hasta la temperatura deseada.",
+        tone: "pink",
+        icon: ICO.blend
+      },
+      {
+        title: "Integra",
+        text: "Mezcla el espresso con la preparación de la jarra y sirve.",
+        tone: "blue",
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Dirty pumpkin chai 480 ml | Otoño | Café Etrusca",
+      description: "Dirty pumpkin chai con David Rio panda rojo, espresso y Torani pumpkin pie.",
+      keywords: "dirty pumpkin chai, david rio, torani pumpkin pie, espresso, Café Etrusca"
+    },
+    published: true
+  },
+
+  {
+    slug: "calabaza-brulee-latte",
+    title: "Calabaza",
+    titleAccent: "Brûlée Latte",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Latte 360 ml con ChillOut dulce de calabaza, espresso Mezcla especial 1 y crème brûlée flameada.",
+    image: '/assets/images/recetas/calabaza/calabaza-brulee-latte.webp',
+    banner: '/assets/images/recetas/calabaza/calabaza-brulee-latte.webp',
+    tone: "gold",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "360 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "225 g de ChillOut mix dulce de calabaza",
+          "30 ml de espresso Mezcla especial 1",
+          "30 g de ChillOut mix crème brûlée ya preparado",
+          "250 ml de leche",
+          "Azúcar morena"
+    ],
+    tools: ["Máquina espresso","Vaporizador","Soplete"],
+    steps: [
+      {
+        title: "Espresso y base",
+        text: "Extrae el espresso en la taza e integra el mix dulce de calabaza hasta mezclar.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Leche",
+        text: "Espuma la leche y sírvela sobre la mezcla.",
+        tone: "pink",
+        icon: ICO.blend
+      },
+      {
+        title: "Brûlée",
+        text: "Coloca el crème brûlée y azúcar morena; flamea hasta caramelizar.",
+        tone: "blue",
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Calabaza Brûlée Latte 360 ml | Otoño | Café Etrusca",
+      description: "Latte de calabaza con crème brûlée flameada, espresso Mezcla especial 1 y ChillOut mix dulce de calabaza.",
+      keywords: "calabaza brulee latte, chillout dulce de calabaza, espresso, otoño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "mokalabaza-latte",
+    title: "Mokalabaza",
+    titleAccent: "Latte",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Latte 480 ml con dulce de calabaza, Torani chocolate blanco, espresso y bombones flameados.",
+    image: '/assets/images/recetas/calabaza/mokalabaza-latte.webp',
+    banner: '/assets/images/recetas/calabaza/mokalabaza-latte.webp',
+    tone: "gold",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "30 g de ChillOut mix dulce de calabaza",
+          "22 ml de Torani chocolate blanco",
+          "60 ml de espresso Mezcla especial No. 1",
+          "300 ml de leche",
+          "Bombones flameados"
+    ],
+    tools: ["Máquina espresso","Vaporizador","Soplete"],
+    steps: [
+      {
+        title: "Espresso",
+        text: "Extrae el espresso en la taza.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Mezcla",
+        text: "Agrega el polvo de calabaza y la salsa de chocolate blanco; mezcla bien.",
+        tone: "pink",
+        icon: ICO.blend
+      },
+      {
+        title: "Leche y decoración",
+        text: "Espuma la leche, sirve y decora con bombones; flaéalos al momento.",
+        tone: "blue",
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Mokalabaza Latte 480 ml | Otoño | Café Etrusca",
+      description: "Latte de calabaza con Torani chocolate blanco, espresso Mezcla especial No. 1 y bombones flameados.",
+      keywords: "mokalabaza latte, calabaza, torani chocolate blanco, chillout, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "affogato-de-otono",
+    title: "Affogato",
+    titleAccent: "de Otoño",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Affogato 480 ml con helado de vainilla, Torani avellana, dulce de calabaza y espresso.",
+    image: '/assets/images/recetas/calabaza/affogato-de-otono.webp',
+    banner: '/assets/images/recetas/calabaza/affogato-de-otono.webp',
+    tone: "gold",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "2 bolas de helado de vainilla",
+          "20 ml de Torani avellana",
+          "30 g de ChillOut mix dulce de calabaza (diluido en agua caliente)",
+          "30 ml de espresso Mezcla especial No. 1",
+          "Trozos de nueces"
+    ],
+    tools: ["Recipiente / vaso","Máquina espresso"],
+    steps: [
+      {
+        title: "Base",
+        text: "Coloca el helado de vainilla en el recipiente.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Café y jarabes",
+        text: "Añade el espresso, el polvo de calabaza diluido y el Torani avellana.",
+        tone: "pink",
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Termina con trozos de nueces.",
+        tone: "blue",
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Affogato de Otoño 480 ml | Café Etrusca",
+      description: "Affogato de temporada con helado, Torani avellana, ChillOut dulce de calabaza y espresso.",
+      keywords: "affogato de otoño, calabaza, torani avellana, espresso, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "bubble-pumpkin",
+    title: "Bubble",
+    titleAccent: "Pumpkin",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Bebida 480 ml con dulce de calabaza, Torani salted caramel, tapioca ChillOut y leche.",
+    image: '/assets/images/recetas/calabaza/bubble-pumpkin.webp',
+    banner: '/assets/images/recetas/calabaza/bubble-pumpkin.webp',
+    tone: "coral",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "45 g de ChillOut mix dulce de calabaza",
+          "15 ml de Torani salted caramel",
+          "20 g de ChillOut tapioca",
+          "4 hielos",
+          "240 ml de leche"
+    ],
+    tools: ["Licuadora","Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa todos los líquidos (excepto la tapioca) con hielo hasta que quede frío y homogéneo.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Decora",
+        text: "Sirve y decora con la tapioca ChillOut.",
+        tone: "pink",
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Bubble Pumpkin 480 ml | Otoño | Café Etrusca",
+      description: "Bubble tea de calabaza con Torani salted caramel y tapioca ChillOut.",
+      keywords: "bubble pumpkin, tapioca, calabaza, torani salted caramel, ChillOut"
+    },
+    published: true
+  },
+  {
+    slug: "calabaza-brulee",
+    title: "Calabaza",
+    titleAccent: "brûlée",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Cold brew 480 ml con crema Torani pumpkin pie en sifón y azúcar morena caramelizada.",
+    image: '/assets/images/recetas/calabaza/calabaza-brulee.webp',
+    banner: '/assets/images/recetas/calabaza/calabaza-brulee.webp',
+    tone: "gold",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "Crema batida: 220 ml de crema base rich",
+          "250 ml de agua",
+          "45 ml de Torani pumpkin pie",
+          "1 cápsula",
+          "Sifón 1/2 L",
+          "180 ml de cold brew Mezcla especial No. 1",
+          "180 ml de agua",
+          "4 hielos",
+          "1 cda de azúcar morena"
+    ],
+    tools: ["Sifón 1/2 L","Vaso","Soplete"],
+    steps: [
+      {
+        title: "Crema",
+        text: "Prepara la crema batida en el sifón con crema base, agua, Torani pumpkin pie y la cápsula.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Bebida",
+        text: "En el vaso combina cold brew, agua y hielos; corona con la crema del sifón.",
+        tone: "pink",
+        icon: ICO.blend
+      },
+      {
+        title: "Carameliza",
+        text: "Espolvorea azúcar morena y carameliza con soplete.",
+        tone: "blue",
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Calabaza brûlée 480 ml | Cold brew | Café Etrusca",
+      description: "Cold brew de calabaza con crema pumpkin pie en sifón y brûlée de azúcar morena.",
+      keywords: "calabaza brulee, cold brew, torani pumpkin pie, sifón, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "calabaza-y-espresso-latte",
+    title: "Calabaza y",
+    titleAccent: "espresso latte",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Latte 480 ml con ChillOut dulce de calabaza, espresso doble y leche.",
+    image: '/assets/images/recetas/calabaza/calabaza-y-espresso-latte.webp',
+    banner: '/assets/images/recetas/calabaza/calabaza-y-espresso-latte.webp',
+    tone: "gold",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "30 g de ChillOut dulce de calabaza",
+          "60 ml de espresso doble Mezcla especial No. 1",
+          "250 ml de leche"
+    ],
+    tools: ["Máquina espresso","Vaporizador"],
+    steps: [
+      {
+        title: "Base",
+        text: "Disuelve el dulce de calabaza con el espresso doble.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Leche",
+        text: "Espuma la leche y sírvela sobre la mezcla.",
+        tone: "pink",
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Calabaza y espresso latte 480 ml | Café Etrusca",
+      description: "Latte de calabaza con espresso doble Mezcla especial No. 1 y ChillOut.",
+      keywords: "calabaza espresso latte, chillout, mezcla especial, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "calabaza-y-matcha-latte",
+    title: "Calabaza y",
+    titleAccent: "matcha latte",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Latte 480 ml con Aya matcha tostado, Torani pumpkin pie y leche.",
+    image: '/assets/images/recetas/calabaza/calabaza-y-matcha-latte.webp',
+    banner: '/assets/images/recetas/calabaza/calabaza-y-matcha-latte.webp',
+    tone: "lime",
+    brand: "Aya / Torani",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "20 g de Aya matcha tostado",
+          "30 ml de Torani pumpkin pie",
+          "280 ml de leche"
+    ],
+    tools: ["Bowl / jarra","Batidor","Vaporizador"],
+    steps: [
+      {
+        title: "Matcha",
+        text: "Disuelve el matcha tostado con un poco de leche caliente.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Integra",
+        text: "Agrega Torani pumpkin pie y el resto de la leche espumada.",
+        tone: "pink",
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Calabaza y matcha latte 480 ml | Café Etrusca",
+      description: "Latte de matcha tostado Aya con Torani pumpkin pie.",
+      keywords: "calabaza matcha latte, aya matcha, torani pumpkin pie, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "dulce-de-calabaza-molecular",
+    title: "Dulce de calabaza",
+    titleAccent: "molecular",
+    kicker: 'Otoño · Calabaza',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Bebida 480 ml con dulce de calabaza, Torani salted caramel y tapioca instantánea ChillOut.",
+    image: '/assets/images/recetas/calabaza/dulce-de-calabaza-molecular.webp',
+    banner: '/assets/images/recetas/calabaza/dulce-de-calabaza-molecular.webp',
+    tone: "gold",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "480 ml",
+    difficulty: 'Fácil',
+    bubble: "Temporada de calabaza",
+    ingredients: [
+          "45 g de ChillOut mix dulce de calabaza",
+          "15 ml de Torani salted caramel",
+          "1 sobre de ChillOut tapioca instantánea",
+          "4 hielos",
+          "240 ml de leche"
+    ],
+    tools: ["Licuadora","Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa el mix, Torani, leche y hielos hasta integrar.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Tapioca",
+        text: "Prepara la tapioca instantánea e intégrala o decora al servir.",
+        tone: "pink",
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Dulce de calabaza molecular 480 ml | Café Etrusca",
+      description: "Bebida molecular de calabaza con tapioca instantánea ChillOut y Torani salted caramel.",
+      keywords: "dulce de calabaza molecular, tapioca instantánea, chillout, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'red-velvet-bombon',
+    title: "Red velvet",
+    titleAccent: "bombón",
+    kicker: 'Otoño · Temporada',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Bebida caliente 480 ml de red velvet con Cappuccine, leche espumada, bombones y jarabe n’Dulce dulce de leche.",
+    image: '/assets/images/recetas/otono/red-velvet-bombon.webp',
+    banner: '/assets/images/recetas/otono/red-velvet-bombon.webp',
+    tone: 'coral',
+    brand: "Cappuccine",
+    time: '10 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Temporada de otoño',
+    ingredients: [
+      "2 cucharadas de polvo Cappuccine red velvet",
+      "1 vaso pequeño de leche",
+      "1 bolsita de bombones",
+      "2 cucharadas de jarabe n’Dulce dulce de leche"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Calienta",
+        text: "Calienta la leche en una jarra casi a punto de ebullición, agrega el polvo red velvet y espuma mientras la viertes en otro recipiente.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en la taza de tu elección.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Coloca los bombones encima y termina con un poco de jarabe n’Dulce dulce de leche.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Red velvet bombón 480 ml | Otoño | Café Etrusca",
+      description: "Bebida caliente 480 ml de red velvet con Cappuccine, leche espumada, bombones y jarabe n’Dulce dulce de leche. Receta de otoño Café Etrusca.",
+      keywords: "red velvet bombon, red velvet caliente, cappuccine red velvet, bombones, ndulce dulce de leche, otoño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'fresandia-frozen',
+    title: "Fresandía",
+    titleAccent: "frozen",
+    kicker: 'Otoño · Temporada',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Frappé 480 ml de fresa y sandía con ChillOut Jarabes fresa, ChillOut Fruit sandía y ChillOut Mix base cristal.",
+    image: '/assets/images/recetas/otono/fresandia-frozen.webp',
+    banner: '/assets/images/recetas/otono/fresandia-frozen.webp',
+    tone: 'coral',
+    brand: "ChillOut",
+    time: '10 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Temporada de otoño',
+    ingredients: [
+      "30 ml de ChillOut Jarabes fresa",
+      "15 ml de ChillOut Fruit sandía",
+      "40 g de ChillOut Mix base cristal",
+      "150 ml de agua",
+      "1 vaso de 480 ml lleno de hielo"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Agrega todos los ingredientes a la licuadora, empezando por los líquidos.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Frappé",
+        text: "Licúa hasta obtener una bebida frappé.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Sirve y decora al gusto.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Fresandía frozen 480 ml | Otoño | Café Etrusca",
+      description: "Frappé 480 ml de fresa y sandía con ChillOut Jarabes fresa, ChillOut Fruit sandía y ChillOut Mix base cristal. Receta de otoño Café Etrusca.",
+      keywords: "fresandia frozen, frappe de fresa y sandia, chillout fruit sandia, base cristal, otoño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'matcha-azul-frappe-480ml',
+    title: "Matcha azul",
+    titleAccent: "frappé",
+    kicker: 'Otoño · Temporada',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Frappé 480 ml de ChillOut Mix matcha azul sobre ChillOut Jam mango y crema base vegetal.",
+    image: '/assets/images/recetas/otono/matcha-azul-frappe-480ml.webp',
+    banner: '/assets/images/recetas/otono/matcha-azul-frappe-480ml.webp',
+    tone: 'sky',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Temporada de otoño',
+    ingredients: [
+      "40 g de ChillOut Mix matcha azul",
+      "30 g de ChillOut Jam mango",
+      "20 ml de crema base vegetal",
+      "150 ml de leche",
+      "1 vaso de 480 ml lleno de hielo"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa el matcha azul, la leche y el hielo (sin el jam) hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Capas",
+        text: "En el vaso coloca el jam de mango y después la crema base vegetal.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Agrega el frappé encima y mezcla antes de beber.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Matcha azul frappé 480 ml | Otoño | Café Etrusca",
+      description: "Frappé 480 ml de ChillOut Mix matcha azul sobre ChillOut Jam mango y crema base vegetal. Receta de otoño Café Etrusca.",
+      keywords: "matcha azul frappe, chillout mix matcha azul, jam mango, frappe azul, otoño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'matcha-azul-frio-480ml',
+    title: "Matcha azul",
+    titleAccent: "frío",
+    kicker: 'Otoño · Temporada',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Frappé 480 ml de ChillOut Mix matcha azul con nubes de crema batida en las paredes del vaso.",
+    image: '/assets/images/recetas/otono/matcha-azul-frio-480ml.webp',
+    banner: '/assets/images/recetas/otono/matcha-azul-frio-480ml.webp',
+    tone: 'sky',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Temporada de otoño',
+    ingredients: [
+      "50 g de ChillOut Mix matcha azul",
+      "150 ml de leche",
+      "1 vaso de 480 ml lleno de hielo",
+      "Crema batida"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa el matcha azul, la leche y el hielo hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Nubes",
+        text: "Decora las paredes del vaso con crema batida simulando nubes.",
+        tone: 'pink',
+        icon: ICO.decor
+      },
+      {
+        title: "Sirve",
+        text: "Sirve el frappé en el vaso decorado.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Matcha azul frío 480 ml | Otoño | Café Etrusca",
+      description: "Frappé 480 ml de ChillOut Mix matcha azul con nubes de crema batida en las paredes del vaso. Receta de otoño Café Etrusca.",
+      keywords: "matcha azul frio, frappe matcha azul, chillout mix matcha azul, nubes de crema, otoño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'matcha-azul-floral-360ml',
+    title: "Matcha azul",
+    titleAccent: "floral",
+    kicker: 'Otoño · Temporada',
+    category: 'Bebidas de temporada',
+    collection: 'calabaza',
+    origin: 'calabaza',
+    summary: "Latte caliente 360 ml de ChillOut Mix matcha azul con jarabe Torani rosas y leche espumada.",
+    image: '/assets/images/recetas/otono/matcha-azul-floral-360ml.webp',
+    banner: '/assets/images/recetas/otono/matcha-azul-floral-360ml.webp',
+    tone: 'sky',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Temporada de otoño',
+    ingredients: [
+      "30 g de ChillOut Mix matcha azul",
+      "15 ml de jarabe Torani rosas",
+      "250 ml de leche"
+    ],
+    tools: ["Jarra de acero (20 oz)", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Integra",
+        text: "Agrega todos los ingredientes a una jarra de acero de 20 oz.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Espuma",
+        text: "Espuma hasta la temperatura deseada.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en la taza de tu elección y espolvorea un poco de matcha azul.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Matcha azul floral 360 ml | Otoño | Café Etrusca",
+      description: "Latte caliente 360 ml de ChillOut Mix matcha azul con jarabe Torani rosas y leche espumada. Receta de otoño Café Etrusca.",
+      keywords: "matcha azul floral, latte de matcha azul, torani rosas, matcha azul caliente, otoño, Café Etrusca"
+    },
+    published: true
+  },
+    {
     slug: 'mangonada-chillout',
     title: 'CHAMOYADA',
     titleAccent: 'DE MANGO',
@@ -112,25 +865,25 @@ export const RECIPES: Recipe[] = [
         label: 'ChillOut Mix Limón',
         description: 'Ideal para preparar la base fresca.',
         image: '/assets/images/insumos/cafe-bag.png',
-        link: '/productos/insumos'
+        link: '/insumos-para-cafeterias'
       },
       {
         label: 'ChillOut Jam Mango',
         description: 'Sabor intenso y auténtico.',
         image: '/assets/images/insumos/matcha-can.png',
-        link: '/productos/insumos'
+        link: '/insumos-para-cafeterias'
       },
       {
         label: 'Crystal Boba Mango',
         description: 'Textura única y divertida.',
         image: '/assets/images/insumos/product-tall-2.png',
-        link: '/productos/insumos/toppings'
+        link: '/insumos-para-cafeterias/toppings'
       },
       {
         label: 'ChillOut Chamoy',
         description: 'El toque picosito perfecto.',
         image: '/assets/images/insumos/salsas-bottle-chamoy.webp',
-        link: '/productos/insumos/salsas'
+        link: '/insumos-para-cafeterias/salsas'
       }
     ],
     seo: {
@@ -999,6 +1752,2583 @@ export const RECIPES: Recipe[] = [
       description:
         'Sparkling cherry con Torani cereza, ChillOut Mix limón y cold foam piña colada. Receta de verano.',
       keywords: 'sparkling cherry, Torani cereza, piña colada foam, verano, Café Etrusca'
+    },
+    published: true
+  },
+    // ——— San Valentín 2026 ———
+  {
+    slug: 'manzana-acaramelada',
+    title: 'Manzana',
+    titleAccent: 'Acaramelada',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Frappé 480 ml con Mix base neutra, Torani manzana verde y salsa Puremade caramelo.',
+    image: '/assets/images/recetas/san-valentin/manzana-acaramelada.webp',
+    banner: '/assets/images/recetas/san-valentin/manzana-acaramelada.webp',
+    tone: 'coral',
+    brand: 'Torani',
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Manzana y caramelo',
+    ingredients: [
+      '40 g ChillOut mix base neutra',
+      '45 ml Torani clásico manzana verde',
+      '30 ml salsa Torani Puremade caramelo',
+      '130 ml de leche',
+      '1 vaso de 480 ml con hielos',
+    ],
+    tools: ['Licuadora'],
+    toolIcon: ICO.tool,
+    steps: [
+      {
+        title: 'Licúa',
+        text: 'Licúa leche, jarabe, salsa, polvo e hielos hasta obtener frappé.',
+        tone: 'yellow',
+        icon: ICO.blend
+      },
+      {
+        title: 'Marmolea',
+        text: 'Marmolea el vaso con caramelo, vierte la mezcla y decora con crema batida marmoleada con caramelo.',
+        tone: 'pink',
+        icon: ICO.decor
+      },
+    ],
+    seo: {
+      title: 'Receta Manzana Acaramelada 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Manzana acaramelada con ChillOut base neutra, Torani manzana verde y Puremade caramelo. Receta de San Valentín.',
+      keywords: 'manzana acaramelada, Torani manzana verde, caramelo, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'rosa-pistache-foam',
+    title: 'Rosa pistache',
+    titleAccent: 'Foam',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Bebida 480 ml de pistache con foam rosa de ChillOut fruit fresa y mix base neutra.',
+    image: '/assets/images/recetas/san-valentin/rosa-pistache-foam.webp',
+    banner: '/assets/images/recetas/san-valentin/rosa-pistache-foam.webp',
+    tone: 'lime',
+    brand: 'ChillOut',
+    time: '6 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Pistache y fresa',
+    ingredients: [
+      '30 ml ChillOut fruit fresa',
+      '30 g ChillOut mix pistache',
+      '30 g ChillOut mix base neutra',
+      '50 ml de crema base',
+      '200 ml de leche',
+      '20 ml de leche para foam',
+      '2-3 hielos',
+      '3-5 pistaches',
+    ],
+    tools: ['Shaker', 'Batidor'],
+    steps: [
+      {
+        title: 'Foam',
+        text: 'Mezcla crema base, leche, fruit fresa y polvo hasta espesar; refrigera unos minutos.',
+        tone: 'pink'
+      },
+      {
+        title: 'Base',
+        text: 'En shaker mezcla leche, mix pistache e hielos hasta integrar.',
+        tone: 'yellow'
+      },
+      {
+        title: 'Termina',
+        text: 'Sirve en vaso con hielos, cuela la base y corona con foam y pistaches.',
+        tone: 'green'
+      },
+    ],
+    seo: {
+      title: 'Receta Rosa pistache Foam 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Rosa pistache foam con ChillOut mix pistache y fruit fresa. Receta de San Valentín.',
+      keywords: 'rosa pistache, foam fresa, ChillOut pistache, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'caricia-de-amor',
+    title: 'Caricia de',
+    titleAccent: 'Amor',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Cóctel cremoso 480 ml con Torani crema de banana, cereza, crema base, vodka y leche.',
+    image: '/assets/images/recetas/san-valentin/caricia-de-amor.webp',
+    banner: '/assets/images/recetas/san-valentin/caricia-de-amor.webp',
+    tone: 'coral',
+    brand: 'Torani',
+    time: '4 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Banana y cereza',
+    ingredients: [
+      '30 ml Torani clásico crema de banana',
+      '30 ml Torani clásico cereza',
+      '22.5 ml de crema base',
+      '30 ml de vodka',
+      '3 piezas de hielo',
+      '60 ml de leche',
+      '1 cereza',
+    ],
+    tools: ['Shaker'],
+    steps: [
+      {
+        title: 'Mezcla',
+        text: 'En shaker agrega todos los ingredientes y mezcla suavemente unos 5 segundos.',
+        tone: 'yellow'
+      },
+      {
+        title: 'Sirve',
+        text: 'Cuela en el vaso de tu preferencia y decora con cereza.',
+        tone: 'pink'
+      },
+    ],
+    seo: {
+      title: 'Receta Caricia de Amor 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Caricia de amor con Torani crema de banana y cereza. Receta de San Valentín.',
+      keywords: 'caricia de amor, Torani banana, Torani cereza, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'soda-de-la-pasion',
+    title: 'Soda de la',
+    titleAccent: 'Pasión',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Soda 480 ml con ChillOut pop níspero y fresa, Torani maracuyá y agua mineral.',
+    image: '/assets/images/recetas/san-valentin/soda-de-la-pasion.webp',
+    banner: '/assets/images/recetas/san-valentin/soda-de-la-pasion.webp',
+    tone: 'coral',
+    brand: 'ChillOut',
+    time: '3 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Maracuyá y pops',
+    ingredients: [
+      '30 g ChillOut pop níspero',
+      '30 g ChillOut pop fresa',
+      '30 ml Torani clásico maracuyá',
+      '3-4 hielos',
+      '230 ml de agua mineral',
+    ],
+    tools: ['Vaso'],
+    steps: [
+      {
+        title: 'Arma',
+        text: 'En el vaso agrega los pops, el jarabe y los hielos.',
+        tone: 'yellow'
+      },
+      {
+        title: 'Termina',
+        text: 'Vierte el agua mineral con cuidado sobre los hielos y mezcla para disfrutar.',
+        tone: 'green'
+      },
+    ],
+    seo: {
+      title: 'Receta Soda de la Pasión 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Soda de la pasión con ChillOut pop y Torani maracuyá. Receta de San Valentín.',
+      keywords: 'soda de la pasión, Torani maracuyá, ChillOut pop, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'negro-dulce-corazon',
+    title: 'Negro dulce',
+    titleAccent: 'Corazón',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Frappé 480 ml con Stash english breakfast, ChillOut fruit cereza, jelly heart y base cristal.',
+    image: '/assets/images/recetas/san-valentin/negro-dulce-corazon.webp',
+    banner: '/assets/images/recetas/san-valentin/negro-dulce-corazon.webp',
+    tone: 'navy',
+    brand: 'ChillOut',
+    time: '6 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Té y cereza',
+    ingredients: [
+      '2 sobres de Stash english breakfast',
+      '45 ml ChillOut fruit cereza',
+      '30 g ChillOut jelly heart',
+      '30 g ChillOut base cristal',
+      '150 ml de agua caliente 85-90°',
+      '1 vaso de 480 ml con hielos',
+    ],
+    tools: ['Licuadora'],
+    toolIcon: ICO.tool,
+    steps: [
+      {
+        title: 'Infusión',
+        text: 'Infusiona los sobres de té con agua caliente y deja enfriar.',
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: 'Licúa',
+        text: 'Licúa la infusión, el concentrado, la base cristal y los hielos hasta frappé.',
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: 'Decora',
+        text: 'Marmolea el vaso con concentrado, vierte el frappé y decora con jelly heart.',
+        tone: 'green',
+        icon: ICO.decor
+      },
+    ],
+    seo: {
+      title: 'Receta Negro dulce Corazón 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Negro dulce corazón con Stash english breakfast y ChillOut fruit cereza. Receta de San Valentín.',
+      keywords: 'negro dulce corazón, Stash english breakfast, jelly heart, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'lemon-cherry',
+    title: 'Lemon',
+    titleAccent: 'Cherry',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Bebida 480 ml con Torani cereza, ChillOut mix limón y agua, servida sobre hielo.',
+    image: '/assets/images/recetas/san-valentin/lemon-cherry.webp',
+    banner: '/assets/images/recetas/san-valentin/lemon-cherry.webp',
+    tone: 'lime',
+    brand: 'Torani',
+    time: '4 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Limón y cereza',
+    ingredients: [
+      '45 ml Torani clásico cereza',
+      '30 g ChillOut mix limón',
+      '250 ml de agua',
+      '60 ml de agua caliente',
+      '3-4 hielos',
+    ],
+    tools: ['Shaker'],
+    steps: [
+      {
+        title: 'Limón',
+        text: 'En shaker agita agua, hielos y mix limón.',
+        tone: 'yellow'
+      },
+      {
+        title: 'Cereza',
+        text: 'Diluye el jarabe de cereza con agua caliente.',
+        tone: 'pink'
+      },
+      {
+        title: 'Sirve',
+        text: 'En vaso con hielo vierte la mezcla de limón y después la de cereza; mezcla.',
+        tone: 'green'
+      },
+    ],
+    seo: {
+      title: 'Receta Lemon Cherry 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Lemon cherry con Torani cereza y ChillOut mix limón. Receta de San Valentín.',
+      keywords: 'lemon cherry, Torani cereza, ChillOut limón, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'beso-de-fresa',
+    title: 'Beso de',
+    titleAccent: 'Fresa',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Refresco 275 ml con ChillOut jarabe fresa, Torani diamond, tequila, fresa, menta y agua mineral.',
+    image: '/assets/images/recetas/san-valentin/beso-de-fresa.webp',
+    banner: '/assets/images/recetas/san-valentin/beso-de-fresa.webp',
+    tone: 'coral',
+    brand: 'ChillOut',
+    time: '4 min',
+    yield: '275 ml',
+    difficulty: 'Fácil',
+    bubble: 'Fresa y menta',
+    ingredients: [
+      '30 ml ChillOut jarabe fresa',
+      '15 ml Torani clásico diamond',
+      '30 ml de tequila de tu preferencia',
+      '2 fresas',
+      '3 hojas de menta',
+      '100 ml de agua mineral',
+    ],
+    tools: ['Vaso'],
+    steps: [
+      {
+        title: 'Macera',
+        text: 'Corta la fresa y macérala con la menta en el vaso.',
+        tone: 'yellow'
+      },
+      {
+        title: 'Arma',
+        text: 'Agrega hielos, jarabes, tequila y agua mineral; mezcla para disfrutar.',
+        tone: 'pink'
+      },
+    ],
+    seo: {
+      title: 'Receta Beso de Fresa 275 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Beso de fresa con ChillOut jarabe fresa y Torani diamond. Receta de San Valentín.',
+      keywords: 'beso de fresa, ChillOut fresa, Torani diamond, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'sandia-on-fire',
+    title: 'Sandía on',
+    titleAccent: 'Fire',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Granizado 480 ml con Tea zone sandía, ChillOut fruit chamoy, base cristal y jelly heart.',
+    image: '/assets/images/recetas/san-valentin/sandia-on-fire.webp',
+    banner: '/assets/images/recetas/san-valentin/sandia-on-fire.webp',
+    tone: 'coral',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Sandía y chamoy',
+    ingredients: [
+      '40 ml Tea zone sandía',
+      '30 ml ChillOut fruit chamoy',
+      '30 g ChillOut mix base cristal',
+      '30 g ChillOut jelly heart',
+      '30 ml de agua',
+      '1 vaso de 480 ml con hielos',
+      '1 paleta de sandía chamoy',
+    ],
+    tools: ['Licuadora'],
+    toolIcon: ICO.tool,
+    steps: [
+      {
+        title: 'Licúa',
+        text: 'Licúa los líquidos, el polvo y los hielos hasta textura de granizado.',
+        tone: 'yellow',
+        icon: ICO.blend
+      },
+      {
+        title: 'Decora',
+        text: 'Marmolea el vaso con chamoy y tajín, sirve y decora con paleta y jelly heart.',
+        tone: 'pink',
+        icon: ICO.decor
+      },
+    ],
+    seo: {
+      title: 'Receta Sandía on Fire 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Sandía on fire con Tea zone sandía y ChillOut fruit chamoy. Receta de San Valentín.',
+      keywords: 'sandía on fire, chamoy, Tea zone sandía, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'dulce-cheesecake-frambuesa',
+    title: 'Dulce cheesecake de',
+    titleAccent: 'Frambuesa',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Frappé 480 ml con Mix base neutra, ChillOut fruit frambuesa, Torani cheesecake y milk foam.',
+    image: '/assets/images/recetas/san-valentin/dulce-cheesecake-frambuesa.webp',
+    banner: '/assets/images/recetas/san-valentin/dulce-cheesecake-frambuesa.webp',
+    tone: 'coral',
+    brand: 'Torani',
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Cheesecake y frambuesa',
+    ingredients: [
+      '30 g ChillOut mix base neutra',
+      '30 ml ChillOut fruit frambuesa',
+      '30 ml Torani clásico cheesecake',
+      '120 ml de leche',
+      '16 oz de hielo',
+      'Milk foam',
+    ],
+    tools: ['Licuadora'],
+    toolIcon: ICO.tool,
+    steps: [
+      {
+        title: 'Licúa',
+        text: 'Licúa primero los líquidos, luego el polvo y al final el hielo hasta frappé.',
+        tone: 'yellow',
+        icon: ICO.blend
+      },
+      {
+        title: 'Termina',
+        text: 'Marmolea el vaso con foam y concentrado, vacía la mezcla y corona con milk foam.',
+        tone: 'pink',
+        icon: ICO.decor
+      },
+    ],
+    seo: {
+      title: 'Receta Dulce cheesecake de Frambuesa 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Dulce cheesecake de frambuesa con Torani cheesecake y ChillOut fruit frambuesa. Receta de San Valentín.',
+      keywords: 'cheesecake frambuesa, Torani cheesecake, ChillOut frambuesa, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'orange-fantasy-tonic',
+    title: 'Orange fantasy',
+    titleAccent: 'Tonic',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Tónica 360 ml con ChillOut fruit naranja y limón, Stash frambuesa e hibiscos y agua tónica.',
+    image: '/assets/images/recetas/san-valentin/orange-fantasy-tonic.webp',
+    banner: '/assets/images/recetas/san-valentin/orange-fantasy-tonic.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Naranja y tónica',
+    ingredients: [
+      '45 ml ChillOut fruit naranja y limón',
+      '1 sobre de Stash frambuesa e hibiscos',
+      '100 ml de agua caliente 85-90°',
+      '200 ml de agua tónica',
+      '2-3 hielos',
+      'Decoración floral',
+    ],
+    tools: ['Vaso'],
+    steps: [
+      {
+        title: 'Infusión',
+        text: 'Infusiona el sobre de té con 100 ml de agua caliente.',
+        tone: 'yellow'
+      },
+      {
+        title: 'Arma',
+        text: 'En el vaso mezcla tónica y concentrado; agrega hielos y vierte el té lentamente.',
+        tone: 'pink'
+      },
+      {
+        title: 'Termina',
+        text: 'Mezcla y decora con flor.',
+        tone: 'green'
+      },
+    ],
+    seo: {
+      title: 'Receta Orange fantasy Tonic 360 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Orange fantasy tonic con ChillOut fruit naranja y limón y Stash frambuesa e hibiscos. Receta de San Valentín.',
+      keywords: 'orange fantasy tonic, Stash hibiscos, ChillOut naranja, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'rojo-pasion-foam',
+    title: 'Rojo pasión',
+    titleAccent: 'Foam',
+    kicker: 'San Valentín 2026',
+    category: 'Bebidas de temporada',
+    collection: 'san-valentin-2026',
+    origin: 'san-valentin-2026',
+    summary:
+      'Frappé 480 ml con Cappuccine red velvet y foam de ChillOut mix leche condensada.',
+    image: '/assets/images/recetas/san-valentin/rojo-pasion-foam.webp',
+    banner: '/assets/images/recetas/san-valentin/rojo-pasion-foam.webp',
+    tone: 'coral',
+    brand: 'Cappuccine',
+    time: '6 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Red velvet foam',
+    ingredients: [
+      '40 g Cappuccine red velvet',
+      '1 vaso de 480 ml con hielos',
+      '150 ml de leche',
+      'Ralladura de chocolate (decorativo)',
+      '30 g ChillOut mix leche condensada (foam)',
+      '50 ml de crema base (foam)',
+      '50 ml de leche (foam)',
+    ],
+    tools: ['Licuadora', 'Batidor'],
+    toolIcon: ICO.tool,
+    steps: [
+      {
+        title: 'Foam',
+        text: 'En un bowl mezcla crema, leche y polvo de leche condensada con batidor hasta obtener foam.',
+        tone: 'pink',
+        icon: ICO.base
+      },
+      {
+        title: 'Licúa',
+        text: 'Licúa leche, Cappuccine red velvet e hielos hasta frappé.',
+        tone: 'yellow',
+        icon: ICO.blend
+      },
+      {
+        title: 'Termina',
+        text: 'Sirve el frappé, corona con foam y ralladura de chocolate.',
+        tone: 'green',
+        icon: ICO.decor
+      },
+    ],
+    seo: {
+      title: 'Receta Rojo pasión Foam 480 ml | San Valentín 2026 | Café Etrusca',
+      description:
+        'Rojo pasión foam con Cappuccine red velvet y ChillOut leche condensada. Receta de San Valentín.',
+      keywords: 'rojo pasión foam, Cappuccine red velvet, San Valentín, Café Etrusca'
+    },
+    published: true
+  },
+  {
+    slug: 'arroz-con-leche',
+    title: "Arroz",
+    titleAccent: "con leche",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Bebida caliente 360 ml con ChillOut horchata y coco, salsa Torani chocolate blanco, leche y canela.",
+    image: '/assets/images/recetas/invierno/arroz-con-leche.webp',
+    banner: '/assets/images/recetas/invierno/arroz-con-leche.webp',
+    tone: 'gold',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "15 g de ChillOut horchata",
+      "15 g de ChillOut coco",
+      "15 ml de salsa Torani chocolate blanco",
+      "5 g de canela",
+      "240 ml de leche"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Texturiza",
+        text: "En una jarra de acero agrega la leche, ChillOut horchata, ChillOut coco y la salsa Torani chocolate blanco; texturiza con el vaporizador.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Vierte la bebida en la taza.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Termina con canela espolvoreada.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Arroz con leche 360 ml | Invierno | Café Etrusca",
+      description: "Bebida caliente 360 ml con ChillOut horchata y coco, salsa Torani chocolate blanco, leche y canela.",
+      keywords: "arroz con leche, chillout horchata, chillout coco, torani chocolate blanco, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'noche-de-invierno-latte',
+    title: "Noche de invierno",
+    titleAccent: "latte",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Latte 360 ml con ChillOut Crème Brûlée, crema de avellana y Noosh de avena, flameado con azúcar morena.",
+    image: '/assets/images/recetas/invierno/noche-de-invierno-latte.webp',
+    banner: '/assets/images/recetas/invierno/noche-de-invierno-latte.webp',
+    tone: 'navy',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "25 g de Chill Out Mix Crème Brûlée",
+      "10 ml de ChillOut agave azul crema de avellana",
+      "250 ml de Noosh de avena",
+      "Azúcar morena para flamear"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Soplete", "Taza"],
+    steps: [
+      {
+        title: "Espuma",
+        text: "En una jarra de acero espuma el Noosh de avena con el Crème Brûlée y la crema de avellana.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Vierte en la taza.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Flamea",
+        text: "Espolvorea azúcar morena encima y caramelízala con el soplete.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Noche de invierno latte 360 ml | Invierno | Café Etrusca",
+      description: "Latte 360 ml con ChillOut Crème Brûlée, crema de avellana y Noosh de avena, flameado con azúcar morena.",
+      keywords: "noche de invierno latte, chillout creme brulee, crema de avellana, noosh avena, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'winter-peach',
+    title: "Winter",
+    titleAccent: "peach",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Bebida fría 480 ml con cold brew de té Stash earl grey, Noosh de almendra y ChillOut fruit durazno.",
+    image: '/assets/images/recetas/invierno/winter-peach.webp',
+    banner: '/assets/images/recetas/invierno/winter-peach.webp',
+    tone: 'coral',
+    brand: "Stash",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "150 ml de cold brew de té Stash earl grey",
+      "100 ml de Noosh de almendra",
+      "20 ml de ChillOut fruit durazno",
+      "4 hielos"
+    ],
+    tools: ["Coctelera", "Vaso"],
+    steps: [
+      {
+        title: "Agita",
+        text: "En una coctelera agrega el cold brew de earl grey, el Noosh de almendra, ChillOut fruit durazno y los hielos; agita.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Vierte en el vaso.",
+        tone: 'pink',
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Winter peach 480 ml | Invierno | Café Etrusca",
+      description: "Bebida fría 480 ml con cold brew de té Stash earl grey, Noosh de almendra y ChillOut fruit durazno.",
+      keywords: "winter peach, stash earl grey, noosh almendra, chillout durazno, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'copito-de-chocolate-blanco',
+    title: "Copito de",
+    titleAccent: "chocolate blanco",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Bebida caliente 360 ml con ChillOut chocolate blanco y Torani crema de menta, con escarchado de chocolate blanco y diamantina.",
+    image: '/assets/images/recetas/invierno/copito-de-chocolate-blanco.webp',
+    banner: '/assets/images/recetas/invierno/copito-de-chocolate-blanco.webp',
+    tone: 'sky',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "30 g de ChillOut mix chocolate blanco",
+      "15 ml de Torani crema de menta",
+      "Salsa Hollander chocolate blanco",
+      "250 ml de leche",
+      "Diamantina comestible"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Espuma",
+        text: "Espuma la leche con el ChillOut chocolate blanco y el Torani crema de menta.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Escarcha",
+        text: "Escarcha la taza con salsa Hollander chocolate blanco y diamantina comestible.",
+        tone: 'pink',
+        icon: ICO.decor
+      },
+      {
+        title: "Sirve",
+        text: "Vierte la bebida en la taza escarchada.",
+        tone: 'blue',
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Copito de chocolate blanco 360 ml | Invierno | Café Etrusca",
+      description: "Bebida caliente 360 ml con ChillOut chocolate blanco y Torani crema de menta, con escarchado de chocolate blanco y diamantina.",
+      keywords: "copito de chocolate blanco, chillout chocolate blanco, torani crema de menta, hollander, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'latte-de-noel',
+    title: "Latte de",
+    titleAccent: "Noel",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Chai latte 360 ml con David Rio chai tradicional y Torani cereza, servido en taza navideña.",
+    image: '/assets/images/recetas/invierno/latte-de-noel.webp',
+    banner: '/assets/images/recetas/invierno/latte-de-noel.webp',
+    tone: 'coral',
+    brand: "David Rio",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "15 ml de Torani cereza",
+      "20 g de chai David Rio tradicional",
+      "300 ml de leche",
+      "Mini galleta para decorar"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza navideña"],
+    steps: [
+      {
+        title: "Espuma",
+        text: "Espuma la leche con el chai David Rio tradicional y el Torani cereza.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Vierte en una taza navideña.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Termina con una mini galleta.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Latte de Noel 360 ml | Invierno | Café Etrusca",
+      description: "Chai latte 360 ml con David Rio chai tradicional y Torani cereza, servido en taza navideña.",
+      keywords: "latte de noel, david rio chai, torani cereza, chai navideño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'chai-cream',
+    title: "Chai",
+    titleAccent: "cream",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Bebida fría 480 ml con cold brew Prana Chai, Torani manzana, tapioca y cheese foam.",
+    image: '/assets/images/recetas/invierno/chai-cream.webp',
+    banner: '/assets/images/recetas/invierno/chai-cream.webp',
+    tone: 'gold',
+    brand: "Prana Chai",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "180 ml de cold brew Prana Chai",
+      "15 ml de Torani manzana",
+      "50 g de cheese foam",
+      "30 g de tapioca",
+      "3 a 4 hielos"
+    ],
+    tools: ["Vaso", "Cuchara"],
+    steps: [
+      {
+        title: "Arma",
+        text: "En el vaso mezcla el cold brew Prana Chai, el Torani manzana, la tapioca y los hielos.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Corona",
+        text: "Termina con el cheese foam encima.",
+        tone: 'pink',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Chai cream 480 ml | Invierno | Café Etrusca",
+      description: "Bebida fría 480 ml con cold brew Prana Chai, Torani manzana, tapioca y cheese foam.",
+      keywords: "chai cream, prana chai, torani manzana, cheese foam, tapioca, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'solsticio-de-lavanda-frio',
+    title: "Solsticio de",
+    titleAccent: "lavanda",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Matcha frío 480 ml con Aiya matcha, Torani lavanda y leche, decorado con pétalos de lavanda.",
+    image: '/assets/images/recetas/invierno/solsticio-de-lavanda-frio.webp',
+    banner: '/assets/images/recetas/invierno/solsticio-de-lavanda-frio.webp',
+    tone: 'sky',
+    brand: "Aiya",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "20 g de matcha Aiya",
+      "30 ml de Torani lavanda",
+      "300 ml de leche",
+      "4 hielos para licuar y 2 hielos extra",
+      "Pétalos de lavanda"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa la leche, el matcha Aiya y 4 hielos.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Arma",
+        text: "En el vaso agrega 2 hielos y el Torani lavanda; vierte con cuidado el licuado encima.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Termina con pétalos de lavanda.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Solsticio de lavanda 480 ml | Invierno | Café Etrusca",
+      description: "Matcha frío 480 ml con Aiya matcha, Torani lavanda y leche, decorado con pétalos de lavanda.",
+      keywords: "solsticio de lavanda, matcha aiya, torani lavanda, matcha frio, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'cerveza-navidena',
+    title: "Cerveza",
+    titleAccent: "navideña",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Cold brew nitro 380 ml con Torani canela y azúcar morena, cargado en sifón.",
+    image: '/assets/images/recetas/invierno/cerveza-navidena.webp',
+    banner: '/assets/images/recetas/invierno/cerveza-navidena.webp',
+    tone: 'navy',
+    brand: "Torani",
+    time: '5 min',
+    yield: '380 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "360 ml de cold brew Mezcla especial No. 1",
+      "22.5 ml de Torani canela y azúcar morena",
+      "1 cápsula de nitrógeno",
+      "3 a 4 hielos"
+    ],
+    tools: ["Sifón de 1/2 L", "Vaso"],
+    steps: [
+      {
+        title: "Carga",
+        text: "En un sifón de 1/2 L agrega el cold brew y el Torani canela y azúcar morena; carga con la cápsula de nitrógeno.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Agita",
+        text: "Agita el sifón.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve sobre hielo.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Cerveza navideña 380 ml | Invierno | Café Etrusca",
+      description: "Cold brew nitro 380 ml con Torani canela y azúcar morena, cargado en sifón.",
+      keywords: "cerveza navideña, cold brew nitro, torani canela azucar morena, sifon, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'toasted-brulee',
+    title: "Toasted",
+    titleAccent: "brûlée",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Coctel 300 ml con vodka, Torani vainilla y malvavisco tostado y ChillOut Crème Brûlée, con azúcar caramelizada.",
+    image: '/assets/images/recetas/invierno/toasted-brulee.webp',
+    banner: '/assets/images/recetas/invierno/toasted-brulee.webp',
+    tone: 'gold',
+    brand: "Torani",
+    time: '5 min',
+    yield: '300 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "15 ml de Torani vainilla",
+      "15 g de ChillOut Mix Crème Brûlée",
+      "10 ml de Torani malvavisco tostado",
+      "30 ml de vodka",
+      "3 hielos",
+      "5 g de azúcar morena"
+    ],
+    tools: ["Coctelera", "Copa", "Soplete"],
+    steps: [
+      {
+        title: "Agita",
+        text: "En una coctelera agrega Torani vainilla, Crème Brûlée, Torani malvavisco tostado, vodka y hielos; agita.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en una copa.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Carameliza",
+        text: "Espolvorea la azúcar morena y carameliza con el soplete.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Toasted brûlée 300 ml | Invierno | Café Etrusca",
+      description: "Coctel 300 ml con vodka, Torani vainilla y malvavisco tostado y ChillOut Crème Brûlée, con azúcar caramelizada.",
+      keywords: "toasted brulee, coctel, torani malvavisco tostado, chillout creme brulee, vodka, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'ponche-navideno-calentito',
+    title: "Ponche navideño",
+    titleAccent: "calentito",
+    kicker: 'Invierno · 2024',
+    category: 'Bebidas de temporada',
+    collection: 'invierno-2024',
+    origin: 'invierno-2024',
+    summary: "Ponche caliente 360 ml con tisana Etrusca de guayaba, mezcal, Torani canela y naranja deshidratada.",
+    image: '/assets/images/recetas/invierno/ponche-navideno-calentito.webp',
+    banner: '/assets/images/recetas/invierno/ponche-navideno-calentito.webp',
+    tone: 'coral',
+    brand: "Etrusca",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario de invierno',
+    ingredients: [
+      "300 ml de agua a 90 °C",
+      "10 g de tisana Etrusca guayaba",
+      "30 ml de mezcal",
+      "5 ml de Torani canela",
+      "2 rodajas de naranja deshidratada"
+    ],
+    tools: ["Vaso mezclador", "Tarro"],
+    steps: [
+      {
+        title: "Infusiona",
+        text: "En un vaso mezclador infusiona la tisana de guayaba en el agua a 90 °C durante 3 minutos.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Mezcla",
+        text: "Agrega el mezcal y el Torani canela.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en un tarro y decora con naranja deshidratada.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Ponche navideño calentito 360 ml | Invierno | Café Etrusca",
+      description: "Ponche caliente 360 ml con tisana Etrusca de guayaba, mezcal, Torani canela y naranja deshidratada.",
+      keywords: "ponche navideño, tisana guayaba, mezcal, torani canela, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'caramelo-navideno-caliente',
+    title: "Caramelo",
+    titleAccent: "navideño",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Latte caliente 360 ml con espresso Mezcla especial No. 1, Cappuccine Toffee coffee y leche, coronado con crema batida.",
+    image: '/assets/images/recetas/navidad/caramelo-navideno-caliente.webp',
+    banner: '/assets/images/recetas/navidad/caramelo-navideno-caliente.webp',
+    tone: 'gold',
+    brand: "Cappuccine",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "1 espresso (30 ml) preparado con Mezcla especial No. 1",
+      "40 g de polvo Cappuccine Toffee coffee",
+      "280 ml de leche",
+      "Crema batida"
+    ],
+    tools: ["Máquina de espresso", "Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Extrae",
+        text: "Extrae el espresso en una taza y reserva.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Espuma",
+        text: "En una jarra de acero agrega la leche y el Cappuccine Toffee coffee; espuma hasta la temperatura deseada.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Vierte la mezcla sobre el espresso y decora con crema batida.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Caramelo navideño 360 ml | Invierno | Café Etrusca",
+      description: "Latte caliente 360 ml con espresso Mezcla especial No. 1, Cappuccine Toffee coffee y leche, coronado con crema batida.",
+      keywords: "caramelo navideño, toffee coffee, cappuccine, latte navideño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'caramelo-navideno-frio',
+    title: "Caramelo navideño",
+    titleAccent: "frappé",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Frappé 480 ml de chocolate blanco con ChillOut fruit y perlas explosivas de cereza o fresa, crema batida y diamantina.",
+    image: '/assets/images/recetas/navidad/caramelo-navideno-frio.webp',
+    banner: '/assets/images/recetas/navidad/caramelo-navideno-frio.webp',
+    tone: 'coral',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "50 g de Cappuccine chocolate blanco",
+      "30 ml de ChillOut fruit (cereza o fresa)",
+      "45 g de ChillOut pearls (cereza o fresa)",
+      "150 ml de leche",
+      "1 vaso de 480 ml con hielo",
+      "Crema batida",
+      "Diamantina comestible"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa la leche, el chocolate blanco y el hielo hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Capas",
+        text: "En el vaso agrega en diagonal la mitad de las perlas, un tercio del frappé, 15 ml de ChillOut fruit, otro tercio del frappé, el resto de las perlas, el último tercio y 15 ml más de fruit.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Termina con crema batida y diamantina comestible.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Caramelo navideño frappé 480 ml | Invierno | Café Etrusca",
+      description: "Frappé 480 ml de chocolate blanco con ChillOut fruit y perlas explosivas de cereza o fresa, crema batida y diamantina.",
+      keywords: "caramelo navideño frappe, chocolate blanco, chillout pearls, perlas explosivas, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'arbol-de-noche-buena',
+    title: "Árbol de",
+    titleAccent: "Noche Buena",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Frappé de matcha 480 ml con Aiya matcha y Torani menta, decorado con tapiocas como esferas y diamantina.",
+    image: '/assets/images/recetas/navidad/arbol-de-noche-buena.webp',
+    banner: '/assets/images/recetas/navidad/arbol-de-noche-buena.webp',
+    tone: 'lime',
+    brand: "Aiya",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "30 g de matcha Aiya",
+      "1 sobre de tapioca instantánea (ya preparada)",
+      "25 ml de jarabe Torani menta",
+      "150 ml de leche",
+      "1 vaso de 480 ml con hielo",
+      "Diamantina comestible"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa el matcha, el Torani menta, la leche y el hielo hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Forma",
+        text: "Sirve el frappé en el vaso y forma un triángulo encima, como un árbol.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Coloca las tapiocas simulando esferas y termina con diamantina.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Árbol de Noche Buena 480 ml | Invierno | Café Etrusca",
+      description: "Frappé de matcha 480 ml con Aiya matcha y Torani menta, decorado con tapiocas como esferas y diamantina.",
+      keywords: "arbol de noche buena, matcha aiya, torani menta, frappe navideño, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'ponche-de-invierno',
+    title: "Ponche de",
+    titleAccent: "invierno",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Infusión caliente 360 ml de tisana de guayaba con Torani canela y azúcar morena, anís estrella, naranja deshidratada y perlas explosivas.",
+    image: '/assets/images/recetas/navidad/ponche-de-invierno.webp',
+    banner: '/assets/images/recetas/navidad/ponche-de-invierno.webp',
+    tone: 'coral',
+    brand: "Etrusca",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "10 g de tisana Etrusca guayaba",
+      "15 ml de jarabe Torani canela y azúcar morena",
+      "2 piezas de anís estrella",
+      "2 rodajas de naranja deshidratada",
+      "280 ml de agua caliente (90 a 92 °C)",
+      "30 g de ChillOut perlas explosivas (cereza o fresa)"
+    ],
+    tools: ["Tarro de barro"],
+    steps: [
+      {
+        title: "Infusiona",
+        text: "En un tarro de barro agrega todos los ingredientes y deja infusionar 5 minutos.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Disfruta",
+        text: "Sirve y disfruta caliente.",
+        tone: 'pink',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Ponche de invierno 360 ml | Invierno | Café Etrusca",
+      description: "Infusión caliente 360 ml de tisana de guayaba con Torani canela y azúcar morena, anís estrella, naranja deshidratada y perlas explosivas.",
+      keywords: "ponche de invierno, tisana guayaba, torani canela, anis estrella, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'horchata-decembrina',
+    title: "Horchata",
+    titleAccent: "decembrina",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Horchata fría 480 ml con ChillOut mix horchata, agave de avellana o irlandesa y tapioca, en vaso escarchado con chocolate y almendra.",
+    image: '/assets/images/recetas/navidad/horchata-decembrina.webp',
+    banner: '/assets/images/recetas/navidad/horchata-decembrina.webp',
+    tone: 'gold',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "50 g de ChillOut mix horchata",
+      "35 g de ChillOut tapioca",
+      "25 ml de ChillOut agave (crema de avellana o crema irlandesa)",
+      "Salsa Torani chocolate con avellana",
+      "4 hielos",
+      "4 almendras trituradas"
+    ],
+    tools: ["Licuadora", "Vaso", "Popote para tapioca"],
+    steps: [
+      {
+        title: "Escarcha",
+        text: "Escarcha el vaso con la salsa de chocolate con avellana y las almendras.",
+        tone: 'yellow',
+        icon: ICO.decor
+      },
+      {
+        title: "Licúa",
+        text: "Licúa todos los ingredientes excepto la tapioca hasta obtener una bebida fría y líquida.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Agrega la tapioca al vaso escarchado, vierte la bebida y sirve con popote especial.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Horchata decembrina 480 ml | Invierno | Café Etrusca",
+      description: "Horchata fría 480 ml con ChillOut mix horchata, agave de avellana o irlandesa y tapioca, en vaso escarchado con chocolate y almendra.",
+      keywords: "horchata decembrina, chillout horchata, tapioca, torani chocolate avellana, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'pan-de-jengibre-latte',
+    title: "Pan de jengibre",
+    titleAccent: "latte",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Latte caliente 360 ml con espresso Mezcla especial No. 1 y Torani Gingerbread.",
+    image: '/assets/images/recetas/navidad/pan-de-jengibre-latte.webp',
+    banner: '/assets/images/recetas/navidad/pan-de-jengibre-latte.webp',
+    tone: 'gold',
+    brand: "Torani",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "1 espresso (30 ml) preparado con Mezcla especial No. 1",
+      "30 ml de jarabe Torani Gingerbread",
+      "280 ml de leche"
+    ],
+    tools: ["Máquina de espresso", "Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Extrae",
+        text: "Extrae el espresso en una taza y reserva.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Espuma",
+        text: "En una jarra de acero espuma la leche con el Torani Gingerbread hasta la temperatura deseada.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Vierte sobre el espresso y disfruta.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Pan de jengibre latte 360 ml | Invierno | Café Etrusca",
+      description: "Latte caliente 360 ml con espresso Mezcla especial No. 1 y Torani Gingerbread.",
+      keywords: "pan de jengibre latte, gingerbread latte, torani gingerbread, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'tiramisu-menta',
+    title: "Tiramisú",
+    titleAccent: "menta",
+    kicker: 'Invierno · Navidad',
+    category: 'Bebidas de temporada',
+    collection: 'navidad-2023',
+    origin: 'navidad-2023',
+    summary: "Bebida caliente 360 ml con Mint Chip Cappuccine y Torani tiramisú, decorada con chispas de chocolate.",
+    image: '/assets/images/recetas/navidad/tiramisu-menta.webp',
+    banner: '/assets/images/recetas/navidad/tiramisu-menta.webp',
+    tone: 'lime',
+    brand: "Cappuccine",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetas navideñas',
+    ingredients: [
+      "40 g de polvo Mint Chip Cappuccine",
+      "15 ml de jarabe Torani tiramisú",
+      "280 ml de leche",
+      "10 g de chispas de chocolate"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Espuma",
+        text: "En una jarra de acero espuma la leche con el Mint Chip Cappuccine y el Torani tiramisú.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Vierte en la taza.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Termina con chispas de chocolate.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Tiramisú menta 360 ml | Invierno | Café Etrusca",
+      description: "Bebida caliente 360 ml con Mint Chip Cappuccine y Torani tiramisú, decorada con chispas de chocolate.",
+      keywords: "tiramisu menta, mint chip cappuccine, torani tiramisu, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'smoothie-pina-durazno',
+    title: "Smoothie de",
+    titleAccent: "piña durazno",
+    kicker: 'Otras bebidas',
+    category: 'Bebidas de temporada',
+    collection: 'otros',
+    origin: 'otros',
+    summary: "Smoothie cremoso 360 ml con ChillOut fruit piña y durazno y base neutra, decorado con piña.",
+    image: '/assets/images/recetas/navidad/smoothie-pina-durazno.webp',
+    banner: '/assets/images/recetas/navidad/smoothie-pina-durazno.webp',
+    tone: 'gold',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Otras bebidas',
+    ingredients: [
+      "150 ml de agua o bebida vegetal",
+      "15 ml de ChillOut fruit durazno",
+      "15 ml de ChillOut fruit piña",
+      "40 g de ChillOut mix base neutra",
+      "1 vaso de 480 ml lleno de hielo",
+      "Piña para decorar"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "En la licuadora agrega el fruit durazno, el fruit piña, la base neutra y el hielo; licúa hasta lograr una textura cremosa.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el vaso de tu elección.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Decora con piña.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Smoothie de piña durazno 360 ml | Café Etrusca",
+      description: "Smoothie cremoso 360 ml con ChillOut fruit piña y durazno y base neutra, decorado con piña.",
+      keywords: "smoothie piña durazno, chillout fruit, base neutra, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'margarita-mango',
+    title: "Margarita de",
+    titleAccent: "mango",
+    kicker: 'Otras bebidas',
+    category: 'Bebidas de temporada',
+    collection: 'otros',
+    origin: 'otros',
+    summary: "Frappé de limón 360 ml con ChillOut fruit mango, en copa escarchada con sal y decorada con limón.",
+    image: '/assets/images/recetas/navidad/margarita-mango.webp',
+    banner: '/assets/images/recetas/navidad/margarita-mango.webp',
+    tone: 'gold',
+    brand: "ChillOut",
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Otras bebidas',
+    ingredients: [
+      "150 ml de agua",
+      "30 ml de ChillOut fruit mango",
+      "30 ml de agua",
+      "20 g de ChillOut mix limón",
+      "Hielo",
+      "Sal para escarchar",
+      "Rodaja de limón"
+    ],
+    tools: ["Licuadora", "Copa"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa el agua con el ChillOut mix limón y los hielos hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Escarcha",
+        text: "Escarcha la copa con el concentrado y sal, y vierte el fruit de mango.",
+        tone: 'pink',
+        icon: ICO.decor
+      },
+      {
+        title: "Sirve",
+        text: "Sirve el frappé y decora con una rodaja de limón.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Margarita de mango 360 ml | Café Etrusca",
+      description: "Frappé de limón 360 ml con ChillOut fruit mango, en copa escarchada con sal y decorada con limón.",
+      keywords: "margarita de mango, chillout fruit mango, frappe limon, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'tiramisu-latte',
+    title: "Tiramisú",
+    titleAccent: "latte",
+    kicker: 'Otras bebidas',
+    category: 'Bebidas de temporada',
+    collection: 'otros',
+    origin: 'otros',
+    summary: "Latte frío 480 ml con espresso, Torani tiramisú y cheese foam con cocoa.",
+    image: '/assets/images/recetas/navidad/tiramisu-latte.webp',
+    banner: '/assets/images/recetas/navidad/tiramisu-latte.webp',
+    tone: 'navy',
+    brand: "Torani",
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Otras bebidas',
+    ingredients: [
+      "180 ml de leche",
+      "22.5 ml de jarabe Torani tiramisú",
+      "60 ml de espresso con Mezcla especial No. 1",
+      "50 g de cheese foam",
+      "4 o 5 hielos",
+      "Cocoa en polvo"
+    ],
+    tools: ["Máquina de espresso", "Vaso"],
+    steps: [
+      {
+        title: "Arma",
+        text: "En el vaso agrega el hielo, la leche y el Torani tiramisú.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Espresso",
+        text: "Vierte el espresso encima.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Corona",
+        text: "Termina con cheese foam y cocoa en polvo.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Tiramisú latte 480 ml | Café Etrusca",
+      description: "Latte frío 480 ml con espresso, Torani tiramisú y cheese foam con cocoa.",
+      keywords: "tiramisu latte, torani tiramisu, cheese foam, iced latte, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'soda-italiana-480ml',
+    title: "Soda",
+    titleAccent: "italiana",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Soda italiana 480 ml en capas con ChillOut Jarabes sabor frutal, agua mineral y hielo, decorada con tu topping frutal favorito.",
+    image: '/assets/images/recetas/chillout/soda-italiana-480ml.webp',
+    banner: '/assets/images/recetas/chillout/soda-italiana-480ml.webp',
+    tone: 'sky',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "30 ml de ChillOut Jarabes sabor frutal",
+      "300 ml de agua mineral",
+      "3 piezas de hielo",
+      "Topping frutal para decorar"
+    ],
+    tools: ["Vaso"],
+    steps: [
+      {
+        title: "Arma",
+        text: "Coloca en el vaso de tu elección el jarabe junto con el hielo.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Capas",
+        text: "Vierte con cuidado el agua mineral sobre el hielo para que no se mezcle con el jarabe.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Decora con tu topping frutal favorito y disfruta.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Soda italiana 480 ml | ChillOut | Café Etrusca",
+      description: "Soda italiana 480 ml en capas con ChillOut Jarabes sabor frutal, agua mineral y hielo, decorada con tu topping frutal favorito. Receta ChillOut de Café Etrusca.",
+      keywords: "soda italiana, chillout jarabes, soda de sabores, agua mineral, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'espresso-chai-360ml',
+    title: "Espresso",
+    titleAccent: "chai",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas calientes',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Dirty chai caliente 360 ml con espresso doble de Mezcla especial No. 1, ChillOut Mix chai manzana canela y leche espumada.",
+    image: '/assets/images/recetas/chillout/espresso-chai-360ml.webp',
+    banner: '/assets/images/recetas/chillout/espresso-chai-360ml.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "60 ml de espresso doble preparado con Mezcla especial No. 1",
+      "30 g de ChillOut Mix chai manzana canela",
+      "240 ml de leche de tu elección"
+    ],
+    tools: ["Máquina de espresso", "Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Extrae",
+        text: "Extrae el espresso y agrégalo al recipiente de tu elección.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Mezcla",
+        text: "Agrega el polvo de chai y mezcla perfectamente.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Espuma",
+        text: "Espuma la leche con la lanceta de vapor y viértela sobre la mezcla.",
+        tone: 'blue',
+        icon: ICO.finish
+      },
+      {
+        title: "Decora",
+        text: "Decora al gusto.",
+        tone: 'green',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Espresso chai 360 ml | ChillOut | Café Etrusca",
+      description: "Dirty chai caliente 360 ml con espresso doble de Mezcla especial No. 1, ChillOut Mix chai manzana canela y leche espumada. Receta ChillOut de Café Etrusca.",
+      keywords: "espresso chai, dirty chai, chillout mix chai manzana canela, chai latte, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'moka-mazapan-360ml',
+    title: "Moka",
+    titleAccent: "mazapán",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas calientes',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Bebida caliente 360 ml con ChillOut Mix mazapán y ChillOut Mix xocolatl, disueltos en agua caliente y cubiertos con leche espumada.",
+    image: '/assets/images/recetas/chillout/moka-mazapan-360ml.webp',
+    banner: '/assets/images/recetas/chillout/moka-mazapan-360ml.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "20 g de ChillOut Mix mazapán",
+      "20 g de ChillOut Mix xocolatl",
+      "60 ml de agua caliente",
+      "280 ml de leche"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Disuelve",
+        text: "Agrega los polvos y el agua caliente al vaso de tu elección y mezcla perfectamente.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Espuma",
+        text: "Espuma la leche con la lanceta de vapor y viértela sobre la mezcla.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Decora al gusto.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Moka mazapán 360 ml | ChillOut | Café Etrusca",
+      description: "Bebida caliente 360 ml con ChillOut Mix mazapán y ChillOut Mix xocolatl, disueltos en agua caliente y cubiertos con leche espumada. Receta ChillOut de Café Etrusca.",
+      keywords: "moka mazapan, chillout mix mazapan, xocolatl, chocolate caliente, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'moras-y-jamaica-smoothie-yogur-480ml',
+    title: "Moras y",
+    titleAccent: "jamaica",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Smoothie de yogur 480 ml con ChillOut Active moras jamaica y ChillOut Mix yogur, licuado con hielo.",
+    image: '/assets/images/recetas/chillout/moras-y-jamaica-smoothie-yogur-480ml.webp',
+    banner: '/assets/images/recetas/chillout/moras-y-jamaica-smoothie-yogur-480ml.webp',
+    tone: 'coral',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "30 g de ChillOut Active moras jamaica",
+      "30 g de ChillOut Mix yogur",
+      "180 ml (6 oz) de agua",
+      "1 vaso de 480 ml lleno de hielo"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Agrega los ingredientes a la licuadora, empezando por los líquidos.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Integra",
+        text: "Licúa hasta obtener una consistencia uniforme.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el vaso de tu elección y decora al gusto.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Moras y jamaica 480 ml | ChillOut | Café Etrusca",
+      description: "Smoothie de yogur 480 ml con ChillOut Active moras jamaica y ChillOut Mix yogur, licuado con hielo. Receta ChillOut de Café Etrusca.",
+      keywords: "smoothie moras y jamaica, smoothie de yogur, chillout active, chillout mix yogur, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'curcuma-y-mandarina-soda-dorada-480ml',
+    title: "Cúrcuma y",
+    titleAccent: "mandarina",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Soda dorada 480 ml con ChillOut Active cúrcuma mandarina, agua mineral y hielo.",
+    image: '/assets/images/recetas/chillout/curcuma-y-mandarina-soda-dorada-480ml.webp',
+    banner: '/assets/images/recetas/chillout/curcuma-y-mandarina-soda-dorada-480ml.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '480 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "30 g de ChillOut Active cúrcuma mandarina",
+      "4 cubos de hielo",
+      "Agua mineral"
+    ],
+    tools: ["Vaso"],
+    steps: [
+      {
+        title: "Hielo",
+        text: "Agrega los cubos de hielo al vaso de tu preferencia.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Disuelve",
+        text: "Disuelve el polvo con un poco de agua y agrégalo al vaso.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Completa",
+        text: "Completa con agua mineral y decora al gusto.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Cúrcuma y mandarina 480 ml | ChillOut | Café Etrusca",
+      description: "Soda dorada 480 ml con ChillOut Active cúrcuma mandarina, agua mineral y hielo. Receta ChillOut de Café Etrusca.",
+      keywords: "soda dorada, curcuma y mandarina, chillout active, soda de curcuma, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'carajillo-de-mazapan-300ml',
+    title: "Carajillo de",
+    titleAccent: "mazapán",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Carajillo frío sin alcohol 300 ml con espresso Mezcla especial No. 1, ChillOut Mix mazapán, Torani crema irlandesa y leche de almendra.",
+    image: '/assets/images/recetas/chillout/carajillo-de-mazapan-300ml.webp',
+    banner: '/assets/images/recetas/chillout/carajillo-de-mazapan-300ml.webp',
+    tone: 'navy',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '300 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "60 ml de espresso preparado con Mezcla especial No. 1",
+      "30 g de ChillOut Mix mazapán",
+      "15 ml de jarabe Torani crema irlandesa",
+      "150 ml de leche vegetal de almendra",
+      "3 piezas de hielo",
+      "Flores deshidratadas y especia en polvo para decorar"
+    ],
+    tools: ["Máquina de espresso", "Shaker", "Báscula digital La Fenice", "Cuchara medidora La Fenice", "Vaso de 300 ml"],
+    steps: [
+      {
+        title: "Decora el vaso",
+        text: "Haz una figura geométrica en el vaso con un poco de jarabe y cúbrela con la especia en polvo.",
+        tone: 'yellow',
+        icon: ICO.decor
+      },
+      {
+        title: "Agita",
+        text: "Agrega todos los ingredientes al shaker, empezando por los polvos, y agita vigorosamente hasta que se disuelvan.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el vaso decorado y adorna con la flor.",
+        tone: 'blue',
+        icon: ICO.finish
+      },
+      {
+        title: "Presenta",
+        text: "Si quieres, sirve un poco de especia o mazapán en polvo en una cuchara medidora.",
+        tone: 'green',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Carajillo de mazapán 300 ml | ChillOut | Café Etrusca",
+      description: "Carajillo frío sin alcohol 300 ml con espresso Mezcla especial No. 1, ChillOut Mix mazapán, Torani crema irlandesa y leche de almendra. Receta ChillOut de Café Etrusca.",
+      keywords: "carajillo de mazapan, carajillo sin alcohol, chillout mix mazapan, torani crema irlandesa, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'fresa-primaveral-frio',
+    title: "Fresa",
+    titleAccent: "primaveral",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Bebida fría 360 ml de leche con ChillOut Jarabes fresa, ChillOut Fruit pétalos de rosa y jarabe de durazno.",
+    image: '/assets/images/recetas/chillout/fresa-primaveral-frio.webp',
+    banner: '/assets/images/recetas/chillout/fresa-primaveral-frio.webp',
+    tone: 'coral',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "30 ml de ChillOut Jarabes fresa",
+      "15 ml de ChillOut Fruit pétalos de rosa",
+      "15 ml de jarabe de durazno",
+      "296 ml de leche",
+      "3 piezas de hielo"
+    ],
+    tools: ["Vaso"],
+    steps: [
+      {
+        title: "Diluye",
+        text: "Diluye el Fruit de rosas con un poco de agua caliente.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Arma",
+        text: "En el recipiente de tu elección agrega la leche, el hielo y el jarabe de durazno.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Termina",
+        text: "Agrega el jarabe de fresa junto con el de rosas. Mezcla antes de tomar.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Fresa primaveral 360 ml | ChillOut | Café Etrusca",
+      description: "Bebida fría 360 ml de leche con ChillOut Jarabes fresa, ChillOut Fruit pétalos de rosa y jarabe de durazno. Receta ChillOut de Café Etrusca.",
+      keywords: "fresa primaveral, chillout jarabes fresa, petalos de rosa, leche de fresa, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'jelly-soda',
+    title: "Jelly",
+    titleAccent: "soda",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Soda 360 ml con ChillOut Jarabes manzana verde, ChillOut Jelly uva, agua mineral y hielo.",
+    image: '/assets/images/recetas/chillout/jelly-soda.webp',
+    banner: '/assets/images/recetas/chillout/jelly-soda.webp',
+    tone: 'lime',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "40 ml de ChillOut Jarabes manzana verde",
+      "30 g de ChillOut Jelly uva",
+      "300 ml de agua mineral",
+      "3 piezas de hielo"
+    ],
+    tools: ["Vaso"],
+    steps: [
+      {
+        title: "Arma",
+        text: "Agrega al vaso de tu elección el jarabe, la jelly y el hielo.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Capas",
+        text: "Vierte con cuidado el agua mineral sobre el hielo, evitando que se mezclen los ingredientes.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Mezcla",
+        text: "Mezcla la bebida antes de consumirla.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Jelly soda 360 ml | ChillOut | Café Etrusca",
+      description: "Soda 360 ml con ChillOut Jarabes manzana verde, ChillOut Jelly uva, agua mineral y hielo. Receta ChillOut de Café Etrusca.",
+      keywords: "jelly soda, chillout jelly uva, jarabe manzana verde, soda italiana, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'pina-colada-frappe',
+    title: "Piña colada",
+    titleAccent: "frappé",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Frappé 360 ml con ChillOut Just Fruit piña colada y leche, servido dentro de una piña y decorado con ralladura de coco.",
+    image: '/assets/images/recetas/chillout/pina-colada-frappe.webp',
+    banner: '/assets/images/recetas/chillout/pina-colada-frappe.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "30 g de ChillOut Just Fruit piña colada",
+      "148 ml de leche",
+      "1 vaso de 480 ml lleno de hielo",
+      "½ piña sin pulpa",
+      "Ralladura de coco"
+    ],
+    tools: ["Licuadora"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Agrega todos los ingredientes a la licuadora, empezando por los líquidos, y licúa hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Sirve la bebida dentro de la piña.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Decora con ralladura de coco.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Piña colada frappé 360 ml | ChillOut | Café Etrusca",
+      description: "Frappé 360 ml con ChillOut Just Fruit piña colada y leche, servido dentro de una piña y decorado con ralladura de coco. Receta ChillOut de Café Etrusca.",
+      keywords: "piña colada frappe, chillout just fruit, frappe de piña, piña colada sin alcohol, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'blueberry-cheesecake',
+    title: "Blueberry",
+    titleAccent: "cheesecake",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Frappé 360 ml de chocolate blanco con ChillOut Fruit frambuesa, vaso marmoleado con ChillOut Jam blueberry y crema batida de frutos rojos.",
+    image: '/assets/images/recetas/chillout/blueberry-cheesecake.webp',
+    banner: '/assets/images/recetas/chillout/blueberry-cheesecake.webp',
+    tone: 'navy',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "20 g de ChillOut Jam blueberry",
+      "50 g de ChillOut Mix chocolate blanco",
+      "10 ml de ChillOut Fruit frambuesa",
+      "148 ml de leche",
+      "1 vaso de 480 ml lleno de hielo",
+      "Crema batida de frutos rojos"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Agrega a la licuadora la leche con el concentrado de frambuesa, después el polvo y los hielos; licúa hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Marmolea",
+        text: "Marmolea el vaso con el jam de blueberry y sirve el frappé.",
+        tone: 'pink',
+        icon: ICO.decor
+      },
+      {
+        title: "Corona",
+        text: "Termina con un top de crema batida de frutos rojos.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Blueberry cheesecake 360 ml | ChillOut | Café Etrusca",
+      description: "Frappé 360 ml de chocolate blanco con ChillOut Fruit frambuesa, vaso marmoleado con ChillOut Jam blueberry y crema batida de frutos rojos. Receta ChillOut de Café Etrusca.",
+      keywords: "blueberry cheesecake frappe, chillout jam blueberry, chocolate blanco, frappe de frutos rojos, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'frappe-mexicano',
+    title: "Frappé",
+    titleAccent: "mexicano",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Frappé de limón 360 ml con ChillOut Mix limón, ChillOut Chamoy y ChillOut Fruit limón, decorado con dulce de tamarindo y picante.",
+    image: '/assets/images/recetas/chillout/frappe-mexicano.webp',
+    banner: '/assets/images/recetas/chillout/frappe-mexicano.webp',
+    tone: 'lime',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "40 g de ChillOut Mix limón",
+      "30 ml de ChillOut Fruit limón",
+      "35 ml de ChillOut Chamoy",
+      "177 ml de agua",
+      "1 vaso de 480 ml lleno de hielo",
+      "Picante en polvo",
+      "Dulce de tamarindo"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Agrega a la licuadora el agua, el polvo y los hielos; licúa hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Capas",
+        text: "En el recipiente de tu elección agrega el chamoy, el frappé y, con cuidado, el concentrado de limón.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Decora con el dulce de tamarindo y el picante.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Frappé mexicano 360 ml | ChillOut | Café Etrusca",
+      description: "Frappé de limón 360 ml con ChillOut Mix limón, ChillOut Chamoy y ChillOut Fruit limón, decorado con dulce de tamarindo y picante. Receta ChillOut de Café Etrusca.",
+      keywords: "frappe mexicano, frappe de limon, chillout chamoy, chamoyada, tamarindo, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'frappe-de-moras-y-cereza',
+    title: "Frappé de",
+    titleAccent: "moras y cereza",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Frappé 360 ml sin azúcar con ChillOut Mix base neutra, concentrado de tisana de moras y ChillOut Pearls cereza.",
+    image: '/assets/images/recetas/chillout/frappe-de-moras-y-cereza.webp',
+    banner: '/assets/images/recetas/chillout/frappe-de-moras-y-cereza.webp',
+    tone: 'coral',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: '360 ml',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "40 g de ChillOut Mix base neutra sin azúcar",
+      "15 ml de concentrado de tisana de moras (10 g)",
+      "20 g de ChillOut Pearls cereza",
+      "148 ml de agua",
+      "1 vaso de 480 ml lleno de hielo"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Infusiona",
+        text: "Deja infusionar la tisana de moras.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Licúa",
+        text: "Licúa todo excepto las perlas: primero el concentrado, luego el polvo y al final el hielo, hasta lograr textura frappé.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Coloca las perlas en el vaso y sirve la bebida.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Frappé de moras y cereza 360 ml | ChillOut | Café Etrusca",
+      description: "Frappé 360 ml sin azúcar con ChillOut Mix base neutra, concentrado de tisana de moras y ChillOut Pearls cereza. Receta ChillOut de Café Etrusca.",
+      keywords: "frappe de moras, chillout pearls cereza, tisana de moras, base neutra sin azucar, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'purple-frozen',
+    title: "Purple",
+    titleAccent: "frozen",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Frappé de taro con ChillOut Mix taro, ChillOut Fruit rosas y ChillOut Jam mango, en vaso escarchado con chispas de colores.",
+    image: '/assets/images/recetas/chillout/purple-frozen.webp',
+    banner: '/assets/images/recetas/chillout/purple-frozen.webp',
+    tone: 'sky',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: 'Bebida fría',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    escarchado: ["Chispas de colores"],
+    ingredients: [
+      "50 g de ChillOut Mix taro",
+      "30 ml de ChillOut Fruit rosas",
+      "20 ml de ChillOut Jam mango",
+      "148 ml de leche",
+      "1 vaso de 480 ml lleno de hielo",
+      "Chispas de colores"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Agrega a la licuadora la leche, el taro y los hielos; licúa hasta obtener un frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Escarcha",
+        text: "Escarcha el vaso con las chispas de colores.",
+        tone: 'pink',
+        icon: ICO.decor
+      },
+      {
+        title: "Capas",
+        text: "Sirve el frappé hasta la mitad, agrega el concentrado de rosas, completa con el frappé restante y termina con el jam de mango.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Purple frozen | ChillOut | Café Etrusca",
+      description: "Frappé de taro con ChillOut Mix taro, ChillOut Fruit rosas y ChillOut Jam mango, en vaso escarchado con chispas de colores. Receta ChillOut de Café Etrusca.",
+      keywords: "purple frozen, frappe de taro, chillout mix taro, chillout jam mango, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'super-maracuya',
+    title: "Super",
+    titleAccent: "maracuyá",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Frappé de yogur con ChillOut Jam maracuyá y ChillOut Mix yogur, servido sobre ChillOut Jelly maracuyá.",
+    image: '/assets/images/recetas/chillout/super-maracuya.webp',
+    banner: '/assets/images/recetas/chillout/super-maracuya.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: 'Bebida fría',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "1 cucharada de ChillOut Jelly maracuyá",
+      "20 g de ChillOut Jam maracuyá",
+      "40 g de ChillOut Mix yogur",
+      "150 ml de leche",
+      "1 vaso de 480 ml lleno de hielo"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Licúa",
+        text: "Licúa todo excepto la jelly: primero los líquidos, luego el polvo y al final el hielo, hasta lograr textura frappé.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Jelly",
+        text: "Agrega 1 cucharada de jelly al vaso.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve la bebida sobre la jelly.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Super maracuyá | ChillOut | Café Etrusca",
+      description: "Frappé de yogur con ChillOut Jam maracuyá y ChillOut Mix yogur, servido sobre ChillOut Jelly maracuyá. Receta ChillOut de Café Etrusca.",
+      keywords: "super maracuya, frappe de maracuya, chillout jelly, chillout mix yogur, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'chai-caramel',
+    title: "Chai",
+    titleAccent: "caramel",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas calientes',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Chai latte caliente con ChillOut Mix chai negro y jarabe ChillOut caramelo, calentado en la lanceta de vapor.",
+    image: '/assets/images/recetas/chillout/chai-caramel.webp',
+    banner: '/assets/images/recetas/chillout/chai-caramel.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: 'Bebida caliente',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "20 g de ChillOut Mix chai negro",
+      "30 ml de jarabe ChillOut caramelo",
+      "260 ml de leche"
+    ],
+    tools: ["Jarra de acero", "Vaporizador", "Taza"],
+    steps: [
+      {
+        title: "Integra",
+        text: "Agrega a la jarra de acero la leche con el polvo de chai y el jarabe.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Calienta",
+        text: "Calienta en la lanceta de vapor hasta la temperatura deseada.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el recipiente de tu elección.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Chai caramel | ChillOut | Café Etrusca",
+      description: "Chai latte caliente con ChillOut Mix chai negro y jarabe ChillOut caramelo, calentado en la lanceta de vapor. Receta ChillOut de Café Etrusca.",
+      keywords: "chai caramel, chai latte caramelo, chillout mix chai negro, jarabe caramelo, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'cappuccino-sin-culpa',
+    title: "Cappuccino",
+    titleAccent: "sin culpa",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Cappuccino frío light con espresso doble de Mezcla especial No. 1, leche vegetal y ChillOut Mix base neutra light.",
+    image: '/assets/images/recetas/chillout/cappuccino-sin-culpa.webp',
+    banner: '/assets/images/recetas/chillout/cappuccino-sin-culpa.webp',
+    tone: 'navy',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: 'Bebida fría',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "60 ml de espresso doble preparado con Mezcla especial No. 1",
+      "300 ml de leche vegetal",
+      "30 g de ChillOut Mix base neutra light",
+      "3 piezas de hielo"
+    ],
+    tools: ["Máquina de espresso", "Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Extrae",
+        text: "Extrae el espresso doble.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Licúa",
+        text: "Agrega todos los ingredientes a la licuadora y licúa hasta obtener una bebida fría.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el vaso de tu elección.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Cappuccino sin culpa | ChillOut | Café Etrusca",
+      description: "Cappuccino frío light con espresso doble de Mezcla especial No. 1, leche vegetal y ChillOut Mix base neutra light. Receta ChillOut de Café Etrusca.",
+      keywords: "cappuccino sin culpa, cappuccino light, cappuccino frio, leche vegetal, base neutra light, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'horchata-coco-fria',
+    title: "Horchata de",
+    titleAccent: "coco fría",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Horchata fría con ChillOut Mix horchata, crema de coco, almendras y leche, en vaso escarchado con almendra y canela.",
+    image: '/assets/images/recetas/chillout/horchata-coco-fria.webp',
+    banner: '/assets/images/recetas/chillout/horchata-coco-fria.webp',
+    tone: 'gold',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: 'Bebida fría',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    escarchado: ["Almendras", "Canela"],
+    ingredients: [
+      "50 g de ChillOut Mix horchata",
+      "30 ml de crema de coco",
+      "5 almendras",
+      "240 ml de leche",
+      "3 piezas de hielo",
+      "Almendra y canela para escarchar"
+    ],
+    tools: ["Licuadora", "Vaso"],
+    steps: [
+      {
+        title: "Escarcha",
+        text: "Escarcha el vaso con almendras y canela.",
+        tone: 'yellow',
+        icon: ICO.decor
+      },
+      {
+        title: "Licúa",
+        text: "Agrega todos los ingredientes a la licuadora y licúa hasta obtener una bebida fría.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el vaso escarchado.",
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: "Receta Horchata de coco fría | ChillOut | Café Etrusca",
+      description: "Horchata fría con ChillOut Mix horchata, crema de coco, almendras y leche, en vaso escarchado con almendra y canela. Receta ChillOut de Café Etrusca.",
+      keywords: "horchata de coco, horchata fria, chillout mix horchata, crema de coco, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: 'te-helado-fresco',
+    title: "Té helado",
+    titleAccent: "fresco",
+    kicker: 'Recetas ChillOut',
+    category: 'Bebidas frías',
+    collection: 'chillout',
+    origin: 'chillout',
+    summary: "Té verde helado con ChillOut Jam kiwi y jarabe ChillOut menta, agitado y decorado con menta fresca.",
+    image: '/assets/images/recetas/chillout/te-helado-fresco.webp',
+    banner: '/assets/images/recetas/chillout/te-helado-fresco.webp',
+    tone: 'lime',
+    brand: 'ChillOut',
+    time: '5 min',
+    yield: 'Bebida fría',
+    difficulty: 'Fácil',
+    bubble: 'Recetario ChillOut',
+    ingredients: [
+      "30 g de ChillOut Jam kiwi",
+      "10 ml de jarabe ChillOut menta",
+      "180 ml de infusión de té verde (hoja entera)",
+      "4 piezas de hielo",
+      "Menta fresca para decorar"
+    ],
+    tools: ["Shaker", "Vaso"],
+    steps: [
+      {
+        title: "Agita",
+        text: "Agrega todos los ingredientes al shaker y agita vigorosamente hasta enfriar.",
+        tone: 'yellow',
+        icon: ICO.base
+      },
+      {
+        title: "Sirve",
+        text: "Sirve en el vaso de tu elección.",
+        tone: 'pink',
+        icon: ICO.blend
+      },
+      {
+        title: "Decora",
+        text: "Decora con menta fresca.",
+        tone: 'blue',
+        icon: ICO.decor
+      }
+    ],
+    seo: {
+      title: "Receta Té helado fresco | ChillOut | Café Etrusca",
+      description: "Té verde helado con ChillOut Jam kiwi y jarabe ChillOut menta, agitado y decorado con menta fresca. Receta ChillOut de Café Etrusca.",
+      keywords: "te helado fresco, te verde helado, chillout jam kiwi, jarabe menta, ChillOut, Café Etrusca"
+    },
+    published: true
+  },
+  {
+    slug: "iced-coffee-coconut",
+    title: "Iced Coffee",
+    titleAccent: "Coconut",
+    kicker: 'Otras bebidas',
+    category: 'Bebidas de temporada',
+    collection: 'otros',
+    origin: 'otros',
+    summary: "Iced coffee 360 ml con Torani Crema Irlandesa y crema de coco Calahua.",
+    image: '/assets/images/recetas/calabaza/iced-coffee-coconut.webp',
+    banner: '/assets/images/recetas/calabaza/iced-coffee-coconut.webp',
+    tone: "sky",
+    brand: "ChillOut",
+    time: "5 min",
+    yield: "360 ml",
+    difficulty: 'Fácil',
+    bubble: "Otras bebidas",
+    ingredients: [
+          "240 ml de iced coffee Mezcla Especial 1",
+          "15 ml de Torani Crema Irlandesa",
+          "30 ml de crema de coco Calahua",
+          "Ralladura de coco",
+          "4 hielos"
+    ],
+    tools: ["Vaso","Cuchara"],
+    steps: [
+      {
+        title: "Arma",
+        text: "En el vaso con hielos agrega el iced coffee, Torani Crema Irlandesa y crema de coco.",
+        tone: "yellow",
+        icon: ICO.base
+      },
+      {
+        title: "Mezcla",
+        text: "Mezcla bien y termina con ralladura de coco.",
+        tone: "pink",
+        icon: ICO.blend
+      }
+    ],
+    seo: {
+      title: "Receta Iced Coffee Coconut 360 ml | Café Etrusca",
+      description: "Iced coffee con Torani Crema Irlandesa y crema de coco Calahua.",
+      keywords: "iced coffee coconut, torani crema irlandesa, calahua, Café Etrusca"
     },
     published: true
   }

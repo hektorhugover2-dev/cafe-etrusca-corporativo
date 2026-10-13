@@ -1,4 +1,3 @@
-@import 'leaflet/dist/leaflet.css';
 // =====================================
 // ESTILOS DE LA SECCIÓN HERO
 // =====================================
@@ -186,6 +185,7 @@
 }
 
 .recipe-img-wrapper {
+  position: relative;
   width: 200px; // Ancho fijo para simular el PDF
   height: 280px; // Altura fija para hacerlas verticales
   border-radius: 20px;
@@ -250,13 +250,13 @@
 }
 
 // Colores de los círculos
-.circle-green { background-color: #dcedc1; }
-.circle-yellow { background-color: #ffeba1; }
-.circle-blue { background-color: #aae0e5; }
+.circle-green { background-color: #cde35f; }
+.circle-yellow { background-color: #ffe270; }
+.circle-blue { background-color: #96dde1; }
 
 // Botón Rosa de Promociones
 .btn-promociones {
-  background-color: #ffb8b8; 
+  background-color: #ff9c9e; 
   
   color: #1b2a4a;
 letter-spacing: 1px;
@@ -274,68 +274,144 @@ letter-spacing: 1px;
 // =====================================
 // SECCIÓN: NUEVO
 // =====================================
+.nuevo-grid {
+  --nuevo-verde: #cde35f;
+  --nuevo-cian: #96dde1;
+  --nuevo-rosa: #ff9c9e;
+}
+
+.nuevo-col-offset {
+  margin-top: 2.5rem;
+}
+
 .nuevo-card {
+  position: relative;
   width: 100%;
-  max-width: 320px; // Mantiene el ancho controlado para que no se deformen
-  height: 500px;    // Altura fija para hacerlas verticales tipo "historia"
-  border-radius: 25px; // Esquinas súper redondeadas
+  max-width: 300px;
+  height: 520px;
+  border-radius: 28px;
+  border-style: solid;
+  border-width: 5px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  background: #111;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
-    
-    // Zoom suave a la foto al pasar el mouse
-    .nuevo-img-wrapper img {
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+
+    .nuevo-img {
       transform: scale(1.05);
     }
+  }
+
+  &.tone-verde {
+    border-color: var(--nuevo-verde);
+    .nuevo-banner { background-color: var(--nuevo-verde); }
+    .btn-saber-mas { background-color: var(--nuevo-verde); }
+  }
+
+  &.tone-cian {
+    border-color: var(--nuevo-cian);
+    .nuevo-banner { background-color: var(--nuevo-cian); }
+    .btn-saber-mas { background-color: var(--nuevo-cian); }
+  }
+
+  &.tone-rosa {
+    border-color: var(--nuevo-rosa);
+    .nuevo-banner { background-color: var(--nuevo-rosa); }
+    .btn-saber-mas { background-color: var(--nuevo-rosa); }
   }
 }
 
 .nuevo-img-wrapper {
-  flex: 1; // Empuja el contenido de color hacia abajo, tomando el espacio sobrante
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
-
-  img {
-    transition: transform 0.5s ease;
-  }
+  background: #222;
 }
 
-.nuevo-content {
-  padding: 25px 20px;
-  min-height: 170px; // Altura mínima para la caja de color
+.nuevo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.nuevo-banner,
+.nuevo-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.nuevo-banner {
+  flex: 0 0 auto;
+  padding: 0.85rem 1rem;
+  text-align: left;
+}
+
+.nuevo-title {
+  margin: 0;
+  color: #111;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.nuevo-footer {
+  flex: 0 0 auto;
+  /* Deja ver la foto de fondo; oscurece un poco para legibilidad del botón */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.45));
+  padding: 1rem 1rem 1.25rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  h5 {
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-    line-height: 1.4;
-  }
 }
 
-// Botón "Saber más"
 .btn-saber-mas {
-  background-color: var(--etrusca-navy-900); // Tu azul oscuro corporativo
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   border: none;
-  font-size: 0.85rem;
-  transition: transform 0.2s ease, opacity 0.3s ease;
-  
+  border-radius: 999px;
+  padding: 0.55rem 1.35rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #111 !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
   &:hover {
-    opacity: 0.85;
-    transform: scale(1.05);
+    opacity: 0.92;
+    transform: scale(1.04);
+    color: #111 !important;
   }
 }
 
+@media (max-width: 767.98px) {
+  .nuevo-col-offset {
+    margin-top: 0;
+  }
+
+  .nuevo-card {
+    height: 480px;
+    max-width: 340px;
+  }
+}
 // Colores de la base de las tarjetas
-.bg-verde { background-color: #dcedc1; } // Verde Lima
-.bg-cian  { background-color: #aae0e5; } // Cian Claro
-.bg-rosa  { background-color: #ffb8b8; } // Rosa Claro
+.bg-verde { background-color: #cde35f; } // Verde Lima
+.bg-cian  { background-color: #96dde1; } // Cian Claro
+.bg-rosa  { background-color: #ff9c9e; } // Rosa Claro
 
 
 
@@ -356,47 +432,154 @@ letter-spacing: 1px;
 }
 
 // Colores de los botones
-.bg-verde { background-color: #dcedc1 !important; }
-.bg-cian  { background-color: #aae0e5 !important; }
-.bg-rosa  { background-color: #ffb8b8 !important; }
+.bg-verde { background-color: #cde35f !important; }
+.bg-cian  { background-color: #96dde1 !important; }
+.bg-rosa  { background-color: #ff9c9e !important; }
 
 // Tarjetas de descargas
+// Móvil: 2x2 con desfase, borde + botón. Escritorio: collage original + borde de color.
+
+.descargables-grid,
+.descargables-desktop {
+  --desc-verde: #cde35f;
+  --desc-cian: #96dde1;
+  --desc-rosa: #ff9c9e;
+  --desc-amarillo: #ffe270;
+}
+
+// --- Móvil ---
+.descargables-grid {
+  align-items: flex-start;
+}
+
 .descargable-card {
-  border-radius: 0.75rem; // Bordes redondeados más sutiles para parecerse a los libros
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 420px;
+  height: 100%;
+  border-radius: 1.25rem;
+  border: 4px solid transparent;
+  overflow: hidden;
+  text-decoration: none !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #111;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+
+    .desc-img {
+      transform: scale(1.04);
+    }
+  }
+
+  &.tone-verde {
+    border-color: var(--desc-verde);
+    .desc-btn { background-color: var(--desc-verde); }
+  }
+  &.tone-cian {
+    border-color: var(--desc-cian);
+    .desc-btn { background-color: var(--desc-cian); }
+  }
+  &.tone-rosa {
+    border-color: var(--desc-rosa);
+    .desc-btn { background-color: var(--desc-rosa); }
+  }
+  &.tone-amarillo {
+    border-color: var(--desc-amarillo);
+    .desc-btn { background-color: var(--desc-amarillo); }
+  }
+}
+
+.desc-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.desc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.desc-footer {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.4));
+  padding: 0.65rem 0.75rem 0.9rem;
+  display: flex;
+  justify-content: center;
+}
+
+.desc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #111;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 767.98px) {
+  .descargables-grid > [class*='col-']:nth-child(even) {
+    margin-top: 2.25rem;
+  }
+}
+
+// --- Escritorio: collage + borde ---
+.catalogo-cuadrado,
+.descargable-card-desktop {
+  border-radius: 0.75rem;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  
+  border: 4px solid transparent;
+  text-decoration: none !important;
+  box-sizing: border-box;
+
   img {
     transition: transform 0.5s ease;
+    border-radius: calc(0.75rem - 2px) !important;
   }
-  
+
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
-    z-index: 2; // Pone la tarjeta encima de las demás al hacer hover
-    
-    // Pequeño zoom en la foto interior
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    z-index: 2;
+
     img {
       transform: scale(1.03);
     }
   }
-  
-}
-.catalogo-cuadrado {
-    padding-top: 18vh;
-    padding-bottom: 18vh;
-     border-radius: 0.75rem; // Bordes redondeados más sutiles para parecerse a los libros
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+
+  &.tone-verde { border-color: var(--desc-verde); }
+  &.tone-cian { border-color: var(--desc-cian); }
+  &.tone-rosa { border-color: var(--desc-rosa); }
+  &.tone-amarillo { border-color: var(--desc-amarillo); }
 }
 
-// =====================================
-// SECCIÓN: ¿EN QUÉ PODEMOS AYUDARTE?
-// =====================================
+// Espacio arriba y abajo solo en Insumos y Calendario (columnas altas)
+.catalogo-cuadrado {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  height: calc(100% - 7rem) !important;
+}
+
 .ayuda-section {
-  background-color: #dcedc1; // Verde lima del PDF
+  background-color: #FFF3F4; // Rosa tinte mockup / marca
   
   // Olas SVG
   .custom-shape-divider-top-ayuda,
@@ -521,10 +704,10 @@ letter-spacing: 1px;
 }
 
 // Asegurar que existan los colores de fondo
-.bg-verde   { background-color: #dcedc1 !important; }
-.bg-cian    { background-color: #aae0e5 !important; }
-.bg-rosa    { background-color: #ffb8b8 !important; }
-.bg-amarillo{ background-color: #ffeba1 !important; }
+.bg-verde   { background-color: #cde35f !important; }
+.bg-cian    { background-color: #96dde1 !important; }
+.bg-rosa    { background-color: #ff9c9e !important; }
+.bg-amarillo{ background-color: #ffe270 !important; }
 
 
 //VISITANOS
@@ -604,6 +787,7 @@ letter-spacing: 1px;
 
 
 .recipe-sub {
+  font-weight: 400;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -616,8 +800,10 @@ letter-spacing: 1px;
 .sub-amarillo { color: #756000; }
 
 .recipe-img-wrapper.origin-septiembre-2026,
-.recipe-img-wrapper.origin-verano-2026 {
-  background-color: #0f4d2e;
+.recipe-img-wrapper.origin-verano-2026,
+.recipe-img-wrapper.origin-san-valentin-2026,
+.recipe-img-wrapper.origin-navidad-2023,
+.recipe-img-wrapper.origin-calabaza {
   background-size: 160px 160px;
   background-repeat: repeat;
   background-position: center;
@@ -626,6 +812,50 @@ letter-spacing: 1px;
     object-fit: contain;
     padding: 0.6rem;
   }
+}
+
+.recipe-img-wrapper.origin-septiembre-2026 {
+  background-color: #0f4d2e;
+  background-image: url('/assets/images/recetas/origen-septiembre-2026.webp');
+}
+
+.recipe-img-wrapper.origin-verano-2026 {
+  background-color: #57b7e8;
+  background-image:
+    linear-gradient(180deg, rgba(87, 183, 232, 0.35), rgba(233, 216, 192, 0.55)),
+    url('/assets/images/recetas/origen-verano-2026.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.recipe-img-wrapper.origin-san-valentin-2026 {
+  background-color: #c42a5c;
+  background-image:
+    linear-gradient(180deg, rgba(196, 42, 92, 0.35), rgba(255, 150, 175, 0.55)),
+    url('/assets/images/recetas/origen-san-valentin-2026.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.recipe-img-wrapper.origin-navidad-2023 {
+  background-color: #1c345c;
+  background-image:
+    linear-gradient(180deg, rgba(28, 52, 92, 0.35), rgba(200, 220, 245, 0.55)),
+    url('/assets/images/recetas/origen-navidad-2023.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+
+.recipe-img-wrapper.origin-calabaza {
+  background-color: #c45c26;
+  background-image:
+    linear-gradient(180deg, rgba(196, 92, 38, 0.28), rgba(232, 165, 75, 0.45)),
+    url('/assets/images/recetas/origen-calabaza.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
 }
 
 .recipe-img-wrapper.origin-septiembre-2026 {
@@ -774,7 +1004,10 @@ letter-spacing: 1px;
   }
 
   .recipe-img-wrapper.origin-septiembre-2026,
-  .recipe-img-wrapper.origin-verano-2026 {
+.recipe-img-wrapper.origin-verano-2026,
+.recipe-img-wrapper.origin-san-valentin-2026,
+.recipe-img-wrapper.origin-navidad-2023,
+.recipe-img-wrapper.origin-calabaza {
     background-size: 110px 110px;
 
     .recipe-img {
@@ -785,9 +1018,113 @@ letter-spacing: 1px;
   .recipe-img-wrapper.origin-verano-2026 {
     background-size: cover, 110px 110px;
   }
+
+  .recipe-img-wrapper.origin-calabaza {
+    background-size: cover, 110px 110px;
+  }
+
+  .recipe-img-wrapper.origin-navidad-2023 {
+    background-size: cover, 110px 110px;
+  }
 }
 
 .home-card-title {
   font-size: 1.05rem;
   line-height: 1.3;
 }
+
+/* Raya bajo H2 = estilo NUESTRO COMPROMISO (separador.png nativo 549×30) */
+.separator-img,
+.rc-sep,
+.prod-sep,
+.ct-sep {
+  display: block;
+  width: min(549px, 80%);
+  max-width: min(549px, 80%);
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+
+
+.recipe-legend {
+  position: absolute;
+  left: 0.55rem;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  margin: 0;
+  padding: 0.28rem 0.45rem;
+  border-radius: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(2px);
+  text-align: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+
+.ayuda-section {
+  overflow: visible;
+}
+
+.ayuda-lucky {
+  position: absolute;
+  right: max(0.5rem, 2vw);
+  bottom: 2.5rem;
+  width: min(220px, 28vw);
+  z-index: 3;
+  pointer-events: none;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.22));
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ayuda-lucky {
+    width: min(140px, 34vw);
+    bottom: 1.2rem;
+    right: 0.25rem;
+  }
+}
+
+
+// Espacio extra al final de ÚLTIMOS VIDEOS
+.videos-section {
+  padding-bottom: 5rem !important;
+}
+
+// Iconos de la tarjeta de información de la sede (mismos PNG y círculos de color que /contacto).
+.sucursal-card .home-ico {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e8e8e8;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  img { width: 28px; height: 28px; object-fit: contain; }
+}
+.sucursal-card li:nth-child(1) .home-ico { background: #ffd19a; }
+.sucursal-card li:nth-child(2) .home-ico { background: #8fe8f4; }
+.sucursal-card li:nth-child(3) .home-ico { background: #dff08a; }
+.sucursal-card li:nth-child(4) .home-ico { background: #d3b5ff; }
+
+// Título de «Visítanos»: color del token --etrusca-navy-900 y un poco más grande que los demás H2 (2.2rem → 2.6rem).
+.home-visit-title {
+  color: var(--etrusca-navy-900);
+  font-size: 2.6rem;
+}
+@media (max-width: 991px) { .home-visit-title { font-size: 2.4rem; } }
+@media (max-width: 575px) { .home-visit-title { font-size: 2.3rem; } }

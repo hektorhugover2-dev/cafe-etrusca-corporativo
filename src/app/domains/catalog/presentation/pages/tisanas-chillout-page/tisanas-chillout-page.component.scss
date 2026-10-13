@@ -1,0 +1,593 @@
+/* Tisanas ChillOut (clon de la estructura de la página Torani): reutiliza insumos-theme + jarabes-theme
+   (layout-jarabes + layout-tisanas: hero #f2a8a8 de la categoría Tisanas, acento #7a2e2e).
+   Guía visual (Lizbeth): Poppins, navy #070C3B / #192966, blanco, acento rosa/coral + amarillo,
+   títulos editoriales grandes, mucho aire, olas/blobs, producto recortado, tarjetas 3/2/1. */
+
+:host {
+  display: block;
+  --tor-navy: #070c3b;
+  --tor-navy-2: #192966;
+  --tor-coral: #ff9496;
+  --tor-coral-soft: #ffdcdd;
+  --tor-peach: #f2a8a8;
+  --tor-cream: #fff3ec;
+  --tor-yellow: #fdd640;
+  --tor-yellow-soft: #fff1b8;
+}
+
+.tor-page {
+  font-family: 'Poppins', sans-serif;
+  color: var(--tor-navy);
+  /* .ins-page (insumos-theme) usa overflow-x: hidden, que obliga a overflow-y: auto; como la ola
+     inferior del CTA sobresale del contenedor, aparecía una segunda barra de scroll interna.
+     clip recorta en horizontal sin crear contenedor de scroll: solo scrollea la ventana. */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+/* ---------- Hero ---------- */
+.tor-hero {
+  padding-bottom: 9rem;
+}
+
+.tor-hero-copy {
+  h1 {
+    text-transform: none;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--tor-navy);
+    margin-bottom: 0.8rem;
+  }
+  .tor-h1-main {
+    display: block;
+    font-size: clamp(2.8rem, 7vw, 5.4rem);
+    font-weight: 900;
+  }
+  .tor-h1-sub {
+    display: block;
+    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+    font-weight: 800;
+    color: var(--tor-navy-2);
+    letter-spacing: -0.02em;
+  }
+  .lead .accent { color: #7a2e2e; }
+  .body { color: #2b2b3a; }
+}
+
+.tor-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--tor-navy-2);
+  margin-bottom: 1.1rem;
+  a { color: var(--tor-navy-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  [aria-current] { color: #7a2e2e; }
+}
+
+.tor-logo {
+  display: block;
+  width: 150px;
+  height: auto;
+  margin: 0 0 0.9rem;
+}
+
+.tor-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-jar { background: var(--tor-navy); border-radius: 999px; }
+
+.tor-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.45rem;
+  border-radius: 999px;
+  border: 2px solid var(--tor-navy);
+  color: var(--tor-navy);
+  font-weight: 800;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.55);
+  &:hover { background: #fff; color: var(--tor-navy); }
+}
+
+.tor-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0 0;
+  li {
+    background: #fff;
+    border-radius: 18px;
+    padding: 0.7rem 1rem;
+    min-width: 7.5rem;
+    box-shadow: 0 10px 24px rgba(7, 12, 59, 0.08);
+  }
+  strong {
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--tor-navy);
+  }
+  span { font-size: 0.8rem; font-weight: 600; color: var(--tor-navy-2); }
+}
+
+/* ---------- Secciones de producto ---------- */
+.tor-section {
+  padding: 4.2rem clamp(1.2rem, 5vw, 5rem) 4.4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tor-head {
+  text-align: center;
+  max-width: 46rem;
+  margin: 0 auto 2.6rem;
+  h2 {
+    margin: 0 0 0.8rem;
+    font-weight: 900;
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--tor-navy);
+  }
+}
+
+.tor-kicker {
+  display: inline-block;
+  margin: 0 0 0.7rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: var(--tor-coral-soft);
+  color: #a83530;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tor-intro {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: #3a3a4a;
+}
+.tor-intro-center { text-align: center; max-width: 40rem; margin: -0.6rem auto 1.8rem; }
+
+.tor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+
+.tor-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 26px;
+  border: 1.5px solid #f1ece8;
+  box-shadow: 0 14px 34px rgba(7, 12, 59, 0.06);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(7, 12, 59, 0.1); }
+}
+
+.tor-card-media {
+  position: relative;
+  height: 260px;
+  background: #fff;
+  img {
+    position: absolute;
+    z-index: 1;
+    top: 1.1rem;
+    bottom: 0.6rem;
+    left: 12%;
+    width: 76%;
+    height: calc(100% - 1.7rem);
+    object-fit: contain;
+    mix-blend-mode: multiply; /* fichas de tienda con fondo blanco: efecto recortado sobre el blob */
+  }
+}
+
+.tis-ph {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--tor-navy-2);
+  opacity: 0.55;
+}
+
+.tor-card-blob {
+  position: absolute;
+  z-index: 0;
+  width: 200px;
+  height: 180px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -46%) rotate(-12deg);
+  border-radius: 58% 42% 55% 45% / 48% 60% 40% 52%;
+}
+.tor-card.coral .tor-card-blob { background: var(--tor-coral-soft); }
+.tor-card.yellow .tor-card-blob { background: var(--tor-yellow-soft); }
+
+.tor-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  padding: 0.4rem 1.4rem 1.5rem;
+  flex: 1;
+  h3 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--tor-navy);
+  }
+}
+
+.tor-line {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7a2e2e;
+}
+.tor-card.yellow .tor-line { color: #8f7010; }
+
+.tor-pres {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: #55556a;
+}
+
+.tor-btn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.62rem 1.3rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-decoration: none;
+  color: var(--tor-navy);
+  background: var(--tor-coral);
+  &:hover { filter: brightness(1.05); color: var(--tor-navy); }
+}
+.tor-card.yellow .tor-btn { background: var(--tor-yellow); }
+/* Comprar (modal) + Asesoría: mismos botones que las tarjetas de Accesorios (píldora 38 px, Poppins 600),
+   en los colores de la página: relleno coral/amarillo como el antiguo "Ver producto" y borde sobre blanco. */
+.tor-actions {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: auto;
+}
+.tor-act {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  max-width: 165px;
+  min-width: 0;
+  height: 38px;
+  padding: 0 0.6rem;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  &--solid { border: 0; background: var(--tor-coral); color: var(--tor-navy); }
+  &--solid:hover { filter: brightness(1.05); color: var(--tor-navy); }
+  &--outline { border: 1.5px solid var(--tor-coral); background: #fff; color: var(--tor-navy); }
+  &--outline:hover { background: var(--tor-coral-soft); color: var(--tor-navy); }
+  &:focus-visible { outline: 3px solid var(--tor-navy); outline-offset: 2px; }
+}
+.tor-card.yellow .tor-act--solid { background: var(--tor-yellow); }
+.tor-card.yellow .tor-act--outline { border-color: var(--tor-yellow); }
+.tor-card.yellow .tor-act--outline:hover { background: var(--tor-yellow-soft); }
+.tor-card .visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.tor-btn-navy { background: var(--tor-navy); color: #fff; &:hover { color: #fff; } }
+
+/* ---------- Banda Sugar Free ---------- */
+.tor-band {
+  position: relative;
+  background: var(--tor-cream);
+  padding: 6rem 0 7rem;
+  margin: 1rem 0;
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+  }
+  app-scroll-wave:first-of-type { top: 0; }
+  app-scroll-wave:last-of-type { bottom: 0; }
+}
+
+.tor-band-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.2rem, 5vw, 5rem);
+}
+
+.tor-more {
+  text-align: center;
+  margin: 2rem 0 0;
+  a { font-weight: 800; color: var(--tor-navy-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+
+/* ---------- Taller ---------- */
+.tor-course {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1120px;
+  margin: 1rem auto 3rem;
+  padding: 2rem clamp(1.4rem, 4vw, 3rem);
+  border-radius: 28px;
+  background: var(--tor-navy);
+  color: #fff;
+  h2 { margin: 0 0 0.4rem; font-weight: 900; font-size: clamp(1.6rem, 3.4vw, 2.3rem); letter-spacing: -0.03em; color: #fff; }
+  p { margin: 0; max-width: 40rem; color: rgba(255, 255, 255, 0.85); }
+  .tor-kicker { background: rgba(255, 148, 150, 0.2); color: #ffb4b5; }
+  .tor-btn { background: var(--tor-yellow); color: var(--tor-navy); flex-shrink: 0; margin-top: 0; }
+}
+
+/* ---------- FAQ ---------- */
+.tor-faq {
+  padding: 2.6rem clamp(1.2rem, 5vw, 5rem) 3.4rem;
+}
+
+.tor-faq-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0.9rem;
+  details {
+    border-radius: 20px;
+    background: #fff;
+    border: 1.5px solid #f1ece8;
+    box-shadow: 0 8px 22px rgba(7, 12, 59, 0.05);
+    padding: 0 1.4rem;
+  }
+  details[open] { border-color: var(--tor-coral); }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1.1rem 2rem 1.1rem 0;
+    position: relative;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--tor-navy);
+    &::-webkit-details-marker { display: none; }
+    &::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--tor-coral-soft);
+      color: #a83530;
+      font-weight: 900;
+    }
+  }
+  details[open] summary::after { content: '–'; background: var(--tor-yellow); color: var(--tor-navy); }
+  p { margin: 0 0 1.2rem; line-height: 1.6; color: #3a3a4a; }
+}
+
+/* ---------- CTA final (reusa .jar-cta) ---------- */
+.tor-cta {
+  background: var(--tor-peach);
+  color: var(--tor-navy);
+  h2, p { color: var(--tor-navy); }
+  .tor-ctas a { align-self: auto; }
+  .tor-cta-alt {
+    background: #fff;
+    color: var(--tor-navy);
+    border: 2px solid var(--tor-navy);
+  }
+  .tor-back {
+    margin-top: 0.9rem;
+    background: none;
+    padding: 0;
+    color: var(--tor-navy-2);
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+
+/* ---------- Hero: foto de bebidas de la categoría Tisanas ---------- */
+.tis-hero-media {
+  .photo {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+}
+
+/* ---------- Qué es una tisana: té vs tisana ---------- */
+.tis-compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.tis-compare-card {
+  padding: 1.6rem 1.7rem;
+  border-radius: 24px;
+  background: #fff;
+  border: 1.5px solid #f1ece8;
+  box-shadow: 0 10px 26px rgba(7, 12, 59, 0.05);
+  h3 { margin: 0 0 0.4rem; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.02em; color: var(--tor-navy); }
+  p { margin: 0; line-height: 1.55; color: #3a3a4a; }
+  &--accent { background: var(--tor-coral-soft); border-color: var(--tor-coral); }
+}
+
+/* ---------- Cómo ponerla en el menú ---------- */
+.tis-points {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tis-point {
+  flex: 0 1 calc((100% - 2.8rem) / 3);
+  min-width: 250px;
+  padding: 1.5rem 1.5rem 1.6rem;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(7, 12, 59, 0.06);
+  h3 { margin: 0.7rem 0 0.4rem; font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; color: var(--tor-navy); }
+  p { margin: 0; line-height: 1.55; color: #3a3a4a; }
+  a { display: inline-block; margin-top: 0.4rem; font-weight: 800; color: var(--tor-navy-2); }
+}
+.tis-point-num {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--tor-yellow);
+  color: var(--tor-navy);
+  font-weight: 900;
+}
+
+/* ---------- Ideas de menú (sin foto de bebida: bloque neutro) ---------- */
+.tis-ideas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.6rem;
+}
+.tis-idea {
+  flex: 0 1 calc((100% - 3.2rem) / 3);
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 26px;
+  background: #fff;
+  border: 1.5px solid #f1ece8;
+  box-shadow: 0 14px 34px rgba(7, 12, 59, 0.06);
+  overflow: hidden;
+}
+.tis-idea-media {
+  display: grid;
+  place-items: center;
+  height: 130px;
+  background: var(--tor-coral-soft);
+  color: var(--tor-navy-2);
+}
+.tis-idea.yellow .tis-idea-media { background: var(--tor-yellow-soft); }
+.tis-idea-body {
+  padding: 1.2rem 1.4rem 1.5rem;
+  h3 { margin: 0 0 0.35rem; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.01em; color: var(--tor-navy); }
+  p { margin: 0 0 0.5rem; line-height: 1.5; color: #3a3a4a; }
+}
+.tis-idea-flavors { font-size: 0.92rem; strong { color: var(--tor-navy); } }
+.tis-idea-link { font-weight: 800; color: var(--tor-navy-2); }
+
+/* ---------- Receta con dosis ---------- */
+.tis-recipe-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 2.4rem;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  .jar-drink { margin: 0; }
+}
+.tis-recipe-copy {
+  p { margin: 0 0 0.9rem; font-size: 1.1rem; line-height: 1.6; color: #2b2b3a; }
+  .tis-note { font-size: 0.92rem; color: #55556a; }
+  .tor-btn { margin-top: 0.4rem; }
+}
+
+/* ---------- Más tisanas / más ChillOut ---------- */
+.tis-more { padding-top: 1rem; padding-bottom: 1rem; }
+.tis-more-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.tis-more-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.5rem 1.7rem;
+  border-radius: 24px;
+  background: #fff3ec;
+  border: 2px solid var(--tor-coral);
+  color: var(--tor-navy);
+  text-decoration: none;
+  strong { font-size: 1.15rem; font-weight: 800; }
+  span { line-height: 1.5; color: #3a3a4a; }
+  em { margin-top: 0.4rem; font-style: normal; font-weight: 800; color: var(--tor-navy-2); }
+  &:hover { background: #fff; color: var(--tor-navy); }
+  &:focus-visible { outline: 3px solid var(--tor-navy); outline-offset: 3px; }
+}
+
+/* ---------- Responsive: 3 / 2 / 1 ---------- */
+@media (max-width: 1100px) {
+  .tor-grid { grid-template-columns: repeat(2, 1fr); }
+  .tis-idea { flex-basis: calc((100% - 1.6rem) / 2); }
+  .tis-point { flex-basis: calc((100% - 1.4rem) / 2); }
+}
+
+@media (max-width: 800px) {
+  .tor-hero { padding-bottom: 7rem; }
+  .tis-hero-media { margin-top: 1rem; }
+  .tor-course { flex-direction: column; align-items: flex-start; }
+  .tis-recipe-grid, .tis-more-grid, .tis-compare { grid-template-columns: 1fr; }
+  .tis-recipe-grid .jar-drink { max-width: 340px; margin: 0 auto; }
+}
+
+@media (max-width: 640px) {
+  .tor-grid { grid-template-columns: 1fr; }
+  .tis-idea { flex-basis: 100%; min-width: 0; }
+  .tis-point { flex-basis: 100%; min-width: 0; }
+  .tor-card-media { height: 220px; }
+  .tor-facts li { min-width: 0; flex: 1 1 30%; }
+}

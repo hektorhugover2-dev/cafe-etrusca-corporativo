@@ -1,0 +1,237 @@
+$navy: #070c3b;
+$navy-2: #192966;
+$accent: #73dbe3;
+$muted: #5b6080;
+$line: #e3e6f0;
+
+.br-page {
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: $navy;
+  background: #fff;
+}
+
+.br-wrap {
+  width: min(1180px, 100% - 2.5rem);
+  margin: 0 auto;
+}
+
+.br-hero {
+  padding: 132px 0 2.5rem;
+  background: linear-gradient(180deg, #f4f6fb 0%, #fff 100%);
+
+  h1 {
+    margin: 0.25rem 0 0.75rem;
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: $navy;
+  }
+}
+
+.br-crumbs {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: $muted;
+  margin-bottom: 1rem;
+
+  a { color: $navy-2; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+
+.br-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $navy-2;
+}
+
+.br-lead {
+  max-width: 62ch;
+  margin: 0 0 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: $muted;
+}
+
+.br-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid $line;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: $navy-2;
+    background: #fff;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  a:hover, a:focus-visible { border-color: $navy-2; background: #eef8f9; }
+}
+
+.br-section {
+  padding: 2.5rem 0 3rem;
+
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $navy;
+  }
+}
+
+.br-section--alt { background: #f7f8fc; }
+
+.br-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.br-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem 1.35rem 1.25rem;
+  border: 1px solid $line;
+  border-top: 4px solid $accent;
+  border-radius: 14px;
+  background: #fff;
+  scroll-margin-top: 110px;
+
+  &:target { box-shadow: 0 0 0 3px rgba(115, 219, 227, 0.55); }
+
+  h3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin: 0 0 0.85rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $navy;
+  }
+  h3 .br-ico { margin-top: 0.2rem; }
+}
+
+.br-card-city {
+  margin: 0 0 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.br-facts {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 1.1rem;
+  flex: 1;
+
+  dt {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $navy-2;
+  }
+  dd {
+    margin: 0.1rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #2b3050;
+    overflow-wrap: anywhere;
+  }
+  a { color: $navy-2; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+
+.br-phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.9rem;
+}
+
+.br-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.br-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  font-family: inherit;
+  min-height: 40px;
+  padding: 0.45rem 1rem;
+  border: 1.5px solid $navy-2;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $navy-2;
+  background: #fff;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover, &:focus-visible { background: #eef1fa; }
+}
+
+.br-btn--solid {
+  background: $navy-2;
+  color: #fff;
+
+  &:hover, &:focus-visible { background: $navy; color: #fff; }
+}
+
+.br-cta {
+  padding: 2.5rem 0 3.5rem;
+  background: $navy;
+  color: #fff;
+
+  h2 { margin: 0 0 0.35rem; font-size: 1.4rem; font-weight: 600; }
+  p { margin: 0; color: #c9cde6; }
+
+  .br-btn { background: transparent; color: #fff; border-color: #fff; }
+  .br-btn:hover { background: rgba(255, 255, 255, 0.12); }
+  .br-btn--solid { background: $accent; border-color: $accent; color: $navy; }
+  .br-btn--solid:hover { background: #fff; border-color: #fff; color: $navy; }
+}
+
+.br-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.br-cta-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+@media (max-width: 1024px) {
+  .br-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .br-hero { padding-top: 104px; }
+  .br-grid { grid-template-columns: 1fr; }
+  .br-card { padding: 1.15rem; }
+}
+
+/* Iconos (pin / flecha) en navy, mismo tamaño en tarjetas y botones. */
+.br-ico { width: 1rem; height: 1rem; flex: 0 0 auto; color: $navy-2; }
+.br-btn .br-ico { color: currentColor; }
+.br-addr { display: flex; align-items: flex-start; gap: 0.5rem; }
+.br-addr .br-ico { margin-top: 0.2rem; }
+.br-map-sec { padding-bottom: 1rem; }

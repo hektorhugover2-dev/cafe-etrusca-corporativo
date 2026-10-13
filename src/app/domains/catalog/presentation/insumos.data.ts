@@ -29,13 +29,13 @@ export const INSUMOS_NAV = [
   { slug: 'te', label: 'Té', icon: '/assets/images/insumos/categorias/te.png' },
   { slug: 'tisanas', label: 'Tisanas', icon: '/assets/images/insumos/categorias/tisanas.png' },
   { slug: 'bases-en-polvo', label: 'Bases en polvo', icon: '/assets/images/insumos/categorias/bases-en-polvo.png' },
-  { slug: 'toppings', label: 'Toppings', icon: '/assets/images/insumos/categorias/toppings.png' }
+  { slug: 'toppings', label: 'Bubble tea', icon: '/assets/images/insumos/categorias/toppings.png' }
 ];
 
 export const INSPIRA_MENU = [
-  { title: 'Soda italiana', image: '/assets/images/insumos/drink-soda.png' },
-  { title: 'Pistache cósmico', image: '/assets/images/insumos/drink-pistache.png' },
-  { title: 'Matcha frappé', image: '/assets/images/insumos/drink-frappe.png' }
+  { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/jarabes' },
+  { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/salsas' },
+  { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/insumos-para-cafeterias/toppings' }
 ];
 
 export const MARCAS_DESTACADAS = [
@@ -44,28 +44,28 @@ export const MARCAS_DESTACADAS = [
     text: 'Sabor que inspira posibilidades. Jarabes, salsas y purés con más de 100 años elevando la experiencia de bebidas en todo el mundo.',
     logo: '/assets/images/insumos/logo-torani.png',
     image: '/assets/images/insumos/product-cluster.png',
-    link: '/productos/insumos/jarabes'
+    link: '/insumos-para-cafeterias/jarabes/torani'
   },
   {
     name: 'ChillOut',
     text: 'Una marca mexicana con opciones para desarrollar, complementar y dar personalidad a bebidas frías y calientes.',
     logo: '/assets/images/insumos/logo-chillout.png',
     image: '/assets/images/insumos/salsa-chocolate.png',
-    link: '/productos/insumos/salsas'
+    link: '/insumos-para-cafeterias/bases-en-polvo/chillout'
   },
   {
     name: 'Té y tisanas',
     text: 'Mezclas diseñadas para preparar bebidas aromáticas, cremosas y consistentes de manera práctica.',
     logo: '',
     image: '/assets/images/insumos/matcha-can.png',
-    link: '/productos/insumos/te'
+    link: '/insumos-para-cafeterias/te'
   },
   {
     name: 'Bases en polvo',
     text: 'Mezclas en polvo que ayudan a desarrollar frappés y bebidas especiales con sabor y textura consistentes.',
     logo: '',
     image: '/assets/images/insumos/bottle-cpm.png',
-    link: '/productos/insumos/bases-en-polvo'
+    link: '/insumos-para-cafeterias/bases-en-polvo'
   }
 ];
 
@@ -176,11 +176,11 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         title: 'Salsa de calabaza',
         text: 'El sabor otoñal que tus clientes esperan. Perfecta para lattes, bebidas frías y postres especiales que evocan el calor del hogar.',
         tag: 'Disponible por tiempo limitado',
-        image: '/assets/images/insumos/salsas-seasonal.png'
+        image: '/assets/images/insumos/salsa-pay-calabaza-torani-otono.webp'
       },
       steps: [
         { n: '1', title: 'Integra', text: 'Mezcla la salsa con tu bebida para aportar sabor y una textura sedosa que envuelve el paladar desde el primer sorbo.', image: '/assets/images/insumos/salsas-step-1.png' },
-        { n: '2', title: 'Decora', text: 'Corona con creatividad: espirales, líneas o diseños que sorprenden a tus comensales y los invitan a capturar el momento.', image: '/assets/images/insumos/salsas-step-2.png' },
+        { n: '2', title: 'Decora', text: 'Corona con creatividad: espirales, líneas o diseños que sorprenden a tus comensales y los invitan a capturar el momento.', image: '/assets/images/insumos/salsas-step-decora-cafe.webp' },
         { n: '3', title: 'Sirve', text: 'Presenta, sorprende y convierte cada taza o plato en una experiencia premium.', image: '/assets/images/insumos/salsas-step-3.png' }
       ]
     }
@@ -427,8 +427,8 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
   },
   {
     slug: 'toppings',
-    label: 'Toppings',
-    title: 'TOPPINGS',
+    label: 'Bubble tea',
+    title: 'Bubble tea',
     subtitle: 'Textura y sabor para dar el toque final',
     body: 'Perlas, jellies, tapiocas y complementos para aportar textura, sabor y un toque visual único a bebidas frías, bubble tea, frappés y especialidades.',
     heroImage: '/assets/images/insumos/toppings/hero-drink.webp',

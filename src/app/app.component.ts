@@ -3,15 +3,19 @@ import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { TrackingService } from './shared/kernel/services/tracking.service';
+import { BuyModalComponent } from './domains/catalog/presentation/components/buy-modal/buy-modal.component';
+import { BuyModalService } from './domains/catalog/presentation/components/buy-modal/buy-modal.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, BuyModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'cafe-etrusca-corporativo';
+  /** Modal "Comprar" (en línea / en sucursal): se monta sólo al abrirlo; su código se carga diferido. */
+  readonly buy = inject(BuyModalService);
 
   constructor() {
     inject(TrackingService).init();
@@ -25,7 +29,8 @@ export class AppComponent {
 
     const router = inject(Router);
     const viewport = inject(ViewportScroller);
-    const insumosCat = /^\/productos\/insumos\/[^\/#?]+$/;
+    // Category pages only (e.g. /insumos-para-cafeterias/jarabes/), not deeper pages like /jarabes/torani/.
+    const insumosCat = /^\/insumos-para-cafeterias\/[^\/#?]+\/?$/;
     let prevPath = router.url.split('?')[0].split('#')[0];
 
     router.events

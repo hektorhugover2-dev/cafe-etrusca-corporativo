@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { PAST_EVENT_FORM_FRAGMENT } from '../../event-paths';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { CompromisoComponent } from '../../../../../shared/ui/compromiso/compromiso.component';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
@@ -13,12 +14,19 @@ import {
   CourseDate,
   EDU_NAV,
   PATHS,
-  QUIZ,
   SCA_CERTS,
   THIS_MONTH,
   Barista
 } from '../../education.data';
 import { OPINIONS, ReviewCard } from '../../opinions.data';
+import { PATH_QUIZ, PATH_QUIZ_RESULTS, PATH_QUIZ_RESULTS_EXPERIENCIA, PathProfile, PathQuizResult } from '../../path-quiz.data';
+import { coursePublicPath } from '../../course-public-paths';
+
+interface QuizCourseLink {
+  title: string;
+  kicker: string;
+  path: string;
+}
 
 interface CertificadoRow {
   Id?: string;
@@ -61,21 +69,26 @@ export class EducationPageComponent implements OnInit, OnDestroy {
   branchFilter = '';
   private baristaTimer: ReturnType<typeof setInterval> | null = null;
   private baristaPaused = false;
-  quiz = QUIZ;
+  quiz = PATH_QUIZ;
   reviews: ReviewCard[] = OPINIONS;
   reviewIndex = 0;
   starSlots = [1, 2, 3, 4, 5];
   private reviewTimer: ReturnType<typeof setInterval> | null = null;
   private reviewPaused = false;
   private http = inject(HttpClient);
+  /** Current wizard step (0..quiz.length-1); quiz.length = result. */
   step = 0;
-  votes: string[] = [];
-  picked: string | null = null;
-  pickedLabel: string | null = null;
+  /** Selected option index per question. */
+  answers: Array<number | null> = PATH_QUIZ.map(() => null);
+  @ViewChild('quizHeading') quizHeading?: ElementRef<HTMLElement>;
 
   interestOpen = false;
   interestTitle = '';
   interestDate: CourseDate | null = null;
+  /** Modal opened by #solicitar-informacion (past/unknown event URL without course): no date. */
+  interestHideDate = false;
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   private seo = inject(SeoService);
   private document = inject(DOCUMENT);
@@ -111,6 +124,22 @@ export class EducationPageComponent implements OnInit, OnDestroy {
     });
     this.startBaristaTimer();
     this.loadReviews();
+    if (isPlatformBrowser(this.platformId)) {
+      // /cursos-para-baristas-y-talleres-para-cafeterias/#solicitar-informacion: target of past or
+      // unknown /cursos-y-talleres/<slug> URLs without a course page (IIS/server 301, event resolver).
+      // IIS may append the query string after the fragment (#solicitar-informacion?utm_…).
+      this.route.fragment.subscribe((f) => {
+        if (String(f || '').split('?')[0] === PAST_EVENT_FORM_FRAGMENT) this.openInfoRequest();
+      });
+    }
+  }
+
+  /** Same "solicitar información" form as the course pages, without course date. */
+  openInfoRequest() {
+    this.interestTitle = 'Cursos y talleres';
+    this.interestDate = null;
+    this.interestHideDate = true;
+    this.interestOpen = true;
   }
 
   ngOnDestroy() {
@@ -223,50 +252,111 @@ export class EducationPageComponent implements OnInit, OnDestroy {
     return KIND_ICONS[kind] || KIND_ICONS['cursos'];
   }
 
-  pick(path: string, label: string) {
-    this.picked = path;
-    this.pickedLabel = label;
+  get picked(): number | null {
+    return this.answers[this.step] ?? null;
+  }
+
+  pick(index: number) {
+    if (this.step < this.quiz.length) this.answers[this.step] = index;
+  }
+
+  /** Radio-group keyboard support: arrows move and select, Home/End jump. */
+  onOptionKey(ev: KeyboardEvent, index: number) {
+    const n = this.quiz[this.step]?.options.length || 0;
+    let target = -1;
+    if (ev.key === 'ArrowDown' || ev.key === 'ArrowRight') target = (index + 1) % n;
+    else if (ev.key === 'ArrowUp' || ev.key === 'ArrowLeft') target = (index - 1 + n) % n;
+    else if (ev.key === 'Home') target = 0;
+    else if (ev.key === 'End') target = n - 1;
+    else if (ev.key === ' ' || ev.key === 'Enter') {
+      ev.preventDefault();
+      this.pick(index);
+      if (ev.key === 'Enter') this.next();
+      return;
+    }
+    if (target < 0) return;
+    ev.preventDefault();
+    this.pick(target);
+    const group = (ev.currentTarget as HTMLElement).parentElement;
+    (group?.children[target] as HTMLElement | undefined)?.focus();
+  }
+
+  optionTabIndex(index: number): number {
+    const p = this.picked;
+    return (p === null ? index === 0 : p === index) ? 0 : -1;
   }
 
   next() {
-    if (!this.picked) {
-      return;
-    }
-    this.choose(this.picked);
-    this.picked = null;
-    this.pickedLabel = null;
+    if (this.picked === null) return;
+    this.step = Math.min(this.step + 1, this.quiz.length);
+    this.focusQuiz();
   }
 
-  choose(path: string) {
-    this.votes.push(path);
-    if (this.step < this.quiz.length - 1) {
-      this.step += 1;
-    } else {
-      this.step = this.quiz.length;
+  back() {
+    if (this.step > 0) {
+      this.step -= 1;
+      this.focusQuiz();
     }
   }
 
-  get result() {
-    const tally: Record<string, number> = {};
-    for (const v of this.votes) tally[v] = (tally[v] || 0) + 1;
-    return Object.entries(tally).sort((a, b) => b[1] - a[1])[0]?.[0] || 'cursos';
+  get profile(): PathProfile {
+    const tally: Partial<Record<PathProfile, number>> = {};
+    const picks = this.answers.map((a, i) => (a === null ? null : this.quiz[i].options[a]?.profile || null));
+    for (const p of picks) if (p) tally[p] = (tally[p] || 0) + 1;
+    const max = Math.max(0, ...Object.values(tally).map((v) => v || 0));
+    const first = picks[0];
+    if (first && tally[first] === max) return first;
+    return (Object.entries(tally).find(([, v]) => v === max)?.[0] as PathProfile) || 'barista';
+  }
+
+  /** The last answer asked for the short (3 h) format → experiencias only. */
+  get wantsExperiencia(): boolean {
+    const last = this.quiz.length - 1;
+    const a = this.answers[last];
+    return a !== null && !!this.quiz[last].options[a]?.experiencia;
+  }
+
+  get quizResult(): PathQuizResult {
+    return (this.wantsExperiencia ? PATH_QUIZ_RESULTS_EXPERIENCIA : PATH_QUIZ_RESULTS)[this.profile];
+  }
+
+  /** Catalog course by slug; `primary` in the 3 h scenario only accepts experiencias. */
+  quizCourse(slug: string | undefined, primary = false): QuizCourseLink | null {
+    const c = slug
+      ? COURSES.find((x) => x.slug === slug && (!primary || !this.wantsExperiencia || x.kind === 'experiencias'))
+      : undefined;
+    return c ? { title: c.title, kicker: c.kicker, path: coursePublicPath(c) } : null;
+  }
+
+  /** "Taller recomendado" / "Curso recomendado" / "Experiencia recomendada". */
+  recommendedLabel(kicker: string): string {
+    return `${kicker} ${/a$/i.test(kicker) ? 'recomendada' : 'recomendado'}`;
   }
 
   resetQuiz() {
     this.step = 0;
-    this.votes = [];
-    this.picked = null;
-    this.pickedLabel = null;
+    this.answers = PATH_QUIZ.map(() => null);
+    this.focusQuiz();
+  }
+
+  private focusQuiz() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    setTimeout(() => this.quizHeading?.nativeElement.focus({ preventScroll: true }));
   }
 
   openInterest(course: Course) {
     this.interestTitle = course.title;
     this.interestDate = course.dates?.[0] || null;
+    this.interestHideDate = false;
     this.interestOpen = true;
   }
 
   closeInterest() {
     this.interestOpen = false;
+    if (this.interestHideDate && this.route.snapshot.fragment) {
+      // Drop #solicitar-informacion so a reload does not reopen the form.
+      this.router.navigate([], { relativeTo: this.route, replaceUrl: true, queryParamsHandling: 'preserve' });
+    }
   }
   get visibleReviews(): ReviewCard[] {
     const n = this.reviews.length;

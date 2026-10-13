@@ -1,0 +1,215 @@
+<div class="ins-page layout-jarabes layout-tisanas tor-page tis-page">
+  <section class="jar-hero tor-hero">
+    <img class="jar-hero-blob tor-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy tor-hero-copy">
+      <nav class="tor-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias">Insumos para cafeterías</a><span aria-hidden="true">›</span>
+        <a [routerLink]="categoryPath">Tisanas</a><span aria-hidden="true">›</span>
+        <span aria-current="page">ChillOut</span>
+      </nav>
+      <img class="tor-logo" src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut" width="150" height="60">
+      <h1><span class="tor-h1-main">Tisanas ChillOut </span><span class="tor-h1-sub">para cafetería</span></h1>
+      <p class="lead"><span class="accent">Tisanas frutales</span> para tu menú</p>
+      <p class="body">
+        Una tisana es una infusión de frutas, flores, hierbas o especias que no lleva hoja de té. En Café Etrusca
+        vendemos tisanas frutales ChillOut en bolsa de 250 g, para servir calientes o frías. Elige tu sabor y compra
+        en línea, o pide ayuda a un asesor para armar tu menú.
+      </p>
+      <div class="tor-ctas">
+        <a class="btn-jar" [href]="storeUrl" target="_blank" rel="noopener">Comprar en tienda en línea<span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
+        <a class="tor-btn-ghost" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <ul class="tor-facts" aria-label="Datos de las tisanas ChillOut">
+        <li><strong>{{ products.length }}</strong><span>sabores</span></li>
+        <li><strong>250 g</strong><span>por bolsa</span></li>
+        <li><strong>Caliente</strong><span>o fría</span></li>
+      </ul>
+    </div>
+    <div class="jar-hero-media tis-hero-media">
+      <img class="photo" src="/assets/images/insumos/tisanas/hero-drinks.webp" alt="Bebidas de tisana" width="813" height="636">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#f2a8a8"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="tor-section tis-what" id="que-es-una-tisana" aria-labelledby="tis-que-es">
+    <header class="tor-head">
+      <p class="tor-kicker">Para empezar</p>
+      <h2 id="tis-que-es">¿Qué es una tisana?</h2>
+      <p class="tor-intro">Una tisana es una infusión de frutas, flores, hierbas o especias que no lleva hoja de té, y por eso normalmente no tiene cafeína. Se sirve caliente o fría.</p>
+    </header>
+    <div class="tis-compare">
+      <article class="tis-compare-card">
+        <h3>Té</h3>
+        <p>Se hace con hojas de la planta <em>Camellia sinensis</em>.</p>
+      </article>
+      <article class="tis-compare-card tis-compare-card--accent">
+        <h3>Tisana</h3>
+        <p>Se hace con frutas, flores, hierbas o especias, sin hoja de té.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="tor-section" id="sabores" aria-labelledby="tis-sabores">
+    <header class="tor-head">
+      <p class="tor-kicker">Bolsa de 250 g</p>
+      <h2 id="tis-sabores">Tisanas ChillOut que vendemos</h2>
+      <p class="tor-intro">{{ countWordCap }} sabores de tisana ChillOut. Cada tarjeta te lleva a la tienda en línea, donde viven el precio y la disponibilidad. Fotografías ilustrativas.</p>
+    </header>
+    <div class="tor-grid">
+      @for (p of products; track p.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + tone(i)">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            @if (p.image) {
+              <img [src]="p.image" [alt]="'Tisana ChillOut sabor ' + p.flavor.toLowerCase() + ', bolsa de 250 g'" loading="lazy" width="320" height="320">
+            } @else {
+              <!-- Sin foto del empaque todavía: bloque neutro (ver TODO en tisanas-chillout.data.ts) -->
+              <span class="tis-ph" aria-hidden="true">
+                <svg viewBox="0 0 48 48" width="56" height="56" focusable="false"><path d="M14 6h20l2 6v26a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V12l2-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 12h24M18 24h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+            }
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">ChillOut {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <!-- Comprar → modal (en línea: ficha de la tienda, ficha directa o, si no hay ficha, búsqueda en la tienda; sucursal; asesoría) -->
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="tor-band tis-menu" id="en-tu-menu" aria-labelledby="tis-menu-title">
+    <app-scroll-wave position="top" fillColor="#fff3ec"></app-scroll-wave>
+    <div class="tor-band-inner">
+      <header class="tor-head">
+        <p class="tor-kicker">Para tu carta</p>
+        <h2 id="tis-menu-title">Cómo ponerla en el menú</h2>
+        <p class="tor-intro">Cinco ideas para sumar una bebida sin café a tu carta, caliente y fría.</p>
+      </header>
+      <ol class="tis-points">
+        @for (pt of menuPoints; track pt.title; let i = $index) {
+          <li class="tis-point">
+            <span class="tis-point-num" aria-hidden="true">{{ i + 1 }}</span>
+            <h3>{{ pt.title }}</h3>
+            <p>{{ pt.text }}
+              @if (i === 4) { <a [routerLink]="tallerPath">Ver el taller de Bebidas Frías ›</a> }
+            </p>
+          </li>
+        }
+      </ol>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fff3ec"></app-scroll-wave>
+  </section>
+
+  <section class="tor-section" id="ideas-de-menu" aria-labelledby="tis-ideas-title">
+    <header class="tor-head">
+      <p class="tor-kicker">Ideas de carta</p>
+      <h2 id="tis-ideas-title">Ideas de menú con tisana</h2>
+      <p class="tor-intro">Conceptos para empezar, con los sabores ChillOut que mejor van con cada uno. Las medidas dependen de tu receta: un asesor puede ayudarte a definirlas.</p>
+    </header>
+    <div class="tis-ideas">
+      @for (idea of ideas; track idea.title) {
+        <article class="tis-idea" [class]="'tis-idea ' + idea.tone">
+          <!-- Sin foto de bebida todavía: bloque neutro (ver TODO en tisanas-chillout.data.ts) -->
+          <div class="tis-idea-media" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="44" height="44" focusable="false"><path d="M12 8h24l-3 30a3 3 0 0 1-3 2.7H18a3 3 0 0 1-3-2.7L12 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13.2 20h21.6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="tis-idea-body">
+            <h3>{{ idea.title }}</h3>
+            <p>{{ idea.concept }}</p>
+            <p class="tis-idea-flavors"><strong>Sabores sugeridos:</strong> {{ idea.flavors }}</p>
+            @if (idea.link) {
+              <a class="tis-idea-link" [routerLink]="idea.link.path">{{ idea.link.label }} ›</a>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  @if (recipe) {
+    <section class="jar-inspira tor-inspira tis-recipe" aria-labelledby="tis-receta">
+      <div class="jar-head">
+        <h2 id="tis-receta">Una receta de Etrusca con tisana</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="tis-recipe-grid">
+        <article class="jar-drink lime">
+          <div class="bar">{{ recipe.title }} {{ recipe.titleAccent || '' }}</div>
+          <img [src]="recipe.image" [alt]="recipe.title + ' ' + (recipe.titleAccent || '')" loading="lazy">
+          <a class="more" [routerLink]="recipeLink(recipe)">Ver receta →</a>
+        </article>
+        <div class="tis-recipe-copy">
+          <p class="tor-kicker">Ejemplo de dosis</p>
+          <p>Así lo hacemos en la Strawberry matcha lemonade (480 ml): <strong>10 g de tisana fresa kiwi</strong> infusionados <strong>5 minutos en 80 ml de agua caliente</strong>.</p>
+          <p class="tis-note">Es la medida de esta receta, no una regla para todas las bebidas ni para todos los sabores.</p>
+          <a class="tor-btn tor-btn-navy" [routerLink]="recipeLink(recipe)">Ver la receta completa</a>
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="tor-section tis-more" aria-labelledby="tis-mas">
+    <h2 id="tis-mas" class="visually-hidden">Más tisanas y más ChillOut</h2>
+    <div class="tis-more-grid">
+      <a class="tis-more-card" [routerLink]="categoryPath">
+        <strong>¿Buscas otra línea de tisanas?</strong>
+        <span>En la categoría Tisanas también encuentras la línea Euro Te.</span>
+        <em>Ver todas las tisanas ›</em>
+      </a>
+      <a class="tis-more-card" routerLink="/insumos-para-cafeterias/bases-en-polvo/chillout">
+        <strong>¿Buscas las bases en polvo ChillOut?</strong>
+        <span>Las bases ChillOut Mix y Just Fruit tienen su propia página.</span>
+        <em>Ver bases en polvo ChillOut ›</em>
+      </a>
+    </div>
+  </section>
+
+  <section class="tor-course" aria-labelledby="tis-taller">
+    <div>
+      <p class="tor-kicker">Educación Café Etrusca</p>
+      <h2 id="tis-taller">Lleva la tisana a tu barra</h2>
+      <p>El taller de Bebidas Frías incluye tisanas frías y costeo.</p>
+    </div>
+    <a class="tor-btn tor-btn-navy" [routerLink]="tallerPath">Ver taller de Bebidas Frías</a>
+  </section>
+
+  <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="tis-faq-title">
+    <div class="jar-head">
+      <h2 id="tis-faq-title">Preguntas frecuentes</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tor-faq-list">
+      @for (f of faq; track f.q; let first = $first) {
+        <details [attr.open]="first ? '' : null">
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta tor-cta">
+    <app-scroll-wave position="top" fillColor="#f2a8a8"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿Buscas tisanas para tu cafetería?</h2>
+      <p>Compra en línea o habla con un asesor para elegir los sabores de tu menú.</p>
+      <div class="tor-ctas">
+        <a [href]="storeUrl" target="_blank" rel="noopener">Ir a la tienda en línea<span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
+        <a class="tor-cta-alt" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <a class="tor-back" [routerLink]="categoryPath">Ver todas las tisanas ›</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <app-scroll-wave position="bottom" fillColor="#f2a8a8"></app-scroll-wave>
+  </section>
+</div>

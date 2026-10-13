@@ -11,7 +11,7 @@ import { SeoService } from '../../../../../shared/kernel/services/seo.service';
   standalone: true,
   imports: [RouterLink, InsumosNavComponent, InsumosCtaComponent, ScrollWaveComponent],
   templateUrl: './insumos-page.component.html',
-  styleUrls: ['../../insumos-theme.scss', './insumos-page.component.scss']
+  styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './insumos-page.component.scss']
 })
 export class InsumosPageComponent implements OnInit {
   private seo = inject(SeoService);

@@ -32,6 +32,7 @@ export class ProductsPageComponent implements OnInit {
     },
     {
       slug: 'insumos',
+      link: '/insumos-para-cafeterias',
       title: 'Insumos',
       text: 'Ingredientes que convierten ideas en experiencias.',
       img: '/assets/images/productos/cat-insumos.webp',
@@ -47,6 +48,7 @@ export class ProductsPageComponent implements OnInit {
     },
     {
       slug: 'accesorios',
+      link: '/accesorios-para-poner-una-cafeteria',
       title: 'Accesorios',
       text: 'Diseñados para facilitar cada preparación.',
       img: '/assets/images/productos/cat-accesorios.webp',

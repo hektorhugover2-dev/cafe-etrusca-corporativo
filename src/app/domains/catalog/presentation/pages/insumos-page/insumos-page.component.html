@@ -9,6 +9,7 @@
     <div class="ins-hero-media">
       <img src="/assets/images/insumos/kiwi-hero.png" alt="Kiwi lemonade">
     </div>
+    <app-scroll-wave position="bottom" fillColor="#f4eee4"></app-scroll-wave>
   </section>
 
   <app-insumos-nav [allColor]="true"></app-insumos-nav>
@@ -27,19 +28,20 @@
     </div>
   </section>
 
-  <section class="ins-section ins-inspira">
-    <h2>Inspira tu menú</h2>
-    <div class="ins-inspira-grid">
-      @for (d of menu; track d.title) {
-        <article class="ins-drink">
+  <section class="jar-inspira">
+    <div class="jar-head">
+      <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of menu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
           <img [src]="d.image" [alt]="d.title">
-          <span>{{ d.title }}</span>
+          <a class="more" [routerLink]="d.link">Saber más →</a>
         </article>
       }
     </div>
   </section>
-
-  <app-scroll-wave fillColor="#f5d56a" position="top"></app-scroll-wave>
   <app-insumos-cta></app-insumos-cta>
-  <app-scroll-wave fillColor="#f5d56a" position="bottom"></app-scroll-wave>
 </div>

@@ -9,6 +9,8 @@
   overflow: hidden;
   line-height: 0;
   z-index: 5;
+  // Adorno: no debe tapar botones ni enlaces que queden debajo de la ola (p. ej. «Cómo llegar» de /contacto).
+  pointer-events: none;
 
    &.bottom {
     bottom: -12vh;

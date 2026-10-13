@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360">
+  <defs>
+    <style>
+      .bg { fill: #b85a2a; }
+      .fg { fill: #d7b687; }
+    </style>
+  </defs>
+  <circle class="bg" cx="180" cy="180" r="163.36"/>
+  <!-- main star -->
+  <path class="fg" d="M180 86 L201 152 L272 152 L214 193 L236 259 L180 218 L124 259 L146 193 L88 152 L159 152 Z"/>
+  <!-- sparkle diamonds -->
+  <path class="fg" d="M78 118 L88 98 L98 118 L88 138 Z"/>
+  <path class="fg" d="M262 118 L272 98 L282 118 L272 138 Z"/>
+  <path class="fg" d="M96 248 L104 234 L112 248 L104 262 Z"/>
+  <path class="fg" d="M248 248 L256 234 L264 248 L256 262 Z"/>
+</svg>

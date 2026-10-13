@@ -43,6 +43,7 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   margin-bottom: 0;
 }
 
+
 .ns-hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -212,7 +213,7 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 
 .ns-mision {
   background: $pink;
-  color: #fff;
+  color: #5c1f28; /* WCAG: was #fff on #f3a3ad (~1.97); now ~6.3:1 */
   align-self: flex-start;
 }
 
@@ -254,7 +255,7 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   letter-spacing: -0.03em;
   color: $navy;
 
-  span { color: $pink; }
+  span { color: #8b3a45; /* WCAG: was $pink on $yellow (~1.53); now ~5.9:1 */ }
 }
 
 .ns-valor-lead {
@@ -301,9 +302,9 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   text-transform: uppercase;
   color: #fff;
 
-  &[data-tone='blue'] { background: #7eb7e4; }
+  &[data-tone='blue'] { background: #7eb7e4; color: #1a3a52; /* WCAG: was white (~2.15); now ~5.5:1 */ }
   &[data-tone='lime'] { background: #b7d64a; color: #24300a; }
-  &[data-tone='pink'] { background: #f3a3ad; }
+  &[data-tone='pink'] { background: #f3a3ad; color: #5c1f28; /* WCAG: was white (~1.97); now ~6.3:1 */ }
   &[data-tone='yellow'] { background: #f3d45c; color: #3a2c08; }
   &[data-tone='orange'] { background: #f0b24a; color: #3a2408; }
 }
@@ -351,17 +352,17 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 // 🎨 COLORES DINÁMICOS POR TARJETA (Borde y Negritas)
 .card-fenice {
   border-color: #eab435; // Amarillo Oro
-  .brand-body strong { color: #eab435; }
+  .brand-body strong { color: #9a6a10; /* WCAG text on white: was #eab435 (~1.90); now ~4.7:1 */ }
 }
 
 .card-barista {
   border-color: #b58548; // Café Claro/Bronce
-  .brand-body strong { color: #b58548; }
+  .brand-body strong { color: #7a5528; /* WCAG text on white: was #b58548 (~3.27); now ~6.7:1 */ }
 }
 
 .card-chill {
   border-color: #5fd3dc; // Cyan
-  .brand-body strong { color: #5fd3dc; }
+  .brand-body strong { color: #0e7a82; /* WCAG text on white: was #5fd3dc (~1.77); now ~5.1:1 */ }
 }
 
 .brand-body {
@@ -415,19 +416,19 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 // 🎨 COLORES DINÁMICOS POR TARJETA (Borde, Negritas y Franja Inferior)
 .card-fenice {
   border-color: #eab435; 
-  .brand-body strong { color: #eab435; }
+  .brand-body strong { color: #9a6a10; /* WCAG */ }
   .brand-bottom-bar { background-color: #eab435; }
 }
 
 .card-barista {
   border-color: #b58548; 
-  .brand-body strong { color: #b58548; }
+  .brand-body strong { color: #7a5528; /* WCAG */ }
   .brand-bottom-bar { background-color: #b58548; }
 }
 
 .card-chill {
   border-color: #5fd3dc; 
-  .brand-body strong { color: #5fd3dc; }
+  .brand-body strong { color: #0e7a82; /* WCAG */ }
   .brand-bottom-bar { background-color: #5fd3dc; }
 }
 
@@ -566,3 +567,65 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   .ns-sellos-row img { height: 72px; }
   .ns-pill { min-width: 0; }
 }
+
+/* Hero Nosotros = mismo alto/ritmo que .jar-hero (padding 11rem + wave abajo) */
+.ns-hero.ns-hero--title-only {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background: #fff;
+  padding: calc(112px + 2.2rem) clamp(1.2rem, 5vw, 5rem) 11rem;
+  min-height: clamp(480px, 62vh, 680px);
+  margin-bottom: 0;
+  overflow: visible;
+
+  .ns-hero-copy-only {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 1 1 auto;
+    padding-bottom: 3rem;
+  }
+
+  .ns-title {
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+    font-size: clamp(3.2rem, 8vw, 5.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    color: var(--etrusca-navy-900, #111);
+    position: relative;
+    z-index: 5;
+  }
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .ns-hero-grid,
+  .ns-hero-media,
+  .ns-hero-video,
+  .ns-hero-caption {
+    display: none !important;
+  }
+}
+
+.ns-hero--title-only + .ns-mosaic {
+  margin-top: 0;
+  position: relative;
+  z-index: 0;
+}
+

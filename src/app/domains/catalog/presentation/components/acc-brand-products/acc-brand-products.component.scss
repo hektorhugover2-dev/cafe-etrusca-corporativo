@@ -1,0 +1,29 @@
+// Mismas clases/estilos que las tarjetas y píldoras de Métodos de extracción (parcial compartido).
+@use '../../styles/acc-products';
+
+:host { display: block; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.acc-idle-hint {
+  margin: 0;
+  padding: 1.6rem 1rem;
+  border: 1px dashed #bababa;
+  border-radius: 16px;
+  text-align: center;
+  font-size: max(0.95rem, calc(var(--u) * 17));
+  color: #252525;
+}
+
+// Píldora TODOS: mismas clases que las marcas (.met-pill--brand), sólo se asegura la tipografía del botón.
+.met-pill--todos { font-family: inherit; }

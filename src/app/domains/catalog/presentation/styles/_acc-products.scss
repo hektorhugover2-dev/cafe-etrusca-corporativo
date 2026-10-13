@@ -1,0 +1,342 @@
+// Accesorios — píldoras de marca/subcategoría, tarjetas de producto y modo marca (productos desde la API).
+// Extraído de metodos-extraccion-page.component.scss para compartirlo con app-acc-brand-products.
+// Las medidas usan --u (definida en .acc-page de la página: 1px en móvil, 100vw/1440 en escritorio).
+// El texto oscuro del foco usa $sub-text; los colores son los del PDF "Métodos de extracción".
+
+@use 'sass:map';
+
+$pill-bg: #d2f9fa;
+$pill-text: #2f3a40;
+$all-bg: #006171;
+$sub-bg: #ffd0d1;
+$sub-text: #0a1931;
+$sub-all: #ff9496;
+$card-border: #bababa;
+$brand: #b86e00;      // etiqueta de marca: #fdb745 del PDF oscurecido para AA sobre blanco
+$title: #0a1931;
+$desc: #252525;
+
+// circle = círculo detrás del producto; btn = botón "Comprar" y borde/texto de "Asesoría";
+// ink = texto sobre el botón relleno (AA), outline = texto del botón con borde (AA sobre blanco).
+$tones: (
+  'yellow': (circle: #ffe78c, btn: #f4d661, ink: #3a2f00, outline: #8a6d00),
+  'pink':   (circle: #fdabb3, btn: #ff9496, ink: #3d0a0d, outline: #c2323a),
+  'teal':   (circle: #a8e2e6, btn: #71c2c5, ink: #062f31, outline: #1d7478),
+  'lime':   (circle: #d9ef67, btn: #d1e275, ink: #2a3300, outline: #5f7000),
+  'purple': (circle: #d3b5ff, btn: #b48feb, ink: #24084d, outline: #6a3cb5),
+  'beige':  (circle: #f7debe, btn: #e0c29e, ink: #3b2a14, outline: #8a5f2b)
+);
+
+@function u($n) {
+  @return calc(var(--u) * #{$n});
+}
+
+/* ================= PÍLDORAS (marcas / subcategorías) ================= */
+.met-brands,
+.met-subcats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.met-brands__list,
+.met-subcats__list {
+  display: contents;
+  list-style: none;
+}
+
+.met-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &--brand {
+    height: max(38px, #{u(42)});
+    padding: 0 max(0.8rem, #{u(12)});
+    min-width: u(96);
+    background: $pill-bg;
+    color: $pill-text;
+    font-weight: 600;
+    font-size: max(0.85rem, #{u(16)});
+    text-transform: uppercase;
+  }
+
+  &--all {
+    height: max(38px, #{u(42)});
+    padding: 0 max(1rem, #{u(18)});
+    background: $all-bg;
+    color: #fff;
+    font-weight: 600;
+    font-size: max(0.8rem, #{u(14)});
+    line-height: 1.05;
+
+    span { max-width: 7.2em; white-space: normal; }
+    &:hover { color: #fff; background: #004b58; }
+  }
+
+  &--sub {
+    height: max(32px, #{u(35)});
+    padding: 0 max(0.8rem, #{u(14)});
+    background: $sub-bg;
+    color: $sub-text;
+    font-weight: 600;
+    font-size: max(0.78rem, #{u(12.5)});
+  }
+
+  &--sub-all {
+    height: max(32px, #{u(35)});
+    min-width: u(210);
+    padding: 0 max(1rem, #{u(20)});
+    gap: u(40);
+    background: $sub-all;
+    color: #3d0a0d;
+    font-weight: 600;
+    font-size: max(0.85rem, #{u(15)});
+
+    &:hover { color: #3d0a0d; filter: brightness(1.04); }
+  }
+
+  &--all:focus-visible,
+  &--sub-all:focus-visible { outline: 3px solid $sub-text; outline-offset: 2px; }
+}
+
+.met-subcats__title {
+  margin: 1.6rem 0 0.8rem;
+  font-size: max(0.95rem, #{u(15)});
+  font-weight: 700;
+  color: $sub-text;
+}
+
+/* ================= TARJETAS DE PRODUCTO ================= */
+.met-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: u(39) u(20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li { display: flex; }
+}
+
+.met-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  padding: u(26) u(18) u(20);
+  border: 1px solid $card-border;
+  border-radius: u(16);
+  background: #fff;
+  text-align: left;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+  &:hover { box-shadow: 0 14px 28px rgba(10, 25, 49, 0.1); transform: translateY(-2px); }
+}
+
+.met-card__brand {
+  margin: 0;
+  text-align: center;
+  font-size: max(0.85rem, #{u(16)});
+  font-weight: 500;
+  text-transform: uppercase;
+  color: $brand;
+}
+
+.met-card__media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: u(230);
+  margin: u(4) 0 u(14);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: u(200);
+    height: u(200);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--circle);
+  }
+
+  img {
+    position: relative;
+    width: u(228);
+    height: u(228);
+    object-fit: contain;
+  }
+}
+
+.met-card__title {
+  margin: 0 0 u(10);
+  font-size: max(1.05rem, #{u(21)});
+  font-weight: 600;
+  line-height: 1.12;
+  color: $title;
+}
+
+.met-card__desc {
+  margin: 0 0 u(28);
+  font-size: max(0.92rem, #{u(17)});
+  line-height: 1.2;
+  color: $desc;
+}
+
+.met-card__actions {
+  display: flex;
+  justify-content: center;
+  gap: u(20);
+  margin-top: auto;
+}
+
+.met-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: u(165);
+  min-width: 118px;
+  height: max(36px, #{u(38)});
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: max(0.95rem, #{u(20)});
+  text-decoration: none;
+
+  &--solid { background: var(--btn); color: var(--ink); }
+  &--solid:hover { color: var(--ink); filter: brightness(0.96); }
+  &--outline { border: 1.5px solid var(--btn); color: var(--outline); background: #fff; }
+  &--outline:hover { color: var(--outline); background: var(--circle); }
+  &:focus-visible { outline: 3px solid $title; outline-offset: 2px; }
+}
+
+// "Comprar" es <button> (abre el modal de compra): mismo aspecto que el enlace.
+button.met-card__btn { border: 0; font-family: inherit; cursor: pointer; }
+
+@each $name, $t in $tones {
+  .met-card--#{$name} {
+    --circle: #{map.get($t, circle)};
+    --btn: #{map.get($t, btn)};
+    --ink: #{map.get($t, ink)};
+    --outline: #{map.get($t, outline)};
+  }
+}
+
+/* ================= MODO MARCA (productos desde la API) ================= */
+.met-brands__list > li:not(.met-pill),
+.met-subcats__list > li:not(.met-pill) { display: contents; }
+
+.met-pill--btn {
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-visible { outline: 3px solid $sub-text; outline-offset: 2px; }
+}
+
+.met-pill--brand.met-pill--btn:hover { box-shadow: inset 0 0 0 2px $all-bg; }
+.met-pill--brand.is-active { background: $all-bg; color: #fff; }
+.met-pill--sub.met-pill--btn:hover { box-shadow: inset 0 0 0 1.5px $sub-text; }
+.met-pill--sub.is-active { background: $sub-text; color: #fff; }
+.met-pill__count { margin-left: 0.25em; font-weight: 500; opacity: 0.75; }
+
+.met-status {
+  margin: 0 0 u(24);
+  font-size: max(0.95rem, #{u(17)});
+  color: $desc;
+
+  &--error,
+  &--empty {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding: u(48) u(24);
+    border: 1px dashed $card-border;
+    border-radius: u(16);
+    text-align: center;
+
+    p { margin: 0; }
+  }
+
+  &--count { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; }
+}
+
+.met-status__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+
+.met-status__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: $all-bg;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.met-card--api .met-card__title {
+  margin-bottom: u(22);
+  font-size: max(0.92rem, #{u(17)});
+  line-height: 1.2;
+}
+
+.met-card--skeleton {
+  min-height: u(440);
+  background: linear-gradient(100deg, #f4f1ee 30%, #fbfaf8 50%, #f4f1ee 70%) 0 0 / 300% 100%;
+  animation: met-skeleton 1.2s linear infinite;
+}
+
+@keyframes met-skeleton { to { background-position: -150% 0; } }
+
+.met-more { display: flex; justify-content: center; margin-top: u(40); }
+
+@media (prefers-reduced-motion: reduce) {
+  .met-card--skeleton { animation: none; }
+}
+
+/* ---------- ESCRITORIO (>= 1024 px) ---------- */
+@media (min-width: 1024px) {
+  .met-brands { padding-left: u(19); gap: u(8); }
+  .met-subcats { padding-left: u(19); gap: u(12); }
+  .met-subcats__title { margin: u(34) 0 u(16) u(19); }
+  .met-results { margin-top: u(122); }
+}
+
+/* ---------- TABLET / MÓVIL (< 1024 px) ---------- */
+@media (max-width: 1023.98px) {
+  .met-results { margin-top: 2.4rem; }
+  .met-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+
+  .met-card { padding: 1.2rem 1rem 1.1rem; border-radius: 16px; }
+  .met-card__media { height: 200px; margin: 0.3rem 0 0.9rem; }
+  .met-card__media::before { width: 170px; height: 170px; }
+  .met-card__media img { width: 196px; height: 196px; }
+  .met-card__title { margin-bottom: 0.5rem; }
+  .met-card__desc { margin-bottom: 1.2rem; }
+  .met-card__actions { gap: 0.7rem; }
+  .met-card__btn { width: auto; flex: 1 1 0; max-width: 165px; border-radius: 999px; }
+}
+
+@media (max-width: 640px) {
+  .met-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .met-pill--sub-all { min-width: 0; gap: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .met-card { transition: none; }
+  .met-card:hover { transform: none; }
+}

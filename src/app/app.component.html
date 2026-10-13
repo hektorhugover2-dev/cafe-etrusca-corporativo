@@ -1,1 +1,7 @@
 <router-outlet></router-outlet>
+<!-- Modal "Comprar" compartido (Accesorios, Máquinas, Torani, ChillOut): sólo en navegador, al abrirlo -->
+@if (buy.request(); as r) {
+  @defer (on immediate) {
+    <app-buy-modal [req]="r"></app-buy-modal>
+  }
+}

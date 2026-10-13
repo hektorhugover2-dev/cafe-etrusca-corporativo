@@ -13,13 +13,24 @@ $sand: #efe6d6;
 }
 
 .ins-hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 1.5rem;
-  align-items: start;
+  gap: 1rem;
+  align-items: center;
   background: $cream;
-  padding: 1.8rem clamp(1.2rem, 5vw, 5rem) 2.4rem;
+  padding: 2.2rem clamp(1.2rem, 5vw, 5rem) 11rem;
+  overflow: visible;
   min-height: 0;
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
 }
 
 .ins-hero-copy {
@@ -55,17 +66,19 @@ $sand: #efe6d6;
 }
 
 .ins-hero-media {
+  position: relative;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 380px;
+  min-height: 340px;
 
   img {
-    max-height: 460px;
+    max-height: 420px;
     max-width: 100%;
     width: auto;
+    height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 18px 28px rgba(20, 17, 14, 0.18));
   }
 }
 
@@ -681,3 +694,45 @@ $cat-colors: (
   .layout-salsas .ins-seasonal { grid-template-columns: 1fr; }
 }
 
+
+
+/* h2-home-sep-insumos */
+.ins-section > h2 {
+  margin: 0 0 0.35rem !important;
+  font-weight: 700 !important;
+  font-size: 2.2rem !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  color: var(--etrusca-navy-900, #283039) !important;
+  line-height: 1.15 !important;
+  text-align: center;
+}
+.ins-section > h2::after {
+  content: "";
+  display: block;
+  width: min(549px, 80%);
+  height: 30px;
+  margin: 0.35rem auto 1.6rem;
+  background: url("/assets/images/separador.png") center / contain no-repeat;
+}
+
+.jar-head {
+  text-align: center;
+  margin: 0 0 1.8rem;
+}
+.jar-head h2 {
+  margin: 0 0 0.35rem !important;
+  font-weight: 700 !important;
+  font-size: 2.2rem !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  color: var(--etrusca-navy-900, #283039) !important;
+  line-height: 1.15 !important;
+}
+.jar-head .rule {
+  width: min(549px, 80%) !important;
+  height: 30px !important;
+  margin: 0.35rem auto 1.6rem !important;
+  border-radius: 0 !important;
+  background: url("/assets/images/separador.png") center / contain no-repeat !important;
+}

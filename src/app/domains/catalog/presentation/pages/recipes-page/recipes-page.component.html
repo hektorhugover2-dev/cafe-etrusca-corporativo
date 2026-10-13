@@ -1,100 +1,199 @@
-<div class="rc-page">
-  <section class="rc-hero">
-    <div class="rc-hero-bg" aria-hidden="true">
-      <img src="/assets/images/recetas/recetas-hero-bg.webp" alt="">
+<div class="ins-page layout-jarabes layout-recetas">
+  <!-- HERO: misma estructura que Jarabes (.jar-hero / .jar-hero-copy / .jar-hero-media + ola) -->
+  <section class="jar-hero">
+    <div class="jar-hero-copy">
+      <p class="eyebrow">Historias en cada bebida</p>
+      <h1>RECETAS</h1>
+      <p class="lead">Ideas, sabores e inspiración para preparar en casa bebidas increíbles.</p>
     </div>
-    <div class="container rc-hero-copy">
-      <p class="rc-kicker">Café Etrusca</p>
-      <h1>Recetas</h1>
-      <p class="rc-lead">
-        Recetario ChillOut, Fiestas Patrias y Verano 2026: ideas listas para tu barra.
-      </p>
+    <div class="jar-hero-media">
+      <img class="photo" src="/assets/images/recetas/recetas-hero-frappe.webp" alt="Frappé de fresa con crema batida">
     </div>
-    <app-scroll-wave position="bottom" fillColor="#ffffff"></app-scroll-wave>
+    <app-scroll-wave position="bottom" fillColor="#ffe270"></app-scroll-wave>
   </section>
 
-  @if (featured) {
-    <section class="rc-featured">
-      <div class="container">
-        <article class="rc-feature-card">
-          <div class="rc-feature-media">
-            <img [src]="featured.image" [alt]="displayTitle(featured)">
-          </div>
-          <div class="rc-feature-body">
-            <p class="rc-kicker">{{ featured.kicker }}</p>
-            <h2>{{ displayTitle(featured) }}</h2>
-            <p>{{ featured.summary }}</p>
-            <div class="rc-meta">
-              @if (featured.time) { <span>{{ featured.time }}</span> }
-              @if (featured.yield) { <span>{{ featured.yield }}</span> }
-              @if (featured.difficulty) { <span>{{ featured.difficulty }}</span> }
-            </div>
-            <a class="rc-btn" [routerLink]="['/recetas', featured.slug]">Ver receta</a>
-          </div>
-        </article>
+  <!-- RECETA DEL MES (se configura en recetas-listado.config.ts → RECETA_DEL_MES) -->
+  @if (delMesTitulo) {
+    <section class="rc-mes" aria-labelledby="rc-mes-title">
+      <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
+      <div class="jar-head">
+        <h2 id="rc-mes-title">Receta del mes</h2>
+        <div class="rule" aria-hidden="true"></div>
       </div>
-    </section>
-  }
-
-  @if (temporada.length) {
-    <section class="rc-grid-sec">
-      <div class="container">
-        <h2>Fiestas Patrias 2026</h2>
-        <img src="/assets/images/separador.png" alt="" class="rc-sep">
-        <div class="rc-grid">
-          @for (r of temporada; track r.slug) {
-            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
-              <div class="rc-card-media">
-                <img [src]="r.image" [alt]="displayTitle(r)">
-              </div>
-              <h3>{{ displayTitle(r) }}</h3>
-              <p class="rc-sub">{{ r.summary }}</p>
-              <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
-            </article>
-          }
+      <article class="rc-mes-card">
+        <div class="rc-mes-media">
+          <img [src]="delMesImagen" [alt]="delMesTitulo">
         </div>
-      </div>
-    </section>
-  }
-
-
-  @if (verano.length) {
-    <section class="rc-grid-sec">
-      <div class="container">
-        <h2>Verano 2026</h2>
-        <img src="/assets/images/separador.png" alt="" class="rc-sep">
-        <div class="rc-grid">
-          @for (r of verano; track r.slug) {
-            <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
-              <div class="rc-card-media">
-                <img [src]="r.image" [alt]="displayTitle(r)">
-              </div>
-              <h3>{{ displayTitle(r) }}</h3>
-              <p class="rc-sub">{{ r.summary }}</p>
-              <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
-            </article>
-          }
+        <div class="rc-mes-body">
+          <span class="rc-mes-pill">{{ delMes.etiqueta }}</span>
+          <h3>{{ delMesTitulo }}</h3>
+          <p>{{ delMesTexto }}</p>
+          <div class="rc-mes-actions">
+            @if (recetaDelMes) {
+              <a class="rc-mes-btn is-solid" [routerLink]="['/recetas', recetaDelMes.slug]">
+                Ver receta <span aria-hidden="true">→</span>
+              </a>
+            }
+            @if (delMes.mostrarBotonVideo) {
+              @if (delMesVideo; as dv) {
+                <button type="button" class="rc-mes-btn is-outline" (click)="abrirVideo(dv)">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l5.5-3.5z" class="fill"/></svg>
+                  Ver en video
+                </button>
+              } @else if (delMes.videoUrl) {
+                <a class="rc-mes-btn is-outline" [href]="delMes.videoUrl" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l5.5-3.5z" class="fill"/></svg>
+                  Ver en video
+                </a>
+              } @else {
+                <a class="rc-mes-btn is-outline" routerLink="/videoteca">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l5.5-3.5z" class="fill"/></svg>
+                  Ver en video
+                </a>
+              }
+            }
+          </div>
         </div>
-      </div>
+      </article>
     </section>
   }
 
-  <section class="rc-grid-sec">
+  <!-- RECETARIO + FILTROS -->
+  <section class="rc-recetario" aria-labelledby="rc-recetario-title">
+    <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
+    <div class="jar-head">
+      <h2 id="rc-recetario-title">Recetario</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
     <div class="container">
-      <h2>Todas las recetas</h2>
-      <img src="/assets/images/separador.png" alt="" class="rc-sep">
-      <div class="rc-grid">
-        @for (r of recipes; track r.slug) {
-          <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'">
+    <div class="rc-tabs" role="group" aria-label="Filtrar recetas">
+      @for (t of pestanas; track t.id) {
+        <button type="button" class="rc-tab" [class.is-active]="pestana() === t.id && (t.id !== 'todas' || !temporadaActual())"
+                [attr.aria-pressed]="pestana() === t.id && (t.id !== 'todas' || !temporadaActual())" (click)="setPestana(t.id)">{{ t.label }}</button>
+      }
+    </div>
+
+    <div class="rc-filters">
+      <div class="rc-chips" role="group" aria-label="Filtrar por tipo de bebida">
+        @for (c of chips; track c.id) {
+          <button type="button" class="rc-chip" [class]="'tone-' + c.tone" [class.is-active]="chip() === c.id"
+                  [attr.aria-pressed]="chip() === c.id" (click)="toggleChip(c.id)">
+            <span class="rc-chip-ico" aria-hidden="true">
+              @switch (c.icon) {
+                @case ('cup') { <svg viewBox="0 0 24 24"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M9 3.5c-.8 1 .8 2 0 3M12.5 3.5c-.8 1 .8 2 0 3"/></svg> }
+                @case ('tea') { <svg viewBox="0 0 24 24"><path d="M5 8h12v5a6 6 0 0 1-12 0z"/><path d="M17 9.5h1.2a2.3 2.3 0 0 1 0 4.6H16.6"/><path d="M11 8V4.5"/><rect x="9.6" y="2.5" width="2.8" height="2.4" rx=".4"/><path d="M4 20.5h14"/></svg> }
+                @case ('bowl') { <svg viewBox="0 0 24 24"><path d="M3.5 11h17a8.5 7 0 0 1-17 0z"/><path d="M8 20.5h8"/><path d="M15 4.5 9.5 11M18.5 6l-6.5 5"/></svg> }
+                @case ('iced') { <svg viewBox="0 0 24 24"><path d="M6 7h12l-1.4 13.5H7.4z"/><path d="M13.5 7 15 2.5"/><rect x="8.6" y="10" width="3" height="3" rx=".5"/><rect x="12" y="13.4" width="3" height="3" rx=".5"/></svg> }
+                @case ('hot') { <svg viewBox="0 0 24 24"><path d="M6 10h10v4.5a5 5 0 0 1-10 0z"/><path d="M16 11.2h1.3a2.2 2.2 0 0 1 0 4.4H16"/><path d="M4.5 20.5h13"/><path d="M8.5 3.5c-.8 1.2.8 2.3 0 3.5M11 3c-.8 1.2.8 2.3 0 3.5M13.5 3.5c-.8 1.2.8 2.3 0 3.5"/></svg> }
+                @case ('boba') { <svg viewBox="0 0 24 24"><path d="M6 7h12l-1.6 13.5H7.6z"/><path d="M13 7l1.6-4.5"/><path d="M5.5 7h13"/><circle cx="9.6" cy="17" r=".9" class="fill"/><circle cx="12.2" cy="17.6" r=".9" class="fill"/><circle cx="14.6" cy="16.8" r=".9" class="fill"/><circle cx="11" cy="15" r=".9" class="fill"/></svg> }
+                @case ('cocktail') { <svg viewBox="0 0 24 24"><path d="M4.5 4.5h15L12 12.5z"/><path d="M12 12.5v7M8 20.5h8"/><path d="M7 7.5h10"/></svg> }
+              }
+            </span>
+            <span class="rc-chip-label">{{ c.label }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="rc-season" role="group" aria-labelledby="rc-season-title">
+        <p class="rc-season-title" id="rc-season-title">Filtra por temporada:</p>
+        <div class="rc-season-list">
+          @for (s of temporadas; track s.id) {
+            <button type="button" class="rc-chip is-small" [class]="'tone-' + s.tone" [class.is-active]="temporada() === s.id"
+                    [attr.aria-pressed]="temporada() === s.id" (click)="toggleTemporada(s.id)">
+              <span class="rc-chip-ico" aria-hidden="true">
+                @switch (s.icon) {
+                  @case ('flower') { <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="2"/><path d="M12 8c-1.6-3 1.6-5 0-5M12 8c1.6-3-1.6-5 0-5"/><path d="M12 12v9"/><path d="M12 17c-2.5 0-4-1.5-4-3.5 2.5 0 4 1.5 4 3.5zM12 16c2.5 0 4-1.5 4-3.5-2.5 0-4 1.5-4 3.5z"/><path d="M10 10c-3-1.2-4 1.8-6 1M14 10c3-1.2 4 1.8 6 1"/></svg> }
+                  @case ('sun') { <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.6"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M5.6 18.4l1.7-1.7M16.7 7.3l1.7-1.7"/></svg> }
+                  @case ('leaf') { <svg viewBox="0 0 24 24"><path d="M5 19c0-8 5-13.5 14-14 .2 9-5.5 14-14 14z"/><path d="M5 19c3.5-4 6.5-7 10-10"/></svg> }
+                  @case ('snow') { <svg viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.8 4.6 12 6.4l2.2-1.8M9.8 19.4 12 17.6l2.2 1.8"/></svg> }
+                }
+              </span>
+              <span class="rc-chip-label">{{ s.label }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="rc-results" aria-live="polite">
+      @if (temporadaActual(); as ta) {
+        <span class="rc-active-tag">
+          Temporada actual: <strong>{{ ta.label }}</strong>
+          <button type="button" class="rc-active-x" (click)="quitarTemporadaActual()" [attr.aria-label]="'Quitar filtro temporada actual ' + ta.label + ' y ver todas las recetas'">×</button>
+        </span>
+      }
+      <span>{{ recetasFiltradas().length }} {{ recetasFiltradas().length === 1 ? 'receta' : 'recetas' }}</span>
+      @if (hayFiltros()) {
+        <button type="button" class="rc-clear" (click)="limpiarFiltros()">Limpiar filtros</button>
+      }
+    </div>
+
+      <!-- fondoFiltro(): fondo temático según el filtro activo (ver recipes-page.component.ts) -->
+      <div class="rc-grid" [class]="fondoFiltro()">
+        @for (r of recetasFiltradas(); track r.slug) {
+          <article class="rc-card" [class]="'tone-' + r.tone" [class.origin-calabaza]="r.origin === 'calabaza'" [class.origin-septiembre-2026]="r.origin === 'septiembre-2026'" [class.origin-verano-2026]="r.origin === 'verano-2026'" [class.origin-san-valentin-2026]="r.origin === 'san-valentin-2026'" [class.origin-navidad-2023]="r.origin === 'navidad-2023' || r.origin === 'invierno-2024'">
             <div class="rc-card-media">
-              <img [src]="r.image" [alt]="displayTitle(r)">
+              <img [src]="r.image" [alt]="displayTitle(r)" loading="lazy">
+              <p class="recipe-legend">Sugerencia de preparación</p>
             </div>
             <h3>{{ displayTitle(r) }}</h3>
             <p class="rc-sub">{{ r.summary }}</p>
             <a class="rc-pill" [routerLink]="['/recetas', r.slug]">Ver receta</a>
           </article>
+        } @empty {
+          <p class="rc-empty">
+            No hay recetas con esa combinación de filtros.
+            <button type="button" class="rc-clear" (click)="limpiarFiltros()">Ver todas</button>
+          </p>
         }
       </div>
     </div>
   </section>
+
+  <!-- APRENDE VIENDO (videos en recetas-listado.config.ts → APRENDE_VIENDO_IDS / RECETAS_VIDEOS) -->
+  @if (videos.length) {
+    <section class="rc-videos" aria-labelledby="rc-videos-title">
+      <app-scroll-wave position="top" fillColor="#fffaf0"></app-scroll-wave>
+      <div class="container">
+        <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
+        <div class="jar-head">
+          <h2 id="rc-videos-title">Aprende viendo</h2>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
+        <p class="rc-videos-sub">Recetas paso a paso, tips de barista y mucha inspiración.</p>
+        <div class="rc-videos-grid">
+          @for (v of videos; track v.id) {
+            <article class="rc-video">
+              <button type="button" class="rc-video-thumb" (click)="abrirVideo(v)" [attr.aria-label]="'Reproducir video: ' + v.titulo">
+                <img [src]="thumb(v)" [alt]="v.titulo" loading="lazy" width="480" height="360">
+                <span class="rc-video-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M9 7v10l8-5z"/></svg>
+                </span>
+                <span class="rc-video-time">{{ v.duracion }}</span>
+              </button>
+              <h3>{{ v.titulo }}</h3>
+              <p>{{ v.descripcion }}</p>
+            </article>
+          }
+        </div>
+        <div class="rc-videos-cta">
+          <a class="btn-jar" routerLink="/videoteca">Ver más</a>
+        </div>
+      </div>
+    </section>
+  }
+
+  @if (videoActivo(); as v) {
+    <div class="rc-modal" role="dialog" aria-modal="true" [attr.aria-label]="v.titulo" (click)="cerrarVideo()">
+      <div class="rc-modal-box" (click)="$event.stopPropagation()">
+        <button type="button" class="rc-modal-close" (click)="cerrarVideo()" aria-label="Cerrar video">×</button>
+        <div class="rc-modal-frame">
+          @if (videoEmbed(); as src) {
+            <iframe [src]="src" [title]="v.titulo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          }
+        </div>
+      </div>
+    </div>
+  }
 </div>

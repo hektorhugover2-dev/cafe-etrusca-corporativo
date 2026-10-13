@@ -1,0 +1,83 @@
+@if (cat) {
+<div [class]="'acc-page met-page sub-page sub-page--' + cat.tone">
+  <!-- ============ HERO (estructura de Métodos de extracción: foto a pantalla completa + ola blanca) ============ -->
+  <section class="jar-hero met-hero" [class.sub-hero--plain]="!hero" aria-labelledby="sub-hero-title">
+    @if (hero) {
+      <picture class="met-hero__bg" aria-hidden="true">
+        <source media="(max-width: 800px)" [attr.srcset]="hero.mobile" type="image/webp">
+        <img [src]="hero.desktop" alt="" [attr.width]="hero.width" [attr.height]="hero.height" fetchpriority="high" decoding="async">
+      </picture>
+    }
+
+    <div class="jar-hero-copy met-hero__copy">
+      <p class="sub-hero__kicker">Accesorios</p>
+      <h1 id="sub-hero-title" class="met-hero__title">{{ cat.titleLines[0] }}<br> {{ cat.titleLines[1] }}</h1>
+      <p class="body met-hero__body">
+        {{ cat.descLines.join(' ') }}<br class="acc-br">
+        Equipa tu negocio con una selección completa<br class="acc-br">
+        de accesorios de calidad para llevar cada taza al<br class="acc-br">
+        siguiente nivel.
+      </p>
+      <a class="btn-jar met-hero__btn" [href]="catalogUrl" target="_blank" rel="noopener">
+        Explorar accesorios
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+      </a>
+    </div>
+
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
+  </section>
+
+  <!-- ============ PRODUCTOS ============ -->
+  <section class="met-products acc-frame" aria-labelledby="sub-products-title">
+    <div class="jar-head">
+      <h2 id="sub-products-title">Productos</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
+    <!-- Marcas y subcategorías de la sección (PDF de secciones) → productos desde /api/Product (sólo navegador) -->
+    @if (section) {
+      <app-acc-brand-products [section]="section.slug" idPrefix="sub" [brands]="section.brands" [catalogUrl]="catalogUrl"
+                              [allBrandsLink]="allBrands"
+                              idleHint="Cargando productos de todas las marcas…"></app-acc-brand-products>
+    }
+  </section>
+
+  <!-- ============ OTRAS CATEGORÍAS (navegación entre subcategorías) ============ -->
+  <section class="met-top acc-frame" aria-labelledby="sub-others-title">
+    <div class="jar-head">
+      <h2 id="sub-others-title">Otras categorías</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+    <ul class="sub-others">
+      @for (o of others; track o.slug) {
+        <li><a class="met-pill met-pill--brand sub-others__link" [routerLink]="link(o)">{{ o.titleLines.join(' ') }}</a></li>
+      }
+      <li><a class="met-pill met-pill--all" [routerLink]="hub"><span>Ver todos los accesorios</span></a></li>
+    </ul>
+  </section>
+
+  <!-- ============ ASESORÍA (igual que Accesorios / Métodos) ============ -->
+  <section class="acc-help met-help" aria-labelledby="sub-help-title">
+    <div class="acc-frame acc-help__inner">
+      <h2 id="sub-help-title" class="acc-help__title">Asesoría especializada</h2>
+      <p class="acc-help__text">
+        Te acompañamos a elegir los accesorios ideales para tu negocio.<br class="acc-br">
+        Hablemos y diseñemos juntos tu espacio.
+      </p>
+      <div class="acc-help__actions">
+        <a class="acc-help__btn acc-help__btn--solid" routerLink="/contacto" fragment="contacto-form">Solicitar asesoría</a>
+        <a class="acc-help__btn acc-help__btn--outline" [href]="whatsapp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          </svg>
+          Escríbenos por WhatsApp
+          <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+}

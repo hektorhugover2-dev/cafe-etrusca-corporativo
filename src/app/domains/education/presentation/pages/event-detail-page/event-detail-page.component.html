@@ -1,80 +1,220 @@
 @if (event) {
 <div class="edu-page ev-page">
+  <nav class="edu-crumbs" aria-label="Breadcrumb">
+    @for (c of crumbs; track $index; let last = $last) {
+      @if (!last && c.path) {
+        <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+      } @else {
+        <span aria-current="page">{{ c.label }}</span>
+      }
+    }
+  </nav>
+
   <section class="edu-hero">
     <div class="edu-hero-copy">
-      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">
-        {{ categoryName }} presencial
-      </p>
+      <p class="kicker ev-kicker">{{ course?.kicker || categoryName }} presencial@if (sede) { · {{ sede.label }}}</p>
       <h1>{{ event.title }}</h1>
-      <p class="lead">{{ seo.description }}</p>
-      <div class="meta">
-        <div><strong>Fecha</strong>{{ event.dateString || dateLabel }}</div>
-        <div><strong>Sucursal</strong>{{ locationName }}</div>
-        @if (priceLabel) {
-          <div><strong>Inversión</strong>{{ priceLabel }}</div>
-        }
+      @if (course?.summary || event.category?.description) {
+        <p class="lead">{{ course?.summary || event.category?.description }}</p>
+      }
+      @if (past) {
+        <p class="ev-past">
+          Esta fecha ya pasó.
+          @if (cityPath) { <a [routerLink]="cityPath">Consulta las próximas fechas en {{ sede?.label }}</a> }
+          @else { <a [routerLink]="hubPath">Consulta las próximas fechas</a> }
+        </p>
+      }
+      <div class="meta ev-meta">
+        <div><strong>Fecha</strong>{{ dateLabel }}</div>
+        @if (interestDate?.hours) { <div><strong>Horario</strong>{{ interestDate?.hours }}</div> }
+        @if (sede) { <div><strong>Sede</strong>{{ sede.name }}</div> }
+        @if (course) { <div><strong>Duración</strong>{{ course.duration }}</div> }
+        @if (priceLabel) { <div><strong>Inversión</strong>{{ priceLabel }} MXN</div> }
       </div>
       <div class="edu-actions">
         <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
       </div>
     </div>
-    <div class="edu-hero-media">
-      <img [src]="imageUrl" [alt]="event.title">
-    </div>
+    @if (heroImage) {
+      <div class="edu-hero-media">
+        <img [src]="heroImage" [alt]="event.title">
+      </div>
+    }
   </section>
 
   <app-edu-nav></app-edu-nav>
 
-  <section class="edu-section">
-    <h2>Sobre el taller</h2>
-    <p class="sub">{{ categoryDescription || seo.description }}</p>
-    <div class="edu-grid-3" style="margin-top:2rem;">
-      <article class="edu-path">
-        <h3>Horario</h3>
-        <p>{{ interestDate?.hours || 'Consultar horario' }}</p>
-      </article>
-      <article class="edu-path">
-        <h3>Sede</h3>
-        <p>{{ location?.locationAdress || locationName }}</p>
-      </article>
-      <article class="edu-path">
-        <h3>Contacto de sucursal</h3>
-        <p>
-          @if (location?.telephone) {
-            <a [href]="telHref(location.telephone)">{{ location.telephone }}</a><br>
-          }
-          @if (location?.email) {
-            <a [href]="'mailto:' + location.email">{{ location.email }}</a>
-          }
-        </p>
-      </article>
-    </div>
-  </section>
-
-  @if (mapSrc) {
+  @if (course) {
     <section class="edu-section">
-      <h2>Cómo llegar</h2>
-      <div class="ev-map">
-        <iframe
-          [src]="mapSrc"
-          title="Mapa de la sucursal"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
+      <div class="edu-grid-3">
+        @for (h of course.highlights; track h.title) {
+          <article class="edu-path">
+            <h3>{{ h.title }}</h3>
+            <p>{{ h.text }}</p>
+          </article>
+        }
       </div>
-      @if (location?.url) {
-        <p class="sub" style="margin-top:1rem;">
-          <a [href]="location.url" target="_blank" rel="noopener">Abrir en Google Maps</a>
-        </p>
+    </section>
+
+    <section class="edu-section">
+      <h2>Sinopsis</h2>
+      <p class="sub">{{ course.synopsis }}</p>
+      <h2>Temario</h2>
+      <div class="edu-faq">
+        @for (item of course.syllabus; track item.title) {
+          <details>
+            <summary>{{ item.title }}</summary>
+            <p>{{ item.text }}</p>
+          </details>
+        }
+      </div>
+    </section>
+
+    <section class="edu-section">
+      <h2>¿Qué aprenderás?</h2>
+      <div class="edu-grid-2">
+        @for (l of course.learn; track l) {
+          <article class="edu-path"><h3>{{ l }}</h3></article>
+        }
+      </div>
+    </section>
+
+    <section class="edu-section">
+      <h2>¿A quién va dirigido?</h2>
+      <ul>
+        @for (a of course.audience; track a) { <li>{{ a }}</li> }
+      </ul>
+      <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
+      <div class="edu-grid-6">
+        @for (i of course.includes; track i) {
+          <div class="edu-tile"><span>{{ i }}</span></div>
+        }
+      </div>
+    </section>
+
+    @if (course.quote) {
+      <section class="edu-section">
+        <blockquote class="edu-quote">
+          <p>“{{ course.quote.text }}”</p>
+          <cite>{{ course.quote.name }} · {{ course.quote.place }}</cite>
+        </blockquote>
+      </section>
+    }
+  } @else {
+    <section class="edu-section">
+      <h2>Sobre el taller</h2>
+      @if (event.category?.description) { <p class="sub">{{ event.category.description }}</p> }
+      @for (s of courseSections; track $index) {
+        <h3>{{ s.heading }}</h3>
+        @for (b of s.blocks; track $index) {
+          @if (b.type === 'p') { <p class="ev-p" [innerHTML]="b.html"></p> }
+          @if (b.type === 'ul') {
+            <ul class="ev-list">
+              @for (it of b.items ?? []; track $index) { <li [innerHTML]="it.html"></li> }
+            </ul>
+          }
+        }
       }
     </section>
   }
 
+  <section class="edu-section" id="fecha">
+    <h2>Detalles de esta fecha</h2>
+    <div class="ev-date-row">
+      <article class="edu-date-card">
+        <div class="date-block">
+          <span class="days">{{ interestDate?.days }}</span>
+          <span class="month">{{ interestDate?.month }}</span>
+        </div>
+        <div class="info-block">
+          <div class="location">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <strong>{{ sede?.name || interestDate?.branch }}</strong>
+          </div>
+          <hr class="divider">
+          <div class="details">
+            @if (course) {
+              <span class="detail-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                {{ course.duration }}
+              </span>
+            }
+            @if (interestDate?.hours) {
+              <span class="detail-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                {{ interestDate?.hours }}
+              </span>
+            }
+            @if (priceLabel) { <span class="detail-item">{{ priceLabel }} MXN</span> }
+          </div>
+          <button type="button" class="btn-outline-pink" (click)="openInterest()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            Me interesa
+          </button>
+        </div>
+      </article>
+
+      @if (sede) {
+        <div class="ev-sede-card">
+          <p class="ev-sede-kicker">Sede</p>
+          <h3>{{ sede.name }}</h3>
+          <p class="ev-line">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span>{{ sede.address }}</span>
+          </p>
+          @if (sede.telephone) {
+            <p class="ev-line">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+              <span>
+                @for (t of phones(sede.telephone); track t.href; let last = $last) {
+                  <a [href]="t.href">{{ t.label }}</a>@if (!last) { <span class="ev-sep"> · </span> }
+                }
+              </span>
+            </p>
+          }
+          @if (sede.email) {
+            <p class="ev-line">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <a [href]="'mailto:' + sede.email">{{ sede.email }}</a>
+            </p>
+          }
+          @if (sede.mapsUrl) { <a class="ev-map-link" [href]="sede.mapsUrl" target="_blank" rel="noopener">Cómo llegar</a> }
+        </div>
+      }
+
+      @if (mapSrc && sede) {
+        <div class="ev-map">
+          <iframe [src]="mapSrc" [title]="'Mapa de ' + sede.name" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      }
+    </div>
+    <div class="ev-links">
+      @if (courseLink) { <a [routerLink]="courseLink">Ver todas las fechas de {{ course?.title }}</a> }
+      @else if (coursePath) { <a [routerLink]="coursePath">Ver el temario completo de {{ courseLabel }}</a> }
+      @if (cityPath) { <a [routerLink]="cityPath">Más fechas en {{ sede?.label }}</a> }
+    </div>
+  </section>
+
+  <section class="edu-section">
+    <h2>Te puede interesar</h2>
+    <div class="edu-cards">
+      @for (c of related; track c.slug) {
+        <article class="edu-card">
+          <img [src]="c.image" [alt]="'Foto del ' + c.kicker" loading="lazy">
+          <div class="body">
+            <div class="kicker">{{ c.kicker }}</div>
+            <h3>{{ c.title }}</h3>
+            <a class="btn-navy" [routerLink]="relatedLink(c)">Ver más</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
   <section class="edu-cta">
-    <h2>¿Quieres reservar este curso?</h2>
-    <p>Déjanos tus datos y un asesor te confirma disponibilidad en {{ locationName }}.</p>
+    <h2>¿Quieres reservar tu lugar?</h2>
+    <p>Déjanos tus datos y un asesor de {{ sede?.name || 'Café Etrusca' }} te confirma disponibilidad para esta fecha.</p>
     <div class="edu-actions" style="justify-content:center;">
       <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
       <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>

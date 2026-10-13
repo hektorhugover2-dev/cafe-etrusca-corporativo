@@ -844,6 +844,71 @@
     padding: 0.4rem;
   }
 }
+.co-page.origin-san-valentin-2026 {
+  .co-arch {
+    background:
+      linear-gradient(180deg, rgba(196, 42, 92, 0.25), rgba(255, 150, 175, 0.45)),
+      #c42a5c url('/assets/images/recetas/origen-san-valentin-2026.webp') center / cover no-repeat;
+    overflow: hidden;
+
+    img {
+      object-fit: contain;
+      object-position: center center;
+      padding: 1.1rem 0.8rem 0.4rem;
+    }
+  }
+
+  .co-recipe-card .media {
+    background-color: #c42a5c;
+    background-image:
+      linear-gradient(180deg, rgba(196, 42, 92, 0.3), rgba(255, 150, 175, 0.5)),
+      url('/assets/images/recetas/origen-san-valentin-2026.webp');
+    background-size: cover, 180px 180px;
+    background-position: center;
+    background-repeat: no-repeat, repeat;
+  }
+
+  .co-recipe-card img {
+    object-fit: contain;
+    max-height: 220px;
+    padding: 0.4rem;
+  }
+}
+.co-page.origin-navidad-2023 {
+  .co-arch {
+    background-color: #1c345c;
+    background-image:
+      linear-gradient(180deg, rgba(28, 52, 92, 0.25), rgba(200, 220, 245, 0.45)),
+      url('/assets/images/recetas/origen-navidad-2023.webp');
+    background-size: cover, 180px 180px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+    overflow: hidden;
+
+    img {
+      object-fit: contain;
+      object-position: center center;
+      padding: 1.1rem 0.8rem 0.4rem;
+    }
+  }
+
+  .co-recipe-card .media {
+    background-color: #1c345c;
+    background-image:
+      linear-gradient(180deg, rgba(28, 52, 92, 0.3), rgba(200, 220, 245, 0.5)),
+      url('/assets/images/recetas/origen-navidad-2023.webp');
+    background-size: cover, 180px 180px;
+    background-position: center;
+    background-repeat: no-repeat, repeat;
+  }
+
+  .co-recipe-card img {
+    object-fit: contain;
+    max-height: 220px;
+    padding: 0.4rem;
+  }
+}
+
 
 @media (max-width: 991px) {
   .co-page {
@@ -851,3 +916,78 @@
   }
 }
 
+.co-page.origin-calabaza {
+  .co-arch {
+    background-color: #c45c26;
+    background-image:
+      linear-gradient(180deg, rgba(196, 92, 38, 0.25), rgba(232, 165, 75, 0.4)),
+      url('/assets/images/recetas/origen-calabaza.webp');
+    background-size: cover, 180px 180px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+    box-shadow: 0 18px 36px rgba(196, 92, 38, 0.22);
+
+    img {
+      object-fit: contain;
+      object-position: center center;
+      padding: 1.1rem 0.8rem 0.4rem;
+      filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.18));
+    }
+  }
+
+  .co-recipe-card .media {
+    background-color: #c45c26;
+    background-image:
+      linear-gradient(180deg, rgba(196, 92, 38, 0.28), rgba(232, 165, 75, 0.45)),
+      url('/assets/images/recetas/origen-calabaza.webp');
+    background-size: cover, 180px 180px;
+    background-position: center, center;
+    background-repeat: no-repeat, repeat;
+  }
+}
+
+
+
+.co-recipe-card .media {
+  position: relative;
+}
+
+.co-recipe-card .recipe-legend {
+  position: absolute;
+  left: 0.45rem;
+  right: 0.45rem;
+  bottom: 0.45rem;
+  margin: 0;
+  padding: 0.22rem 0.4rem;
+  border-radius: 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(2px);
+  text-align: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.co-arch .recipe-legend {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.85rem;
+  margin: 0;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(2px);
+  text-align: center;
+  pointer-events: none;
+  z-index: 3;
+}

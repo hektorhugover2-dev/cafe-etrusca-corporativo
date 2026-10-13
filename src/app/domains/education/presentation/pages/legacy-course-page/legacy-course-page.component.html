@@ -1,0 +1,236 @@
+@if (page) {
+<div class="edu-page lc-page" [style.--lc-accent]="page.accent">
+  <nav class="edu-crumbs" aria-label="Breadcrumb">
+    @for (c of crumbs; track c.label; let last = $last) {
+      @if (!last && c.path) {
+        <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+      } @else {
+        <span aria-current="page">{{ c.label }}</span>
+      }
+    }
+  </nav>
+
+  <section class="lc-hero">
+    <svg class="lc-hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 64c180 48 360 56 540 32s360-72 540-64 270 40 360 56v32H0z" fill="#fff" />
+    </svg>
+    <div class="lc-hero-copy">
+      @if (page.kicker) { <p class="lc-kicker">{{ page.kicker }}</p> }
+      <h1>{{ page.h1 }}</h1>
+      @if (catalog; as c) { <p class="edu-clave lc-clave">Clave: {{ c.clave }}</p> }
+      @if (page.subtitle) { <p class="lc-subtitle">{{ page.subtitle }}</p> }
+      @if (resolved?.generated && cityLocation; as loc) {
+        <p class="lc-city-intro">Consulta las próximas fechas de este taller en la {{ loc.name }} de Café Etrusca, en {{ introAddress(loc) }}.</p>
+      }
+      @if (metaItems.length) {
+        <ul class="lc-meta">
+          @for (m of metaItems; track m.label) {
+            <li>
+              @if (m.icon === 'price') {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg>
+              } @else if (m.icon === 'date') {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              } @else {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              }
+              {{ m.label }}
+            </li>
+          }
+        </ul>
+      }
+      @if (combo) { <p class="edu-combo lc-combo">{{ combo }}</p> }
+      <div class="edu-actions">
+        <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
+        <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      </div>
+    </div>
+    @if (page.icon) {
+      <div class="lc-hero-media">
+        <span class="lc-blob" aria-hidden="true"></span>
+        <img [src]="page.icon" [alt]="page.h1" width="320" height="320">
+      </div>
+    }
+  </section>
+
+  <div class="lc-body">
+    @for (item of items; track $index) {
+      @if (item.kind === 'cards') {
+        <div class="lc-cards">
+          @for (s of item.sections; track $index) {
+            <article class="lc-card">
+              @for (b of s.blocks; track $index) {
+                @switch (b.type) {
+                  @case ('img') { <img [src]="b.src" [alt]="b.alt" loading="lazy"> }
+                  @case ('p') { <p [innerHTML]="b.html"></p> }
+                  @case ('cta') {
+                    @if (isExternal(b)) { <a class="lc-link" [href]="b.href">{{ b.label }} →</a> }
+                    @else { <a class="lc-link" [routerLink]="ctaLink(b)">{{ b.label }} →</a> }
+                  }
+                }
+                @if ($first) { <h3>{{ s.heading }}</h3> }
+              }
+            </article>
+          }
+        </div>
+      } @else {
+        @let s = item.section;
+        @if (s.calendar) {
+          <section class="lc-section lc-calendar" id="calendario">
+            <h2>{{ s.heading }}</h2>
+            @for (b of s.blocks; track $index) {
+              @if (b.type === 'p') { <p class="lc-p" [innerHTML]="b.html"></p> }
+            }
+            <div class="lc-filters">
+              <label>
+                Sucursal
+                <select [(ngModel)]="branch" (ngModelChange)="onBranchChange()" [disabled]="branches.length <= 1">
+                  @for (b of branches; track b.value) {
+                    <option [value]="b.value">{{ b.label }}{{ b.count !== null ? ' (' + b.count + ')' : '' }}</option>
+                  }
+                </select>
+              </label>
+              @if (months.length > 1) {
+                <label>
+                  Mes
+                  <select [(ngModel)]="month" (ngModelChange)="onMonthChange()">
+                    <option value="">Todos los meses</option>
+                    @for (m of months; track m) { <option [value]="m">{{ m }}</option> }
+                  </select>
+                </label>
+              }
+              @if (datesLoaded && filteredEvents.length) {
+                <p class="lc-count">{{ filteredEvents.length }} {{ filteredEvents.length === 1 ? 'fecha disponible' : 'fechas disponibles' }}{{ branch !== 'all' ? ' en ' + selectedBranchLabel : '' }}</p>
+              }
+            </div>
+            @if (sedes.length) {
+              <div class="lc-sedes" [class.lc-sedes-multi]="sedes.length > 1" aria-live="polite">
+                @for (l of sedes; track l.id) {
+                  <article class="lc-sede">
+                    <p class="lc-sede-kicker">Sede</p>
+                    <h3>{{ l.name }}</h3>
+                    <p class="lc-sede-line">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                      <span>{{ l.displayAddress }}</span>
+                    </p>
+                    @if (sedes.length === 1 && l.telephone) {
+                      <p class="lc-sede-line">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+                        <span>
+                          @for (t of phones(l); track t.href; let last = $last) {
+                            <a [href]="t.href">{{ t.label }}</a>@if (!last) { <span class="lc-sep"> · </span> }
+                          }
+                        </span>
+                      </p>
+                    }
+                    @if (sedes.length === 1 && l.email) {
+                      <p class="lc-sede-line">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                        <a [href]="'mailto:' + l.email">{{ l.email }}</a>
+                      </p>
+                    }
+                    @if (l.mapsUrl) {
+                      <a class="lc-sede-map" [href]="l.mapsUrl" target="_blank" rel="noopener">Cómo llegar</a>
+                    }
+                  </article>
+                }
+              </div>
+            }
+            @if (!datesLoaded) {
+              <p class="lc-loading">Cargando fechas…</p>
+            } @else if (filteredEvents.length) {
+              <div class="edu-dates">
+                @for (e of filteredEvents.slice(0, visible); track $index) {
+                  @let d = e.date;
+                  <article class="edu-date-card">
+                    <div class="date-block">
+                      <span class="days">{{ d.days }}</span>
+                      <span class="month">{{ d.month }}</span>
+                    </div>
+                    <div class="info-block">
+                      @if (allCourses && e.course) { <div class="lc-course">{{ e.course }}</div> }
+                      <div class="location"><strong>Sucursal {{ d.branch }}</strong></div>
+                      <hr class="divider">
+                      <div class="details"><span class="detail-item">{{ d.hours }}</span></div>
+                      <button type="button" class="btn-outline-pink" (click)="openInterest(d)">Me interesa</button>
+                      @if (d.eventPath) { <a class="edu-date-link" [routerLink]="d.eventPath">Ver detalle de la fecha</a> }
+                    </div>
+                  </article>
+                }
+              </div>
+              @if (filteredEvents.length > visible) {
+                <div class="lc-more">
+                  <button type="button" class="btn-outline-pink" (click)="showMore()">Ver más fechas ({{ filteredEvents.length - visible }})</button>
+                </div>
+              }
+            } @else if (events.length && branch !== 'all') {
+              <div class="lc-empty">
+                <p class="lc-empty-title">Por ahora no hay fechas en {{ selectedBranchLabel }}.</p>
+                <p>Hay {{ events.length }} {{ events.length === 1 ? 'fecha' : 'fechas' }} en otras sedes, o un asesor te avisa cuando se abra un grupo cerca de ti.</p>
+                <div class="edu-actions">
+                  <button type="button" class="btn-pink" (click)="showAllBranches()">Ver otras sedes</button>
+                  <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+                </div>
+              </div>
+            } @else {
+              <div class="lc-empty">
+                <p class="lc-empty-title">Por el momento no hay fechas publicadas.</p>
+                <p>Déjanos tus datos y te avisamos de las próximas fechas, o habla con un asesor.</p>
+                <div class="edu-actions">
+                  <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+                  <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
+                </div>
+              </div>
+            }
+          </section>
+        } @else {
+          <section class="lc-section" [class.lc-sub]="s.level >= 3">
+            @if (s.heading) {
+              @if (s.level >= 3) { <h3>{{ s.heading }}</h3> } @else { <h2>{{ s.heading }}</h2><span class="lc-rule" aria-hidden="true"></span> }
+            }
+            @for (b of s.blocks; track $index) {
+              @switch (b.type) {
+                @case ('p') { <p class="lc-p" [innerHTML]="b.html"></p> }
+                @case ('ul') {
+                  <ul class="lc-list">
+                    @for (it of b.items ?? []; track $index) {
+                      <li>
+                        <span [innerHTML]="it.html"></span>
+                        @if (it.sub?.length) {
+                          <ul>
+                            @for (x of it.sub; track $index) { <li [innerHTML]="x"></li> }
+                          </ul>
+                        }
+                      </li>
+                    }
+                  </ul>
+                }
+                @case ('img') { <img class="lc-img" [src]="b.src" [alt]="b.alt" loading="lazy"> }
+                @case ('cta') {
+                  @if (isExternal(b)) { <a class="btn-navy lc-cta" [href]="b.href">{{ b.label }}</a> }
+                  @else { <a class="btn-navy lc-cta" [routerLink]="ctaLink(b)">{{ b.label }}</a> }
+                }
+              }
+            }
+          </section>
+        }
+      }
+    }
+  </div>
+
+  <section class="edu-cta">
+    <h2>¿Quieres comenzar tu camino?</h2>
+    <p>Consulta fechas y sedes con un asesor de Café Etrusca.</p>
+    <div class="edu-actions" style="justify-content:center;">
+      <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      <button type="button" class="btn-ghost" (click)="openInterest()">Me interesa</button>
+    </div>
+  </section>
+
+  <app-course-interest-modal
+    [open]="interestOpen"
+    [courseTitle]="page.h1"
+    [date]="interestDate"
+    (closed)="closeInterest()">
+  </app-course-interest-modal>
+</div>
+}

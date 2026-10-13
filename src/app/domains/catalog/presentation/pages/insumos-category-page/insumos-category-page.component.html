@@ -7,7 +7,7 @@
       <h1>JARABES</h1>
       <p class="lead"><span class="accent">Sabor y versatilidad</span> para cada bebida</p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/20" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
       <img class="photo" src="/assets/images/insumos/jarabes/hero-collage.webp" [alt]="cat.heroAlt">
@@ -57,6 +57,14 @@
         </article>
       }
     </div>
+  </section>
+
+  <section class="jar-torani-link" aria-label="Jarabes Torani">
+    <a routerLink="/insumos-para-cafeterias/jarabes/torani">
+      <img src="/assets/images/insumos/logo-torani.png" alt="Torani" width="120" height="48">
+      <span>Sabores Torani Clásico, Sugar Free y salsas: encuentra el tuyo</span>
+      <strong>Ver jarabes Torani ›</strong>
+    </a>
   </section>
 
   <section class="jar-note">
@@ -113,7 +121,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
@@ -141,7 +149,7 @@
       <h1>SALSAS</h1>
       <p class="lead">Textura y sabor <span class="accent">para dar el toque final</span></p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/26" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="sal-hero-media">
       <img class="photo" src="/assets/images/insumos/salsas-hero-drink.png" [alt]="cat.heroAlt">
@@ -227,7 +235,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/insumos/salsas-barista.png" alt="Asesor de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#c8e84a"></app-scroll-wave>
@@ -239,7 +247,7 @@
       <div class="rule"></div>
     </div>
     <div class="jar-inspira-grid">
-      @for (d of jarabesMenu; track d.image) {
+      @for (d of salsasMenu; track d.image) {
         <article class="jar-drink" [class]="d.tone">
           <div class="bar">{{ d.title }}</div>
           <img [src]="d.image" [alt]="d.title">
@@ -271,7 +279,7 @@
       <h1>Purés y<br>Concentrados</h1>
       <p class="lead"><span class="accent">Sabor auténtico y consistente</span>, altamente concentrados</p>
       <p class="body">Soluciones líquidas y purés de fruta que elevan el sabor, aportan consistencia y te permiten crear bebidas únicas y personalizadas.</p>
-      <a class="btn-pur" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-pur" href="https://insumos.cafeetrusca.com/#page/31" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="pur-hero-media">
       <img class="photo" src="/assets/images/insumos/pures-drink-2.png" [alt]="cat.heroAlt">
@@ -367,15 +375,17 @@
     <p class="pur-hint">*Sugerencia de preparación.</p>
   </section>
 
-  <section class="pur-inspira">
-    <div class="pur-head">
+  <section class="jar-inspira">
+    <div class="jar-head">
       <h2>Inspira tu menú</h2>
+      <div class="rule"></div>
     </div>
-    <div class="pur-inspira-grid">
-      @for (d of puresMenu; track d.title) {
-        <article class="pur-drink">
+    <div class="jar-inspira-grid">
+      @for (d of puresMenu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
           <img [src]="d.image" [alt]="d.title">
-          <h3>{{ d.title }}</h3>
+          <a class="more" [routerLink]="d.link">Saber más →</a>
         </article>
       }
     </div>
@@ -386,7 +396,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#ff7eab"></app-scroll-wave>
@@ -413,7 +423,7 @@
       <h1>TÉS</h1>
       <p class="lead"><span class="accent">Aromas y perfiles</span> para disfrutar en cada taza</p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/47" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
       <img class="photo" src="/assets/images/insumos/te/hero-teapot.webp" [alt]="cat.heroAlt">
@@ -518,7 +528,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
@@ -546,7 +556,7 @@
       <h1>TISANAS</h1>
       <p class="lead"><span class="accent">Mezclas que llenan de sabor</span> cada infusión</p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/47" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
       <img class="photo" src="/assets/images/insumos/tisanas/hero-drinks.webp" [alt]="cat.heroAlt">
@@ -596,6 +606,14 @@
         </article>
       }
     </div>
+  </section>
+
+  <section class="jar-torani-link jar-chillout-link" aria-label="Tisanas ChillOut">
+    <a routerLink="/insumos-para-cafeterias/tisanas/chillout">
+      <img src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut" width="120" height="48">
+      <span>Trece sabores de tisana ChillOut en bolsa de 250 g: encuentra el tuyo</span>
+      <strong>Ver tisanas ChillOut ›</strong>
+    </a>
   </section>
 
   <section class="jar-note">
@@ -651,7 +669,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
@@ -679,7 +697,7 @@
       <h1>BASES EN<br>POLVO</h1>
       <p class="lead"><span class="accent">Una base,</span> muchas posibilidades</p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/9" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
       <img class="photo" src="/assets/images/insumos/bases/hero-drink.webp" [alt]="cat.heroAlt">
@@ -729,6 +747,14 @@
         </article>
       }
     </div>
+  </section>
+
+  <section class="jar-torani-link jar-chillout-link" aria-label="Bases en polvo ChillOut">
+    <a routerLink="/insumos-para-cafeterias/bases-en-polvo/chillout">
+      <img src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut Mix" width="120" height="48">
+      <span>Sabores ChillOut Mix, Just Fruit y sin azúcar: encuentra el tuyo</span>
+      <strong>Ver bases ChillOut ›</strong>
+    </a>
   </section>
 
   <section class="jar-note">
@@ -784,7 +810,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
@@ -809,10 +835,10 @@
   <section class="jar-hero">
     <img class="jar-hero-blob" src="/assets/images/insumos/toppings/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy">
-      <h1>TOPPINGS</h1>
+      <h1>Bubble tea</h1>
       <p class="lead"><span class="accent">Textura y sabor</span> para dar el toque final</p>
       <p class="body">{{ cat.body }}</p>
-      <a class="btn-jar" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Explora el Catálogo</a>
+      <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/35" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
       <img class="photo" src="/assets/images/insumos/toppings/hero-drink.webp" [alt]="cat.heroAlt">
@@ -939,7 +965,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Más información</a>
+      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
     <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
@@ -1029,17 +1055,21 @@
 
 
   @if (cat.layout !== 'generic') {
-    <section class="ins-section ins-inspira">
+      <section class="jar-inspira">
+    <div class="jar-head">
       <h2>Inspira tu menú</h2>
-      <div class="ins-inspira-grid">
-        @for (d of menu; track d.title) {
-          <article class="ins-drink">
-            <img [src]="d.image" [alt]="d.title">
-            <span>{{ d.title }}</span>
-          </article>
-        }
-      </div>
-    </section>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-inspira-grid">
+      @for (d of menu; track d.image) {
+        <article class="jar-drink" [class]="d.tone">
+          <div class="bar">{{ d.title }}</div>
+          <img [src]="d.image" [alt]="d.title">
+          <a class="more" [routerLink]="d.link">Saber más →</a>
+        </article>
+      }
+    </div>
+  </section>
   }
 
   <app-insumos-cta></app-insumos-cta>

@@ -1,0 +1,133 @@
+<!-- Marcas: TODOS (todas las marcas de la sección; activa por defecto) + una píldora por marca. Sólo una
+     activa a la vez; click en la marca activa vuelve a TODOS. Los productos vienen de la API (sólo navegador). -->
+<div class="met-brands">
+  <ul class="met-brands__list" [attr.aria-label]="'Marcas'">
+    @if (allBrandsLink()) {
+      <li>
+        <button type="button" class="met-pill met-pill--brand met-pill--btn met-pill--todos"
+                [class.is-active]="allActive()" [attr.aria-pressed]="allActive()"
+                [attr.aria-controls]="idPrefix() + '-products-grid'" (click)="selectAllBrands()">TODOS<span class="visually-hidden"> (todas las marcas)</span></button>
+      </li>
+    }
+    @for (b of brands(); track b) {
+      <li>
+        <button type="button" class="met-pill met-pill--brand met-pill--btn"
+                [class.is-active]="activeBrand() === b" [attr.aria-pressed]="activeBrand() === b"
+                [attr.aria-controls]="idPrefix() + '-products-grid'" (click)="selectBrand(b)">{{ b }}</button>
+      </li>
+    }
+  </ul>
+</div>
+
+<h3 class="met-subcats__title" [id]="idPrefix() + '-subcats-title'">Explora por subcategoría</h3>
+<!-- Subcategorías del PDF. Con resultados: sólo las presentes, con conteo (dinámicas). -->
+<div class="met-subcats">
+  <ul class="met-subcats__list" [attr.aria-labelledby]="idPrefix() + '-subcats-title'">
+    <li>
+      <button type="button" class="met-pill met-pill--sub met-pill--btn"
+              [class.is-active]="!activeSubcat()" [attr.aria-pressed]="!activeSubcat()"
+              [attr.aria-controls]="idPrefix() + '-products-grid'" (click)="selectSubcat(null)">Todos</button>
+    </li>
+    @if (state() === 'ready') {
+      @for (sc of subcats(); track sc.key) {
+        <li>
+          <button type="button" class="met-pill met-pill--sub met-pill--btn"
+                  [class.is-active]="activeSubcat() === sc.key" [attr.aria-pressed]="activeSubcat() === sc.key"
+                  [attr.aria-controls]="idPrefix() + '-products-grid'" (click)="selectSubcat(sc.key)">
+            {{ sc.label }} <span class="met-pill__count">({{ sc.count }})</span>
+          </button>
+        </li>
+      }
+    } @else {
+      @for (sc of pdfSubcats(); track sc.key) {
+        <li>
+          <button type="button" class="met-pill met-pill--sub met-pill--btn"
+                  [class.is-active]="activeSubcat() === sc.key" [attr.aria-pressed]="activeSubcat() === sc.key"
+                  [attr.aria-controls]="idPrefix() + '-products-grid'" (click)="selectSubcat(sc.key)">{{ sc.label }}</button>
+        </li>
+      }
+    }
+  </ul>
+  <a class="met-pill met-pill--sub-all" [href]="catalogUrl()" target="_blank" rel="noopener">
+    <span>Ver todos</span>
+    <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false">
+      <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+  </a>
+</div>
+
+<div [id]="idPrefix() + '-products-grid'" class="met-results" aria-live="polite" [attr.aria-busy]="state() === 'loading'">
+  @if (showFallback()) {
+    <ng-content></ng-content>
+    @if (idleHint(); as hint) {
+      <p class="acc-idle-hint">{{ hint }}</p>
+    }
+  } @else {
+    @switch (state()) {
+      @case ('loading') {
+        <p class="met-status">Cargando productos de {{ scopeLabel() }}…</p>
+        <ul class="met-grid" aria-hidden="true">
+          @for (i of [1, 2, 3]; track i) {
+            <li><div class="met-card met-card--skeleton"></div></li>
+          }
+        </ul>
+      }
+      @case ('error') {
+        <div class="met-status met-status--error" role="alert">
+          <p>No pudimos cargar los productos de {{ scopeLabel() }}. Revisa tu conexión e inténtalo de nuevo.</p>
+          <div class="met-status__actions">
+            <button type="button" class="met-pill met-pill--sub-all met-pill--btn" (click)="retry()">Reintentar</button>
+            <button type="button" class="met-pill met-pill--sub met-pill--btn" (click)="reset()">Quitar filtros</button>
+          </div>
+        </div>
+      }
+      @default {
+        @if (filtered().length) {
+          <p class="met-status met-status--count">
+            {{ filtered().length }} productos · {{ scopeLabel() }}
+            <button type="button" class="met-status__link" (click)="reset()">Quitar filtros</button>
+          </p>
+          @if (failedBrands().length) {
+            <p class="met-status">No se pudieron cargar: {{ failedBrands().join(', ') }}.</p>
+          }
+          <ul class="met-grid">
+            @for (p of visible(); track p.id) {
+              <li>
+                <article [class]="'met-card met-card--api met-card--' + p.tone">
+                  <p class="met-card__brand">{{ p.brand }}</p>
+                  <div class="met-card__media">
+                    <img #thumb [src]="p.image" [alt]="p.title" width="228" height="228" loading="lazy" decoding="async"
+                         (error)="onThumbError(p, thumb)">
+                  </div>
+                  <h3 class="met-card__title">{{ p.title }}</h3>
+                  <div class="met-card__actions">
+                    <!-- Comprar → modal: en línea (ficha de tienda si hay existencia; si no, catálogo) o en sucursal -->
+                    <button type="button" class="met-card__btn met-card__btn--solid" aria-haspopup="dialog" (click)="buy(p, $event)">
+                      Comprar<span class="visually-hidden"> {{ p.title }}</span>
+                    </button>
+                    <a class="met-card__btn met-card__btn--outline" routerLink="/contacto" fragment="contacto-form">
+                      Asesoría<span class="visually-hidden"> sobre {{ p.title }}</span>
+                    </a>
+                  </div>
+                </article>
+              </li>
+            }
+          </ul>
+          @if (visible().length < filtered().length) {
+            <div class="met-more">
+              <button type="button" class="met-pill met-pill--sub-all met-pill--btn" (click)="showMore()">
+                Ver más productos ({{ filtered().length - visible().length }})
+              </button>
+            </div>
+          }
+        } @else {
+          <div class="met-status met-status--empty">
+            <p>No encontramos productos con foto de {{ scopeLabel() }} en esta sección por ahora.</p>
+            <button type="button" class="met-pill met-pill--sub met-pill--btn" (click)="reset()">Quitar filtros</button>
+          </div>
+        }
+      }
+    }
+  }
+</div>

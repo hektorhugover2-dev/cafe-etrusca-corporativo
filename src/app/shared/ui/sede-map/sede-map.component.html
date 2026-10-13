@@ -1,0 +1,68 @@
+@if (current(); as cur) {
+  <div class="vm">
+    <div class="vm-controls" [class.vm-controls--2]="!hasBothKinds()">
+      <div class="vm-field">
+        <label class="visually-hidden" [for]="idPrefix() + '-city'">Ciudad / Estado</label>
+        <select class="vm-select" [id]="idPrefix() + '-city'" (change)="pickCity($event)">
+          <option value="all" [selected]="city() === 'all'">Ciudad / Estado</option>
+          @for (r of regions(); track r) {
+            <option [value]="r" [selected]="city() === r">{{ r }}</option>
+          }
+        </select>
+      </div>
+      <div class="vm-field">
+        <label class="visually-hidden" [for]="idPrefix() + '-select'">Selecciona la ubicación</label>
+        <select class="vm-select" [id]="idPrefix() + '-select'" (change)="pickPlace($event)">
+          @for (p of visible(); track p.nombre; let i = $index) {
+            <option [value]="i" [selected]="p === cur">{{ labelOf(p) }}</option>
+          }
+        </select>
+      </div>
+      @if (hasBothKinds()) {
+        <div class="vm-switch" role="group" aria-label="Tipo de sede">
+          <button type="button" class="vm-type is-s" [class.is-on]="kind() === 'sucursal'" [attr.aria-pressed]="kind() === 'sucursal'" (click)="pickKind('sucursal')">Sucursal</button>
+          <button type="button" class="vm-type is-d" [class.is-on]="kind() === 'distribuidor'" [attr.aria-pressed]="kind() === 'distribuidor'" (click)="pickKind('distribuidor')">Distribuidor</button>
+        </div>
+      }
+    </div>
+
+    <div class="vm-card">
+      <div class="vm-mapcol">
+        <div class="vm-map">
+          <iframe
+            [src]="embedUrl()"
+            [title]="'Mapa de Google: ' + labelOf(cur) + ', ' + cur.direccion"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <aside class="vm-panel" aria-live="polite">
+        <span class="vm-badge" [class.is-d]="kind() === 'distribuidor'">{{ kind() === 'distribuidor' ? 'Distribuidor' : 'Sucursal' }}</span>
+        <h3>{{ labelOf(cur) }}</h3>
+        @if (cityLine(cur); as line) { <p class="vm-city">{{ line }}</p> }
+
+        <div class="vm-rows">
+          <div class="vm-row"><svg class="vm-ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><div><strong>Dirección</strong><p>{{ cur.direccion }}</p></div></div>
+          @if (cur.telefono) {
+            <div class="vm-row"><svg class="vm-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.6 2h2l1 3-1.5 1.1a8 8 0 0 0 4.8 4.8L11 9.4l3 1v2A1.6 1.6 0 0 1 12.4 14 10.4 10.4 0 0 1 2 3.6 1.6 1.6 0 0 1 3.6 2z"/></svg><div><strong>Teléfono</strong>
+              <p>@if (telHref(cur.telefono); as tel) { <a [href]="tel">{{ cur.telefono }}</a> } @else { {{ cur.telefono }} }</p></div></div>
+          }
+          @if (cur.email) {
+            <div class="vm-row"><svg class="vm-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="3.5" width="12" height="9" rx="1.6"/><path d="m2.6 4.8 5.4 4.2 5.4-4.2"/></svg><div><strong>E-mail</strong><p><a [href]="'mailto:' + cur.email">{{ cur.email }}</a></p></div></div>
+          }
+          @if (cur.horarios) {
+            <div class="vm-row"><svg class="vm-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="6"/><path d="M8 4.6V8l2.4 1.5"/></svg><div><strong>Horario</strong><p>{{ cur.horarios }}</p></div></div>
+          }
+        </div>
+
+        <div class="vm-actions">
+          <a class="vm-btn vm-btn--primary" [href]="directionsUrl()" target="_blank" rel="noopener"><span>Cómo llegar</span><svg class="vm-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4"/></svg><span class="visually-hidden"> a {{ labelOf(cur) }} (se abre en una pestaña nueva)</span></a>
+          <a class="vm-btn vm-btn--ghost" [href]="storeUrl()" target="_blank" rel="noopener">Comprar en línea<span class="visually-hidden"> (se abre en una pestaña nueva)</span></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+}

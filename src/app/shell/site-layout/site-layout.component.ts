@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ScrollTopComponent } from '../scroll-top/scroll-top.component';
 
 @Component({
   selector: 'app-site-layout',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopComponent],
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss']
 })

@@ -1,0 +1,63 @@
+<div class="vt-page">
+  <section class="vt-hero">
+    <div class="vt-hero-copy">
+      <p class="vt-kicker">Café Etrusca</p>
+      <h1>VIDEOTECA</h1>
+      <p class="vt-lead">
+        <span class="accent">Travesías del Sabor</span> — podcast del canal oficial
+      </p>
+      <p class="vt-body">
+        Historias, técnica y negocio del café. Mira los episodios aquí o en YouTube.
+      </p>
+      <div class="vt-hero-actions">
+        <a class="vt-btn" [href]="playlistUrl" target="_blank" rel="noopener">Ver playlist en YouTube</a>
+        <a class="vt-btn ghost" [href]="channelUrl" target="_blank" rel="noopener">Canal Café Etrusca</a>
+      </div>
+    </div>
+    <div class="vt-hero-media">
+      <img class="photo" [src]="active.thumb" [alt]="active.title">
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#1f2a44"></app-scroll-wave>
+  </section>
+
+  <section class="vt-player-sec" id="vt-player">
+    <div class="container">
+      <p class="vt-series">Travesías del Sabor</p>
+      <h2>{{ active.title }}</h2>
+      @if (active.duration) {
+        <p class="vt-meta">Duración {{ active.duration }}</p>
+      }
+      <div class="vt-frame">
+        <iframe
+          [src]="embedUrl(active)"
+          title="{{ active.title }}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="vt-grid-sec">
+    <div class="container">
+      <h2>Todos los episodios</h2>
+      <img src="/assets/images/separador.png" alt="" class="vt-sep">
+      <div class="vt-grid">
+        @for (v of videos; track v.id) {
+          <button type="button" class="vt-card" [class.active]="v.id === active.id" (click)="select(v)">
+            <span class="vt-thumb">
+              <img [src]="v.thumb" [alt]="v.title" loading="lazy">
+              <span class="vt-play" aria-hidden="true">▶</span>
+              @if (v.duration) {
+                <span class="vt-dur">{{ v.duration }}</span>
+              }
+            </span>
+            <span class="vt-card-title">{{ v.title }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+</div>

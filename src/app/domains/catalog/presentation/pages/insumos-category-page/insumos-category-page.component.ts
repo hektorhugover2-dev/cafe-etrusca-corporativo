@@ -137,9 +137,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   ];
 
   teMenu = [
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/productos/insumos/te' },
-    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/productos/insumos/te' },
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/productos/insumos/te' }
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/te' },
+    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/te' },
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/insumos-para-cafeterias/te' }
   ];
 
   teSeleccion = [
@@ -180,9 +180,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   ];
 
   tisanasMenu = [
-    { title: 'Infusión frutal', image: '/assets/images/insumos/drink-soda.png', tone: 'coral', link: '/productos/insumos/tisanas' },
-    { title: 'Tisana herbal', image: '/assets/images/insumos/drink-matcha.png', tone: 'yellow', link: '/productos/insumos/tisanas' },
-    { title: 'Bienestar over ice', image: '/assets/images/insumos/drink-frappe.png', tone: 'cyan', link: '/productos/insumos/tisanas' }
+    { title: 'Infusión frutal', image: '/assets/images/insumos/drink-soda.png', tone: 'coral', link: '/insumos-para-cafeterias/tisanas' },
+    { title: 'Tisana herbal', image: '/assets/images/insumos/drink-matcha.png', tone: 'yellow', link: '/insumos-para-cafeterias/tisanas' },
+    { title: 'Bienestar over ice', image: '/assets/images/insumos/drink-frappe.png', tone: 'cyan', link: '/insumos-para-cafeterias/tisanas' }
   ];
 
   tisanasSeleccion = [
@@ -304,9 +304,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   ];
 
   basesMenu = [
-    { title: 'Soda italiana', image: '/assets/images/insumos/drink-soda.png', tone: 'yellow', link: '/productos/insumos/bases-en-polvo' },
-    { title: 'Pistache cósmico', image: '/assets/images/insumos/drink-pistache.png', tone: 'lime', link: '/productos/insumos/bases-en-polvo' },
-    { title: 'Matcha frappé', image: '/assets/images/insumos/drink-frappe.png', tone: 'cyan', link: '/productos/insumos/bases-en-polvo' }
+    { title: 'Soda italiana', image: '/assets/images/insumos/drink-soda.png', tone: 'yellow', link: '/insumos-para-cafeterias/bases-en-polvo' },
+    { title: 'Pistache cósmico', image: '/assets/images/insumos/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/bases-en-polvo' },
+    { title: 'Matcha frappé', image: '/assets/images/insumos/drink-frappe.png', tone: 'cyan', link: '/insumos-para-cafeterias/bases-en-polvo' }
   ];
 
   basesSeleccion = [
@@ -496,9 +496,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   ];
 
   toppingsMenu = [
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/productos/insumos/toppings' },
-    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/productos/insumos/toppings' },
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/productos/insumos/toppings' }
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/toppings' },
+    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/toppings' },
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/insumos-para-cafeterias/toppings' }
   ];
 
   toppingsMaquinasRec = [
@@ -506,7 +506,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       title: 'Licuadoras profesionales',
       desc: 'Potencia y rendimiento para frappés, smoothies y bebidas con toppings.',
       image: '/assets/images/maquinas/hbb908r.webp',
-      link: '/maquinaria-y-equipo-para-cafeterias',
+      link: '/maquinaria-y-equipo-para-cafeterias/licuadoras',
       fragment: 'licuadoras',
       tone: 'cyan'
     },
@@ -514,7 +514,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       title: 'Máquinas de espresso',
       desc: 'Equipo confiable para tu barra: calidad, instalación y servicio Etrusca.',
       image: '/assets/images/maquinas/viva.webp',
-      link: '/maquinaria-y-equipo-para-cafeterias',
+      link: '/maquinaria-y-equipo-para-cafeterias/espresso',
       fragment: 'espresso',
       tone: 'coral'
     }
@@ -652,9 +652,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   ];
 
   puresMenu = [
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png' },
-    { title: 'Preparado cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png' },
-    { title: 'Matcha frappé', image: '/assets/images/insumos/drink-frappe.png' }
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/pures' },
+    { title: 'Preparado cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/pures' },
+    { title: 'Matcha frappé', image: '/assets/images/insumos/drink-frappe.png', tone: 'cyan', link: '/insumos-para-cafeterias/pures' }
   ];
 
   puresSeleccion = [
@@ -662,9 +662,15 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     { image: '/assets/images/insumos/bottle-abc.png', alt: 'Botella Torani' }
   ];
   jarabesMenu = [
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/productos/insumos/jarabes' },
-    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/productos/insumos/jarabes' },
-    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/productos/insumos/jarabes' }
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/jarabes' },
+    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/jarabes' },
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/insumos-para-cafeterias/jarabes' }
+  ];
+
+  salsasMenu = [
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/salsas' },
+    { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/salsas' },
+    { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/insumos-para-cafeterias/salsas' }
   ];
 
   seleccion = [
@@ -682,7 +688,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((params) => {
       const found = findCategory(params.get('slug'));
       if (!found) {
-        this.router.navigate(['/productos/insumos']);
+        this.router.navigate(['/insumos-para-cafeterias']);
         return;
       }
       this.cat = found;

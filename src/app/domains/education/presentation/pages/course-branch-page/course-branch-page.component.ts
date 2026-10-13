@@ -7,8 +7,19 @@ import { EventService } from '../../../../../shared/kernel/services/event.servic
 import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
 import { Course, CourseDate, courseBySlug } from '../../education.data';
+import { educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
+import { EDUCATION_HUB_PATH } from '../../course-public-paths';
+import { cityPageIndexing } from '../../page-indexing';
+import {
+  catalogByCourseSlug,
+  catalogDuration,
+  catalogOffer,
+  formatMXN
+} from '../../../../../shared/kernel/data/course-catalog.data';
+import { SITE_ORIGIN, siteUrl } from '../../../../../shared/kernel/config/site-url';
 import {
   CourseBranchLanding,
+  EMPRENDE_PATH,
   emprendeLandingPath,
   emprendeSeo,
   findEmprendeBranch
@@ -58,6 +69,7 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
         next: (apiDates) => {
           if (!this.course) return;
           this.course.dates = apiDates || [];
+          this.applyIndexing();
         }
       });
     });
@@ -95,6 +107,10 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
     this.interestOpen = true;
   }
 
+  priceText(amount: number): string {
+    return formatMXN(amount);
+  }
+
   openInterestEmpty() {
     this.interestDate = {
       days: '',
@@ -114,19 +130,28 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
     this.interestOpen = false;
   }
 
+  /** D2: the emprende city page without upcoming dates → noindex,follow (page-indexing.ts). */
+  private applyIndexing() {
+    if (!this.landing) return;
+    // Same dates the page lists (branchDates); the prerender gets them from the events snapshot.
+    this.seo.setRobots(this.branchDates.length > 0 ? 'index,follow' : 'noindex,follow');
+  }
+
   private applySeo() {
     if (!this.course) return;
     const pack = emprendeSeo(this.landing?.cityLabel);
     this.pageTitle = pack.title;
-    const origin = this.document.location?.origin || 'https://cafeetrusca.com';
-    const url = origin + emprendeLandingPath(this.landing?.citySlug);
+    // Canonical origin from environment config (never the request host / 127.0.0.1 prerender).
+    const origin = SITE_ORIGIN;
+    const url = siteUrl(emprendeLandingPath(this.landing?.citySlug));
     const imagePath = this.course.banner || this.course.image || '';
     const image = imagePath.startsWith('http') ? imagePath : `${origin}${imagePath}`;
     this.seo.set({
       title: pack.title + ' | Café Etrusca',
       description: pack.description,
       keywords: pack.keywords,
-      image
+      image,
+      path: emprendeLandingPath(this.landing?.citySlug)
     });
     let canonical = this.document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (!canonical) {
@@ -155,6 +180,12 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
       educationalCredentialAwarded: 'Diploma de participación',
       inLanguage: 'es-MX'
     };
+    const cat = catalogByCourseSlug('formacion-de-emprendedores');
+    if (cat) {
+      payload['courseCode'] = cat.clave;
+      payload['timeRequired'] = catalogDuration(cat);
+      payload['offers'] = catalogOffer(cat, url);
+    }
     if (this.landing) {
       payload['location'] = {
         '@type': 'Place',
@@ -171,5 +202,12 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
     el.id = 'course-branch-jsonld';
     el.text = JSON.stringify(payload);
     this.document.head.appendChild(el);
+  }
+  readonly hubPath = EDUCATION_HUB_PATH;
+  /** Emprende landing with every sucursal ("Ver otras sedes" on a city landing without dates). */
+  readonly allSedesPath = `/${EMPRENDE_PATH}`;
+  get crumbs() {
+    const title = this.course?.title || 'Curso';
+    return educationCrumbs(title, this.landing?.cityLabel);
   }
 }

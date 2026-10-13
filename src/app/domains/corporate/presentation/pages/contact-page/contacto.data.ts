@@ -147,7 +147,7 @@ export const BRANCHES: Branch[] = [
 
 export const LOCATORS: Locator[] = [
   { name: 'Etrusca Comercial - Distribución General', kind: 'CEDIS', address: 'Pte. 134 413 Industrial Vallejo Azcapotzalco Ciudad de México, CDMX, C.P. 02300', phones: ['(55) 5579 9860', '(55) 5590 5407', '(55) 5604 1159'], email: 'info@cafeetrusca.com' },
-  { name: 'Sucursal Zona Rosa', kind: 'Sucursal', address: 'Liverpool 91, Juárez, Cuauhtémoc, Col. Juárez, CDMX, C.P. 06600', phones: ['(55) 5533 9402'], email: 'zonarosa@cafeetrusca.com' },
+  { name: 'Sucursal Zona Rosa', kind: 'Sucursal', address: 'Liverpool 91, Juárez, Cuauhtémoc, 06600 Ciudad de México, CDMX', phones: ['(55) 5533 9402'], email: 'zonarosa@cafeetrusca.com' },
   { name: 'Sucursal Viaducto', kind: 'Sucursal', address: 'Miguel Angel #2-A, Moderna, Benito Juárez, Ciudad de México, CDMX, C.P. 03510', phones: ['(55) 5579 9981'], email: 'viaducto@cafeetrusca.com' },
   { name: 'Sucursal Guadalajara', kind: 'Sucursal', address: 'Av Niños Héroes 2161, Americana, Moderna, Guadalajara, Jal. C.P. 44190', phones: ['(33) 3827 5286'], email: 'guadalajara@cafeetrusca.com' },
   { name: 'Sucursal Monterrey', kind: 'Sucursal', address: 'Local 1 Avenida José Vasconcelos Centro Comercial, Pte. 501, Casco Urbano, San Pedro Garza García, N.L. C.P. 66200', phones: ['(81) 8338 1383'], email: 'monterrey@cafeetrusca.com' },

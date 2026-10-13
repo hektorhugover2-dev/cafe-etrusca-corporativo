@@ -2,6 +2,7 @@ export interface MaqProduct {
   name: string;
   sku?: string;
   image?: string;
+  description?: string;
   specs: string[];
 }
 
@@ -21,13 +22,103 @@ export interface MaqSection {
   blocks: MaqBrandBlock[];
 }
 
-export const MAQ_NAV = [
-  { id: 'espresso', label: 'Espresso', icon: '/assets/images/maquinas/cat-espresso.png' },
-  { id: 'autoservicio', label: 'Autoservicio', icon: '/assets/images/maquinas/cat-espresso.png' },
-  { id: 'licuadoras', label: 'Licuadoras', icon: '/assets/images/maquinas/cat-licuadoras.png' },
-  { id: 'molinos', label: 'Molinos', icon: '/assets/images/maquinas/cat-molinos.png' },
-  { id: 'tostadores', label: 'Tostadores', icon: '/assets/images/maquinas/cat-tostadores.png' }
+export interface MaqNavItem {
+  id: string;
+  label: string;
+  icon: string;
+  desc: string;
+  link: string;
+  catalogUrl?: string;
+  seoTitle: string;
+  seoDescription: string;
+  seoKeywords: string;
+}
+
+export const MAQ_HUB = '/maquinaria-y-equipo-para-cafeterias';
+export const MAQ_CATALOG_HUB = 'https://equipos-accesorios.cafeetrusca.com';
+
+export const MAQ_NAV: MaqNavItem[] = [
+  {
+    id: 'espresso',
+    label: 'Espresso',
+    icon: '/assets/images/maquinas/nav/espresso.png',
+    desc: 'Máquinas Reneka para barra profesional',
+    link: '/maquinaria-y-equipo-para-cafeterias/espresso',
+    catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/43',
+    seoTitle: 'Máquinas de espresso para cafeterías - Reneka | Café Etrusca',
+    seoDescription:
+      'Máquinas de espresso profesionales para cafetería. Reneka con instalación, preventivo y servicio para tu barra.',
+    seoKeywords: 'máquinas de espresso, Reneka, espresso para cafetería, máquina de café profesional'
+  },
+  {
+    id: 'autoservicio',
+    label: 'Autoservicio',
+    icon: '/assets/images/maquinas/nav/autoservicio.png',
+    desc: 'Equipos Melitta de alto volumen',
+    link: '/maquinaria-y-equipo-para-cafeterias/autoservicio',
+    catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/57',
+    seoTitle: 'Máquinas de autoservicio para cafeterías - Melitta | Café Etrusca',
+    seoDescription:
+      'Equipos Melitta de autoservicio para cafeterías, oficinas y food service. Consistencia, rapidez y menú amplio.',
+    seoKeywords: 'máquinas de autoservicio, Melitta, autoservicio cafetería, equipo self service café'
+  },
+  {
+    id: 'licuadoras',
+    label: 'Licuadoras',
+    icon: '/assets/images/maquinas/nav/licuadoras.png',
+    desc: 'Hamilton Beach y Blendtec para barra',
+    link: '/maquinaria-y-equipo-para-cafeterias/licuadoras',
+    catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/48',
+    seoTitle: 'Licuadoras para cafeterías - Hamilton Beach y Blendtec | Café Etrusca',
+    seoDescription:
+      'Licuadoras profesionales Hamilton Beach y Blendtec para barra, salsas, batidos y bebidas de cafetería.',
+    seoKeywords: 'licuadoras para cafetería, Hamilton Beach, Blendtec, licuadora profesional barista'
+  },
+  {
+    id: 'molinos',
+    label: 'Molinos',
+    icon: '/assets/images/maquinas/nav/molinos.png',
+    desc: 'Ceado, Eureka, Pietro, Fiorenzato y más',
+    link: '/maquinaria-y-equipo-para-cafeterias/molinos',
+    catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/44',
+    seoTitle: 'Molinos de café para cafeterías - Ceado, Eureka, Pietro | Café Etrusca',
+    seoDescription:
+      'Molinos profesionales para espresso y filtro. Ceado, Eureka, Pietro, Comandante, Fiorenzato, Anfim y Mahlkönig.',
+    seoKeywords: 'molinos de café, molino espresso, Ceado, Eureka, Pietro, Fiorenzato, Comandante, Mahlkönig'
+  },
+  {
+    id: 'tostadores',
+    label: 'Tostadores',
+    icon: '/assets/images/maquinas/nav/tostadores.png',
+    desc: 'Tostadores Coffee Tech de laboratorio a tienda',
+    link: '/maquinaria-y-equipo-para-cafeterias/tostadores',
+    catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/52',
+    seoTitle: 'Tostadores de café para cafeterías - Coffee Tech | Café Etrusca',
+    seoDescription:
+      'Tostadores Coffee Tech para laboratorio, tienda y producción. Del lote pequeño a la operación continua.',
+    seoKeywords: 'tostadores de café, Coffee Tech, tostador para cafetería, tueste de café'
+  }
 ];
+
+export function findMaqNav(id: string): MaqNavItem | undefined {
+  return MAQ_NAV.find((n) => n.id === id);
+}
+
+export const MAQ_HERO_FALLBACK = '/assets/images/maquinas/hero.webp';
+
+/** First product image in a section (first block → first product with image), else fallback. */
+export function firstMaqProductImage(
+  sec: MaqSection | undefined | null,
+  fallback: string = MAQ_HERO_FALLBACK
+): string {
+  if (!sec) return fallback;
+  for (const block of sec.blocks) {
+    for (const p of block.products) {
+      if (p.image) return p.image;
+    }
+  }
+  return fallback;
+}
 
 const img = (f: string) => `/assets/images/maquinas/${f}`;
 
@@ -166,39 +257,10 @@ export const MAQ_SECTIONS: MaqSection[] = [
         logo: img('logo-eureka.webp'),
         text: 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.',
         products: [
-          { name: 'ZENITH 65 NEO', sku: 'MMO-095', image: img('eureka-zenith.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
-          { name: 'HELIOS 65', sku: 'MMO-096', image: img('eureka-helios.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
-          { name: 'ATOM 65', sku: 'MMO-097', image: img('eureka-atom.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
-          { name: 'PROMETHEUS', sku: 'MMO-098', image: img('eureka-prometheus.webp'), specs: ['Negro · 127 V', 'Tolva 1.2 kg'] }
-        ]
-      },
-      {
-        brand: 'Pietro',
-        logo: img('logo-pietro.svg'),
-        text: 'Molinillo manual que combina pasión, diseño y tecnología. Libertad de expresión para espresso y filtro.',
-        products: [
-          { name: 'Pietro B-Modal Blanco', image: img('pietro-blanco.webp'), specs: ['21 × 11.5 × 8 cm · 1.5 kg', 'Capacidad 60 g', 'Acero M340 Böhler', 'Espresso y filtro · Italia'] },
-          { name: 'Pietro B-Modal Verde', image: img('pietro-verde.webp'), specs: ['21 × 11.5 × 8 cm · 1.5 kg', 'Capacidad 60 g', 'Acero M340 Böhler', 'Espresso y filtro · Italia'] },
-          { name: 'Pietro B-Modal Negro', image: img('pietro-negro.webp'), specs: ['21 × 11.5 × 8 cm · 1.5 kg', 'Capacidad 60 g', 'Acero M340 Böhler', 'Espresso y filtro · Italia'] }
-        ]
-      },
-      {
-        brand: 'Comandante',
-        logo: img('logo-comandante.webp'),
-        text: 'Molinillos de alto rendimiento para profesionales y entusiastas, década tras década.',
-        products: [
-          { name: 'Cherry', image: img('comandante-cherry.webp'), specs: ['Molino manual Comandante'] },
-          { name: 'Rojo', image: img('comandante-rojo.webp'), specs: ['Molino manual Comandante'] },
-          { name: 'Negro', image: img('comandante-negro.webp'), specs: ['Molino manual Comandante'] }
-        ]
-      },
-      {
-        brand: 'Fiorenzato',
-        logo: img('logo-fiorenzato.webp'),
-        text: 'Preciso, fiable y fácil de usar. Diseñado para simplificar el trabajo del barista.',
-        products: [
-          { name: 'F4E', image: img('fiorenzato-f4e.webp'), specs: ['Molino profesional Fiorenzato'] },
-          { name: 'F4 EVO', image: img('fiorenzato-f4evo.webp'), specs: ['Negro · 110 V', 'Tolva 500 g'] }
+          { name: 'ZENITH 65 NEO', sku: 'MMO-095', image: img('eureka-zenith.webp'), specs: ['Color: Negro', '110 V', 'Tolva 1.2 kg'] },
+          { name: 'HELIOS 65', sku: 'MMO-096', image: img('eureka-helios.webp'), specs: ['Color: Negro', '110 V', 'Tolva 1.2 kg'] },
+          { name: 'ATOM 65', sku: 'MMO-097', image: img('eureka-atom.webp'), specs: ['Color: Negro', '110 V', 'Tolva 1.2 kg'] },
+          { name: 'PROMETHEUS', sku: 'MMO-098', image: img('eureka-prometheus.webp'), specs: ['Color: Negro', '127 V', 'Tolva 1.2 kg'] }
         ]
       },
       {
@@ -234,9 +296,23 @@ export const MAQ_SECTIONS: MaqSection[] = [
         logo: img('logo-coffeetech.webp'),
         text: 'Tostadores para laboratorio, shop y producción.',
         products: [
-          { name: 'FZ94 Pro-Lab', image: img('tostador-fz94.webp'), specs: ['Cap. de lote 20 kg', 'Ciclo 16–18 min', '220–240 V'] },
-          { name: 'Solar Shop', image: img('tostador-solar.webp'), specs: ['Cap. de lote 0.1–2.4 kg', 'Ciclo 16–18 min', '220–240 V'] },
-          { name: 'Silón ZR7', image: img('tostador-silon.webp'), specs: ['Cap. de lote 1–7 kg', 'Ciclo 11–17 min', '230–380 V'] }
+          {
+            name: 'FZ94 Pro-Lab 2.4 kg',
+            sku: 'MTO-001',
+            image: img('tostador-fz94.webp'),
+            specs: [
+              'Materiales: 100% Estructura de metal',
+              'Capacidad de lote: 0.1–2.4 kg',
+              'Ciclos de tostado: 16-18 minutos para un lote completo (después del precalentamiento)',
+              '220–240 V'
+            ]
+          },
+          { name: 'Solar Automático 2 kg',
+            sku: 'MTO-002',
+            image: img('tostador-solar.webp'), specs: ['Cap. de lote 0.1–2.4 kg', 'Ciclo 16–18 min', '220–240 V'] },
+          { name: 'Silón Automático 7 kg',
+            sku: 'MTO-003',
+            image: img('tostador-silon.webp'), specs: ['Cap. de lote 1–7 kg', 'Ciclo 11–17 min', '230–380 V'] }
         ]
       }
     ]

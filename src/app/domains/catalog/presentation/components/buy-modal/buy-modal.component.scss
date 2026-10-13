@@ -1,0 +1,214 @@
+// Modal "Comprar" (diseño de Lizbeth): Poppins, navy #192966, tarjetas con tinte suave y manchas de color difuminadas.
+// Destinos: en línea → ficha de la tienda (o catálogo), sucursal → /sucursales, asesoría → WhatsApp.
+:host {
+  --bm-navy: var(--etrusca-navy-700, #192966);
+  --bm-ink: #070c3b;
+  --bm-gold: var(--etrusca-orange-500, #fdb745);
+  --bm-yellow: var(--etrusca-yellow-500, #fddb4f);
+  --bm-orange: var(--etrusca-orange-500, #fdb745);
+  --bm-coral: var(--etrusca-pink-500, #fd96a1);
+  // Tintes: iguales al fondo de las ilustraciones (webp) para que se fundan con la tarjeta.
+  --bm-tint-online: #fef4df;
+  --bm-tint-branch: #fce9e8;
+  --bm-tint-advice: #e8edfd;
+  position: relative;
+  z-index: 100000;
+  font-family: Poppins, sans-serif;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.bm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(7, 12, 59, 0.55);
+  animation: bm-fade 0.15s ease-out;
+}
+
+.bm-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1120px, 100%);
+  max-height: calc(100dvh - 2rem);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 28px;
+  background: #fff;
+  color: var(--bm-ink);
+  box-shadow: 0 24px 60px rgba(7, 12, 59, 0.3);
+  animation: bm-pop 0.18s ease-out;
+
+  // Manchas difuminadas de fondo (amarillo arriba-izquierda, rosa a la derecha, azul abajo).
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  &::before { top: -90px; left: -80px; width: 340px; height: 260px; background: var(--bm-yellow); opacity: 0.4; }
+  &::after { right: -90px; bottom: 40px; width: 300px; height: 300px; background: var(--bm-coral); opacity: 0.3; }
+}
+
+.bm-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 2.4rem 2.4rem 2.2rem;
+}
+
+.bm-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: #4f616a;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  &:hover { background: #3c4b53; }
+}
+
+.bm-head { margin: 0 3rem 1.8rem; text-align: center; }
+
+.bm-title {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.45rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #000;
+}
+.bm-title__hl { color: var(--bm-gold); }
+
+.bm-sub {
+  margin: 0;
+  font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+  line-height: 1.45;
+  color: #3f4650;
+}
+
+.bm-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.bm-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: 1.8rem 0 0;
+  border-radius: 24px;
+  background: var(--bm-tint);
+  color: var(--bm-ink);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  &:hover { color: var(--bm-ink); transform: translateY(-3px); box-shadow: 0 14px 30px rgba(7, 12, 59, 0.12); }
+  &[aria-busy='true'] { cursor: progress; }
+
+  &--online { --bm-tint: var(--bm-tint-online); --bm-circle: var(--bm-orange); }
+  &--branch { --bm-tint: var(--bm-tint-branch); --bm-circle: var(--bm-coral); }
+  &--advice { --bm-tint: var(--bm-tint-advice); --bm-circle: var(--bm-navy); }
+}
+
+.bm-option__icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
+  background: var(--bm-circle);
+  color: #fff;
+  svg { width: 32px; height: 32px; }
+}
+
+.bm-option__text {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1rem 0 1.2rem;
+  padding: 0 1.6rem;
+  strong { font-size: 1.3rem; font-weight: 700; line-height: 1.2; color: #000; }
+  span { font-size: 0.95rem; line-height: 1.45; color: #333a44; }
+  small { font-size: 0.8rem; line-height: 1.35; color: #4a515c; }
+}
+
+.bm-option__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: auto;
+}
+
+.bm-dialog :is(a, button):focus-visible {
+  outline: 3px solid var(--bm-navy);
+  outline-offset: 3px;
+}
+
+// Tablet: 2 columnas; la tercera ocupa la fila de abajo, centrada.
+@media (max-width: 900px) {
+  .bm-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+  .bm-option--advice { grid-column: 1 / -1; width: calc(50% - 0.55rem); justify-self: center; }
+  .bm-body { padding: 2.2rem 1.6rem 1.8rem; }
+}
+
+// Móvil: una columna, tarjeta compacta (icono + texto arriba, ilustración pequeña abajo); el cuerpo hace scroll.
+@media (max-width: 600px) {
+  .bm-backdrop { place-items: end center; padding: 0.5rem; }
+  .bm-dialog { max-height: calc(100dvh - 1rem); border-radius: 24px; }
+  .bm-body { padding: 1.4rem 1rem 1.2rem; }
+  .bm-close { top: 0.6rem; right: 0.6rem; width: 40px; height: 40px; }
+  .bm-head { margin: 0 2.8rem 1.1rem 0; text-align: left; }
+  .bm-title { font-size: 1.3rem; }
+  .bm-sub { font-size: 0.88rem; }
+  .bm-options { grid-template-columns: 1fr; gap: 0.8rem; }
+  .bm-option--advice { grid-column: auto; width: auto; }
+  .bm-option {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 0.9rem;
+    padding: 1rem 1rem 0;
+    text-align: left;
+  }
+  .bm-option__icon { width: 52px; height: 52px; svg { width: 26px; height: 26px; } }
+  .bm-option__text { margin: 0; padding: 0; gap: 0.2rem; strong { font-size: 1.05rem; } span { font-size: 0.85rem; line-height: 1.35; } }
+  .bm-option__img { grid-column: 1 / -1; width: min(100%, 210px); margin: 0.4rem auto 0; }
+}
+
+@keyframes bm-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bm-pop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bm-backdrop, .bm-dialog { animation: none; }
+  .bm-option, .bm-close { transition: none; }
+  .bm-option:hover { transform: none; }
+}

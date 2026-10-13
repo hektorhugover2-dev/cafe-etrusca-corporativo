@@ -404,3 +404,28 @@ $pink: #ff9496;
   }
   .prod-traits__row { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* prod-h2-home-sep */
+.prod-section > h2,
+.prod-block > h2,
+section > h2 {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--etrusca-navy-900, #283039);
+  line-height: 1.15;
+  text-align: center;
+}
+.prod-section > h2::after,
+.prod-block > h2::after,
+section > h2::after {
+  content: "";
+  display: block;
+  width: min(549px, 80%);
+  height: 30px;
+  margin: 0.35rem auto 1.6rem;
+  background: url('/assets/images/separador.png') center / contain no-repeat;
+}

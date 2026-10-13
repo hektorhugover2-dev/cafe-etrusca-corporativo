@@ -1,0 +1,242 @@
+<div class="ins-page layout-jarabes layout-bases tor-page chl-page">
+  <section class="jar-hero tor-hero">
+    <img class="jar-hero-blob tor-hero-blob" src="/assets/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy tor-hero-copy">
+      <nav class="tor-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias">Insumos</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias/bases-en-polvo">Bases en polvo</a><span aria-hidden="true">›</span>
+        <span aria-current="page">ChillOut</span>
+      </nav>
+      <img class="tor-logo" src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut Mix" width="150" height="60">
+      <h1><span class="tor-h1-main">Bases en polvo ChillOut </span><span class="tor-h1-sub">para cafetería</span></h1>
+      <p class="lead"><span class="accent">Sabores, Just Fruit y sin azúcar</span> para tu menú</p>
+      <p class="body">
+        En Café Etrusca encuentras las bases en polvo ChillOut Mix y ChillOut Just Fruit para preparar
+        bebidas frías y calientes con sabor y consistencia. Elige tus sabores y compra en línea,
+        o pide ayuda a un asesor para armar tu menú.
+      </p>
+      <div class="tor-ctas">
+        <a class="btn-jar" [href]="storeUrl" target="_blank" rel="noopener">Comprar en tienda en línea</a>
+        <a class="tor-btn-ghost" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <ul class="tor-facts" aria-label="Datos de las líneas ChillOut">
+        <li><strong>31</strong><span>sabores Mix</span></li>
+        <li><strong>3</strong><span>sabores Just Fruit</span></li>
+        <li><strong>2 kg</strong><span>y 700 g por empaque</span></li>
+      </ul>
+    </div>
+    <div class="jar-hero-media tor-hero-media">
+      @for (b of heroBottles; track b.src) {
+        <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
+      }
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines tor-lines" aria-labelledby="chl-lineas">
+    <div class="jar-head">
+      <h2 id="chl-lineas">Líneas de bases ChillOut</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid tor-lines-grid chl-lines-grid">
+      @for (line of lines; track line.sub) {
+        <article class="jar-card" [class]="'jar-card ' + line.tone">
+          <img class="blob" [src]="line.blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="line.image" [alt]="'ChillOut ' + line.sub">
+          </div>
+          <h3 class="brand">{{ line.name }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <div>
+              <img [src]="line.icons.sabor" alt="">
+              <span><strong>Sabores</strong>{{ line.sabores }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.pres" alt="">
+              <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+            </div>
+            <div>
+              <img [src]="line.icons.rend" alt="">
+              <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" [routerLink]="path" [fragment]="line.anchor">Ver sabores</a>
+            <a class="help" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="tor-section" id="sabores" aria-labelledby="chl-sabores">
+    <header class="tor-head">
+      <p class="tor-kicker">ChillOut Mix</p>
+      <h2 id="chl-sabores">Sabores ChillOut Mix</h2>
+      <p class="tor-intro">Una selección de sabores de la línea ChillOut Mix para bebidas frías y calientes, incluido el dulce de calabaza de temporada. Cada tarjeta te lleva a su ficha en la tienda, con precio y disponibilidad actualizados.</p>
+    </header>
+    <div class="tor-grid">
+      @for (p of mix; track p.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + tone(i)">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">ChillOut {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="tor-more"><a [href]="storeUrl" target="_blank" rel="noopener">Ver todos los sabores en la tienda ›</a></p>
+  </section>
+
+  <section class="tor-band" id="sin-azucar" aria-labelledby="chl-sa">
+    <app-scroll-wave position="top" fillColor="#fff6ea"></app-scroll-wave>
+    <div class="tor-band-inner">
+      <div class="tor-split">
+        <div class="tor-split-copy">
+          <p class="tor-kicker">Sin azúcar</p>
+          <h2 id="chl-sa">ChillOut sin azúcar y base neutra</h2>
+          <p>Para ofrecer en tu menú opciones sin azúcar: ChillOut Mix tiene base neutra, taro y cappuccino sin azúcar. La base neutra también está en versión regular para crear tus propias recetas.</p>
+          <ul class="tor-chips">
+            <li>Base neutra sin azúcar</li>
+            <li>Taro sin azúcar</li>
+            <li>Cappuccino sin azúcar</li>
+          </ul>
+        </div>
+        <div class="tor-split-media">
+          <img src="/assets/images/insumos/chillout/hero-chillout-base-neutra-sin-azucar.webp" alt="ChillOut Mix base neutra sin azúcar" loading="lazy">
+        </div>
+      </div>
+      <div class="tor-grid">
+        @for (p of sinAzucar; track p.code; let i = $index) {
+          <article class="tor-card" [class]="'tor-card ' + tone(i + 1)">
+            <div class="tor-card-media">
+              <span class="tor-card-blob" aria-hidden="true"></span>
+              <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+            </div>
+            <div class="tor-card-body">
+              <span class="tor-line">ChillOut {{ p.line }}</span>
+              <h3>{{ p.flavor }}</h3>
+              <p class="tor-pres">{{ p.presentation }}</p>
+              <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
+              <div class="tor-actions">
+                <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+                <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fff6ea"></app-scroll-wave>
+  </section>
+
+  <section class="tor-enjoy" aria-labelledby="chl-disfruta">
+    <h2 id="chl-disfruta">Disfruta en</h2>
+    <ul>
+      <li class="coral">Bebidas frías</li>
+      <li class="yellow">Bebidas calientes</li>
+      <li class="coral">Chai y matcha</li>
+    </ul>
+  </section>
+
+  <section class="tor-section" id="just-fruit" aria-labelledby="chl-jf">
+    <header class="tor-head">
+      <p class="tor-kicker">Fruta deshidratada</p>
+      <h2 id="chl-jf">ChillOut Just Fruit</h2>
+      <p class="tor-intro">Polvos de fruta deshidratada para bebidas naturales, refrescantes y llenas de sabor frutal intenso.</p>
+    </header>
+    <div class="tor-grid chl-grid-2">
+      @for (p of justFruit; track p.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + tone(i + 1)">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">ChillOut {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="tor-more"><a routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a></p>
+  </section>
+
+  @if (recipes.length) {
+    <section class="jar-inspira tor-inspira" aria-labelledby="chl-recetas">
+      <div class="jar-head">
+        <h2 id="chl-recetas">Inspira tu menú</h2>
+        <div class="rule"></div>
+      </div>
+      <p class="tor-intro tor-intro-center">Recetas de Café Etrusca preparadas con bases en polvo ChillOut.</p>
+      <div class="jar-inspira-grid">
+        @for (r of recipes; track r.slug; let i = $index) {
+          <article class="jar-drink" [class]="'jar-drink ' + drinkTone(i)">
+            <div class="bar">{{ r.title }} {{ r.titleAccent || '' }}</div>
+            <img [src]="r.image" [alt]="r.title + ' ' + (r.titleAccent || '')" loading="lazy">
+            <a class="more" [routerLink]="recipeLink(r)">Ver receta →</a>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <section class="tor-course" aria-labelledby="chl-taller">
+    <div>
+      <p class="tor-kicker">Educación Café Etrusca</p>
+      <h2 id="chl-taller">Lleva ChillOut a tu barra</h2>
+      <p>En el taller de Bebidas Frías aprendes a elaborar frapés, smoothies, tisanas frías y sodas italianas utilizando correctamente bases, jarabes y licuadoras.</p>
+    </div>
+    <a class="tor-btn tor-btn-navy" [routerLink]="tallerPath">Ver taller de Bebidas Frías</a>
+  </section>
+
+  <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="chl-faq-title">
+    <div class="jar-head">
+      <h2 id="chl-faq-title">Preguntas frecuentes</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tor-faq-list">
+      @for (f of faq; track f.q; let first = $first) {
+        <details [attr.open]="first ? '' : null">
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta tor-cta">
+    <app-scroll-wave position="top" fillColor="#fce4c0"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿Buscas ChillOut para tu negocio?</h2>
+      <p>Compra en línea o habla con un asesor para compras por volumen y para elegir los sabores de tu menú.</p>
+      <div class="tor-ctas">
+        <a [href]="storeUrl" target="_blank" rel="noopener">Ir a la tienda en línea</a>
+        <a class="tor-cta-alt" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <a class="tor-back" routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a>
+    </div>
+    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+</div>

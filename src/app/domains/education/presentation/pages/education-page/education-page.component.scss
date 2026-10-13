@@ -365,7 +365,114 @@ $ink: #14110e;
   .quiz-next {
     display: flex;
     justify-content: flex-end;
+    gap: 0.8rem;
     margin-top: 1.4rem;
+  }
+
+  // Step wizard ("Paso N de 5"): number dots, lettered radio cards, back/next.
+  h3 { outline: none; }
+  .quiz-steps {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: -0.3rem 0 0.4rem;
+    padding: 0;
+    li {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: #e8e2d8;
+      color: #6b635a;
+      &.done { background: #3d8f4a; color: #fff; }
+      &.current { background: $burgundy; color: #fff; }
+    }
+  }
+  .opts { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  button.opt {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    min-height: 0;
+    background: #f7e6ea;
+    border: 2px solid transparent;
+    color: $ink;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    &:hover { background: #f3d5dc; }
+    &:focus-visible { outline: 3px solid $gold; outline-offset: 2px; }
+    &.picked { border-color: $burgundy; background: #f3d5dc; }
+    &.picked .opt-key { background: $burgundy; color: #fff; }
+  }
+  .opt-key {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    background: #fff;
+    color: $burgundy;
+  }
+  .opt-text { padding-top: 0.2rem; font-weight: 500; }
+  button.btn-burgundy {
+    background: $burgundy;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.85rem 1.4rem;
+    &:hover { background: $burgundy; }
+    &:disabled { opacity: 0.45; }
+    &:focus-visible { outline: 3px solid $gold; outline-offset: 2px; }
+  }
+  a.btn-burgundy:focus-visible, .btn-ghost:focus-visible { outline: 3px solid $gold; outline-offset: 2px; }
+  .btn-ghost,
+  button.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: $navy;
+    border: 1.5px solid $gold;
+    border-radius: 10px;
+    padding: 0.85rem 1.4rem;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover { background: #faf5ec; color: $navy; }
+  }
+  .quiz-profile {
+    margin: 0.6rem 0 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $burgundy;
+  }
+  .quiz-profile + h3 { margin-top: 0.3rem; }
+  .quiz-text { margin: 0 0 1.2rem; line-height: 1.55; color: #4a433c; max-width: 46rem; }
+  .quiz-result-card {
+    background: #f7e6ea;
+    border-radius: 16px;
+    padding: 1.2rem 1.2rem 1.3rem;
+    strong { display: block; font-size: 1.25rem; color: $navy; margin: 0.2rem 0 0.9rem; }
+    .edu-actions { margin: 0; flex-wrap: wrap; gap: 0.7rem; }
+  }
+  .quiz-kicker { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: $burgundy; }
+  .quiz-secondary {
+    margin: 1rem 0 0;
+    color: #4a433c;
+    a { color: $burgundy; font-weight: 700; text-underline-offset: 3px; }
   }
 }
 

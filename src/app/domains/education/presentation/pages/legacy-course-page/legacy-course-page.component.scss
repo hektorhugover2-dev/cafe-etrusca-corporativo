@@ -1,0 +1,411 @@
+// Legacy course pages (old cafeetrusca.com URLs). Lizbeth guide: Poppins, navy, white,
+// one accent (the old page's ViewBag.Theme), editorial titles, generous whitespace.
+$navy: #070c3b;
+$navy-2: #192966;
+$ink: #2c2a3a;
+
+.lc-page {
+  --lc-accent: #d5b183;
+  font-family: 'Poppins', sans-serif;
+}
+
+.lc-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.4rem clamp(1.2rem, 6vw, 6rem) 6.5rem;
+  background: linear-gradient(160deg, #fbf7f1 0%, color-mix(in srgb, var(--lc-accent) 28%, #fff) 100%);
+  overflow: hidden;
+}
+
+.lc-hero-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 90px;
+}
+
+.lc-hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+
+  h1 {
+    margin: 0 0 0.8rem;
+    font-weight: 900;
+    font-size: clamp(2.3rem, 5.4vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: $navy;
+  }
+}
+
+.lc-kicker {
+  display: inline-block;
+  margin: 0 0 0.9rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: #fff;
+  color: $navy-2;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 2px var(--lc-accent);
+}
+
+.lc-subtitle {
+  margin: 0 0 1.1rem;
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  color: $navy-2;
+}
+
+.lc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 0 0 1.6rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border-radius: 14px;
+    background: #fff;
+    color: $navy;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 18px rgba(7, 12, 59, 0.08);
+
+    svg { color: var(--lc-accent); }
+  }
+}
+
+.lc-hero-media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: min(300px, 70%);
+    height: auto;
+    filter: drop-shadow(0 16px 26px rgba(7, 12, 59, 0.16));
+  }
+}
+
+.lc-blob {
+  position: absolute;
+  width: min(380px, 90%);
+  aspect-ratio: 1;
+  background: var(--lc-accent);
+  opacity: 0.55;
+  border-radius: 58% 42% 55% 45% / 45% 55% 45% 55%;
+}
+
+.lc-body {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem clamp(1.2rem, 5vw, 2rem) 3rem;
+}
+
+.lc-section {
+  padding: 2.2rem 0 0.4rem;
+
+  h2 {
+    margin: 0;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: $navy;
+  }
+
+  h3 {
+    margin: 0 0 0.7rem;
+    font-weight: 800;
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    color: $navy-2;
+  }
+
+  &.lc-sub { padding-top: 1.4rem; }
+}
+
+.lc-rule {
+  display: block;
+  width: 64px;
+  height: 5px;
+  margin: 0.8rem 0 1.2rem;
+  border-radius: 999px;
+  background: var(--lc-accent);
+}
+
+.lc-p {
+  margin: 0 0 0.9rem;
+  max-width: 46rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: $ink;
+
+  ::ng-deep a { color: $navy-2; font-weight: 700; text-decoration: underline; }
+}
+
+.lc-list {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+
+  > li {
+    position: relative;
+    padding-left: 1.6rem;
+    line-height: 1.6;
+    color: $ink;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.62rem;
+      height: 0.62rem;
+      border-radius: 50%;
+      background: var(--lc-accent);
+    }
+  }
+
+  ul {
+    margin: 0.35rem 0 0;
+    padding-left: 1.1rem;
+    color: #4d4a5c;
+    li { list-style: '– '; margin: 0.15rem 0; }
+  }
+}
+
+.lc-img {
+  display: block;
+  max-width: 100%;
+  border-radius: 22px;
+  margin: 0.6rem 0 1rem;
+}
+
+.lc-cta { margin: 0.4rem 0 1rem; }
+
+.lc-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  padding-top: 1.6rem;
+}
+
+.lc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0 0 1.2rem;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(7, 12, 59, 0.08);
+  overflow: hidden;
+
+  img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; }
+  h3 { margin: 0.4rem 1.1rem 0; font-weight: 800; font-size: 1.15rem; color: $navy; }
+  p { margin: 0 1.1rem; font-size: 0.95rem; line-height: 1.55; color: $ink; }
+  .lc-link { margin: auto 1.1rem 0; font-weight: 800; color: $navy-2; text-decoration: none; }
+}
+
+.lc-calendar {
+  margin-top: 2rem;
+  padding: 2rem clamp(1.1rem, 3vw, 2rem);
+  border-radius: 28px;
+  background: #fbf7f1;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lc-accent) 55%, #fff);
+}
+
+@media (max-width: 1100px) {
+  .lc-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 800px) {
+  .lc-hero { grid-template-columns: 1fr; padding-bottom: 5rem; }
+  .lc-hero-media { min-height: 220px; }
+  .lc-hero-media img { width: 180px; }
+  .lc-blob { width: 230px; }
+  .lc-cards { grid-template-columns: 1fr; }
+}
+
+// Breadcrumb aligned with the hero copy; calendar cards fit the narrower editorial column.
+.lc-page .edu-crumbs { padding: 1rem clamp(1.2rem, 6vw, 6rem) 0.25rem; background: #fbf7f1; }
+
+.lc-calendar .edu-dates {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.lc-calendar .edu-date-card { min-width: 0; }
+
+// Calendar filters (same language as .edu-filters on the course pages, pill-shaped).
+.lc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.8rem 1rem;
+  margin: 1.2rem 0 0.4rem;
+
+  label {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $navy;
+  }
+
+  select {
+    min-width: 230px;
+    appearance: none;
+    padding: 0.7rem 2.6rem 0.7rem 1.1rem;
+    border: 2px solid color-mix(in srgb, var(--lc-accent) 70%, #fff);
+    border-radius: 999px;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23070c3b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 1rem center;
+    font: 600 0.95rem 'Poppins', sans-serif;
+    color: $navy;
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+
+    &:focus-visible { outline: 3px solid color-mix(in srgb, var(--lc-accent) 60%, $navy); outline-offset: 2px; }
+    &:disabled { opacity: 0.6; cursor: default; }
+  }
+}
+
+.lc-count {
+  margin: 0 0 0.7rem auto;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: $navy-2;
+}
+
+.lc-loading { margin: 1.2rem 0 0; color: #5b6472; font-weight: 600; }
+
+.lc-empty {
+  margin-top: 1.2rem;
+  padding: 1.8rem clamp(1.1rem, 3vw, 2rem);
+  border-radius: 22px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(7, 12, 59, 0.06);
+
+  p { margin: 0 auto 0.8rem; max-width: 34rem; color: $ink; line-height: 1.6; }
+  .lc-empty-title { font-weight: 800; font-size: 1.15rem; color: $navy; }
+  .edu-actions { justify-content: center; margin-top: 1rem; }
+  button { border: 0; cursor: pointer; font-family: inherit; }
+}
+
+@media (max-width: 600px) {
+  .lc-filters { flex-direction: column; align-items: stretch; }
+  .lc-filters select { width: 100%; min-width: 0; }
+  .lc-count { margin-left: 0; }
+}
+
+.lc-course {
+  margin-bottom: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--lc-accent) 55%, $navy);
+}
+
+.lc-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+
+.lc-city-intro {
+  margin: 0.9rem 0 0;
+  max-width: 34rem;
+  color: $ink;
+  line-height: 1.6;
+}
+
+// "Sede" block (static locations snapshot): line-art icons, navy text, whitespace.
+.lc-sedes {
+  display: grid;
+  gap: 1rem;
+  margin: 1.1rem 0 0.4rem;
+
+  &.lc-sedes-multi { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+.lc-sede {
+  padding: 1.3rem 1.4rem 1.2rem;
+  border-radius: 22px;
+  background: #fff;
+  border: 1.5px solid color-mix(in srgb, var(--lc-accent) 45%, #fff);
+  color: $navy;
+
+  h3 { margin: 0 0 0.7rem; font-size: 1.1rem; font-weight: 800; color: $navy; }
+}
+
+.lc-sede-kicker {
+  margin: 0 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--lc-accent) 60%, $navy);
+}
+
+.lc-sede-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: $navy-2;
+
+  svg {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    margin-top: 0.1rem;
+    fill: none;
+    stroke: $navy;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  a { color: $navy; text-decoration: underline; text-underline-offset: 3px; }
+  .lc-sep { color: #9aa0b4; }
+}
+
+.lc-sede-map {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: $navy;
+  text-decoration: none;
+  border-bottom: 2px solid var(--lc-accent);
+  padding-bottom: 2px;
+}
+
+.lc-clave { color: #4f5578; margin: 0.35rem 0 0.2rem; }
+.lc-combo { max-width: 34rem; }

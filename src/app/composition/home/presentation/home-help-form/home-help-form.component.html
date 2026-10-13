@@ -1,0 +1,251 @@
+<div
+  class="etr-help"
+  [attr.data-mode]="mode || null"
+  role="region"
+  aria-label="¿En qué podemos ayudarte?"
+>
+  <div class="etr-help__inner">
+    <div class="etr-switch-wrap">
+      <div
+        class="etr-switch"
+        role="tablist"
+        aria-label="Tipo de ayuda"
+      >
+        <span class="etr-switch__slider" aria-hidden="true"></span>
+
+        <button
+          class="etr-switch__btn"
+          type="button"
+          role="tab"
+          [attr.aria-selected]="mode === 'newsletter'"
+          (click)="startMode('newsletter')"
+        >
+          Recibir novedades
+        </button>
+
+        <button
+          class="etr-switch__btn"
+          type="button"
+          role="tab"
+          [attr.aria-selected]="mode === 'contact'"
+          (click)="startMode('contact')"
+        >
+          Tengo una duda
+        </button>
+      </div>
+    </div>
+
+    @if (mode) {
+      <div class="etr-flow" [class.is-done]="isDone">
+        <button
+          class="etr-nav etr-nav--back"
+          type="button"
+          aria-label="Regresar"
+          [hidden]="isDone"
+          (click)="goBack()"
+        >
+          ←
+        </button>
+
+        <div class="etr-step-window">
+          <div
+            #stepBox
+            class="etr-step"
+            [class.enter-forward]="animDir === 'forward'"
+            [class.enter-back]="animDir === 'back'"
+            [class.shake]="shake"
+            aria-live="polite"
+          >
+            @if (!isDone) {
+              <div class="etr-progress" aria-hidden="true">
+                @for (idx of stepIndexes; track idx) {
+                  <div class="etr-progress__item">
+                    <span
+                      class="etr-progress__dot"
+                      [class.done]="idx < progressCurrent"
+                      [class.current]="idx === progressCurrent"
+                    ></span>
+                    @if (idx < totalSteps - 1) {
+                      <span
+                        class="etr-progress__line"
+                        [class.done]="idx < progressCurrent"
+                      ></span>
+                    }
+                  </div>
+                }
+              </div>
+              <p class="etr-progress-count">{{ progressCurrent + 1 }} de {{ totalSteps }}</p>
+            }
+
+            <!-- NEWSLETTER -->
+            @if (mode === 'newsletter' && !isDone) {
+              @if (step === 0) {
+                <h3 id="help-step-title">¿Nos compartes tu nombre?</h3>
+                <div class="etr-field">
+                  <label class="visually-hidden" for="newsletterName">Nombre completo</label>
+                  <input
+                    class="etr-line-input"
+                    id="newsletterName"
+                    name="newsletterName"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Nombre completo"
+                    [(ngModel)]="newsletter.name" (ngModelChange)="onFieldChange()"
+                    (keydown.enter)="goNext()"
+                  />
+                </div>
+              } @else if (step === 1) {
+                <h3 id="help-step-title">¿A qué correo te escribimos?</h3>
+                <p class="etr-step__copy">
+                  Recibe promociones, recetas, novedades, lanzamientos
+                  y contenido de Café Etrusca directamente en tu correo.
+                </p>
+                <div class="etr-field">
+                  <label class="visually-hidden" for="newsletterEmail">Correo electrónico</label>
+                  <input
+                    class="etr-line-input"
+                    id="newsletterEmail"
+                    name="newsletterEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="Correo electrónico"
+                    [(ngModel)]="newsletter.email" (ngModelChange)="onFieldChange()"
+                    (keydown.enter)="goNext()"
+                  />
+                </div>
+                <label class="etr-privacy" for="newsletterPrivacy">
+                  <input
+                    id="newsletterPrivacy"
+                    name="newsletterPrivacy"
+                    type="checkbox"
+                    [(ngModel)]="newsletter.privacy" (ngModelChange)="onFieldChange()"
+                  />
+                  <span>
+                    He leído y acepto el
+                    <a routerLink="/aviso-de-privacidad">aviso de privacidad</a>
+                  </span>
+                </label>
+              }
+            }
+
+            <!-- CONTACT -->
+            @if (mode === 'contact' && !isDone) {
+              @if (step === 0) {
+                <h3 id="help-step-title">¿Qué tema te gustaría consultar?</h3>
+                <p class="etr-step__copy">
+                  Elige la opción que mejor se acerque a lo que necesitas.
+                </p>
+                <div class="etr-choices" role="group" aria-labelledby="help-step-title">
+                  @for (s of subjects; track s.value) {
+                    <button
+                      class="etr-choice"
+                      type="button"
+                      [class.selected]="contact.subject === s.value"
+                      [attr.aria-pressed]="contact.subject === s.value"
+                      (click)="selectSubject(s.value)"
+                    >
+                      {{ s.label }}
+                    </button>
+                  }
+                </div>
+              } @else if (step === 1) {
+                <h3 id="help-step-title">¿Nos compartes tu nombre?</h3>
+                <div class="etr-field">
+                  <label class="visually-hidden" for="contactName">Nombre completo</label>
+                  <input
+                    class="etr-line-input"
+                    id="contactName"
+                    name="contactName"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Nombre completo"
+                    [(ngModel)]="contact.name" (ngModelChange)="onFieldChange()"
+                    (keydown.enter)="goNext()"
+                  />
+                </div>
+              } @else if (step === 2) {
+                <h3 id="help-step-title">¿A qué correo podemos responderte?</h3>
+                <p class="etr-step__copy">Lo usaremos para responder a tu solicitud.</p>
+                <div class="etr-field">
+                  <label class="visually-hidden" for="contactEmail">Correo electrónico</label>
+                  <input
+                    class="etr-line-input"
+                    id="contactEmail"
+                    name="contactEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="Correo electrónico"
+                    [(ngModel)]="contact.email" (ngModelChange)="onFieldChange()"
+                    (keydown.enter)="goNext()"
+                  />
+                </div>
+              } @else if (step === 3) {
+                <h3 id="help-step-title">Cuéntanos un poco más</h3>
+                <p class="etr-step__copy">
+                  Comparte los detalles que consideres importantes
+                  y te orientamos mejor.
+                </p>
+                <label class="visually-hidden" for="contactMessage">Mensaje</label>
+                <textarea
+                  class="etr-textarea"
+                  id="contactMessage"
+                  name="contactMessage"
+                  rows="5"
+                  placeholder="Escribe aquí tu mensaje..."
+                  [(ngModel)]="contact.message" (ngModelChange)="onFieldChange()"
+                ></textarea>
+                <label class="etr-privacy" for="contactPrivacy">
+                  <input
+                    id="contactPrivacy"
+                    name="contactPrivacy"
+                    type="checkbox"
+                    [(ngModel)]="contact.privacy" (ngModelChange)="onFieldChange()"
+                  />
+                  <span>
+                    He leído y acepto el
+                    <a routerLink="/aviso-de-privacidad">aviso de privacidad</a>
+                  </span>
+                </label>
+              }
+            }
+
+            <!-- SUCCESS -->
+            @if (isDone && mode === 'newsletter') {
+              <div class="etr-success newsletter" aria-hidden="true">✓</div>
+              <h3>¡LISTO!</h3>
+              <p class="etr-step__copy">
+                Ya formas parte de nuestra comunidad.<br />
+                Muy pronto recibirás novedades de Café Etrusca.
+              </p>
+              <button class="etr-restart newsletter" type="button" (click)="resetToHome()">
+                Volver al inicio
+              </button>
+            }
+            @if (isDone && mode === 'contact') {
+              <div class="etr-success contact" aria-hidden="true">✓</div>
+              <h3>¡Gracias por escribirnos!</h3>
+              <p class="etr-step__copy">
+                Gracias por escribirnos.<br />
+                Nuestro equipo se pondrá en contacto contigo pronto.
+              </p>
+              <button class="etr-restart contact" type="button" (click)="resetToHome()">
+                Volver al inicio
+              </button>
+            }
+          </div>
+        </div>
+
+        <button
+          class="etr-nav etr-nav--next"
+          type="button"
+          [attr.aria-label]="step === totalSteps - 1 ? 'Enviar' : 'Avanzar'"
+          [hidden]="isDone"
+          [disabled]="submitting"
+          (click)="goNext()"
+        >
+          {{ nextLabel }}
+        </button>
+      </div>
+    }
+  </div>
+</div>

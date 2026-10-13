@@ -1,5 +1,14 @@
 @if (course) {
 <div class="edu-page">
+  <nav class="edu-crumbs" aria-label="Breadcrumb">
+    @for (c of crumbs; track c.label; let last = $last) {
+      @if (!last && c.path) {
+        <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+      } @else {
+        <span aria-current="page">{{ c.label }}</span>
+      }
+    }
+  </nav>
   <section class="edu-hero">
     <div class="edu-hero-copy">
       <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">
@@ -9,10 +18,12 @@
         }
       </p>
       <h1>{{ pageTitle }}</h1>
+      @if (course.clave) { <p class="edu-clave">Clave: {{ course.clave }}</p> }
       <p class="lead">{{ course.summary }}</p>
       <div class="meta">
         <div><strong>Duración</strong>{{ course.duration }} · {{ course.hours }}</div>
         <div><strong>Horario</strong>{{ course.schedule }}</div>
+        @if (course.price) { <div><strong>Inversión</strong>{{ priceText(course.price) }}</div> }
         @if (landing) {
           <div><strong>Sucursal</strong>{{ landing.cityLabel }}</div>
         }
@@ -111,6 +122,7 @@
               <span class="detail-item">{{ d.hours }}</span>
             </div>
             <button type="button" class="btn-outline-pink" (click)="openInterest($event, d)">Me interesa</button>
+            @if (d.eventPath) { <a class="edu-date-link" [routerLink]="d.eventPath">Ver detalle de la fecha</a> }
           </div>
         </article>
       }
@@ -122,7 +134,14 @@
               <span>en {{ landing.cityLabel }}</span>
             }.
           </p>
-          <button type="button" class="btn-pink" (click)="openInterestEmpty()">Infórmate aquí</button>
+          <div class="edu-actions">
+            @if (landing && course.dates.length > 0) {
+              <a class="btn-pink" [routerLink]="allSedesPath">Ver otras sedes</a>
+            } @else {
+              <button type="button" class="btn-pink" (click)="openInterestEmpty()">Me interesa</button>
+            }
+            <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+          </div>
         </div>
       }
     </div>

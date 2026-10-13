@@ -11,7 +11,7 @@ import { INSUMOS_NAV } from '../../insumos.data';
       @for (item of items; track item.slug) {
         <a class="ins-cat"
            [class]="'ins-cat ins-cat-' + item.slug"
-           [routerLink]="['/productos/insumos', item.slug]"
+           [routerLink]="['/insumos-para-cafeterias', item.slug]"
            routerLinkActive="active">
           <span class="ins-cat-icon" aria-hidden="true">
             <img [src]="item.icon" alt="">

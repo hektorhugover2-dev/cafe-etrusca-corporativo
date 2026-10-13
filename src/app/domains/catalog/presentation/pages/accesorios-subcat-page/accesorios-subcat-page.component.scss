@@ -1,0 +1,76 @@
+// Subcategorías de Accesorios: se apoya en metodos-extraccion-page.component.scss (mismas clases) y solo
+// ajusta el color de acento al tono de la tarjeta de la subcategoría en el hub (accesorios.data.ts).
+
+$tones: (
+  'yellow': #ffe270,
+  'cyan': #96dde1,
+  'orange': #ffc145,
+  'purple': #ccaaff,
+  'pink': #ff9496,
+  'lime': #c3e02e
+);
+
+@each $name, $c in $tones {
+  .sub-page--#{$name} { --tone: #{$c}; }
+}
+
+// Botón del hero con el tono de la subcategoría; texto oscuro (AA en todos los tonos).
+.sub-page .btn-jar {
+  background: var(--tone);
+  color: #251818;
+  text-shadow: none;
+
+  &:hover { color: #251818; }
+}
+
+.sub-hero__kicker {
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+  font-size: max(0.9rem, calc(var(--u) * 20));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #251818;
+}
+
+.sub-others {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sub-others__link {
+  text-transform: none;
+
+  &:hover { color: #2f3a40; filter: brightness(0.96); }
+  &:focus-visible { outline: 3px solid #0a1931; outline-offset: 2px; }
+}
+
+// Sin foto: fondo beige liso (sin padding extra para la foto en móvil).
+@media (max-width: 800px) {
+  .sub-hero--plain { padding-bottom: 8rem; }
+}
+
+// En estas fotos los productos empiezan más a la izquierda que en Métodos: título más compacto,
+// columna de texto más angosta y un velo beige suave a la izquierda para mantener la legibilidad.
+@media (min-width: 1024px) {
+  .sub-page .jar-hero-copy {
+    width: calc(var(--u) * 640);
+    padding-top: calc(var(--u) * 10);
+
+    h1 { font-size: calc(var(--u) * 78); margin-bottom: calc(var(--u) * 26); }
+    .body { font-size: calc(var(--u) * 21); margin: 0 0 calc(var(--u) * 34); }
+  }
+
+  .sub-page .met-hero__btn { margin-left: 0; }
+
+  .sub-page .met-hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(236, 222, 208, 0.78) 0%, rgba(236, 222, 208, 0.55) 30%, rgba(236, 222, 208, 0) 50%);
+  }
+}

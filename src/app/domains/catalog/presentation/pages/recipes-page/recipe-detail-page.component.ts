@@ -40,7 +40,8 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
 
   private scrollToTop() {
     const view = this.document.defaultView;
-    if (!view) return;
+    // Prerender/SSR window has no scrollTo (was logging TypeError for every recipe at build).
+    if (!view || typeof view.scrollTo !== 'function') return;
     view.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 
@@ -113,7 +114,7 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
         name: 'Caf\u00e9 Etrusca',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://cafeetrusca.com/img/logo_etrusca.webp'
+          url: origin + '/assets/images/logo-etrusca.webp'
         }
       },
       mainEntityOfPage: {

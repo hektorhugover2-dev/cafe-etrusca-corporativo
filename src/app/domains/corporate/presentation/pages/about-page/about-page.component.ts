@@ -29,7 +29,7 @@ export class AboutPageComponent implements OnInit {
         'Conoce a ' + brand + ': referente de la industria del café en México desde 1995. Insumos, equipo, capacitación y acompañamiento para cafeterías.',
       keywords:
         'Café Etrusca,nosotros,quiénes somos,misión,visión,cafetería México,insumos,capacitación baristas,La Fenice,Barista Champ,ChillOut',
-      image: 'https://cafeetrusca.com/img/1920X1080_BANNER_HOME_LA_FENICE.webp',
+      image: '/assets/images/home/banners/banner_home_la_fenice.webp',
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {
@@ -50,7 +50,7 @@ export class AboutPageComponent implements OnInit {
           name: brand,
           url: origin + '/',
           foundingDate: '1995',
-          logo: 'https://cafeetrusca.com/img/logo_etrusca.webp',
+          logo: origin + '/assets/images/logo-etrusca.webp',
           telephone: '+52-55-4166-8777',
           email: 'atencion@cafeetrusca.com',
           sameAs: [
