@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { CompromisoComponent } from '../../../../../shared/ui/compromiso/compromiso.component';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 @Component({
   selector: 'app-products-page',
@@ -12,6 +13,8 @@ import { SeoService } from '../../../../../shared/kernel/services/seo.service';
   styleUrls: ['./products-page.component.scss']
 })
 export class ProductsPageComponent implements OnInit {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
 
   ngOnInit() {
@@ -27,7 +30,7 @@ export class ProductsPageComponent implements OnInit {
       slug: 'cafe',
       title: 'Café',
       text: 'Perfiles que despiertan sentidos.',
-      img: '/assets/images/productos/cat-cafe.webp',
+      img: `${ASSETS_BASE_URL}/images/productos/cat-cafe.webp`,
       alt: 'Bolsa de Café Etrusca de 1 kg'
     },
     {
@@ -35,7 +38,7 @@ export class ProductsPageComponent implements OnInit {
       link: '/insumos-para-cafeterias',
       title: 'Insumos',
       text: 'Ingredientes que convierten ideas en experiencias.',
-      img: '/assets/images/productos/cat-insumos.webp',
+      img: `${ASSETS_BASE_URL}/images/productos/cat-insumos.webp`,
       alt: 'Bebida de matcha con hielo'
     },
     {
@@ -43,7 +46,7 @@ export class ProductsPageComponent implements OnInit {
       link: '/maquinaria-y-equipo-para-cafeterias',
       title: 'Máquinas',
       text: 'Rendimiento y tecnología para tu operación.',
-      img: '/assets/images/productos/cat-maquinas.webp',
+      img: `${ASSETS_BASE_URL}/images/productos/cat-maquinas.webp`,
       alt: 'Molino profesional para café'
     },
     {
@@ -51,17 +54,17 @@ export class ProductsPageComponent implements OnInit {
       link: '/accesorios-para-poner-una-cafeteria',
       title: 'Accesorios',
       text: 'Diseñados para facilitar cada preparación.',
-      img: '/assets/images/productos/cat-accesorios.webp',
+      img: `${ASSETS_BASE_URL}/images/productos/cat-accesorios.webp`,
       alt: 'Prensa francesa de cobre'
     }
   ];
 
   brands = [
-    { src: '/assets/images/productos/logo-reneka.webp', alt: 'Reneka' },
-    { src: '/assets/images/productos/logo-torani.webp', alt: 'Torani' },
-    { src: '/assets/images/productos/logo-pietro.webp', alt: 'Pietro Grinders' },
-    { src: '/assets/images/productos/logo-lafenice.webp', alt: 'La Fenice' },
-    { src: '/assets/images/productos/logo-chillout.webp', alt: 'Chill Out' }
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-reneka.webp`, alt: 'Reneka' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-torani.webp`, alt: 'Torani' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-pietro.webp`, alt: 'Pietro Grinders' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-lafenice.webp`, alt: 'La Fenice' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-chillout.webp`, alt: 'Chill Out' }
   ];
 
   traits = [

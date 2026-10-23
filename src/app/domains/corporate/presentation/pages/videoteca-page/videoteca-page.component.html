@@ -43,7 +43,7 @@
   <section class="vt-grid-sec">
     <div class="container">
       <h2>Todos los episodios</h2>
-      <img src="/assets/images/separador.png" alt="" class="vt-sep">
+      <img src="{{ assetsBase }}/images/separador.png" alt="" class="vt-sep">
       <div class="vt-grid">
         @for (v of videos; track v.id) {
           <button type="button" class="vt-card" [class.active]="v.id === active.id" (click)="select(v)">

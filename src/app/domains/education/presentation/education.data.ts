@@ -1,4 +1,5 @@
 import { catalogByCourseSlug, daysLabel, hoursLabel } from '../../../shared/kernel/data/course-catalog.data';
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 
 export type EduKind = 'cursos' | 'experiencias' | 'talleres' | 'sesiones';
 
@@ -86,9 +87,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Nuestros cursos',
     subtitle: 'Formación completa para quienes quieren construir bases sólidas, profesionalizarse y llevar su pasión por el café al siguiente nivel.',
     body: 'Formación completa para quienes quieren construir bases sólidas, profesionalizarse y llevar su pasión por el café al siguiente nivel.',
-    icon: '/assets/images/educacion/icon-cursos.png',
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
     tone: 'lime',
-    heroImage: '/assets/images/educacion/cursos-card.png',
+    heroImage: `${ASSETS_BASE_URL}/images/educacion/cursos-card.png`,
     stats: [
       { label: 'Metodología', value: '100% integral', hint: '(Teoría + Práctica)' },
       { label: 'Duración', value: '2 días', hint: '(14 horas)' },
@@ -102,9 +103,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Experiencias',
     subtitle: 'Encuentros sensoriales para vivir el café y el té con todos los sentidos.',
     body: 'Sesiones cortas, inmersivas y diseñadas para descubrir perfiles, orígenes y rituales.',
-    icon: '/assets/images/educacion/icon-experiencias.png',
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-experiencias.png`,
     tone: 'sand',
-    heroImage: '/assets/images/educacion/curso-photo.png',
+    heroImage: `${ASSETS_BASE_URL}/images/educacion/curso-photo.png`,
     stats: [
       { label: 'Formato', value: 'Inmersivo', hint: '(Sensorial + cata)' },
       { label: 'Duración', value: '1 día', hint: '(3 a 4 horas)' },
@@ -118,9 +119,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Talleres de especialización',
     subtitle: 'Práctica intensiva para perfeccionar una técnica puntual.',
     body: 'Arte latte, métodos de extracción y más. Un día, manos a la barra.',
-    icon: '/assets/images/educacion/icon-talleres.png',
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-talleres.png`,
     tone: 'cream',
-    heroImage: '/assets/images/educacion/baristas.png',
+    heroImage: `${ASSETS_BASE_URL}/images/educacion/baristas.png`,
     stats: [
       { label: 'Metodología', value: '70% práctica', hint: '(Manos a la barra)' },
       { label: 'Duración', value: '1 día', hint: '(6 horas)' },
@@ -134,9 +135,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Sesiones sabatinas',
     subtitle: 'Encuentros de fin de semana para seguir aprendiendo en comunidad.',
     body: 'Formato abierto, calendario rotativo y cupo limitado por sucursal.',
-    icon: '/assets/images/educacion/icon-sesiones.png',
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-sesiones.png`,
     tone: 'yellow',
-    heroImage: '/assets/images/calendario-sesiones-slider.webp',
+    heroImage: `${ASSETS_BASE_URL}/images/calendario-sesiones-slider.webp`,
     stats: [
       { label: 'Formato', value: 'Comunidad', hint: '(Cupo limitado)' },
       { label: 'Duración', value: '1 sábado', hint: '(4 horas)' },
@@ -173,8 +174,8 @@ const RAW_COURSES: Course[] = [
     duration: '2 días',
     hours: '14 horas',
     schedule: '9:00 a.m. - 5:00 p.m.',
-    image: '/assets/images/educacion/curso-formacion-emprendedores.webp',
-    banner: '/assets/images/educacion/curso-formacion-emprendedores.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/curso-formacion-emprendedores.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/curso-formacion-emprendedores.webp`,
     ideal: 'Ideal si quieres abrir, mejorar o estructurar tu cafetería y convertir tu pasión en un negocio rentable.',
     highlights: [
       { title: 'Planeación estratégica', text: 'Define tu propuesta de valor, analiza el mercado y construye un plan sólido.' },
@@ -223,8 +224,8 @@ const RAW_COURSES: Course[] = [
     duration: '2 días',
     hours: '15 horas',
     schedule: '9:00 a.m. - 5:00 p.m.',
-    image: '/assets/images/educacion/curso-tostado.webp',
-    banner: '/assets/images/educacion/curso-tostado.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/curso-tostado.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/curso-tostado.webp`,
     ideal: 'Ideal si quieres entender el grano, el proceso de tueste y cómo influyen en el sabor de tu café.',
     highlights: [
       { title: 'El grano verde', text: 'Identifica origen, densidad, humedad y defectos antes de tostar.' },
@@ -272,8 +273,8 @@ const RAW_COURSES: Course[] = [
     duration: '2 días',
     hours: '14 horas',
     schedule: '9:00 a.m. - 5:00 p.m.',
-    image: '/assets/images/educacion/taller-formacion-barista.webp',
-    banner: '/assets/images/educacion/taller-formacion-barista.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-formacion-barista.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-formacion-barista.webp`,
     ideal: 'Ideal si empiezas en barra o quieres estandarizar a tu equipo.',
     highlights: [
       { title: 'Espresso consistente', text: 'Molienda, dosis, tiempo y calibración diaria.' },
@@ -317,8 +318,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '3 horas',
     schedule: '10:00 a.m. - 1:00 p.m.',
-    image: '/assets/images/educacion/exp-inmersiona-te.webp',
-    banner: '/assets/images/educacion/exp-inmersiona-te.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/exp-inmersiona-te.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/exp-inmersiona-te.webp`,
     ideal: 'Ideal si quieres incorporar té de especialidad a tu carta.',
     highlights: [
       { title: 'Orígenes y familias', text: 'Verde, oolong, negro y tisanas: cómo se distinguen.' },
@@ -360,8 +361,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '3 horas',
     schedule: '10:00 a.m. - 1:00 p.m.',
-    image: '/assets/images/educacion/exp-arte-creatividad-mixologia.webp',
-    banner: '/assets/images/educacion/exp-arte-creatividad-mixologia.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/exp-arte-creatividad-mixologia.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/exp-arte-creatividad-mixologia.webp`,
     ideal: 'Ideal si quieres potenciar tu menú con coctelería y bebidas creativas.',
     highlights: [
       { title: 'Técnica', text: 'Balance, texturas y ensamble de vaso.' },
@@ -394,8 +395,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '3 horas',
     schedule: '10:00 a.m. - 1:00 p.m.',
-    image: '/assets/images/educacion/exp-coffee-lover-en-invierno.webp',
-    banner: '/assets/images/educacion/exp-coffee-lover-en-invierno.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/exp-coffee-lover-en-invierno.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/exp-coffee-lover-en-invierno.webp`,
     ideal: 'Ideal para coffee lovers y equipos que quieren menú de invierno.',
     highlights: [
       { title: 'Invierno en taza', text: 'Bebidas cálidas y especiadas.' },
@@ -428,8 +429,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/cursos-card.png',
-    banner: '/assets/images/educacion/cursos-card.png',
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-card.png`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-card.png`,
     highlights: [
       { title: 'Aromas de referencia', text: 'Identifica notas con kits y ejercicios guiados.' },
       { title: 'Rueda de sabores', text: 'Pasa de “me gusta” a un vocabulario preciso.' },
@@ -470,8 +471,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '9:00 a.m. - 1:00 p.m.',
-    image: '/assets/images/educacion/cursos-photo.png',
-    banner: '/assets/images/educacion/cursos-photo.png',
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
     highlights: [
       { title: 'Protocolo SCA', text: 'Tostión de muestra, molienda, tiempo y puntaje.' },
       { title: 'Defectos en taza', text: 'Reconoce fermento, fenólico, rio y más.' },
@@ -513,8 +514,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '3 horas',
     schedule: '10:00 a.m. - 1:00 p.m.',
-    image: '/assets/images/educacion/exp-mezcla-cafe.webp',
-    banner: '/assets/images/educacion/exp-mezcla-cafe.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/exp-mezcla-cafe.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/exp-mezcla-cafe.webp`,
     ideal: 'Ideal si quieres entender origen y tueste para armar una mezcla que identifique tu cafetería.',
     highlights: [
       { title: 'ABC del sabor', text: 'Origen, proceso y tueste: cómo se construye el perfil en taza.' },
@@ -557,8 +558,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '3 horas',
     schedule: '10:00 a.m. - 1:00 p.m.',
-    image: '/assets/images/educacion/exp-oasis-bebidas-frias.webp',
-    banner: '/assets/images/educacion/exp-oasis-bebidas-frias.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/exp-oasis-bebidas-frias.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/exp-oasis-bebidas-frias.webp`,
     ideal: 'Ideal si quieres ampliar el menú frío con y sin café.',
     highlights: [
       { title: 'Con café', text: 'Iced latte, iced cappuccino, cold brew / nitro, frappés y mocktails.' },
@@ -602,8 +603,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-arte-latte.webp',
-    banner: '/assets/images/educacion/taller-arte-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-arte-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-arte-latte.webp`,
     ideal: 'Ideal si ya vaporizas leche y quieres consistencia en el arte.',
     highlights: [
       { title: 'Microespuma', text: 'Textura brillante, sin burbuja, lista para dibujar.' },
@@ -646,8 +647,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/cursos-photo.png',
-    banner: '/assets/images/educacion/cursos-photo.png',
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
     highlights: [
       { title: 'Filtro caliente', text: 'V60, chemex y batch brew con recetas repetibles.' },
       { title: 'Cold brew y toddy', text: 'Ratios, tiempo y servicio en barra.' },
@@ -689,8 +690,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-bebidas-frias.webp',
-    banner: '/assets/images/educacion/taller-bebidas-frias.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-bebidas-frias.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-bebidas-frias.webp`,
     ideal: 'Ideal si quieres armar o mejorar el menú frío de tu barra.',
     highlights: [
       { title: 'Categorías del menú frío', text: 'Bebidas frías, frappés, sodas italianas y smoothies con impacto visual.' },
@@ -735,8 +736,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-bubble-tea.webp',
-    banner: '/assets/images/educacion/taller-bubble-tea.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-bubble-tea.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-bubble-tea.webp`,
     ideal: 'Ideal si quieres incorporar bubble tea e iced coffee a tu menú.',
     highlights: [
       { title: 'Bases de té y milk tea', text: 'Té, tisanas, milk tea, chocolate y su combinación con toppings.' },
@@ -781,8 +782,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-barista-especializado.webp',
-    banner: '/assets/images/educacion/taller-barista-especializado.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-barista-especializado.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-barista-especializado.webp`,
     ideal: 'Ideal si ya operas barra y quieres profundizar espresso, TDS y estándares SCA.',
     highlights: [
       { title: 'Espresso con criterio', text: 'Sub-extracción, sobre-extracción, EBF, porcentaje de extracción y TDS.' },
@@ -827,8 +828,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-arte-latte-especializado.webp',
-    banner: '/assets/images/educacion/taller-arte-latte-especializado.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-arte-latte-especializado.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-arte-latte-especializado.webp`,
     ideal: 'Ideal si ya dominas corazón y rosetta y quieres patrones combinados y técnica de líneas.',
     highlights: [
       { title: 'Espresso para arte', text: 'Cómo funciona el espresso en el arte latte y su impacto en taza.' },
@@ -872,8 +873,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-bubble-tea-especializado.webp',
-    banner: '/assets/images/educacion/taller-bubble-tea-especializado.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-bubble-tea-especializado.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-bubble-tea-especializado.webp`,
     ideal: 'Ideal si ya preparas bubble tea y quieres operar, costear e innovar la barra.',
     highlights: [
       { title: 'Modelo de negocio', text: 'Mercado latinoamericano, segmentos y plan para barras de bubble tea.' },
@@ -917,8 +918,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: '/assets/images/educacion/taller-mixologia.webp',
-    banner: '/assets/images/educacion/taller-mixologia.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-mixologia.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/taller-mixologia.webp`,
     ideal: 'Ideal si quieres ampliar el menú de la cafetería con cocktails y mocktails.',
     highlights: [
       { title: 'Técnicas de elaboración', text: 'Siete técnicas principales con ingredientes de fácil adquisición y conservación.' },
@@ -963,8 +964,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-verano-chillout.webp',
-    banner: '/assets/images/educacion/sesion-verano-chillout.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-verano-chillout.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-verano-chillout.webp`,
     highlights: [
       { title: 'Menú de verano', text: 'Bebidas frías y combinaciones ChillOut para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -996,8 +997,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-bubble-power-session.webp',
-    banner: '/assets/images/educacion/sesion-bubble-power-session.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-power-session.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-power-session.webp`,
     highlights: [
       { title: 'Bubble tea', text: 'Perlas, tes y ensamble de vaso.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1029,8 +1030,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-tisanas-en-verano.webp',
-    banner: '/assets/images/educacion/sesion-tisanas-en-verano.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-en-verano.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-en-verano.webp`,
     highlights: [
       { title: 'Tisanas', text: 'Infusiones, hielo y servicio de verano.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1062,8 +1063,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-versatilidad-mezcla-especial-1.webp',
-    banner: '/assets/images/educacion/sesion-versatilidad-mezcla-especial-1.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-versatilidad-mezcla-especial-1.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-versatilidad-mezcla-especial-1.webp`,
     highlights: [
       { title: 'Una mezcla, varios usos', text: 'Espresso, filtro y menú con la Especial No. 1.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1102,8 +1103,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-orgullo-mexicano.webp',
-    banner: '/assets/images/educacion/sesion-orgullo-mexicano.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-orgullo-mexicano.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-orgullo-mexicano.webp`,
     highlights: [
       { title: 'Origen México', text: 'Cafés galardonados y su historia en taza.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1142,8 +1143,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-bubble-lab.webp',
-    banner: '/assets/images/educacion/sesion-bubble-lab.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-lab.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-lab.webp`,
     highlights: [
       { title: 'Lab de bubble', text: 'Pruebas de receta y texturas.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1175,8 +1176,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-innovacion-en-jarabes.webp',
-    banner: '/assets/images/educacion/sesion-innovacion-en-jarabes.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-innovacion-en-jarabes.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-innovacion-en-jarabes.webp`,
     highlights: [
       { title: 'Jarabes', text: 'Usos, dosificación y menú de temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1216,8 +1217,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-matchamania.webp',
-    banner: '/assets/images/educacion/sesion-matchamania.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-matchamania.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-matchamania.webp`,
     highlights: [
       { title: 'Matcha', text: 'Preparación, textura y recetas de barra.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1257,8 +1258,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-elixir-del-terror.webp',
-    banner: '/assets/images/educacion/sesion-elixir-del-terror.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-elixir-del-terror.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-elixir-del-terror.webp`,
     highlights: [
       { title: 'Temporada de terror', text: 'Bebidas creativas con vibe Halloween.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1290,8 +1291,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-pumpkin-vibes.webp',
-    banner: '/assets/images/educacion/sesion-pumpkin-vibes.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-pumpkin-vibes.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-pumpkin-vibes.webp`,
     highlights: [
       { title: 'Pumpkin season', text: 'Sabores y texturas de calabaza para barra.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1329,8 +1330,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-un-otono-calido.webp',
-    banner: '/assets/images/educacion/sesion-un-otono-calido.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-un-otono-calido.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-un-otono-calido.webp`,
     highlights: [
       { title: 'Otoño en taza', text: 'Bebidas calientes y especiadas para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1368,8 +1369,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-sorbos-de-chillout-en-otono.webp',
-    banner: '/assets/images/educacion/sesion-sorbos-de-chillout-en-otono.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-sorbos-de-chillout-en-otono.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-sorbos-de-chillout-en-otono.webp`,
     highlights: [
       { title: 'ChillOut de otoño', text: 'Recetas frías con vibe de temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1401,8 +1402,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-cafe-de-temporada.webp',
-    banner: '/assets/images/educacion/sesion-cafe-de-temporada.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-cafe-de-temporada.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-cafe-de-temporada.webp`,
     highlights: [
       { title: 'Café de temporada', text: 'Perfiles y recetas para nov-dic.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1441,8 +1442,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-tisanas-para-las-posadas.webp',
-    banner: '/assets/images/educacion/sesion-tisanas-para-las-posadas.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-para-las-posadas.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-para-las-posadas.webp`,
     highlights: [
       { title: 'Tisanas de posadas', text: 'Infusiones y servicio para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1474,8 +1475,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: '/assets/images/educacion/sesion-nochebuena-calida.webp',
-    banner: '/assets/images/educacion/sesion-nochebuena-calida.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/sesion-nochebuena-calida.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-nochebuena-calida.webp`,
     highlights: [
       { title: 'Nochebuena', text: 'Bebidas cálidas y festivas para diciembre.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1593,24 +1594,24 @@ export interface Barista {
 }
 
 export const SCA_CERTS: ScaCert[] = [
-  { id: 'intro', label: 'Introducción café', lines: ['INTRODUCCIÓN CAFÉ'], icon: '/assets/images/educacion/iconos-certificados/INTRODUCCIO%CC%81N%20CAFE%CC%81.svg' },
-  { id: 'barista', label: 'Barista', lines: ['BARISTA FUNDAMENTOS', 'BARISTA INTERMEDIO'], icon: '/assets/images/educacion/iconos-certificados/BARISTAS%20FUNDAMENTOS-INTERMEDIO.svg' },
-  { id: 'brew', label: 'Brew', lines: ['BREW FUNDAMENTOS', 'BREW INTERMEDIO'], icon: '/assets/images/educacion/iconos-certificados/BREW%20FUNDAMENTOS-INTERMEDIO.svg' },
-  { id: 'tostado', label: 'Tostado', lines: ['TOSTADO FUNDAMENTOS', 'TOSTADO INTERMEDIO'], icon: '/assets/images/educacion/iconos-certificados/TOSTADO%20FUNDAMENTOS-INTERMEDIO.svg' },
-  { id: 'tea', label: 'Professional tea', lines: ['PROFESSIONAL TEA'], icon: '/assets/images/educacion/iconos-certificados/PROFESSIONAL%20TEA.svg' },
-  { id: 'green', label: 'Green coffee', lines: ['GREEN COFFEE'], icon: '/assets/images/educacion/iconos-certificados/GREEN%20COFFEE.svg' },
-  { id: 'sensory', label: 'Sensory skills', lines: ['SENSORY SKILLS'], icon: '/assets/images/educacion/iconos-certificados/SENSORY%20SKILLS.svg' },
-  { id: 'qgrader', label: 'Q Grader', lines: ['Q GRADER'], icon: '/assets/images/educacion/iconos-certificados/Q%20GRADER.svg' },
-  { id: 'cva', label: 'CVA', lines: ['CVA'], icon: '/assets/images/educacion/iconos-certificados/CVA.svg' }
+  { id: 'intro', label: 'Introducción café', lines: ['INTRODUCCIÓN CAFÉ'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/INTRODUCCION%20CAFE.svg` },
+  { id: 'barista', label: 'Barista', lines: ['BARISTA FUNDAMENTOS', 'BARISTA INTERMEDIO'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/BARISTAS%20FUNDAMENTOS-INTERMEDIO.svg` },
+  { id: 'brew', label: 'Brew', lines: ['BREW FUNDAMENTOS', 'BREW INTERMEDIO'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/BREW%20FUNDAMENTOS-INTERMEDIO.svg` },
+  { id: 'tostado', label: 'Tostado', lines: ['TOSTADO FUNDAMENTOS', 'TOSTADO INTERMEDIO'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/TOSTADO%20FUNDAMENTOS-INTERMEDIO.svg` },
+  { id: 'tea', label: 'Professional tea', lines: ['PROFESSIONAL TEA'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/PROFESSIONAL%20TEA.svg` },
+  { id: 'green', label: 'Green coffee', lines: ['GREEN COFFEE'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/GREEN%20COFFEE.svg` },
+  { id: 'sensory', label: 'Sensory skills', lines: ['SENSORY SKILLS'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/SENSORY%20SKILLS.svg` },
+  { id: 'qgrader', label: 'Q Grader', lines: ['Q GRADER'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/Q%20GRADER.svg` },
+  { id: 'cva', label: 'CVA', lines: ['CVA'], icon: `${ASSETS_BASE_URL}/images/educacion/iconos-certificados/CVA.svg` }
 ];
 
 export const LEARN_ITEMS = [
-  { icon: '/assets/images/educacion/icon-coffee.png', label: 'Bases técnicas reales' },
-  { icon: '/assets/images/educacion/icon-machine.png', label: 'Práctica con equipo profesional' },
-  { icon: '/assets/images/educacion/icon-person.png', label: 'Acompañamiento de instructores' },
-  { icon: '/assets/images/educacion/icon-docs.png', label: 'Material de apoyo' },
-  { icon: '/assets/images/educacion/icon-diploma.png', label: 'Certificado de participación' },
-  { icon: '/assets/images/educacion/icon-book.png', label: 'Aplicación inmediata' }
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-coffee.png`, label: 'Bases técnicas reales' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-machine.png`, label: 'Práctica con equipo profesional' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-person.png`, label: 'Acompañamiento de instructores' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-docs.png`, label: 'Material de apoyo' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-diploma.png`, label: 'Certificado de participación' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-book.png`, label: 'Aplicación inmediata' }
 ];
 
 export const METHODOLOGY = [
@@ -1681,20 +1682,20 @@ export const AUDIENCE_LISTING = [
 ];
 
 export const BARISTAS: Barista[] = [
-  { name: 'Ana García', place: 'CEDIS Vallejo, CDMX', photo: '/assets/images/educacion/baristas/ANA%20GARCI%CC%81A.webp', certs: ['barista', 'brew', 'qgrader', 'cva'] },
-  { name: 'Araceli García', place: 'CEDIS Vallejo, CDMX', role: 'Barista líder · juez internacional', photo: '/assets/images/educacion/baristas/ARACELI%20GARCIA.webp', certs: ['intro', 'barista', 'brew', 'tostado', 'tea', 'green', 'sensory', 'qgrader', 'cva'] },
-  { name: 'Eder Valdez', place: 'Sucursal Monterrey', photo: '/assets/images/educacion/baristas/EDER%20VALDEZ.webp', certs: ['barista'] },
-  { name: 'Esmeralda Martínez', place: 'Sucursal Zona Rosa, CDMX', role: 'Barista instructor', photo: '/assets/images/educacion/baristas/VANESSA.webp', certs: ['barista'] },
-  { name: 'Fernando Hernández', place: 'CEDIS Vallejo, CDMX', role: 'Instructor SCA', photo: '/assets/images/educacion/baristas/FERNANDO%20HERNA%CC%81NDEZ.webp', certs: ['barista', 'cva'] },
-  { name: 'Gabriela Pérez', place: 'Sucursal Tijuana', photo: '/assets/images/educacion/baristas/GABRIELA%20PE%CC%81REZ.webp', certs: ['barista', 'brew'] },
-  { name: 'Héctor Hernández', place: 'CEDIS Vallejo, CDMX', role: 'Formación continua', photo: '/assets/images/educacion/baristas/HE%CC%81CTOR%20HERNA%CC%81NDEZ.webp', certs: ['tostado', 'qgrader', 'cva'] },
-  { name: 'Hermelinda Flores', place: 'Sucursal León', photo: '/assets/images/educacion/baristas/HERMELINDA%20FLORES.webp', certs: ['barista', 'brew'] },
-  { name: 'Humberto Ramiro', place: 'Sucursal Puebla', photo: '/assets/images/educacion/baristas/HUMBERTO%20RAMIRO.webp', certs: ['barista', 'brew'] },
-  { name: 'Jorge Gutiérrez', place: 'Sucursal Querétaro', photo: '/assets/images/educacion/baristas/JORGE%20ADRIAN.webp', certs: ['barista', 'brew'] },
-  { name: 'Julio Aguilar', place: 'CEDIS Vallejo, CDMX', role: 'Barista instructor', photo: '/assets/images/educacion/baristas/JULIO%20AGUILAR.webp', certs: ['barista', 'brew', 'qgrader', 'cva'] },
-  { name: 'Luis Guardado', place: 'Sucursal Guadalajara', photo: '/assets/images/educacion/baristas/LUIS%20ALBERTO.webp', certs: ['barista', 'brew', 'cva'] },
-  { name: 'Mariana Quiroz', place: 'Sucursal Viaducto, CDMX', role: 'Barista instructor', photo: '/assets/images/educacion/baristas/MARIANA%20QUIROZ.webp', certs: ['barista', 'brew'] },
-  { name: 'Ribian Caamal', place: 'Sucursal Mérida', photo: '/assets/images/educacion/baristas/RIBIAN%20EMMANUEL.webp', certs: ['barista', 'brew'] }
+  { name: 'Ana García', place: 'CEDIS Vallejo, CDMX', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/ANA%20GARCIA.webp`, certs: ['barista', 'brew', 'qgrader', 'cva'] },
+  { name: 'Araceli García', place: 'CEDIS Vallejo, CDMX', role: 'Barista líder · juez internacional', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/ARACELI%20GARCIA.webp`, certs: ['intro', 'barista', 'brew', 'tostado', 'tea', 'green', 'sensory', 'qgrader', 'cva'] },
+  { name: 'Eder Valdez', place: 'Sucursal Monterrey', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/EDER%20VALDEZ.webp`, certs: ['barista'] },
+  { name: 'Esmeralda Martínez', place: 'Sucursal Zona Rosa, CDMX', role: 'Barista instructor', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/VANESSA.webp`, certs: ['barista'] },
+  { name: 'Fernando Hernández', place: 'CEDIS Vallejo, CDMX', role: 'Instructor SCA', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/FERNANDO%20HERNANDEZ.webp`, certs: ['barista', 'cva'] },
+  { name: 'Gabriela Pérez', place: 'Sucursal Tijuana', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/GABRIELA%20PEREZ.webp`, certs: ['barista', 'brew'] },
+  { name: 'Héctor Hernández', place: 'CEDIS Vallejo, CDMX', role: 'Formación continua', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/HECTOR%20HERNANDEZ.webp`, certs: ['tostado', 'qgrader', 'cva'] },
+  { name: 'Hermelinda Flores', place: 'Sucursal León', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/HERMELINDA%20FLORES.webp`, certs: ['barista', 'brew'] },
+  { name: 'Humberto Ramiro', place: 'Sucursal Puebla', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/HUMBERTO%20RAMIRO.webp`, certs: ['barista', 'brew'] },
+  { name: 'Jorge Gutiérrez', place: 'Sucursal Querétaro', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/JORGE%20ADRIAN.webp`, certs: ['barista', 'brew'] },
+  { name: 'Julio Aguilar', place: 'CEDIS Vallejo, CDMX', role: 'Barista instructor', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/JULIO%20AGUILAR.webp`, certs: ['barista', 'brew', 'qgrader', 'cva'] },
+  { name: 'Luis Guardado', place: 'Sucursal Guadalajara', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/LUIS%20ALBERTO.webp`, certs: ['barista', 'brew', 'cva'] },
+  { name: 'Mariana Quiroz', place: 'Sucursal Viaducto, CDMX', role: 'Barista instructor', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/MARIANA%20QUIROZ.webp`, certs: ['barista', 'brew'] },
+  { name: 'Ribian Caamal', place: 'Sucursal Mérida', photo: `${ASSETS_BASE_URL}/images/educacion/baristas/RIBIAN%20EMMANUEL.webp`, certs: ['barista', 'brew'] }
 ];
 
 export function categoryBySlug(slug: string | null) {

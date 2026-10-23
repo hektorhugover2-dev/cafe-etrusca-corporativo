@@ -1,6 +1,6 @@
 <div class="ins-page layout-jarabes layout-bases tor-page chl-page">
   <section class="jar-hero tor-hero">
-    <img class="jar-hero-blob tor-hero-blob" src="/assets/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob tor-hero-blob" src="{{ assetsBase }}/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy tor-hero-copy">
       <nav class="tor-crumbs" aria-label="Ruta de navegación">
         <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
@@ -8,7 +8,7 @@
         <a routerLink="/insumos-para-cafeterias/bases-en-polvo">Bases en polvo</a><span aria-hidden="true">›</span>
         <span aria-current="page">ChillOut</span>
       </nav>
-      <img class="tor-logo" src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut Mix" width="150" height="60">
+      <img class="tor-logo" src="/assets/images/marcas/logo-chillout-mix.webp" alt="ChillOut Mix" width="150" height="60">
       <h1><span class="tor-h1-main">Bases en polvo ChillOut </span><span class="tor-h1-sub">para cafetería</span></h1>
       <p class="lead"><span class="accent">Sabores, Just Fruit y sin azúcar</span> para tu menú</p>
       <p class="body">
@@ -38,7 +38,7 @@
 
   <section class="jar-lines tor-lines" aria-labelledby="chl-lineas">
     <div class="jar-head">
-      <h2 id="chl-lineas">Líneas de bases ChillOut</h2>
+      <h2 class="section-title-center" id="chl-lineas">Líneas de bases ChillOut</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid tor-lines-grid chl-lines-grid">
@@ -76,7 +76,7 @@
   <section class="tor-section" id="sabores" aria-labelledby="chl-sabores">
     <header class="tor-head">
       <p class="tor-kicker">ChillOut Mix</p>
-      <h2 id="chl-sabores">Sabores ChillOut Mix</h2>
+      <h2 class="section-title-center" id="chl-sabores">Sabores ChillOut Mix</h2>
       <p class="tor-intro">Una selección de sabores de la línea ChillOut Mix para bebidas frías y calientes, incluido el dulce de calabaza de temporada. Cada tarjeta te lleva a su ficha en la tienda, con precio y disponibilidad actualizados.</p>
     </header>
     <div class="tor-grid">
@@ -117,7 +117,7 @@
           </ul>
         </div>
         <div class="tor-split-media">
-          <img src="/assets/images/insumos/chillout/hero-chillout-base-neutra-sin-azucar.webp" alt="ChillOut Mix base neutra sin azúcar" loading="lazy">
+          <img src="{{ assetsBase }}/images/insumos/chillout/hero-chillout-base-neutra-sin-azucar.webp" alt="ChillOut Mix base neutra sin azúcar" loading="lazy">
         </div>
       </div>
       <div class="tor-grid">
@@ -185,7 +185,7 @@
   @if (recipes.length) {
     <section class="jar-inspira tor-inspira" aria-labelledby="chl-recetas">
       <div class="jar-head">
-        <h2 id="chl-recetas">Inspira tu menú</h2>
+        <h2 class="section-title-center" id="chl-recetas">Inspira tu menú</h2>
         <div class="rule"></div>
       </div>
       <p class="tor-intro tor-intro-center">Recetas de Café Etrusca preparadas con bases en polvo ChillOut.</p>
@@ -212,7 +212,7 @@
 
   <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="chl-faq-title">
     <div class="jar-head">
-      <h2 id="chl-faq-title">Preguntas frecuentes</h2>
+      <h2 class="section-title-center" id="chl-faq-title">Preguntas frecuentes</h2>
       <div class="rule"></div>
     </div>
     <div class="tor-faq-list">
@@ -236,7 +236,7 @@
       </div>
       <a class="tor-back" routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
     <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
   </section>
 </div>

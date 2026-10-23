@@ -1,6 +1,6 @@
 <div class="ins-page layout-jarabes layout-tisanas tor-page tis-page">
   <section class="jar-hero tor-hero">
-    <img class="jar-hero-blob tor-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob tor-hero-blob" src="{{ assetsBase }}/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy tor-hero-copy">
       <nav class="tor-crumbs" aria-label="Ruta de navegación">
         <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
@@ -8,7 +8,7 @@
         <a [routerLink]="categoryPath">Tisanas</a><span aria-hidden="true">›</span>
         <span aria-current="page">ChillOut</span>
       </nav>
-      <img class="tor-logo" src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut" width="150" height="60">
+      <img class="tor-logo" src="/assets/images/marcas/logo-chillout-tisanas.webp" alt="ChillOut" width="150" height="60">
       <h1><span class="tor-h1-main">Tisanas ChillOut </span><span class="tor-h1-sub">para cafetería</span></h1>
       <p class="lead"><span class="accent">Tisanas frutales</span> para tu menú</p>
       <p class="body">
@@ -27,7 +27,7 @@
       </ul>
     </div>
     <div class="jar-hero-media tis-hero-media">
-      <img class="photo" src="/assets/images/insumos/tisanas/hero-drinks.webp" alt="Bebidas de tisana" width="813" height="636">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/tisanas/hero-drinks.webp" alt="Bebidas de tisana" width="813" height="636">
     </div>
     <app-scroll-wave position="bottom" fillColor="#f2a8a8"></app-scroll-wave>
   </section>
@@ -37,7 +37,7 @@
   <section class="tor-section tis-what" id="que-es-una-tisana" aria-labelledby="tis-que-es">
     <header class="tor-head">
       <p class="tor-kicker">Para empezar</p>
-      <h2 id="tis-que-es">¿Qué es una tisana?</h2>
+      <h2 class="section-title-center" id="tis-que-es">¿Qué es una tisana?</h2>
       <p class="tor-intro">Una tisana es una infusión de frutas, flores, hierbas o especias que no lleva hoja de té, y por eso normalmente no tiene cafeína. Se sirve caliente o fría.</p>
     </header>
     <div class="tis-compare">
@@ -55,7 +55,7 @@
   <section class="tor-section" id="sabores" aria-labelledby="tis-sabores">
     <header class="tor-head">
       <p class="tor-kicker">Bolsa de 250 g</p>
-      <h2 id="tis-sabores">Tisanas ChillOut que vendemos</h2>
+      <h2 class="section-title-center" id="tis-sabores">Tisanas ChillOut que vendemos</h2>
       <p class="tor-intro">{{ countWordCap }} sabores de tisana ChillOut. Cada tarjeta te lleva a la tienda en línea, donde viven el precio y la disponibilidad. Fotografías ilustrativas.</p>
     </header>
     <div class="tor-grid">
@@ -92,7 +92,7 @@
     <div class="tor-band-inner">
       <header class="tor-head">
         <p class="tor-kicker">Para tu carta</p>
-        <h2 id="tis-menu-title">Cómo ponerla en el menú</h2>
+        <h2 class="section-title-center" id="tis-menu-title">Cómo ponerla en el menú</h2>
         <p class="tor-intro">Cinco ideas para sumar una bebida sin café a tu carta, caliente y fría.</p>
       </header>
       <ol class="tis-points">
@@ -113,7 +113,7 @@
   <section class="tor-section" id="ideas-de-menu" aria-labelledby="tis-ideas-title">
     <header class="tor-head">
       <p class="tor-kicker">Ideas de carta</p>
-      <h2 id="tis-ideas-title">Ideas de menú con tisana</h2>
+      <h2 class="section-title-center" id="tis-ideas-title">Ideas de menú con tisana</h2>
       <p class="tor-intro">Conceptos para empezar, con los sabores ChillOut que mejor van con cada uno. Las medidas dependen de tu receta: un asesor puede ayudarte a definirlas.</p>
     </header>
     <div class="tis-ideas">
@@ -139,7 +139,7 @@
   @if (recipe) {
     <section class="jar-inspira tor-inspira tis-recipe" aria-labelledby="tis-receta">
       <div class="jar-head">
-        <h2 id="tis-receta">Una receta de Etrusca con tisana</h2>
+        <h2 class="section-title-center" id="tis-receta">Una receta de Etrusca con tisana</h2>
         <div class="rule"></div>
       </div>
       <div class="tis-recipe-grid">
@@ -185,7 +185,7 @@
 
   <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="tis-faq-title">
     <div class="jar-head">
-      <h2 id="tis-faq-title">Preguntas frecuentes</h2>
+      <h2 class="section-title-center" id="tis-faq-title">Preguntas frecuentes</h2>
       <div class="rule"></div>
     </div>
     <div class="tor-faq-list">
@@ -209,7 +209,7 @@
       </div>
       <a class="tor-back" [routerLink]="categoryPath">Ver todas las tisanas ›</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
     <app-scroll-wave position="bottom" fillColor="#f2a8a8"></app-scroll-wave>
   </section>
 </div>

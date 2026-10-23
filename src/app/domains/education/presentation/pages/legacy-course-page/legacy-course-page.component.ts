@@ -228,7 +228,7 @@ export class LegacyCoursePageComponent implements OnInit {
           name: p.h1,
           description: p.description,
           url,
-          image: origin + p.image,
+          image: /^https?:\/\//i.test(p.image) ? p.image : origin + p.image,
           provider: {
             '@type': 'Organization',
             '@id': origin + '/#organization',

@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 export const CAFE_NAV = [
-  { slug: 'premium', label: 'Café Premium', icon: '/assets/images/cafe/nav/premium.png' },
-  { slug: 'especialidad', label: 'Especialidad', icon: '/assets/images/cafe/nav/especialidad.png' },
-  { slug: 'verde', label: 'Café en verde', icon: '/assets/images/cafe/nav/verde.png' }
+  { slug: 'premium', label: 'Café Premium', icon: `${ASSETS_BASE_URL}/images/cafe/nav/premium.png` },
+  { slug: 'especialidad', label: 'Especialidad', icon: `${ASSETS_BASE_URL}/images/cafe/nav/especialidad.png` },
+  { slug: 'verde', label: 'Café en verde', icon: `${ASSETS_BASE_URL}/images/cafe/nav/verde.png` }
 ] as const;
 
 @Component({

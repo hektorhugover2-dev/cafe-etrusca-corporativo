@@ -1,1 +1,128 @@
 :host { display: block; }
+
+/* =====================================================================
+   MARCAS — mismo diseño que la sección "Marcas" de accesorios-page
+   (colores, tira de marcas y botón "Ver todas las marcas" copiados de
+   accesorios-page.component.scss). Los logos van en rejilla porque aquí
+   hay 8 marcas en lugar de las 6 posiciones fijas de accesorios.
+   ===================================================================== */
+$strip-text: #091b3e;
+$strip-border: #e4e9ec;
+$strip-all-bg: #e2f4f7;
+$strip-all-text: #031131;
+
+.acc-brands {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 4rem clamp(1.1rem, 5vw, 5rem) 3rem;
+}
+
+.acc-logos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 2.4rem 1.6rem;
+
+  .acc-logo { width: 100%; display: flex; justify-content: center; }
+
+  a {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    transition: transform .2s ease;
+
+    &:hover { transform: scale(1.04); }
+    &:focus-visible { outline: 3px solid $strip-all-text; outline-offset: 4px; }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 110px;
+    object-fit: contain;
+  }
+}
+
+.acc-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.5rem;
+  margin-top: 2.6rem;
+}
+
+.acc-strip__list {
+  display: contents;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.acc-strip__item,
+.acc-strip__all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 141px;
+  height: 80px;
+  border: 1px solid $strip-border;
+  border-radius: 10px;
+  background: #fff;
+  text-align: center;
+}
+
+.acc-strip__item {
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: $strip-text;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 .4rem;
+
+    &:hover { text-decoration: underline; }
+    &:focus-visible { outline: 3px solid $strip-all-text; outline-offset: 2px; }
+  }
+}
+
+.acc-strip__all {
+  gap: 10px;
+  background: $strip-all-bg;
+  border-color: $strip-all-bg;
+  color: $strip-all-text;
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-decoration: none;
+
+  span { width: 62px; }
+  svg { flex: 0 0 auto; }
+
+  &:hover { color: $strip-all-text; background: #cdeef4; }
+  &:focus-visible { outline: 3px solid $strip-all-text; outline-offset: 2px; }
+}
+
+@media (max-width: 767.98px) {
+  .acc-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1.2rem; }
+  .acc-strip__item,
+  .acc-strip__all { width: 120px; height: 64px; }
+  .acc-strip__all span { width: 64px; }
+}
+
+/* insumos-blob: blob del hero de jarabes, recoloreado */
+.ins-hero .ins-hero-blob { z-index: 2; }
+.ins-hero .ins-hero-copy { position: relative; z-index: 3; }
+@media (max-width: 800px) {
+  .ins-hero .ins-hero-blob { height: auto; max-height: 52%; max-width: 92%; }
+}

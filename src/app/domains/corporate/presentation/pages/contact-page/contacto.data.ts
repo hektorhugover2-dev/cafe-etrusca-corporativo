@@ -1,6 +1,7 @@
 export interface Branch {
   lat: number;
   lng: number;
+  nota?: string;
   nombre: string;
   direccion: string;
   email: string;
@@ -47,7 +48,7 @@ export const CITIES = [
 
 export const BRANCHES: Branch[] = [
   {
-    lat: 19.4923666, lng: -99.1578552, nombre: 'Café Etrusca CEDIS Vallejo',
+    lat: 19.4923666, lng: -99.1578552, nombre: 'Café Etrusca CEDIS Vallejo', nota: 'sin venta al público',
     direccion: 'Pte. 134 413, Industrial Vallejo, Azcapotzalco, 02300 Ciudad de México, CDMX',
     email: 'atencion@cafeetrusca.com', telefono: '55 41 66 8777',
     horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-13:00 HRS', ciudad: 'Ciudad de México', estado: 'CDMX'

@@ -1,0 +1,204 @@
+/* Copia exacta del estilo de las tarjetas de RECETAS del home (home-page.component.scss).
+   Si cambias el home, actualiza aquí también. */
+.recipe-item {
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px); // Elevación de todo el bloque
+    
+    .recipe-img-wrapper {
+      box-shadow: 0 15px 25px rgba(0,0,0,0.15); // Sombra más fuerte en la imagen
+    }
+  }
+}
+
+.recipe-img-wrapper {
+  position: relative;
+  width: 200px; // Ancho fijo para simular el PDF
+  height: 280px; // Altura fija para hacerlas verticales
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.08); // Sombra suave original
+  transition: box-shadow 0.3s ease;
+  
+  .recipe-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Asegura que la foto llene el espacio sin deformarse
+  }
+}
+
+// Botones de Recetas
+.btn-receta {
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+// Colores de los botones basados en el PDF
+.btn-rosa { background-color: var(--etrusca-pink-100); }
+.btn-verde { background-color: var(--etrusca-lime-100); }
+.btn-amarillo { background-color: var(--etrusca-yellow-100); }
+
+.recipe-sub {
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.4em;
+}
+
+.sub-rosa { color: #c44a5a; }
+.sub-verde { color: #4f7a2e; }
+.sub-amarillo { color: #756000; }
+
+.recipe-img-wrapper.origin-septiembre-2026,
+.recipe-img-wrapper.origin-verano-2026,
+.recipe-img-wrapper.origin-san-valentin-2026,
+.recipe-img-wrapper.origin-navidad-2023,
+.recipe-img-wrapper.origin-calabaza {
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  background-position: center;
+
+  .recipe-img {
+    object-fit: contain;
+    padding: 0.6rem;
+  }
+}
+
+.recipe-img-wrapper.origin-septiembre-2026 {
+  background-color: #0f4d2e;
+  background-image: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/recetas/origen-septiembre-2026.webp');
+}
+
+.recipe-img-wrapper.origin-verano-2026 {
+  background-color: #57b7e8;
+  background-image:
+    linear-gradient(180deg, rgba(87, 183, 232, 0.35), rgba(233, 216, 192, 0.55)),
+    url('https://imagenes.cafeetrusca.com/corporativo/assets/images/recetas/origen-verano-2026.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.recipe-img-wrapper.origin-san-valentin-2026 {
+  background-color: #c42a5c;
+  background-image:
+    linear-gradient(180deg, rgba(196, 42, 92, 0.35), rgba(255, 150, 175, 0.55)),
+    url('https://imagenes.cafeetrusca.com/corporativo/assets/images/recetas/origen-san-valentin-2026.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+.recipe-img-wrapper.origin-navidad-2023 {
+  background-color: #1c345c;
+  background-image:
+    linear-gradient(180deg, rgba(28, 52, 92, 0.35), rgba(200, 220, 245, 0.55)),
+    url('https://imagenes.cafeetrusca.com/corporativo/assets/images/recetas/origen-navidad-2023.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+
+.recipe-img-wrapper.origin-calabaza {
+  background-color: #c45c26;
+  background-image:
+    linear-gradient(180deg, rgba(196, 92, 38, 0.28), rgba(232, 165, 75, 0.45)),
+    url('https://imagenes.cafeetrusca.com/corporativo/assets/images/recetas/origen-calabaza.webp');
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+.home-card-title {
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.recipe-legend {
+  position: absolute;
+  left: 0.55rem;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  margin: 0;
+  padding: 0.28rem 0.45rem;
+  border-radius: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(2px);
+  text-align: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Móvil angosto (<410px): mismo ajuste que el home */
+@media (max-width: 409.98px) {
+  .recipe-item {
+    padding-inline: 0.2rem;
+
+    h5 {
+      font-size: 0.92rem;
+      line-height: 1.2;
+      margin-bottom: 0.35rem !important;
+    }
+
+    .recipe-sub {
+      font-size: 0.72rem;
+      min-height: 2.1em;
+      margin-bottom: 0.55rem !important;
+      padding-inline: 0.15rem;
+    }
+
+    .btn-receta {
+      font-size: 0.72rem;
+      padding: 0.35rem 0.75rem !important;
+      letter-spacing: 0.2px;
+    }
+
+    .recipe-img-wrapper {
+      margin-bottom: 0.7rem !important;
+    }
+  }
+
+  .recipe-img-wrapper {
+    width: min(100%, 148px);
+    height: auto;
+    aspect-ratio: 5 / 7;
+    border-radius: 16px;
+  }
+
+  .recipe-img-wrapper.origin-septiembre-2026,
+.recipe-img-wrapper.origin-verano-2026,
+.recipe-img-wrapper.origin-san-valentin-2026,
+.recipe-img-wrapper.origin-navidad-2023,
+.recipe-img-wrapper.origin-calabaza {
+    background-size: 110px 110px;
+
+    .recipe-img {
+      padding: 0.4rem;
+    }
+  }
+
+  .recipe-img-wrapper.origin-verano-2026 {
+    background-size: cover, 110px 110px;
+  }
+
+  .recipe-img-wrapper.origin-calabaza {
+    background-size: cover, 110px 110px;
+  }
+
+  .recipe-img-wrapper.origin-navidad-2023 {
+    background-size: cover, 110px 110px;
+  }
+}

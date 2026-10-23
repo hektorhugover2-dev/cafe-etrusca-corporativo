@@ -3443,7 +3443,7 @@
   height: 30px !important;
   margin: 0.35rem auto 1.6rem !important;
   border-radius: 0 !important;
-  background: url("/assets/images/separador.png") center / contain no-repeat !important;
+  background: url("https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png") center / contain no-repeat !important;
 }
 
 /* Enlace a la página de jarabes Torani (/insumos-para-cafeterias/jarabes/torani/) */
@@ -3474,4 +3474,49 @@
     font-weight: 800;
   }
   a:hover strong { filter: brightness(1.15); }
+}
+
+
+/* ---------- Tisanas: vapor animado sobre la taza del hero (solo cliente) ---------- */
+.layout-tisanas .tis-photo-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+  z-index: 8;
+  .photo { display: block; }
+}
+/* Taza en hero-drinks.webp (813x636): centro ~75% x, borde ~56% y */
+.layout-tisanas .tis-steam {
+  position: absolute;
+  left: 75%;
+  bottom: 40%;
+  width: 26%;
+  height: 48%;
+  transform: translateX(-50%);
+  overflow: visible;
+  pointer-events: none;
+  z-index: 9;
+  filter: blur(4px);
+  .w {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 14;
+    stroke-linecap: round;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: tis-steam-rise 4.2s ease-in-out infinite;
+  }
+  .w2 { stroke-width: 11; animation-delay: 1.4s; animation-duration: 4.8s; }
+  .w3 { stroke-width: 10; animation-delay: 2.6s; animation-duration: 4.5s; }
+}
+@keyframes tis-steam-rise {
+  0%   { opacity: 0;   transform: translateY(18%) scaleX(0.8); }
+  20%  { opacity: 0.9; }
+  55%  { opacity: 0.65; transform: translateY(-6%) scaleX(1.15) skewX(-6deg); }
+  100% { opacity: 0;   transform: translateY(-30%) scaleX(1.4) skewX(6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .layout-tisanas .tis-steam { display: none; }
 }

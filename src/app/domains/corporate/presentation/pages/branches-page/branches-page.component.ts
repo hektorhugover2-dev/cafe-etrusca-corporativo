@@ -11,6 +11,7 @@ import { BRANCHES } from '../contact-page/contacto.data';
 import { SedeMapComponent } from '../../../../../shared/ui/sede-map/sede-map.component';
 import { MapPlace, placeDirectionsUrl, placeLabel } from '../../../../../shared/kernel/utils/google-maps';
 import { canonicalOverride, primaryPath } from '../../../../education/presentation/primary-urls';
+import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../../shared/kernel/config/assets-url';
 
 /**
  * /sucursales/ — directorio de sucursales (B3 de la revisión SEO 2026-09-25).
@@ -149,6 +150,33 @@ export const OPERATION_VIEWS: BranchView[] = OPERATIONS_IDS.map((id) => location
   .filter((l): l is EtruscaLocation => !!l)
   .map(toView);
 
+/** Tarjeta extra (sin JSON-LD): sede de contacto.data.ts BRANCHES que no viene en locations.data.ts como tal. */
+export type ExtraView = Omit<BranchView, 'location'> & { nota?: string; place: MapPlace };
+
+/** CEDIS Vallejo: mismos datos reales que /contacto/ (BRANCHES). Centro de Tostion Vallejo (id 15) es para cursos. */
+const CEDIS_SRC = BRANCHES.find((b) => b.nombre.includes('CEDIS Vallejo'));
+function formatSchedule(raw: string): string {
+  const m = raw.match(/^L-V\s+(\d{2}:\d{2})-(\d{2}:\d{2})\s+HRS\s+S[A\u00c1]BADO\s+(\d{2}:\d{2})-(\d{2}:\d{2})\s+HRS$/i);
+  return m ? `Lunes a viernes ${m[1]}\u2013${m[2]} h \u00b7 S\u00e1bado ${m[3]}\u2013${m[4]} h` : raw;
+}
+export const EXTRA_VIEWS: ExtraView[] = CEDIS_SRC
+  ? [{
+      id: -1,
+      anchor: 'cedis-vallejo',
+      name: CEDIS_SRC.nombre,
+      label: placeLabel(CEDIS_SRC),
+      cityLabel: CEDIS_SRC.ciudad || '',
+      address: CEDIS_SRC.direccion,
+      phones: String(CEDIS_SRC.telefono || '').split('/').map((p) => p.trim()).filter(Boolean).map(formatPhone),
+      email: CEDIS_SRC.email || '',
+      schedule: formatSchedule(CEDIS_SRC.horarios || ''),
+      mapsUrl: '',
+      coursesPath: null,
+      nota: CEDIS_SRC.nota,
+      place: { ...CEDIS_SRC, tipo: 'sucursal' } as MapPlace
+    }]
+  : [];
+
 @Component({
   selector: 'app-branches-page',
   standalone: true,
@@ -162,6 +190,7 @@ export class BranchesPageComponent implements OnInit {
 
   readonly branches = BRANCH_VIEWS;
   readonly operations = OPERATION_VIEWS;
+  readonly extras = EXTRA_VIEWS;
 
   /** Sedes del mapa de Google (mismo componente que el home y /contacto); un MapPlace por tarjeta. */
   private readonly placeById = new Map<number, MapPlace>(
@@ -178,18 +207,18 @@ export class BranchesPageComponent implements OnInit {
       } as MapPlace
     ])
   );
-  readonly mapPlaces: MapPlace[] = [...this.placeById.values()];
+  readonly mapPlaces: MapPlace[] = [...this.placeById.values(), ...EXTRA_VIEWS.map((e) => e.place)];
   mapSelected: MapPlace | null = null;
 
   /** «Ver en el mapa»: cambia la sede del mapa y sube a él (solo se ejecuta tras un clic en el navegador). */
-  showOnMap(b: BranchView): void {
-    this.mapSelected = this.placeById.get(b.id) ?? null;
+  showOnMap(b: BranchView | ExtraView): void {
+    this.mapSelected = ('place' in b ? b.place : this.placeById.get(b.id)) ?? null;
     this.doc.getElementById('br-mapa')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   /** «Cómo llegar»: https://www.google.com/maps/dir/?api=1&destination=<nombre, dirección completa>. */
-  directionsUrl(b: BranchView): string {
-    const p = this.placeById.get(b.id);
+  directionsUrl(b: BranchView | ExtraView): string {
+    const p = 'place' in b ? b.place : this.placeById.get(b.id);
     return p ? placeDirectionsUrl(p) : b.mapsUrl;
   }
 
@@ -245,7 +274,7 @@ export class BranchesPageComponent implements OnInit {
             '@id': `${url}#${b.anchor}`,
             name: `Café Etrusca ${b.name}`,
             url: `${url}#${b.anchor}`,
-            image: origin + '/assets/images/logo-etrusca.webp',
+            image: absoluteAssetUrl('images/logo-etrusca.webp'),
             parentOrganization: { '@id': origin + '/#organization' },
             address: {
               '@type': 'PostalAddress',

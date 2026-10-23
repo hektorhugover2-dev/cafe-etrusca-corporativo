@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 /**
  * Accesorios hub (/accesorios-para-poner-una-cafeteria/) — contenido tomado verbatim del diseño PDF
  * "Accesorios" (Figma). Imágenes en /assets/images/accesorios/hub/ (webp 1x + @2x).
@@ -7,7 +8,7 @@
  */
 
 export const ACCESORIOS_HUB = '/accesorios-para-poner-una-cafeteria';
-const IMG = '/assets/images/accesorios/hub';
+const IMG = `${ASSETS_BASE_URL}/images/accesorios/hub`;
 
 export interface AccImage {
   src: string;

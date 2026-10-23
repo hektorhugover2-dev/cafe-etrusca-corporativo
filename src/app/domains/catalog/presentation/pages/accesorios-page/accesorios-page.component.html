@@ -8,6 +8,7 @@
     </picture>
 
     <div class="jar-hero-copy acc-hero__copy">
+      <app-hero-crumbs [items]="crumbs" />
       @if (active) {
         <h1 id="acc-hero-title" class="acc-hero__title acc-hero__title--sub">
           <span class="acc-hero__kicker">Accesorios</span>
@@ -26,7 +27,7 @@
         de accesorios de calidad para llevar cada taza al<br class="acc-br">
         siguiente nivel.
       </p>
-      <a class="btn-jar acc-hero__btn" [href]="catalogUrl" target="_blank" rel="noopener">
+      <a class="btn-jar acc-hero__btn" [routerLink]="[]" fragment="categorias-accesorios">
         Explorar accesorios
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
           <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -42,7 +43,7 @@
   <section class="acc-cats acc-frame" id="categorias-accesorios" aria-labelledby="acc-cats-title">
     <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
     <div class="jar-head">
-      <h2 id="acc-cats-title">Categorías</h2>
+      <h2 class="section-title-center" id="acc-cats-title">Categorías</h2>
       <div class="rule" aria-hidden="true"></div>
     </div>
 
@@ -77,7 +78,7 @@
   <section class="acc-brands acc-frame" aria-labelledby="acc-brands-title">
     <!-- Encabezado copiado de Jarabes (.jar-head > h2 + .rule) -->
     <div class="jar-head">
-      <h2 id="acc-brands-title">Marcas</h2>
+      <h2 class="section-title-center" id="acc-brands-title">Marcas</h2>
       <div class="rule" aria-hidden="true"></div>
     </div>
 
@@ -99,7 +100,7 @@
         }
       </ul>
       <a class="acc-strip__all" [routerLink]="allBrands.path" [fragment]="allBrands.fragment">
-        <span>Ver todos las marcas</span>
+        <span>Ver todas las marcas</span>
         <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false">
           <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -109,6 +110,8 @@
 
   <!-- ============ ASESORÍA ============ -->
   <section class="acc-help" aria-labelledby="acc-help-title">
+    <!-- Olas dinámicas lila (mismo color que la banda) que la funden con las secciones blancas -->
+    <app-scroll-wave position="top" fillColor="#baa1df"></app-scroll-wave>
     <div class="acc-frame acc-help__inner">
       <h2 id="acc-help-title" class="acc-help__title">Asesoría especializada</h2>
       <p class="acc-help__text">
@@ -126,5 +129,10 @@
         </a>
       </div>
     </div>
+    <app-scroll-wave position="bottom" fillColor="#baa1df"></app-scroll-wave>
+  </section>
+  <!-- ============ ESENCIALES (círculos → tarjeta píldora al hover / tap). Al final, sin título, como el mockup ============ -->
+  <section class="acc-ess acc-frame" aria-label="Accesorios esenciales">
+    <app-acc-essentials></app-acc-essentials>
   </section>
 </div>

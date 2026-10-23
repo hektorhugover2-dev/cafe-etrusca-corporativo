@@ -70,43 +70,47 @@ textarea,
   --etrusca-caramel-800: #AC6611;
 }
 /* ==================================================
-   ANIMACIÓN DE 3 PATITAS REBOTANDO (TYPING)
+   LUCKY "ESCRIBIENDO": 3 HUELLITAS QUE REBOTAN (TYPING)
+   Sobrescribe los puntos de @n8n/chat (.chat-message-typing-circle)
+   sin tocar la librería. Huellita: assets/images/lucky/huellita.svg (CDN R2).
    ================================================== */
 .chat-message-typing {
+  max-width: none !important;
+  width: fit-content !important;
+}
+.chat-message-typing .chat-message-typing-body {
   display: flex !important;
-  align-items: center;
-  gap: 4px; /* Espacio entre las huellitas */
-  padding: 10px 14px !important;
-  background: #f1f1f1 !important;
-  border-radius: 15px !important;
-  width: fit-content;
+  align-items: flex-end;
+  gap: 5px;
+  padding-top: 6px; /* espacio para el salto */
 }
-
 .chat-message-typing .chat-message-typing-circle {
-  background-color: transparent !important; /* Quitamos la bola de color original */
-  background-image: url('https://desarrollo.cafeetrusca.com/assets/huellita.png'); 
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 22px !important;
-  height: 22px !important;
+  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/lucky/huellita.svg') center / contain no-repeat !important;
+  width: 15px !important;
+  height: 15px !important;
   margin: 0 !important;
-  border-radius: 0 !important; /* Las imágenes no necesitan bordes redondos */
-  
-  /* Animación personalizada para que salten de arriba a abajo */
-  animation: bouncePaws 1.2s infinite ease-in-out both !important;
-  display: inline-block;
+  border-radius: 0 !important;
+  display: block !important;
+  animation: luckyPawStep 1.2s ease-in-out infinite both !important;
+  --paw-tilt: -12deg;
 }
+.chat-message-typing .chat-message-typing-circle:nth-child(1) { animation-delay: 0s !important; }
+.chat-message-typing .chat-message-typing-circle:nth-child(2) { animation-delay: .15s !important; --paw-tilt: 12deg; }
+.chat-message-typing .chat-message-typing-circle:nth-child(3) { animation-delay: .3s !important; }
 
-/* Retrasos para crear el efecto de ola (1, 2, 3) */
-.chat-message-typing .chat-message-typing-circle:nth-child(1) { animation-delay: -0.32s !important; }
-.chat-message-typing .chat-message-typing-circle:nth-child(2) { animation-delay: -0.16s !important; }
-.chat-message-typing .chat-message-typing-circle:nth-child(3) { animation-delay: 0s !important; }
-
-/* La animación real (saltar hacia arriba) */
-@keyframes bouncePaws {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); } /* Qué tan alto saltan las patitas */
+@keyframes luckyPawStep {
+  0%, 60%, 100% { transform: translateY(0) rotate(var(--paw-tilt)); opacity: .55; }
+  30% { transform: translateY(-5px) rotate(calc(var(--paw-tilt) * -0.5)); opacity: 1; }
+}
+@keyframes luckyPawFade {
+  0%, 100% { opacity: .35; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-message-typing .chat-message-typing-circle {
+    animation-name: luckyPawFade !important;
+    transform: rotate(var(--paw-tilt));
+  }
 }
 
 
@@ -249,3 +253,105 @@ textarea,
     padding-top: 100px;
   }
 }
+
+/* =====================================================================
+   H2 centrado homologado con el home (NUESTROS PRODUCTOS, RECETAS…):
+   centrado, MAYÚSCULAS (solo CSS, el texto del HTML no cambia), Poppins 700,
+   2.2rem, navy #283039 y la raya separador.png (549×30) debajo.
+   Uso: <h2 class="section-title-center">…</h2>
+   Si el H2 ya trae la raya como <img> (separator-img / prod-sep / ct-sep),
+   agrega section-title-center--has-line para no duplicarla.
+   Los !important ganan a los estilos encapsulados de cada componente.
+   ===================================================================== */
+h2.section-title-center:not(#stc-noop) {
+  text-align: center !important;
+  text-transform: uppercase !important;
+  font-family: var(--etrusca-font) !important;
+  font-weight: 700 !important;
+  font-size: 2.2rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: normal !important;
+  color: var(--etrusca-navy-900) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 0.5rem !important;
+}
+h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line)::after {
+  content: '' !important;
+  display: block !important;
+  position: static !important;
+  width: min(549px, 80%) !important;
+  max-width: none !important;
+  height: 30px !important;
+  margin: 0.5rem auto 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png') center / contain no-repeat !important;
+}
+/* Rayas propias que ya traían algunos H2: se ocultan para no duplicar la línea */
+h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line) + .rule,
+h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line) + .lc-rule,
+h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line) + .ns-rule {
+  display: none !important;
+}
+@media (max-width: 575px) {
+  h2.section-title-center:not(#stc-noop) { font-size: 1.8rem !important; }
+}
+
+/* =====================================================================
+   Insumos · "Nuestra selección": 3 links de navegación relacionados.
+   ===================================================================== */
+.ins-sel-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem 1rem;
+  margin: 2rem auto 0;
+  max-width: 960px;
+  padding: 0 1rem;
+}
+.ins-sel-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .7rem 1.4rem;
+  border: 2px solid var(--etrusca-navy-900);
+  border-radius: 999px;
+  color: var(--etrusca-navy-900);
+  font-family: var(--etrusca-font);
+  font-weight: 600;
+  font-size: .95rem;
+  text-decoration: none;
+  background: #fff;
+  transition: background-color .2s ease, color .2s ease;
+}
+.ins-sel-links a:hover,
+.ins-sel-links a:focus-visible {
+  background: var(--etrusca-navy-900);
+  color: #fff;
+}
+.ins-sel-links a:focus-visible {
+  outline: 3px solid #f3a64b;
+  outline-offset: 2px;
+}
+
+/* ===== H1 de heros de Insumos y Accesorios en MAYÚSCULAS (solo CSS; el texto
+   del HTML no cambia, por SEO). Selector reforzado + !important para ganar a
+   los estilos encapsulados/temas de cada página. ===== */
+:is(app-insumos-page, app-insumos-category-page, app-chillout-page, app-tisanas-chillout-page,
+    app-torani-page, app-accesorios-page, app-accesorios-subcat-page, app-metodos-extraccion-page)
+  :is(.jar-hero, .sal-hero, .ins-hero, .pur-hero, .tor-hero, .met-hero, .acc-hero) h1:not(#h1-noop) {
+  text-transform: uppercase !important;
+}
+
+/* ── Móvil/tablet (<992px): sin hueco blanco entre el header fijo (80px) y el hero.
+   Los wrappers de página traían padding-top 112px/96px (medida del header de escritorio) → 32/16px en blanco.
+   Desktop (≥992px) intacto. Respaldo: backups\insumos-espacio-movil-20261022 ── */
+@media (max-width: 991.98px) {
+  main > * > :is(.ins-page, .acc-page, .prod-page, .cafe-page):not(#hdr-gap-noop) { padding-top: 80px !important; }
+}
+
+/* H2: texto en formato oración en el código (SEO) y en mayúsculas visualmente en todo el sitio. :not(#id) refuerza la especificidad frente a overrides de temas. */
+h2:not(#h2-uc-noop) { text-transform: uppercase !important; }

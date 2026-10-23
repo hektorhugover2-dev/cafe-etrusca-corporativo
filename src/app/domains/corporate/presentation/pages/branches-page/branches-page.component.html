@@ -24,7 +24,7 @@
   <section class="br-section br-map-sec" id="br-mapa" aria-labelledby="br-mapa-t">
     <div class="br-wrap">
       <h2 id="br-mapa-t">Encuentra tu sucursal en el mapa</h2>
-      <app-sede-map [places]="mapPlaces" [(selected)]="mapSelected" idPrefix="br-sede"></app-sede-map>
+      <app-sede-map [places]="mapPlaces" [(selected)]="mapSelected" idPrefix="br-sede" [showNotes]="true"></app-sede-map>
     </div>
   </section>
 
@@ -39,12 +39,15 @@
     </div>
   </section>
 
-  @if (operations.length) {
+  @if (operations.length || extras.length) {
     <section class="br-section br-section--alt" aria-labelledby="br-operaciones">
       <div class="br-wrap">
         <h2 id="br-operaciones">Centro de tostión y distribución</h2>
         <div class="br-grid">
           @for (b of operations; track b.id) {
+            <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+          }
+          @for (b of extras; track b.id) {
             <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
           }
         </div>
@@ -70,6 +73,7 @@
   <article class="br-card" [id]="b.anchor">
     <p class="br-card-city">{{ b.cityLabel }}</p>
     <h3><svg class="br-ico" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg><span>{{ b.label }}</span></h3>
+    @if (b.nota) { <p class="br-card-note">({{ b.nota }})</p> }
     <dl class="br-facts">
       <div>
         <dt>Dirección</dt>

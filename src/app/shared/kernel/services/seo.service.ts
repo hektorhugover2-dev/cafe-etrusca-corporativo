@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SITE_ORIGIN, siteAssetUrl, siteUrl } from '../config/site-url';
+import { ASSETS_BASE_URL } from '../config/assets-url';
 
 export interface SeoUrlContext {
   /** Canonical site origin (environment.siteOrigin), e.g. https://cafeetrusca.com */
@@ -38,7 +39,7 @@ export class SeoService {
 
   /** Default social share image (landscape hero on CDN). */
   private readonly defaultImage =
-    '/assets/images/home/banners/banner_home_la_fenice.webp';
+    `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`;
 
   /**
    * Canonical origin. Deliberately NOT the request/window host: prerender runs on

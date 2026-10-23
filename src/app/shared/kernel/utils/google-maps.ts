@@ -14,6 +14,11 @@ export interface MapPlace {
   email?: string;
   horarios?: string;
   tipo?: 'sucursal' | 'distribuidor';
+  /** Leyenda corta opcional; solo se muestra donde el mapa use showNotes. */
+  nota?: string;
+  /** Coordenadas del pin (mapa de pines Leaflet). Si faltan se buscan por nombre en locations.data.ts. */
+  lat?: number;
+  lng?: number;
 }
 
 const norm = (s: string) =>

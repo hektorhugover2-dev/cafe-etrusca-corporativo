@@ -6,7 +6,7 @@
       <a class="btn-burgundy" href="#oferta">Conoce nuestra oferta</a>
     </div>
     <div class="edu-hero-media">
-      <img src="/assets/images/educacion/hero-banner.png" alt="Formación Café Etrusca">
+      <img src="{{ assetsBase }}/images/educacion/hero-banner.png" alt="Formación Café Etrusca">
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
   </section>
@@ -23,7 +23,7 @@
         }
       </div>
       <div class="edu-offer-phone">
-        <img src="/assets/images/educacion/quiz-phone-julio.webp" alt="Formación Café Etrusca">
+        <img src="{{ assetsBase }}/images/educacion/quiz-phone-julio.webp" alt="Formación Café Etrusca">
       </div>
     </div>
   </section>
@@ -32,7 +32,7 @@
 
   <section class="edu-section edu-month-sec">
     <header class="edu-heading">
-      <h2>Este mes</h2>
+      <h2 class="section-title-center">Este mes</h2>
       <span class="rule" aria-hidden="true"></span>
       <p class="sub">Descubre qué opciones formativas tenemos este mes para ti.</p>
     </header>
@@ -62,7 +62,7 @@
 
   <section class="edu-section edu-quiz-sec">
     <header class="edu-heading">
-      <h2>Elige tu camino</h2>
+      <h2 class="section-title-center">Elige tu camino</h2>
       <span class="rule" aria-hidden="true"></span>
     </header>
     <div class="edu-quiz" role="group" aria-label="Elige tu camino">
@@ -124,7 +124,19 @@
 
       <section class="edu-cta-banner">
     <div class="photo">
-      <img src="/assets/images/educacion/cta-cafe.webp" alt="">
+      @if (ctaVideoOn()) {
+        <video class="photo-video" muted playsinline loop autoplay preload="none"
+               [poster]="ctaVideo.poster" aria-hidden="true" tabindex="-1"
+               disablepictureinpicture disableremoteplayback
+               [muted]="true" (canplay)="playCtaVideo($event)">
+          <source [src]="ctaVideo.webm" type="video/webm">
+          <source [src]="ctaVideo.mp4" type="video/mp4">
+        </video>
+      } @else if (ctaReduced()) {
+        <img [src]="ctaVideo.poster" alt="">
+      } @else {
+        <img src="{{ assetsBase }}/images/educacion/cta-cafe.webp" alt="">
+      }
     </div>
     <app-scroll-wave position="top" fillColor="#182247"></app-scroll-wave>
     <div class="copy">
@@ -141,7 +153,7 @@
 
 <section class="edu-section edu-paths-sec">
     <header class="edu-heading">
-      <h2>Líneas de formación</h2>
+      <h2 class="section-title-center">Líneas de formación</h2>
       <span class="rule" aria-hidden="true"></span>
       <p class="sub">Programa educativo para expertos en café</p>
     </header>
@@ -173,7 +185,7 @@
 
   <section class="edu-section edu-baristas-sec" id="baristas">
     <header class="edu-heading">
-      <h2>Nuestros baristas</h2>
+      <h2 class="section-title-center">Nuestros baristas</h2>
       <span class="rule" aria-hidden="true"></span>
       <p class="sub">Impulsamos la capacitación continua de nuestro equipo; por ello nuestros baristas se encuentran capacitados frecuentemente y cuentan con certificaciones internacionales principalmente por la Specialty Coffee Association (SCA).</p>
     </header>
@@ -252,7 +264,7 @@
 
     <section class="edu-section edu-reviews-sec">
     <header class="edu-heading reviews-head">
-      <h2>Opiniones de clientes</h2>
+      <h2 class="section-title-center">Opiniones de clientes</h2>
       <span class="rule" aria-hidden="true"></span>
       <p class="sub">Nos encanta ver cómo nuestra comunidad crece con cada taza y cada práctica. Aquí algunas reseñas reales de personas que han vivido la experiencia Café Etrusca.</p>
     </header>

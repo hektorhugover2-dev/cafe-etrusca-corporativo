@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 @Component({
   selector: 'app-course-policies-page',
@@ -19,7 +20,7 @@ export class CoursePoliciesPageComponent implements OnInit {
       description:
         'Consulta las políticas externas de cursos y talleres Café Etrusca 2026: inscripciones, cancelaciones y lineamientos.',
       keywords: 'políticas cursos Café Etrusca, talleres, cancelaciones, inscripciones',
-      image: '/assets/images/educacion/icon-cursos.png',
+      image: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
       ogType: 'website',
       jsonLd: ({ origin, url }) => ({
         '@context': 'https://schema.org',

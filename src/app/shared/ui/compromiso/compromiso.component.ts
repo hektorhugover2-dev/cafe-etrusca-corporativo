@@ -1,6 +1,7 @@
 import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ScrollWaveComponent } from '../scroll-wave/scroll-wave.component';
+import { ASSETS_BASE_URL } from '../../kernel/config/assets-url';
 
 @Component({
   selector: 'app-compromiso',
@@ -10,6 +11,8 @@ import { ScrollWaveComponent } from '../scroll-wave/scroll-wave.component';
   styleUrl: './compromiso.component.scss'
 })
 export class CompromisoComponent implements AfterViewInit, OnDestroy {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   // 1. Buscamos los elementos en el HTML que tengan el identificador #counter
   @ViewChildren('counter') counters!: QueryList<ElementRef>;
   private observer: IntersectionObserver | null = null;

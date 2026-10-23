@@ -7,6 +7,7 @@
   <title>Café Etrusca | Todo Para Tu Cafetería - (55) 4166 8777</title>
   <base href="/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://imagenes.cafeetrusca.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Outfit:wght@700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -50,38 +51,48 @@
     .n8n-chat-header { background-color: #6A1B9A !important; color: white; }
     .n8n-chat-launcher::before { content: '💬'; font-size: 20px; color: white; }
     
-    /* ANIMACIÓN DE 3 PATITAS REBOTANDO (TYPING) */
+    /* ==================================================
+       LUCKY "ESCRIBIENDO": 3 HUELLITAS QUE REBOTAN (TYPING)
+       Sobrescribe los puntos de @n8n/chat (.chat-message-typing-circle)
+       sin tocar la librería. Huellita: assets/images/lucky/huellita.svg (CDN R2).
+       ================================================== */
     .chat-message-typing {
+      max-width: none !important;
+      width: fit-content !important;
+    }
+    .chat-message-typing .chat-message-typing-body {
       display: flex !important;
-      align-items: center;
-      gap: 4px; 
-      padding: 10px 14px !important;
-      background: #f1f1f1 !important;
-      border-radius: 15px !important;
-      width: fit-content;
+      align-items: flex-end;
+      gap: 5px;
+      padding-top: 6px; /* espacio para el salto */
     }
-
     .chat-message-typing .chat-message-typing-circle {
-      background-color: transparent !important; 
-      background-image: url('https://desarrollo.cafeetrusca.com/assets/huellita.png'); 
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      width: 22px !important;
-      height: 22px !important;
+      background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/lucky/huellita.svg') center / contain no-repeat !important;
+      width: 15px !important;
+      height: 15px !important;
       margin: 0 !important;
-      border-radius: 0 !important; 
-      animation: bouncePaws 1.2s infinite ease-in-out both !important;
-      display: inline-block;
+      border-radius: 0 !important;
+      display: block !important;
+      animation: luckyPawStep 1.2s ease-in-out infinite both !important;
+      --paw-tilt: -12deg;
     }
+    .chat-message-typing .chat-message-typing-circle:nth-child(1) { animation-delay: 0s !important; }
+    .chat-message-typing .chat-message-typing-circle:nth-child(2) { animation-delay: .15s !important; --paw-tilt: 12deg; }
+    .chat-message-typing .chat-message-typing-circle:nth-child(3) { animation-delay: .3s !important; }
 
-    .chat-message-typing .chat-message-typing-circle:nth-child(1) { animation-delay: -0.32s !important; }
-    .chat-message-typing .chat-message-typing-circle:nth-child(2) { animation-delay: -0.16s !important; }
-    .chat-message-typing .chat-message-typing-circle:nth-child(3) { animation-delay: 0s !important; }
-
-    @keyframes bouncePaws {
-      0%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); } 
+    @keyframes luckyPawStep {
+      0%, 60%, 100% { transform: translateY(0) rotate(var(--paw-tilt)); opacity: .55; }
+      30% { transform: translateY(-5px) rotate(calc(var(--paw-tilt) * -0.5)); opacity: 1; }
+    }
+    @keyframes luckyPawFade {
+      0%, 100% { opacity: .35; }
+      50% { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .chat-message-typing .chat-message-typing-circle {
+        animation-name: luckyPawFade !important;
+        transform: rotate(var(--paw-tilt));
+      }
     }
 
     .chat-message-markdown img{ max-width: 50% !important; height: auto; margin-left: 5vw; }
@@ -116,6 +127,57 @@
     });
 
     document.addEventListener("DOMContentLoaded", () => {
+        // Avatar de Lucky + punto verde en el encabezado (idempotente: data-lucky-added).
+        const luckySetup = (node) => {
+                            // Cambiar el Header por el Avatar en video de Lucky
+                            const heading = node.querySelector('.chat-heading > h1, .n8n-chat-header h1');
+                            if (heading && !heading.dataset.luckyAdded) {
+                                heading.dataset.luckyAdded = "true";
+                                heading.innerHTML = `
+                                    <div style="display: flex; align-items: center; gap: 10px; position: relative;">
+                                        <div id="avatar-wrapper" style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('/assets/images/chat/lucky.jpg'); background-size: cover; background-position: center; overflow: hidden;"></div>
+                                        <span style="font-weight: bold;">Lucky</span>
+                                        <span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>
+                                    </div>
+                                `;
+
+                                // Lógica del Video de Lucky
+                                const avatarWrapper = heading.querySelector("#avatar-wrapper");
+                                const videoList = ["https://intranet.cafeetrusca.com/video/elia-1.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-2.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-3.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-4.mp4?v=1.2"];
+                                let currentIndex = 0;
+
+                                function showVideo() {
+                                    if (!document.contains(avatarWrapper)) return; // Se detiene si cierran el chat
+                                    const videoSrc = videoList[currentIndex];
+                                    currentIndex = (currentIndex + 1) % videoList.length;
+                                    const video = document.createElement('video');
+                                    video.src = videoSrc;
+                                    video.autoplay = true;
+                                    video.muted = true;
+                                    video.playsInline = true;
+                                    video.style.cssText = `position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 1;`;
+                                    // Si el video no carga (p. ej. bloqueado cross-origin) no debe tapar la foto con un circulo negro.
+                                    video.style.opacity = '0';
+                                    video.addEventListener('playing', () => { video.style.opacity = '1'; });
+                                    video.onerror = () => { video.remove(); setTimeout(showVideo, 5000); };
+                                    avatarWrapper.appendChild(video);
+                                    video.onended = () => {
+                                        if(avatarWrapper.contains(video)) avatarWrapper.removeChild(video);
+                                        setTimeout(showVideo, 5000);
+                                    };
+                                }
+                                setTimeout(showVideo, 5000);
+                            }
+
+                            const subtitle = node.querySelector('.n8n-chat-header-subtitle, .chat-header > p');
+                            if (subtitle && /Start a chat|help you 24|Hi there/i.test(subtitle.textContent || '')) {
+                                subtitle.textContent = 'Estamos en línea para ayudarte.';
+                            }
+
+                            const inputtext = node.querySelector('.chat-inputs textarea, .n8n-chat-input textarea');
+                            if (inputtext) inputtext.placeholder = "Escribe tu pregunta aquí...";
+
+        };
         // Observamos todo el BODY para detectar cuando n8n abre la ventana del chat
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -128,24 +190,25 @@
                         if (!markdown || markdown.dataset.rendered) return;
                         markdown.dataset.rendered = "true";
                         
-                        let text = markdown.textContent || markdown.innerText;
-
-                        // Traducción de los saludos por defecto de n8n
-                        if (text.includes('Hi there!')) {
-                            text = '¡Hola!';
-                        }
-                        if (
-                            text.includes('My name is Nathan') ||
-                            text.includes('My name is n8n') ||
-                            text.includes('how can I assist') ||
-                            text.includes('How can I assist')
-                        ) {
-                            text = 'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?';
-                        }
-
-                        // Formatear saltos de línea a HTML
-                        let html = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\n/g, "<br>");
-                        markdown.innerHTML = html;
+                        const text = markdown.textContent || '';
+                        // Traduccion de los saludos por defecto de n8n (solo esos mensajes se reemplazan como texto).
+                        if (text.includes('Hi there!')) { markdown.textContent = '¡Hola!'; return; }
+                        if (/My name is (Nathan|n8n)|how can I assist/i.test(text)) { markdown.textContent = 'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?'; return; }
+                        // El resto conserva el HTML que ya genero @n8n/chat (markdown-it): antes se reescribia con
+                        // textContent y se perdian las imagenes ![alt](url) y los enlaces.
+                        const okHost = (h) => h === 'cafeetrusca.com' || h.endsWith('.cafeetrusca.com');
+                        markdown.querySelectorAll('img').forEach((img) => {
+                            let src = img.getAttribute('src') || '';
+                            if (src.startsWith('/img/')) src = 'https://cafeetrusca.com' + src;
+                            let url = null;
+                            try { url = new URL(src); } catch (e) {}
+                            if (!url || url.protocol !== 'https:' || !okHost(url.hostname)) { img.remove(); return; }
+                            img.src = url.href;
+                            img.alt = img.getAttribute('alt') || '';
+                            img.loading = 'lazy';
+                            img.decoding = 'async';
+                            img.style.cssText = 'display:block;max-width:100%;height:auto;border-radius:12px;margin:6px 0;';
+                        });
                     }
 
                     // 2. INYECTAR A LUCKY Y TEXTOS AL ABRIR EL CHAT
@@ -189,58 +252,20 @@
                         setTimeout(() => applySpanishUi(document.body), 200);
                         setTimeout(() => applySpanishUi(document.body), 800);
 
-                        setTimeout(() => {
-                            // Cambiar el Header por el Avatar en video de Lucky
-                            const heading = node.querySelector('.chat-heading > h1, .n8n-chat-header h1');
-                            if (heading && !heading.dataset.luckyAdded) {
-                                heading.dataset.luckyAdded = "true";
-                                heading.innerHTML = `
-                                    <div style="display: flex; align-items: center; gap: 10px; position: relative;">
-                                        <div id="avatar-wrapper" style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('https://intranet.cafeetrusca.com/video/elia.jpg?v=1.2'); background-size: cover; background-position: center; overflow: hidden;"></div>
-                                        <span style="font-weight: bold;">Lucky</span>
-                                        <span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>
-                                    </div>
-                                `;
-
-                                // Lógica del Video de Lucky
-                                const avatarWrapper = heading.querySelector("#avatar-wrapper");
-                                const videoList = ["https://intranet.cafeetrusca.com/video/elia-1.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-2.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-3.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-4.mp4?v=1.2"];
-                                let currentIndex = 0;
-
-                                function showVideo() {
-                                    if (!document.contains(avatarWrapper)) return; // Se detiene si cierran el chat
-                                    const videoSrc = videoList[currentIndex];
-                                    currentIndex = (currentIndex + 1) % videoList.length;
-                                    const video = document.createElement('video');
-                                    video.src = videoSrc;
-                                    video.autoplay = true;
-                                    video.muted = true;
-                                    video.playsInline = true;
-                                    video.style.cssText = `position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 1;`;
-                                    avatarWrapper.appendChild(video);
-                                    video.onended = () => {
-                                        if(avatarWrapper.contains(video)) avatarWrapper.removeChild(video);
-                                        setTimeout(showVideo, 5000);
-                                    };
-                                }
-                                setTimeout(showVideo, 5000);
-                            }
-
-                            const subtitle = node.querySelector('.n8n-chat-header-subtitle, .chat-header > p');
-                            if (subtitle && /Start a chat|help you 24|Hi there/i.test(subtitle.textContent || '')) {
-                                subtitle.textContent = 'Estamos en línea para ayudarte.';
-                            }
-
-                            const inputtext = node.querySelector('.chat-inputs textarea, .n8n-chat-input textarea');
-                            if (inputtext) inputtext.placeholder = "Escribe tu pregunta aquí...";
-
-                        }, 400);
+                        setTimeout(() => luckySetup(node), 400);
                     }
                 });
             });
         });
 
         observer.observe(document.body, { childList: true, subtree: true });
+        // @n8n/chat 1.43 monta la ventana antes de este listener y al abrir solo la muestra: el observer ya no ve
+        // el encabezado como nodo nuevo, por eso Lucky dejo de salir. Se aplica tambien al cargar y al abrir.
+        const runLucky = () => { const w = document.querySelector('.chat-window'); if (w) luckySetup(w); };
+        runLucky();
+        document.addEventListener('click', (ev) => {
+            if (ev.target.closest && ev.target.closest('.chat-window-toggle')) { setTimeout(runLucky, 100); setTimeout(runLucky, 500); }
+        });
     });
 
     // 3. WIDGET DE AYUDA Y BOTÓN BURBUJA FLOTANTE
@@ -270,7 +295,7 @@
             const originalSVGminimizar = `<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"></path></svg>`;
             let estado = 'imagen';
 
-            toggle.innerHTML = `<div style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('https://intranet.cafeetrusca.com/video/elia.jpg?v=1.2')!important; background-size: cover; background-position: center; overflow: hidden;"></div><span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>`;
+            toggle.innerHTML = `<div style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('/assets/images/chat/lucky.jpg')!important; background-size: cover; background-position: center; overflow: hidden;"></div><span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>`;
 
             toggle.addEventListener("click", function () {
                 if (estado === 'imagen') {

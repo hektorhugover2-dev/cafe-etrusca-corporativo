@@ -54,7 +54,7 @@
 
   @if (courses.length > 1) {
     <section class="edu-section">
-      <h2>¿Cuál {{ cat.label.toLowerCase() }} es para ti?</h2>
+      <h2 class="section-title-center">¿Cuál {{ cat.label.toLowerCase() }} es para ti?</h2>
       <div class="edu-grid-2">
         @for (c of courses; track c.slug; let last = $last) {
           <article class="edu-path">
@@ -68,7 +68,7 @@
   }
 
   <section class="edu-section">
-    <h2>Qué aprenderás</h2>
+    <h2 class="section-title-center">Qué aprenderás</h2>
     <p class="sub">Aprende, practica y aplica desde el primer día.</p>
     <div class="edu-grid-6">
       @for (i of learn; track i.label) {
@@ -81,7 +81,7 @@
   </section>
 
   <section class="edu-section">
-    <h2>Nuestra metodología</h2>
+    <h2 class="section-title-center">Nuestra metodología</h2>
     <div class="edu-grid-2" style="grid-template-columns: repeat(4, 1fr);">
       @for (m of method; track m.n) {
         <article class="edu-step">
@@ -98,14 +98,14 @@
   </section>
 
   <section class="edu-section">
-    <h2>¿A quién va dirigido?</h2>
+    <h2 class="section-title-center">¿A quién va dirigido?</h2>
     <div class="edu-chips">
       @for (a of audience; track a) { <span>{{ a }}</span> }
     </div>
   </section>
 
   <section class="edu-section">
-    <h2>Preguntas frecuentes</h2>
+    <h2 class="section-title-center">Preguntas frecuentes</h2>
     <p class="sub">Para ayudarte, hemos preparado esta guía con las respuestas a las preguntas más comunes de nuestra comunidad.</p>
     <div class="edu-faq">
       @for (f of faq; track f.q) {

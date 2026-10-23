@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 /**
  * Datos de la página /insumos-para-cafeterias/jarabes/torani/.
  *
@@ -37,7 +38,7 @@ export interface ToraniLine {
   icons: { sabor: string; pres: string; rend: string };
 }
 
-const JAR = '/assets/images/insumos/jarabes';
+const JAR = `${ASSETS_BASE_URL}/images/insumos/jarabes`;
 
 export const TORANI_STORE_URL = 'https://tienda.cafeetrusca.com/productos?search=TORANI';
 
@@ -47,7 +48,7 @@ export const TORANI_LINES: ToraniLine[] = [
     description: 'Jarabe con una amplia variedad de sabores para agregar sabor a cafés, cócteles, postres y más.',
     formulacion: 'Azúcar de caña',
     sabores: '60 opciones', presentacion: '750 ml', rendimiento: 'Aprox. 25 bebidas de 450 ml',
-    image: '/assets/images/insumos/line-defaults/jarabes-clasico.webp', blob: JAR + '/blob-yellow.png', tone: 'yellow', anchor: 'sabores',
+    image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-clasico.webp`, blob: JAR + '/blob-yellow.png', tone: 'yellow', anchor: 'sabores',
     icons: { sabor: JAR + '/icon-sabor-yellow.png', pres: JAR + '/icon-pres-yellow.png', rend: JAR + '/icon-rend-yellow.png' }
   },
   {
@@ -55,7 +56,7 @@ export const TORANI_LINES: ToraniLine[] = [
     description: 'Formulación sin azúcar para cafés, coctelería y postres con el mismo perfil de sabor.',
     formulacion: 'Sucralosa',
     sabores: '17 opciones', presentacion: '750 ml', rendimiento: 'Aprox. 25 bebidas de 450 ml',
-    image: '/assets/images/insumos/line-defaults/jarabes-sugarfree.webp', blob: JAR + '/blob-cyan.png', tone: 'cyan', anchor: 'sugar-free',
+    image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-sugarfree.webp`, blob: JAR + '/blob-cyan.png', tone: 'cyan', anchor: 'sugar-free',
     icons: { sabor: JAR + '/icon-sabor-cyan.png', pres: JAR + '/icon-pres-cyan.png', rend: JAR + '/icon-rend-cyan.png' }
   },
   {
@@ -70,33 +71,33 @@ export const TORANI_LINES: ToraniLine[] = [
 
 /** Sabores Torani Clásico más buscados (Search Console, jun-sep 2026) */
 export const TORANI_CLASICO: ToraniProduct[] = [
-  { code: 'IJA-097', flavor: 'Caramel', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR CARAMEL BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-097/TORANI-JARABE-CLASICO-SABOR-CARAMEL-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-097.webp' },
-  { code: 'IJA-186', flavor: 'Vainilla francesa', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR VAINILLA FRANCESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-186/TORANI-JARABE-CLASICO-SABOR-VAINILLA-FRANCESA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-186.webp' },
-  { code: 'IJA-104', flavor: 'Vainilla', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR VAINILLA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-104/TORANI-JARABE-CLASICO-SABOR-VAINILLA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-104.webp' },
-  { code: 'IJA-032', flavor: 'Fresa', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR FRESA BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-032/TORANI-JARABE-CLASICO-SABOR-FRESA-BOTELLA-750ml', image: '/assets/images/torani/productos/IJA-032.webp' },
-  { code: 'IJA-100', flavor: 'Avellana', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR AVELLANA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-100/TORANI-JARABE-CLASICO-SABOR-AVELLANA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-100.webp' },
-  { code: 'IJA-005', flavor: 'Chocolate blanco', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR CHOCOLATE BLANCO BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-005/TORANI-JARABE-CLASICO-SABOR-CHOCOLATE-BLANCO-BOTELLA-750ml', image: '/assets/images/torani/productos/IJA-005.webp' },
-  { code: 'IJA-019', flavor: 'Crema de menta', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR CREMA DE MENTA BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-019/TORANI-JARABE-CLASICO-SABOR-CREMA-DE-MENTA-BOTELLA-750ml', image: '/assets/images/torani/productos/IJA-019.webp' },
-  { code: 'IJA-012', flavor: 'Blueberry', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR BLUEBERRY BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-012/TORANI-JARABE-CLASICO-SABOR-BLUEBERRY-BOTELLA-750ml', image: '/assets/images/torani/productos/IJA-012.webp' },
-  { code: 'IJA-098', flavor: 'Cereza', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR CEREZA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-098/TORANI-JARABE-CLASICO-SABOR-CEREZA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-098.webp' }
+  { code: 'IJA-097', flavor: 'Caramel', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR CARAMEL BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-097/TORANI-JARABE-CLASICO-SABOR-CARAMEL-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-097.webp` },
+  { code: 'IJA-186', flavor: 'Vainilla francesa', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR VAINILLA FRANCESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-186/TORANI-JARABE-CLASICO-SABOR-VAINILLA-FRANCESA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-186.webp` },
+  { code: 'IJA-104', flavor: 'Vainilla', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR VAINILLA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-104/TORANI-JARABE-CLASICO-SABOR-VAINILLA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-104.webp` },
+  { code: 'IJA-032', flavor: 'Fresa', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR FRESA BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-032/TORANI-JARABE-CLASICO-SABOR-FRESA-BOTELLA-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-032.webp` },
+  { code: 'IJA-100', flavor: 'Avellana', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR AVELLANA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-100/TORANI-JARABE-CLASICO-SABOR-AVELLANA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-100.webp` },
+  { code: 'IJA-005', flavor: 'Chocolate blanco', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR CHOCOLATE BLANCO BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-005/TORANI-JARABE-CLASICO-SABOR-CHOCOLATE-BLANCO-BOTELLA-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-005.webp` },
+  { code: 'IJA-019', flavor: 'Crema de menta', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR CREMA DE MENTA BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-019/TORANI-JARABE-CLASICO-SABOR-CREMA-DE-MENTA-BOTELLA-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-019.webp` },
+  { code: 'IJA-012', flavor: 'Blueberry', line: 'Clásico', presentation: 'Botella 750 ml', name: "TORANI JARABE CLASICO SABOR BLUEBERRY BOTELLA 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-012/TORANI-JARABE-CLASICO-SABOR-BLUEBERRY-BOTELLA-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-012.webp` },
+  { code: 'IJA-098', flavor: 'Cereza', line: 'Clásico', presentation: 'Botella PET 750 ml', name: "TORANI JARABE CLASICO SABOR CEREZA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-098/TORANI-JARABE-CLASICO-SABOR-CEREZA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-098.webp` }
 ];
 
 export const TORANI_SUGAR_FREE: ToraniProduct[] = [
-  { code: 'IJA-195', flavor: 'Vainilla', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR VAINILLA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-195/TORANI-JARABE-SUGAR-FREE-SABOR-VAINILLA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-195.webp' },
-  { code: 'IJA-194', flavor: 'Caramelo', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR CARAMELO BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-194/TORANI-JARABE-SUGAR-FREE-SABOR-CARAMELO-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-194.webp' },
-  { code: 'IJA-193', flavor: 'Avellana', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR AVELLANA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-193/TORANI-JARABE-SUGAR-FREE-SABOR-AVELLANA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-193.webp' },
-  { code: 'IJA-197', flavor: 'Fresa', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR FRESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-197/TORANI-JARABE-SUGAR-FREE-SABOR-FRESA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-197.webp' },
-  { code: 'IJA-198', flavor: 'Vainilla francesa', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR VAINILLA FRANCESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-198/TORANI-JARABE-SUGAR-FREE-SABOR-VAINILLA-FRANCESA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-198.webp' },
-  { code: 'IJA-196', flavor: 'Crema irlandesa', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR CREMA IRLANDESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-196/TORANI-JARABE-SUGAR-FREE-SABOR-CREMA-IRLANDESA-BOTELLA-PET-750ml', image: '/assets/images/torani/productos/IJA-196.webp' }
+  { code: 'IJA-195', flavor: 'Vainilla', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR VAINILLA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-195/TORANI-JARABE-SUGAR-FREE-SABOR-VAINILLA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-195.webp` },
+  { code: 'IJA-194', flavor: 'Caramelo', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR CARAMELO BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-194/TORANI-JARABE-SUGAR-FREE-SABOR-CARAMELO-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-194.webp` },
+  { code: 'IJA-193', flavor: 'Avellana', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR AVELLANA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-193/TORANI-JARABE-SUGAR-FREE-SABOR-AVELLANA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-193.webp` },
+  { code: 'IJA-197', flavor: 'Fresa', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR FRESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-197/TORANI-JARABE-SUGAR-FREE-SABOR-FRESA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-197.webp` },
+  { code: 'IJA-198', flavor: 'Vainilla francesa', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR VAINILLA FRANCESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-198/TORANI-JARABE-SUGAR-FREE-SABOR-VAINILLA-FRANCESA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-198.webp` },
+  { code: 'IJA-196', flavor: 'Crema irlandesa', line: 'Sugar Free', presentation: 'Botella PET 750 ml', name: "TORANI JARABE SUGAR FREE SABOR CREMA IRLANDESA BOTELLA PET 750ml", url: 'https://tienda.cafeetrusca.com/producto/detalle/IJA-196/TORANI-JARABE-SUGAR-FREE-SABOR-CREMA-IRLANDESA-BOTELLA-PET-750ml', image: `${ASSETS_BASE_URL}/images/torani/productos/IJA-196.webp` }
 ];
 
 export const TORANI_SALSAS: ToraniProduct[] = [
-  { code: 'ISA-021', flavor: 'Caramelo', line: 'Salsa Puremade', presentation: 'Bote 1.89 L', name: "TORANI SALSA PUREMADE SABOR CARAMELO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-021/TORANI-SALSA-PUREMADE-SABOR-CARAMELO-BOTE-1-89-l', image: '/assets/images/torani/productos/ISA-021.webp' },
-  { code: 'ISA-019', flavor: 'Chocolate oscuro', line: 'Salsa Puremade', presentation: 'Bote 1.89 L', name: "TORANI SALSA PUREMADE SABOR CHOCOLATE OSCURO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-019/TORANI-SALSA-PUREMADE-SABOR-CHOCOLATE-OSCURO-BOTE-1-89-l', image: '/assets/images/torani/productos/ISA-019.webp' },
-  { code: 'ISA-020', flavor: 'Chocolate blanco', line: 'Salsa Puremade', presentation: 'Bote 1.89 L', name: "TORANI SALSA PUREMADE SABOR CHOCOLATE BLANCO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-020/TORANI-SALSA-PUREMADE-SABOR-CHOCOLATE-BLANCO-BOTE-1-89-l', image: '/assets/images/torani/productos/ISA-020.webp' },
-  { code: 'ISA-014', flavor: 'Caramelo', line: 'Salsa Sugar Free', presentation: 'Bote 1.89 L', name: "TORANI SALSA SUGAR FREE SABOR CARAMELO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-014/TORANI-SALSA-SUGAR-FREE-SABOR-CARAMELO-BOTE-1-89-l', image: '/assets/images/torani/productos/ISA-014.webp' },
-  { code: 'ISA-012', flavor: 'Chocolate oscuro', line: 'Salsa Sugar Free', presentation: 'Bote 1.89 L', name: "TORANI SALSA SUGAR FREE SABOR CHOCOLATE OSCURO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-012/TORANI-SALSA-SUGAR-FREE-SABOR-CHOCOLATE-OSCURO-BOTE-1-89-l', image: '/assets/images/torani/productos/ISA-012.webp' },
-  { code: 'ISA-013', flavor: 'Chocolate blanco', line: 'Salsa Sugar Free', presentation: 'Bote 1.89 L', name: "TORANI SALSA SUGAR FREE SABOR CHOCOLATE BLANCO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-013/TORANI-SALSA-SUGAR-FREE-SABOR-CHOCOLATE-BLANCO-BOTE-1-89-l', image: '/assets/images/torani/productos/ISA-013.webp' }
+  { code: 'ISA-021', flavor: 'Caramelo', line: 'Salsa Puremade', presentation: 'Bote 1.89 L', name: "TORANI SALSA PUREMADE SABOR CARAMELO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-021/TORANI-SALSA-PUREMADE-SABOR-CARAMELO-BOTE-1-89-l', image: `${ASSETS_BASE_URL}/images/torani/productos/ISA-021.webp` },
+  { code: 'ISA-019', flavor: 'Chocolate oscuro', line: 'Salsa Puremade', presentation: 'Bote 1.89 L', name: "TORANI SALSA PUREMADE SABOR CHOCOLATE OSCURO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-019/TORANI-SALSA-PUREMADE-SABOR-CHOCOLATE-OSCURO-BOTE-1-89-l', image: `${ASSETS_BASE_URL}/images/torani/productos/ISA-019.webp` },
+  { code: 'ISA-020', flavor: 'Chocolate blanco', line: 'Salsa Puremade', presentation: 'Bote 1.89 L', name: "TORANI SALSA PUREMADE SABOR CHOCOLATE BLANCO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-020/TORANI-SALSA-PUREMADE-SABOR-CHOCOLATE-BLANCO-BOTE-1-89-l', image: `${ASSETS_BASE_URL}/images/torani/productos/ISA-020.webp` },
+  { code: 'ISA-014', flavor: 'Caramelo', line: 'Salsa Sugar Free', presentation: 'Bote 1.89 L', name: "TORANI SALSA SUGAR FREE SABOR CARAMELO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-014/TORANI-SALSA-SUGAR-FREE-SABOR-CARAMELO-BOTE-1-89-l', image: `${ASSETS_BASE_URL}/images/torani/productos/ISA-014.webp` },
+  { code: 'ISA-012', flavor: 'Chocolate oscuro', line: 'Salsa Sugar Free', presentation: 'Bote 1.89 L', name: "TORANI SALSA SUGAR FREE SABOR CHOCOLATE OSCURO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-012/TORANI-SALSA-SUGAR-FREE-SABOR-CHOCOLATE-OSCURO-BOTE-1-89-l', image: `${ASSETS_BASE_URL}/images/torani/productos/ISA-012.webp` },
+  { code: 'ISA-013', flavor: 'Chocolate blanco', line: 'Salsa Sugar Free', presentation: 'Bote 1.89 L', name: "TORANI SALSA SUGAR FREE SABOR CHOCOLATE BLANCO BOTE 1.89 l", url: 'https://tienda.cafeetrusca.com/producto/detalle/ISA-013/TORANI-SALSA-SUGAR-FREE-SABOR-CHOCOLATE-BLANCO-BOTE-1-89-l', image: `${ASSETS_BASE_URL}/images/torani/productos/ISA-013.webp` }
 ];
 
 export const TORANI_SALSA_LINES = [

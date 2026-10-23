@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 /**
  * Datos de la página /insumos-para-cafeterias/bases-en-polvo/chillout/.
  * Clonada de la página Torani (torani.data.ts); mismo patrón de brief SEO.
@@ -39,8 +40,8 @@ export interface ChilloutLine {
   icons: { sabor: string; pres: string; rend: string };
 }
 
-const JAR = '/assets/images/insumos/jarabes';
-const CHL = '/assets/images/insumos/chillout';
+const JAR = `${ASSETS_BASE_URL}/images/insumos/jarabes`;
+const CHL = `${ASSETS_BASE_URL}/images/insumos/chillout`;
 
 export const CHILLOUT_STORE_URL = 'https://tienda.cafeetrusca.com/productos?search=CHILLOUT%20BASE%20EN%20POLVO';
 

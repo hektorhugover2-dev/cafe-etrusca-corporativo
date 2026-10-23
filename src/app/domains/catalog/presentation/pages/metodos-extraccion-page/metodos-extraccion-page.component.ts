@@ -1,3 +1,4 @@
+import { HeroCrumbsComponent, HeroCrumb } from '../../../../../shared/ui/hero-crumbs/hero-crumbs.component';
 import { Component, inject } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -29,7 +30,7 @@ import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
 @Component({
   selector: 'app-metodos-extraccion-page',
   standalone: true,
-  imports: [RouterLink, NgTemplateOutlet, ScrollWaveComponent, AccBrandProductsComponent],
+  imports: [HeroCrumbsComponent, RouterLink, NgTemplateOutlet, ScrollWaveComponent, AccBrandProductsComponent],
   templateUrl: './metodos-extraccion-page.component.html',
   styleUrls: ['./metodos-extraccion-page.component.scss']
 })
@@ -45,6 +46,7 @@ export class MetodosExtraccionPageComponent {
     this.buyModal.open({ title: p.title, brand: p.brand, fallbackUrl: this.catalogUrl, fallbackLabel: 'Catálogo de accesorios' }, ev);
   }
   readonly hub = ACCESORIOS_HUB;
+  readonly crumbs: HeroCrumb[] = [{ label: 'Inicio', path: '/' }, { label: 'Accesorios', path: ACCESORIOS_HUB }, { label: 'Métodos de extracción', path: ACCESORIOS_HUB + '/metodo-extraccion' }];
   readonly hero = MET_HERO;
   readonly brands = MET_BRANDS;
   readonly products = MET_PRODUCTS;

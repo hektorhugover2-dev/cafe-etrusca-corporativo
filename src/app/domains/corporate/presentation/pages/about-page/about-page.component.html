@@ -12,7 +12,7 @@
   <section class="ns-mosaic">
     <div class="ns-mosaic-grid">
     <article class="ns-cell ns-photo">
-      <img src="/assets/images/soy-etrusca.png" alt="Soy Etrusca">
+      <img src="{{ assetsBase }}/images/soy-etrusca.png" alt="Soy Etrusca">
     </article>
 
     <article class="ns-cell ns-cyan">
@@ -29,11 +29,11 @@
     </article>
 
     <article class="ns-cell ns-photo">
-      <img src="/assets/images/nosotros-lattes.png" alt="Bebidas de especialidad">
+      <img src="{{ assetsBase }}/images/nosotros-lattes.png" alt="Bebidas de especialidad">
     </article>
 
     <article class="ns-cell ns-photo ns-photo-machine">
-      <img src="/assets/images/nosotros-maquina.png" alt="Máquina espresso">
+      <img src="{{ assetsBase }}/images/nosotros-maquina.png" alt="Máquina espresso">
     </article>
 
     <article class="ns-cell ns-orange">
@@ -59,12 +59,12 @@
     </div>
     <div class="ns-mv">
     <article class="ns-card ns-mision">
-      <h2>MISIÓN</h2>
+      <h2>Misión</h2>
       <p>Somos una empresa comercializadora que promueve y asesora a los negocios de café en México y el extranjero; ayudando a pequeños, medianos y grandes empresarios para que progresen y se desarrollen en el segmento de café de manera competitiva.</p>
     </article>
 
     <article class="ns-card ns-vision">
-      <h2>VISIÓN</h2>
+      <h2>Visión</h2>
       <span class="ns-rule"></span>
       <p>Ser una empresa certificada que innove dentro del sector de café y bebidas, fomentando nuestra pasión y excelencia. Socialmente responsable en la cadena productiva. Ofreciendo productos y equipos de alta calidad que cuiden el medio ambiente y el uso eficiente de los recursos.</p>
     </article>
@@ -81,20 +81,18 @@
     <app-scroll-wave position="top" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
 
     <div class="ns-valor-inner">
-      <h2>VALOR EN<br><span>CADA BEBIDA</span></h2>
+      <h2>Valor en<br><span>cada bebida</span></h2>
       <p class="ns-valor-lead">
         Cada sorbo lleva nuestro compromiso: ingredientes elegidos con esmero,
         manos que cuidan el oficio y un propósito que va más allá de la taza para
         crear una experiencia nueva en cada una.
       </p>
 
-      <div class="ns-drinks" aria-hidden="true">
-        <img src="/assets/images/icon-vaso.png" alt="Bebida en vaso de la sección Nosotros">
-        <img src="/assets/images/icon-taza.png" alt="Taza de café de la sección Nosotros">
-        <img src="/assets/images/icon-bubble.png" alt="Bubble tea de la sección Nosotros">
-        <img src="/assets/images/icon-copa.png" alt="Copa de especialidad de la sección Nosotros">
-        <img src="/assets/images/icon-tumbler.png" alt="Vaso tumbler de la sección Nosotros">
-      </div>
+      <!-- Ilustración lineal de barra de café (molino, espresso, jarabes, latte y bebidas frías). Reemplaza los 5 íconos de bebidas. -->
+      <figure class="ns-drinks">
+        <img [src]="assetsBase + '/images/nosotros/barra-cafe-lineart-v2.webp'" width="2154" height="604" loading="lazy" decoding="async"
+             alt="Ilustración de una barra de café con molino, máquina de espresso, jarabes, latte y bebidas frías">
+      </figure>
 
       <div class="ns-pills">
         @for (v of valores; track v.label) {
@@ -108,7 +106,7 @@
 
   <!-- ================= NUESTRAS MARCAS ================= -->
   <section id="nuestras-marcas" class="ns-marcas">
-    <h2>NUESTRAS MARCAS</h2>
+    <h2 class="section-title-center">Nuestras marcas</h2>
     
     <div class="ns-marcas-grid">
       <!-- TARJETA 1: LA FENICE -->
@@ -118,7 +116,7 @@
           <p>La Fenice es tu mejor aliado para disfrutar de este ritual. Contamos con <strong>todo tipo de accesorios</strong> que te ayudan a rendir culto al café y té; para hacer de ellos <strong>toda una experiencia</strong>.</p>
         </div>
         <div class="brand-band">
-          <img src="/assets/images/fenice.webp" alt="La Fenice">
+          <img src="{{ assetsBase }}/images/fenice.webp" alt="La Fenice">
             <!-- Franja detras del logo -->
         <div class="brand-bottom-bar"></div>
         </div>
@@ -133,7 +131,7 @@
           <p>La misión es <strong>preservar y presentar cafés de especialidad</strong> para nuestros clientes, posicionando al café mexicano entre los mejores del mundo.</p>
         </div>
         <div class="brand-band">
-          <img src="/assets/images/barista-champ.webp" alt="Barista Champ">
+          <img src="{{ assetsBase }}/images/barista-champ.webp" alt="Barista Champ">
           <!-- Franja detras del logo-->
           <div class="brand-bottom-bar"></div>
         </div>
@@ -147,7 +145,7 @@
           <p>En el corazón de nuestra filosofía se encuentra la pasión por la innovación y en un futuro cercano, ampliaremos nuestras líneas existentes con nuevos y emocionantes sabores.</p>
         </div>
         <div class="brand-band">
-          <img src="/assets/images/ChillOut.webp" alt="ChillOut">
+          <img src="{{ assetsBase }}/images/ChillOut.webp" alt="ChillOut">
             <!-- Franja detras logo -->
             <div class="brand-bottom-bar"></div>
         </div>
@@ -160,8 +158,8 @@
   <section class="ns-sellos">
     <h3>ORGULLOSAMENTE PARTE DE</h3>
     <div class="ns-sellos-row">
-      <img src="/assets/images/nosotros/MEM 2.webp" alt="Mejores Empresas Mexicanas">
-      <img src="/assets/images/nosotros/Insignia 2026 Color 1.webp" alt="Certificación Empresa TOP 2026">
+      <img src="{{ assetsBase }}/images/nosotros/MEM 2.webp" alt="Mejores Empresas Mexicanas">
+      <img src="{{ assetsBase }}/images/nosotros/Insignia 2026 Color 1.webp" alt="Certificación Empresa TOP 2026">
     </div>
   </section>
 

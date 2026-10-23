@@ -84,6 +84,13 @@
 .vm-map { position: relative; flex: 1; min-height: 430px; background: #eef0f6; }
 .vm-map iframe { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; }
 
+/* Mapa de pines (Leaflet): ocupa todo el ancho de la tarjeta */
+.vm-card--pins { display: block; min-height: 0; }
+.vm-pins { position: relative; z-index: 0; width: 100%; height: 540px; background: #aad3df; }
+:host ::ng-deep .vm-pin { background: none; border: 0; }
+:host ::ng-deep .vm-pin svg { display: block; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3)); }
+:host ::ng-deep .leaflet-marker-icon:focus-visible { outline: 3px solid var(--vm-navy); outline-offset: 2px; }
+
 /* Panel de detalle */
 .vm-panel {
   display: flex;
@@ -151,6 +158,9 @@
   .vm-switch { grid-column: auto; }
   .vm-switch .vm-type { flex: 1; }
   .vm-map { min-height: 380px; }
+  .vm-pins { height: 420px; }
   .vm-panel h3 { font-size: 1.6rem; }
   .vm-btn { flex: 1 1 100%; }
 }
+
+.vm-note{margin:-.35rem 0 .5rem;font-size:.85rem;font-style:italic;color:#6b6b6b;}

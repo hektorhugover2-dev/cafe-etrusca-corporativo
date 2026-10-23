@@ -18,6 +18,7 @@ import {
   TISANA_RECIPE_SLUG,
   type TisanaProduct
 } from '../../tisanas-chillout.data';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 export { TISANAS_CHILLOUT_PATH };
 
@@ -36,6 +37,8 @@ const TONES = ['coral', 'yellow'] as const;
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './tisanas-chillout-page.component.scss']
 })
 export class TisanasChilloutPageComponent {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
   private buyModal = inject(BuyModalService);
 
@@ -66,7 +69,7 @@ export class TisanasChilloutPageComponent {
         'Qué es una tisana, cómo ponerla en el menú de tu cafetería y qué sabores ChillOut hay: mango fresa, fresa kiwi, moras y más. Compra en línea.',
       keywords:
         'tisana chillout, tisanas chillout, chillout tisana, tisana para cafetería, tisana fresa kiwi, tisana de moras, tisanas frutales, Café Etrusca',
-      image: '/assets/images/insumos/tisanas/hero-drinks.webp',
+      image: `${ASSETS_BASE_URL}/images/insumos/tisanas/hero-drinks.webp`,
       path: TISANAS_CHILLOUT_PATH,
       jsonLd: ({ url }) => [this.itemListLd(url), this.faqLd(url), this.breadcrumbLd()]
     });

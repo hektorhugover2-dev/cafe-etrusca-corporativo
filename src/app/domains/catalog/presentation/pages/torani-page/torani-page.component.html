@@ -1,6 +1,6 @@
 <div class="ins-page layout-jarabes tor-page">
   <section class="jar-hero tor-hero">
-    <img class="jar-hero-blob tor-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob tor-hero-blob" [class.is-hidden]="heroVideoOn()" src="{{ assetsBase }}/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy tor-hero-copy">
       <nav class="tor-crumbs" aria-label="Ruta de navegación">
         <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
@@ -8,8 +8,8 @@
         <a routerLink="/insumos-para-cafeterias/jarabes">Jarabes</a><span aria-hidden="true">›</span>
         <span aria-current="page">Torani</span>
       </nav>
-      <img class="tor-logo" src="/assets/images/insumos/logo-torani.png" alt="Torani" width="150" height="60">
-      <h1><span class="tor-h1-main">Jarabes Torani </span><span class="tor-h1-sub">para cafetería</span></h1>
+      <img class="tor-logo" src="{{ assetsBase }}/images/insumos/logo-torani.png" alt="Torani" width="150" height="60">
+      <h1><span class="tor-h1-main">JARABES TORANI </span><span class="tor-h1-sub visually-hidden">para cafetería</span></h1>
       <p class="lead"><span class="accent">Sabores, Sugar Free y salsas</span> para tu menú</p>
       <p class="body">
         En Café Etrusca encuentras jarabes Torani Clásico, Sugar Free y Puremade, además de salsas Torani,
@@ -26,9 +26,20 @@
         <li><strong>750 ml</strong><span>por botella</span></li>
       </ul>
     </div>
-    <div class="jar-hero-media tor-hero-media">
-      @for (b of heroBottles; track b.src) {
-        <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
+    <div class="jar-hero-media tor-hero-media" [class.has-video]="heroVideoOn()">
+      @if (heroVideoOn()) {
+        <video class="tor-hero-video" muted playsinline loop autoplay preload="none"
+               [poster]="heroVideo.poster" aria-hidden="true" tabindex="-1"
+               disablepictureinpicture disableremoteplayback
+               [muted]="true" (canplay)="playHeroVideo($event)">
+          <source [src]="heroVideo.webm" type="video/webm">
+          <source [src]="heroVideo.mp4" type="video/mp4">
+        </video>
+        <span class="sr-only">Jarabes Torani Puremade, Clásico y Sugar Free</span>
+      } @else {
+        @for (b of heroBottles; track b.src) {
+          <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
+        }
       }
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
@@ -38,7 +49,7 @@
 
   <section class="jar-lines tor-lines" aria-labelledby="tor-lineas">
     <div class="jar-head">
-      <h2 id="tor-lineas">Líneas de jarabes Torani</h2>
+      <h2 class="section-title-center" id="tor-lineas">Líneas de jarabes Torani</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid tor-lines-grid">
@@ -76,7 +87,7 @@
   <section class="tor-section" id="sabores" aria-labelledby="tor-sabores">
     <header class="tor-head">
       <p class="tor-kicker">Torani Clásico</p>
-      <h2 id="tor-sabores">Sabores más buscados</h2>
+      <h2 class="section-title-center" id="tor-sabores">Sabores más buscados</h2>
       <p class="tor-intro">Los sabores de jarabe Torani que más se buscan para cafés, bebidas frías y postres. Cada tarjeta te lleva a su ficha en la tienda, con precio y disponibilidad actualizados.</p>
     </header>
     <div class="tor-grid">
@@ -116,7 +127,7 @@
           </ul>
         </div>
         <div class="tor-split-media">
-          <img src="/assets/images/insumos/jarabes/torani-sugar-free-almendra.webp" alt="Jarabe Torani Sugar Free" loading="lazy">
+          <img src="{{ assetsBase }}/images/insumos/jarabes/torani-sugar-free-almendra.webp" alt="Jarabe Torani Sugar Free" loading="lazy">
         </div>
       </div>
       <div class="tor-grid">
@@ -155,7 +166,7 @@
   <section class="tor-section" id="salsas" aria-labelledby="tor-salsas">
     <header class="tor-head">
       <p class="tor-kicker">Textura y decoración</p>
-      <h2 id="tor-salsas">Salsas Torani</h2>
+      <h2 class="section-title-center" id="tor-salsas">Salsas Torani</h2>
       <p class="tor-intro">Salsas para complementar, mezclar y decorar bebidas y postres, en versión Puremade y Sugar Free.</p>
     </header>
     <div class="tor-salsa-lines">
@@ -193,20 +204,16 @@
     <p class="tor-more"><a routerLink="/insumos-para-cafeterias/salsas">Ver todas las salsas ›</a></p>
   </section>
 
-  @if (recipes.length) {
+  @if (menu.length) {
     <section class="jar-inspira tor-inspira" aria-labelledby="tor-recetas">
       <div class="jar-head">
-        <h2 id="tor-recetas">Inspira tu menú</h2>
+        <h2 class="section-title-center" id="tor-recetas">Inspira tu menú</h2>
         <div class="rule"></div>
       </div>
       <p class="tor-intro tor-intro-center">Recetas de Café Etrusca preparadas con Torani.</p>
-      <div class="jar-inspira-grid">
-        @for (r of recipes; track r.slug; let i = $index) {
-          <article class="jar-drink" [class]="'jar-drink ' + drinkTone(i)">
-            <div class="bar">{{ r.title }} {{ r.titleAccent || '' }}</div>
-            <img [src]="r.image" [alt]="r.title + ' ' + (r.titleAccent || '')" loading="lazy">
-            <a class="more" [routerLink]="recipeLink(r)">Ver receta →</a>
-          </article>
+      <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+        @for (d of menu; track d.link; let i = $index) {
+          <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
         }
       </div>
     </section>
@@ -223,7 +230,7 @@
 
   <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="tor-faq-title">
     <div class="jar-head">
-      <h2 id="tor-faq-title">Preguntas frecuentes</h2>
+      <h2 class="section-title-center" id="tor-faq-title">Preguntas frecuentes</h2>
       <div class="rule"></div>
     </div>
     <div class="tor-faq-list">
@@ -247,7 +254,7 @@
       </div>
       <a class="tor-back" routerLink="/insumos-para-cafeterias/jarabes">Ver todos los jarabes ›</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
     <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
   </section>
 </div>

@@ -14,14 +14,14 @@
   <section class="ct-map-sec">
     <div class="container">
       <div class="text-center mb-5">
-        <h2>Sucursales</h2>
-        <img src="/assets/images/separador.png" alt="" class="ct-sep" />
+        <h2 class="section-title-center section-title-center--has-line">Sucursales</h2>
+        <img src="{{ assetsBase }}/images/separador.png" alt="" class="ct-sep" />
         <p class="ct-sub">
           Elige una sede para ver su mapa de Google, sus datos de contacto y cómo llegar.
         </p>
       </div>
 
-      <app-sede-map [places]="mapPlaces" [(selected)]="currentBranch" idPrefix="contacto-sede"></app-sede-map>
+      <app-sede-map [places]="mapPlaces" [(selected)]="currentBranch" idPrefix="contacto-sede" [showNotes]="true"></app-sede-map>
     </div>
   </section>
 
@@ -31,7 +31,7 @@
       <div class="row g-5 align-items-start">
         <div class="col-lg-5">
           <h2>Escríbenos</h2>
-          <img src="/assets/images/separador.png" alt="" class="ct-sep ct-sep-left" />
+          <img src="{{ assetsBase }}/images/separador.png" alt="" class="ct-sep ct-sep-left" />
           <p class="ct-sub">
             Cuéntanos qué necesitas para tu cafetería. Un asesor te contacta con la información de sucursales, insumos o maquinaria.
           </p>
@@ -40,7 +40,7 @@
             <a href="tel:5541668777">55 41 66 8777</a>
           </p>
           <div class="ct-lucky" aria-hidden="true">
-            <img [src]="luckyWriting ? '/assets/images/lucky-writing.webp' : '/assets/images/lucky-idle.webp'" alt="">
+            <img [src]="luckyWriting ? (assetsBase + '/images/lucky-writing.webp') : (assetsBase + '/images/lucky-idle.webp')" alt="">
           </div>
         </div>
         <div class="col-lg-7">
@@ -136,7 +136,7 @@
       <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
         <div>
           <h2>Sucursales y distribuidores</h2>
-          <img src="/assets/images/separador.png" alt="" class="ct-sep ct-sep-left" />
+          <img src="{{ assetsBase }}/images/separador.png" alt="" class="ct-sep ct-sep-left" />
         </div>
         <div class="ct-chips" role="tablist" aria-label="Filtrar directorio">
           @for (kind of locatorKinds; track kind) {

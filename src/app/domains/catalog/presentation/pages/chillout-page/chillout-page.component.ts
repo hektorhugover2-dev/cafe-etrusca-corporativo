@@ -16,6 +16,7 @@ import {
   CHILLOUT_STORE_URL,
   type ChilloutProduct
 } from '../../chillout.data';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 /** Página de marca ChillOut (bases en polvo). Clon de la página Torani (/insumos-para-cafeterias/jarabes/torani/). */
 export const CHILLOUT_PAGE_PATH = '/insumos-para-cafeterias/bases-en-polvo/chillout';
@@ -37,6 +38,8 @@ function usesChilloutPowder(r: Recipe): boolean {
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './chillout-page.component.scss']
 })
 export class ChilloutPageComponent {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
 
   readonly path = CHILLOUT_PAGE_PATH;
@@ -58,9 +61,9 @@ export class ChilloutPageComponent {
   readonly tallerPath = COURSE_PUBLIC_PATH_BY_SLUG['bebidas-frias'] || '/cursos-para-baristas-y-talleres-para-cafeterias';
   readonly recipes = publishedRecipes().filter(usesChilloutPowder).slice(0, 3);
   readonly heroBottles = [
-    { src: '/assets/images/insumos/chillout/hero-chillout-mix-matcha.webp', alt: 'ChillOut Mix base en polvo sabor matcha, bote 700 g', cls: 'b-left' },
-    { src: '/assets/images/insumos/chillout/hero-chillout-mix-taro.webp', alt: 'ChillOut Mix base en polvo sabor taro, bolsa 2 kg', cls: 'b-center' },
-    { src: '/assets/images/insumos/chillout/hero-chillout-base-neutra-sin-azucar.webp', alt: 'ChillOut Mix base neutra sin azúcar, bolsa 1.6 kg', cls: 'b-right' }
+    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-mix-matcha.webp`, alt: 'ChillOut Mix base en polvo sabor matcha, bote 700 g', cls: 'b-left' },
+    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-mix-taro.webp`, alt: 'ChillOut Mix base en polvo sabor taro, bolsa 2 kg', cls: 'b-center' },
+    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-base-neutra-sin-azucar.webp`, alt: 'ChillOut Mix base neutra sin azúcar, bolsa 1.6 kg', cls: 'b-right' }
   ];
 
   constructor() {
@@ -71,7 +74,7 @@ export class ChilloutPageComponent {
         'Bases en polvo ChillOut Mix y Just Fruit para bebidas frías y calientes: taro, matcha, chai, horchata y opciones sin azúcar. Compra en línea.',
       keywords:
         'chillout, base en polvo chillout, chillout mix, chillout just fruit, chillout sin azúcar, chillout taro, chillout matcha, Café Etrusca',
-      image: '/assets/images/insumos/chillout/hero-chillout-mix-taro.webp',
+      image: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-mix-taro.webp`,
       path: CHILLOUT_PAGE_PATH,
       jsonLd: ({ url }) => [this.itemListLd(url), this.faqLd(url), this.breadcrumbLd()]
     });

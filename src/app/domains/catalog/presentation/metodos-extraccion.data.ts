@@ -8,10 +8,11 @@
  * catálogo de equipos y accesorios y "Asesoría" lleva al formulario de contacto.
  */
 import { ACCESORIOS_HUB } from './accesorios.data';
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 
 export const METODOS_SLUG = 'metodo-extraccion';
 export const METODOS_PATH = `${ACCESORIOS_HUB}/${METODOS_SLUG}`;
-const IMG = '/assets/images/accesorios/metodos-extraccion';
+const IMG = `${ASSETS_BASE_URL}/images/accesorios/metodos-extraccion`;
 
 export interface MetImage {
   src: string;
@@ -143,13 +144,13 @@ export const MET_COURSES: MetCourse[] = [
   {
     kicker: 'Taller',
     title: 'Métodos De Extracción',
-    image: '/assets/images/educacion/cursos-photo.png',
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
     slug: 'metodos-de-extraccion'
   },
   {
     kicker: 'Taller',
     title: 'Formación Para Un Barista',
-    image: '/assets/images/educacion/taller-formacion-barista.webp',
+    image: `${ASSETS_BASE_URL}/images/educacion/taller-formacion-barista.webp`,
     slug: 'formacion-barista'
   }
 ];

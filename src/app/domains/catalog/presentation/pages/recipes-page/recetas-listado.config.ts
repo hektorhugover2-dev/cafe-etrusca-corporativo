@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 /**
  * Configuración del listado /recetas/:
  *  1) RECETA_DEL_MES  → cambia aquí la receta destacada cada mes.
@@ -35,7 +36,7 @@ export const RECETA_DEL_MES: RecetaDelMesConfig = {
   titulo: 'Chamoyada de Mango',
   descripcion:
     'El balance perfecto entre lo dulce, lo picosito y lo refrescante. Una bebida icónica que siempre sabe a verano.',
-  imagen: '/assets/images/recetas/receta-del-mes/chamoyada-de-mango.webp',
+  imagen: `${ASSETS_BASE_URL}/images/recetas/receta-del-mes/chamoyada-de-mango.webp`,
   etiqueta: 'Receta destacada',
   /* La playlist no tiene video de la Chamoyada todavía → el botón lleva a /videoteca. */
   videoId: null,

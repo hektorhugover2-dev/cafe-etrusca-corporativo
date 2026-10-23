@@ -1,0 +1,132 @@
+@if (article; as a) {
+  <article class="blog" (click)="onContentClick($event)">
+    <nav class="blog-crumbs" aria-label="Ruta de navegación">
+      <ol>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/recetas">Recetas y guías</a></li>
+        <li aria-current="page">{{ a.h1 }}</li>
+      </ol>
+    </nav>
+
+    <header class="blog-hero">
+      <div class="blog-hero-text">
+        <p class="blog-kicker">{{ a.kicker }}</p>
+        <h1>{{ a.h1 }}</h1>
+        <p class="blog-intro">{{ a.intro }}</p>
+      </div>
+      <figure class="blog-hero-media">
+        <img [src]="img(a.hero.src)" [alt]="a.hero.alt" [attr.width]="a.hero.width" [attr.height]="a.hero.height" fetchpriority="high" />
+        @if (a.hero.provisional) {
+          <figcaption class="blog-todo">{{ a.hero.provisional }}</figcaption>
+        }
+      </figure>
+    </header>
+
+    @if (a.notes?.length) {
+      <aside class="blog-notes">
+        @for (n of a.notes; track $index) {
+          <p class="blog-todo" [innerHTML]="n"></p>
+        }
+      </aside>
+    }
+
+    <div class="blog-body">
+      @for (s of a.sections; track s.h2) {
+        <section class="blog-section" [attr.id]="s.id || null">
+          <div class="jar-head">
+            <h2>{{ s.h2 }}</h2>
+            <div class="rule" aria-hidden="true"></div>
+          </div>
+          @for (b of s.blocks; track $index) {
+            @switch (b.t) {
+              @case ('p') { <p [innerHTML]="$any(b).html"></p> }
+              @case ('h3') { <h3>{{ $any(b).text }}</h3> }
+              @case ('ul') { <ul>@for (it of $any(b).items; track $index) { <li [innerHTML]="it"></li> }</ul> }
+              @case ('ol') { <ol>@for (it of $any(b).items; track $index) { <li [innerHTML]="it"></li> }</ol> }
+              @case ('todo') { <p class="blog-todo" [innerHTML]="$any(b).html"></p> }
+              @case ('img') {
+                <figure class="blog-figure">
+                  <img [src]="img($any(b).src)" [alt]="$any(b).alt" [attr.width]="$any(b).width" [attr.height]="$any(b).height" loading="lazy" decoding="async" />
+                  @if ($any(b).caption) { <figcaption>{{ $any(b).caption }}</figcaption> }
+                </figure>
+              }
+              @case ('rescued') {
+                <div class="blog-rescued">
+                  <p class="blog-rescued-from">Del blog anterior de Café Etrusca: {{ $any(b).from }}</p>
+                  @for (h of $any(b).html; track $index) { <div class="blog-rescued-p" [innerHTML]="h"></div> }
+                </div>
+              }
+              @case ('linkCta') { <app-blog-link-cta [text]="$any(b).text" [label]="$any(b).label" [path]="$any(b).path" /> }
+              @case ('ctaGroup') {
+                <aside class="blog-cta-group" [class.blog-cta-group--highlight]="$any(b).highlight">
+                  <p class="blog-cta-group-text">{{ $any(b).text }}</p>
+                  <div class="blog-cta-links">
+                    @for (btn of $any(b).buttons; track btn.href; let first = $first) {
+                      @if (btn.external) {
+                        <a class="blog-btn" [class.blog-btn--ghost]="!first" [href]="btn.href" target="_blank" rel="noopener">{{ btn.label }}</a>
+                      } @else {
+                        <a class="blog-btn" [class.blog-btn--ghost]="!first" [href]="btn.href">{{ btn.label }}</a>
+                      }
+                    }
+                  </div>
+                  @if ($any(b).note) { <p class="blog-cta-group-note" [innerHTML]="$any(b).note"></p> }
+                </aside>
+              }
+              @case ('table') {
+                <div class="blog-table-wrap">
+                  <table>
+                    @if ($any(b).caption) { <caption>{{ $any(b).caption }}</caption> }
+                    <thead><tr>@for (h of $any(b).head; track $index) { <th scope="col">{{ h }}</th> }</tr></thead>
+                    <tbody>
+                      @for (r of $any(b).rows; track $index) {
+                        <tr>@for (c of r; track $index) { <td [class.blog-pc]="c.startsWith('por confirmar')">{{ c }}</td> }</tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              }
+            }
+          }
+        </section>
+      }
+
+      @if (a.recipesCta; as rc) {
+        <app-blog-link-cta class="blog-recipes-cta" variant="soft" [text]="rc.text" [label]="rc.label" [path]="rc.path || '/recetas/'" [cards]="cardsOf(rc.cards)" />
+      }
+
+      <section class="blog-section blog-faq">
+        <div class="jar-head">
+          <h2>Preguntas frecuentes</h2>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
+        @for (f of a.faq; track f.q) {
+          <details class="blog-faq-item">
+            <summary>{{ f.q }}</summary>
+            <p>{{ f.a }}</p>
+            @if (f.pending) { <p class="blog-todo"><strong>Por confirmar con Héctor:</strong> esta respuesta no entra en los datos estructurados hasta confirmarla.</p> }
+          </details>
+        }
+      </section>
+
+      @if (a.webinarCta; as w) {
+        <app-blog-link-cta class="blog-webinar-cta" variant="live" [external]="true" [path]="webinarUrl" label="Ver el webinar en vivo en YouTube" [text]="w.text"
+          [secondaryText]="w.podcast ? 'También escucha nuestro podcast' : ''" [secondaryLabel]="w.podcast ? 'Travesías del Sabor' : ''" [secondaryUrl]="w.podcast ? podcastUrl : ''" />
+      }
+
+      <section class="blog-cta">
+        <p>{{ a.cta.text }}</p>
+        <div class="blog-cta-links">
+          @for (l of a.cta.links; track l.path) {
+            <a class="blog-btn" [href]="l.path">{{ l.label }}</a>
+          }
+        </div>
+        @if (a.cta.todo) { <p class="blog-todo" [innerHTML]="a.cta.todo"></p> }
+      </section>
+    </div>
+  </article>
+} @else {
+  <section class="blog blog-missing">
+    <h1>Guía no encontrada</h1>
+    <p><a routerLink="/recetas">Ver recetas y guías</a></p>
+  </section>
+}

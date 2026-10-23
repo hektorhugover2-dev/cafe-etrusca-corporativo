@@ -67,11 +67,40 @@ const MANUAL_REDIRECTS: SeoRedirect[] = [
   { from: "/Blog/Detail/sucursal-etrusca-merida", to: "/sucursales/#merida", source: "tarea 6: página /sucursales/ (antes /contacto/)", clicks: 280 },
 ];
 
-/** D6 Blog (approved). The 10 aditivos/gomas posts are not here: they answer 410 (GONE_PATHS). */
+/** D6 Blog (approved) + rescate 2026-10-20. Aditivos/gomas still in 410 are in GONE_PATHS. */
 const BLOG_REDIRECTS: SeoRedirect[] = [
   { from: '/Blog', to: '/recetas/', source: 'D6 blog → recetas', clicks: 0 },
   { from: '/blog', to: '/recetas/', source: 'D6 blog → recetas', clicks: 0 },
-  { from: '/Blog/Detail/11 cosas que te hacen perder dinero', to: '/emprendiendo-mi-negocio-de-barra-de-cafe-y-cafeteria/', source: 'D6 "11 cosas" → emprende', clicks: 0 }
+  // 2026-10-20: rescate del blog viejo → guías /blog/<slug>/ ("11 cosas" ya no va a emprende) y aditivos
+  // aprobados como 301 (los que siguen en 410 están en GONE_PATHS). Mismo mapa que deploy/iis/web.config.
+  { from: '/Blog/Detail/11 cosas que te hacen perder dinero', to: '/blog/errores-al-abrir-una-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/De la tierra a la mesa - conoce el  proceso de producción del buen café', to: '/blog/proceso-del-cafe-de-la-planta-a-la-taza/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/De la tierra a la mesa - conoce el proceso de producción del buen café', to: '/blog/proceso-del-cafe-de-la-planta-a-la-taza/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/matcha', to: '/recetas/matcha/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/por-que-una-cafeteria', to: '/blog/errores-al-abrir-una-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/los-5-errores-mas-comunes-que-podrias-cometer-en-tu-cafeteria', to: '/blog/errores-al-abrir-una-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Barra de especialidad el modelo más  redituable', to: '/blog/errores-al-abrir-una-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Barra de especialidad el modelo más redituable', to: '/blog/errores-al-abrir-una-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/salted-caramel-frappe', to: '/blog/frappe-para-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/toffee-nutfrappe', to: '/blog/frappe-para-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/trufa-de-chocolate-frappe', to: '/blog/frappe-para-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/iced-coffee-coconut', to: '/recetas/iced-coffee-coconut/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Chai-verde-el-producto-mas-vendido', to: '/blog/chai-david-rio-sabores/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/chai-blanco', to: '/blog/chai-david-rio-sabores/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/te-chai-david-rio', to: '/blog/chai-david-rio-sabores/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/la-importancia-de-vender-cafe-de-especialidad', to: '/blog/que-vender-en-una-cafeteria/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Cómo fijar los precios para tu cafetería', to: '/blog/cuanto-cobrar-por-un-cafe/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Cómo elegir la ubicación perfecta para  tu cafetería', to: '/blog/como-abrir-una-cafeteria-en-mexico/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Cómo elegir la ubicación perfecta para tu cafetería', to: '/blog/como-abrir-una-cafeteria-en-mexico/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/blog/detail/soda-rosa-molecular-480ml', to: '/recetas/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/blog/detail/red-velvet-cereza-latte', to: '/recetas/', source: 'rescate blog viejo (redirecciones-final-2026-10-20.csv, OK Héctor)' },
+  { from: '/Blog/Detail/Qué-son-y-para-que-se-usan-las-gomas-en-productos-alimenticios', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/que-son-los-adictivos', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/Organismos-nacionales-e-internacionales-que-regulan-su-uso', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/Beneficios-y-propiedades-de-la-gelatina-en-productos-alimenticios', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/Clasificación-según-la-función-que-cumplen', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/Realmente-son-malos-para-la-salud', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/Beneficios-y-propiedades-de-la-goma-guar', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' }
 ];
 
 /**
@@ -79,14 +108,8 @@ const BLOG_REDIRECTS: SeoRedirect[] = [
  * redirect to an unrelated page (soft 404). Decoded paths, no trailing slash, case-sensitive.
  */
 export const GONE_PATHS: ReadonlyArray<string> = [
-  'Qué-son-y-para-que-se-usan-las-gomas-en-productos-alimenticios',
+  // 2026-10-20 (CSV final, OK Héctor): los otros 7 aditivos/gomas pasan a 301 → /insumos-para-cafeterias/ (BLOG_REDIRECTS).
   'Qué-son-y-per-que-se-usan-las-gomas-en-productos-alimenticios',
-  'que-son-los-adictivos',
-  'Beneficios-y-propiedades-de-la-goma-guar',
-  'Organismos-nacionales-e-internacionales-que-regulan-su-uso',
-  'Beneficios-y-propiedades-de-la-gelatina-en-productos-alimenticios',
-  'Realmente-son-malos-para-la-salud',
-  'Clasificación-según-la-función-que-cumplen',
   'Tipos-de-aditivos-y-su-uso-en-alimentos-ya-producidos',
   'Beneficios-y-propiedades-de-la-goma-xantana'
 ].map((s) => `/Blog/Detail/${s}`);
@@ -97,6 +120,8 @@ const LIVE_PAGE_KEYS = new Set<string>(['/sucursales']);
 
 const ACCESORIOS_SLUGS = ['barista-espresso', 'metodo-extraccion', 'te-servicio', 'bebidas-frias', 'catacion-medicion', 'limpieza'];
 const CAFE_SLUGS = ['premium', 'especialidad', 'verde'];
+const BUBBLE_AVANZADO_PREFIX = '/cursos-y-talleres/curso-bubble-tea-avanzado-en-';
+const BUBBLE_ESPECIALIZADO_SEDES = ['zona-rosa-cdmx', 'viaducto-cdmx', 'guadalajara', 'leon', 'merida', 'monterrey', 'queretaro', 'tijuana', 'toluca', 'xalapa'];
 
 /** Duplicate catalog URL families → the production-matching family (see header). */
 function catalogDuplicateRedirects(): SeoRedirect[] {
@@ -195,6 +220,13 @@ export function seoRedirectsFor(upcoming: ReadonlyArray<any> | null): SeoRedirec
       to: course ? canonicalPath(course) : canonicalTarget(PAST_EVENT_FORM_TARGET),
       source: course ? 'evento pasado (archivo) → página del curso' : 'evento pasado sin curso → formulario de información'
     });
+  }
+  // 2026-10-20 (tanda 3, OK Héctor): past "curso-bubble-tea-avanzado-*" events → Bubble Tea Especializado
+  // (its sede page when it exists), not the Bubble Tea & Iced Coffee course. Same as deploy/iis/web.config.
+  for (const [key, r] of out) {
+    if (!key.startsWith(BUBBLE_AVANZADO_PREFIX)) continue;
+    const sede = BUBBLE_ESPECIALIZADO_SEDES.find((s) => key.startsWith(`${BUBBLE_AVANZADO_PREFIX}${s}-`));
+    out.set(key, { ...r, to: canonicalPath(sede ? `/taller-de-bubble-tea-especializado-en-${sede}` : '/taller-de-bubble-tea-especializado'), source: 'evento pasado bubble tea avanzado → especializado' });
   }
   for (const r of COURSE_LEGACY_REDIRECTS) {
     const key = normalizeKey(r.from);

@@ -119,6 +119,13 @@ export const routes: Routes = [
       },
 
       {
+        path: 'calculadora-de-precios',
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/price-calculator-page/price-calculator-page.component')
+            .then(m => m.PriceCalculatorPageComponent)
+      },
+
+      {
 
         path: 'recetas',
 
@@ -140,6 +147,14 @@ export const routes: Routes = [
 
             .then(m => m.RecipeDetailPageComponent)
 
+      },
+
+      {
+        // Guías /blog/<slug>/ (briefs SEO 20 oct 2026). Sin índice /blog/ ni enlaces en menú, home o footer.
+        path: 'blog/:slug',
+        loadComponent: () =>
+          import('./domains/blog/presentation/pages/blog-article-page/blog-article-page.component')
+            .then(m => m.BlogArticlePageComponent)
       },
 
       {

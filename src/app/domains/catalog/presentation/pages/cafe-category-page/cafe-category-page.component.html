@@ -23,6 +23,7 @@
 
 
           <div class="cp-hero-copy">
+            <app-hero-crumbs [items]="crumbs" />
 
 
 
@@ -90,14 +91,14 @@
             <div class="cp-hero-stack">
               <img
                 class="layer drink"
-                src="/assets/images/cafe/premium/hero-drink.png"
+                src="{{ assetsBase }}/images/cafe/premium/hero-drink.png"
                 alt="Taza de café premium con cerezas de café"
                 width="640"
                 height="420"
               >
               <img
                 class="layer bag"
-                src="/assets/images/cafe/premium/hero-bag.png"
+                src="{{ assetsBase }}/images/cafe/premium/hero-bag.png"
                 alt="Bolsa Mezcla Especial N°1 Café Etrusca 1 kg"
                 width="420"
                 height="520"
@@ -235,7 +236,7 @@
 
 
 
-              src="/assets/images/cafe/premium/bag-main.png"
+              src="{{ assetsBase }}/images/cafe/premium/bag-main.png"
 
 
 
@@ -323,28 +324,28 @@
 
           <figure class="cp-size cp-size--300">
             <div class="cp-size-visual">
-              <img src="/assets/images/cafe/premium/bag-300g.png" alt="Mezcla Especial N°1 — 300 g" width="180" height="230">
+              <img src="{{ assetsBase }}/images/cafe/premium/bag-300g.png" alt="Mezcla Especial N°1 — 300 g" width="180" height="230">
             </div>
             <figcaption>300&nbsp;g</figcaption>
           </figure>
 
           <figure class="cp-size cp-size--1kg">
             <div class="cp-size-visual">
-              <img src="/assets/images/cafe/premium/bag-1kg.png" alt="Mezcla Especial N°1 — 1 kg" width="220" height="280">
+              <img src="{{ assetsBase }}/images/cafe/premium/bag-1kg.png" alt="Mezcla Especial N°1 — 1 kg" width="220" height="280">
             </div>
             <figcaption>1&nbsp;kg</figcaption>
           </figure>
 
           <figure class="cp-size cp-size--2kg">
             <div class="cp-size-visual">
-              <img src="/assets/images/cafe/premium/bag-2kg.png" alt="Mezcla Especial N°1 — 2 kg" width="240" height="300">
+              <img src="{{ assetsBase }}/images/cafe/premium/bag-2kg.png" alt="Mezcla Especial N°1 — 2 kg" width="240" height="300">
             </div>
             <figcaption>2&nbsp;kg</figcaption>
           </figure>
 
           <figure class="cp-size cp-size--5kg">
             <div class="cp-size-visual">
-              <img src="/assets/images/cafe/premium/bag-5kg.png" alt="Mezcla Especial N°1 — 5 kg" width="280" height="340">
+              <img src="{{ assetsBase }}/images/cafe/premium/bag-5kg.png" alt="Mezcla Especial N°1 — 5 kg" width="280" height="340">
             </div>
             <figcaption>5&nbsp;kg</figcaption>
           </figure>
@@ -369,7 +370,7 @@
         <div class="cp-grid-2 align-center">
           <div class="cp-ideal-media">
             <img
-              src="/assets/images/cafe/premium/extra.png"
+              src="{{ assetsBase }}/images/cafe/premium/extra.png"
               alt="Taza de café premium"
               width="520"
               height="420"
@@ -431,7 +432,7 @@
             <p class="cp-custom-card-title">Creamos tu mezcla personalizada</p>
             <div class="cp-custom-media">
               <img
-                src="/assets/images/cafe/premium/bags-custom.png"
+                src="{{ assetsBase }}/images/cafe/premium/bags-custom.png"
                 alt="Bolsas de mezclas personalizadas Café Etrusca"
                 width="520"
                 height="400"
@@ -452,7 +453,7 @@
       <section class="cp-cta-dark" aria-labelledby="cp-cta-title">
         <div class="cp-cta-inner">
           <div class="cp-cta-copy">
-            <h2 id="cp-cta-title">Café de Especialidad: calidad constante que hace que tus clientes regresen.</h2>
+            <h2 id="cp-cta-title">Café de especialidad: calidad constante que hace que tus clientes regresen.</h2>
             <p>
               Nuestro equipo de catadores y baristas te asesora para elegir el perfil idóneo que elevará el ticket promedio de tu negocio.
             </p>
@@ -462,7 +463,7 @@
             </div>
           </div>
           <div class="cp-cta-media">
-            <img src="/assets/images/cafe/premium/cta-americano-yellow.png" alt="Americano en taza amarilla Café Etrusca" width="480" height="380">
+            <img src="{{ assetsBase }}/images/cafe/premium/cta-americano-yellow.png" alt="Americano en taza amarilla Café Etrusca" width="480" height="380">
           </div>
         </div>
       </section>
@@ -557,6 +558,7 @@
       <section class="cv-hero" aria-labelledby="cv-hero-title">
         <div class="cv-hero-inner">
           <div class="cv-hero-copy">
+            <app-hero-crumbs [items]="crumbs" />
             <h1 id="cv-hero-title">Café en verde</h1>
             <p class="lead">
               El café en verde es el café antes del tueste. Es el grano crudo,
@@ -591,7 +593,7 @@
             </ul>
           </div>
           <div class="cv-hero-media">
-            <img src="/assets/images/cafe/verde/hero.png" alt="Saco y granos de café en verde" width="640" height="520">
+            <img src="{{ assetsBase }}/images/cafe/verde/hero.png" alt="Saco y granos de café en verde" width="640" height="520">
           </div>
         </div>
         <app-scroll-wave position="bottom" fillColor="#d6ea82"></app-scroll-wave>
@@ -606,25 +608,25 @@
         <p class="section-lead">El camino del café hasta estar listo para tueste.</p>
         <div class="cv-steps">
           <article class="cv-step">
-            <img src="/assets/images/cafe/verde/step-1.png" alt="Cerezas de café en cultivo" width="280" height="200">
+            <img src="{{ assetsBase }}/images/cafe/verde/step-1.png" alt="Cerezas de café en cultivo" width="280" height="200">
             <span class="num">1</span>
             <h3>Cultivo</h3>
             <p>El café crece en fincas con condiciones ideales de clima y altitud.</p>
           </article>
           <article class="cv-step">
-            <img src="/assets/images/cafe/verde/step-2.png" alt="Granos de café en beneficio" width="280" height="200">
+            <img src="{{ assetsBase }}/images/cafe/verde/step-2.png" alt="Granos de café en beneficio" width="280" height="200">
             <span class="num">2</span>
             <h3>Beneficio</h3>
             <p>Se procesa el fruto para separar el grano y resaltar su calidad.</p>
           </article>
           <article class="cv-step">
-            <img src="/assets/images/cafe/verde/step-3.png" alt="Selección del grano de café" width="280" height="200">
+            <img src="{{ assetsBase }}/images/cafe/verde/step-3.png" alt="Selección del grano de café" width="280" height="200">
             <span class="num">3</span>
             <h3>Selección del grano</h3>
             <p>Se clasifica por tamaño, densidad y apariencia para asegurar conformidad.</p>
           </article>
           <article class="cv-step">
-            <img src="/assets/images/cafe/verde/step-4.png" alt="Café verde listo para tueste" width="280" height="200">
+            <img src="{{ assetsBase }}/images/cafe/verde/step-4.png" alt="Café verde listo para tueste" width="280" height="200">
             <span class="num">4</span>
             <h3>Listo para tueste</h3>
             <p>Grano estable, limpio y listo para revelar su perfil en tu proceso de tueste.</p>
@@ -687,7 +689,7 @@
             </blockquote>
           </div>
           <div class="cv-value-media">
-            <img src="/assets/images/cafe/verde/value.png" alt="Pala de madera con granos de café verde" width="480" height="400">
+            <img src="{{ assetsBase }}/images/cafe/verde/value.png" alt="Pala de madera con granos de café verde" width="480" height="400">
           </div>
         </div>
         <div class="cv-value-bar" role="list">
@@ -701,7 +703,7 @@
       <section class="cv-cta" aria-labelledby="cv-cta-title">
         <div class="cv-cta-banner">
           <div class="cv-cta-media">
-            <img src="/assets/images/cafe/verde/cta-banner.png" alt="Saco de café verde">
+            <img src="{{ assetsBase }}/images/cafe/verde/cta-banner.png" alt="Saco de café verde">
           </div>
           <div class="cv-cta-content">
             <h2 id="cv-cta-title">¿Listo para encontrar el café verde <em>ideal</em> para tu negocio?</h2>
@@ -723,6 +725,7 @@
       <section class="ce-hero" aria-labelledby="ce-hero-title">
         <div class="ce-hero-inner">
           <div class="ce-hero-copy">
+            <app-hero-crumbs [items]="crumbs" />
             <h1 id="ce-hero-title">
               <span>Barista</span>
               <span>Champ</span>
@@ -733,8 +736,24 @@
               Seleccionamos cafés de <strong>fincas y regiones específicas</strong>, trabajando con granos que destacan por su calidad, procesos cuidados y trazabilidad.
             </p>
           </div>
-          <div class="ce-hero-media">
-            <img src="/assets/images/cafe/especialidad/hero-bags.webp" alt="Bolsas Barista Champ café de especialidad" width="720" height="480">
+          <div class="ce-hero-media ce-slider" role="region" aria-roledescription="carrusel" aria-label="Cafés Barista Champ por estado de origen"
+               (mouseenter)="pauseSlider(true)" (mouseleave)="pauseSlider(false)"
+               (focusin)="pauseSlider(true)" (focusout)="pauseSlider(false)">
+            <div class="ce-slider-track" [attr.aria-live]="sliderLive()" aria-atomic="true">
+              @for (f of heroSlides; track f.claveSap; let i = $index) {
+                <figure class="ce-slide" [class.is-active]="i === slideIdx()" [attr.aria-hidden]="i !== slideIdx()"
+                        role="group" aria-roledescription="diapositiva" [attr.aria-label]="(i + 1) + ' de ' + heroSlides.length">
+                  <img class="ce-slide-bag" [src]="assetsBase + '/' + f.imagen"
+                       [alt]="'Bolsa Barista Champ finca ' + f.finca + (f.proceso ? ', proceso ' + f.proceso : '')"
+                       width="1000" height="1000" [attr.loading]="i === 0 ? 'eager' : 'lazy'" [attr.fetchpriority]="i === 0 ? 'high' : null" decoding="async">
+                  <figcaption class="ce-slide-state">
+                    <img [src]="assetsBase + '/images/cafe/especialidad/MX-' + estadoCode(f.estado) + '.png'" alt="" width="60" height="80" loading="lazy">
+                    <span class="ce-slide-state-name">{{ f.estadoNombre }}</span>
+                    <span class="ce-slide-finca">{{ f.finca }}</span>
+                  </figcaption>
+                </figure>
+              }
+            </div>
           </div>
         </div>
         <app-scroll-wave position="bottom" fillColor="#c8f4fb"></app-scroll-wave>
@@ -763,9 +782,9 @@
       <section class="ce-origen" aria-labelledby="ce-origen-title">
         <app-scroll-wave position="top" fillColor="#c8f4fb"></app-scroll-wave>
         <div class="ce-origen-inner">
-          <h2 id="ce-origen-title">Origen</h2>
+          <h2 class="section-title-center" id="ce-origen-title">Origen</h2>
           <div class="ce-origen-grid">
-            <img class="ce-map" src="/assets/images/cafe/especialidad/mexico.webp" alt="Mapa de México con regiones cafetaleras" width="560" height="591">
+            <img class="ce-map" src="{{ assetsBase }}/images/cafe/especialidad/mexico.webp" alt="Mapa de México con regiones cafetaleras" width="560" height="591">
             <div class="ce-origen-copy">
               <p>
                 Exploramos fincas de <strong>Chiapas, Veracruz, Puebla, Hidalgo y Nayarit</strong>, cinco regiones donde el café expresa una personalidad distinta.
@@ -783,86 +802,79 @@
         <p class="ce-states-lead">
           En la taza encontrarás mayor limpieza, dulzor, complejidad y personalidad, con perfiles sensoriales capaces de sorprender y crear experiencias memorables.
         </p>
-        <div class="ce-states-grid">
-          <article>
-            <img src="/assets/images/cafe/especialidad/MX-VER.png" alt="" width="160" height="160">
-            <h3>Veracruz</h3>
-            <p>El mayor productor del país. Cafés limpios y aromáticos con notas cítricas, caramelo y chocolate.</p>
-          </article>
-          <article>
-            <img src="/assets/images/cafe/especialidad/MX-PUE.png" alt="" width="160" height="160">
-           
-            <h3>Puebla</h3>
-            <p>Altura y tradición en cada taza. Cafés dulces con cuerpo medio, notas florales, avellana y chocolate.</p>
-          </article>
-          <article>
-            <img src="/assets/images/cafe/especialidad/MX-HID.png" alt="" width="160" height="160">
-            <h3>Hidalgo</h3>
-            <p>Cafés con carácter y claridad. Perfiles complejos con notas a frutos secos, piloncillo y frutas amarillas.</p>
-          </article>
-          <article>
-            <img src="/assets/images/cafe/especialidad/MX-NAY.png" alt="" width="160" height="160">
-            <h3>Nayarit</h3>
-            <p>Séptimo lugar nacional en producción de café, con más de 16,000 hectáreas fértiles.</p>
-          </article>
+        <div class="ce-states-grid" role="tablist" aria-label="Fincas por estado">
+          @for (e of estadosFincas; track e.id) {
+            <button type="button" class="ce-state-btn" role="tab"
+              [id]="'ce-tab-' + e.id"
+              [class.is-active]="estadoFincas === e.id"
+              [attr.aria-selected]="estadoFincas === e.id"
+              aria-controls="ce-fincas-panel"
+              (click)="seleccionarEstado(e.id)">
+              <img src="{{ assetsBase }}/images/cafe/especialidad/MX-{{ e.id === 'veracruz' ? 'VER' : e.id === 'puebla' ? 'PUE' : e.id === 'hidalgo' ? 'HID' : 'NAY' }}.png" alt="" width="160" height="160">
+              <h3>{{ e.nombre }}</h3>
+              @switch (e.id) {
+                @case ('veracruz') { <p>El mayor productor del país. Cafés limpios y aromáticos con notas cítricas, caramelo y chocolate.</p> }
+                @case ('puebla') { <p>Altura y tradición en cada taza. Cafés dulces con cuerpo medio, notas florales, avellana y chocolate.</p> }
+                @case ('hidalgo') { <p>Cafés con carácter y claridad. Perfiles complejos con notas a frutos secos, piloncillo y frutas amarillas.</p> }
+                @case ('nayarit') { <p>Séptimo lugar nacional en producción de café, con más de 16,000 hectáreas fértiles.</p> }
+              }
+            </button>
+          }
         </div>
       </section>
 
-      <section class="ce-finca" aria-labelledby="ce-finca-title">
-        <article class="ce-finca-card">
-          <img src="/assets/images/cafe/especialidad/bag-pajaritos.webp" alt="Bolsa Finca Pajaritos Barista Champ" width="280" height="320">
-          <div>
-            <h2 id="ce-finca-title">Finca Pajaritos</h2>
-            <ul>
-              <li><strong>Variedad</strong> Typica, Bourbon y Caturra</li>
-              <li><strong>Proceso</strong> Honey</li>
-              <li><strong>Perfil de taza</strong> Sabor dulce a dátil y destellos a frutos rojos con coco.</li>
-            </ul>
+      <section class="ce-finca" aria-labelledby="ce-fincas-title">
+        <div class="ce-fincas-panel" id="ce-fincas-panel" role="tabpanel" [attr.aria-labelledby]="'ce-tab-' + estadoFincas"
+          [attr.data-estado]="estadoFincas">
+          <h2 class="ce-fincas-title" id="ce-fincas-title">{{ estadoFincasNombre }}</h2>
+          <div class="ce-fincas-grid">
+            @for (f of fincasDelEstado; track f.claveSap) {
+              <article class="ce-finca-card tone-{{ f.tono }}" [attr.data-sap]="f.claveSap">
+                <div class="ce-finca-media">
+                  @if (f.imagen) {
+                    <img src="{{ assetsBase }}/{{ f.imagen }}" alt="Bolsa Barista Champ Finca {{ f.finca }}" width="200" height="200" loading="lazy">
+                  } @else {
+                    <span class="ce-finca-noimg" aria-hidden="true">Barista Champ</span>
+                  }
+                </div>
+                <div class="ce-finca-body">
+                  <h3>Finca {{ f.finca }}</h3>
+                  <ul>
+                    <li><strong>Variedad</strong> {{ f.variedad }}</li>
+                    <li><strong>Proceso</strong> {{ f.proceso }}</li>
+                    <li><strong>Perfil de taza</strong> {{ f.perfil }}</li>
+                  </ul>
+                </div>
+              </article>
+            }
           </div>
-        </article>
+        </div>
       </section>
 
-      <section class="ce-process" aria-labelledby="ce-process-title">
-        <h2 id="ce-process-title">Procesos</h2>
-        <p class="section-lead">Distintas formas de trabajar el grano, diferentes perfiles en tu taza.</p>
-        <div class="ce-process-grid">
-          <article class="tone-blue">
-            <img src="/assets/images/cafe/especialidad/process-lavado.webp" alt="" width="96" height="96">
-            <h3>Lavado</h3>
-            <p><strong>Cómo se trabaja</strong> Se despulpa, fermenta y se lava el grano.</p>
-            <p><strong>Qué aporta en taza</strong> Taza limpia, clara y brillante.</p>
-            <p><strong>Perfil</strong> Cítrico, floral y delicado.</p>
-            <p><strong>Ideal para</strong> Quienes buscan una taza limpia y con gran claridad.</p>
-          </article>
-          <article class="tone-yellow">
-            <img src="/assets/images/cafe/especialidad/process-honey.webp" alt="" width="96" height="96">
-            <h3>Honey</h3>
-            <p><strong>Cómo se trabaja</strong> Se deja parte del mucílago al secar.</p>
-            <p><strong>Qué aporta en taza</strong> Mayor dulzor y cuerpo.</p>
-            <p><strong>Perfil</strong> Dulce, balanceado, con notas a miel y frutas.</p>
-            <p><strong>Ideal para</strong> Quienes buscan equilibrio entre limpieza y dulzor.</p>
-          </article>
-          <article class="tone-pink">
-            <img src="/assets/images/cafe/especialidad/process-natural.webp" alt="" width="96" height="96">
-            <h3>Natural</h3>
-            <p><strong>Cómo se trabaja</strong> Se seca el fruto completo sin despulpar.</p>
-            <p><strong>Qué aporta en taza</strong> Taza intensa y frutal.</p>
-            <p><strong>Perfil</strong> Frutos rojos, notas tropicales y cuerpo alto.</p>
-            <p><strong>Ideal para</strong> Quienes disfrutan cafés expresivos y con gran personalidad.</p>
-          </article>
-          <article class="tone-green">
-            <img src="/assets/images/cafe/especialidad/process-macerado.webp" alt="" width="96" height="96">
-            <h3>Honey macerado</h3>
-            <p><strong>Cómo se trabaja</strong> Se despulpa, se macera con frutas o ingredientes naturales y se seca.</p>
-            <p><strong>Qué aporta en taza</strong> Notas complejas y únicas.</p>
-            <p><strong>Perfil</strong> Frutal, aromático y sofisticado.</p>
-            <p><strong>Ideal para</strong> Quienes buscan experiencias distintas y memorables.</p>
-          </article>
-        </div>
+      <section class="ce-process ce-proc" aria-labelledby="ce-process-title">
+        <h2 class="section-title-center" id="ce-process-title">Procesos del café</h2>
+        <ul class="ce-proc-grid">
+          <li class="ce-proc-card is-natural">
+            <h3 class="ce-proc-head"><span class="ce-proc-dot" aria-hidden="true"></span>Natural</h3>
+            <p class="ce-proc-body">Recolección de cerezas óptimas y secado directo al sol con toda la pulpa (hasta 4 semanas) debido a su alto contenido de agua y azúcares.</p>
+          </li>
+          <li class="ce-proc-card is-lavado">
+            <h3 class="ce-proc-head"><span class="ce-proc-dot" aria-hidden="true"><img src="/assets/images/especialidad/proceso/icon-lavado.webp" alt="" width="70" height="96"></span>Lavado</h3>
+            <p class="ce-proc-body">Recolección y despulpado de cerezas óptimas, fermentación (24h+), lavado con agua limpia y secado final al sol o mecánico.</p>
+          </li>
+          <li class="ce-proc-card is-honey">
+            <h3 class="ce-proc-head"><span class="ce-proc-dot" aria-hidden="true"></span>Honey</h3>
+            <p class="ce-proc-body">Recolección de cerezas óptimas, despulpado manual o mecánico y secado con el mucílago adherido al grano.</p>
+          </li>
+          <li class="ce-proc-card is-anejado">
+            <h3 class="ce-proc-head"><span class="ce-proc-dot" aria-hidden="true"><img src="/assets/images/especialidad/proceso/icon-anejado.webp" alt="" width="94" height="96"></span>Añejado</h3>
+            <p class="ce-proc-body">Café verde lavado reposado 45 días en barricas de tequila o charanda, con rotación y temperatura controlada.</p>
+          </li>
+        </ul>
       </section>
 
       <section class="ce-explain" aria-labelledby="ce-explain-title">
-        <h2 id="ce-explain-title">Procesos explicados fácil</h2>
+        <h2 class="section-title-center" id="ce-explain-title">Procesos explicados fácil</h2>
         <p class="section-lead">El proceso es la forma en que se transforma la cereza de café en grano. Cambia el sabor final en tu taza.</p>
         <div class="ce-explain-grid">
           <article>
@@ -885,7 +897,7 @@
       </section>
 
       <section class="ce-cup" aria-labelledby="ce-cup-title">
-        <h2 id="ce-cup-title">Cómo cambia en taza</h2>
+        <h2 class="section-title-center" id="ce-cup-title">Cómo cambia en taza</h2>
         <p class="section-lead">Estos son los atributos que definen el sabor de cada café.</p>
         <div class="ce-cup-grid">
           <article>
@@ -909,26 +921,15 @@
       </section>
 
       <section class="ce-brew" aria-labelledby="ce-brew-title">
-        <h2 id="ce-brew-title">Prepara como más te gusta</h2>
+        <h2 class="section-title-center" id="ce-brew-title">Prepara como más te gusta</h2>
         <p class="section-lead">Cada método resalta distintos aromas y sabores. Elige tu favorito.</p>
-        <div class="ce-brew-grid">
-          <figure>
-            <img src="/assets/images/cafe/especialidad/brew-v60.webp" alt="V60" width="160" height="160">
-            <figcaption>V60</figcaption>
-          </figure>
-          <figure>
-            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 18h40L44 52H20L12 18Z" fill="none" stroke="#1a6b86" stroke-width="2.4"/><path d="M20 18c2-8 22-8 24 0" fill="none" stroke="#1a6b86" stroke-width="2.4"/></svg>
-            <figcaption>Chemex</figcaption>
-          </figure>
-          <figure>
-            <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="18" width="32" height="28" rx="2" fill="none" stroke="#1a6b86" stroke-width="2.4"/><path d="M16 46h32M22 52h20M20 18V14h24v4" fill="none" stroke="#1a6b86" stroke-width="2.4"/></svg>
-            <figcaption>Prensa francesa</figcaption>
-          </figure>
-          <figure>
-            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 22h22v22a8 8 0 0 1-8 8H26a8 8 0 0 1-8-8V22Z" fill="none" stroke="#1a6b86" stroke-width="2.4"/><path d="M40 26h8a6 6 0 0 1 0 12h-8" fill="none" stroke="#1a6b86" stroke-width="2.4"/></svg>
-            <figcaption>Espresso</figcaption>
-          </figure>
-        </div>
+        <ul class="ce-brew-grid ce-brew-5">
+          <li><span class="ce-brew-dot" aria-hidden="true"></span><img class="ce-brew-photo" src="/assets/images/especialidad/metodos/chemex.webp" alt="Cafetera Chemex con filtro de papel y collar de madera para café de especialidad" width="480" height="480" loading="lazy" decoding="async"></li>
+          <li><span class="ce-brew-dot" aria-hidden="true"></span><img class="ce-brew-photo" src="/assets/images/especialidad/metodos/prensa-francesa.webp" alt="Prensa francesa negra con café de especialidad" width="480" height="480" loading="lazy" decoding="async"></li>
+          <li><span class="ce-brew-dot" aria-hidden="true"></span><img class="ce-brew-photo" src="/assets/images/especialidad/metodos/gotero-fenice.webp" alt="Gotero tipo V60 Fénice con jarra de vidrio y café filtrado" width="480" height="480" loading="lazy" decoding="async"></li>
+          <li><span class="ce-brew-dot" aria-hidden="true"></span><img class="ce-brew-photo" src="/assets/images/especialidad/metodos/aeropress.webp" alt="AeroPress con taza de vidrio y café recién preparado" width="480" height="480" loading="lazy" decoding="async"></li>
+          <li><span class="ce-brew-dot" aria-hidden="true"></span><img class="ce-brew-photo" src="/assets/images/especialidad/metodos/chemex-filtro-metal-fenice.webp" alt="Cafetera tipo Chemex Fénice con filtro de metal y collar de madera" width="480" height="480" loading="lazy" decoding="async"></li>
+        </ul>
       </section>
 
       <section class="ce-cta" aria-labelledby="ce-cta-title">

@@ -26,13 +26,23 @@
 
 
 
-          <li class="nav-item dropdown custom-hover-dropdown mega-dropdown">
+          <li class="nav-item dropdown custom-hover-dropdown mega-dropdown nav-root-split">
 
-            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" (click)="$event.preventDefault()">
+            <!-- "Productos" navega al hub /productos ("Impulsamos experiencias extraordinarias").
+                 Desktop: el mega menú se abre con hover/foco (CSS). Móvil: la flecha de al lado abre/cierra el submenú. -->
+            <a class="nav-link dropdown-toggle text-uppercase fw-bold text-white" id="navbarDropdownProductos"
+               routerLink="/productos" data-nav-root="true">
 
               Productos
 
             </a>
+
+            <button type="button" class="nav-sub-toggle d-lg-none" data-bs-toggle="dropdown" data-bs-display="static"
+                    aria-expanded="false" aria-label="Mostrar categorías de Productos">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
 
             <div class="dropdown-menu mega-menu border-0" aria-labelledby="navbarDropdownProductos">
 
@@ -65,7 +75,7 @@
 
                     <a class="mega-panel-title" routerLink="/insumos-para-cafeterias">
                       <span class="mega-bottle" aria-hidden="true">
-                        <img class="mega-cup-ico" src="/assets/images/productos/nav/insumos.png" alt="" width="40" height="40">
+                        <img class="mega-cup-ico" src="{{ assetsBase }}/images/productos/nav/insumos.png" alt="" width="40" height="40">
                       </span>
                       Insumos
                     </a>
@@ -98,7 +108,7 @@
 
                     <a class="mega-panel-title" routerLink="/productos/cafe">
                       <span class="mega-bottle" aria-hidden="true">
-                        <img class="mega-cup-ico" src="/assets/images/productos/nav/cafe.png" alt="" width="40" height="40">
+                        <img class="mega-cup-ico" src="{{ assetsBase }}/images/productos/nav/cafe.png" alt="" width="40" height="40">
                       </span>
                       Café
                     </a>
@@ -130,7 +140,7 @@
                   } @else if (productPanel === 'maquinas') {
                     <a class="mega-panel-title" routerLink="/maquinaria-y-equipo-para-cafeterias">
                       <span class="mega-bottle" aria-hidden="true">
-                        <img class="mega-cup-ico" src="/assets/images/productos/nav/maquinas.png" alt="" width="40" height="40">
+                        <img class="mega-cup-ico" src="{{ assetsBase }}/images/productos/nav/maquinas.png" alt="" width="40" height="40">
                       </span>
                       Máquinas
                     </a>
@@ -149,7 +159,7 @@
                   } @else if (productPanel === 'accesorios') {
                     <a class="mega-panel-title" routerLink="/accesorios-para-poner-una-cafeteria">
                       <span class="mega-bottle" aria-hidden="true">
-                        <img class="mega-cup-ico" src="/assets/images/productos/nav/accesorios.png" alt="" width="40" height="40">
+                        <img class="mega-cup-ico" src="{{ assetsBase }}/images/productos/nav/accesorios.png" alt="" width="40" height="40">
                       </span>
                       Accesorios
                     </a>
@@ -191,7 +201,7 @@
 
                     <div class="mega-feat-img">
 
-                      <img src="/assets/images/nav/torani-pumpkin.webp" alt="Jarabe sabor Calabaza Torani">
+                      <img src="{{ assetsBase }}/images/nav/torani-pumpkin.webp" alt="Jarabe sabor Calabaza Torani">
 
                     </div>
 
@@ -278,14 +288,14 @@
                   @if (!isEduSection) {
                                         <h3 class="mega-panel-title te-recomendamos-title">
                       <span class="mega-bottle" aria-hidden="true">
-                        <img class="mega-cup-ico" src="/assets/images/educacion/nav/te-recomendamos.svg" alt="" width="40" height="40">
+                        <img class="mega-cup-ico" src="{{ assetsBase }}/images/educacion/nav/te-recomendamos.svg" alt="" width="40" height="40">
                       </span>
                       Te recomendamos
                     </h3>
                     <div class="mega-cards">
                       <a class="mega-card" routerLink="/taller-basico-de-tostado-de-cafe">
                         <div class="mega-card-photo">
-                          <img src="/assets/images/educacion/curso-tostado.webp" alt="Tostado básico">
+                          <img src="{{ assetsBase }}/images/educacion/curso-tostado.webp" alt="Tostado básico">
                         </div>
                         <strong>Tostado básico</strong>
                         <small>Curso</small>
@@ -294,7 +304,7 @@
                       </a>
                       <a class="mega-card alt" routerLink="/educacion/talleres/bebidas-frias">
                         <div class="mega-card-photo">
-                          <img src="/assets/images/nav/bebidas-frias.jpg" alt="Bebidas frías">
+                          <img src="{{ assetsBase }}/images/nav/bebidas-frias.jpg" alt="Bebidas frías">
                         </div>
                         <strong>Bebidas frías</strong>
                         <small>Taller</small>
@@ -331,7 +341,7 @@
                     <h3 class="mega-gold">Producto destacado</h3>
                     <div class="mega-feat">
                       <div class="mega-feat-img">
-                        <img src="/assets/images/nav/torani-pumpkin.webp" alt="Jarabe sabor Calabaza Torani">
+                        <img src="{{ assetsBase }}/images/nav/torani-pumpkin.webp" alt="Jarabe sabor Calabaza Torani">
                       </div>
                       <div>
                         <strong>Jarabe sabor Calabaza</strong>
@@ -352,7 +362,7 @@
                     <div class="mega-cards mega-cards-stack">
                       <a class="mega-card" routerLink="/taller-basico-de-tostado-de-cafe">
                         <div class="mega-card-photo">
-                          <img src="/assets/images/educacion/curso-tostado.webp" alt="Tostado básico">
+                          <img src="{{ assetsBase }}/images/educacion/curso-tostado.webp" alt="Tostado básico">
                         </div>
                         <strong>Tostado básico</strong>
                         <small>Curso</small>
@@ -361,7 +371,7 @@
                       </a>
                       <a class="mega-card alt" routerLink="/educacion/talleres/bebidas-frias">
                         <div class="mega-card-photo">
-                          <img src="/assets/images/nav/bebidas-frias.jpg" alt="Bebidas frías">
+                          <img src="{{ assetsBase }}/images/nav/bebidas-frias.jpg" alt="Bebidas frías">
                         </div>
                         <strong>Bebidas frías</strong>
                         <small>Taller</small>
@@ -388,7 +398,7 @@
 
         <a class="navbar-brand mx-4 d-none d-lg-block" routerLink="/">
 
-          <img src="/assets/images/logo-etrusca.webp" alt="Logo Café Etrusca" width="70" height="70" class="navbar-brand-logo">
+          <img src="{{ assetsBase }}/images/logo-etrusca.webp" alt="Logo Café Etrusca" width="70" height="70" class="navbar-brand-logo">
 
         </a>
 
@@ -398,9 +408,9 @@
 
           <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/contacto">Contacto</a></li>
 
-          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/recetas">Recetas</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white text-nowrap" href="https://etrusca.biz/" target="_blank" rel="noopener">Etrusca Biz</a></li>
 
-          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/videoteca">Videoteca</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white text-nowrap" routerLink="/recetas">Recetas</a></li>
 
           <!-- SEO fase 1: /etrusca-biz no existe en el sitio nuevo (404). Oculto hasta que exista la página o un destino definido. -->
           <!-- <li class="nav-item"><a class="nav-link text-uppercase fw-bold text-white" routerLink="/etrusca-biz">Etrusca Biz</a></li> -->

@@ -1,0 +1,258 @@
+<div class="pc-page">
+  <!-- HERO -->
+  <section class="pc-hero">
+    <div class="container pc-hero-grid">
+      <div class="pc-hero-copy">
+        <nav class="pc-crumbs" aria-label="Miga de pan">
+          <span>Mi cafetería</span><span aria-hidden="true">→</span><span>Herramientas</span><span aria-hidden="true">→</span>
+        </nav>
+        <h1>Calculadora<br>de precios</h1>
+        <p class="pc-lead">Conoce cuánto rinden tus insumos, calcula el costo de tus bebidas y toma mejores decisiones para tu barra.</p>
+        <ul class="pc-perks">
+          <li><span class="ic y" aria-hidden="true">🧮</span><span><b>Calcula</b><small>costos reales</small></span></li>
+          <li><span class="ic p" aria-hidden="true">📈</span><span><b>Aprovecha</b><small>tus insumos</small></span></li>
+          <li><span class="ic b" aria-hidden="true">🥤</span><span><b>Define precios</b><small>rentables</small></span></li>
+        </ul>
+      </div>
+      <div class="pc-hero-visual" aria-hidden="true">
+        <span class="blob"></span>
+        @for (img of heroImages; track img; let i = $index) {
+          <img [src]="img" alt="" [class]="'drink d' + i">
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section class="pc-calc" id="calculadora">
+    <div class="container">
+      <div class="pc-toolbar">
+        <div class="pc-tabs" role="tablist">
+          <button type="button" role="tab" [class.on]="mode === 'producto'" [attr.aria-selected]="mode === 'producto'" (click)="setMode('producto')">
+            <span class="ti" aria-hidden="true">🧮</span>
+            <span><b>Por producto</b><small>Conoce el rendimiento y costo por porción de cada insumo.</small></span>
+          </button>
+          <button type="button" role="tab" [class.on]="mode === 'receta'" [attr.aria-selected]="mode === 'receta'" (click)="setMode('receta')">
+            <span class="ti" aria-hidden="true">🥤</span>
+            <span><b>Por receta</b><small>Combina ingredientes y calcula el costo total de tu bebida.</small></span>
+          </button>
+        </div>
+        <div class="pc-list" role="group" aria-label="Lista de precios">
+          <span>Lista de precios</span>
+          <button type="button" [class.on]="list === 1" (click)="setList(1)">Público</button>
+          <button type="button" [class.on]="list === 5" (click)="setList(5)">Fronterizo</button>
+        </div>
+      </div>
+
+      @if (loading) { <p class="pc-status">Cargando lista de precios…</p> }
+      @if (error && !loading) {
+        <p class="pc-status err">No pudimos cargar la lista de precios. <button type="button" (click)="loadPrices()">Reintentar</button></p>
+      }
+
+      @if (mode === 'producto') {
+        <div class="pc-steps">
+          <!-- 1 -->
+          <div class="pc-step">
+            <header><span class="n pink">1</span><div><h2>Selecciona un producto</h2><p>Busca un insumo de nuestro catálogo o escribe su nombre.</p></div></header>
+            <div class="pc-search">
+              <span class="mg" aria-hidden="true">⌕</span>
+              <input type="search" [(ngModel)]="query" (focus)="showResults = true; query = ''" (input)="showResults = true" (blur)="hideResultsSoon()" placeholder="Ej. Torani vainilla" aria-label="Buscar producto">
+              @if (showResults) {
+                <ul class="pc-results">
+                  @for (p of results; track p.codigo) {
+                    <li><button type="button" (mousedown)="selectProduct(p)">
+                      @if (p.image) { <img [src]="p.image" alt="" loading="lazy"> }
+                      <span>{{ p.nombre }}<small>{{ p.codigo }} · {{ p.precio | number: '1.2-2' }}</small></span>
+                    </button></li>
+                  } @empty { <li class="empty">Sin resultados</li> }
+                </ul>
+              }
+            </div>
+            @if (selected) {
+              <article class="pc-card">
+                <div class="img">@if (selected.image) { <img [src]="selected.image" [alt]="selected.nombre"> }</div>
+                <div class="txt">
+                  <span class="badge">Ref. {{ selected.codigo }}</span>
+                  <h3>{{ selected.nombre }}</h3>
+                  <p class="muted">{{ selected.linea }}</p>
+                  @if (selected.size) {
+                    <p>Contenido: {{ selected.size | number: '1.0-0' }} {{ selected.sizeUnit }}. La cantidad por bebida puede variar según la receta y el tipo de bebida.</p>
+                  } @else {
+                    <p>No pudimos leer el contenido del envase en el nombre del producto.</p>
+                  }
+                  <a [href]="storeUrl(selected)" target="_blank" rel="noopener">Ver producto →</a>
+                </div>
+              </article>
+            }
+          </div>
+          <!-- 2 -->
+          <div class="pc-step">
+            <header><span class="n blue">2</span><div><h2>Ajusta la cantidad de uso</h2><p>Indica cuántos ml o gramos utilizas por bebida.</p></div></header>
+            <label class="lbl" for="pc-qty">Cantidad por bebida</label>
+            <div class="row2">
+              <input id="pc-qty" type="number" min="0" [(ngModel)]="qty">
+              <select [(ngModel)]="qtyUnit" aria-label="Unidad"><option value="ml">ml</option><option value="g">g</option><option value="pza">pza</option></select>
+            </div>
+            <input class="slider" type="range" min="5" max="60" step="1" [(ngModel)]="qty" aria-label="Cantidad por bebida">
+            <div class="ticks">@for (t of ticks; track t) { <span>{{ t }}</span> }</div>
+            <label class="lbl" for="pc-price">Precio de compra</label>
+            <div class="money"><span>$</span><input id="pc-price" type="number" min="0" step="0.01" [(ngModel)]="purchasePrice"></div>
+            <p class="hint">Precio de lista {{ list === 5 ? 'fronterizo' : 'público' }} con impuestos. Puedes cambiarlo por tu precio de compra.</p>
+            <label class="lbl" for="pc-size">Tamaño de bebida (ml)</label>
+            <input id="pc-size" class="full" type="number" min="0" [(ngModel)]="drinkSize">
+          </div>
+          <!-- 3 -->
+          <div class="pc-step">
+            <header><span class="n yellow">3</span><div><h2>Conoce tus resultados</h2><p>Rendimiento estimado con base en tu configuración.</p></div></header>
+            <div class="pc-kpis">
+              <div class="kpi"><small>Porciones por envase</small><strong>{{ portions ?? '—' }}</strong><em>bebidas de {{ drinkSize }} ml</em></div>
+              <div class="kpi"><small>Costo por porción</small><strong>{{ costPerPortion !== null ? '$' + (costPerPortion | number: '1.2-2') : '—' }}</strong><em>por bebida ({{ qty }} {{ qtyUnit }})</em></div>
+              <div class="kpi wide"><small>Costo por {{ selected?.sizeUnit || qtyUnit }}</small><strong>{{ costPerUnit !== null ? '$' + (costPerUnit | number: '1.2-2') : '—' }}</strong></div>
+            </div>
+            <p class="note">ⓘ Cálculo estimado. No considera mermas ni otros ingredientes de la bebida.</p>
+          </div>
+        </div>
+      } @else {
+        <div class="pc-steps">
+          <!-- 1 receta -->
+          <div class="pc-step">
+            <header><span class="n pink">1</span><div><h2>Selecciona una receta</h2><p>Elige una receta de nuestro recetario.</p></div></header>
+            <div class="pc-search">
+              <span class="mg" aria-hidden="true">⌕</span>
+              <input type="search" [(ngModel)]="recipeQuery" (focus)="showRecipeResults = true" (input)="showRecipeResults = true" (blur)="hideRecipeResultsSoon()" aria-label="Buscar receta">
+              @if (showRecipeResults) {
+                <ul class="pc-results">
+                  @for (r of recipeResults; track r.slug) {
+                    <li><button type="button" (mousedown)="pickRecipe(r)"><img [src]="r.image" alt="" loading="lazy"><span>{{ title(r) }}<small>{{ r.category }}{{ r.yield ? ' · ' + r.yield : '' }}</small></span></button></li>
+                  } @empty { <li class="empty">Sin resultados</li> }
+                </ul>
+              }
+            </div>
+            @if (recipe) {
+              <article class="pc-rcard">
+                <img [src]="recipe.image" [alt]="title(recipe)">
+                <div>
+                  <span class="kick">{{ recipe.kicker }}</span>
+                  <h3>{{ title(recipe) }}</h3>
+                  <p>{{ recipe.summary }}</p>
+                  <p class="meta">@if (recipe.yield) {<span>🥤 {{ recipe.yield }}</span>} @if (recipe.difficulty) {<span>💧 Nivel: {{ recipe.difficulty }}</span>}</p>
+                  <a class="btn-out" [routerLink]="['/recetas', recipe.slug]">Ver receta completa →</a>
+                </div>
+              </article>
+            }
+            <h4 class="pc-sub">Explora más recetas</h4>
+            <div class="pc-carousel">
+              <button type="button" class="arr" (click)="moveCarousel(-1)" aria-label="Anterior">‹</button>
+              @for (r of carousel; track r.slug) {
+                <button type="button" class="mini" [class.on]="r === recipe" (click)="pickRecipe(r)"><img [src]="r.image" alt="" loading="lazy"><span>{{ title(r) }}</span></button>
+              }
+              <button type="button" class="arr" (click)="moveCarousel(1)" aria-label="Siguiente">›</button>
+            </div>
+          </div>
+          <!-- 2 ingredientes -->
+          <div class="pc-step">
+            <header><span class="n blue">2</span><div><h2>Ingredientes y cantidades</h2><p>Ajusta las porciones según tu preparación.</p></div></header>
+            <div class="pc-table">
+              <div class="th"><span>Ingrediente</span><span>Cantidad</span><span>Costo</span></div>
+              @for (row of rows; track $index; let i = $index) {
+                <div class="tr">
+                  <div class="ing">
+                    @if (product(row)?.image) { <img [src]="product(row)!.image" alt="" loading="lazy"> } @else { <span class="ph" aria-hidden="true">🥛</span> }
+                    <div class="nm">
+                      @if (row.custom) {
+                        <input [(ngModel)]="row.name" [attr.aria-label]="'Ingrediente ' + (i + 1)" placeholder="Busca un insumo o escribe" (focus)="focusRow = i" (blur)="focusRow = null">
+                      } @else { <span class="nmt">@if (isIce(row)) { <svg class="ice-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="9" width="10" height="10" rx="2.2" transform="rotate(-8 7.5 14)" fill="#dff3ff" stroke="#6cb8e6" stroke-width="1.4"/><rect x="11" y="4" width="10" height="10" rx="2.2" transform="rotate(10 16 9)" fill="#eaf7ff" stroke="#6cb8e6" stroke-width="1.4"/><path d="M5.2 12.2l2.2-.4M13.8 6.8l2.3.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg> }{{ row.name }}</span> }
+                      @if (row.sap) { <small>SAP {{ row.sap }}</small> }
+                      @if (row.note) { <small class="rule-note">{{ row.note }}</small> }
+                      @if (focusRow === i && rowMatches(row).length) {
+                        <ul class="pc-results sm">@for (p of rowMatches(row); track p.codigo) { <li><button type="button" (mousedown)="linkRow(row, p)">{{ p.nombre }}</button></li> }</ul>
+                      }
+                    </div>
+                  </div>
+                  <div class="q">
+                    <input type="number" min="0" [(ngModel)]="row.qty" aria-label="Cantidad">
+                    <select [(ngModel)]="row.unit" aria-label="Unidad"><option value="ml">ml</option><option value="g">g</option><option value="pza">pza</option></select>
+                  </div>
+                  <div class="c">
+                    @if (row.sap && !row.manual) {
+                      @if (rowCost(row) !== null) { ${{ rowCost(row) | number: '1.2-2' }} } @else { <span class="na" title="Sin precio o unidad distinta">—</span> }
+                    } @else {
+                      <input class="mc" type="number" min="0" step="0.5" [(ngModel)]="row.manualCost" aria-label="Costo manual" placeholder="$" [title]="row.manual ? 'Captura el costo de tu cold brew por porción' : 'Costo manual'">
+                    }
+                  </div>
+                  <button type="button" class="del" (click)="removeRow(i)" aria-label="Quitar ingrediente">🗑</button>
+                </div>
+              }
+              <button type="button" class="add" (click)="addRow()"><span>+</span> Agregar ingrediente</button>
+            </div>
+            <p class="note">Los insumos sin código SAP (agua, leche, hielo, vaso…) llevan costo manual. Espresso: 16 g de café por shot; cold brew: 200 g de café por litro. Se asume 1 ml ≈ 1 g cuando la unidad no coincide con la del envase.</p>
+          </div>
+          <!-- 3 resultados -->
+          <div class="pc-step">
+            <header><span class="n green">3</span><div><h2>Resultados</h2><p>Define tu margen deseado u obtén el margen de tu precio.</p></div></header>
+            <div class="res total"><span class="ri" aria-hidden="true">🪙</span><div><small>Costo total de ingredientes</small><strong>${{ totalCost | number: '1.2-2' }}</strong> <em>por bebida</em></div></div>
+            <div class="pc-toggle">
+              <button type="button" [class.on]="priceMode === 'margen'" (click)="priceMode = 'margen'"><b>Quiero este margen</b><small>Calcula el precio de venta según el margen deseado.</small></button>
+              <button type="button" [class.on]="priceMode === 'precio'" (click)="priceMode = 'precio'"><b>Ya tengo un precio</b><small>Calcula el margen y la ganancia con tu precio.</small></button>
+            </div>
+            @if (priceMode === 'margen') {
+              <div class="res in"><label for="pc-margin">Margen deseado</label><div class="money"><input id="pc-margin" type="number" min="0" max="95" [(ngModel)]="margin"><span>%</span></div></div>
+              <div class="res green"><span class="ri" aria-hidden="true">🏷</span><div><small>Precio de venta sugerido</small><strong>{{ suggestedPrice !== null ? '$' + (suggestedPrice | number: '1.2-2') : '—' }}</strong> <em>por bebida</em></div></div>
+            } @else {
+              <div class="res in"><label for="pc-sale">Precio de venta</label><div class="money"><span>$</span><input id="pc-sale" type="number" min="0" step="0.5" [(ngModel)]="salePrice"></div></div>
+            }
+            <div class="res sky"><span class="ri" aria-hidden="true">📈</span><div><small>Ganancia bruta estimada</small><strong>{{ grossProfit !== null ? '$' + (grossProfit | number: '1.2-2') : '—' }}</strong> <em>por bebida</em></div></div>
+            <div class="res sky"><span class="ri" aria-hidden="true">◔</span><div><small>Margen bruto estimado</small><strong>{{ grossMargin !== null ? (grossMargin | number: '1.1-1') + '%' : '—' }}</strong></div></div>
+            @if (priceMode === 'precio') {
+              <div class="res dash"><span class="ri" aria-hidden="true">💡</span><div><small>Precio mínimo sugerido</small><strong class="sm">${{ minPrice | number: '1.2-2' }}</strong> <em>Para mantener un margen bruto de {{ minMargin }}%.</em></div></div>
+            }
+            <button type="button" class="pc-save" (click)="saveRecipe()">Guardar receta →</button>
+            @if (savedMsg) { <p class="saved" role="status">{{ savedMsg }}</p> }
+            <p class="note">ⓘ Cálculo estimado. No incluye costos fijos como renta, servicios, personal u otros gastos operativos.</p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- GUÍAS -->
+  <section class="pc-guides">
+    <div class="container">
+      <div class="jar-head pc-head"><h2 class="section-title-center">Guías de uso por categoría</h2><div class="rule" aria-hidden="true"></div><p>Conoce nuestros insumos y mejora el rendimiento de tus bebidas.</p><a routerLink="/insumos-para-cafeterias">Ver todos los insumos →</a></div>
+      <div class="pc-gcards">
+        <a class="g y" routerLink="/insumos-para-cafeterias/jarabes/torani"><img [src]="assetsBase + '/images/insumos/line-defaults/jarabes-clasico.webp'" alt="Jarabes Torani" loading="lazy"><b>Jarabes</b><p>Sabores Torani para bebidas frías y calientes.</p><span>Ver guía →</span></a>
+        <a class="g p" routerLink="/insumos-para-cafeterias"><img src="https://cafeetrusca.com/img/thumbnail/ICT-008.webp" alt="Tapioca ChillOut" loading="lazy"><b>Toppings</b><p>Tapiocas, perlas y jellies para tus bebidas.</p><span>Ver guía →</span></a>
+        <a class="g b" routerLink="/insumos-para-cafeterias"><img [src]="assetsBase + '/images/insumos/line-defaults/pures-concentrate.webp'" alt="Concentrados" loading="lazy"><b>Concentrados</b><p>Concentrados, purés y mermeladas de fruta.</p><span>Ver guía →</span></a>
+        <a class="g o" routerLink="/insumos-para-cafeterias/bases-en-polvo/chillout"><img src="https://cafeetrusca.com/img/thumbnail/IBP-025.webp" alt="Base en polvo ChillOut" loading="lazy"><b>Bases en polvo</b><p>Bases ChillOut para frappés, lattes y smoothies.</p><span>Ver guía →</span></a>
+        <a class="g g2" routerLink="/insumos-para-cafeterias/tisanas/chillout"><img src="https://cafeetrusca.com/img/thumbnail/ITI-110.webp" alt="Tisana ChillOut" loading="lazy"><b>Tés</b><p>Tisanas y tés para preparar en frío o caliente.</p><span>Ver guía →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTACADAS -->
+  <section class="pc-feat">
+    <div class="container">
+      <div class="jar-head pc-head"><h2 class="section-title-center">Recetas destacadas</h2><div class="rule" aria-hidden="true"></div><p>Usa nuestras recetas como punto de partida y ajústalas a tu negocio.</p><a class="pill" routerLink="/recetas">Ver todas las recetas →</a></div>
+      <div class="pc-fcards">
+        @for (r of featured; track r.slug) {
+          <button type="button" class="f" (click)="setMode('receta'); pickRecipe(r); scrollTo('calculadora')">
+            <img [src]="r.image" alt="" loading="lazy"><span><b>{{ title(r) }}</b><small>{{ r.yield }}</small></span><i aria-hidden="true">→</i>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pc-cta">
+    <div class="container pc-cta-grid">
+      <div class="vis" aria-hidden="true">@for (img of heroImages; track img) { <img [src]="img" alt=""> }</div>
+      <div>
+        <span class="eyebrow">Mi cafetería</span>
+        <h2>Convierte tus ideas<br>en bebidas rentables.</h2>
+        <p>Usa la calculadora para probar combinaciones, ajustar porciones y encontrar el precio ideal para tu menú.</p>
+        <button type="button" class="pc-save inline" (click)="scrollTo('calculadora')">Comenzar a calcular →</button>
+      </div>
+    </div>
+  </section>
+</div>

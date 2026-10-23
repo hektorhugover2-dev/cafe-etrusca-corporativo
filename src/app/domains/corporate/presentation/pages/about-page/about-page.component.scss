@@ -267,18 +267,14 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 }
 
 .ns-drinks {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(1.6rem, 5vw, 3.6rem);
-  margin-bottom: 2.4rem;
+  // Ilustración lineal a todo el ancho del contenido (920px), escalada sin recortes.
+  margin: 0 auto 2.6rem;
+  max-width: 920px;
 
   img {
-    height: 92px;
-    width: auto;
-    max-width: 92px;
-    object-fit: contain;
-    object-position: bottom center;
+    display: block;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -563,7 +559,7 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
 
 @media (max-width: 575px) {
   .ns-hero { padding-top: 88px; }
-  .ns-drinks img { height: 72px; max-width: 72px; }
+  .ns-drinks { margin-bottom: 2rem; }
   .ns-sellos-row img { height: 72px; }
   .ns-pill { min-width: 0; }
 }

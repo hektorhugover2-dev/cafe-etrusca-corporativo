@@ -11,7 +11,7 @@
 .header-transparent.scrolled,
 .header-transparent.inner {
   background-color: rgba(9, 16, 44, 0.92) !important;
-  background-image: url('/assets/images/Fondo-navbar.png');
+  background-image: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/Fondo-navbar.png');
   background-size: cover;
   background-position: center;
   backdrop-filter: blur(8px);
@@ -792,5 +792,43 @@
 @media (min-width: 1200px) and (max-width: 1399.98px) {
   #navbarNav > .navbar-nav {
     gap: 1rem !important;
+  }
+}
+
+/* "Productos": la etiqueta navega a /productos; en móvil una flecha aparte abre/cierra el submenú. */
+.nav-sub-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible { background: rgba(255, 255, 255, 0.12); }
+  &[aria-expanded='true'] { transform: rotate(180deg); }
+}
+
+@media (max-width: 991px) {
+  .nav-root-split {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    > .nav-link.dropdown-toggle::after { display: none; }
+    > .dropdown-menu { flex-basis: 100%; }
+  }
+}
+/* Menú más bajo en laptops (992–1499 px) */
+@media (min-width: 992px) and (max-width: 1499px) {
+  .navbar.py-3 {
+    padding-top: .1rem !important;
+    padding-bottom: .1rem !important;
   }
 }

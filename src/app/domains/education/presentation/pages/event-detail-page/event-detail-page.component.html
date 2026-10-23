@@ -58,9 +58,9 @@
     </section>
 
     <section class="edu-section">
-      <h2>Sinopsis</h2>
+      <h2 class="section-title-center">Sinopsis</h2>
       <p class="sub">{{ course.synopsis }}</p>
-      <h2>Temario</h2>
+      <h2 class="section-title-center">Temario</h2>
       <div class="edu-faq">
         @for (item of course.syllabus; track item.title) {
           <details>
@@ -72,7 +72,7 @@
     </section>
 
     <section class="edu-section">
-      <h2>¿Qué aprenderás?</h2>
+      <h2 class="section-title-center">¿Qué aprenderás?</h2>
       <div class="edu-grid-2">
         @for (l of course.learn; track l) {
           <article class="edu-path"><h3>{{ l }}</h3></article>
@@ -81,11 +81,11 @@
     </section>
 
     <section class="edu-section">
-      <h2>¿A quién va dirigido?</h2>
+      <h2 class="section-title-center">¿A quién va dirigido?</h2>
       <ul>
         @for (a of course.audience; track a) { <li>{{ a }}</li> }
       </ul>
-      <h2 style="margin-top:2rem;">¿Qué incluye?</h2>
+      <h2 class="section-title-center" style="margin-top:2rem;">¿Qué incluye?</h2>
       <div class="edu-grid-6">
         @for (i of course.includes; track i) {
           <div class="edu-tile"><span>{{ i }}</span></div>
@@ -103,7 +103,7 @@
     }
   } @else {
     <section class="edu-section">
-      <h2>Sobre el taller</h2>
+      <h2 class="section-title-center">Sobre el taller</h2>
       @if (event.category?.description) { <p class="sub">{{ event.category.description }}</p> }
       @for (s of courseSections; track $index) {
         <h3>{{ s.heading }}</h3>
@@ -120,7 +120,7 @@
   }
 
   <section class="edu-section" id="fecha">
-    <h2>Detalles de esta fecha</h2>
+    <h2 class="section-title-center">Detalles de esta fecha</h2>
     <div class="ev-date-row">
       <article class="edu-date-card">
         <div class="date-block">
@@ -197,7 +197,7 @@
   </section>
 
   <section class="edu-section">
-    <h2>Te puede interesar</h2>
+    <h2 class="section-title-center">Te puede interesar</h2>
     <div class="edu-cards">
       @for (c of related; track c.slug) {
         <article class="edu-card">

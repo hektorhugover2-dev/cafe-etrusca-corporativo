@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, PLATFORM_ID, afterNextRender, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
 import { InsumosNavComponent } from '../../components/insumos-nav/insumos-nav.component';
@@ -17,6 +18,9 @@ import {
   TORANI_SUGAR_FREE,
   type ToraniProduct
 } from '../../torani.data';
+import { RecipeCardComponent } from '../../../../../shared/ui/recipe-card/recipe-card.component';
+import { inspiraRecipes } from '../../insumos-inspira';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 export const TORANI_PAGE_PATH = '/insumos-para-cafeterias/jarabes/torani';
 
@@ -31,11 +35,13 @@ function mentionsTorani(r: Recipe): boolean {
 @Component({
   selector: 'app-torani-page',
   standalone: true,
-  imports: [RouterLink, InsumosNavComponent, ScrollWaveComponent],
+  imports: [RouterLink, InsumosNavComponent, ScrollWaveComponent, RecipeCardComponent],
   templateUrl: './torani-page.component.html',
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './torani-page.component.scss']
 })
 export class ToraniPageComponent {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
 
   readonly path = TORANI_PAGE_PATH;
@@ -56,14 +62,32 @@ export class ToraniPageComponent {
   readonly salsaLines = TORANI_SALSA_LINES;
   readonly faq = TORANI_FAQ;
   readonly mixologiaPath = COURSE_PUBLIC_PATH_BY_SLUG['mixologia'] || '/cursos-para-baristas-y-talleres-para-cafeterias';
+  /** "Inspira tu menú": 3 recetas reales con Torani, mismo criterio/orden que insumos (populares primero). */
+  readonly menu = inspiraRecipes('torani');
   readonly recipes = publishedRecipes().filter(mentionsTorani).slice(0, 3);
   readonly heroBottles = [
-    { src: '/assets/images/insumos/jarabes/bottle-puremade.webp', alt: 'Jarabe Torani Puremade', cls: 'b-left' },
-    { src: '/assets/images/insumos/line-defaults/jarabes-clasico.webp', alt: 'Jarabe Torani Clásico', cls: 'b-center' },
-    { src: '/assets/images/insumos/line-defaults/jarabes-sugarfree.webp', alt: 'Jarabe Torani Sugar Free', cls: 'b-right' }
+    { src: `${ASSETS_BASE_URL}/images/insumos/jarabes/bottle-puremade.webp`, alt: 'Jarabe Torani Puremade', cls: 'b-left' },
+    { src: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-clasico.webp`, alt: 'Jarabe Torani Clásico', cls: 'b-center' },
+    { src: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-sugarfree.webp`, alt: 'Jarabe Torani Sugar Free', cls: 'b-right' }
   ];
 
+  /** Video HyperFrames del hero (V3 Rueda; respaldo de Pulso en backups/torani-pulso-20261020). Archivos locales en public/assets/videos/torani/. */
+  readonly heroVideo = {
+    webm: '/assets/videos/torani/v3-rueda.webm',
+    mp4: '/assets/videos/torani/v3-rueda.mp4',
+    poster: '/assets/videos/torani/v3-rueda-poster.webp'
+  };
+  /** Solo en cliente y sin prefers-reduced-motion; en SSR quedan las botellas estáticas. */
+  readonly heroVideoOn = signal(false);
+  private platformId = inject(PLATFORM_ID);
+
   constructor() {
+    afterNextRender(() => {
+      if (!isPlatformBrowser(this.platformId)) return;
+      const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+      if (mq && mq.matches) return;
+      this.heroVideoOn.set(true);
+    });
     this.seo.set({
       title: 'Jarabes Torani en México: sabores, sin azúcar y salsas | Café Etrusca',
       // Sin "envío a todo México" (no confirmado): ver TODO en torani.data.ts
@@ -71,10 +95,17 @@ export class ToraniPageComponent {
         'Jarabes y salsas Torani para tu cafetería: caramelo, vainilla, Sugar Free y más en botella de 750 ml. Compra en línea o habla con un asesor.',
       keywords:
         'jarabe torani, jarabes torani, torani sugar free, torani sin azúcar, salsa torani, torani caramelo, torani vainilla, Café Etrusca',
-      image: '/assets/images/insumos/line-defaults/jarabes-clasico.webp',
+      image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-clasico.webp`,
       path: TORANI_PAGE_PATH,
       jsonLd: ({ url }) => [this.itemListLd(url), this.faqLd(url), this.breadcrumbLd()]
     });
+  }
+
+  /** Angular no refleja `muted` como atributo; se fuerza para que el autoplay no se bloquee. */
+  playHeroVideo(ev: Event): void {
+    const v = ev.target as HTMLVideoElement;
+    v.muted = true;
+    v.play?.().catch(() => {});
   }
 
   tone(i: number): string {

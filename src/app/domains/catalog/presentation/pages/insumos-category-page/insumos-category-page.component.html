@@ -2,15 +2,16 @@
 @if (cat.layout === 'jarabes') {
 <div class="ins-page layout-jarabes">
   <section class="jar-hero">
-    <img class="jar-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob" src="{{ assetsBase }}/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>JARABES</h1>
       <p class="lead"><span class="accent">Sabor y versatilidad</span> para cada bebida</p>
       <p class="body">{{ cat.body }}</p>
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/20" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
-      <img class="photo" src="/assets/images/insumos/jarabes/hero-collage.webp" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/jarabes/hero-collage.webp" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
   </section>
@@ -19,7 +20,7 @@
 
   <section class="jar-lines">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid">
@@ -61,7 +62,7 @@
 
   <section class="jar-torani-link" aria-label="Jarabes Torani">
     <a routerLink="/insumos-para-cafeterias/jarabes/torani">
-      <img src="/assets/images/insumos/logo-torani.png" alt="Torani" width="120" height="48">
+      <img src="{{ assetsBase }}/images/insumos/logo-torani.png" alt="Torani" width="120" height="48">
       <span>Sabores Torani Clásico, Sugar Free y salsas: encuentra el tuyo</span>
       <strong>Ver jarabes Torani ›</strong>
     </a>
@@ -79,7 +80,7 @@
 
   <section class="jar-choose">
     <div class="jar-head">
-      <h2>¿Qué jarabe elegir?</h2>
+      <h2 class="section-title-center">¿Qué jarabe elegir?</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-compare">
@@ -102,16 +103,12 @@
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of jarabesMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of jarabesMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
@@ -123,36 +120,31 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
   <section class="jar-seleccion">
     <div class="jar-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-sel-grid">
-      @for (s of seleccion; track s.image) {
-        <article class="jar-sel" [class]="s.tone">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 </div>
 } @else if (cat.layout === 'salsas') {
 <div class="ins-page layout-jarabes layout-salsas">
   <section class="sal-hero">
-    <img class="sal-hero-blob" src="/assets/images/insumos/salsas-hero-blob.webp" alt="" aria-hidden="true">
+    <img class="sal-hero-blob" src="{{ assetsBase }}/images/insumos/salsas-hero-blob.webp" alt="" aria-hidden="true">
     <div class="sal-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>SALSAS</h1>
       <p class="lead">Textura y sabor <span class="accent">para dar el toque final</span></p>
       <p class="body">{{ cat.body }}</p>
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/26" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="sal-hero-media">
-      <img class="photo" src="/assets/images/insumos/salsas-hero-drink.png" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/salsas-hero-drink.png" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#f4eee4"></app-scroll-wave>
   </section>
@@ -161,7 +153,7 @@
 
   <section class="jar-lines">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid">
@@ -237,52 +229,43 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/insumos/salsas-barista.png" alt="Asesor de Café Etrusca">
+    <img src="{{ assetsBase }}/images/insumos/salsas-barista.png" alt="Asesor de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#c8e84a"></app-scroll-wave>
   </section>
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of salsasMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of salsasMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
 
   <section class="jar-seleccion">
     <div class="jar-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-sel-grid">
-      @for (s of salsasSeleccion; track s.image) {
-        <article class="jar-sel" [class]="s.tone">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 </div>
 } @else if (cat.layout === 'pures') {
 <div class="ins-page layout-pures">
   <section class="pur-hero">
-    <img class="pur-hero-blob" src="/assets/images/insumos/pures-blob-hero.png" alt="" aria-hidden="true">
+    <img class="pur-hero-blob" src="{{ assetsBase }}/images/insumos/pures-blob-hero.png" alt="" aria-hidden="true">
         <div class="pur-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>Purés y<br>Concentrados</h1>
       <p class="lead"><span class="accent">Sabor auténtico y consistente</span>, altamente concentrados</p>
       <p class="body">Soluciones líquidas y purés de fruta que elevan el sabor, aportan consistencia y te permiten crear bebidas únicas y personalizadas.</p>
       <a class="btn-pur" href="https://insumos.cafeetrusca.com/#page/31" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="pur-hero-media">
-      <img class="photo" src="/assets/images/insumos/pures-drink-2.png" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/pures-drink-2.png" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#a4f6fb"></app-scroll-wave>
   </section>
@@ -291,7 +274,7 @@
 
     <section class="pur-lines" id="pur-lineas">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid">
@@ -334,7 +317,7 @@
 
 <section class="pur-table-sec">
     <div class="pur-table-copy">
-      <h2>Presentaciones Chillout Jam</h2>
+      <h2>Presentaciones ChillOut Jam</h2>
       <table class="pur-table">
         <thead>
           <tr>
@@ -356,20 +339,20 @@
       <p class="pur-note">** Las presentaciones de ChillOut Jam varían según el sabor. Consulta la tabla.</p>
     </div>
     <div class="pur-table-photo">
-      <img src="/assets/images/insumos/pures-drink-1.png" alt="Bebida roja preparada con ChillOut Jam">
+      <img src="{{ assetsBase }}/images/insumos/pures-drink-1.png" alt="Bebida roja preparada con ChillOut Jam">
     </div>
   </section>
 
   <section class="pur-enjoy">
     <div class="pur-head">
-      <h2>Disfruta en</h2>
+      <h2 class="section-title-center">Disfruta en</h2>
     </div>
     <div class="pur-enjoy-grid">
       @for (use of puresEnjoy; track use.label) {
-        <article class="pur-use">
-          <img [src]="use.image" [alt]="use.label">
+        <a class="pur-use" routerLink="/recetas" [queryParams]="{ tipo: use.tipo }" [attr.aria-label]="use.ariaLabel">
+          <img [src]="use.image" alt="">
           <span>{{ use.label }}</span>
-        </article>
+        </a>
       }
     </div>
     <p class="pur-hint">*Sugerencia de preparación.</p>
@@ -377,16 +360,12 @@
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of puresMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of puresMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
@@ -398,35 +377,30 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#ff7eab"></app-scroll-wave>
   </section>
 
   <section class="pur-seleccion">
     <div class="pur-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
     </div>
-    <div class="pur-sel-grid">
-      @for (s of puresSeleccion; track s.image) {
-        <article class="pur-sel">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 </div>
 } @else if (cat.layout === 'te') {
 <div class="ins-page layout-jarabes layout-te">
   <section class="jar-hero">
-    <img class="jar-hero-blob" src="/assets/images/insumos/te/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob" src="{{ assetsBase }}/images/insumos/te/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>TÉS</h1>
       <p class="lead"><span class="accent">Aromas y perfiles</span> para disfrutar en cada taza</p>
       <p class="body">{{ cat.body }}</p>
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/47" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
-      <img class="photo" src="/assets/images/insumos/te/hero-teapot.webp" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/te/hero-teapot.webp" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffe566"></app-scroll-wave>
   </section>
@@ -435,7 +409,7 @@
 
   <section class="jar-lines">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid">
@@ -486,7 +460,7 @@
 
   <section class="jar-choose">
     <div class="jar-head">
-      <h2>¿Qué té elegir?</h2>
+      <h2 class="section-title-center">¿Qué té elegir?</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-compare">
@@ -509,16 +483,12 @@
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of teMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of teMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
@@ -530,36 +500,40 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
   <section class="jar-seleccion">
     <div class="jar-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-sel-grid">
-      @for (s of teSeleccion; track s.image) {
-        <article class="jar-sel" [class]="s.tone">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 </div>
 } @else if (cat.layout === 'tisanas') {
 <div class="ins-page layout-jarabes layout-tisanas">
   <section class="jar-hero">
-    <img class="jar-hero-blob" src="/assets/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob" src="{{ assetsBase }}/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>TISANAS</h1>
       <p class="lead"><span class="accent">Mezclas que llenan de sabor</span> cada infusión</p>
       <p class="body">{{ cat.body }}</p>
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/47" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
-      <img class="photo" src="/assets/images/insumos/tisanas/hero-drinks.webp" [alt]="cat.heroAlt">
+      <span class="tis-photo-wrap">
+        <img class="photo" src="{{ assetsBase }}/images/insumos/tisanas/hero-drinks.webp" [alt]="cat.heroAlt">
+        @if (steamOn()) {
+          <svg class="tis-steam" viewBox="0 0 120 200" aria-hidden="true" focusable="false">
+            <path class="w w1" d="M60 196 C 40 160, 82 140, 58 104 C 40 76, 76 56, 60 20" />
+            <path class="w w2" d="M42 196 C 26 166, 60 146, 40 112 C 26 88, 54 66, 42 36" />
+            <path class="w w3" d="M78 196 C 96 164, 64 142, 84 110 C 98 86, 70 62, 82 32" />
+          </svg>
+        }
+      </span>
     </div>
     <app-scroll-wave position="bottom" fillColor="#f2a8a8"></app-scroll-wave>
   </section>
@@ -568,7 +542,7 @@
 
   <section class="jar-lines">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid">
@@ -610,7 +584,7 @@
 
   <section class="jar-torani-link jar-chillout-link" aria-label="Tisanas ChillOut">
     <a routerLink="/insumos-para-cafeterias/tisanas/chillout">
-      <img src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut" width="120" height="48">
+      <img src="/assets/images/marcas/logo-chillout-tisanas.webp" alt="ChillOut Tisanas" width="120" height="48">
       <span>Trece sabores de tisana ChillOut en bolsa de 250 g: encuentra el tuyo</span>
       <strong>Ver tisanas ChillOut ›</strong>
     </a>
@@ -627,7 +601,7 @@
 
   <section class="jar-choose">
     <div class="jar-head">
-      <h2>¿Qué tisana elegir?</h2>
+      <h2 class="section-title-center">¿Qué tisana elegir?</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-compare">
@@ -650,16 +624,12 @@
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of tisanasMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of tisanasMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
@@ -671,36 +641,31 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
   <section class="jar-seleccion">
     <div class="jar-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-sel-grid">
-      @for (s of tisanasSeleccion; track s.image) {
-        <article class="jar-sel" [class]="s.tone">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 </div>
 } @else if (cat.layout === 'bases') {
 <div class="ins-page layout-jarabes layout-bases">
   <section class="jar-hero">
-    <img class="jar-hero-blob" src="/assets/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob" src="{{ assetsBase }}/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>BASES EN<br>POLVO</h1>
       <p class="lead"><span class="accent">Una base,</span> muchas posibilidades</p>
       <p class="body">{{ cat.body }}</p>
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/9" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
-      <img class="photo" src="/assets/images/insumos/bases/hero-drink.webp" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/bases/hero-drink.webp" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
   </section>
@@ -709,7 +674,7 @@
 
   <section class="jar-lines">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-lines-grid">
@@ -751,7 +716,7 @@
 
   <section class="jar-torani-link jar-chillout-link" aria-label="Bases en polvo ChillOut">
     <a routerLink="/insumos-para-cafeterias/bases-en-polvo/chillout">
-      <img src="/assets/images/insumos/bases/logo-chillout.webp" alt="ChillOut Mix" width="120" height="48">
+      <img src="/assets/images/marcas/logo-chillout-mix.webp" alt="ChillOut Mix" width="120" height="48">
       <span>Sabores ChillOut Mix, Just Fruit y sin azúcar: encuentra el tuyo</span>
       <strong>Ver bases ChillOut ›</strong>
     </a>
@@ -768,7 +733,7 @@
 
   <section class="jar-choose">
     <div class="jar-head">
-      <h2>¿Qué base elegir?</h2>
+      <h2 class="section-title-center">¿Qué base elegir?</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-compare">
@@ -791,16 +756,12 @@
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of basesMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of basesMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
@@ -812,36 +773,31 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
   <section class="jar-seleccion">
     <div class="jar-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-sel-grid">
-      @for (s of basesSeleccion; track s.image) {
-        <article class="jar-sel" [class]="s.tone">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 </div>
 } @else if (cat.layout === 'toppings') {
 <div class="ins-page layout-jarabes layout-toppings">
   <section class="jar-hero">
-    <img class="jar-hero-blob" src="/assets/images/insumos/toppings/blob-hero.webp" alt="" aria-hidden="true">
+    <img class="jar-hero-blob" src="{{ assetsBase }}/images/insumos/toppings/blob-hero.webp" alt="" aria-hidden="true">
     <div class="jar-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>Bubble tea</h1>
       <p class="lead"><span class="accent">Textura y sabor</span> para dar el toque final</p>
       <p class="body">{{ cat.body }}</p>
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/35" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="jar-hero-media">
-      <img class="photo" src="/assets/images/insumos/toppings/hero-drink.webp" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/toppings/hero-drink.webp" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#b4b4fa"></app-scroll-wave>
   </section>
@@ -864,7 +820,7 @@
 
 <section class="jar-lines">
     <div class="jar-head">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
     @for (block of toppingsBloques; track block.num) {
@@ -923,7 +879,7 @@
 
   <section class="jar-choose">
     <div class="jar-head">
-      <h2>¿Qué topping elegir?</h2>
+      <h2 class="section-title-center">¿Qué topping elegir?</h2>
       <div class="rule"></div>
     </div>
     <div class="jar-compare">
@@ -946,16 +902,12 @@
 
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of toppingsMenu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of toppingsMenu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>
@@ -967,27 +919,21 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
     </div>
-    <img src="/assets/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
   <section class="jar-seleccion">
     <div class="jar-head">
-      <h2>Nuestra selección</h2>
+      <h2 class="section-title-center">Nuestra selección</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-sel-grid">
-      @for (s of toppingsSeleccion; track s.image) {
-        <article class="jar-sel" [class]="s.tone">
-          <img [src]="s.image" [alt]="s.alt">
-        </article>
-      }
-    </div>
+    <app-seleccion-cards [cards]="seleccionCards"></app-seleccion-cards>
   </section>
 
   <section class="toppings-recomienda" aria-label="Te recomendamos">
     <div class="jar-head">
-      <h2>Te recomendamos</h2>
+      <h2 class="section-title-center">Te recomendamos</h2>
       <div class="rule"></div>
     </div>
     <p class="toppings-recomienda-lead">Te podría interesar este equipo para complementar tu barra de toppings.</p>
@@ -1012,6 +958,7 @@
 <div class="ins-page">
   <section class="ins-hero">
     <div class="ins-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>
         @if (cat.kicker) { <span>{{ cat.kicker }}</span> }
         {{ cat.title }}
@@ -1029,7 +976,7 @@
 
   @if (cat.lines.length) {
     <section class="ins-section">
-      <h2>Líneas</h2>
+      <h2 class="section-title-center">Líneas</h2>
       <div class="ins-lines">
         @for (line of cat.lines; track line.name) {
           <article class="ins-line" [class]="'ins-line' + (line.tone ? ' tone-' + line.tone : '')">
@@ -1057,16 +1004,12 @@
   @if (cat.layout !== 'generic') {
       <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of menu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of menu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>

@@ -7,8 +7,9 @@
  * tarjetas desde /api/Product con app-acc-brand-products.
  */
 import { METODOS_SLUG } from './metodos-extraccion.data';
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 
-const IMG = '/assets/images/accesorios/subcategorias';
+const IMG = `${ASSETS_BASE_URL}/images/accesorios/subcategorias`;
 
 export interface AccSubcatHero {
   desktop: string;

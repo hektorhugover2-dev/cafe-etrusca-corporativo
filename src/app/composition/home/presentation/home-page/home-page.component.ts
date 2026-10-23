@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../shared/kernel/config/assets-url';
 ﻿import { DISTRIBUTORS } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
 import { Component, ElementRef, QueryList, ViewChildren, OnDestroy, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +20,8 @@ import { Recipe, publishedRecipes } from '../../../../domains/catalog/presentati
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent implements OnInit, OnDestroy {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private http = inject(HttpClient);
 
   homeRecipes: Recipe[] = ['pumpkin-cold-brew', 'dirty-pumpkin-chai', 'mokalabaza-latte', 'bubble-pumpkin']
@@ -46,11 +49,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
   activeOption: 'suscribir' | 'duda' | null = null;
   ayudaLuckySrc = '';
-  private readonly luckyNewsletter = '/assets/images/lucky-newsletter.webp';
+  private readonly luckyNewsletter = `${ASSETS_BASE_URL}/images/lucky-newsletter.webp`;
   private readonly luckyPool = [
-    '/assets/images/lucky-idle.webp',
-    '/assets/images/lucky-writing.webp',
-    '/assets/images/mascota.png'
+    `${ASSETS_BASE_URL}/images/lucky-idle.webp`,
+    `${ASSETS_BASE_URL}/images/lucky-writing.webp`,
+    `${ASSETS_BASE_URL}/images/mascota.png`
   ];
   private luckyRotateTimer: ReturnType<typeof setInterval> | null = null;
 
@@ -58,7 +61,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   branches = [
     {
-      lat: 19.4923666, lng: -99.1578552, nombre: 'Café Etrusca CEDIS Vallejo',
+      lat: 19.4923666, lng: -99.1578552, nombre: 'Café Etrusca CEDIS Vallejo', nota: 'sin venta al público',
       direccion: 'Pte. 134 413, Industrial Vallejo, Azcapotzalco, 02300 Ciudad de México, CDMX',
       email: "atencion@cafeetrusca.com", telefono: "55 41 66 8777",
       horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-13:00 HRS', ciudad: "Ciudad de México", estado: "CDMX"
@@ -155,7 +158,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
         ' Todo Para Tu Cafetería: Cursos para Baristas, Talleres para Cafeterías, Insumos, Maquinaria, Equipo, Accesorios y más para potenciar tu negocio',
       keywords:
         'arte latte,Brew Bar,Cold Brew,Mezcla Personalizada,Cafés especiales,Mezclas especiales,Café Etrusca,insumos,cafeterías,equipo para cafetería,barras de café,cursos para barista,maquinas de espresso,certificaciones',
-      image: '/assets/images/home/banners/banner_home_la_fenice.webp',
+      image: `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`,
       ogType: 'website',
       jsonLd: ({ origin }) => [
         {
@@ -164,7 +167,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
           '@id': origin + '/#organization',
           name: brand,
           url: origin + '/',
-          logo: origin + '/assets/images/logo-etrusca.webp',
+          logo: absoluteAssetUrl('images/logo-etrusca.webp'),
           telephone: '+52-55-4166-8777',
           email: 'atencion@cafeetrusca.com',
           sameAs: [

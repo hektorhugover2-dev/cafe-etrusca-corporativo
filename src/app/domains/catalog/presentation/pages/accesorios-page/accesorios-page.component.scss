@@ -63,30 +63,11 @@ $tones: (
   border: 0;
 }
 
-/* ---------- Títulos de sección: copiados 1:1 de Jarabes (jarabes-theme.scss / insumos-theme.scss
-   ".jar-head h2" + ".jar-head .rule", bloque "h2-home-sep-jarabes") ---------- */
-.jar-head {
-  text-align: center;
-  margin: 0 0 1.8rem;
-}
-
-.jar-head h2 {
-  margin: 0 0 0.35rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 2.2rem;
-  letter-spacing: normal;
-  text-transform: none;
-  color: var(--etrusca-navy-900, #283039);
-  line-height: 1.15;
-}
-
+/* Títulos de sección (.jar-head h2 + .rule): estilos compartidos de Jarabes vía insumos-theme + jarabes-theme (styleUrls). */
+/* La línea de jarabes-theme usa separador.png del CDN; Cloudflare bloquea PNG con Referer ajeno (localhost / ng serve),
+   así que aquí se usa la copia .webp (idéntica, sin pérdida, no bloqueada). Mismas medidas que el tema. */
 .jar-head .rule {
-  width: min(549px, 80%);
-  height: 30px;
-  margin: 0.35rem auto 1.6rem;
-  border-radius: 0;
-  background: url('/assets/images/separador.png') center / contain no-repeat;
+  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.webp') center / contain no-repeat !important;
 }
 
 /* ================= HERO =================
@@ -738,4 +719,36 @@ $tones: (
   .acc-card:hover,
   .btn-jar:hover,
   .acc-help__btn:hover { transform: none; }
+}
+
+/* Esenciales (app-acc-essentials): última sección antes del footer, sin título */
+.acc-ess { padding-top: 88px; padding-bottom: 96px; }
+@media (max-width: 575.98px) { .acc-ess { padding-top: 56px; padding-bottom: 64px; } }
+
+/* Olas dinámicas de la banda Asesoría (app-scroll-wave, color $help-bg).
+   La ola sobresale 12vh fuera de la banda: se reserva ese espacio en blanco arriba/abajo para no tapar
+   la tira "Ver todas las marcas" ni el carrusel; el contenido queda por encima de la ola. */
+.acc-help {
+  position: relative;
+  isolation: isolate;
+}
+.acc-help__inner {
+  position: relative;
+  z-index: 6;
+}
+@media (min-width: 1024px) {
+  .acc-help {
+    margin-top: max(#{u(224)}, calc(12vh + 40px));
+    margin-bottom: max(#{u(244)}, calc(12vh + 40px));
+  }
+}
+@media (max-width: 1023.98px) {
+  .acc-help {
+    margin-top: calc(12vh + 2rem);
+    margin-bottom: calc(12vh + 1.5rem);
+  }
+  .acc-help__inner {
+    padding-top: calc(8vh + 1.2rem);
+    padding-bottom: calc(8vh + 1.2rem);
+  }
 }

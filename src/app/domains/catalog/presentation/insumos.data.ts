@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 export interface InsumosCategory {
   slug: string;
   label: string;
@@ -23,48 +24,48 @@ export interface ProductLine {
 }
 
 export const INSUMOS_NAV = [
-  { slug: 'jarabes', label: 'Jarabes', icon: '/assets/images/insumos/categorias/jarabes.png' },
-  { slug: 'salsas', label: 'Salsas', icon: '/assets/images/insumos/categorias/salsas.png' },
-  { slug: 'pures', label: 'Purés', icon: '/assets/images/insumos/categorias/pures.png' },
-  { slug: 'te', label: 'Té', icon: '/assets/images/insumos/categorias/te.png' },
-  { slug: 'tisanas', label: 'Tisanas', icon: '/assets/images/insumos/categorias/tisanas.png' },
-  { slug: 'bases-en-polvo', label: 'Bases en polvo', icon: '/assets/images/insumos/categorias/bases-en-polvo.png' },
-  { slug: 'toppings', label: 'Bubble tea', icon: '/assets/images/insumos/categorias/toppings.png' }
+  { slug: 'jarabes', label: 'Jarabes', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/jarabes.png` },
+  { slug: 'salsas', label: 'Salsas', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/salsas.png` },
+  { slug: 'pures', label: 'Purés', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/pures.png` },
+  { slug: 'te', label: 'Té', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/te.png` },
+  { slug: 'tisanas', label: 'Tisanas', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/tisanas.png` },
+  { slug: 'bases-en-polvo', label: 'Bases en polvo', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/bases-en-polvo.png` },
+  { slug: 'toppings', label: 'Bubble tea', icon: `${ASSETS_BASE_URL}/images/insumos/categorias/toppings.png` }
 ];
 
 export const INSPIRA_MENU = [
-  { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-orange.png', tone: 'yellow', link: '/insumos-para-cafeterias/jarabes' },
-  { title: 'Pistache cósmico', image: '/assets/images/insumos/jarabes/drink-pistache.png', tone: 'lime', link: '/insumos-para-cafeterias/salsas' },
-  { title: 'Soda italiana', image: '/assets/images/insumos/jarabes/drink-soda-pink.png', tone: 'pink', link: '/insumos-para-cafeterias/toppings' }
+  { title: 'Soda italiana', image: `${ASSETS_BASE_URL}/images/insumos/jarabes/drink-soda-orange.png`, tone: 'yellow', link: '/insumos-para-cafeterias/jarabes' },
+  { title: 'Pistache cósmico', image: `${ASSETS_BASE_URL}/images/insumos/jarabes/drink-pistache.png`, tone: 'lime', link: '/insumos-para-cafeterias/salsas' },
+  { title: 'Soda italiana', image: `${ASSETS_BASE_URL}/images/insumos/jarabes/drink-soda-pink.png`, tone: 'pink', link: '/insumos-para-cafeterias/toppings' }
 ];
 
 export const MARCAS_DESTACADAS = [
   {
     name: 'Torani',
     text: 'Sabor que inspira posibilidades. Jarabes, salsas y purés con más de 100 años elevando la experiencia de bebidas en todo el mundo.',
-    logo: '/assets/images/insumos/logo-torani.png',
-    image: '/assets/images/insumos/product-cluster.png',
+    logo: `${ASSETS_BASE_URL}/images/insumos/logo-torani.png`,
+    image: `${ASSETS_BASE_URL}/images/insumos/product-cluster.png`,
     link: '/insumos-para-cafeterias/jarabes/torani'
   },
   {
     name: 'ChillOut',
     text: 'Una marca mexicana con opciones para desarrollar, complementar y dar personalidad a bebidas frías y calientes.',
-    logo: '/assets/images/insumos/logo-chillout.png',
-    image: '/assets/images/insumos/salsa-chocolate.png',
+    logo: `${ASSETS_BASE_URL}/images/insumos/logo-chillout.png`,
+    image: `${ASSETS_BASE_URL}/images/insumos/salsa-chocolate.png`,
     link: '/insumos-para-cafeterias/bases-en-polvo/chillout'
   },
   {
     name: 'Té y tisanas',
     text: 'Mezclas diseñadas para preparar bebidas aromáticas, cremosas y consistentes de manera práctica.',
     logo: '',
-    image: '/assets/images/insumos/matcha-can.png',
+    image: `${ASSETS_BASE_URL}/images/insumos/matcha-can.png`,
     link: '/insumos-para-cafeterias/te'
   },
   {
     name: 'Bases en polvo',
     text: 'Mezclas en polvo que ayudan a desarrollar frappés y bebidas especiales con sabor y textura consistentes.',
     logo: '',
-    image: '/assets/images/insumos/bottle-cpm.png',
+    image: `${ASSETS_BASE_URL}/images/insumos/bottle-cpm.png`,
     link: '/insumos-para-cafeterias/bases-en-polvo'
   }
 ];
@@ -76,7 +77,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     title: 'JARABES',
     subtitle: 'Sabor y versatilidad para cada bebida',
     body: 'Los jarabes ofrecen una solución práctica para estandarizar recetas, diversificar el menú y elevar la experiencia de consumo en negocios de café y bebidas.',
-    heroImage: '/assets/images/insumos/jarabe-lifestyle.png',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/jarabe-lifestyle.png`,
     heroAlt: 'Jarabe ChillOut',
     layout: 'jarabes',
     lines: [
@@ -87,7 +88,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '14 opciones',
         presentacion: '1 L',
         rendimiento: 'Aprox. 30 bebidas de 450 ml',
-        image: '/assets/images/insumos/logo-chillout.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/logo-chillout.png`
       },
       {
         name: 'Clásico',
@@ -130,7 +131,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     title: 'SALSAS',
     subtitle: 'Textura y sabor para dar el toque final',
     body: 'Soluciones versátiles para integrar, complementar y decorar cafés, frappés, bebidas y postres con resultados consistentes en cada preparación.',
-    heroImage: '/assets/images/insumos/salsas-hero-drink.png',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/salsas-hero-drink.png`,
     heroAlt: 'Salsa sobre bebida',
     layout: 'salsas',
     lines: [
@@ -141,7 +142,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Chocolate y caramelo',
         presentacion: '1.89 L y 443 ml',
         rendimiento: 'Según dosificación',
-        image: '/assets/images/insumos/salsas-bottle-hollander.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/salsas-bottle-hollander.png`
       },
       {
         name: 'Chamoy',
@@ -150,7 +151,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Único sabor',
         presentacion: '1 L',
         rendimiento: 'Aprox. 33 bebidas de 480 ml',
-        image: '/assets/images/insumos/salsas-bottle-chamoy.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/salsas-bottle-chamoy.png`
       },
       {
         name: 'Sugar Free',
@@ -159,7 +160,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Caramelo, chocolate oscuro y chocolate blanco',
         presentacion: '1.89 L',
         rendimiento: 'Aprox. 63 bebidas de 480 ml',
-        image: '/assets/images/insumos/salsas-bottle-sugarfree.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/salsas-bottle-sugarfree.png`
       },
       {
         name: 'Puremade',
@@ -168,7 +169,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Caramelo, chocolate oscuro, chocolate blanco y chocolate y avellana',
         presentacion: '1.89 L y 488 ml',
         rendimiento: 'Hasta 63 bebidas aprox. en 1.89 L',
-        image: '/assets/images/insumos/salsas-bottle-puremade.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/salsas-bottle-puremade.png`
       }
     ],
     extra: {
@@ -176,12 +177,12 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         title: 'Salsa de calabaza',
         text: 'El sabor otoñal que tus clientes esperan. Perfecta para lattes, bebidas frías y postres especiales que evocan el calor del hogar.',
         tag: 'Disponible por tiempo limitado',
-        image: '/assets/images/insumos/salsa-pay-calabaza-torani-otono.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/salsa-pay-calabaza-torani-otono.webp`
       },
       steps: [
-        { n: '1', title: 'Integra', text: 'Mezcla la salsa con tu bebida para aportar sabor y una textura sedosa que envuelve el paladar desde el primer sorbo.', image: '/assets/images/insumos/salsas-step-1.png' },
-        { n: '2', title: 'Decora', text: 'Corona con creatividad: espirales, líneas o diseños que sorprenden a tus comensales y los invitan a capturar el momento.', image: '/assets/images/insumos/salsas-step-decora-cafe.webp' },
-        { n: '3', title: 'Sirve', text: 'Presenta, sorprende y convierte cada taza o plato en una experiencia premium.', image: '/assets/images/insumos/salsas-step-3.png' }
+        { n: '1', title: 'Integra', text: 'Mezcla la salsa con tu bebida para aportar sabor y una textura sedosa que envuelve el paladar desde el primer sorbo.', image: `${ASSETS_BASE_URL}/images/insumos/salsas-step-1.png` },
+        { n: '2', title: 'Decora', text: 'Corona con creatividad: espirales, líneas o diseños que sorprenden a tus comensales y los invitan a capturar el momento.', image: `${ASSETS_BASE_URL}/images/insumos/salsas-step-decora-cafe.webp` },
+        { n: '3', title: 'Sirve', text: 'Presenta, sorprende y convierte cada taza o plato en una experiencia premium.', image: `${ASSETS_BASE_URL}/images/insumos/salsas-step-3.png` }
       ]
     }
   },
@@ -192,7 +193,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     kicker: 'Purés y',
     subtitle: 'Soluciones líquidas y purés de fruta que elevan el sabor, aportan consistencia y te permiten crear bebidas únicas y personalizadas.',
     body: 'Sabor auténtico y consistente. Altamente concentrados.',
-    heroImage: '/assets/images/insumos/pures-hero-photo.png',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/pures-hero-photo.png`,
     heroAlt: 'Purés y concentrados',
     layout: 'pures',
     lines: [
@@ -203,7 +204,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '6 opciones',
         presentacion: '5 kg',
         rendimiento: 'Hasta 167 bebidas aprox.',
-        image: '/assets/images/insumos/pures-drink-1.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/pures-drink-1.png`
       },
       {
         name: 'ChillOut Jam',
@@ -248,7 +249,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     title: 'TÉS',
     subtitle: 'Aromas y perfiles para disfrutar en cada taza',
     body: 'Soluciones de té que elevan el sabor, aportan consistencia y te permiten crear bebidas únicas y personalizadas.',
-    heroImage: '/assets/images/insumos/te/hero-teapot.webp',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/te/hero-teapot.webp`,
     heroAlt: 'Tetera y taza de té',
     layout: 'te',
     lines: [
@@ -259,7 +260,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '9 opciones',
         presentacion: '250 g y 1 kg',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/te/line-vector.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/te/line-vector.webp`
       },
       {
         name: 'Stash Descafeinado',
@@ -268,7 +269,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Según catálogo',
         presentacion: '18 y 20 sobres',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/te/line-frame.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/te/line-frame.webp`
       },
       {
         name: 'Stash',
@@ -277,7 +278,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Según catálogo',
         presentacion: '18 y 20 sobres',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/te/hero-teapot.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/te/hero-teapot.webp`
       }
     ],
     extra: {
@@ -301,7 +302,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     title: 'TISANAS',
     subtitle: 'Mezclas que llenan de sabor cada infusión',
     body: 'Infusiones de frutas, hierbas y flores, naturalmente deliciosas y generalmente sin cafeína.',
-    heroImage: '/assets/images/insumos/tisanas/hero-drinks.webp',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/tisanas/hero-drinks.webp`,
     heroAlt: 'Bebidas de tisana',
     layout: 'tisanas',
     lines: [
@@ -312,7 +313,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Según catálogo',
         presentacion: 'Bolsa 250 g',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/tisanas/line-a.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/tisanas/line-a.webp`
       },
       {
         name: 'Euro Te Tisana',
@@ -321,7 +322,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: 'Según catálogo',
         presentacion: 'Bolsa 250 g',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/tisanas/line-b.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/tisanas/line-b.webp`
       }
     ],
     extra: {
@@ -338,7 +339,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     title: 'BASES EN POLVO',
     subtitle: 'Una base, muchas posibilidades',
     body: 'Los polvos y premezclas permiten incorporar sabor y consistencia a diferentes preparaciones. Dentro de nuestra selección encontrarás alternativas para bebidas de café, chai, matcha, chocolate, frappés y otras especialidades.',
-    heroImage: '/assets/images/insumos/bases/hero-drink.webp',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/bases/hero-drink.webp`,
     heroAlt: 'Bebida preparada con base en polvo',
     layout: 'bases',
     lines: [
@@ -349,7 +350,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '31 sabores',
         presentacion: '2 kg y 700 g',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-chillout.webp'
+        image: `/assets/images/marcas/logo-chillout-mix.webp`
       },
       {
         name: 'ChillOut Just Fruit',
@@ -358,7 +359,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '3 sabores',
         presentacion: '2 kg y 700 g',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-chillout-2.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-chillout-2.webp`
       },
       {
         name: 'David Rio Chai',
@@ -367,7 +368,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '9 sabores',
         presentacion: 'Desde 398 g',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-2.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`
       },
       {
         name: 'MoCafé',
@@ -376,7 +377,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '24 sabores',
         presentacion: '1.360 kg',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-3.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`
       },
       {
         name: 'Cool Capps',
@@ -385,7 +386,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '12 sabores',
         presentacion: '1.580 kg',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-4.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`
       },
       {
         name: 'Cappuccine',
@@ -394,7 +395,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '16 sabores',
         presentacion: '1.360 kg',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-5.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`
       },
       {
         name: 'Hollander',
@@ -403,7 +404,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '1 sabor',
         presentacion: '1.130 kg',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bases/logo-6.webp'
+        image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`
       },
       {
         name: 'Don Gustavo',
@@ -412,7 +413,7 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         sabores: '1 sabor',
         presentacion: 'Diferentes formatos',
         rendimiento: 'Según preparación',
-        image: '/assets/images/insumos/bottle-cpm.png'
+        image: `${ASSETS_BASE_URL}/images/insumos/bottle-cpm.png`
       }
     ],
     extra: {
@@ -431,18 +432,18 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
     title: 'Bubble tea',
     subtitle: 'Textura y sabor para dar el toque final',
     body: 'Perlas, jellies, tapiocas y complementos para aportar textura, sabor y un toque visual único a bebidas frías, bubble tea, frappés y especialidades.',
-    heroImage: '/assets/images/insumos/toppings/hero-drink.webp',
+    heroImage: `${ASSETS_BASE_URL}/images/insumos/toppings/hero-drink.webp`,
     heroAlt: 'Bebida con toppings',
     layout: 'toppings',
     lines: [
-      { name: 'Popping Boba', tone: 'coral', description: 'Perlas con cubierta gelatinosa y relleno líquido de diferentes sabores.', sabores: '14 opciones', presentacion: '3.4 kg', rendimiento: 'Hasta 113 bebidas aprox.*', image: '/assets/images/insumos/toppings/line-1.webp' },
-      { name: 'POP', tone: 'yellow', description: 'Perlas con o sin relleno que aportan sabor y textura en cada preparación.', sabores: '14 opciones y 4 rellenas', presentacion: '1.25 kg y rellenas 850 g', rendimiento: 'Hasta 43 bebidas aprox.*', image: '/assets/images/insumos/toppings/line-2.webp' },
-      { name: 'Perlas explosivas', tone: 'cyan', description: 'Perlas rellenas de líquido sabor a frutas. Ideales para complementar bebidas frías.', sabores: '3 opciones', presentacion: '3.2 kg', rendimiento: 'Hasta 106 bebidas aprox.*', image: '/assets/images/insumos/toppings/line-3.webp' },
-      { name: 'Crystal Boba', tone: 'lime', description: 'Perlas de konjac semitransparentes y suaves para agregar textura y un toque visual único.', sabores: '6 opciones', presentacion: '2 kg y 1 kg', rendimiento: 'Hasta 66 bebidas aprox.*', image: '/assets/images/insumos/toppings/line-4.webp' },
-      { name: 'Jelly', tone: 'coral', description: 'Gelatinas pequeñas con consistencia firme, agregando sabor y textura.', sabores: '8 opciones', presentacion: '3.85 kg', rendimiento: 'Hasta 128 bebidas aprox.*', image: '/assets/images/insumos/toppings/logo-chillout.webp' },
-      { name: 'Trozos de jalea', tone: 'yellow', description: 'Trozos de jalea versátiles para aportar textura y dulzura natural a bebidas y postres.', sabores: '5 opciones', presentacion: '4 kg', rendimiento: 'Hasta 133 bebidas aprox.*', image: '/assets/images/insumos/toppings/logo-teazone.webp' },
-      { name: 'Tapioca', tone: 'cyan', description: 'Tapioca en perlas para bubble tea. Cocidas adquieren una textura gelatinosa.', sabores: 'Según preparación', presentacion: '3 kg y 1 kg', rendimiento: 'Hasta 100 / 33 bebidas aprox.*', image: '/assets/images/insumos/toppings/logo-chillout-1.webp' },
-      { name: 'Tapioca instantánea', tone: 'lime', description: 'Tapioca instantánea en porciones individuales. Lista tras un minuto de calentado.', sabores: 'Según preparación', presentacion: 'Caja 50 sobres de 50 g', rendimiento: '50 bebidas (1 sobre por bebida)', image: '/assets/images/insumos/toppings/logo-chillout-2.webp' }
+      { name: 'Popping Boba', tone: 'coral', description: 'Perlas con cubierta gelatinosa y relleno líquido de diferentes sabores.', sabores: '14 opciones', presentacion: '3.4 kg', rendimiento: 'Hasta 113 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-1.webp` },
+      { name: 'POP', tone: 'yellow', description: 'Perlas con o sin relleno que aportan sabor y textura en cada preparación.', sabores: '14 opciones y 4 rellenas', presentacion: '1.25 kg y rellenas 850 g', rendimiento: 'Hasta 43 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-2.webp` },
+      { name: 'Perlas explosivas', tone: 'cyan', description: 'Perlas rellenas de líquido sabor a frutas. Ideales para complementar bebidas frías.', sabores: '3 opciones', presentacion: '3.2 kg', rendimiento: 'Hasta 106 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-3.webp` },
+      { name: 'Crystal Boba', tone: 'lime', description: 'Perlas de konjac semitransparentes y suaves para agregar textura y un toque visual único.', sabores: '6 opciones', presentacion: '2 kg y 1 kg', rendimiento: 'Hasta 66 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-4.webp` },
+      { name: 'Jelly', tone: 'coral', description: 'Gelatinas pequeñas con consistencia firme, agregando sabor y textura.', sabores: '8 opciones', presentacion: '3.85 kg', rendimiento: 'Hasta 128 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp` },
+      { name: 'Trozos de jalea', tone: 'yellow', description: 'Trozos de jalea versátiles para aportar textura y dulzura natural a bebidas y postres.', sabores: '5 opciones', presentacion: '4 kg', rendimiento: 'Hasta 133 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp` },
+      { name: 'Tapioca', tone: 'cyan', description: 'Tapioca en perlas para bubble tea. Cocidas adquieren una textura gelatinosa.', sabores: 'Según preparación', presentacion: '3 kg y 1 kg', rendimiento: 'Hasta 100 / 33 bebidas aprox.*', image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout-1.webp` },
+      { name: 'Tapioca instantánea', tone: 'lime', description: 'Tapioca instantánea en porciones individuales. Lista tras un minuto de calentado.', sabores: 'Según preparación', presentacion: 'Caja 50 sobres de 50 g', rendimiento: '50 bebidas (1 sobre por bebida)', image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout-2.webp` }
     ],
     extra: {
       compare: [
@@ -459,3 +460,39 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
 export function findCategory(slug: string | null) {
   return INSUMOS_CATEGORIES.find(c => c.slug === slug) ?? null;
 }
+
+/* ===================== MARCAS (página principal de insumos) =====================
+   Mismo diseño que la sección "Marcas" de accesorios. Solo marcas que existen en los
+   datos de insumos y logos que ya usa el sitio en el CDN; sin página propia → categoría. */
+export interface InsumosBrandLogo {
+  id: string;
+  name: string;
+  link: string;
+  image: { src: string; width: number; height: number };
+}
+
+export const INSUMOS_BRAND_LOGOS: InsumosBrandLogo[] = [
+  { id: 'torani', name: 'Torani', link: '/insumos-para-cafeterias/jarabes/torani', image: { src: `${ASSETS_BASE_URL}/images/productos/logo-torani.webp`, width: 200, height: 102 } },
+  { id: 'chillout', name: 'ChillOut', link: '/insumos-para-cafeterias/bases-en-polvo/chillout', image: { src: `${ASSETS_BASE_URL}/images/productos/logo-chillout.webp`, width: 220, height: 118 } },
+  { id: 'david-rio', name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`, width: 154, height: 88 } },
+  { id: 'mocafe', name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`, width: 115, height: 76 } },
+  { id: 'cool-capps', name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`, width: 81, height: 77 } },
+  { id: 'cappuccine', name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`, width: 150, height: 54 } },
+  { id: 'hollander', name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`, width: 251, height: 90 } },
+  { id: 'tea-zone', name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings', image: { src: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`, width: 239, height: 35 } }
+];
+
+/** Tira de marcas de insumos (incluye las que no tienen logo en el CDN: Don Gustavo, Stash, Euro Te). */
+export const INSUMOS_BRAND_STRIP: Array<{ name: string; link: string }> = [
+  { name: 'Torani', link: '/insumos-para-cafeterias/jarabes/torani' },
+  { name: 'ChillOut', link: '/insumos-para-cafeterias/bases-en-polvo/chillout' },
+  { name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'Don Gustavo', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings' },
+  { name: 'Stash', link: '/insumos-para-cafeterias/te' },
+  { name: 'Euro Te', link: '/insumos-para-cafeterias/te' }
+];

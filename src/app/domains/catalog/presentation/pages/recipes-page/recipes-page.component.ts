@@ -1,6 +1,8 @@
-import { Component, HostListener, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, HostListener, OnInit, PLATFORM_ID, afterNextRender, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
 import { Recipe, publishedRecipes, recipeBySlug } from './recetas.data';
@@ -14,6 +16,7 @@ import {
   RecetaTipo,
   filtrosDeReceta
 } from './recetas-listado.config';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 type Pestana = 'todas' | 'populares' | 'frio' | 'caliente';
 /** Chips redondos: tipos de bebida + atajos de temperatura (Frías / Calientes). */
@@ -42,8 +45,39 @@ interface ChipTemporada {
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './recipes-page.component.scss']
 })
 export class RecipesPageComponent implements OnInit {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
   private sanitizer = inject(DomSanitizer);
+  private route = inject(ActivatedRoute);
+  private platformId = inject(PLATFORM_ID);
+
+  /**
+   * Filtro desde la URL: /recetas?tipo=<chip>&temporada=<temporada>.
+   * Solo acepta ids que existen en `chips` / `temporadas` (recetas-listado.config.ts);
+   * cualquier otro valor se ignora y queda el recetario por defecto.
+   */
+  constructor() {
+    this.route.queryParamMap.pipe(takeUntilDestroyed()).subscribe((q) => this.aplicarFiltroUrl(q));
+    afterNextRender(() => {
+      if (!this.filtroDesdeUrl || !isPlatformBrowser(this.platformId)) return;
+      document.getElementById('rc-recetario-title')?.scrollIntoView({ block: 'start' });
+    });
+  }
+
+  private filtroDesdeUrl = false;
+
+  private aplicarFiltroUrl(q: ParamMap) {
+    const chip = this.chips.find((c) => c.id === q.get('tipo'))?.id ?? null;
+    const temporada = this.temporadas.find((t) => t.id === q.get('temporada'))?.id ?? null;
+    if (!chip && !temporada) return;
+    this.filtroDesdeUrl = true;
+    this.temporadaActual.set(null);
+    this.pestana.set('todas');
+    this.chip.set(chip);
+    this.temporada.set(temporada);
+    this.ultimoFiltro.set(chip ? 'tipo' : 'temporada');
+  }
   recipes: Recipe[] = publishedRecipes();
 
   /* ---------- Receta del mes (se configura en recetas-listado.config.ts) ---------- */
@@ -204,7 +238,7 @@ export class RecipesPageComponent implements OnInit {
         'Recetario ChillOut, Calabaza, Fiestas Patrias, Verano y San Valentín 2026: mangonada, micheladas, cold brew, sodas y m\u00e1s bebidas de barra.',
       keywords:
         'recetas cafeter\u00eda, Fiestas Patrias, Verano 2026, San Valent\u00edn 2026, ChillOut, mangonada, cold brew, Caf\u00e9 Etrusca, recetas barista',
-      image: '/assets/images/recetas/mangonada-card.webp',
+      image: `${ASSETS_BASE_URL}/images/recetas/mangonada-card.webp`,
       ogType: 'website',
       jsonLd: ({ origin, url }) => {
         const items = this.recipes.map((r, i) => ({

@@ -1,3 +1,5 @@
+import { siteAssetUrl } from '../../../../../shared/kernel/config/site-url';
+
 export interface EventSeo {
   description: string;
   keywords: string;
@@ -65,10 +67,10 @@ export function eventSeoForCategory(categoryId: number | null | undefined): Even
   }
 }
 
+/** /assets/… -> CDN R2 (o siteOrigin si useCdnAssets=false); otras rutas -> https://cafeetrusca.com. */
 export function absoluteAsset(path: string | null | undefined): string {
   if (!path) return '';
-  if (/^https?:\/\//i.test(path)) return path;
-  return 'https://cafeetrusca.com' + (path.startsWith('/') ? path : '/' + path);
+  return siteAssetUrl(path);
 }
 
 export function slugFromEventUrl(url: string | null | undefined): string {

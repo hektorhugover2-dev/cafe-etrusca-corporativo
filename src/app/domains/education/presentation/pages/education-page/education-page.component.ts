@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, afterNextRender, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -21,6 +21,7 @@ import {
 import { OPINIONS, ReviewCard } from '../../opinions.data';
 import { PATH_QUIZ, PATH_QUIZ_RESULTS, PATH_QUIZ_RESULTS_EXPERIENCIA, PathProfile, PathQuizResult } from '../../path-quiz.data';
 import { coursePublicPath } from '../../course-public-paths';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 interface QuizCourseLink {
   title: string;
@@ -46,10 +47,10 @@ function decodeHtml(value: string) {
 }
 
 const KIND_ICONS: Record<string, string> = {
-  cursos: '/assets/images/educacion/icon-cursos.png',
-  experiencias: '/assets/images/educacion/icon-experiencias.png',
-  talleres: '/assets/images/educacion/icon-talleres.png',
-  sesiones: '/assets/images/educacion/icon-sesiones.png'
+  cursos: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
+  experiencias: `${ASSETS_BASE_URL}/images/educacion/icon-experiencias.png`,
+  talleres: `${ASSETS_BASE_URL}/images/educacion/icon-talleres.png`,
+  sesiones: `${ASSETS_BASE_URL}/images/educacion/icon-sesiones.png`
 };
 
 @Component({
@@ -60,6 +61,8 @@ const KIND_ICONS: Record<string, string> = {
   styleUrls: ['../../edu-theme.scss', './education-page.component.scss']
 })
 export class EducationPageComponent implements OnInit, OnDestroy {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   cats = EDU_NAV;
   month = THIS_MONTH;
   paths = PATHS;
@@ -94,6 +97,33 @@ export class EducationPageComponent implements OnInit, OnDestroy {
   private document = inject(DOCUMENT);
   private platformId = inject(PLATFORM_ID);
 
+  /** Animación HyperFrames de arte latte en el CTA "¿Quieres comenzar tu camino?" (archivos en public/assets/videos/educacion/). */
+  readonly ctaVideo = {
+    webm: '/assets/videos/educacion/latte-art.webm',
+    mp4: '/assets/videos/educacion/latte-art.mp4',
+    poster: '/assets/videos/educacion/latte-art-poster.webp'
+  };
+  /** Solo en cliente y sin prefers-reduced-motion; en SSR queda la foto actual. */
+  readonly ctaVideoOn = signal(false);
+  /** Con prefers-reduced-motion se muestra el poster (fotograma del corazón) en lugar del video. */
+  readonly ctaReduced = signal(false);
+
+  constructor() {
+    afterNextRender(() => {
+      if (!isPlatformBrowser(this.platformId)) return;
+      const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+      if (mq && mq.matches) { this.ctaReduced.set(true); return; }
+      this.ctaVideoOn.set(true);
+    });
+  }
+
+  /** Angular no refleja `muted` como atributo; se fuerza para que el autoplay no se bloquee. */
+  playCtaVideo(ev: Event): void {
+    const v = ev.target as HTMLVideoElement;
+    v.muted = true;
+    v.play?.().catch(() => {});
+  }
+
   ngOnInit() {
     const title = 'Cursos Para Baristas y Talleres Para Cafeterías - Sé un profesional';
     const description =
@@ -104,7 +134,7 @@ export class EducationPageComponent implements OnInit, OnDestroy {
       title,
       description,
       keywords,
-      image: '/assets/images/educacion/icon-cursos.png',
+      image: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {

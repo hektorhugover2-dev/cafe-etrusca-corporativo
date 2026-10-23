@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ACC_WHATSAPP } from '../../accesorios.data';
 import { BuyModalService, BuyRequest } from './buy-modal.service';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
 
@@ -34,6 +35,8 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), selec
   host: { '(document:keydown)': 'onKeydown($event)' }
 })
 export class BuyModalComponent {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   readonly req = input.required<BuyRequest>();
 
   private svc = inject(BuyModalService);

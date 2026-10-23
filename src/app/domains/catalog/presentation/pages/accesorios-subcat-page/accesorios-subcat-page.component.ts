@@ -1,3 +1,4 @@
+import { HeroCrumbsComponent, HeroCrumb } from '../../../../../shared/ui/hero-crumbs/hero-crumbs.component';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
@@ -25,7 +26,7 @@ import { ACC_SUBCAT_HEROES, AccSubcatHero } from '../../accesorios-subcat.data';
 @Component({
   selector: 'app-accesorios-subcat-page',
   standalone: true,
-  imports: [RouterLink, ScrollWaveComponent, AccBrandProductsComponent],
+  imports: [HeroCrumbsComponent, RouterLink, ScrollWaveComponent, AccBrandProductsComponent],
   templateUrl: './accesorios-subcat-page.component.html',
   styleUrls: [
     '../metodos-extraccion-page/metodos-extraccion-page.component.scss',
@@ -39,6 +40,7 @@ export class AccesoriosSubcatPageComponent {
   readonly allBrands = ACC_ALL_BRANDS_LINK;
 
   cat: AccCategory | null = null;
+  crumbs: HeroCrumb[] = [];
   hero: AccSubcatHero | null = null;
   others: AccCategory[] = [];
   /** Marcas y subcategorías de la sección (accesorios-secciones.config.ts, PDF de secciones). */
@@ -68,6 +70,7 @@ export class AccesoriosSubcatPageComponent {
     this.section = isAccSection(cat.slug) ? ACC_SECTIONS[cat.slug] : null;
     this.others = ACC_CATEGORIES.filter((c) => c.slug !== cat.slug);
     const name = cat.titleLines.join(' ');
+    this.crumbs = [{ label: 'Inicio', path: '/' }, { label: 'Accesorios', path: this.hub }, { label: name, path: this.hub + '/' + cat.slug }];
     const meta = ACC_SUBCAT_SEO[cat.slug] || ACC_HUB_SEO;
     this.seo.set({
       ...meta,

@@ -170,7 +170,7 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
   },
   {
     "id": "8hKHHTAnbaU",
-    "title": "🎙️☕ EPISODIO 21 | Invitada Olivia: pionera de Euro Te",
+    "title": "🎙️☕ Episodio 21 | Invitada Olivia: pionera de Euro Te",
     "duration": "54:45",
     "thumb": "https://i.ytimg.com/vi/8hKHHTAnbaU/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=8hKHHTAnbaU"

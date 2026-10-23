@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
 import { Recipe, recipeBySlug, relatedRecipes } from './recetas.data';
+import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../../shared/kernel/config/assets-url';
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -13,10 +15,13 @@ import { Recipe, recipeBySlug, relatedRecipes } from './recetas.data';
   styleUrl: './recipe-detail-page.component.scss'
 })
 export class RecipeDetailPageComponent implements OnInit, OnDestroy {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private document = inject(DOCUMENT);
+  private sanitizer = inject(DomSanitizer);
 
   recipe: Recipe | null = null;
   related: Recipe[] = [];
@@ -65,6 +70,11 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     return text.replace(/ChillOut/g, '<b class="co-brand">ChillOut</b>');
   }
 
+  /** URL del iframe de YouTube (sanitizada) para recetas con video. */
+  videoEmbed(id: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id));
+  }
+
   displayTitle(recipe: Recipe): string {
     return [recipe.title, recipe.titleAccent].filter(Boolean).join(' ');
   }
@@ -82,7 +92,25 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
       keywords: pack.keywords,
       image: imagePath || undefined,
       ogType: 'article',
-      jsonLd: ({ origin, url }) => this.buildRecipeJsonLd(recipe, origin, url)
+      jsonLd: ({ origin, url }) => {
+        const data = this.buildRecipeJsonLd(recipe, origin, url);
+        if (!recipe.breadcrumbJsonLd) return data;
+        const { ['@context']: _ctx, ...node } = data;
+        return {
+          '@context': 'https://schema.org',
+          '@graph': [
+            node,
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin + '/' },
+                { '@type': 'ListItem', position: 2, name: 'Recetas', item: origin + '/recetas/' },
+                { '@type': 'ListItem', position: 3, name: this.displayTitle(recipe), item: url }
+              ]
+            }
+          ]
+        };
+      }
     });
   }
 
@@ -114,14 +142,25 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
         name: 'Caf\u00e9 Etrusca',
         logo: {
           '@type': 'ImageObject',
-          url: origin + '/assets/images/logo-etrusca.webp'
+          url: absoluteAssetUrl('images/logo-etrusca.webp')
         }
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
         '@id': url
       },
-      datePublished: '2026-01-01',
+      datePublished: recipe.datePublished || '2026-01-01',
+      video: recipe.video
+        ? {
+            '@type': 'VideoObject',
+            name: recipe.video.name,
+            description: recipe.summary,
+            embedUrl: 'https://www.youtube.com/embed/' + recipe.video.youtubeId,
+            contentUrl: 'https://www.youtube.com/watch?v=' + recipe.video.youtubeId,
+            thumbnailUrl: recipe.video.thumbnailUrl,
+            uploadDate: recipe.video.uploadDate
+          }
+        : undefined,
       prepTime: prep,
       cookTime: 'PT0M',
       totalTime: prep,

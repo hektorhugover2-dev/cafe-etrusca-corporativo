@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 /**
  * Content migrated verbatim from the old .NET site (EtruscaCleanArchitecture.Web,
  * Controllers/CursoController.cs + Views/Curso/*.cshtml). SEO fields are the exact
@@ -85,7 +86,7 @@ const KW: ReadonlyArray<string> = [
 
 const S: ReadonlyArray<LegacySection> = [
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -164,7 +165,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Baristas",
+    "heading": "Calendario de baristas",
     "level": 3,
     "blocks": [
       {
@@ -270,7 +271,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -365,7 +366,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Bubble Tea Especializado",
+    "heading": "Bubble Tea especializado",
     "level": 3,
     "blocks": [
       {
@@ -510,7 +511,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -676,7 +677,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -773,7 +774,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": []
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -852,7 +853,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1036,7 +1037,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1079,7 +1080,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1093,7 +1094,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Arte Latte en Queretaro",
+    "heading": "Calendario de Arte Latte en Querétaro",
     "level": 3,
     "blocks": [
       {
@@ -1122,7 +1123,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1165,7 +1166,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1253,7 +1254,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Zona Rosa CDMX Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Zona Rosa CDMX temario",
     "level": 2,
     "blocks": [
       {
@@ -1312,7 +1313,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1445,7 +1446,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "¿QUÉ INCLUYE AL ADQUIRIR ESTA EXPERIENCIA?",
+    "heading": "¿Qué incluye al adquirir esta experiencia?",
     "level": 2,
     "blocks": [
       {
@@ -1551,7 +1552,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/cursos-talleres-logo.svg",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.svg`,
         "alt": "Cursos y Talleres Cafe Etrusca"
       },
       {
@@ -1601,7 +1602,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/formacionemprendedores.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/formacionemprendedores.webp`,
         "alt": "Curso Emprendiendo mi negocio de barra de café y cafetería"
       },
       {
@@ -1622,7 +1623,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/artelatte.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/artelatte.webp`,
         "alt": "Taller Básico Arte Latte"
       },
       {
@@ -1643,7 +1644,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/750x375px-mixologia.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/750x375px-mixologia.webp`,
         "alt": "Curso Mixología y moctelería para cafeterías"
       },
       {
@@ -1664,7 +1665,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/tostado.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/tostado.webp`,
         "alt": "Taller básico de tostado de café"
       },
       {
@@ -1685,7 +1686,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/formacionbarista.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/formacionbarista.webp`,
         "alt": "Taller básico para baristas"
       },
       {
@@ -1706,7 +1707,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/brewcoldbrew.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/brewcoldbrew.webp`,
         "alt": "Taller de Brew Bar & Cold Brew"
       },
       {
@@ -1727,7 +1728,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/bubbletea.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/bubbletea.webp`,
         "alt": "Taller de Bubble Tea & Iced Coffee"
       },
       {
@@ -1743,12 +1744,12 @@ const S: ReadonlyArray<LegacySection> = [
     "card": true
   },
   {
-    "heading": "Bubble Tea Especializado",
+    "heading": "Bubble Tea especializado",
     "level": 2,
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/bb-esp.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/bb-esp.webp`,
         "alt": "Taller de Bubble Tea Especializado"
       },
       {
@@ -1769,7 +1770,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "img",
-        "src": "/assets/images/educacion/legacy/catandosemillasens.webp",
+        "src": `${ASSETS_BASE_URL}/images/educacion/legacy/catandosemillasens.webp`,
         "alt": "Curso básico de catación de café - Catando de la Semilla a lo Sensorial"
       },
       {
@@ -1792,7 +1793,7 @@ const S: ReadonlyArray<LegacySection> = [
     "added": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1953,7 +1954,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -1978,7 +1979,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2003,7 +2004,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2039,7 +2040,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Xalapa Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Xalapa temario",
     "level": 2,
     "blocks": [
       {
@@ -2098,7 +2099,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2171,7 +2172,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Mixólogos",
+    "heading": "Calendario de mixólogos",
     "level": 3,
     "blocks": [
       {
@@ -2182,7 +2183,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2284,7 +2285,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2298,7 +2299,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Arte Latte en Leon",
+    "heading": "Calendario de Arte Latte en León",
     "level": 3,
     "blocks": [
       {
@@ -2327,7 +2328,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2352,7 +2353,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2453,7 +2454,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Mixología",
+    "heading": "Calendario de mixología",
     "level": 3,
     "blocks": [
       {
@@ -2464,7 +2465,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2560,7 +2561,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Experiencia del Oasis de sabor con bebidas Frías",
+    "heading": "Calendario de Experiencia del Oasis de sabor con bebidas frías",
     "level": 3,
     "blocks": [
       {
@@ -2571,7 +2572,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2656,7 +2657,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Baristas Especializados",
+    "heading": "Calendario de baristas especializados",
     "level": 3,
     "blocks": [
       {
@@ -2667,7 +2668,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2750,7 +2751,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Arte Latte Especializado",
+    "heading": "Calendario de Arte Latte especializado",
     "level": 3,
     "blocks": [
       {
@@ -2761,7 +2762,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2793,7 +2794,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2865,7 +2866,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -2929,7 +2930,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Servicio al cliente en barras de café",
+    "heading": "Calendario de servicio al cliente en barras de café",
     "level": 3,
     "blocks": [
       {
@@ -2940,7 +2941,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Guadalajara",
+    "heading": "Calendario de baristas en Guadalajara",
     "level": 3,
     "blocks": [
       {
@@ -2951,7 +2952,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en León",
+    "heading": "Calendario de baristas en León",
     "level": 3,
     "blocks": [
       {
@@ -2962,7 +2963,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Monterrey",
+    "heading": "Calendario de baristas en Monterrey",
     "level": 3,
     "blocks": [
       {
@@ -2973,7 +2974,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Puebla",
+    "heading": "Calendario de baristas en Puebla",
     "level": 3,
     "blocks": [
       {
@@ -2984,7 +2985,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Queretaro",
+    "heading": "Calendario de baristas en Querétaro",
     "level": 3,
     "blocks": [
       {
@@ -2995,7 +2996,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Tijuana",
+    "heading": "Calendario de baristas en Tijuana",
     "level": 3,
     "blocks": [
       {
@@ -3006,7 +3007,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Toluca",
+    "heading": "Calendario de baristas en Toluca",
     "level": 3,
     "blocks": [
       {
@@ -3017,7 +3018,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Viaducto CDMX",
+    "heading": "Calendario de baristas en Viaducto CDMX",
     "level": 3,
     "blocks": [
       {
@@ -3028,7 +3029,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Xalapa",
+    "heading": "Calendario de baristas en Xalapa",
     "level": 3,
     "blocks": [
       {
@@ -3039,7 +3040,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Calendario de Baristas en Zona Rosa CDMX",
+    "heading": "Calendario de baristas en Zona Rosa CDMX",
     "level": 3,
     "blocks": [
       {
@@ -3050,7 +3051,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -3075,7 +3076,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -3180,7 +3181,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Guadalajara Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Guadalajara temario",
     "level": 2,
     "blocks": [
       {
@@ -3250,7 +3251,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en León Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en León temario",
     "level": 2,
     "blocks": [
       {
@@ -3320,7 +3321,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Monterrey Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Monterrey temario",
     "level": 2,
     "blocks": [
       {
@@ -3390,7 +3391,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Puebla Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Puebla temario",
     "level": 2,
     "blocks": [
       {
@@ -3449,7 +3450,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Bubble Tea & Iced Coffee en Queretaro",
+    "heading": "Calendario de Bubble Tea & Iced Coffee en Querétaro",
     "level": 3,
     "blocks": [
       {
@@ -3460,7 +3461,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Queretaro Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Querétaro temario",
     "level": 2,
     "blocks": [
       {
@@ -3530,7 +3531,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Tijuana Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Tijuana temario",
     "level": 2,
     "blocks": [
       {
@@ -3600,7 +3601,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Toluca Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Toluca temario",
     "level": 2,
     "blocks": [
       {
@@ -3670,7 +3671,7 @@ const S: ReadonlyArray<LegacySection> = [
     "calendar": true
   },
   {
-    "heading": "Curso Básico de Bubble Tea & Iced Coffee en Viaducto CDMX Temario",
+    "heading": "Curso básico de Bubble Tea & Iced Coffee en Viaducto CDMX temario",
     "level": 2,
     "blocks": [
       {
@@ -3729,7 +3730,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "SINOPSIS",
+    "heading": "Sinopsis",
     "level": 2,
     "blocks": [
       {
@@ -3747,7 +3748,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Curso Básico de Catación de café en Zona Rosa CDMX Temas teóricos y prácticos",
+    "heading": "Curso básico de Catación de café en Zona Rosa CDMX Temas teóricos y prácticos",
     "level": 3,
     "blocks": [
       {
@@ -3814,7 +3815,7 @@ const S: ReadonlyArray<LegacySection> = [
     ]
   },
   {
-    "heading": "Calendario de Catadores en Zona Rosa CDMX",
+    "heading": "Calendario de catadores en Zona Rosa CDMX",
     "level": 3,
     "blocks": [
       {
@@ -3936,13 +3937,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Curso de Barista CDMX - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[0],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "kicker": "Taller",
     "h1": "Curso de barista CDMX",
     "subtitle": "Formación para un barista CDMX",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -3974,12 +3975,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee",
     "description": "Taller de Bubble tea & iced, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4008,12 +4009,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de tostado de café | impartido por SCA Trainers",
     "description": "Taller básico de tostado de café: Un taller teórico-práctico donde aprenderás los procesos de calidad en el tostado y cómo desarrollar perfiles de tueste.",
     "keywords": KW[2],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "tostado-basico",
     "kicker": "CURSO",
     "h1": "Taller básico de Tostado Básico de café",
-    "icon": "/assets/images/educacion/legacy/tostado-basico.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/tostado-basico.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4041,12 +4042,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble Tea Especializado",
     "description": "Únete al Taller de Bubble Tea Especializado, diseñado para elevar tu negocio al siguiente nivel con nuevas técnicas, sabores, texturas y presentaciones atractivas que captarán la atención en redes sociales y atraerán a más clientes.",
     "keywords": KW[3],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-especializado",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea Especializado",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4071,12 +4072,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "kicker": "Taller",
     "h1": "Taller de Arte Latte Nivel Básico",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4100,13 +4101,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Guadalajara - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Guadalajara está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Guadalajara",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Guadalajara",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4136,13 +4137,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Monterrey - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Monterrey está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Monterrey",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Monterrey",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4172,13 +4173,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Queretaro - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Queretaro está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Querétaro",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Queretaro",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4208,13 +4209,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Puebla - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Puebla está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Puebla",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Puebla",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4244,13 +4245,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Zona Rosa CDMX",
     "description": "Taller de Bubble tea & iced en zona rosa CDMX, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Zona Rosa",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Zona Rosa CDMX",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4278,11 +4279,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Experiencia Inmersiona-Té: sesión de 3 horas | Café Etrusca",
     "description": "Conoce el origen del té de forma interactiva: preparación y degustación usando todos tus sentidos. Consulta fechas y sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "inmersiona-te",
     "h1": "Experiencia Inmersiona-Té",
-    "icon": "/assets/images/educacion/legacy/iconos-experiencias-inmersionate.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/iconos-experiencias-inmersionate.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4308,13 +4309,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[6],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "kicker": "Taller",
     "h1": "Curso de barista",
     "subtitle": "Formación para un barista",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4345,7 +4346,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Cursos Para Baristas y Talleres Para Cafeterías - Sé un profesional",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "h1": "Curso de cafe",
     "sections": [
@@ -4369,12 +4370,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Brew Bar & Cold Brew",
     "description": "Taller de brew bar donde aprenderás a utilizar los métodos artesanales para la preparación de cafés y podrás descubrir las tendencias en Brew Bar.",
     "keywords": KW[7],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "metodos-de-extraccion",
     "kicker": "TALLER",
     "h1": "Taller de Métodos de Extracción: Brew Bar & Cold Brew",
-    "icon": "/assets/images/educacion/legacy/brew-bar.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/brew-bar.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4398,13 +4399,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Curso de Barismo - Impartido por instructores de la SCA",
     "description": "Cursos de Barismo y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[8],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "kicker": "Taller",
     "h1": "Curso de Barismo",
     "subtitle": "Formación para un barista.",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4435,11 +4436,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Cold Brew para cafeterías | Café Etrusca",
     "description": "Taller de brew bar donde aprenderás a utilizar los métodos artesanales para la preparación de cafés y podrás descubrir las tendencias en Brew Bar.",
     "keywords": KW[7],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "metodos-de-extraccion",
     "h1": "Taller de Brew Bar & Cold Brew",
-    "icon": "/assets/images/educacion/legacy/brew-bar.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/brew-bar.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4463,13 +4464,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Tijuana - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Tijuana está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Tijuana",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Tijuana",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4498,13 +4499,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Toluca - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Toluca está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Toluca",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Toluca",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4533,13 +4534,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Zona Rosa CDMX - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Zona Rosa CDMX está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Zona Rosa",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Zona Rosa CDMX",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4568,13 +4569,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Xalapa",
     "description": "Taller de Bubble tea & iced en Xalapa, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Xalapa",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Xalapa",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4602,12 +4603,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de mixología con café sin alcohol",
     "description": "Taller de mixología con café sin alcohol donde aprenderás a crear bebidas de tendencia y desarrollarás usos alternativos a los insumos que tiene tu negocio.",
     "keywords": KW[9],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "mixologia",
     "kicker": "CURSO",
     "h1": "Mixología y moctelería para cafeterías",
-    "icon": "/assets/images/educacion/legacy/mixologia.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/mixologia.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4631,11 +4632,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Experiencia Coffee Lover: sesión de 3 horas | Café Etrusca",
     "description": "Descubre la historia del café, distintos métodos de preparación y su impacto en la cultura. Consulta fechas y sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "coffee-lover-en-invierno",
     "h1": "Experiencia Coffee Lover",
-    "icon": "/assets/images/educacion/legacy/iconos-experiencias-coffee-lovers.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/iconos-experiencias-coffee-lovers.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4659,7 +4660,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Curso de cafetería y barismo en México | Café Etrusca",
     "description": "Aprende a operar la barra de tu cafetería: espresso, bebidas, servicio y emprendimiento. Talleres presenciales en varias sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "h1": "Curso de cafeteria",
     "sections": [
@@ -4683,13 +4684,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Leon - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Leon está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "León",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Leon",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4719,13 +4720,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Xalapa - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Xalapa está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Xalapa",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Xalapa",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4754,12 +4755,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Arte y creatividad en mixología: experiencia | Café Etrusca",
     "description": "Coctelería con y sin café y mixología sin alcohol: técnicas básicas, texturas y sabores para ampliar tu menú. Consulta fechas y sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-creatividad-mixologia",
     "kicker": "Taller",
     "h1": "El arte y la creatividad de preparar mixología",
-    "icon": "/assets/images/educacion/legacy/mixo-exp-icon.webp",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/mixo-exp-icon.webp`,
     "meta": [
       {
         "icon": "date",
@@ -4783,11 +4784,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Oasis del sabor: experiencia de bebidas frías | Café Etrusca",
     "description": "Elabora bebidas frías con y sin café: técnicas actuales, ingredientes de calidad y tendencias para tu menú. Consulta fechas y sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#6f4e37",
     "courseSlug": "oasis-bebidas-frias",
     "h1": "Experiencia el oasis del sabor con bebidas frías",
-    "icon": "/assets/images/educacion/legacy/iconos-experiencias-coffee-lovers.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/iconos-experiencias-coffee-lovers.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4813,13 +4814,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas especializado - Curso con instructores certificados SCA",
     "description": "Aprende espresso, extracción, calibración, leche, estándares de la SCA y servicio al cliente en nuestro taller para baristas especializados. Ideal para principiantes y cafeterías.",
     "keywords": KW[10],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista-especializado",
     "kicker": "Taller",
     "h1": "Formación para un barista especializado",
     "subtitle": "Taller de baristas especializados",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4850,12 +4851,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller Especializado de arte latte - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte especializado está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte-especializado",
     "kicker": "Taller",
     "h1": "Taller de Arte Latte Especializado",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4879,12 +4880,12 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Curso de Arte Latte - Aprende a realizar figuras en taza",
     "description": "Curso de Arte Latte está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[11],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "kicker": "Taller",
     "h1": "Cuso de Arte Latte",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4912,13 +4913,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Curso de Barista - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[0],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "kicker": "Taller",
     "h1": "Curso de barista",
     "subtitle": "Formación para un barista 2",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -4949,11 +4950,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Aprende a crear tu propia mezcla de café | Café Etrusca",
     "description": "Evalúa y describe un café de especialidad (origen y tueste) y crea una mezcla única para tu cafetería. Consulta fechas y sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "crear-mezcla-de-cafe",
     "h1": "Experiencia ¡Aprende a crear tu propia mezcla de café!",
-    "icon": "/assets/images/educacion/legacy/barra-exp-icon.webp",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/barra-exp-icon.webp`,
     "meta": [
       {
         "icon": "date",
@@ -4977,11 +4978,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Servicio al cliente en barras de café | Café Etrusca",
     "description": "Domina la atención en barra: de la cálida bienvenida al detalle que fideliza al cliente. Consulta fechas y sedes.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "kicker": "Taller",
     "h1": "Servicio al cliente en barras de café",
-    "icon": "/assets/images/educacion/legacy/barra-exp-icon.webp",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/barra-exp-icon.webp`,
     "meta": [
       {
         "icon": "date",
@@ -5005,14 +5006,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Guadalajara - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Guadalajara destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[12],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Guadalajara",
     "kicker": "Taller",
     "h1": "Formación para un barista en Guadalajara",
     "subtitle": "Taller básico para Baristas en Guadalajara",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5045,14 +5046,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en León - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en León destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[13],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "León",
     "kicker": "Taller",
     "h1": "Formación para un barista en León",
     "subtitle": "Taller básico para Baristas en León",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5085,14 +5086,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Monterrey - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Monterrey destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[14],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Monterrey",
     "kicker": "Taller",
     "h1": "Formación para un barista en Monterrey",
     "subtitle": "Taller básico para Baristas en Monterrey",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5125,14 +5126,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Puebla - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Puebla destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[15],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Puebla",
     "kicker": "Taller",
     "h1": "Formación para un barista en Puebla",
     "subtitle": "Taller básico para Baristas en Puebla",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5165,14 +5166,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Queretaro - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Queretaro destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[16],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Querétaro",
     "kicker": "Taller",
     "h1": "Formación para un barista en Queretaro",
     "subtitle": "Taller básico para Baristas en Queretaro",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5205,14 +5206,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Tijuana - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Tijuana destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[17],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Tijuana",
     "kicker": "Taller",
     "h1": "Formación para un barista en Tijuana",
     "subtitle": "Taller básico para Baristas en Tijuana",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5244,14 +5245,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Toluca - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Toluca destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[18],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Toluca",
     "kicker": "Taller",
     "h1": "Formación para un barista en Toluca",
     "subtitle": "Taller básico para Baristas en Toluca",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5283,14 +5284,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Viaducto CDMX - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Viaducto CDMX destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[19],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Viaducto",
     "kicker": "Taller",
     "h1": "Formación para un barista en Viaducto CDMX",
     "subtitle": "Taller básico para Baristas en Viaducto CDMX",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5322,14 +5323,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Xalapa - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Xalapa destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[20],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Xalapa",
     "kicker": "Taller",
     "h1": "Formación para un barista en Xalapa",
     "subtitle": "Taller básico para Baristas en Xalapa",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5361,14 +5362,14 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico para baristas en Zona Rosa CDMX - Impartido por instructores de la SCA",
     "description": "Cursos Para Baristas y Talleres Para Cafeterías en Zona Rosa CDMX destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[21],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Zona Rosa",
     "kicker": "Taller",
     "h1": "Formación para un barista en Zona Rosa CDMX",
     "subtitle": "Taller básico para Baristas en Zona Rosa CDMX",
-    "icon": "/assets/images/educacion/legacy/formacion-para-un-barista.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5400,13 +5401,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller básico de arte latte en Viaducto - Aprende a realizar figuras en taza",
     "description": "Taller de arte latte en Viaducto está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Viaducto",
     "kicker": "Taller",
     "h1": "Taller Básico Arte Latte en Viaducto CDMX",
-    "icon": "/assets/images/educacion/legacy/arte-latte.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5435,11 +5436,11 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller Bebidas Frías",
     "description": "Domina las categorías de bebidas para el menú frío: frappés, smoothies, sodas italianas y preparaciones previas. Optimiza la operación y ganancias de tu barra.",
     "keywords": KW[5],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bebidas-frias",
     "h1": "Bebidas Frías",
-    "icon": "/assets/images/educacion/legacy/bebidas-frias.webp",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bebidas-frias.webp`,
     "meta": [
       {
         "icon": "date",
@@ -5463,13 +5464,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Guadalajara",
     "description": "Taller de Bubble tea & iced en Guadalajara, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Guadalajara",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Guadalajara",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5498,13 +5499,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Leon",
     "description": "Taller de Bubble tea & iced en Leon, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "León",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en León",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5533,13 +5534,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Monterrey",
     "description": "Taller de Bubble tea & iced en Monterrey, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Monterrey",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Monterrey",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5568,13 +5569,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Puebla",
     "description": "Taller de Bubble tea & iced en Puebla, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Puebla",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Puebla",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5603,13 +5604,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Queretaro",
     "description": "Taller de Bubble tea & iced en Queretaro, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Querétaro",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Queretaro",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5638,13 +5639,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Tijuana",
     "description": "Taller de Bubble tea & iced en Tijuana, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Tijuana",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Tijuana",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5672,13 +5673,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Toluca",
     "description": "Taller de Bubble tea & iced en Toluca, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Toluca",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Toluca",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5706,13 +5707,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Taller de Bubble tea & iced coffee en Viaducto CDMX",
     "description": "Taller de Bubble tea & iced en Viaducto CDMX, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Viaducto",
     "kicker": "TALLER",
     "h1": "Taller de Bubble Tea & Iced Coffee en Viaducto CDMX",
-    "icon": "/assets/images/educacion/legacy/bubble-tea.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
         "icon": "date",
@@ -5740,13 +5741,13 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "title": "Curso básico de catación de café en Zona Rosa - Catando de la Semilla a lo Sensorial",
     "description": "Taller de Catación de Cafés Mexicanos  en Zona Rosa, es un taller del más alto nivel ya que es impartido por Catadores Profesionales 'Licensed Q Grader' ¡Regístrate Ya!",
     "keywords": KW[22],
-    "image": "/assets/images/educacion/legacy/cursos-talleres-logo.webp",
+    "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "catacion-de-cafe",
     "city": "Zona Rosa",
     "kicker": "CURSO",
     "h1": "Curso básico de catación de café en Zona Rosa CDMX - Catando de la Semilla a lo Sensorial en Zona Rosa CDMX",
-    "icon": "/assets/images/educacion/legacy/catando-de-la-semilla.svg",
+    "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/catando-de-la-semilla.svg`,
     "meta": [
       {
         "icon": "date",

@@ -1,13 +1,15 @@
 <div class="ins-page">
   <section class="ins-hero">
+    <img class="jar-hero-blob ins-hero-blob" src="/assets/images/insumos/blob-hero-rosa.webp" alt="" aria-hidden="true">
     <div class="ins-hero-copy">
+      <app-hero-crumbs [items]="crumbs" />
       <h1>INSUMOS</h1>
       <p class="lead">Sabores, bases y texturas para crear bebidas memorables</p>
       <p class="body">Ingredientes y soluciones profesionales para elevar tu creatividad y tener consistencia en cada preparación.</p>
       <a class="btn-catalog" href="https://cafeetrusca.com" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="ins-hero-media">
-      <img src="/assets/images/insumos/kiwi-hero.png" alt="Kiwi lemonade">
+      <img src="{{ assetsBase }}/images/insumos/kiwi-hero.png" alt="Kiwi lemonade">
     </div>
     <app-scroll-wave position="bottom" fillColor="#f4eee4"></app-scroll-wave>
   </section>
@@ -15,7 +17,7 @@
   <app-insumos-nav [allColor]="true"></app-insumos-nav>
 
   <section class="ins-section">
-    <h2>Marcas destacadas</h2>
+    <h2 class="section-title-center">Marcas destacadas</h2>
     <div class="ins-brands">
       @for (b of brands; track b.name) {
         <article class="ins-brand">
@@ -28,18 +30,48 @@
     </div>
   </section>
 
+  <!-- ============ MARCAS (mismo markup que accesorios-page) ============ -->
+  <section class="acc-brands acc-frame" aria-labelledby="ins-brands-title">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="ins-brands-title">Marcas</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
+    <ul class="acc-logos">
+      @for (b of logos; track b.id) {
+        <li [class]="'acc-logo acc-logo--' + b.id">
+          <a [routerLink]="b.link" [attr.aria-label]="'Ver ' + b.name">
+            <img [src]="b.image.src" [alt]="b.name"
+                 [attr.width]="b.image.width" [attr.height]="b.image.height" [style.max-width.px]="b.image.width"
+                 loading="lazy" decoding="async">
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="acc-strip">
+      <ul class="acc-strip__list" aria-label="Marcas de insumos">
+        @for (s of strip; track s.name) {
+          <li class="acc-strip__item"><a [routerLink]="s.link">{{ s.name }}</a></li>
+        }
+      </ul>
+      <a class="acc-strip__all" [routerLink]="allBrands.path" [fragment]="allBrands.fragment">
+        <span>Ver todas las marcas</span>
+        <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false">
+          <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
   <section class="jar-inspira">
     <div class="jar-head">
-      <h2>Inspira tu menú</h2>
+      <h2 class="section-title-center">Inspira tu menú</h2>
       <div class="rule"></div>
     </div>
-    <div class="jar-inspira-grid">
-      @for (d of menu; track d.image) {
-        <article class="jar-drink" [class]="d.tone">
-          <div class="bar">{{ d.title }}</div>
-          <img [src]="d.image" [alt]="d.title">
-          <a class="more" [routerLink]="d.link">Saber más →</a>
-        </article>
+    <div class="row g-4 justify-content-center mt-3 inspira-recipes">
+      @for (d of menu; track d.link; let i = $index) {
+        <app-recipe-card [recipe]="d.recipe" [index]="i"></app-recipe-card>
       }
     </div>
   </section>

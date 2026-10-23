@@ -10,6 +10,7 @@
     }
 
     <div class="jar-hero-copy met-hero__copy">
+      <app-hero-crumbs [items]="crumbs" />
       <p class="sub-hero__kicker">Accesorios</p>
       <h1 id="sub-hero-title" class="met-hero__title">{{ cat.titleLines[0] }}<br> {{ cat.titleLines[1] }}</h1>
       <p class="body met-hero__body">
@@ -33,7 +34,7 @@
   <!-- ============ PRODUCTOS ============ -->
   <section class="met-products acc-frame" aria-labelledby="sub-products-title">
     <div class="jar-head">
-      <h2 id="sub-products-title">Productos</h2>
+      <h2 class="section-title-center" id="sub-products-title">Productos</h2>
       <div class="rule" aria-hidden="true"></div>
     </div>
 
@@ -48,7 +49,7 @@
   <!-- ============ OTRAS CATEGORÍAS (navegación entre subcategorías) ============ -->
   <section class="met-top acc-frame" aria-labelledby="sub-others-title">
     <div class="jar-head">
-      <h2 id="sub-others-title">Otras categorías</h2>
+      <h2 class="section-title-center" id="sub-others-title">Otras categorías</h2>
       <div class="rule" aria-hidden="true"></div>
     </div>
     <ul class="sub-others">

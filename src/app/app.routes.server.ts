@@ -3,6 +3,7 @@ import { COURSE_DETAIL_PRERENDER_PARAMS } from './domains/education/presentation
 import { publishedRecipes } from './domains/catalog/presentation/pages/recipes-page/recetas.data';
 import { LEGACY_COURSE_PATHS } from './domains/education/presentation/legacy-course-paths';
 import { upcomingEventSlugs } from '../events-snapshot.server';
+import { BLOG_ARTICLES } from './domains/blog/presentation/pages/blog-article-page/blog-articles.data';
 
 /**
  * Slugs of the upcoming events (/api/Event, all categories; public/data/events.json if the API is
@@ -175,6 +176,14 @@ export const serverRoutes: ServerRoute[] = [
   },
   // Everything else (home, /recetas, /videoteca, /emprendiendo-... + 12 cities, static pages)
   // is prerendered to HTML.
+  {
+    // Guías /blog/<slug>/ (blog-articles.data.ts). No hay página índice /blog/.
+    path: 'blog/:slug',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return BLOG_ARTICLES.map((a) => ({ slug: a.slug }));
+    }
+  },
   {
     path: '**',
     renderMode: RenderMode.Prerender

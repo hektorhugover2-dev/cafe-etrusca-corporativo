@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 export interface MaqProduct {
   name: string;
   sku?: string;
@@ -41,7 +42,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'espresso',
     label: 'Espresso',
-    icon: '/assets/images/maquinas/nav/espresso.png',
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/espresso.png`,
     desc: 'Máquinas Reneka para barra profesional',
     link: '/maquinaria-y-equipo-para-cafeterias/espresso',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/43',
@@ -53,7 +54,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'autoservicio',
     label: 'Autoservicio',
-    icon: '/assets/images/maquinas/nav/autoservicio.png',
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/autoservicio.png`,
     desc: 'Equipos Melitta de alto volumen',
     link: '/maquinaria-y-equipo-para-cafeterias/autoservicio',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/57',
@@ -65,7 +66,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'licuadoras',
     label: 'Licuadoras',
-    icon: '/assets/images/maquinas/nav/licuadoras.png',
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.png`,
     desc: 'Hamilton Beach y Blendtec para barra',
     link: '/maquinaria-y-equipo-para-cafeterias/licuadoras',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/48',
@@ -77,7 +78,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'molinos',
     label: 'Molinos',
-    icon: '/assets/images/maquinas/nav/molinos.png',
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.png`,
     desc: 'Ceado, Eureka, Pietro, Fiorenzato y más',
     link: '/maquinaria-y-equipo-para-cafeterias/molinos',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/44',
@@ -89,7 +90,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'tostadores',
     label: 'Tostadores',
-    icon: '/assets/images/maquinas/nav/tostadores.png',
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.png`,
     desc: 'Tostadores Coffee Tech de laboratorio a tienda',
     link: '/maquinaria-y-equipo-para-cafeterias/tostadores',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/52',
@@ -104,7 +105,7 @@ export function findMaqNav(id: string): MaqNavItem | undefined {
   return MAQ_NAV.find((n) => n.id === id);
 }
 
-export const MAQ_HERO_FALLBACK = '/assets/images/maquinas/hero.webp';
+export const MAQ_HERO_FALLBACK = `${ASSETS_BASE_URL}/images/maquinas/hero.webp`;
 
 /** First product image in a section (first block → first product with image), else fallback. */
 export function firstMaqProductImage(
@@ -120,7 +121,7 @@ export function firstMaqProductImage(
   return fallback;
 }
 
-const img = (f: string) => `/assets/images/maquinas/${f}`;
+const img = (f: string) => `${ASSETS_BASE_URL}/images/maquinas/${f}`;
 
 export const MAQ_SECTIONS: MaqSection[] = [
   {

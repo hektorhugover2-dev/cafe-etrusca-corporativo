@@ -8,6 +8,7 @@ import {
   VIDEOTECA_PLAYLIST_URL,
   VideotecaVideo
 } from './videoteca.data';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 @Component({
   selector: 'app-videoteca-page',
@@ -17,6 +18,8 @@ import {
   styleUrl: './videoteca-page.component.scss'
 })
 export class VideotecaPageComponent implements OnInit {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
   private sanitizer = inject(DomSanitizer);
 

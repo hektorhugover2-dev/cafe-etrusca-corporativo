@@ -13,6 +13,7 @@ import {
   LOCATORS,
   type Branch,
   type Locator, DISTRIBUTORS } from './contacto.data';
+import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../../shared/kernel/config/assets-url';
 
 const CONTACT_US_URL = 'https://cafeetrusca.com/api/ContactUs';
 
@@ -24,6 +25,8 @@ const CONTACT_US_URL = 'https://cafeetrusca.com/api/ContactUs';
   styleUrl: './contact-page.component.scss'
 })
 export class ContactPageComponent implements OnInit {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
   private http = inject(HttpClient);
   private document = inject(DOCUMENT);
@@ -64,7 +67,7 @@ export class ContactPageComponent implements OnInit {
         'Contacta a ' + brand + ': sucursales, distribuidores y CEDIS. Escríbenos y un asesor te atiende. Tel. (55) 4166 8777.',
       keywords:
         'contacto Café Etrusca, sucursales, distribuidores, CEDIS Vallejo, atención a clientes, mapa sucursales',
-      image: '/assets/images/home/banners/banner_home_la_fenice.webp',
+      image: `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`,
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {
@@ -86,7 +89,7 @@ export class ContactPageComponent implements OnInit {
           url: origin + '/',
           telephone: '+52-55-4166-8777',
           email: 'atencion@cafeetrusca.com',
-          logo: origin + '/assets/images/logo-etrusca.webp',
+          logo: absoluteAssetUrl('images/logo-etrusca.webp'),
           contactPoint: {
             '@type': 'ContactPoint',
             telephone: '+52-55-4166-8777',

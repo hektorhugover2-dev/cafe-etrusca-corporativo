@@ -76,7 +76,7 @@
         @let s = item.section;
         @if (s.calendar) {
           <section class="lc-section lc-calendar" id="calendario">
-            <h2>{{ s.heading }}</h2>
+            <h2 class="section-title-center">{{ s.heading }}</h2>
             @for (b of s.blocks; track $index) {
               @if (b.type === 'p') { <p class="lc-p" [innerHTML]="b.html"></p> }
             }

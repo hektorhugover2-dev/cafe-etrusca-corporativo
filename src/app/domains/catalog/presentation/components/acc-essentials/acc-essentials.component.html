@@ -1,0 +1,50 @@
+<div class="ess-wrap">
+  <button type="button" class="ess-nav ess-nav--prev" aria-label="Accesorio anterior" (click)="step(-1)">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M14.5 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="ess-vp" #vp
+       (mouseenter)="vpEnter()" (mouseleave)="vpLeave()"
+       (focusin)="vpFocusIn()" (focusout)="vpFocusOut($event)"
+       (pointerdown)="pointerDownVp($event)" (pointermove)="pointerMoveVp($event)"
+       (pointerup)="pointerUpVp($event)" (pointercancel)="pointerUpVp($event)">
+    <ul class="ess-track" #track role="list" aria-roledescription="carrusel" aria-label="Accesorios esenciales">
+      @for (copy of copies; track copy) {
+        @for (it of items; track it.id) {
+          <li class="ess__item" [class]="'ess__item ess--' + it.tone" [class.is-open]="open() === key(copy, it)"
+              [attr.data-key]="key(copy, it)" [attr.aria-hidden]="copy ? 'true' : null"
+              (mouseenter)="enter(key(copy, it))" (mouseleave)="leave(key(copy, it))"
+              (focusin)="focusIn(key(copy, it))" (focusout)="focusOut($event, key(copy, it))">
+            <button type="button" class="ess__btn" [id]="copy ? null : 'ess-btn-' + it.id"
+                    [attr.tabindex]="copy ? -1 : null"
+                    [attr.aria-expanded]="copy ? null : open() === key(copy, it)"
+                    [attr.aria-controls]="copy ? null : 'ess-card-' + it.id"
+                    (pointerdown)="pointerDown()" (click)="toggle(key(copy, it))">
+              <span class="ess__circle">
+                <img [src]="it.img" [attr.srcset]="it.img + ' 1x, ' + it.img2x + ' 2x'" [alt]="copy ? '' : it.alt"
+                     width="260" height="260" loading="eager" decoding="async" draggable="false">
+              </span>
+              <span class="ess__label">{{ it.label }}</span>
+            </button>
+
+            <div class="ess__card" [id]="copy ? null : 'ess-card-' + it.id" role="region"
+                 [attr.aria-label]="it.title" [attr.aria-hidden]="!copy && open() === key(copy, it) ? null : 'true'">
+              <img class="ess__card-img" [src]="it.img" [attr.srcset]="it.img + ' 1x, ' + it.img2x + ' 2x'" alt=""
+                   width="260" height="260" loading="eager" decoding="async" draggable="false">
+              <div class="ess__card-copy">
+                <h3 class="ess__card-title">{{ it.title }}</h3>
+                <p class="ess__card-desc">{{ it.desc }}</p>
+                <a class="ess__card-link" [routerLink]="link(it)"
+                   [attr.tabindex]="!copy && open() === key(copy, it) ? null : -1">Ver productos <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+
+  <button type="button" class="ess-nav ess-nav--next" aria-label="Accesorio siguiente" (click)="step(1)">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>

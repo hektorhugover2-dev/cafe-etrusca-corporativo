@@ -2494,7 +2494,11 @@ $white: #ffffff;
 
   .ce-states {
     background: #fff;
-    padding: 3.2rem clamp(1.2rem, 5vw, 5.5rem) 2.4rem;
+    // El wave inferior de .ce-story sobresale 12vh (scroll-wave .bottom); se reserva ese alto + aire.
+    padding: calc(12vh + 2.5rem) clamp(1.2rem, 5vw, 5.5rem) 2.4rem;
+
+    @media (max-width: 991px) { padding-top: calc(12vh + 2rem); }
+    @media (max-width: 575px) { padding-top: calc(12vh + 1.5rem); }
   }
 
   .ce-states-lead {
@@ -2508,11 +2512,33 @@ $white: #ffffff;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1.2rem;
-    article {
+    .ce-state-btn {
+      position: relative;
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      border-radius: 18px;
+      padding: 0.6rem 0.4rem 1.6rem;
+      cursor: pointer;
       text-align: center;
+      transition: background-color 0.2s ease;
       h3 { margin: 0.5rem 0 0.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
       p { margin: 0; font-size: 0.92rem; color: #4a453e; }
       img, svg { width: 110px; height: 110px; object-fit: contain; margin: 0 auto; display: block; }
+      &:hover { background: #f1fbfd; }
+      &:focus-visible { outline: 3px solid var(--ce-teal); outline-offset: 2px; }
+      &.is-active h3 { color: var(--ce-teal); }
+      &.is-active::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -1.3rem;
+        transform: translateX(-50%);
+        border: 18px solid transparent;
+        border-bottom: 26px solid var(--ce-cyan-deep);
+        border-top: 0;
+      }
     }
   }
 
@@ -2520,25 +2546,82 @@ $white: #ffffff;
     padding: 1rem clamp(1.2rem, 5vw, 5.5rem) 2.6rem;
   }
 
-  .ce-finca-card {
-    max-width: 860px;
+  .ce-fincas-panel {
+    max-width: 1120px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 1.4rem;
-    align-items: center;
-    border: 3px solid #f3a0b8;
-    border-radius: 28px;
-    padding: 1.2rem 1.4rem;
+    border: 3px solid var(--ce-cyan-deep);
+    border-radius: 32px;
+    padding: 1.4rem clamp(1rem, 3vw, 2rem) 2rem;
     background: #fff;
-    img { width: 100%; height: auto; object-fit: contain; }
-    h2 { text-align: left; text-transform: none; letter-spacing: -0.03em; }
-    ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.55rem; }
+  }
+
+  .ce-fincas-title {
+    text-align: center;
+    color: var(--ce-teal);
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 1.2rem;
+  }
+
+  .ce-fincas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .ce-finca-card {
+    --tone-bg: #d9f4fb;
+    --tone-line: #7ad7e0;
+    --tone-dot: #2bb6c8;
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    gap: 0.9rem;
+    align-items: stretch;
+    border: 2px solid var(--tone-line);
+    border-radius: 18px;
+    padding: 0.9rem;
+    background: #fff;
+    &.tone-natural { --tone-bg: #fbdbe4; --tone-line: #f3a0b8; --tone-dot: #ea6f93; }
+    &.tone-honey { --tone-bg: #fff0a8; --tone-line: #f5d75a; --tone-dot: #f2c200; }
+    &.tone-macerado, &.tone-anejado { --tone-bg: #dcebc4; --tone-line: #b3d189; --tone-dot: #7fae45; }
+    .ce-finca-media {
+      background: var(--tone-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem;
+      min-height: 160px;
+      img { width: 100%; max-width: 200px; height: auto; object-fit: contain; }
+    }
+    .ce-finca-noimg { font-weight: 800; color: var(--ce-teal); text-align: center; opacity: 0.6; }
+    h3 { margin: 0 0 0.6rem; font-size: 1.15rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0; }
+    ul {
+      margin: 0;
+      padding: 0.8rem 0.9rem;
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+      background: var(--tone-bg);
+      border-radius: 12px;
+    }
     li {
-      background: #fff4c8;
-      border-radius: 999px;
-      padding: 0.55rem 0.9rem;
-      font-size: 0.95rem;
+      position: relative;
+      padding-left: 1.2rem;
+      font-size: 0.86rem;
+      line-height: 1.35;
+      strong { display: block; font-size: 0.8rem; color: #6b6259; font-weight: 600; }
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--tone-dot);
+      }
     }
   }
 
@@ -2654,8 +2737,7 @@ $white: #ffffff;
   .cafe-verde .cv-hero-inner,
   .cafe-verde .cv-cta-banner,
   .cafe-especialidad .ce-hero-inner,
-  .cafe-especialidad .ce-origen-grid,
-  .cafe-especialidad .ce-finca-card {
+  .cafe-especialidad .ce-origen-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2703,7 +2785,16 @@ $white: #ffffff;
 
 
 
+@media (max-width: 991px) {
+  .cafe-especialidad .ce-fincas-grid { grid-template-columns: 1fr; }
+  .cafe-especialidad .ce-state-btn.is-active::after { display: none; }
+  .cafe-especialidad .ce-state-btn.is-active { background: var(--ce-cyan); }
+}
+
 @media (max-width: 640px) {
+  .cafe-especialidad .ce-finca-card { grid-template-columns: 1fr; }
+  .cafe-especialidad .ce-finca-card .ce-finca-media img { max-width: 160px; }
+
 
 
 
@@ -2877,3 +2968,149 @@ $white: #ffffff;
   margin-top: 0;
 }
 
+
+
+/* ---------- Especialidad: slider del hero (bolsa + estado de origen) ---------- */
+.cafe-especialidad .ce-slider {
+  position: relative;
+  display: block;
+  min-height: 520px;
+}
+.cafe-especialidad .ce-slider-track {
+  position: relative;
+  height: 520px;
+  z-index: 1;
+}
+.cafe-especialidad .ce-slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(40px) rotate(4deg) scale(.94);
+  transition: opacity .6s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility 0s linear .7s;
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .6s ease, transform .7s cubic-bezier(.2,.8,.2,1), visibility 0s;
+  }
+}
+.cafe-especialidad .ce-hero-media .ce-slide-bag {
+  position: absolute;
+  right: 12%;
+  top: 0;
+  height: 100%;
+  max-height: 520px;
+  width: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 26px rgba(20, 17, 14, .22));
+}
+.cafe-especialidad .ce-slide-state {
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+  display: grid;
+  justify-items: center;
+  gap: .2rem;
+  min-width: 128px;
+  max-width: 170px;
+  padding: .8rem .9rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 12px 26px rgba(20, 17, 14, .16);
+  text-align: center;
+  transform: translateY(14px);
+  opacity: 0;
+  transition: opacity .5s ease .25s, transform .5s ease .25s;
+  img { width: auto !important; height: 64px !important; max-height: 64px; filter: none; }
+}
+.cafe-especialidad .ce-slide.is-active .ce-slide-state { opacity: 1; transform: none; }
+.cafe-especialidad .ce-slide-state-name {
+  font-weight: 900; text-transform: uppercase; letter-spacing: .04em; color: var(--ce-teal); font-size: .95rem;
+}
+.cafe-especialidad .ce-slide-finca { font-weight: 700; font-size: .82rem; line-height: 1.2; color: var(--ce-ink); }
+@media (max-width: 1400px) and (min-width: 1101px) {
+  .cafe-especialidad .ce-slider, .cafe-especialidad .ce-slider-track { min-height: 460px; height: 460px; }
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+  .cafe-especialidad .ce-slider, .cafe-especialidad .ce-slider-track { min-height: 400px; height: 400px; }
+  .cafe-especialidad .ce-hero-media .ce-slide-bag { right: 18%; }
+}
+@media (max-width: 800px) {
+  .cafe-especialidad .ce-slider, .cafe-especialidad .ce-slider-track { min-height: 360px; height: 360px; }
+  .cafe-especialidad .ce-slider { margin-top: 1rem; }
+  .cafe-especialidad .ce-hero-media .ce-slide-bag { right: auto; left: 50%; height: 320px; margin-left: -175px; }
+  .cafe-especialidad .ce-slide-state { right: .25rem; }
+  .cafe-especialidad .ce-slide-state { min-width: 104px; max-width: 130px; padding: .6rem; bottom: 1rem; img { height: 48px !important; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cafe-especialidad .ce-slide, .cafe-especialidad .ce-slide-state { transition: none; transform: none; }
+}
+
+/* ---------- Especialidad: métodos (5 cafeteras del PDF, solo imagen) ---------- */
+.cafe-especialidad .ce-brew-grid.ce-brew-5 {
+  list-style: none;
+  margin: 1.5rem auto 0;
+  padding: 0;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: end;
+  li { margin: 0; position: relative; padding-top: 12%; }
+  /* Bolita cian del PDF (#b0f9fd), detrás de la cafetera; la cafetera sobresale por arriba. */
+  .ce-brew-dot {
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    width: 86%;
+    max-width: 190px;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #b0f9fd;
+    z-index: 0;
+  }
+  img.ce-brew-photo { position: relative; z-index: 1; width: 100%; max-width: 210px; height: auto; aspect-ratio: 1; object-fit: contain; margin: 0 auto; display: block; }
+}
+@media (max-width: 800px) {
+  .cafe-especialidad .ce-brew-grid.ce-brew-5 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem .5rem;
+    li { grid-column: span 2; }
+    li:nth-child(4) { grid-column: 2 / span 2; }
+  }
+}
+
+/* ===== Especialidad: Procesos del café (diseño PDF) ===== */
+.ce-proc { padding: clamp(48px, 6vw, 88px) 20px; background: #fff; }
+.ce-proc-grid {
+  list-style: none; margin: 0 auto; padding: 0; max-width: 1260px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px);
+}
+.ce-proc-card {
+  --c: #ffc6c7; --dot: #fcaaac; --in: #ffebf0;
+  background: var(--c); border-radius: 16px; padding: 14px 14px 16px;
+  display: flex; flex-direction: column;
+  &.is-lavado { --c: #c7f1ff; --dot: #bedbff; --in: #ecf9fe; }
+  &.is-honey { --c: #fff4bf; --dot: #ffea91; --in: #fffcef; }
+  &.is-anejado { --c: #dbf0ab; --dot: #c1e471; --in: #f8ffe7; }
+}
+.ce-proc-head {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin: 4px 0 14px; font-family: 'Poppins', sans-serif; font-weight: 700;
+  font-size: clamp(1.15rem, 1.5vw, 1.5rem); color: #000;
+}
+.ce-proc-dot {
+  flex: none; width: 46px; height: 46px; border-radius: 50%; background: var(--dot);
+  display: grid; place-items: center;
+  img { width: auto; height: 26px; }
+}
+.ce-proc-body {
+  flex: 1; margin: 0; background: var(--in); border-radius: 10px; padding: 16px 16px 20px;
+  font-family: 'Poppins', sans-serif; font-size: clamp(.95rem, 1.05vw, 1.1rem); line-height: 1.3; color: #171717;
+}
+@media (max-width: 991px) { .ce-proc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 559px) { .ce-proc-grid { grid-template-columns: 1fr; max-width: 420px; } }

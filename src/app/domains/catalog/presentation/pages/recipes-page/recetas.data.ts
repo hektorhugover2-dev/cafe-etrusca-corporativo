@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 export interface RecipeStep {
   title: string;
   text: string;
@@ -10,6 +11,16 @@ export interface RecipeProduct {
   description: string;
   image: string;
   link: string;
+}
+
+/** Insumo de la receta vinculado a su código SAP (lista de precios cafeetrusca.com/api/product). */
+export interface RecipeSapIngredient {
+  ingredient: string;
+  sap: string;
+  qty: number;
+  unit: string;
+  /** Confianza del match revisado (revision_sap.xlsx). Sin valor = match original. */
+  confidence?: 'alta' | 'media' | 'baja';
 }
 
 export interface Recipe {
@@ -38,20 +49,35 @@ export interface Recipe {
   tips?: string[];
   products?: RecipeProduct[];
   seo?: { title: string; description: string; keywords: string };
+  /** id en intranet.cafeetrusca.com/api/v1/administracion/receta/todos */
+  intranetId?: number;
+  /** Insumos con código SAP para la calculadora de precios. */
+  sapIngredients?: RecipeSapIngredient[];
+  /** Fecha real de publicación (recetas migradas del blog anterior). Sin valor = 2026-01-01. */
+  datePublished?: string;
+  /** Video de YouTube de la receta (se incrusta y va como VideoObject en el JSON-LD). */
+  video?: { youtubeId: string; name: string; uploadDate: string; thumbnailUrl: string };
+  /** Agrega BreadcrumbList (Inicio › Recetas › receta) al JSON-LD. */
+  breadcrumbJsonLd?: boolean;
   published: boolean;
 }
 
 const ICO = {
-  base: '/assets/images/recetas/icons/step-01.svg',
-  blend: '/assets/images/recetas/icons/step-02.svg',
-  decor: '/assets/images/recetas/icons/step-03.svg',
-  finish: '/assets/images/recetas/icons/step-04.svg',
-  tool: '/assets/images/recetas/icons/tool-licuadora.svg'
+  base: `${ASSETS_BASE_URL}/images/recetas/icons/step-01.svg`,
+  blend: `${ASSETS_BASE_URL}/images/recetas/icons/step-02.svg`,
+  decor: `${ASSETS_BASE_URL}/images/recetas/icons/step-03.svg`,
+  finish: `${ASSETS_BASE_URL}/images/recetas/icons/step-04.svg`,
+  tool: `${ASSETS_BASE_URL}/images/recetas/icons/tool-licuadora.svg`
 };
 
 export const RECIPES: Recipe[] = [
   {
     slug: "pumpkin-cold-brew",
+    intranetId: 104,
+    sapIngredients: [
+      { ingredient: "150 ml de cold brew preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 150, unit: "ml" },
+      { ingredient: "30 ml de salsa Torani pumpkin pie", sap: "ISA-022", qty: 30, unit: "ml" }
+    ],
     title: "Pumpkin",
     titleAccent: "cold brew",
     kicker: 'Otoño · Calabaza',
@@ -59,8 +85,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Cold brew 480 ml con Torani pumpkin pie, leche, agua e hielo, terminado con canela.",
-    image: '/assets/images/recetas/calabaza/pumpkin-cold-brew.webp',
-    banner: '/assets/images/recetas/calabaza/pumpkin-cold-brew.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/pumpkin-cold-brew.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/pumpkin-cold-brew.webp`,
     tone: "gold",
     brand: "Torani",
     time: "4 min",
@@ -105,6 +131,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "dirty-pumpkin-chai",
+    intranetId: 105,
+    sapIngredients: [
+      { ingredient: "30 g de David Rio panda rojo", sap: "IBP-181", qty: 30, unit: "g", confidence: "media" },
+      { ingredient: "60 ml de espresso preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" },
+      { ingredient: "15 ml de jarabe Torani pumpkin pie", sap: "IJA-222", qty: 15, unit: "ml" }
+    ],
     title: "Dirty",
     titleAccent: "pumpkin chai",
     kicker: 'Otoño · Calabaza',
@@ -112,8 +144,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Chai latte 480 ml con David Rio panda rojo, espresso Mezcla especial No. 1 y Torani pumpkin pie.",
-    image: '/assets/images/recetas/calabaza/dirty-pumpkin-chai.webp',
-    banner: '/assets/images/recetas/calabaza/dirty-pumpkin-chai.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/dirty-pumpkin-chai.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/dirty-pumpkin-chai.webp`,
     tone: "gold",
     brand: "David Rio",
     time: "4 min",
@@ -157,6 +189,12 @@ export const RECIPES: Recipe[] = [
 
   {
     slug: "calabaza-brulee-latte",
+    intranetId: 156,
+    sapIngredients: [
+      { ingredient: "225 g de ChillOut mix dulce de calabaza", sap: "IBP-064", qty: 225, unit: "g" },
+      { ingredient: "30 ml de espresso Mezcla especial 1", sap: "CPM-002", qty: 30, unit: "ml" },
+      { ingredient: "30 g de ChillOut mix crème brûlée ya preparado", sap: "IBP-206", qty: 30, unit: "g" }
+    ],
     title: "Calabaza",
     titleAccent: "Brûlée Latte",
     kicker: 'Otoño · Calabaza',
@@ -164,8 +202,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Latte 360 ml con ChillOut dulce de calabaza, espresso Mezcla especial 1 y crème brûlée flameada.",
-    image: '/assets/images/recetas/calabaza/calabaza-brulee-latte.webp',
-    banner: '/assets/images/recetas/calabaza/calabaza-brulee-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-brulee-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-brulee-latte.webp`,
     tone: "gold",
     brand: "ChillOut",
     time: "5 min",
@@ -209,6 +247,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "mokalabaza-latte",
+    intranetId: 108,
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut mix dulce de calabaza", sap: "IBP-064", qty: 30, unit: "g" },
+      { ingredient: "22 ml de Torani chocolate blanco", sap: "IJA-005", qty: 22, unit: "ml" },
+      { ingredient: "60 ml de espresso Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" }
+    ],
     title: "Mokalabaza",
     titleAccent: "Latte",
     kicker: 'Otoño · Calabaza',
@@ -216,8 +260,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Latte 480 ml con dulce de calabaza, Torani chocolate blanco, espresso y bombones flameados.",
-    image: '/assets/images/recetas/calabaza/mokalabaza-latte.webp',
-    banner: '/assets/images/recetas/calabaza/mokalabaza-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/mokalabaza-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/mokalabaza-latte.webp`,
     tone: "gold",
     brand: "ChillOut",
     time: "5 min",
@@ -261,6 +305,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "affogato-de-otono",
+    intranetId: 107,
+    sapIngredients: [
+      { ingredient: "20 ml de Torani avellana", sap: "IJA-023", qty: 20, unit: "ml" },
+      { ingredient: "30 g de ChillOut mix dulce de calabaza (diluido en agua caliente)", sap: "IBP-064", qty: 30, unit: "g" },
+      { ingredient: "30 ml de espresso Mezcla especial No. 1", sap: "CPM-002", qty: 30, unit: "ml" }
+    ],
     title: "Affogato",
     titleAccent: "de Otoño",
     kicker: 'Otoño · Calabaza',
@@ -268,8 +318,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Affogato 480 ml con helado de vainilla, Torani avellana, dulce de calabaza y espresso.",
-    image: '/assets/images/recetas/calabaza/affogato-de-otono.webp',
-    banner: '/assets/images/recetas/calabaza/affogato-de-otono.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/affogato-de-otono.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/affogato-de-otono.webp`,
     tone: "gold",
     brand: "ChillOut",
     time: "5 min",
@@ -313,6 +363,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "bubble-pumpkin",
+    intranetId: 106,
+    sapIngredients: [
+      { ingredient: "45 g de ChillOut mix dulce de calabaza", sap: "IBP-064", qty: 45, unit: "g" },
+      { ingredient: "15 ml de Torani salted caramel", sap: "IJA-056", qty: 15, unit: "ml" },
+      { ingredient: "20 g de ChillOut tapioca", sap: "ICT-008", qty: 20, unit: "g" }
+    ],
     title: "Bubble",
     titleAccent: "Pumpkin",
     kicker: 'Otoño · Calabaza',
@@ -320,8 +376,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Bebida 480 ml con dulce de calabaza, Torani salted caramel, tapioca ChillOut y leche.",
-    image: '/assets/images/recetas/calabaza/bubble-pumpkin.webp',
-    banner: '/assets/images/recetas/calabaza/bubble-pumpkin.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/bubble-pumpkin.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/bubble-pumpkin.webp`,
     tone: "coral",
     brand: "ChillOut",
     time: "5 min",
@@ -359,6 +415,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "calabaza-brulee",
+    intranetId: 85,
+    sapIngredients: [
+      { ingredient: "45 ml de Torani pumpkin pie", sap: "IJA-222", qty: 45, unit: "ml" },
+      { ingredient: "180 ml de cold brew Mezcla especial No. 1", sap: "CPM-002", qty: 180, unit: "ml" },
+      { ingredient: "1 cda de azúcar morena", sap: "ICT-085", qty: 1, unit: "pza", confidence: "media" }
+    ],
     title: "Calabaza",
     titleAccent: "brûlée",
     kicker: 'Otoño · Calabaza',
@@ -366,8 +428,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Cold brew 480 ml con crema Torani pumpkin pie en sifón y azúcar morena caramelizada.",
-    image: '/assets/images/recetas/calabaza/calabaza-brulee.webp',
-    banner: '/assets/images/recetas/calabaza/calabaza-brulee.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-brulee.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-brulee.webp`,
     tone: "gold",
     brand: "ChillOut",
     time: "5 min",
@@ -415,6 +477,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "calabaza-y-espresso-latte",
+    intranetId: 84,
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut dulce de calabaza", sap: "IBP-064", qty: 30, unit: "g" },
+      { ingredient: "60 ml de espresso doble Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" }
+    ],
     title: "Calabaza y",
     titleAccent: "espresso latte",
     kicker: 'Otoño · Calabaza',
@@ -422,8 +489,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Latte 480 ml con ChillOut dulce de calabaza, espresso doble y leche.",
-    image: '/assets/images/recetas/calabaza/calabaza-y-espresso-latte.webp',
-    banner: '/assets/images/recetas/calabaza/calabaza-y-espresso-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-y-espresso-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-y-espresso-latte.webp`,
     tone: "gold",
     brand: "ChillOut",
     time: "5 min",
@@ -459,6 +526,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "calabaza-y-matcha-latte",
+    intranetId: 83,
+    sapIngredients: [
+      { ingredient: "20 g de Aya matcha tostado", sap: "IBP-149", qty: 20, unit: "g", confidence: "media" },
+      { ingredient: "30 ml de Torani pumpkin pie", sap: "IJA-222", qty: 30, unit: "ml" }
+    ],
     title: "Calabaza y",
     titleAccent: "matcha latte",
     kicker: 'Otoño · Calabaza',
@@ -466,8 +538,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Latte 480 ml con Aya matcha tostado, Torani pumpkin pie y leche.",
-    image: '/assets/images/recetas/calabaza/calabaza-y-matcha-latte.webp',
-    banner: '/assets/images/recetas/calabaza/calabaza-y-matcha-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-y-matcha-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/calabaza-y-matcha-latte.webp`,
     tone: "lime",
     brand: "Aya / Torani",
     time: "5 min",
@@ -503,6 +575,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "dulce-de-calabaza-molecular",
+    intranetId: 82,
+    sapIngredients: [
+      { ingredient: "45 g de ChillOut mix dulce de calabaza", sap: "IBP-064", qty: 45, unit: "g" },
+      { ingredient: "15 ml de Torani salted caramel", sap: "IJA-056", qty: 15, unit: "ml" },
+      { ingredient: "1 sobre de ChillOut tapioca instantánea", sap: "ICT-056", qty: 1, unit: "pza", confidence: "alta" }
+    ],
     title: "Dulce de calabaza",
     titleAccent: "molecular",
     kicker: 'Otoño · Calabaza',
@@ -510,8 +588,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Bebida 480 ml con dulce de calabaza, Torani salted caramel y tapioca instantánea ChillOut.",
-    image: '/assets/images/recetas/calabaza/dulce-de-calabaza-molecular.webp',
-    banner: '/assets/images/recetas/calabaza/dulce-de-calabaza-molecular.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/dulce-de-calabaza-molecular.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/dulce-de-calabaza-molecular.webp`,
     tone: "gold",
     brand: "ChillOut",
     time: "5 min",
@@ -549,6 +627,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'red-velvet-bombon',
+    intranetId: 81,
+    sapIngredients: [
+      { ingredient: "2 cucharadas de polvo Cappuccine red velvet", sap: "IBP-016", qty: 2, unit: "cucharadas" }
+    ],
     title: "Red velvet",
     titleAccent: "bombón",
     kicker: 'Otoño · Temporada',
@@ -556,8 +638,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Bebida caliente 480 ml de red velvet con Cappuccine, leche espumada, bombones y jarabe n’Dulce dulce de leche.",
-    image: '/assets/images/recetas/otono/red-velvet-bombon.webp',
-    banner: '/assets/images/recetas/otono/red-velvet-bombon.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/otono/red-velvet-bombon.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/otono/red-velvet-bombon.webp`,
     tone: 'coral',
     brand: "Cappuccine",
     time: '10 min',
@@ -600,6 +682,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'fresandia-frozen',
+    intranetId: 86,
+    sapIngredients: [
+      { ingredient: "30 ml de ChillOut Jarabes fresa", sap: "IJA-144", qty: 30, unit: "ml" },
+      { ingredient: "15 ml de ChillOut Fruit sandía", sap: "IPC-023", qty: 15, unit: "ml" },
+      { ingredient: "40 g de ChillOut Mix base cristal", sap: "IBP-056", qty: 40, unit: "g" }
+    ],
     title: "Fresandía",
     titleAccent: "frozen",
     kicker: 'Otoño · Temporada',
@@ -607,8 +695,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Frappé 480 ml de fresa y sandía con ChillOut Jarabes fresa, ChillOut Fruit sandía y ChillOut Mix base cristal.",
-    image: '/assets/images/recetas/otono/fresandia-frozen.webp',
-    banner: '/assets/images/recetas/otono/fresandia-frozen.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/otono/fresandia-frozen.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/otono/fresandia-frozen.webp`,
     tone: 'coral',
     brand: "ChillOut",
     time: '10 min',
@@ -652,6 +740,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'matcha-azul-frappe-480ml',
+    intranetId: 92,
+    sapIngredients: [
+      { ingredient: "40 g de ChillOut Mix matcha azul", sap: "IBP-184", qty: 40, unit: "g" },
+      { ingredient: "30 g de ChillOut Jam mango", sap: "IPC-002", qty: 30, unit: "g" }
+    ],
     title: "Matcha azul",
     titleAccent: "frappé",
     kicker: 'Otoño · Temporada',
@@ -659,8 +752,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Frappé 480 ml de ChillOut Mix matcha azul sobre ChillOut Jam mango y crema base vegetal.",
-    image: '/assets/images/recetas/otono/matcha-azul-frappe-480ml.webp',
-    banner: '/assets/images/recetas/otono/matcha-azul-frappe-480ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/otono/matcha-azul-frappe-480ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/otono/matcha-azul-frappe-480ml.webp`,
     tone: 'sky',
     brand: "ChillOut",
     time: '5 min',
@@ -704,6 +797,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'matcha-azul-frio-480ml',
+    intranetId: 93,
+    sapIngredients: [
+      { ingredient: "50 g de ChillOut Mix matcha azul", sap: "IBP-184", qty: 50, unit: "g" }
+    ],
     title: "Matcha azul",
     titleAccent: "frío",
     kicker: 'Otoño · Temporada',
@@ -711,8 +808,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Frappé 480 ml de ChillOut Mix matcha azul con nubes de crema batida en las paredes del vaso.",
-    image: '/assets/images/recetas/otono/matcha-azul-frio-480ml.webp',
-    banner: '/assets/images/recetas/otono/matcha-azul-frio-480ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/otono/matcha-azul-frio-480ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/otono/matcha-azul-frio-480ml.webp`,
     tone: 'sky',
     brand: "ChillOut",
     time: '5 min',
@@ -755,6 +852,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'matcha-azul-floral-360ml',
+    intranetId: 94,
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Mix matcha azul", sap: "IBP-184", qty: 30, unit: "g" },
+      { ingredient: "15 ml de jarabe Torani rosas", sap: "IJA-061", qty: 15, unit: "ml" }
+    ],
     title: "Matcha azul",
     titleAccent: "floral",
     kicker: 'Otoño · Temporada',
@@ -762,8 +864,8 @@ export const RECIPES: Recipe[] = [
     collection: 'calabaza',
     origin: 'calabaza',
     summary: "Latte caliente 360 ml de ChillOut Mix matcha azul con jarabe Torani rosas y leche espumada.",
-    image: '/assets/images/recetas/otono/matcha-azul-floral-360ml.webp',
-    banner: '/assets/images/recetas/otono/matcha-azul-floral-360ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/otono/matcha-azul-floral-360ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/otono/matcha-azul-floral-360ml.webp`,
     tone: 'sky',
     brand: "ChillOut",
     time: '5 min',
@@ -810,10 +912,11 @@ export const RECIPES: Recipe[] = [
     kicker: 'Bebida fría',
     category: 'Bebidas frías',
     collection: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: sin valor)
     summary:
       'Una bebida refrescante, picosita y llena de sabor, perfecta para disfrutar en cualquier momento.',
-    image: '/assets/images/recetas/mangonada-card.webp',
-    banner: '/assets/images/recetas/mangonada-lifestyle.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/mangonada-card.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/mangonada-lifestyle.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -864,25 +967,25 @@ export const RECIPES: Recipe[] = [
       {
         label: 'ChillOut Mix Limón',
         description: 'Ideal para preparar la base fresca.',
-        image: '/assets/images/insumos/cafe-bag.png',
+        image: `/assets/images/insumos/cafe-bag-sin-fondo.webp`,
         link: '/insumos-para-cafeterias'
       },
       {
         label: 'ChillOut Jam Mango',
         description: 'Sabor intenso y auténtico.',
-        image: '/assets/images/insumos/matcha-can.png',
+        image: `${ASSETS_BASE_URL}/images/insumos/matcha-can.png`,
         link: '/insumos-para-cafeterias'
       },
       {
         label: 'Crystal Boba Mango',
         description: 'Textura única y divertida.',
-        image: '/assets/images/insumos/product-tall-2.png',
+        image: `${ASSETS_BASE_URL}/images/insumos/product-tall-2.png`,
         link: '/insumos-para-cafeterias/toppings'
       },
       {
         label: 'ChillOut Chamoy',
         description: 'El toque picosito perfecto.',
-        image: '/assets/images/insumos/salsas-bottle-chamoy.webp',
+        image: `${ASSETS_BASE_URL}/images/insumos/salsas-bottle-chamoy.webp`,
         link: '/insumos-para-cafeterias/salsas'
       }
     ],
@@ -897,6 +1000,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'miche-cero',
+    sapIngredients: [
+      { ingredient: "20 ml de ChillOut Jam mango", sap: "IPC-002", qty: 20, unit: "ml" },
+      { ingredient: "20 ml de Torani clásico limón", sap: "IJA-024", qty: 20, unit: "ml" }
+    ],
     title: 'Miche',
     titleAccent: 'cero',
     kicker: 'Fiestas Patrias 2026',
@@ -905,8 +1012,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Michelada cero alcohol de 480 ml con escarchado de chamoy y chile, Jam mango ChillOut y Torani limón.',
-    image: '/assets/images/recetas/temporada/miche-cero.webp',
-    banner: '/assets/images/recetas/temporada/miche-cero.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/miche-cero.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/miche-cero.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '3 min',
@@ -952,6 +1059,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'mi-mero-mole',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Mix xocolatl", sap: "ICP-002", qty: 30, unit: "g" },
+      { ingredient: "20 ml de Torani clásico canela", sap: "IBP-177", qty: 20, unit: "ml", confidence: "media" },
+      { ingredient: "10 ml de Torani clásico crema de banana", sap: "IJA-008", qty: 10, unit: "ml" },
+      { ingredient: "30 ml de espresso Mezcla especial No. 1", sap: "CPM-002", qty: 30, unit: "ml" }
+    ],
     title: 'Mi mero',
     titleAccent: 'mole',
     kicker: 'Fiestas Patrias 2026',
@@ -960,8 +1073,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Bebida fría de 300 ml con Mix xocolatl, espresso Mezcla especial No. 1, Torani canela y crema de banana.',
-    image: '/assets/images/recetas/temporada/mi-mero-mole.webp',
-    banner: '/assets/images/recetas/temporada/mi-mero-mole.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/mi-mero-mole.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/mi-mero-mole.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -1008,6 +1121,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'diablito-de-fresa',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Jam fresa", sap: "IPC-005", qty: 30, unit: "g" },
+      { ingredient: "40 g de ChillOut Mix limón", sap: "IBP-215", qty: 40, unit: "g" },
+      { ingredient: "30 ml de ChillOut Fruit chamoy", sap: "ICT-053", qty: 30, unit: "ml" }
+    ],
     title: 'Diablito',
     titleAccent: 'de fresa',
     kicker: 'Fiestas Patrias 2026',
@@ -1016,8 +1134,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Frappé de 480 ml con Jam fresa, Mix limón, Fruit chamoy y barrita de tamarindo.',
-    image: '/assets/images/recetas/temporada/diablito-de-fresa.webp',
-    banner: '/assets/images/recetas/temporada/diablito-de-fresa.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/diablito-de-fresa.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/diablito-de-fresa.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -1059,6 +1177,13 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'nogada-clasica',
+    sapIngredients: [
+      { ingredient: "Foam: 20 g ChillOut Mix leche evaporada", sap: "IBP-251", qty: 20, unit: "g", confidence: "alta" },
+      { ingredient: "Foam: 10 ml Torani clásico nuez de macadamia", sap: "IJA-055", qty: 10, unit: "ml", confidence: "alta" },
+      { ingredient: "Frappé: 30 ml Torani clásico granada", sap: "IJA-038", qty: 30, unit: "ml", confidence: "alta" },
+      { ingredient: "Frappé: 30 g ChillOut Mix leche condensada", sap: "IBP-253", qty: 30, unit: "g", confidence: "alta" },
+      { ingredient: "Frappé: 15 g ChillOut Pearls granada", sap: "ICT-029", qty: 15, unit: "g", confidence: "media" }
+    ],
     title: 'Nogada',
     titleAccent: 'clásica',
     kicker: 'Fiestas Patrias 2026',
@@ -1067,8 +1192,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Frappé de granada 480 ml coronado con foam de leche evaporada, macadamia y Pearls granada.',
-    image: '/assets/images/recetas/temporada/nogada-clasica.webp',
-    banner: '/assets/images/recetas/temporada/nogada-clasica.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/nogada-clasica.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/nogada-clasica.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '8 min',
@@ -1119,6 +1244,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'margarita',
+    sapIngredients: [
+      { ingredient: "20 ml de ChillOut Fruit limón", sap: "IPC-008", qty: 20, unit: "ml" },
+      { ingredient: "20 ml de Torani clásico piña", sap: "IJA-026", qty: 20, unit: "ml" }
+    ],
     title: 'Margarita',
     titleAccent: '',
     kicker: 'Fiestas Patrias 2026',
@@ -1127,8 +1256,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Cóctel de 300 ml con infusión Stash manzanilla, ChillOut Fruit limón y Torani piña.',
-    image: '/assets/images/recetas/temporada/margarita.webp',
-    banner: '/assets/images/recetas/temporada/margarita.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/margarita.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/margarita.webp`,
     tone: 'coral',
     brand: 'Torani',
     time: '4 min',
@@ -1175,6 +1304,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'marchanta',
+    sapIngredients: [
+      { ingredient: "20 ml de Torani clásico lavanda", sap: "IJA-062", qty: 20, unit: "ml" },
+      { ingredient: "10 ml de Torani clásico diamond", sap: "IJA-221", qty: 10, unit: "ml" }
+    ],
     title: 'Marchanta',
     titleAccent: '',
     kicker: 'Fiestas Patrias 2026',
@@ -1183,8 +1316,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Bebida de 300 ml con Torani lavanda y diamond, infusión de hierbas y top de tónica.',
-    image: '/assets/images/recetas/temporada/marchanta.webp',
-    banner: '/assets/images/recetas/temporada/marchanta.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/marchanta.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/marchanta.webp`,
     tone: 'lime',
     brand: 'Torani',
     time: '3 min',
@@ -1224,6 +1357,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'cate-de-mi-corazon',
+    sapIngredients: [
+      { ingredient: "20 g de ChillOut Mix limón", sap: "IBP-215", qty: 20, unit: "g" },
+      { ingredient: "10 ml de ChillOut Fruit naranja enana", sap: "IPC-095", qty: 10, unit: "ml", confidence: "media" },
+      { ingredient: "30 ml de espresso Mezcla especial No. 1", sap: "CPM-002", qty: 30, unit: "ml" }
+    ],
     title: 'Cate',
     titleAccent: 'de mi corazón',
     kicker: 'Fiestas Patrias 2026',
@@ -1232,8 +1370,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Frappé de 300 ml con Mix limón, Fruit naranja enana, espresso y aguacate.',
-    image: '/assets/images/recetas/temporada/cate-de-mi-corazon.webp',
-    banner: '/assets/images/recetas/temporada/cate-de-mi-corazon.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/cate-de-mi-corazon.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/cate-de-mi-corazon.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '5 min',
@@ -1274,6 +1412,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'horchata-mexa',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Fruit azúcar morena", sap: "IPC-111", qty: 30, unit: "g" },
+      { ingredient: "40 g de ChillOut Mix horchata", sap: "IBP-062", qty: 40, unit: "g" }
+    ],
     title: 'Horchata',
     titleAccent: 'mexa',
     kicker: 'Fiestas Patrias 2026',
@@ -1282,8 +1424,8 @@ export const RECIPES: Recipe[] = [
     origin: 'septiembre-2026',
     summary:
       'Frappé de 480 ml con Mix horchata, Fruit azúcar morena, leche y canela.',
-    image: '/assets/images/recetas/temporada/horchata-mexa.webp',
-    banner: '/assets/images/recetas/temporada/horchata-mexa.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/temporada/horchata-mexa.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/temporada/horchata-mexa.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -1324,6 +1466,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'lychee-rose',
+    intranetId: 197,
+    sapIngredients: [
+      { ingredient: "30 ml de jarabe Torani clásico rosas", sap: "IJA-061", qty: 30, unit: "ml" }
+    ],
     title: 'Lychee',
     titleAccent: 'Rose',
     kicker: 'Verano 2026',
@@ -1332,8 +1478,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Bebida efervescente de 480 ml con Torani rosas, cold foam ChillOut fruit lichi, romero y tónica.',
-    image: '/assets/images/recetas/verano/lychee-rose.webp',
-    banner: '/assets/images/recetas/verano/lychee-rose.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/lychee-rose.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/lychee-rose.webp`,
     tone: 'coral',
     brand: 'Torani',
     time: '4 min',
@@ -1375,6 +1521,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'mojito-dragon-fruit',
+    sapIngredients: [
+      { ingredient: "20 g de ChillOut Jam pitahaya", sap: "IPC-001", qty: 20, unit: "g", confidence: "media" },
+      { ingredient: "100 ml de infusión Stash green tea", sap: "ITB-014", qty: 100, unit: "ml", confidence: "media" },
+      { ingredient: "10 g de ChillOut Mix limón", sap: "IBP-215", qty: 10, unit: "g" }
+    ],
     title: 'Mojito',
     titleAccent: 'dragon fruit',
     kicker: 'Verano 2026',
@@ -1383,8 +1534,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Mojito de 480 ml con Jam pitahaya, Stash green tea, Mix limón, menta y top de tónica.',
-    image: '/assets/images/recetas/verano/mojito-dragon-fruit.webp',
-    banner: '/assets/images/recetas/verano/mojito-dragon-fruit.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/mojito-dragon-fruit.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/mojito-dragon-fruit.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '5 min',
@@ -1422,6 +1573,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'dirty-soda',
+    intranetId: 199,
+    sapIngredients: [
+      { ingredient: "15 ml de jarabe Torani clásico galleta de mantequilla", sap: "IJA-224", qty: 15, unit: "ml" },
+      { ingredient: "30 ml de foam elaborado con ChillOut Mix leche condensada", sap: "IBP-253", qty: 30, unit: "ml", confidence: "media" }
+    ],
     title: 'Dirty',
     titleAccent: 'soda',
     kicker: 'Verano 2026',
@@ -1430,8 +1586,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Dirty soda de 480 ml con Torani galleta de mantequilla, foam Mix leche condensada y refresco cola.',
-    image: '/assets/images/recetas/verano/dirty-soda.webp',
-    banner: '/assets/images/recetas/verano/dirty-soda.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/dirty-soda.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/dirty-soda.webp`,
     tone: 'gold',
     brand: 'Torani',
     time: '3 min',
@@ -1467,6 +1623,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'orange-cream-cold-brew',
+    intranetId: 200,
+    sapIngredients: [
+      { ingredient: "180 ml de cold brew preparado con Café Etrusca Mezcla Especial n.º 1", sap: "CPM-002", qty: 180, unit: "ml" },
+      { ingredient: "40 g de cold foam preparado con ChillOut Fruit naranja enana", sap: "IPC-095", qty: 40, unit: "g", confidence: "media" },
+      { ingredient: "Salsa Torani caramelo (decoración)", sap: "ISA-017", qty: 0, unit: "ml", confidence: "media" }
+    ],
     title: 'Orange cream',
     titleAccent: 'cold brew',
     kicker: 'Verano 2026',
@@ -1475,8 +1637,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Cold brew 480 ml con Mezcla Especial n.º 1, foam Fruit naranja enana y Torani caramelo.',
-    image: '/assets/images/recetas/verano/orange-cream-cold-brew.webp',
-    banner: '/assets/images/recetas/verano/orange-cream-cold-brew.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/orange-cream-cold-brew.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/orange-cream-cold-brew.webp`,
     tone: 'gold',
     brand: 'Café Etrusca',
     time: '4 min',
@@ -1513,6 +1675,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'matcha-colada',
+    intranetId: 201,
+    sapIngredients: [
+      { ingredient: "25 g de ChillOut Mix matcha azul", sap: "IBP-184", qty: 25, unit: "g" },
+      { ingredient: "20 ml de jarabe Torani clásico piña", sap: "IJA-026", qty: 20, unit: "ml" }
+    ],
     title: 'Matcha',
     titleAccent: 'colada',
     kicker: 'Verano 2026',
@@ -1521,8 +1688,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Frappé 480 ml con Mix matcha azul, Torani piña, foam Mix coco, leche e hielo.',
-    image: '/assets/images/recetas/verano/matcha-colada.webp',
-    banner: '/assets/images/recetas/verano/matcha-colada.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/matcha-colada.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/matcha-colada.webp`,
     tone: 'sky',
     brand: 'ChillOut',
     time: '5 min',
@@ -1537,7 +1704,7 @@ export const RECIPES: Recipe[] = [
       '1 vaso de 480 ml con hielos'
     ],
     tools: ['Licuadora'],
-    toolIcon: '/assets/images/recetas/icons/tool-licuadora.svg',
+    toolIcon: `${ASSETS_BASE_URL}/images/recetas/icons/tool-licuadora.svg`,
     steps: [
       {
         title: 'Licúa',
@@ -1560,6 +1727,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'strawberry-matcha-lemonade',
+    intranetId: 202,
+    sapIngredients: [
+      { ingredient: "3 g de ChillOut matcha ceremonial", sap: "ITE-060", qty: 3, unit: "g" },
+      { ingredient: "10 g de ChillOut tisana fresa kiwi", sap: "ITI-102", qty: 10, unit: "g" },
+      { ingredient: "10 g de ChillOut Mix limón", sap: "IBP-215", qty: 10, unit: "g" }
+    ],
     title: 'Strawberry',
     titleAccent: 'matcha lemonade',
     kicker: 'Verano 2026',
@@ -1568,8 +1741,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Limonada estratificada 480 ml con matcha ceremonial, tisana fresa kiwi y Mix limón.',
-    image: '/assets/images/recetas/verano/strawberry-matcha-lemonade.webp',
-    banner: '/assets/images/recetas/verano/strawberry-matcha-lemonade.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/strawberry-matcha-lemonade.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/strawberry-matcha-lemonade.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '8 min',
@@ -1613,6 +1786,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'tropical-cold-brew',
+    intranetId: 203,
+    sapIngredients: [
+      { ingredient: "30 ml de cold brew preparado con Café Etrusca Mezcla Especial n.º 1", sap: "CPM-002", qty: 30, unit: "ml" },
+      { ingredient: "45 ml de jarabe Torani clásico coco", sap: "IJA-016", qty: 45, unit: "ml" },
+      { ingredient: "45 ml de cold foam preparado con ChillOut Jam mango", sap: "IPC-002", qty: 45, unit: "ml", confidence: "media" }
+    ],
     title: 'Tropical',
     titleAccent: 'cold brew',
     kicker: 'Verano 2026',
@@ -1621,8 +1800,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Cold brew 480 ml con Mezcla Especial n.º 1, Torani coco, foam Jam mango, leche e hielo.',
-    image: '/assets/images/recetas/verano/tropical-cold-brew.webp',
-    banner: '/assets/images/recetas/verano/tropical-cold-brew.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/tropical-cold-brew.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/tropical-cold-brew.webp`,
     tone: 'gold',
     brand: 'Café Etrusca',
     time: '5 min',
@@ -1659,6 +1838,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'soda-tropical-espumosa',
+    intranetId: 204,
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Mix maracuyá", sap: "IBP-222", qty: 30, unit: "g" }
+    ],
     title: 'Soda tropical',
     titleAccent: 'espumosa',
     kicker: 'Verano 2026',
@@ -1667,8 +1850,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Soda 480 ml con Mix maracuyá, agua mineral, hielo, menta y limón.',
-    image: '/assets/images/recetas/verano/soda-tropical-espumosa.webp',
-    banner: '/assets/images/recetas/verano/soda-tropical-espumosa.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/soda-tropical-espumosa.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/soda-tropical-espumosa.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '4 min',
@@ -1710,6 +1893,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'sparkling-cherry',
+    intranetId: 205,
+    sapIngredients: [
+      { ingredient: "30 ml de jarabe Torani clásico cereza", sap: "IJA-015", qty: 30, unit: "ml" },
+      { ingredient: "20 g de ChillOut Mix limón", sap: "IBP-215", qty: 20, unit: "g" },
+      { ingredient: "60 ml de cold foam ChillOut Just fruit piña colada", sap: "IBP-057", qty: 60, unit: "ml", confidence: "media" }
+    ],
     title: 'Sparkling',
     titleAccent: 'cherry',
     kicker: 'Verano 2026',
@@ -1718,8 +1907,8 @@ export const RECIPES: Recipe[] = [
     origin: 'verano-2026',
     summary:
       'Sparkling 480 ml con Torani cereza, Mix limón, cold foam piña colada y refresco lima-limón.',
-    image: '/assets/images/recetas/verano/sparkling-cherry.webp',
-    banner: '/assets/images/recetas/verano/sparkling-cherry.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/verano/sparkling-cherry.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/verano/sparkling-cherry.webp`,
     tone: 'coral',
     brand: 'Torani',
     time: '4 min',
@@ -1758,6 +1947,11 @@ export const RECIPES: Recipe[] = [
     // ——— San Valentín 2026 ———
   {
     slug: 'manzana-acaramelada',
+    sapIngredients: [
+      { ingredient: "40 g ChillOut mix base neutra", sap: "IBP-032", qty: 40, unit: "g" },
+      { ingredient: "45 ml Torani clásico manzana verde", sap: "IJA-052", qty: 45, unit: "ml" },
+      { ingredient: "30 ml salsa Torani Puremade caramelo", sap: "ISA-021", qty: 30, unit: "ml" }
+    ],
     title: 'Manzana',
     titleAccent: 'Acaramelada',
     kicker: 'San Valentín 2026',
@@ -1766,8 +1960,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Frappé 480 ml con Mix base neutra, Torani manzana verde y salsa Puremade caramelo.',
-    image: '/assets/images/recetas/san-valentin/manzana-acaramelada.webp',
-    banner: '/assets/images/recetas/san-valentin/manzana-acaramelada.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/manzana-acaramelada.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/manzana-acaramelada.webp`,
     tone: 'coral',
     brand: 'Torani',
     time: '5 min',
@@ -1807,6 +2001,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'rosa-pistache-foam',
+    sapIngredients: [
+      { ingredient: "30 ml ChillOut fruit fresa", sap: "IBP-040", qty: 30, unit: "ml" },
+      { ingredient: "30 g ChillOut mix pistache", sap: "IBP-247", qty: 30, unit: "g" },
+      { ingredient: "30 g ChillOut mix base neutra", sap: "IBP-032", qty: 30, unit: "g" },
+      { ingredient: "50 ml de crema base", sap: "IBP-143", qty: 50, unit: "ml", confidence: "media" }
+    ],
     title: 'Rosa pistache',
     titleAccent: 'Foam',
     kicker: 'San Valentín 2026',
@@ -1815,8 +2015,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Bebida 480 ml de pistache con foam rosa de ChillOut fruit fresa y mix base neutra.',
-    image: '/assets/images/recetas/san-valentin/rosa-pistache-foam.webp',
-    banner: '/assets/images/recetas/san-valentin/rosa-pistache-foam.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/rosa-pistache-foam.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/rosa-pistache-foam.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '6 min',
@@ -1861,6 +2061,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'caricia-de-amor',
+    sapIngredients: [
+      { ingredient: "30 ml Torani clásico crema de banana", sap: "IJA-008", qty: 30, unit: "ml" },
+      { ingredient: "30 ml Torani clásico cereza", sap: "IJA-015", qty: 30, unit: "ml" },
+      { ingredient: "22.5 ml de crema base", sap: "IBP-143", qty: 22.5, unit: "ml", confidence: "media" }
+    ],
     title: 'Caricia de',
     titleAccent: 'Amor',
     kicker: 'San Valentín 2026',
@@ -1869,8 +2074,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Cóctel cremoso 480 ml con Torani crema de banana, cereza, crema base, vodka y leche.',
-    image: '/assets/images/recetas/san-valentin/caricia-de-amor.webp',
-    banner: '/assets/images/recetas/san-valentin/caricia-de-amor.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/caricia-de-amor.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/caricia-de-amor.webp`,
     tone: 'coral',
     brand: 'Torani',
     time: '4 min',
@@ -1909,6 +2114,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'soda-de-la-pasion',
+    sapIngredients: [
+      { ingredient: "30 g ChillOut pop níspero", sap: "ICT-111", qty: 30, unit: "g" },
+      { ingredient: "30 g ChillOut pop fresa", sap: "IBP-040", qty: 30, unit: "g", confidence: "media" },
+      { ingredient: "30 ml Torani clásico maracuyá", sap: "IJA-042", qty: 30, unit: "ml" }
+    ],
     title: 'Soda de la',
     titleAccent: 'Pasión',
     kicker: 'San Valentín 2026',
@@ -1917,8 +2127,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Soda 480 ml con ChillOut pop níspero y fresa, Torani maracuyá y agua mineral.',
-    image: '/assets/images/recetas/san-valentin/soda-de-la-pasion.webp',
-    banner: '/assets/images/recetas/san-valentin/soda-de-la-pasion.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/soda-de-la-pasion.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/soda-de-la-pasion.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '3 min',
@@ -1955,6 +2165,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'negro-dulce-corazon',
+    sapIngredients: [
+      { ingredient: "2 sobres de Stash english breakfast", sap: "ITB-005", qty: 2, unit: "pza" },
+      { ingredient: "45 ml ChillOut fruit cereza", sap: "IPC-012", qty: 45, unit: "ml" },
+      { ingredient: "30 g ChillOut jelly heart", sap: "ICT-011", qty: 30, unit: "g", confidence: "media" },
+      { ingredient: "30 g ChillOut base cristal", sap: "IBP-056", qty: 30, unit: "g" }
+    ],
     title: 'Negro dulce',
     titleAccent: 'Corazón',
     kicker: 'San Valentín 2026',
@@ -1963,8 +2179,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Frappé 480 ml con Stash english breakfast, ChillOut fruit cereza, jelly heart y base cristal.',
-    image: '/assets/images/recetas/san-valentin/negro-dulce-corazon.webp',
-    banner: '/assets/images/recetas/san-valentin/negro-dulce-corazon.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/negro-dulce-corazon.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/negro-dulce-corazon.webp`,
     tone: 'navy',
     brand: 'ChillOut',
     time: '6 min',
@@ -2011,6 +2227,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'lemon-cherry',
+    sapIngredients: [
+      { ingredient: "45 ml Torani clásico cereza", sap: "IJA-015", qty: 45, unit: "ml" },
+      { ingredient: "30 g ChillOut mix limón", sap: "IBP-215", qty: 30, unit: "g" }
+    ],
     title: 'Lemon',
     titleAccent: 'Cherry',
     kicker: 'San Valentín 2026',
@@ -2019,8 +2239,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Bebida 480 ml con Torani cereza, ChillOut mix limón y agua, servida sobre hielo.',
-    image: '/assets/images/recetas/san-valentin/lemon-cherry.webp',
-    banner: '/assets/images/recetas/san-valentin/lemon-cherry.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/lemon-cherry.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/lemon-cherry.webp`,
     tone: 'lime',
     brand: 'Torani',
     time: '4 min',
@@ -2062,6 +2282,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'beso-de-fresa',
+    sapIngredients: [
+      { ingredient: "30 ml ChillOut jarabe fresa", sap: "IJA-144", qty: 30, unit: "ml" },
+      { ingredient: "15 ml Torani clásico diamond", sap: "IJA-221", qty: 15, unit: "ml" }
+    ],
     title: 'Beso de',
     titleAccent: 'Fresa',
     kicker: 'San Valentín 2026',
@@ -2070,8 +2294,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Refresco 275 ml con ChillOut jarabe fresa, Torani diamond, tequila, fresa, menta y agua mineral.',
-    image: '/assets/images/recetas/san-valentin/beso-de-fresa.webp',
-    banner: '/assets/images/recetas/san-valentin/beso-de-fresa.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/beso-de-fresa.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/beso-de-fresa.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '4 min',
@@ -2109,6 +2333,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'sandia-on-fire',
+    sapIngredients: [
+      { ingredient: "40 ml Tea zone sandía", sap: "IPC-050", qty: 40, unit: "ml" },
+      { ingredient: "30 ml ChillOut fruit chamoy", sap: "ICT-053", qty: 30, unit: "ml" },
+      { ingredient: "30 g ChillOut mix base cristal", sap: "IBP-056", qty: 30, unit: "g" },
+      { ingredient: "30 g ChillOut jelly heart", sap: "ICT-011", qty: 30, unit: "g", confidence: "media" }
+    ],
     title: 'Sandía on',
     titleAccent: 'Fire',
     kicker: 'San Valentín 2026',
@@ -2117,8 +2347,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Granizado 480 ml con Tea zone sandía, ChillOut fruit chamoy, base cristal y jelly heart.',
-    image: '/assets/images/recetas/san-valentin/sandia-on-fire.webp',
-    banner: '/assets/images/recetas/san-valentin/sandia-on-fire.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/sandia-on-fire.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/sandia-on-fire.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -2160,6 +2390,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'dulce-cheesecake-frambuesa',
+    sapIngredients: [
+      { ingredient: "30 g ChillOut mix base neutra", sap: "IBP-032", qty: 30, unit: "g" },
+      { ingredient: "30 ml ChillOut fruit frambuesa", sap: "IPC-013", qty: 30, unit: "ml" },
+      { ingredient: "30 ml Torani clásico cheesecake", sap: "IJA-004", qty: 30, unit: "ml" }
+    ],
     title: 'Dulce cheesecake de',
     titleAccent: 'Frambuesa',
     kicker: 'San Valentín 2026',
@@ -2168,8 +2403,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Frappé 480 ml con Mix base neutra, ChillOut fruit frambuesa, Torani cheesecake y milk foam.',
-    image: '/assets/images/recetas/san-valentin/dulce-cheesecake-frambuesa.webp',
-    banner: '/assets/images/recetas/san-valentin/dulce-cheesecake-frambuesa.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/dulce-cheesecake-frambuesa.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/dulce-cheesecake-frambuesa.webp`,
     tone: 'coral',
     brand: 'Torani',
     time: '5 min',
@@ -2210,6 +2445,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'orange-fantasy-tonic',
+    sapIngredients: [
+      { ingredient: "45 ml ChillOut fruit naranja y limón", sap: "IPC-095", qty: 45, unit: "ml" },
+      { ingredient: "1 sobre de Stash frambuesa e hibiscos", sap: "ITB-012", qty: 1, unit: "pza", confidence: "media" }
+    ],
     title: 'Orange fantasy',
     titleAccent: 'Tonic',
     kicker: 'San Valentín 2026',
@@ -2218,8 +2457,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Tónica 360 ml con ChillOut fruit naranja y limón, Stash frambuesa e hibiscos y agua tónica.',
-    image: '/assets/images/recetas/san-valentin/orange-fantasy-tonic.webp',
-    banner: '/assets/images/recetas/san-valentin/orange-fantasy-tonic.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/orange-fantasy-tonic.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/orange-fantasy-tonic.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -2262,6 +2501,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'rojo-pasion-foam',
+    sapIngredients: [
+      { ingredient: "40 g Cappuccine red velvet", sap: "IBP-016", qty: 40, unit: "g" },
+      { ingredient: "30 g ChillOut mix leche condensada (foam)", sap: "IBP-253", qty: 30, unit: "g", confidence: "alta" },
+      { ingredient: "50 ml de crema base (foam)", sap: "IBP-143", qty: 50, unit: "ml", confidence: "media" }
+    ],
     title: 'Rojo pasión',
     titleAccent: 'Foam',
     kicker: 'San Valentín 2026',
@@ -2270,8 +2514,8 @@ export const RECIPES: Recipe[] = [
     origin: 'san-valentin-2026',
     summary:
       'Frappé 480 ml con Cappuccine red velvet y foam de ChillOut mix leche condensada.',
-    image: '/assets/images/recetas/san-valentin/rojo-pasion-foam.webp',
-    banner: '/assets/images/recetas/san-valentin/rojo-pasion-foam.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/san-valentin/rojo-pasion-foam.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/san-valentin/rojo-pasion-foam.webp`,
     tone: 'coral',
     brand: 'Cappuccine',
     time: '6 min',
@@ -2319,6 +2563,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'arroz-con-leche',
+    intranetId: 160,
+    sapIngredients: [
+      { ingredient: "15 g de ChillOut horchata", sap: "IBP-062", qty: 15, unit: "g" },
+      { ingredient: "15 g de ChillOut coco", sap: "IBP-043", qty: 15, unit: "g" },
+      { ingredient: "15 ml de salsa Torani chocolate blanco", sap: "ISA-016", qty: 15, unit: "ml" }
+    ],
     title: "Arroz",
     titleAccent: "con leche",
     kicker: 'Invierno · 2024',
@@ -2326,8 +2576,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Bebida caliente 360 ml con ChillOut horchata y coco, salsa Torani chocolate blanco, leche y canela.",
-    image: '/assets/images/recetas/invierno/arroz-con-leche.webp',
-    banner: '/assets/images/recetas/invierno/arroz-con-leche.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/arroz-con-leche.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/arroz-con-leche.webp`,
     tone: 'gold',
     brand: "ChillOut",
     time: '5 min',
@@ -2371,6 +2621,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'noche-de-invierno-latte',
+    intranetId: 162,
+    sapIngredients: [
+      { ingredient: "25 g de Chill Out Mix Crème Brûlée", sap: "IBP-206", qty: 25, unit: "g" },
+      { ingredient: "10 ml de ChillOut agave azul crema de avellana", sap: "IJA-153", qty: 10, unit: "ml" },
+      { ingredient: "250 ml de Noosh de avena", sap: "IPC-068", qty: 250, unit: "ml" }
+    ],
     title: "Noche de invierno",
     titleAccent: "latte",
     kicker: 'Invierno · 2024',
@@ -2378,8 +2634,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Latte 360 ml con ChillOut Crème Brûlée, crema de avellana y Noosh de avena, flameado con azúcar morena.",
-    image: '/assets/images/recetas/invierno/noche-de-invierno-latte.webp',
-    banner: '/assets/images/recetas/invierno/noche-de-invierno-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/noche-de-invierno-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/noche-de-invierno-latte.webp`,
     tone: 'navy',
     brand: "ChillOut",
     time: '5 min',
@@ -2422,6 +2678,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'winter-peach',
+    sapIngredients: [
+      { ingredient: "150 ml de cold brew de té Stash earl grey", sap: "ITB-004", qty: 150, unit: "ml", confidence: "media" },
+      { ingredient: "100 ml de Noosh de almendra", sap: "IPC-069", qty: 100, unit: "ml" },
+      { ingredient: "20 ml de ChillOut fruit durazno", sap: "IPC-017", qty: 20, unit: "ml" }
+    ],
     title: "Winter",
     titleAccent: "peach",
     kicker: 'Invierno · 2024',
@@ -2429,8 +2690,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Bebida fría 480 ml con cold brew de té Stash earl grey, Noosh de almendra y ChillOut fruit durazno.",
-    image: '/assets/images/recetas/invierno/winter-peach.webp',
-    banner: '/assets/images/recetas/invierno/winter-peach.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/winter-peach.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/winter-peach.webp`,
     tone: 'coral',
     brand: "Stash",
     time: '5 min',
@@ -2467,6 +2728,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'copito-de-chocolate-blanco',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut mix chocolate blanco", sap: "IBP-198", qty: 30, unit: "g" },
+      { ingredient: "15 ml de Torani crema de menta", sap: "IJA-019", qty: 15, unit: "ml" }
+    ],
     title: "Copito de",
     titleAccent: "chocolate blanco",
     kicker: 'Invierno · 2024',
@@ -2474,8 +2739,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Bebida caliente 360 ml con ChillOut chocolate blanco y Torani crema de menta, con escarchado de chocolate blanco y diamantina.",
-    image: '/assets/images/recetas/invierno/copito-de-chocolate-blanco.webp',
-    banner: '/assets/images/recetas/invierno/copito-de-chocolate-blanco.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/copito-de-chocolate-blanco.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/copito-de-chocolate-blanco.webp`,
     tone: 'sky',
     brand: "ChillOut",
     time: '5 min',
@@ -2519,6 +2784,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'latte-de-noel',
+    intranetId: 165,
+    sapIngredients: [
+      { ingredient: "15 ml de Torani cereza", sap: "IJA-015", qty: 15, unit: "ml" },
+      { ingredient: "20 g de chai David Rio tradicional", sap: "IBP-085", qty: 20, unit: "g" }
+    ],
     title: "Latte de",
     titleAccent: "Noel",
     kicker: 'Invierno · 2024',
@@ -2526,8 +2796,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Chai latte 360 ml con David Rio chai tradicional y Torani cereza, servido en taza navideña.",
-    image: '/assets/images/recetas/invierno/latte-de-noel.webp',
-    banner: '/assets/images/recetas/invierno/latte-de-noel.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/latte-de-noel.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/latte-de-noel.webp`,
     tone: 'coral',
     brand: "David Rio",
     time: '5 min',
@@ -2570,6 +2840,13 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'chai-cream',
+    intranetId: 166,
+    sapIngredients: [
+      { ingredient: "180 ml de cold brew Prana Chai", sap: "CPM-028", qty: 180, unit: "ml", confidence: "media" },
+      { ingredient: "15 ml de Torani manzana", sap: "IJA-036", qty: 15, unit: "ml" },
+      { ingredient: "50 g de cheese foam", sap: "IJA-004", qty: 50, unit: "g", confidence: "media" },
+      { ingredient: "30 g de tapioca", sap: "ICT-008", qty: 30, unit: "g", confidence: "media" }
+    ],
     title: "Chai",
     titleAccent: "cream",
     kicker: 'Invierno · 2024',
@@ -2577,8 +2854,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Bebida fría 480 ml con cold brew Prana Chai, Torani manzana, tapioca y cheese foam.",
-    image: '/assets/images/recetas/invierno/chai-cream.webp',
-    banner: '/assets/images/recetas/invierno/chai-cream.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/chai-cream.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/chai-cream.webp`,
     tone: 'gold',
     brand: "Prana Chai",
     time: '5 min',
@@ -2616,6 +2893,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'solsticio-de-lavanda-frio',
+    intranetId: 167,
+    sapIngredients: [
+      { ingredient: "20 g de matcha Aiya", sap: "IBP-149", qty: 20, unit: "g" },
+      { ingredient: "30 ml de Torani lavanda", sap: "IJA-062", qty: 30, unit: "ml" }
+    ],
     title: "Solsticio de",
     titleAccent: "lavanda",
     kicker: 'Invierno · 2024',
@@ -2623,8 +2905,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Matcha frío 480 ml con Aiya matcha, Torani lavanda y leche, decorado con pétalos de lavanda.",
-    image: '/assets/images/recetas/invierno/solsticio-de-lavanda-frio.webp',
-    banner: '/assets/images/recetas/invierno/solsticio-de-lavanda-frio.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/solsticio-de-lavanda-frio.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/solsticio-de-lavanda-frio.webp`,
     tone: 'sky',
     brand: "Aiya",
     time: '5 min',
@@ -2668,6 +2950,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'cerveza-navidena',
+    intranetId: 168,
+    sapIngredients: [
+      { ingredient: "360 ml de cold brew Mezcla especial No. 1", sap: "CPM-002", qty: 360, unit: "ml" },
+      { ingredient: "22.5 ml de Torani canela y azúcar morena", sap: "IJA-047", qty: 22.5, unit: "ml" }
+    ],
     title: "Cerveza",
     titleAccent: "navideña",
     kicker: 'Invierno · 2024',
@@ -2675,8 +2962,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Cold brew nitro 380 ml con Torani canela y azúcar morena, cargado en sifón.",
-    image: '/assets/images/recetas/invierno/cerveza-navidena.webp',
-    banner: '/assets/images/recetas/invierno/cerveza-navidena.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/cerveza-navidena.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/cerveza-navidena.webp`,
     tone: 'navy',
     brand: "Torani",
     time: '5 min',
@@ -2719,6 +3006,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'toasted-brulee',
+    intranetId: 169,
+    sapIngredients: [
+      { ingredient: "15 ml de Torani vainilla", sap: "IJA-022", qty: 15, unit: "ml" },
+      { ingredient: "15 g de ChillOut Mix Crème Brûlée", sap: "IBP-206", qty: 15, unit: "g" },
+      { ingredient: "10 ml de Torani malvavisco tostado", sap: "IJA-067", qty: 10, unit: "ml" }
+    ],
     title: "Toasted",
     titleAccent: "brûlée",
     kicker: 'Invierno · 2024',
@@ -2726,8 +3019,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Coctel 300 ml con vodka, Torani vainilla y malvavisco tostado y ChillOut Crème Brûlée, con azúcar caramelizada.",
-    image: '/assets/images/recetas/invierno/toasted-brulee.webp',
-    banner: '/assets/images/recetas/invierno/toasted-brulee.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/toasted-brulee.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/toasted-brulee.webp`,
     tone: 'gold',
     brand: "Torani",
     time: '5 min',
@@ -2772,6 +3065,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'ponche-navideno-calentito',
+    intranetId: 170,
+    sapIngredients: [
+      { ingredient: "5 ml de Torani canela", sap: "IBP-177", qty: 5, unit: "ml", confidence: "media" }
+    ],
     title: "Ponche navideño",
     titleAccent: "calentito",
     kicker: 'Invierno · 2024',
@@ -2779,8 +3076,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Ponche caliente 360 ml con tisana Etrusca de guayaba, mezcal, Torani canela y naranja deshidratada.",
-    image: '/assets/images/recetas/invierno/ponche-navideno-calentito.webp',
-    banner: '/assets/images/recetas/invierno/ponche-navideno-calentito.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/ponche-navideno-calentito.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/ponche-navideno-calentito.webp`,
     tone: 'coral',
     brand: "Etrusca",
     time: '5 min',
@@ -2824,6 +3121,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'caramelo-navideno-caliente',
+    sapIngredients: [
+      { ingredient: "1 espresso (30 ml) preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 1, unit: "pza" },
+      { ingredient: "40 g de polvo Cappuccine Toffee coffee", sap: "IBP-010", qty: 40, unit: "g" }
+    ],
     title: "Caramelo",
     titleAccent: "navideño",
     kicker: 'Invierno · Navidad',
@@ -2831,8 +3132,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Latte caliente 360 ml con espresso Mezcla especial No. 1, Cappuccine Toffee coffee y leche, coronado con crema batida.",
-    image: '/assets/images/recetas/navidad/caramelo-navideno-caliente.webp',
-    banner: '/assets/images/recetas/navidad/caramelo-navideno-caliente.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/caramelo-navideno-caliente.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/caramelo-navideno-caliente.webp`,
     tone: 'gold',
     brand: "Cappuccine",
     time: '5 min',
@@ -2875,6 +3176,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'caramelo-navideno-frio',
+    sapIngredients: [
+      { ingredient: "50 g de Cappuccine chocolate blanco", sap: "IBP-079", qty: 50, unit: "g", confidence: "media" },
+      { ingredient: "30 ml de ChillOut fruit (cereza o fresa)", sap: "IBP-040", qty: 30, unit: "ml", confidence: "media" }
+    ],
     title: "Caramelo navideño",
     titleAccent: "frappé",
     kicker: 'Invierno · Navidad',
@@ -2882,8 +3187,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Frappé 480 ml de chocolate blanco con ChillOut fruit y perlas explosivas de cereza o fresa, crema batida y diamantina.",
-    image: '/assets/images/recetas/navidad/caramelo-navideno-frio.webp',
-    banner: '/assets/images/recetas/navidad/caramelo-navideno-frio.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/caramelo-navideno-frio.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/caramelo-navideno-frio.webp`,
     tone: 'coral',
     brand: "ChillOut",
     time: '5 min',
@@ -2929,6 +3234,11 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'arbol-de-noche-buena',
+    sapIngredients: [
+      { ingredient: "30 g de matcha Aiya", sap: "IBP-149", qty: 30, unit: "g" },
+      { ingredient: "1 sobre de tapioca instantánea (ya preparada)", sap: "ICT-056", qty: 1, unit: "pza", confidence: "media" },
+      { ingredient: "25 ml de jarabe Torani menta", sap: "IJA-019", qty: 25, unit: "ml" }
+    ],
     title: "Árbol de",
     titleAccent: "Noche Buena",
     kicker: 'Invierno · Navidad',
@@ -2936,8 +3246,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Frappé de matcha 480 ml con Aiya matcha y Torani menta, decorado con tapiocas como esferas y diamantina.",
-    image: '/assets/images/recetas/navidad/arbol-de-noche-buena.webp',
-    banner: '/assets/images/recetas/navidad/arbol-de-noche-buena.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/arbol-de-noche-buena.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/arbol-de-noche-buena.webp`,
     tone: 'lime',
     brand: "Aiya",
     time: '5 min',
@@ -2982,6 +3292,9 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'ponche-de-invierno',
+    sapIngredients: [
+      { ingredient: "15 ml de jarabe Torani canela y azúcar morena", sap: "IJA-047", qty: 15, unit: "ml" }
+    ],
     title: "Ponche de",
     titleAccent: "invierno",
     kicker: 'Invierno · Navidad',
@@ -2989,8 +3302,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Infusión caliente 360 ml de tisana de guayaba con Torani canela y azúcar morena, anís estrella, naranja deshidratada y perlas explosivas.",
-    image: '/assets/images/recetas/navidad/ponche-de-invierno.webp',
-    banner: '/assets/images/recetas/navidad/ponche-de-invierno.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/ponche-de-invierno.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/ponche-de-invierno.webp`,
     tone: 'coral',
     brand: "Etrusca",
     time: '5 min',
@@ -3029,6 +3342,12 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'horchata-decembrina',
+    sapIngredients: [
+      { ingredient: "50 g de ChillOut mix horchata", sap: "IBP-062", qty: 50, unit: "g" },
+      { ingredient: "35 g de ChillOut tapioca", sap: "ICT-008", qty: 35, unit: "g" },
+      { ingredient: "25 ml de ChillOut agave (crema de avellana o crema irlandesa)", sap: "IJA-148", qty: 25, unit: "ml" },
+      { ingredient: "Salsa Torani chocolate con avellana", sap: "ISA-018", qty: 0, unit: "ml", confidence: "alta" }
+    ],
     title: "Horchata",
     titleAccent: "decembrina",
     kicker: 'Invierno · Navidad',
@@ -3036,8 +3355,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Horchata fría 480 ml con ChillOut mix horchata, agave de avellana o irlandesa y tapioca, en vaso escarchado con chocolate y almendra.",
-    image: '/assets/images/recetas/navidad/horchata-decembrina.webp',
-    banner: '/assets/images/recetas/navidad/horchata-decembrina.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/horchata-decembrina.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/horchata-decembrina.webp`,
     tone: 'gold',
     brand: "ChillOut",
     time: '5 min',
@@ -3082,6 +3401,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'pan-de-jengibre-latte',
+    sapIngredients: [
+      { ingredient: "1 espresso (30 ml) preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 1, unit: "pza" },
+      { ingredient: "30 ml de jarabe Torani Gingerbread", sap: "IJA-051", qty: 30, unit: "ml" }
+    ],
     title: "Pan de jengibre",
     titleAccent: "latte",
     kicker: 'Invierno · Navidad',
@@ -3089,8 +3412,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Latte caliente 360 ml con espresso Mezcla especial No. 1 y Torani Gingerbread.",
-    image: '/assets/images/recetas/navidad/pan-de-jengibre-latte.webp',
-    banner: '/assets/images/recetas/navidad/pan-de-jengibre-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/pan-de-jengibre-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/pan-de-jengibre-latte.webp`,
     tone: 'gold',
     brand: "Torani",
     time: '5 min',
@@ -3132,6 +3455,9 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'tiramisu-menta',
+    sapIngredients: [
+      { ingredient: "15 ml de jarabe Torani tiramisú", sap: "IJA-027", qty: 15, unit: "ml" }
+    ],
     title: "Tiramisú",
     titleAccent: "menta",
     kicker: 'Invierno · Navidad',
@@ -3139,8 +3465,8 @@ export const RECIPES: Recipe[] = [
     collection: 'navidad-2023',
     origin: 'navidad-2023',
     summary: "Bebida caliente 360 ml con Mint Chip Cappuccine y Torani tiramisú, decorada con chispas de chocolate.",
-    image: '/assets/images/recetas/navidad/tiramisu-menta.webp',
-    banner: '/assets/images/recetas/navidad/tiramisu-menta.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/tiramisu-menta.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/tiramisu-menta.webp`,
     tone: 'lime',
     brand: "Cappuccine",
     time: '5 min',
@@ -3183,15 +3509,21 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'smoothie-pina-durazno',
+    intranetId: 154,
+    sapIngredients: [
+      { ingredient: "15 ml de ChillOut fruit durazno", sap: "IPC-017", qty: 15, unit: "ml" },
+      { ingredient: "15 ml de ChillOut fruit piña", sap: "IBP-057", qty: 15, unit: "ml" },
+      { ingredient: "40 g de ChillOut mix base neutra", sap: "IBP-032", qty: 40, unit: "g" }
+    ],
     title: "Smoothie de",
     titleAccent: "piña durazno",
     kicker: 'Otras bebidas',
     category: 'Bebidas de temporada',
     collection: 'otros',
-    origin: 'otros',
+    origin: 'verano-2026', // fondo primavera (antes origin: otros)
     summary: "Smoothie cremoso 360 ml con ChillOut fruit piña y durazno y base neutra, decorado con piña.",
-    image: '/assets/images/recetas/navidad/smoothie-pina-durazno.webp',
-    banner: '/assets/images/recetas/navidad/smoothie-pina-durazno.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/smoothie-pina-durazno.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/smoothie-pina-durazno.webp`,
     tone: 'gold',
     brand: "ChillOut",
     time: '5 min',
@@ -3236,15 +3568,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'margarita-mango',
+    intranetId: 155,
+    sapIngredients: [
+      { ingredient: "30 ml de ChillOut fruit mango", sap: "IPC-018", qty: 30, unit: "ml" },
+      { ingredient: "20 g de ChillOut mix limón", sap: "IBP-215", qty: 20, unit: "g" }
+    ],
     title: "Margarita de",
     titleAccent: "mango",
     kicker: 'Otras bebidas',
     category: 'Bebidas de temporada',
     collection: 'otros',
-    origin: 'otros',
+    origin: 'verano-2026', // fondo verano (antes origin: otros)
     summary: "Frappé de limón 360 ml con ChillOut fruit mango, en copa escarchada con sal y decorada con limón.",
-    image: '/assets/images/recetas/navidad/margarita-mango.webp',
-    banner: '/assets/images/recetas/navidad/margarita-mango.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/margarita-mango.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/margarita-mango.webp`,
     tone: 'gold',
     brand: "ChillOut",
     time: '5 min',
@@ -3290,15 +3627,22 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'tiramisu-latte',
+    intranetId: 157,
+    sapIngredients: [
+      { ingredient: "22.5 ml de jarabe Torani tiramisú", sap: "IJA-027", qty: 22.5, unit: "ml" },
+      { ingredient: "60 ml de espresso con Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" },
+      { ingredient: "50 g de cheese foam", sap: "IJA-004", qty: 50, unit: "g", confidence: "media" },
+      { ingredient: "Cocoa en polvo", sap: "IBP-180", qty: 0, unit: "g", confidence: "media" }
+    ],
     title: "Tiramisú",
     titleAccent: "latte",
     kicker: 'Otras bebidas',
     category: 'Bebidas de temporada',
     collection: 'otros',
-    origin: 'otros',
+    origin: 'calabaza', // fondo otono (antes origin: otros)
     summary: "Latte frío 480 ml con espresso, Torani tiramisú y cheese foam con cocoa.",
-    image: '/assets/images/recetas/navidad/tiramisu-latte.webp',
-    banner: '/assets/images/recetas/navidad/tiramisu-latte.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/navidad/tiramisu-latte.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/navidad/tiramisu-latte.webp`,
     tone: 'navy',
     brand: "Torani",
     time: '5 min',
@@ -3343,15 +3687,19 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'soda-italiana-480ml',
+    intranetId: 87,
+    sapIngredients: [
+      { ingredient: "30 ml de ChillOut Jarabes sabor frutal", sap: "IJA-144", qty: 30, unit: "ml", confidence: "media" }
+    ],
     title: "Soda",
     titleAccent: "italiana",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Soda italiana 480 ml en capas con ChillOut Jarabes sabor frutal, agua mineral y hielo, decorada con tu topping frutal favorito.",
-    image: '/assets/images/recetas/chillout/soda-italiana-480ml.webp',
-    banner: '/assets/images/recetas/chillout/soda-italiana-480ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/soda-italiana-480ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/soda-italiana-480ml.webp`,
     tone: 'sky',
     brand: 'ChillOut',
     time: '5 min',
@@ -3394,15 +3742,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'espresso-chai-360ml',
+    intranetId: 88,
+    sapIngredients: [
+      { ingredient: "60 ml de espresso doble preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" },
+      { ingredient: "30 g de ChillOut Mix chai manzana canela", sap: "IBP-177", qty: 30, unit: "g" }
+    ],
     title: "Espresso",
     titleAccent: "chai",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas calientes',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'calabaza', // fondo otono (antes origin: chillout)
     summary: "Dirty chai caliente 360 ml con espresso doble de Mezcla especial No. 1, ChillOut Mix chai manzana canela y leche espumada.",
-    image: '/assets/images/recetas/chillout/espresso-chai-360ml.webp',
-    banner: '/assets/images/recetas/chillout/espresso-chai-360ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/espresso-chai-360ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/espresso-chai-360ml.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -3450,15 +3803,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'moka-mazapan-360ml',
+    intranetId: 90,
+    sapIngredients: [
+      { ingredient: "20 g de ChillOut Mix mazapán", sap: "IBP-172", qty: 20, unit: "g" },
+      { ingredient: "20 g de ChillOut Mix xocolatl", sap: "ICP-002", qty: 20, unit: "g" }
+    ],
     title: "Moka",
     titleAccent: "mazapán",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas calientes',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'calabaza', // fondo otono (antes origin: chillout)
     summary: "Bebida caliente 360 ml con ChillOut Mix mazapán y ChillOut Mix xocolatl, disueltos en agua caliente y cubiertos con leche espumada.",
-    image: '/assets/images/recetas/chillout/moka-mazapan-360ml.webp',
-    banner: '/assets/images/recetas/chillout/moka-mazapan-360ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/moka-mazapan-360ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/moka-mazapan-360ml.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -3501,15 +3859,18 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'moras-y-jamaica-smoothie-yogur-480ml',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Mix yogur", sap: "IBP-034", qty: 30, unit: "g" }
+    ],
     title: "Moras y",
     titleAccent: "jamaica",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Smoothie de yogur 480 ml con ChillOut Active moras jamaica y ChillOut Mix yogur, licuado con hielo.",
-    image: '/assets/images/recetas/chillout/moras-y-jamaica-smoothie-yogur-480ml.webp',
-    banner: '/assets/images/recetas/chillout/moras-y-jamaica-smoothie-yogur-480ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/moras-y-jamaica-smoothie-yogur-480ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/moras-y-jamaica-smoothie-yogur-480ml.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -3557,10 +3918,10 @@ export const RECIPES: Recipe[] = [
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Soda dorada 480 ml con ChillOut Active cúrcuma mandarina, agua mineral y hielo.",
-    image: '/assets/images/recetas/chillout/curcuma-y-mandarina-soda-dorada-480ml.webp',
-    banner: '/assets/images/recetas/chillout/curcuma-y-mandarina-soda-dorada-480ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/curcuma-y-mandarina-soda-dorada-480ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/curcuma-y-mandarina-soda-dorada-480ml.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -3602,15 +3963,21 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'carajillo-de-mazapan-300ml',
+    intranetId: 102,
+    sapIngredients: [
+      { ingredient: "60 ml de espresso preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" },
+      { ingredient: "30 g de ChillOut Mix mazapán", sap: "IBP-172", qty: 30, unit: "g" },
+      { ingredient: "15 ml de jarabe Torani crema irlandesa", sap: "IJA-017", qty: 15, unit: "ml" }
+    ],
     title: "Carajillo de",
     titleAccent: "mazapán",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'calabaza', // fondo otono (antes origin: chillout)
     summary: "Carajillo frío sin alcohol 300 ml con espresso Mezcla especial No. 1, ChillOut Mix mazapán, Torani crema irlandesa y leche de almendra.",
-    image: '/assets/images/recetas/chillout/carajillo-de-mazapan-300ml.webp',
-    banner: '/assets/images/recetas/chillout/carajillo-de-mazapan-300ml.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/carajillo-de-mazapan-300ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/carajillo-de-mazapan-300ml.webp`,
     tone: 'navy',
     brand: 'ChillOut',
     time: '5 min',
@@ -3661,15 +4028,21 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'fresa-primaveral-frio',
+    intranetId: 116,
+    sapIngredients: [
+      { ingredient: "30 ml de ChillOut Jarabes fresa", sap: "IJA-144", qty: 30, unit: "ml" },
+      { ingredient: "15 ml de ChillOut Fruit pétalos de rosa", sap: "IPC-024", qty: 15, unit: "ml" },
+      { ingredient: "15 ml de jarabe de durazno", sap: "ICT-039", qty: 15, unit: "ml", confidence: "media" }
+    ],
     title: "Fresa",
     titleAccent: "primaveral",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Bebida fría 360 ml de leche con ChillOut Jarabes fresa, ChillOut Fruit pétalos de rosa y jarabe de durazno.",
-    image: '/assets/images/recetas/chillout/fresa-primaveral-frio.webp',
-    banner: '/assets/images/recetas/chillout/fresa-primaveral-frio.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/fresa-primaveral-frio.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/fresa-primaveral-frio.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -3713,15 +4086,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'jelly-soda',
+    intranetId: 117,
+    sapIngredients: [
+      { ingredient: "40 ml de ChillOut Jarabes manzana verde", sap: "IJA-145", qty: 40, unit: "ml" },
+      { ingredient: "30 g de ChillOut Jelly uva", sap: "ICT-018", qty: 30, unit: "g" }
+    ],
     title: "Jelly",
     titleAccent: "soda",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Soda 360 ml con ChillOut Jarabes manzana verde, ChillOut Jelly uva, agua mineral y hielo.",
-    image: '/assets/images/recetas/chillout/jelly-soda.webp',
-    banner: '/assets/images/recetas/chillout/jelly-soda.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/jelly-soda.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/jelly-soda.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '5 min',
@@ -3764,15 +4142,18 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'pina-colada-frappe',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Just Fruit piña colada", sap: "IBP-057", qty: 30, unit: "g" }
+    ],
     title: "Piña colada",
     titleAccent: "frappé",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo verano (antes origin: chillout)
     summary: "Frappé 360 ml con ChillOut Just Fruit piña colada y leche, servido dentro de una piña y decorado con ralladura de coco.",
-    image: '/assets/images/recetas/chillout/pina-colada-frappe.webp',
-    banner: '/assets/images/recetas/chillout/pina-colada-frappe.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/pina-colada-frappe.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/pina-colada-frappe.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -3816,15 +4197,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'blueberry-cheesecake',
+    sapIngredients: [
+      { ingredient: "20 g de ChillOut Jam blueberry", sap: "IPC-004", qty: 20, unit: "g" },
+      { ingredient: "50 g de ChillOut Mix chocolate blanco", sap: "IBP-198", qty: 50, unit: "g" },
+      { ingredient: "10 ml de ChillOut Fruit frambuesa", sap: "IPC-013", qty: 10, unit: "ml" }
+    ],
     title: "Blueberry",
     titleAccent: "cheesecake",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Frappé 360 ml de chocolate blanco con ChillOut Fruit frambuesa, vaso marmoleado con ChillOut Jam blueberry y crema batida de frutos rojos.",
-    image: '/assets/images/recetas/chillout/blueberry-cheesecake.webp',
-    banner: '/assets/images/recetas/chillout/blueberry-cheesecake.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/blueberry-cheesecake.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/blueberry-cheesecake.webp`,
     tone: 'navy',
     brand: 'ChillOut',
     time: '5 min',
@@ -3869,15 +4255,21 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'frappe-mexicano',
+    intranetId: 120,
+    sapIngredients: [
+      { ingredient: "40 g de ChillOut Mix limón", sap: "IBP-215", qty: 40, unit: "g" },
+      { ingredient: "30 ml de ChillOut Fruit limón", sap: "IPC-008", qty: 30, unit: "ml" },
+      { ingredient: "35 ml de ChillOut Chamoy", sap: "ICT-053", qty: 35, unit: "ml" }
+    ],
     title: "Frappé",
     titleAccent: "mexicano",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo verano (antes origin: chillout)
     summary: "Frappé de limón 360 ml con ChillOut Mix limón, ChillOut Chamoy y ChillOut Fruit limón, decorado con dulce de tamarindo y picante.",
-    image: '/assets/images/recetas/chillout/frappe-mexicano.webp',
-    banner: '/assets/images/recetas/chillout/frappe-mexicano.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/frappe-mexicano.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/frappe-mexicano.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '5 min',
@@ -3923,15 +4315,19 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'frappe-de-moras-y-cereza',
+    sapIngredients: [
+      { ingredient: "40 g de ChillOut Mix base neutra sin azúcar", sap: "IBP-214", qty: 40, unit: "g" },
+      { ingredient: "20 g de ChillOut Pearls cereza", sap: "ICT-019", qty: 20, unit: "g", confidence: "media" }
+    ],
     title: "Frappé de",
     titleAccent: "moras y cereza",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Frappé 360 ml sin azúcar con ChillOut Mix base neutra, concentrado de tisana de moras y ChillOut Pearls cereza.",
-    image: '/assets/images/recetas/chillout/frappe-de-moras-y-cereza.webp',
-    banner: '/assets/images/recetas/chillout/frappe-de-moras-y-cereza.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/frappe-de-moras-y-cereza.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/frappe-de-moras-y-cereza.webp`,
     tone: 'coral',
     brand: 'ChillOut',
     time: '5 min',
@@ -3975,15 +4371,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'purple-frozen',
+    sapIngredients: [
+      { ingredient: "50 g de ChillOut Mix taro", sap: "IBP-025", qty: 50, unit: "g" },
+      { ingredient: "30 ml de ChillOut Fruit rosas", sap: "IBP-039", qty: 30, unit: "ml", confidence: "media" },
+      { ingredient: "20 ml de ChillOut Jam mango", sap: "IPC-002", qty: 20, unit: "ml" }
+    ],
     title: "Purple",
     titleAccent: "frozen",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Frappé de taro con ChillOut Mix taro, ChillOut Fruit rosas y ChillOut Jam mango, en vaso escarchado con chispas de colores.",
-    image: '/assets/images/recetas/chillout/purple-frozen.webp',
-    banner: '/assets/images/recetas/chillout/purple-frozen.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/purple-frozen.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/purple-frozen.webp`,
     tone: 'sky',
     brand: 'ChillOut',
     time: '5 min',
@@ -4029,15 +4430,20 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'super-maracuya',
+    sapIngredients: [
+      { ingredient: "1 cucharada de ChillOut Jelly maracuyá", sap: "ICT-017", qty: 1, unit: "cucharada" },
+      { ingredient: "20 g de ChillOut Jam maracuyá", sap: "IPC-001", qty: 20, unit: "g" },
+      { ingredient: "40 g de ChillOut Mix yogur", sap: "IBP-034", qty: 40, unit: "g" }
+    ],
     title: "Super",
     titleAccent: "maracuyá",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo verano (antes origin: chillout)
     summary: "Frappé de yogur con ChillOut Jam maracuyá y ChillOut Mix yogur, servido sobre ChillOut Jelly maracuyá.",
-    image: '/assets/images/recetas/chillout/super-maracuya.webp',
-    banner: '/assets/images/recetas/chillout/super-maracuya.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/super-maracuya.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/super-maracuya.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -4081,15 +4487,19 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'chai-caramel',
+    sapIngredients: [
+      { ingredient: "20 g de ChillOut Mix chai negro", sap: "IBP-035", qty: 20, unit: "g" },
+      { ingredient: "30 ml de jarabe ChillOut caramelo", sap: "IJA-150", qty: 30, unit: "ml" }
+    ],
     title: "Chai",
     titleAccent: "caramel",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas calientes',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'calabaza', // fondo otono (antes origin: chillout)
     summary: "Chai latte caliente con ChillOut Mix chai negro y jarabe ChillOut caramelo, calentado en la lanceta de vapor.",
-    image: '/assets/images/recetas/chillout/chai-caramel.webp',
-    banner: '/assets/images/recetas/chillout/chai-caramel.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/chai-caramel.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/chai-caramel.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -4131,15 +4541,19 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'cappuccino-sin-culpa',
+    sapIngredients: [
+      { ingredient: "60 ml de espresso doble preparado con Mezcla especial No. 1", sap: "CPM-002", qty: 60, unit: "ml" },
+      { ingredient: "30 g de ChillOut Mix base neutra light", sap: "IBP-032", qty: 30, unit: "g", confidence: "media" }
+    ],
     title: "Cappuccino",
     titleAccent: "sin culpa",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Cappuccino frío light con espresso doble de Mezcla especial No. 1, leche vegetal y ChillOut Mix base neutra light.",
-    image: '/assets/images/recetas/chillout/cappuccino-sin-culpa.webp',
-    banner: '/assets/images/recetas/chillout/cappuccino-sin-culpa.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/cappuccino-sin-culpa.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/cappuccino-sin-culpa.webp`,
     tone: 'navy',
     brand: 'ChillOut',
     time: '5 min',
@@ -4182,15 +4596,18 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'horchata-coco-fria',
+    sapIngredients: [
+      { ingredient: "50 g de ChillOut Mix horchata", sap: "IBP-062", qty: 50, unit: "g" }
+    ],
     title: "Horchata de",
     titleAccent: "coco fría",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo verano (antes origin: chillout)
     summary: "Horchata fría con ChillOut Mix horchata, crema de coco, almendras y leche, en vaso escarchado con almendra y canela.",
-    image: '/assets/images/recetas/chillout/horchata-coco-fria.webp',
-    banner: '/assets/images/recetas/chillout/horchata-coco-fria.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/horchata-coco-fria.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/horchata-coco-fria.webp`,
     tone: 'gold',
     brand: 'ChillOut',
     time: '5 min',
@@ -4236,15 +4653,19 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: 'te-helado-fresco',
+    sapIngredients: [
+      { ingredient: "30 g de ChillOut Jam kiwi", sap: "IPC-003", qty: 30, unit: "g" },
+      { ingredient: "10 ml de jarabe ChillOut menta", sap: "IJA-147", qty: 10, unit: "ml" }
+    ],
     title: "Té helado",
     titleAccent: "fresco",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
     collection: 'chillout',
-    origin: 'chillout',
+    origin: 'verano-2026', // fondo primavera (antes origin: chillout)
     summary: "Té verde helado con ChillOut Jam kiwi y jarabe ChillOut menta, agitado y decorado con menta fresca.",
-    image: '/assets/images/recetas/chillout/te-helado-fresco.webp',
-    banner: '/assets/images/recetas/chillout/te-helado-fresco.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/chillout/te-helado-fresco.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/chillout/te-helado-fresco.webp`,
     tone: 'lime',
     brand: 'ChillOut',
     time: '5 min',
@@ -4288,15 +4709,19 @@ export const RECIPES: Recipe[] = [
   },
   {
     slug: "iced-coffee-coconut",
+    intranetId: 58,
+    sapIngredients: [
+      { ingredient: "15 ml de Torani Crema Irlandesa", sap: "IJA-017", qty: 15, unit: "ml" }
+    ],
     title: "Iced Coffee",
     titleAccent: "Coconut",
     kicker: 'Otras bebidas',
     category: 'Bebidas de temporada',
     collection: 'otros',
-    origin: 'otros',
+    origin: 'verano-2026', // fondo verano (antes origin: otros)
     summary: "Iced coffee 360 ml con Torani Crema Irlandesa y crema de coco Calahua.",
-    image: '/assets/images/recetas/calabaza/iced-coffee-coconut.webp',
-    banner: '/assets/images/recetas/calabaza/iced-coffee-coconut.webp',
+    image: `${ASSETS_BASE_URL}/images/recetas/calabaza/iced-coffee-coconut.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/calabaza/iced-coffee-coconut.webp`,
     tone: "sky",
     brand: "ChillOut",
     time: "5 min",
@@ -4330,6 +4755,62 @@ export const RECIPES: Recipe[] = [
       description: "Iced coffee con Torani Crema Irlandesa y crema de coco Calahua.",
       keywords: "iced coffee coconut, torani crema irlandesa, calahua, Café Etrusca"
     },
+    published: true
+  },
+  {
+    /* Migrada del blog anterior (/Blog/Detail/matcha, abr 2024). Texto verbatim: blog-anterior/matcha/content.md. */
+    slug: 'matcha',
+    title: 'Matcha',
+    titleAccent: '300 ml',
+    kicker: 'Recetario',
+    category: 'Bebida fría',
+    summary: 'Matcha nitro 300 ml con jarabe Torani® Durazno y limón.',
+    image: `${ASSETS_BASE_URL}/images/recetas/matcha/matcha-300ml.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/matcha/matcha-300ml.webp`,
+    tone: 'lime',
+    time: '15 min',
+    yield: '300 ml',
+    ingredients: [
+      '30 ml de jarabe Torani® Durazno',
+      '5 g de matcha marca Aiya® diluido en 400 ml de agua fría',
+      '30 ml de jugo de limón amarillo natural',
+      '4 piezas de hielo',
+      '1 cápsula de nitro coffee Best Whip® con sifón de ½ l'
+    ],
+    tools: ['Sifón de ½ l'],
+    steps: [
+      {
+        title: 'Paso 1',
+        text: 'Coloca en el sifón el agua y matcha y mezcla hasta diluir, cierra correctamente y enseguida inyecta la capsula de nitrógeno.',
+        tone: 'green',
+        icon: ICO.base
+      },
+      {
+        title: 'Paso 2',
+        text: 'En el recipiente de tu elección coloca el jarabe junto con el jugo de limón.',
+        tone: 'yellow',
+        icon: ICO.blend
+      },
+      {
+        title: 'Paso 3',
+        text: 'Para finalizar agrega los hielos y el matcha nitrogenado. La bebida debe mezclarse antes de beberla.',
+        tone: 'blue',
+        icon: ICO.finish
+      }
+    ],
+    seo: {
+      title: 'Receta Matcha 300 ml | Café Etrusca',
+      description: 'Receta de Matcha 300 ml con jarabe Torani® Durazno, matcha Aiya®, limón amarillo y cápsula de nitro coffee Best Whip®.',
+      keywords: 'matcha, matcha nitro, torani durazno, matcha aiya, best whip, Café Etrusca'
+    },
+    datePublished: '2024-04-28',
+    video: {
+      youtubeId: 'ne27uFr3pb4',
+      name: 'Matcha',
+      uploadDate: '2021-03-31T11:12:01-07:00',
+      thumbnailUrl: 'https://i.ytimg.com/vi/ne27uFr3pb4/hqdefault.jpg'
+    },
+    breadcrumbJsonLd: true,
     published: true
   }
 

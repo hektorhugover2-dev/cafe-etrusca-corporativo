@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 /**
  * Datos de la página /insumos-para-cafeterias/tisanas/chillout/ (tisanas frutales ChillOut, bolsa 250 g).
  * Mismo patrón que torani.data.ts / chillout.data.ts (bases en polvo: es OTRA línea y otra página).
@@ -66,7 +67,7 @@ export const TISANAS_CHILLOUT_PATH = '/insumos-para-cafeterias/tisanas/chillout'
 export const TISANAS_CATEGORY_PATH = '/insumos-para-cafeterias/tisanas';
 export const TISANAS_CHILLOUT_STORE_URL = 'https://tienda.cafeetrusca.com/productos?search=CHILLOUT%20TISANA';
 
-const IMG = '/assets/images/insumos/tisanas/chillout';
+const IMG = `${ASSETS_BASE_URL}/images/insumos/tisanas/chillout`;
 const STORE = 'https://tienda.cafeetrusca.com/producto/detalle';
 
 /** Búsqueda en la tienda: ?search=<término>, con %20 en los espacios (formato que pidió Héctor). */

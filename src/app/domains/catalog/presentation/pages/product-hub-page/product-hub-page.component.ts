@@ -1,9 +1,11 @@
+import { HeroCrumbsComponent, HeroCrumb, breadcrumbJsonLd } from '../../../../../shared/ui/hero-crumbs/hero-crumbs.component';
 import { Component, inject } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { CafeNavComponent } from '../../components/cafe-nav/cafe-nav.component';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
 import { InsumosCtaComponent } from '../../components/insumos-cta/insumos-cta.component';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 interface HubSubcat {
   title: string;
@@ -59,11 +61,15 @@ const ACCESORIOS_SUBCAT_SEO: Record<string, { title: string; description: string
 @Component({
   selector: 'app-product-hub-page',
   standalone: true,
-  imports: [RouterLink, InsumosCtaComponent, ScrollWaveComponent, CafeNavComponent],
+  imports: [HeroCrumbsComponent, RouterLink, InsumosCtaComponent, ScrollWaveComponent, CafeNavComponent],
   template: `
     <div class="ins-page">
       <section class="ins-hero hub-hero" [style.background]="heroBg">
+        @if (hubKey === 'cafe') {
+          <img class="hub-hero-blob" src="/assets/images/insumos/blob-hero-navy.webp" alt="" aria-hidden="true">
+        }
         <div class="ins-hero-copy">
+          @if (crumbs.length) { <app-hero-crumbs [items]="crumbs" /> }
           <h1>{{ title }}</h1>
           <p class="lead">{{ lead }}</p>
           @if (hubKey === 'cafe' && subcats.length) {
@@ -88,7 +94,7 @@ const ACCESORIOS_SUBCAT_SEO: Record<string, { title: string; description: string
 
       @if ((hubKey === 'cafe' || hubKey === 'accesorios') && subcats.length) {
         <section class="ins-section" [attr.id]="hubKey === 'accesorios' ? 'categorias-accesorios' : null" [attr.aria-label]="hubKey === 'accesorios' ? 'Categorías de accesorios' : 'Subcategorías de café'">
-          <h2>{{ hubKey === 'accesorios' ? 'Categorías' : 'Líneas de café' }}</h2>
+          <h2 class="section-title-center">{{ hubKey === 'accesorios' ? 'Categorías' : 'Líneas de café' }}</h2>
           <div class="hub-subcats">
             @for (s of subcats; track s.link) {
               <a class="hub-subcat" [class.is-active]="s.link === activeLink" [routerLink]="s.link" [attr.aria-current]="s.link === activeLink ? 'page' : null">
@@ -107,6 +113,18 @@ const ACCESORIOS_SUBCAT_SEO: Record<string, { title: string; description: string
     </div>
   `,
   styles: [`
+    /* cafe-blob: mismo blob que el hero de jarabes */
+    .hub-hero-blob {
+      position: absolute; right: 0; bottom: 0;
+      height: min(94%, 760px); width: auto; max-width: 62%;
+      object-fit: contain; object-position: right bottom;
+      z-index: 2; pointer-events: none; user-select: none;
+    }
+    .hub-hero .ins-hero-copy { position: relative; z-index: 3; }
+    @media (max-width: 800px) {
+      .hub-hero-blob { height: auto; max-height: 52%; max-width: 92%; }
+    }
+
     /* hub-h2-home-sep */
     .ins-section > h2 {
       margin: 0 0 0.35rem;
@@ -124,7 +142,7 @@ const ACCESORIOS_SUBCAT_SEO: Record<string, { title: string; description: string
       width: min(549px, 80%);
       height: 30px;
       margin: 0.35rem auto 1.6rem;
-      background: url('/assets/images/separador.png') center / contain no-repeat;
+      background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png') center / contain no-repeat;
     }
 
     .hub-subcats {
@@ -188,11 +206,12 @@ const ACCESORIOS_SUBCAT_SEO: Record<string, { title: string; description: string
 export class ProductHubPageComponent {
   title = 'Productos';
   lead = '';
-  img = '/assets/images/insumos/cafe-bag.png';
+  img = `/assets/images/insumos/cafe-bag-sin-fondo.webp`;
   heroBg = '#f4eee4';
   hubKey = '';
   subcats: HubSubcat[] = [];
   activeLink = '';
+  crumbs: HeroCrumb[] = [];
 
   private seo = inject(SeoService);
 
@@ -203,19 +222,19 @@ export class ProductHubPageComponent {
       cafe: {
         title: 'CAFÉ',
         lead: 'Perfiles que despiertan los sentidos.',
-        img: '/assets/images/insumos/cafe-bag.png',
+        img: `/assets/images/insumos/cafe-bag-sin-fondo.webp`,
         heroBg: '#f4eee4'
       },
       accesorios: {
         title: 'ACCESORIOS',
         lead: 'Herramientas para preparar, medir, servir y mantener tu barra.',
-        img: '/assets/images/insumos/hero-products-left.png',
+        img: `${ASSETS_BASE_URL}/images/insumos/hero-products-left.png`,
         heroBg: '#283039'
       },
       maquinas: {
         title: 'MÁQUINAS',
         lead: 'Rendimiento y tecnología para tu operación.',
-        img: '/assets/images/insumos/baristas.png',
+        img: `${ASSETS_BASE_URL}/images/insumos/baristas.png`,
         heroBg: '#f4eee4'
       }
     };
@@ -233,19 +252,19 @@ export class ProductHubPageComponent {
           title: 'Café Premium',
           desc: 'Línea confiable y balanceada para espresso, leche y menú diario.',
           link: '/productos/cafe/premium',
-          icon: '/assets/images/cafe/nav/premium.png'
+          icon: `${ASSETS_BASE_URL}/images/cafe/nav/premium.png`
         },
         {
           title: 'Café de especialidad',
           desc: 'Barista Champ: orígenes mexicanos con trazabilidad y más de 80 puntos SCA.',
           link: '/productos/cafe/especialidad',
-          icon: '/assets/images/cafe/nav/especialidad.png'
+          icon: `${ASSETS_BASE_URL}/images/cafe/nav/especialidad.png`
         },
         {
           title: 'Café en verde',
           desc: 'Materia prima con trazabilidad y control de calidad para tueste.',
           link: '/productos/cafe/verde',
-          icon: '/assets/images/cafe/nav/verde.png'
+          icon: `${ASSETS_BASE_URL}/images/cafe/nav/verde.png`
         }
       ];
     }
@@ -256,37 +275,37 @@ export class ProductHubPageComponent {
           title: 'Barista y Espresso',
           desc: 'Herramientas para un espresso perfecto.',
           link: '/accesorios-para-poner-una-cafeteria/barista-espresso',
-          icon: '/assets/images/accesorios/nav/barista-espresso.png'
+          icon: `${ASSETS_BASE_URL}/images/accesorios/nav/barista-espresso.png`
         },
         {
           title: 'Método de extracción',
           desc: 'Elementos para métodos manuales.',
           link: '/accesorios-para-poner-una-cafeteria/metodo-extraccion',
-          icon: '/assets/images/accesorios/nav/metodo-extraccion.png'
+          icon: `${ASSETS_BASE_URL}/images/accesorios/nav/metodo-extraccion.png`
         },
         {
           title: 'Té y servicio',
           desc: 'Accesorios para disfrutar cada infusión.',
           link: '/accesorios-para-poner-una-cafeteria/te-servicio',
-          icon: '/assets/images/accesorios/nav/te-servicio.png'
+          icon: `${ASSETS_BASE_URL}/images/accesorios/nav/te-servicio.png`
         },
         {
           title: 'Bebidas frías y Complementos',
           desc: 'Soluciones para bebidas frías y creativas.',
           link: '/accesorios-para-poner-una-cafeteria/bebidas-frias',
-          icon: '/assets/images/accesorios/nav/bebidas-frias.png'
+          icon: `${ASSETS_BASE_URL}/images/accesorios/nav/bebidas-frias.png`
         },
         {
           title: 'Catación y medición',
           desc: 'Precisión para mejores resultados.',
           link: '/accesorios-para-poner-una-cafeteria/catacion-medicion',
-          icon: '/assets/images/accesorios/nav/catacion-medicion.png'
+          icon: `${ASSETS_BASE_URL}/images/accesorios/nav/catacion-medicion.png`
         },
         {
           title: 'Limpieza y mantenimiento',
           desc: 'Cuida tu equipo y alarga su vida útil.',
           link: '/accesorios-para-poner-una-cafeteria/limpieza',
-          icon: '/assets/images/accesorios/nav/limpieza.png'
+          icon: `${ASSETS_BASE_URL}/images/accesorios/nav/limpieza.png`
         }
       ];
     }
@@ -320,6 +339,9 @@ export class ProductHubPageComponent {
       const sub = key === 'accesorios' && slug ? this.subcats.find((s) => s.link.endsWith('/' + slug)) : undefined;
       const subSeo = sub ? ACCESORIOS_SUBCAT_SEO[slug] : undefined;
       this.activeLink = sub ? sub.link : '';
+      const hubPath = key === 'cafe' ? '/productos/cafe' : '';
+      const hubLabel = key === 'cafe' ? 'Café' : '';
+      this.crumbs = hubPath ? [{ label: 'Inicio', path: '/' }, { label: hubLabel, path: hubPath }] : [];
       this.title = sub ? sub.title.toUpperCase() : hubTitle;
       this.lead = sub ? sub.desc : hubLead;
       const meta = subSeo || seo;
@@ -327,6 +349,7 @@ export class ProductHubPageComponent {
         this.seo.set({
           ...meta,
           image: this.img,
+          ...(this.crumbs.length ? { jsonLd: () => [breadcrumbJsonLd(this.crumbs)] } : {})
         });
       }
     });

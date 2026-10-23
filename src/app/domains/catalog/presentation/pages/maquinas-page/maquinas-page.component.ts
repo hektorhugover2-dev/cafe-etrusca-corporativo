@@ -1,3 +1,4 @@
+import { HeroCrumbsComponent, HeroCrumb, breadcrumbJsonLd } from '../../../../../shared/ui/hero-crumbs/hero-crumbs.component';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -7,15 +8,18 @@ import { GrinderSliderComponent } from '../../components/grinder-slider/grinder-
 import { MAQ_CATALOG_HUB, MAQ_HUB, MAQ_HERO_FALLBACK, MAQ_NAV, MAQ_SECTIONS, MaqSection, findMaqNav, firstMaqProductImage } from '../../maquinas.data';
 import { GRINDER_BRANDS, GrinderBrand, sliderFromBlock } from '../../grinders.data';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 
 @Component({
   selector: 'app-maquinas-page',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, InsumosCtaComponent, ScrollWaveComponent, GrinderSliderComponent],
+  imports: [HeroCrumbsComponent, RouterLink, RouterLinkActive, InsumosCtaComponent, ScrollWaveComponent, GrinderSliderComponent],
   templateUrl: './maquinas-page.component.html',
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './maquinas-page.component.scss']
 })
 export class MaquinasPageComponent implements OnInit, OnDestroy {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -23,6 +27,7 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
 
   nav = MAQ_NAV;
   hub = MAQ_HUB;
+  crumbs: HeroCrumb[] = [];
   sections: MaqSection[] = MAQ_SECTIONS;
   slug: string | null = null;
   heroTitle = 'MÁQUINAS';
@@ -92,6 +97,7 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
   private applySlug(slug: string | null) {
     this.slug = slug;
     if (!slug) {
+      this.crumbs = [{ label: 'Inicio', path: '/' }, { label: 'Máquinas', path: MAQ_HUB }];
       this.sections = MAQ_SECTIONS;
       this.heroTitle = 'MÁQUINAS';
       this.heroLead = 'Rendimiento y tecnología para tu operación';
@@ -116,7 +122,8 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
               'Máquina y equipo para poner, renovar o innovar tu cafetería: espresso, autoservicio, licuadoras, molinos y tostadores.',
             url,
             isPartOf: { '@id': origin + '/#website' }
-          }
+          },
+          breadcrumbJsonLd(this.crumbs)
         ]
       });
       return;
@@ -130,6 +137,7 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
     }
 
     this.sections = [sec];
+    this.crumbs = [{ label: 'Inicio', path: '/' }, { label: 'Máquinas', path: MAQ_HUB }, { label: item.label, path: MAQ_HUB + '/' + slug }];
     this.heroTitle = sec.title;
     this.heroLead = item.desc;
     this.heroBody = sec.intro;
@@ -150,7 +158,8 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
           url,
           isPartOf: { '@id': origin + '/#website' },
           about: { '@type': 'Thing', name: item.label }
-        }
+        },
+        breadcrumbJsonLd(this.crumbs)
       ]
     });
   }

@@ -303,15 +303,23 @@ $ink: #14110e;
     color: #fff;
   }
 
+  // Cada card usa el color de SU icono en "Elige tu camino" (.edu-offer … .ico).
   &.tone-cursos {
-    .stripe, .ico, .btn-interest { background: $burgundy; }
+    .stripe, .ico, .btn-interest { background: #6b2744; }
   }
+  // Experiencias: mismo rosa del icono (.edu-offer .experiencias .ico #d77a96) en franja e icono;
+  // el botón usa el mismo tono un punto más oscuro (#b8506f) para contraste AA 4.76:1 con texto blanco.
   &.tone-experiencias {
+    .stripe, .ico { background: #d77a96; }
+    .btn-interest { background: #b8506f; border-color: #b8506f; }
+    .btn-interest:hover, .btn-interest:focus-visible { background: #9e3f5c; border-color: #9e3f5c; }
+    .body .rule { background: #d77a96; }
+  }
+  &.tone-talleres {
     .stripe, .ico, .btn-interest { background: $navy; }
   }
-  &.tone-talleres,
   &.tone-sesiones {
-    .stripe, .ico, .btn-interest { background: #b08a4a; }
+    .stripe, .ico, .btn-interest { background: #2f6b4f; }
   }
 }
 
@@ -514,7 +522,7 @@ $ink: #14110e;
     z-index: 0;
     pointer-events: none;
 
-    img {
+    img, video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -524,6 +532,9 @@ $ink: #14110e;
       mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 100%);
     }
   }
+
+  // El video (fondo navy en los bordes) se muestra completo para no recortar la taza.
+  .photo video.photo-video { object-fit: contain; object-position: center; }
 
   app-scroll-wave {
     position: absolute;

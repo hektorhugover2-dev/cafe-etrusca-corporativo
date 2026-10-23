@@ -1,5 +1,6 @@
 import { EMPRENDE_BRANCHES, EMPRENDE_PATH } from './app/domains/education/presentation/pages/course-branch-page/course-branch.data';
 import { publishedRecipes } from './app/domains/catalog/presentation/pages/recipes-page/recetas.data';
+import { BLOG_ARTICLES } from './app/domains/blog/presentation/pages/blog-article-page/blog-articles.data';
 import { INSUMOS_NAV } from './app/domains/catalog/presentation/insumos.data';
 import { MAQ_NAV } from './app/domains/catalog/presentation/maquinas.data';
 import { COURSES, hasUpcomingCourseDates } from './app/domains/education/presentation/education.data';
@@ -40,6 +41,7 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
   { path: '/contacto', changefreq: 'monthly', priority: '0.6' },
   { path: '/sucursales', changefreq: 'monthly', priority: '0.7' },
   { path: '/recetas', changefreq: 'weekly', priority: '0.8' },
+  { path: '/calculadora-de-precios', changefreq: 'monthly', priority: '0.6' },
   { path: '/videoteca', changefreq: 'monthly', priority: '0.5' },
   { path: '/aviso-de-privacidad', changefreq: 'yearly', priority: '0.3' },
   { path: '/aviso-de-privacidad-simplificado', changefreq: 'yearly', priority: '0.3' },
@@ -173,6 +175,11 @@ export async function buildSitemapXml(options: SitemapOptions = {}): Promise<str
 
   for (const recipe of publishedRecipes()) {
     push(`/recetas/${recipe.slug}`, 'weekly', '0.75');
+  }
+
+  // Guías /blog/<slug>/ (sin índice /blog/; fuera de menú, home y footer).
+  for (const article of BLOG_ARTICLES) {
+    push(`/blog/${article.slug}`, 'monthly', '0.6');
   }
 
   if (includeEvents) {

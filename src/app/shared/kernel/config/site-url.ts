@@ -21,11 +21,19 @@ export function siteUrl(path: string | null | undefined = '/'): string {
   return SITE_ORIGIN + canonicalPath(path);
 }
 
-/** URL absoluta para un recurso (imagen, etc.) sin alterar la ruta. */
+/** URL absoluta para un recurso (imagen, etc.). /assets/… va al CDN R2 si useCdnAssets=true. */
 export function siteAssetUrl(path: string): string {
   if (!path) return '';
   if (/^https?:\/\//i.test(path)) return path;
-  return SITE_ORIGIN + (path.startsWith('/') ? path : '/' + path);
+  let p = path.startsWith('/') ? path : '/' + path;
+  if (p.startsWith('/assets/')) {
+    const base = environment.useCdnAssets
+      ? String(environment.assetsCdnBaseUrl || '').replace(/\/+$/, '')
+      : '/assets';
+    const resolved = base + p.slice('/assets'.length);
+    return /^https?:\/\//i.test(resolved) ? resolved : SITE_ORIGIN + resolved;
+  }
+  return SITE_ORIGIN + p;
 }
 
 /** true si el host puede indexarse (producción). */
