@@ -5,6 +5,7 @@ import { GrinderSliderComponent } from '../../components/grinder-slider/grinder-
 import { MAQ_NAV, MAQ_SECTIONS, MaqSection } from '../../maquinas.data';
 import { GRINDER_BRANDS, GrinderBrand, sliderFromBlock } from '../../grinders.data';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
+import { ASSETS_BASE_URL } from '../../../../../../../shared/kernel/config/assets-url';
 
 @Component({
   selector: 'app-maquinas-page',
@@ -14,6 +15,8 @@ import { SeoService } from '../../../../../shared/kernel/services/seo.service';
   styleUrls: ['../../insumos-theme.scss', './maquinas-page.component.scss']
 })
 export class MaquinasPageComponent implements OnInit {
+  /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
+  protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
 
   nav = MAQ_NAV;
@@ -34,7 +37,7 @@ export class MaquinasPageComponent implements OnInit {
       title: 'Maquina y Equipo para poner una cafetería - Encuentra todo lo que necesitas',
       description: 'Maquina y Equipo para poner una cafetería: En Etrusca encontrarás todo lo que necesitas para poner, renovar o innovar en tu negocio de cafetería',
       keywords: 'Maquina y Equipo para poner una cafetería, cafeteria,como iniciar una cafeteria,como poner una cafeteria,maquinas de espresso,molinos,licuadoras,tostadores',
-      image: '/assets/images/maquinas/hero.webp',
+      image: `${ASSETS_BASE_URL}/images/maquinas/hero.webp`,
     });
   }
 }

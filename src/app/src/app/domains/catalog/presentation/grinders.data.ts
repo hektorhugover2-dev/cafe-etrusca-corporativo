@@ -1,3 +1,4 @@
+import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 export type GrinderSpec = [string, string];
 
 export interface GrinderColor {
@@ -31,7 +32,7 @@ export interface GrinderBrand {
   slides: GrinderSlide[];
 }
 
-const img = (file: string) => `/assets/images/maquinas/${file}`;
+const img = (file: string) => `${ASSETS_BASE_URL}/images/maquinas/${file}`;
 
 function specRows(brand: string, name: string, sku: string | undefined, specs: string[]): GrinderSpec[] {
   const rows: GrinderSpec[] = [['Marca', brand], ['Modelo', name]];
