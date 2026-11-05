@@ -140,7 +140,7 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
   private applySeo() {
     if (!this.course) return;
     const pack = emprendeSeo(this.landing?.cityLabel);
-    this.pageTitle = pack.title;
+    this.pageTitle = pack.h1;
     // Canonical origin from environment config (never the request host / 127.0.0.1 prerender).
     const origin = SITE_ORIGIN;
     const url = siteUrl(emprendeLandingPath(this.landing?.citySlug));
@@ -160,7 +160,7 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
       this.document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', url);
-    this.setJsonLd(pack.title, pack.description, url, image);
+    this.setJsonLd(pack.h1, pack.description, url, image);
   }
 
   private setJsonLd(name: string, description: string, url: string, image: string) {

@@ -304,7 +304,7 @@ const RAW_COURSES: Course[] = [
     dates: [],
     seo: {
       title: "Taller básico para baristas - Impartido por instructores de la SCA",
-      description: "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
+      description: "Taller Formación para un barista (TYC-005): bases sólidas de barra con espresso, leche, servicio y estándares para operar con consistencia.",
       keywords: "sca cafe,cursos de baristas,cursos de café,cursos para baristas,curso para barista de cafe,taller de barista,Café Etrusca"
     }
   },

@@ -4,6 +4,8 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SITE_ORIGIN, siteAssetUrl, siteUrl } from '../config/site-url';
 import { ASSETS_BASE_URL } from '../config/assets-url';
+import { pageBreadcrumbs } from '../config/page-breadcrumbs';
+import { pageDescription } from '../config/page-descriptions';
 
 export interface SeoUrlContext {
   /** Canonical site origin (environment.siteOrigin), e.g. https://cafeetrusca.com */
@@ -56,6 +58,9 @@ export class SeoService {
   }
 
   set(input: SeoInput) {
+    const ownDescription = pageDescription(this.document?.location?.pathname || this.router.url);
+    if (ownDescription) input = { ...input, description: ownDescription };
+    input = { ...input, title: seoTitle(input.title), description: seoDescription(input.description) };
     const origin = this.resolveOrigin();
     const url = this.canonicalUrl(input.path);
     const image = siteAssetUrl(input.image || this.defaultImage);
@@ -90,6 +95,19 @@ export class SeoService {
     if (input.jsonLd) {
       const data = typeof input.jsonLd === 'function' ? input.jsonLd({ origin, url }) : input.jsonLd;
       this.setJsonLd('app-jsonld', data);
+    }
+
+    // BreadcrumbList por defecto para páginas del mapa (page-breadcrumbs.ts) que no traen el suyo.
+    const crumbs = pageBreadcrumbs(new URL(url).pathname);
+    const own = this.document.getElementById('app-jsonld')?.textContent || '';
+    if (crumbs && !own.includes('"BreadcrumbList"')) {
+      this.setJsonLd('app-jsonld-breadcrumbs', {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: crumbs.map(([name, p], i) => ({ '@type': 'ListItem', position: i + 1, name, item: siteUrl(p) }))
+      });
+    } else {
+      this.clearJsonLd('app-jsonld-breadcrumbs');
     }
   }
 
@@ -127,4 +145,27 @@ export class SeoService {
   clearJsonLd(id: string) {
     this.document.getElementById(id)?.remove();
   }
+}
+
+const BRAND = 'Caf\u00e9 Etrusca';
+/** Plantilla de t\u00edtulo: lo importante primero y "| Caf\u00e9 Etrusca" al final; recorta segmentos secundarios si pasa de 60. */
+export function seoTitle(raw: string): string {
+  const t = String(raw || '').replace(/\s+/g, ' ').trim();
+  if (t.length <= 60) return t;
+  const segs = t.split(/\s+[|\u2013-]\s+/).map((x) => x.trim()).filter(Boolean);
+  const main = segs.filter((x) => x !== BRAND);
+  if (!main.length) return t;
+  const head = main[0];
+  const withBrand = head + ' | ' + BRAND;
+  return withBrand.length <= 60 || head.length > 60 ? withBrand : withBrand;
+}
+/** Plantilla de descripci\u00f3n: m\u00e1x. 160, cortando en frase o palabra completa. */
+export function seoDescription(raw: string): string {
+  const t = String(raw || '').replace(/\s+/g, ' ').trim();
+  if (t.length <= 160) return t;
+  const cut = t.slice(0, 160);
+  const dot = cut.lastIndexOf('. ');
+  if (dot >= 100) return cut.slice(0, dot + 1);
+  const sp = cut.slice(0, 159).lastIndexOf(' ');
+  return cut.slice(0, sp > 100 ? sp : 159).replace(/[,;:.\s\u2026-]+$/, '') + '\u2026';
 }

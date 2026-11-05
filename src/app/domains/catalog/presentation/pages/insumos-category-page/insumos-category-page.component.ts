@@ -781,7 +781,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       this.hydrateLines();
       this.seo.set({
         title: found.label + ' para cafeterías | Café Etrusca',
-        description: found.subtitle || found.body,
+        description: found.body && found.body.length <= 160 ? found.body : found.subtitle || found.body,
         keywords: found.label + ', insumos para cafeterías, Café Etrusca',
         image: found.heroImage,
         jsonLd: () => [breadcrumbJsonLd(this.crumbs)]

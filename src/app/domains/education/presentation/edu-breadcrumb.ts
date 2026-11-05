@@ -28,8 +28,10 @@ export function educationCrumbs(courseTitle: string, cityLabel?: string | null):
 }
 
 export function breadcrumbJsonLd(origin: string, crumbs: EduCrumb[], currentUrl: string) {
-  const items = crumbs.map((c, i) => {
-    const isLast = i === crumbs.length - 1;
+  // Un nivel intermedio sin URL no se publica (cada ListItem salvo el último necesita item).
+  const kept = crumbs.filter((c, i) => i === crumbs.length - 1 || !!c.path);
+  const items = kept.map((c, i) => {
+    const isLast = i === kept.length - 1;
     const item: Record<string, unknown> = {
       '@type': 'ListItem',
       position: i + 1,

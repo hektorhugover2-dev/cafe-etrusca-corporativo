@@ -212,14 +212,27 @@
                 </div>
               </div>
             } @else {
-              <div class="lc-empty">
-                <p class="lc-empty-title">Por el momento no hay fechas publicadas.</p>
-                <p>Déjanos tus datos y te avisamos de las próximas fechas, o habla con un asesor.</p>
-                <div class="edu-actions">
-                  <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
-                  <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
+              @if (requestFormAllowed) {
+                <div class="lc-empty lc-empty-request">
+                  <p class="lc-empty-title">@if (requestCity) { Pronto abriremos fechas en {{ requestCity }} } @else { Pronto abriremos nuevas fechas }</p>
+                  <p>Déjanos tus datos y te avisaremos en cuanto abramos un grupo de {{ page.h1 }}@if (requestCity && !page.h1.includes(requestCity)) { en {{ requestCity }}}.</p>
+                  <app-course-interest-modal
+                    [inline]="true"
+                    [hideDate]="true"
+                    [courseTitle]="page.h1"
+                    [branchName]="requestBranch">
+                  </app-course-interest-modal>
                 </div>
-              </div>
+              } @else {
+                <div class="lc-empty">
+                  <p class="lc-empty-title">Por el momento no hay fechas publicadas.</p>
+                  <p>Déjanos tus datos y te avisamos de las próximas fechas, o habla con un asesor.</p>
+                  <div class="edu-actions">
+                    <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+                    <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
+                  </div>
+                </div>
+              }
             }
           </section>
         } @else {

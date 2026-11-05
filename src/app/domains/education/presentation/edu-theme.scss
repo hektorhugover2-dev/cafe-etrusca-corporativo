@@ -637,3 +637,10 @@ $sand: #efe6d6;
 .edu-page.edu-page--flush { padding-top: 112px !important; }
 @media (min-width: 992px) and (max-width: 1499.98px) { .edu-page.edu-page--flush { padding-top: 83px !important; } }
 @media (max-width: 991.98px) { .edu-page.edu-page--flush { padding-top: 80px !important; } }
+/* Estado sin fechas con formulario de solicitud (sedes de cursos y talleres). */
+.edu-empty-title {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--etrusca-navy-900);
+  margin: 0 0 0.4rem;
+}

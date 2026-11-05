@@ -56,6 +56,7 @@ const MANUAL_REDIRECTS: SeoRedirect[] = [
   { from: "/Contacto", to: "/contacto/", source: "mapa-redirecciones alta", clicks: 405 },
   { from: "/Productos/Cafe", to: "/productos/cafe/", source: "mapa-redirecciones alta", clicks: 280 },
   { from: '/productos', to: '/insumos-y-equipo-para-cafeterias/', source: 'hub movido (Hector 5-nov-2026)', clicks: 0 },
+  { from: '/cursos-y-talleres/taller-basico-de-tostado-vallejo-cdmx-noviembre-2026', to: '/cursos-y-talleres/taller-basico-de-tostado-zona-rosa-cdmx-diciembre-2026/', source: 'slug corregido tostado id 2100 Zona Rosa dic-2026 (Hector 5-nov-2026)', clicks: 0 },
   { from: "/politicas-externas-cursos-talleres", to: "/politicas-externas-cursos/", source: "mapa-redirecciones alta", clicks: 125 },
   { from: "/Nosotros", to: "/nosotros/", source: "mapa-redirecciones alta", clicks: 45 },
   { from: "/insumos-for-cafeterias", to: "/insumos-para-cafeterias/", source: "mapa-redirecciones alta", clicks: 1 },
@@ -101,7 +102,10 @@ const BLOG_REDIRECTS: SeoRedirect[] = [
   { from: '/Blog/Detail/Beneficios-y-propiedades-de-la-gelatina-en-productos-alimenticios', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
   { from: '/Blog/Detail/Clasificación-según-la-función-que-cumplen', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
   { from: '/Blog/Detail/Realmente-son-malos-para-la-salud', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
-  { from: '/Blog/Detail/Beneficios-y-propiedades-de-la-goma-guar', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' }
+  { from: '/Blog/Detail/Beneficios-y-propiedades-de-la-goma-guar', to: '/insumos-para-cafeterias/', source: 'aditivos/gomas → insumos (CSV final 2026-10-20, OK Héctor vía agente SEO)' },
+  { from: '/Blog/Detail/Qué-son-y-per-que-se-usan-las-gomas-en-productos-alimenticios', to: '/insumos-para-cafeterias/', source: 'reauditoría SEO 2026-11-05: 410 → 301 a insumos' },
+  { from: '/Blog/Detail/Tipos-de-aditivos-y-su-uso-en-alimentos-ya-producidos', to: '/insumos-para-cafeterias/', source: 'reauditoría SEO 2026-11-05: 410 → 301 a insumos' },
+  { from: '/Blog/Detail/Beneficios-y-propiedades-de-la-goma-xantana', to: '/insumos-para-cafeterias/', source: 'reauditoría SEO 2026-11-05: 410 → 301 a insumos' }
 ];
 
 /**
@@ -109,11 +113,8 @@ const BLOG_REDIRECTS: SeoRedirect[] = [
  * redirect to an unrelated page (soft 404). Decoded paths, no trailing slash, case-sensitive.
  */
 export const GONE_PATHS: ReadonlyArray<string> = [
-  // 2026-10-20 (CSV final, OK Héctor): los otros 7 aditivos/gomas pasan a 301 → /insumos-para-cafeterias/ (BLOG_REDIRECTS).
-  'Qué-son-y-per-que-se-usan-las-gomas-en-productos-alimenticios',
-  'Tipos-de-aditivos-y-su-uso-en-alimentos-ya-producidos',
-  'Beneficios-y-propiedades-de-la-goma-xantana'
-].map((s) => `/Blog/Detail/${s}`);
+  // 2026-11-05 (reauditoría SEO): los 3 que quedaban en 410 pasan a 301 → /insumos-para-cafeterias/ (BLOG_REDIRECTS).
+];
 const GONE_SET = new Set(GONE_PATHS);
 
 /** Paths that are real pages in the new site: never a redirect key (would shadow the page). */

@@ -131,7 +131,7 @@ export const EVENT_ARCHIVE: ReadonlyArray<ArchivedEvent> = [
   {"slug":"curso-bubble-tea-en-merida-diciembre-2026","categoryId":7,"locationId":44,"title":"BUBBLE TEA","start":"2026-12-01T10:00:00","end":"2026-12-01T15:00:00"},
   {"slug":"curso-basico-barista-leon-diciembre-2026","categoryId":1,"locationId":11,"title":"FORMACIÓN PARA UN BARISTA","start":"2026-12-02T10:00:00","end":"2026-12-02T17:00:00"},
   {"slug":"curso-bubble-tea-avanzado-en-merida-diciembre-2026","categoryId":12,"locationId":44,"title":"BUBBLE TEA ESPECIALIZADO","start":"2026-12-02T10:00:00","end":"2026-12-02T15:00:00"},
-  {"slug":"taller-basico-de-tostado-vallejo-cdmx-noviembre-2026","categoryId":5,"locationId":1,"title":"TOSTADO BÁSICO","start":"2026-12-03T06:00:00","end":"2026-12-04T15:00:00"},
+  {"slug":"taller-basico-de-tostado-zona-rosa-cdmx-diciembre-2026","categoryId":5,"locationId":1,"title":"TOSTADO BÁSICO","start":"2026-12-03T06:00:00","end":"2026-12-04T15:00:00"},
   {"slug":"emprendiendo-mi-negocio-de-barra-de-cafe-y-cafeteria-en-guadalajara-diciembre-2026","categoryId":10,"locationId":13,"title":"FORMACIÓN DE EMPRENDEDORES","start":"2026-12-03T09:00:00","end":"2026-12-04T17:00:00"},
   {"slug":"emprendiendo-mi-negocio-de-barra-de-cafe-y-cafeteria-en-puebla-diciembre-2026","categoryId":10,"locationId":8,"title":"FORMACIÓN DE EMPRENDEDORES","start":"2026-12-03T09:00:00","end":"2026-12-04T17:00:00"},
   {"slug":"emprendiendo-mi-negocio-de-barra-de-cafe-y-cafeteria-en-tijuana-diciembre-2026","categoryId":10,"locationId":5,"title":"FORMACIÓN DE EMPRENDEDORES","start":"2026-12-03T09:00:00","end":"2026-12-04T17:00:00"},

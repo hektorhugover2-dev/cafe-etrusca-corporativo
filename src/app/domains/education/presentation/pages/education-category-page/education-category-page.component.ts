@@ -45,7 +45,9 @@ export class EducationCategoryPageComponent implements OnInit {
         return;
       }
       this.cat = found;
-      this.courses = coursesByKind(found.slug as EduKind);
+      // Experiencias y sesiones sabatinas sin fechas no se listan (cursos y talleres sí, con formulario de solicitud).
+      const hideEmpty = found.slug === 'experiencias' || found.slug === 'sesiones';
+      this.courses = coursesByKind(found.slug as EduKind).filter((c) => !hideEmpty || (c.dates?.length ?? 0) > 0);
       this.seo.set({
         title: found.title + ' | Café Etrusca',
         description: found.subtitle || found.body,

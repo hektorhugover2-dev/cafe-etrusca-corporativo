@@ -1,17 +1,4 @@
-@if (isBrowser && open) {
-  <div class="cim-backdrop" (click)="onBackdropClick($event)">
-    <div
-      #dialogEl
-      class="cim-dialog"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cim-title"
-      tabindex="-1"
-      (click)="$event.stopPropagation()">
-      <button type="button" class="cim-close" (click)="close()" aria-label="Cerrar">
-        <span aria-hidden="true">&times;</span>
-      </button>
-
+<ng-template #cimBody>
       <div class="cim-grid">
         <section class="cim-col cim-info" aria-label="Horario y dirección">
           <h3 class="cim-heading">Horario</h3>
@@ -182,6 +169,27 @@
           </form>
         </section>
       </div>
+</ng-template>
+
+@if (inline) {
+  <div class="cim-inline">
+    <ng-container *ngTemplateOutlet="cimBody"></ng-container>
+  </div>
+} @else if (isBrowser && open) {
+  <div class="cim-backdrop" (click)="onBackdropClick($event)">
+    <div
+      #dialogEl
+      class="cim-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cim-title"
+      tabindex="-1"
+      (click)="$event.stopPropagation()">
+      <button type="button" class="cim-close" (click)="close()" aria-label="Cerrar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <ng-container *ngTemplateOutlet="cimBody"></ng-container>
     </div>
   </div>
 }

@@ -11,7 +11,7 @@ import {
   inject,
   PLATFORM_ID
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -27,7 +27,7 @@ const OCCUPATIONS = ['Emprendedor', 'Barista', 'Consumidor'] as const;
 @Component({
   selector: 'app-course-interest-modal',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, NgTemplateOutlet],
   templateUrl: './course-interest-modal.component.html',
   styleUrls: ['./course-interest-modal.component.scss']
 })
@@ -40,6 +40,10 @@ export class CourseInterestModalComponent implements OnChanges {
    * date is neither shown nor sent (no `fecha` in the payload). Everything else is identical.
    */
   @Input() hideDate = false;
+  /** Formulario incrustado en la página (estado sin fechas de una sede), sin modal. */
+  @Input() inline = false;
+  /** Sede de la página (se envía como sucursal cuando no hay fecha). */
+  @Input() branchName = '';
   @Output() closed = new EventEmitter<void>();
 
   @ViewChild('dialogEl') dialogEl?: ElementRef<HTMLElement>;
@@ -103,7 +107,7 @@ export class CourseInterestModalComponent implements OnChanges {
   }
 
   get branchLabel(): string {
-    return this.date?.locationName || this.date?.branch || '';
+    return this.date?.locationName || this.date?.branch || this.branchName || '';
   }
 
   get mapHref(): string {
@@ -169,7 +173,7 @@ export class CourseInterestModalComponent implements OnChanges {
       message: this.message.trim() || '-',
       ciudad: '-',
       ocupacion,
-      sucursal: this.date?.branch || this.date?.locationName || '-',
+      sucursal: this.date?.branch || this.date?.locationName || this.branchName || '-',
       emailsucursal: this.date?.email || FALLBACK_EMAIL,
       emailbarista: this.date?.emailBarista || '-',
       fecha: this.formatFecha(this.date),

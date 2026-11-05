@@ -118,7 +118,7 @@ export class EventDetailPageComponent implements OnInit {
       { label: 'Inicio', path: '/' },
       { label: 'Cursos', path: EDUCATION_HUB_PATH }
     ];
-    if (this.courseLabel) out.push({ label: this.courseLabel, path: this.coursePath || undefined });
+    if (this.courseLabel) out.push({ label: this.courseLabel, path: this.coursePath || this.courseLink || undefined });
     if (this.sede && this.cityPath) out.push({ label: this.sede.label, path: this.cityPath });
     out.push({ label: this.event?.title || this.categoryName });
     return out;
@@ -197,11 +197,9 @@ export class EventDetailPageComponent implements OnInit {
   private applySeo(event: any, slug: string) {
     const kw = eventSeoForCategory(Number(event.categoryId));
     const sedeName = this.sede?.name || 'Café Etrusca';
-    const intro = `${this.courseLabel || this.categoryName} en ${sedeName}: ${this.dateLabel}${
-      this.interestDate?.hours && this.interestDate.hours !== 'Consultar horario' ? `, ${this.interestDate.hours}` : ''
-    }.`;
+    const intro = `${this.courseLabel || this.categoryName} en ${sedeName}: ${this.dateLabel}.`;
     const about = String(event.category?.description || kw.description).trim();
-    const description = clip(`${intro} ${about}`, 300);
+    const description = clip(`${intro} ${about}`, 160);
     const sede = this.sede;
     const offset = (iso: string) => withOffset(iso, sede?.city === 'Tijuana' ? 'America/Tijuana' : 'America/Mexico_City');
     const place = sede
@@ -223,7 +221,7 @@ export class EventDetailPageComponent implements OnInit {
       : undefined;
     const price = Number(event.category?.price);
     this.seoService.set({
-      title: `${event.title || this.categoryName} | Café Etrusca`,
+      title: eventSeoTitle(this.courseLabel || this.categoryName || event.title, this.sede?.label, event.start),
       description,
       keywords: kw.keywords,
       image: this.imageUrl || undefined,
@@ -312,6 +310,27 @@ function toSede(l: EtruscaLocation | undefined, raw: any): EventSede | null {
 function titleCase(v: string): string {
   const t = v.trim().toLocaleLowerCase('es-MX');
   return t ? t.charAt(0).toLocaleUpperCase('es-MX') + t.slice(1) : '';
+}
+
+const SHORT_COURSE: Record<string, string> = {
+  'taller b\u00e1sico para baristas': 'Barista b\u00e1sico',
+  'emprendiendo mi negocio de barra de caf\u00e9 y cafeter\u00eda': 'Emprende tu cafeter\u00eda',
+  'taller de mixolog\u00eda con caf\u00e9 sin alcohol': 'Mixolog\u00eda sin alcohol'
+};
+const MONTHS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+/** "Bubble Tea Especializado \u00b7 Zona Rosa \u00b7 Nov 2026 | Caf\u00e9 Etrusca" */
+function eventSeoTitle(course: string, sede: string | undefined, start: string): string {
+  const raw = String(course || '').trim();
+  let c = SHORT_COURSE[raw.toLowerCase()] || raw;
+  let m = c.match(/^(?:taller|curso)\s+(b\u00e1sico|avanzado|especializado)\s+(?:de|para)\s+(.+)$/i);
+  if (m) c = m[2] + ' ' + m[1].toLowerCase();
+  else c = c.replace(/^(?:taller|curso)\s+(?:de|para)\s+/i, '');
+  c = c.charAt(0).toUpperCase() + c.slice(1);
+  const parts = [c];
+  if (sede) parts.push(sede.replace(/\s*\(?CDMX\)?$/, ''));
+  const d = String(start || '').match(/^(\d{4})-(\d{2})/);
+  if (d) parts.push(MONTHS[Number(d[2]) - 1] + ' ' + d[1]);
+  return parts.join(' \u00b7 ') + ' | Caf\u00e9 Etrusca';
 }
 
 function clip(text: string, max: number): string {

@@ -3935,7 +3935,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   {
     "path": "curso-de-barista-cdmx",
     "title": "Curso de Barista CDMX - Impartido por instructores de la SCA",
-    "description": "Cursos Para Baristas y Talleres Para Cafeterías destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
+    "description": "Curso de barista en CDMX (TYC-005) con instructores de la SCA: espresso, leche, servicio y estándares de barra. 1 día, 6 horas efectivas.",
     "keywords": KW[0],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
@@ -4434,7 +4434,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   {
     "path": "taller-de-cold-brew",
     "title": "Taller de Cold Brew para cafeterías | Café Etrusca",
-    "description": "Taller de brew bar donde aprenderás a utilizar los métodos artesanales para la preparación de cafés y podrás descubrir las tendencias en Brew Bar.",
+    "description": "Taller de Cold Brew para cafeterías (TYC-009): métodos en caliente y frío como V60, prensa, batch y toddy, con recetas para tu menú. 1 día, 6 horas.",
     "keywords": KW[7],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",

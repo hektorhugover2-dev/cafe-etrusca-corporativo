@@ -169,6 +169,10 @@
               <button type="button" class="btn-pink" (click)="clearFilters()">Ver otras sedes</button>
               <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
             </div>
+          } @else if (course.kind === 'cursos' || course.kind === 'talleres') {
+            <p class="edu-empty-title">Pronto abriremos nuevas fechas</p>
+            <p>Déjanos tus datos y te avisaremos en cuanto abramos un grupo de {{ course.title }}.</p>
+            <app-course-interest-modal [inline]="true" [hideDate]="true" [courseTitle]="course.title"></app-course-interest-modal>
           } @else {
             <p><strong>Por ahora no hay fechas publicadas para este curso.</strong> Déjanos tus datos y te avisamos cuando se abra un grupo, o habla con un asesor.</p>
             <div class="edu-actions">

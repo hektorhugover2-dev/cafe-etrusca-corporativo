@@ -37,8 +37,9 @@ export function emprendeLandingPath(citySlug?: string | null): string {
 export function emprendeSeo(cityLabel?: string | null) {
   const where = cityLabel ? ` en ${cityLabel}` : '';
   return {
-    title: `Emprendiendo Mi Negocio de Barra de Café y Cafetería${where}`,
-    description: `Emprendiendo Mi Negocio de Barra de Café y Cafetería${where} es un taller donde aprenderás cómo abrir correctamente tu cafetería iniciándote como Barista.`,
+    h1: `Emprendiendo Mi Negocio de Barra de Café y Cafetería${where}`,
+    title: cityLabel ? `Emprende tu cafetería en ${cityLabel}` : 'Emprende tu cafetería: taller de barra de café',
+    description: `Emprendiendo mi negocio de barra de café y cafetería${where}: taller para aprender a abrir correctamente tu cafetería iniciándote como Barista.`,
     keywords: EMPRENDE_KEYWORDS
   };
 }

@@ -367,6 +367,23 @@ export class LegacyCoursePageComponent implements OnInit {
     return String(e.locationId) === branch;
   }
 
+  /** Cursos y talleres sin fechas muestran el formulario de solicitud; experiencias y sesiones sabatinas no. */
+  get requestFormAllowed(): boolean {
+    const p = this.page;
+    if (!p) return false;
+    const kind = p.courseSlug ? courseBySlug(p.courseSlug)?.kind : undefined;
+    return kind !== 'experiencias' && kind !== 'sesiones' && !/^(experiencia|sesion)/.test(p.path);
+  }
+
+  /** Ciudad de la sede para el estado sin fechas (páginas de sede) o la sucursal elegida en el filtro. */
+  get requestCity(): string {
+    return this.resolved?.location?.city || (this.branch !== 'all' ? this.selectedBranchLabel : '');
+  }
+
+  get requestBranch(): string {
+    return this.resolved?.location?.name || (this.branch !== 'all' ? this.selectedBranchLabel : '');
+  }
+
   get selectedBranchLabel(): string {
     return this.branches.find((b) => b.value === this.branch)?.label || 'esta sucursal';
   }

@@ -127,21 +127,18 @@
         </article>
       }
       @if (filteredDates.length === 0) {
-        <div class="edu-dates-empty">
-          <p>
-            Por el momento no hay fechas publicadas
-            @if (landing) {
-              <span>en {{ landing.cityLabel }}</span>
-            }.
-          </p>
-          <div class="edu-actions">
-            @if (landing && course.dates.length > 0) {
-              <a class="btn-pink" [routerLink]="allSedesPath">Ver otras sedes</a>
-            } @else {
-              <button type="button" class="btn-pink" (click)="openInterestEmpty()">Me interesa</button>
-            }
-            <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
-          </div>
+        <div class="edu-dates-empty edu-dates-request">
+          <p class="edu-empty-title">@if (landing?.cityLabel) { Pronto abriremos fechas en {{ landing?.cityLabel }} } @else { Pronto abriremos nuevas fechas }</p>
+          <p>Déjanos tus datos y te avisaremos en cuanto abramos un grupo de {{ pageTitle }}.</p>
+          @if (landing && course.dates.length > 0) {
+            <div class="edu-actions"><a class="btn-navy" [routerLink]="allSedesPath">Ver otras sedes</a></div>
+          }
+          <app-course-interest-modal
+            [inline]="true"
+            [hideDate]="true"
+            [courseTitle]="pageTitle"
+            [branchName]="landing ? 'Sucursal ' + landing.branchFilter : ''">
+          </app-course-interest-modal>
         </div>
       }
     </div>
