@@ -19,7 +19,7 @@ export function breadcrumbJsonLd(crumbs: ReadonlyArray<HeroCrumb>) {
 
 /**
  * Migas del hero con el diseño de `.tor-crumbs` de /insumos-para-cafeterias/jarabes/torani/
- * (fila de enlaces separados por «›», navy #192966, página actual en rojo #c2474b).
+ * (fila de enlaces separados por «›», navy #192966, página actual en rojo #a43c40).
  * `tone="light"` para heros de fondo oscuro.
  */
 @Component({
@@ -54,7 +54,7 @@ export function breadcrumbJsonLd(crumbs: ReadonlyArray<HeroCrumb>) {
     .tor-crumbs a { color: #192966; text-decoration: none; }
     .tor-crumbs a:hover { text-decoration: underline; }
     .tor-crumbs a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
-    .tor-crumbs [aria-current] { color: #c2474b; }
+    .tor-crumbs [aria-current] { color: #8a2e32; }
     .tor-crumbs.is-light, .tor-crumbs.is-light a { color: #fff; }
     .tor-crumbs.is-light [aria-current] { color: #fdd640; }
   `]

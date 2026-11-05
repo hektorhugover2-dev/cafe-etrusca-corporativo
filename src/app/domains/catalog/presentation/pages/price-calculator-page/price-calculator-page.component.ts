@@ -1,4 +1,4 @@
-import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, inject, afterNextRender, signal, ElementRef } from '@angular/core';
 import { DecimalPipe, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -360,6 +360,46 @@ export class PriceCalculatorPageComponent implements OnInit {
 
   get featured(): Recipe[] {
     return this.recipesWithSap.slice(0, 5);
+  }
+
+  /** Video HyperFrames de bebidas (VP9 con transparencia, se ve sobre la mancha amarilla). Un solo archivo para hero y CTA;
+   *  el CTA arranca en otro punto (data-start) para no verse igual. Solo en cliente, sin prefers-reduced-motion y si el
+   *  navegador reproduce WebM VP9; si no, queda el poster estático (transparente). Cada video se reproduce solo en viewport. */
+  readonly drinkVideo = {
+    webm: '/assets/videos/calculadora/calculadora-bebidas.webm',
+    poster: '/assets/videos/calculadora/calculadora-bebidas-poster.webp'
+  };
+  readonly drinkVideoOn = signal(false);
+  private platformIdV = inject(PLATFORM_ID);
+  private hostEl = inject(ElementRef<HTMLElement>);
+  private _drinkVideoInit = afterNextRender(() => {
+    if (!isPlatformBrowser(this.platformIdV)) return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const probe = document.createElement('video');
+    if (!probe.canPlayType('video/webm; codecs="vp9"')) return;
+    this.drinkVideoOn.set(true);
+    setTimeout(() => this.observeDrinkVideos(), 0);
+  });
+  private observeDrinkVideos(): void {
+    const vids = Array.from((this.hostEl.nativeElement as HTMLElement).querySelectorAll<HTMLVideoElement>('video.pc-vid'));
+    if (!vids.length || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const v = e.target as HTMLVideoElement;
+        if (e.isIntersecting) {
+          if (v.preload !== 'auto') {
+            v.preload = 'auto';
+            v.addEventListener('loadedmetadata', () => { v.currentTime = Number(v.dataset['start'] || 0); }, { once: true });
+            v.load();
+          }
+          v.muted = true;
+          v.play?.().catch(() => {});
+        } else {
+          v.pause();
+        }
+      }
+    }, { rootMargin: '120px 0px' });
+    vids.forEach((v) => io.observe(v));
   }
 
   get heroImages(): string[] {

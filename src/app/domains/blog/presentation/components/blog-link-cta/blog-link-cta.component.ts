@@ -51,14 +51,14 @@ import { RouterLink } from '@angular/router';
       padding: 0.8rem 1.6rem;
       border-radius: 999px;
       background: var(--etrusca-navy-900, #283039);
-      color: #fff;
+      color: #fff !important;
       font-weight: 600;
       text-decoration: none;
     }
     .blog-link-cta-btn:hover { opacity: 0.9; }
     .blog-link-cta--live { background: #283039; }
     .blog-link-cta--live .blog-link-cta-text, .blog-link-cta--live .blog-link-cta-secondary { color: #fff; }
-    .blog-link-cta--live .blog-link-cta-btn { background: #fff; color: #283039; }
+    .blog-link-cta--live .blog-link-cta-btn { background: #fff; color: #283039 !important; }
     .blog-link-cta--live .blog-link-cta-secondary a { color: #fff; }
     .blog-link-cta-cards { list-style: none; padding: 0; margin: 1.4rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.9rem; }
     .blog-link-cta-cards a { display: block; text-decoration: none; color: #283039; font-weight: 600; font-size: 0.92rem; }

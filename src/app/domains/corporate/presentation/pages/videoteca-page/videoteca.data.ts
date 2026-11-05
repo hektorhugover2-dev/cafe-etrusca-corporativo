@@ -23,7 +23,7 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
   },
   {
     "id": "rAdaABgNCmc",
-    "title": "EP2 - Travesías del sabor - Continua el viaje con nosotros...",
+    "title": "EP2 - Travesías del sabor - Continúa el viaje con nosotros...",
     "duration": "57:48",
     "thumb": "https://i.ytimg.com/vi/rAdaABgNCmc/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=rAdaABgNCmc"
@@ -79,7 +79,7 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
   },
   {
     "id": "Mf9MyPiLvmQ",
-    "title": "EP 9 - Travesías del Sabor - De la comeptencia al juicio técnico",
+    "title": "EP 9 - Travesías del Sabor - De la competencia al juicio técnico",
     "duration": "56:13",
     "thumb": "https://i.ytimg.com/vi/Mf9MyPiLvmQ/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=Mf9MyPiLvmQ"
@@ -142,7 +142,7 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
   },
   {
     "id": "sDcSFAkUtFY",
-    "title": "EP 17 - Travesías del Sabor - Eventos con toda la expertiz - Manuel García",
+    "title": "EP 17 - Travesías del Sabor - Eventos con toda la experiencia / pericia - Manuel García",
     "duration": "45:33",
     "thumb": "https://i.ytimg.com/vi/sDcSFAkUtFY/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=sDcSFAkUtFY"
@@ -163,7 +163,7 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
   },
   {
     "id": "WXuHrNzpxnM",
-    "title": "EP20 - Travesías del Sabor - Invitados: LIbertario",
+    "title": "EP20 - Travesías del Sabor - Invitados: Libertario",
     "duration": "51:56",
     "thumb": "https://i.ytimg.com/vi/WXuHrNzpxnM/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=WXuHrNzpxnM"

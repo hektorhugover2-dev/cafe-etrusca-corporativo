@@ -3,10 +3,11 @@
   <section class="hero-section position-relative">
     
     <!-- Carrusel de Bootstrap -->
-    <div id="heroCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="5000">
+    <div id="heroCarousel" class="carousel slide carousel-fade h-100" [attr.data-bs-ride]="heroShowAllSlides ? 'carousel' : null" [attr.data-bs-interval]="heroShowAllSlides ? 5000 : null">
       
       <!-- Indicadores (Puntitos de navegación) -->
-            <div class="carousel-indicators z-3">
+            @if (heroShowAllSlides) {
+      <div class="carousel-indicators z-3">
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
@@ -15,25 +16,30 @@
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
       </div>
+      }
 
       <div class="carousel-inner h-100">
         
-                <!-- SLIDE 1: Banner La Fenice -->
+                <!-- Slides ocultos temporalmente (Hector 2026-11-03): poner heroShowAllSlides = true en home-page.component.ts para reactivarlos -->
+        @if (heroShowAllSlides) {
+        <!-- SLIDE 1: Banner La Fenice -->
         <div class="carousel-item active h-100">
           <a href="https://tienda.cafeetrusca.com/productos?search=BREW%20LA%20FENICE" target="_blank" title="Tienda Online Café Etrusca Kit La Fenice">
             <picture>
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_la_fenice.webp" media="(max-width: 480px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_la_fenice.webp" media="(max-width: 2559px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_la_fenice.webp" media="(min-width: 2560px)">
-              <img src="{{ assetsBase }}/images/home/banners/banner_home_la_fenice.webp" class="d-block w-100 img-slider" alt="Kit brew La Fenice en la tienda Café Etrusca">
+              <img src="{{ assetsBase }}/images/home/banners/banner_home_la_fenice.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Kit brew La Fenice en la tienda Café Etrusca">
             </picture>
           </a>
         </div>
 
+        }
+
         <!-- SLIDE 2: Hero Tradicional Café Etrusca -->
-        <div class="carousel-item h-100">
+        <div class="carousel-item h-100" [class.active]="!heroShowAllSlides">
           <div class="overlay pe-none"></div>
-          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" class="d-block w-100 img-slider" alt="Interior de una cafetería de especialidad">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" class="d-block w-100 img-slider" width="2047" height="1403" fetchpriority="high" loading="eager" alt="Interior de una cafetería de especialidad">
           
           <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 z-2" style="top: 0; bottom: 0;">
             <h1 class="display-1 fw-bold mb-4 title-hero text-white">CAFÉ ETRUSCA</h1>
@@ -45,6 +51,7 @@
           </div>
         </div>
 
+        @if (heroShowAllSlides) {
         <!-- SLIDE 3: Banner Barista Básico -->
         <div class="carousel-item h-100">
           <a href="https://tienda.cafeetrusca.com/producto/detalle/KIT-002/BARISTA-BASICO" target="_blank" title="Tienda Online Café Etrusca Kit Barista básico">
@@ -52,7 +59,7 @@
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home.webp" media="(max-width: 480px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home.webp" media="(max-width: 2559px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home.webp" media="(min-width: 2560px)">
-              <img src="{{ assetsBase }}/images/home/banners/banner_home.webp" class="d-block w-100 img-slider" alt="Kit barista básico en la tienda Café Etrusca">
+              <img src="{{ assetsBase }}/images/home/banners/banner_home.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Kit barista básico en la tienda Café Etrusca">
             </picture>
           </a>
         </div>
@@ -64,7 +71,7 @@
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_hario.webp" media="(max-width: 480px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_hario.webp" media="(max-width: 2559px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_hario.webp" media="(min-width: 2560px)">
-              <img src="{{ assetsBase }}/images/home/banners/banner_home_hario.webp" class="d-block w-100 img-slider" alt="Equipo de brew Hario para cafeterías">
+              <img src="{{ assetsBase }}/images/home/banners/banner_home_hario.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Equipo de brew Hario para cafeterías">
             </picture>
           </a>
         </div>
@@ -76,7 +83,7 @@
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_bubble_tea.webp" media="(max-width: 480px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_bubble_tea.webp" media="(max-width: 2559px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_bubble_tea.webp" media="(min-width: 2560px)">
-              <img src="{{ assetsBase }}/images/home/banners/banner_home_bubble_tea.webp" class="d-block w-100 img-slider" alt="Insumos y kit de bubble tea">
+              <img src="{{ assetsBase }}/images/home/banners/banner_home_bubble_tea.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Insumos y kit de bubble tea">
             </picture>
           </a>
         </div>
@@ -88,7 +95,7 @@
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_toddy_1.webp" media="(max-width: 480px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_toddy_1.webp" media="(max-width: 2559px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_toddy_1.webp" media="(min-width: 2560px)">
-              <img src="{{ assetsBase }}/images/home/banners/banner_home_toddy_1.webp" class="d-block w-100 img-slider" alt="Sistema cold brew Toddy">
+              <img src="{{ assetsBase }}/images/home/banners/banner_home_toddy_1.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Sistema cold brew Toddy">
             </picture>
           </a>
         </div>
@@ -100,13 +107,15 @@
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_toddy_1_2.webp" media="(max-width: 480px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_toddy_1_2.webp" media="(max-width: 2559px)">
               <source srcset="{{ assetsBase }}/images/home/banners/banner_home_toddy_1_2.webp" media="(min-width: 2560px)">
-              <img src="{{ assetsBase }}/images/home/banners/banner_home_toddy_1_2.webp" class="d-block w-100 img-slider" alt="Preparación de cold brew con Toddy">
+              <img src="{{ assetsBase }}/images/home/banners/banner_home_toddy_1_2.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Preparación de cold brew con Toddy">
             </picture>
           </a>
         </div>
+        }
 
       </div>
 
+      @if (heroShowAllSlides) {
       <!-- Flechas de navegación -->
       <button class="carousel-control-prev z-3" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -116,6 +125,7 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Siguiente</span>
       </button>
+      }
     </div>
 
     <!-- Ola Inferior Decorativa -->
@@ -131,7 +141,7 @@
        
     <div class="container text-center">
       <h2 class="fw-bold mb-2" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">Nuestros productos</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
 
       <div class="row justify-content-center mb-5 pb-4 g-4">
         
@@ -174,7 +184,7 @@
       </div>
 
       <h2 class="fw-bold mt-4 mb-2" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">Recetas</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
       <p class="text-muted mb-5 w-75 mx-auto fs-5">Aprende a preparar las mejores recetas de temporada con la calidad de Café Etrusca.</p>
       
       <div class="row g-4 justify-content-center mt-3">
@@ -205,7 +215,7 @@
     <div class="container">
       
       <h2 class="fw-bold mb-2" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">Promociones</h2>
-    <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+    <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
 
       <p class="text-muted mx-auto fs-5 mb-5" style="max-width: 800px;">
         Selección de temporada para impulsar tu barra. Conoce las promociones vigentes y encuentra soluciones para impulsar tu barra.
@@ -237,7 +247,7 @@
       </div>
 
       <div class="mt-5 pt-3">
-        <a href="#descargables" class="badge rounded-pill fw-bold px-5 py-3 fs-6 text-decoration-none btn-promociones">Conocer más →</a>
+        <a href="https://promos-insumos.cafeetrusca.com/" target="_blank" rel="noopener" aria-label="Conocer más promociones en el boletín (abre en otra pestaña)" class="badge rounded-pill fw-bold px-5 py-3 fs-6 text-decoration-none btn-promociones">Conocer más →</a>
       </div>
 
     </div>
@@ -249,7 +259,7 @@
     <div class="container py-4">
 
       <h2 class="fw-bold mb-2 text-uppercase" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">Nuevo</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
 
       <p class="text-muted mx-auto mb-5 fs-5" style="max-width: 900px;">
         La evolución de tu barra comienza aquí. Te invitamos a conocer nuestras novedades de temporada: una selección pensada especialmente para ti, con insumos, cursos y experiencias educativas enfocadas en las tendencias que están definiendo el futuro del café.
@@ -309,7 +319,7 @@
   <section class="py-5 bg-white text-center videos-section">
     <div class="container py-3">
       <h2 class="fw-bold mb-2 text-uppercase" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">Últimos videos</h2>
-     <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+     <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
  
       <p class="text-muted mx-auto mb-4 fs-5" style="max-width: 700px;">
         ¡Únete a la experiencia! Síguenos y descubre por qué somos los favoritos.
@@ -317,7 +327,7 @@
 
       <!-- Botones Redes Sociales -->
       <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
-        <a href="https://www.youtube.com/@CafeEtrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-rosa">Youtube</a>
+        <a href="https://www.youtube.com/@CafeEtrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-rosa">YouTube</a>
         <a href="https://www.facebook.com/CafeEtrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-amarillo">Facebook</a>
         <a href="https://www.tiktok.com/@cafeetrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-verde">TikTok</a>
         <a href="https://www.instagram.com/cafeetrusca" target="_blank" class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 text-decoration-none social-badge bg-cian">Instagram</a>
@@ -404,7 +414,7 @@
 
     <div class="container text-center position-relative z-2" style="padding-top: 80px; padding-bottom: 40px;">
       <h2 class="fw-bold mb-3 text-uppercase" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">¿En qué podemos ayudarte?</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-4 img-fluid separator-img d-block mx-auto">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-4 img-fluid separator-img d-block mx-auto" width="549" height="30">
       <p class="text-dark mb-4 fs-5">Cuéntanos qué necesitas y te guiamos paso a paso.</p>
 
       <app-home-help-form></app-home-help-form>
@@ -418,7 +428,7 @@
     <!-- Encabezado -->
     <div class="text-center mb-5">
       <h2 class="fw-bold mb-2 text-uppercase home-visit-title">Visítanos</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
       <p class="text-muted mx-auto fs-5" style="max-width: 800px;">
         Estamos cerca de ti en cada paso. Encuentra tu sucursal o distribuidor más cercano y conoce toda la información antes de visitarnos.
       </p>
@@ -436,7 +446,7 @@
     <div class="container py-4">
       
       <h2 class="fw-bold mb-2 text-uppercase" style="color: var(--etrusca-navy-900); font-size: 2.2rem;">Descargables</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="Línea decorativa" class="mb-5 img-fluid separator-img d-block mx-auto">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" aria-hidden="true" class="mb-5 img-fluid separator-img d-block mx-auto" width="549" height="30">
 
       <p class="text-muted mx-auto mb-4 fs-5" style="max-width: 900px;">
         Lleva nuestra experiencia a tu equipo. Encuentra aquí tus calendarios, catálogos y guías de consulta rápida listas para descargar y usar en tu proyecto cuando lo necesites.
@@ -488,11 +498,11 @@
         </div>
 
         <div class="col-6">
-          <a href="https://revista.cafeetrusca.com/web/viewer.html?file=BUBBLE_TEA_WEB.pdf" target="_blank" rel="noopener" class="descargable-card tone-rosa">
+          <a href="https://promos-insumos.cafeetrusca.com/" target="_blank" rel="noopener" aria-label="Ver promociones del boletín: septiembre-octubre (abre en otra pestaña)" class="descargable-card tone-rosa">
             <div class="desc-img-wrap">
-              <img src="{{ assetsBase }}/images/catalogo-bubble-tea.webp" alt="Catálogo Bubble Tea" class="desc-img">
+              <img src="/assets/images/home/promociones-boletin.webp" alt="Póster de promociones septiembre-octubre con té Ten Zyu Earl Grey, válidas en sucursales Etrusca del 23 de septiembre al 31 de octubre de 2026" class="desc-img" loading="lazy" width="475" height="730">
             </div>
-            <div class="desc-footer"><span class="desc-btn">Descargar <span aria-hidden="true">&rarr;</span></span></div>
+            <div class="desc-footer"><span class="desc-btn">Ver promociones <span aria-hidden="true">&rarr;</span></span></div>
           </a>
         </div>
 
@@ -529,8 +539,8 @@
           <a href="https://calendario-cursos.cafeetrusca.com/web/viewer.html?file=CALENDARIO_SESIONES-OCT-DIC-2026.pdf" target="_blank" rel="noopener" class="d-block flex-fill descargable-card-desktop tone-amarillo shadow-sm" style="height: 50%;">
             <img src="{{ assetsBase }}/images/calendario-sesiones-sabatinas.webp" alt="Calendario sesiones sabatinas" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
-          <a href="https://revista.cafeetrusca.com/web/viewer.html?file=BUBBLE_TEA_WEB.pdf" target="_blank" rel="noopener" class="d-block flex-fill descargable-card-desktop tone-rosa shadow-sm" style="height: 50%;">
-            <img src="{{ assetsBase }}/images/catalogo-bubble-tea.webp" alt="Catálogo Bubble Tea" class="w-100 h-100 object-fit-cover rounded-3">
+          <a href="https://promos-insumos.cafeetrusca.com/" target="_blank" rel="noopener" aria-label="Ver promociones del boletín: septiembre-octubre (abre en otra pestaña)" class="d-block flex-fill descargable-card-desktop tone-rosa shadow-sm" style="height: 50%;">
+            <img src="/assets/images/home/promociones-boletin.webp" alt="Póster de promociones septiembre-octubre con té Ten Zyu Earl Grey, válidas en sucursales Etrusca del 23 de septiembre al 31 de octubre de 2026" class="w-100 h-100 object-fit-cover rounded-3" loading="lazy" width="475" height="730">
           </a>
         </div>
 

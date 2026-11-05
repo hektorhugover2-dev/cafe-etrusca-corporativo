@@ -1,12 +1,16 @@
 <div class="edu-page">
   <section class="edu-hero">
     <div class="edu-hero-copy">
+      <nav class="edu-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <span aria-current="page">Educación</span>
+      </nav>
       <h1>Aprende, <em>emprende</em> y sorprende</h1>
       <p class="lead">Formación, experiencias y encuentros diseñados para todos los que quieren llevar su pasión por el café más allá.</p>
       <a class="btn-burgundy" href="#oferta">Conoce nuestra oferta</a>
     </div>
     <div class="edu-hero-media">
-      <img src="{{ assetsBase }}/images/educacion/hero-banner.png" alt="Formación Café Etrusca">
+      <img src="/assets/images/educacion/cursos-hero-emprendedores.webp" alt="Curso Formación de emprendedores en Café Etrusca" width="750" height="375" fetchpriority="high">
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
   </section>
@@ -25,6 +29,42 @@
       <div class="edu-offer-phone">
         <img src="{{ assetsBase }}/images/educacion/quiz-phone-julio.webp" alt="Formación Café Etrusca">
       </div>
+    </div>
+  </section>
+
+  <section class="edu-section edu-old-intro">
+    <header class="edu-heading">
+      <h2 class="section-title-center">Cursos para baristas y talleres para cafeterías</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="sub">Somos pioneros en la educación y entrenamiento en el negocio de las barras de café. Nuestros cursos y talleres están diseñados para formar expertos en el café, cada uno contiene modalidades teóricas y prácticas, sin embargo, nos enfocamos en la práctica para reforzar tus conocimientos.</p>
+    </header>
+    <h3 class="old-sub">Nuestros diferenciales</h3>
+    <ol class="old-pillars">
+      <li><span aria-hidden="true">1</span>Calidad en los insumos</li>
+      <li><span aria-hidden="true">2</span>Verdaderos profesionales</li>
+      <li><span aria-hidden="true">3</span>Seguimiento a tus proyectos</li>
+      <li><span aria-hidden="true">4</span>Instalaciones de primer nivel</li>
+    </ol>
+    <div class="old-formats">
+      <article>
+        <h3>Nuestros cursos</h3>
+        <p>Nuestros cursos están diseñados para quienes buscan un dominio real de la materia. Combinamos una base sólida de conceptos clave con sesiones de práctica intensiva para garantizar que desarrolles habilidades aplicables desde el primer día.</p>
+        <ul>
+          <li><strong>Metodología:</strong> 100% integral (teoría técnica + práctica dirigida).</li>
+          <li><strong>Duración:</strong> inmersión de 2 días (14 horas efectivas de formación).</li>
+          <li><strong>Horario:</strong> iniciamos puntualmente a las 9:00 a.m.</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Nuestros talleres de especialización</h3>
+        <p>Un día dedicado a transformar tu curiosidad en habilidad técnica. A través de la experimentación y el intercambio, te especializarás en procesos específicos de la mano de nuestra comunidad.</p>
+        <ul>
+          <li><strong>Aprende haciendo:</strong> experimenta, comprende y aplica cada técnica desde el primer momento.</li>
+          <li><strong>Comunidad y aprendizaje:</strong> enriquecemos la sesión mediante el intercambio de conocimientos entre todos los participantes.</li>
+          <li><strong>Máxima intensidad:</strong> un formato de 1 día diseñado para que salgas con resultados tangibles.</li>
+          <li><strong>Horario:</strong> comenzamos a las 10:00 a.m.</li>
+        </ul>
+      </article>
     </div>
   </section>
 
@@ -293,6 +333,40 @@
       <button type="button" class="rev-arrow next" (click)="nextReview()" aria-label="Siguiente"></button>
     </div>
     </section>
+
+  <section class="edu-section edu-gallery-sec">
+    <header class="edu-heading">
+      <h2 class="section-title-center">Galería de fotos</h2>
+      <span class="rule" aria-hidden="true"></span>
+    </header>
+    <ul class="old-gallery">
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-1.webp" alt="Práctica en barra: Técnica y confianza en cada preparación" loading="lazy" width="800" height="530"><figcaption><strong>Práctica en barra</strong><span>Técnica y confianza en cada preparación.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-2.webp" alt="Conoce: Aprendes a elegir los mejores insumos" loading="lazy" width="800" height="530"><figcaption><strong>Conoce</strong><span>Aprendes a elegir los mejores insumos.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-3.webp" alt="Formación: Del grano a la barra, paso a paso" loading="lazy" width="800" height="530"><figcaption><strong>Formación</strong><span>Del grano a la barra, paso a paso.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-4.webp" alt="Aula: Teoría clara para aplicar en práctica" loading="lazy" width="800" height="530"><figcaption><strong>Aula</strong><span>Teoría clara para aplicar en práctica.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-5.webp" alt="Método: Recetas, variables y resultados reales" loading="lazy" width="800" height="530"><figcaption><strong>Método</strong><span>Recetas, variables y resultados reales.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-6.webp" alt="Equipo: Herramientas profesionales para tu nivel" loading="lazy" width="800" height="530"><figcaption><strong>Equipo</strong><span>Herramientas profesionales para tu nivel.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-7.webp" alt="Guía: Conoce el proceso completo de preparación" loading="lazy" width="800" height="530"><figcaption><strong>Guía</strong><span>Conoce el proceso completo de preparación.</span></figcaption></figure></li>
+      <li><figure><img src="/assets/images/educacion/cursos-galeria-8.webp" alt="Experiencia: Obtén una experiencia real para llevarla a tu negocio" loading="lazy" width="800" height="530"><figcaption><strong>Experiencia</strong><span>Obtén una experiencia real para llevarla a tu negocio.</span></figcaption></figure></li>
+    </ul>
+  </section>
+
+  <section class="edu-section edu-faq-sec" id="preguntas-frecuentes">
+    <header class="edu-heading">
+      <h2 class="section-title-center">Preguntas frecuentes</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="sub">En Café Etrusca queremos que tu paso por nuestras barras y aulas sea inolvidable. Para ayudarte a elegir la formación o el momento ideal para ti, hemos preparado esta guía con las respuestas a las preguntas más comunes de nuestra comunidad. Si no encuentras lo que buscas, ¡nuestro equipo está listo para asesorarte!</p>
+    </header>
+    <div class="old-faq">
+      <details><summary>¿Necesito tener conocimientos previos de café para tomar un curso o taller?</summary><p>No es necesario. Nuestras experiencias y talleres de especialización están diseñados para que cualquier persona, desde entusiastas hasta aspirantes a baristas, pueda aprender desde cero. En los cursos, vamos de la teoría a la práctica para asegurar que todos dominen el tema.</p></details>
+      <details><summary>¿Qué diferencia hay entre una experiencia, un taller de especialización y un curso?</summary><p><strong>Experiencia:</strong> un momento divertido y ligero para conocer nuestras innovaciones y llevarte un obsequio. <strong>Taller de especialización:</strong> un día intensivo (10:00 a.m.) enfocado en practicar y experimentar una técnica específica. <strong>Curso:</strong> formación profunda y técnica de 2 días (14 horas) iniciando a las 9:00 a.m., ideal para un aprendizaje integral.</p></details>
+      <details><summary>¿Los cursos incluyen materiales y café?</summary><p>Sí, todos nuestros formatos incluyen los insumos, café de especialidad y herramientas necesarias para realizar las prácticas. Solo necesitas traer muchas ganas de aprender.</p></details>
+      <details><summary>¿Qué sucede si llego tarde?</summary><p>Para aprovechar al máximo las 14 horas de los cursos o la intensidad de los talleres, recomendamos llegar 15 minutos antes. Los cursos inician puntualmente a las 9:00 a.m. y los talleres a las 10:00 a.m.</p></details>
+      <details><summary>¿Obtengo alguna constancia al finalizar?</summary><p>Sí, al completar nuestros cursos y talleres de especialización, recibes un reconocimiento que avala tu participación y las horas de formación técnica recibidas en Café Etrusca.</p></details>
+      <details><summary>¿Cómo puedo apartar mi lugar?</summary><p>Puedes realizar tu inscripción directamente en nuestra página web o contactándonos por WhatsApp. El cupo es limitado para garantizar que todos tengan tiempo suficiente de práctica en las máquinas.</p></details>
+      <details><summary>¿Qué pasa si no puedo asistir en la fecha programada?</summary><p>Contamos con políticas de reprogramación. Te pedimos notificarnos con al menos 5 días de anticipación para poder mover tu lugar a la siguiente fecha disponible.</p></details>
+    </div>
+  </section>
 </div>
 
 <app-course-interest-modal

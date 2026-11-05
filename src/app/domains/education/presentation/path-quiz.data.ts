@@ -69,10 +69,10 @@ export const PATH_QUIZ: PathQuizQuestion[] = [
   {
     q: '¿Cuánto tiempo buscas dedicarle a tu aprendizaje?',
     options: [
-      { key: 'A', text: 'Una formación integral enfocada en la creación de empresas. (14 hrs)', profile: 'emprendedor' },
-      { key: 'B', text: 'Un taller técnico y práctico enfocado en el servicio y la preparación. (6 hrs)', profile: 'barista' },
-      { key: 'C', text: 'Un taller especializado en control de calidad y análisis sensorial. (6 hrs)', profile: 'calidad' },
-      { key: 'D', text: 'Un taller amigable, dinámico y enfocado en el disfrute personal. (3 hrs)', profile: 'aficionado', experiencia: true }
+      { key: 'A', text: 'Una formación integral enfocada en la creación de empresas. (14 h)', profile: 'emprendedor' },
+      { key: 'B', text: 'Un taller técnico y práctico enfocado en el servicio y la preparación. (6 h)', profile: 'barista' },
+      { key: 'C', text: 'Un taller especializado en control de calidad y análisis sensorial. (6 h)', profile: 'calidad' },
+      { key: 'D', text: 'Un taller amigable, dinámico y enfocado en el disfrute personal. (3 h)', profile: 'aficionado', experiencia: true }
     ]
   }
 ];

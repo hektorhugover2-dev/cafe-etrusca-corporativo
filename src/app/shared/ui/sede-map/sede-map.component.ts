@@ -165,6 +165,7 @@ export class SedeMapComponent {
       this.map = L.map(el, { center: [23.6, -102.5], zoom: 5, scrollWheelZoom: false, attributionControl: true });
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
+        detectRetina: true,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(this.map);
       this.layer = L.layerGroup().addTo(this.map);
@@ -182,7 +183,7 @@ export class SedeMapComponent {
     this.layer!.clearLayers();
     for (const { place, latlng } of pins) {
       const icon = L.icon({ iconUrl: PIN_URL[kindOf(place)], iconSize: [28, 40], iconAnchor: [14, 40], tooltipAnchor: [0, -34], className: 'vm-pin' });
-      L.marker(latlng, { icon, title: placeLabel(place), alt: placeLabel(place), keyboard: true })
+      L.marker(latlng, { icon, title: placeLabel(place), alt: placeLabel(place), keyboard: false }) // teclado: el select de sucursal elige lo mismo; pines encimados fallaban target-size
         .bindTooltip(this.withNote(place), { direction: 'top' })
         .on('click', () => this.choose(place))
         .addTo(this.layer!);

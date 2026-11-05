@@ -1,4 +1,6 @@
+import { ProductFactsComponent } from '../../components/product-facts/product-facts.component';
 import { Component, inject } from '@angular/core';
+import { CatalogNamePipe } from '../../../../../shared/ui/catalog-name.pipe';
 import { RouterLink } from '@angular/router';
 import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
 import { InsumosNavComponent } from '../../components/insumos-nav/insumos-nav.component';
@@ -32,11 +34,12 @@ const TONES = ['coral', 'yellow'] as const;
 @Component({
   selector: 'app-tisanas-chillout-page',
   standalone: true,
-  imports: [RouterLink, InsumosNavComponent, ScrollWaveComponent],
+  imports: [CatalogNamePipe, ProductFactsComponent, RouterLink, InsumosNavComponent, ScrollWaveComponent],
   templateUrl: './tisanas-chillout-page.component.html',
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './tisanas-chillout-page.component.scss']
 })
 export class TisanasChilloutPageComponent {
+  readonly calcPath = '/calculadora-de-precios';
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
   protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);

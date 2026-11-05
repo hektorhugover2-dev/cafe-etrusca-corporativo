@@ -1,0 +1,30 @@
+# Café Etrusca
+
+> Café Etrusca Todo Para Tu Cafetería: cursos para baristas, talleres para cafeterías, insumos, maquinaria, equipo, accesorios y más para potenciar tu negocio. Teléfono: (55) 4166 8777.
+
+## Secciones principales
+
+- [Inicio](https://cafeetrusca.com/)
+- [Nosotros](https://cafeetrusca.com/nosotros/)
+- [Productos](https://cafeetrusca.com/productos/)
+- [Insumos para cafeterías](https://cafeetrusca.com/insumos-para-cafeterias/)
+- [Accesorios para poner una cafetería](https://cafeetrusca.com/accesorios-para-poner-una-cafeteria/)
+- [Maquinaria y equipo para cafeterías](https://cafeetrusca.com/maquinaria-y-equipo-para-cafeterias/)
+- [Cursos para baristas y talleres para cafeterías](https://cafeetrusca.com/cursos-para-baristas-y-talleres-para-cafeterias/)
+- [Emprendiendo mi negocio de barra de café y cafetería](https://cafeetrusca.com/emprendiendo-mi-negocio-de-barra-de-cafe-y-cafeteria/)
+- [Recetas](https://cafeetrusca.com/recetas/)
+- [Calculadora de precios](https://cafeetrusca.com/calculadora-de-precios/)
+- [Videoteca](https://cafeetrusca.com/videoteca/)
+- [Sucursales](https://cafeetrusca.com/sucursales/)
+- [Contacto](https://cafeetrusca.com/contacto/)
+
+## Políticas
+
+- [Aviso de privacidad](https://cafeetrusca.com/aviso-de-privacidad/)
+- [Términos y condiciones](https://cafeetrusca.com/terminos-y-condiciones/)
+- [Políticas externas de cursos](https://cafeetrusca.com/politicas-externas-cursos/)
+- [Política de productos perecederos](https://cafeetrusca.com/politica-de-productos-perecederos/)
+
+## Optional
+
+- [Mapa del sitio](https://cafeetrusca.com/sitemap.xml)

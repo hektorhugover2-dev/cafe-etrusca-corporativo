@@ -23,6 +23,22 @@ export interface RecipeSapIngredient {
   confidence?: 'alta' | 'media' | 'baja';
 }
 
+/** Ingrediente alternativo: no cambia la receta original ni sus cantidades. */
+export interface RecipeAlternative {
+  /** Ingrediente original que se puede sustituir */
+  replaces: string;
+  /** Producto alternativo */
+  ingredient: string;
+  sap: string;
+  /** Ficha en la tienda (misma forma que storeProductUrl en store-links.ts) */
+  url: string;
+  /** Página de marca relacionada */
+  brandPath?: string;
+  brandLabel?: string;
+  /** Placeholder visible */
+  note?: string;
+}
+
 export interface Recipe {
   slug: string;
   title: string;
@@ -59,6 +75,8 @@ export interface Recipe {
   video?: { youtubeId: string; name: string; uploadDate: string; thumbnailUrl: string };
   /** Agrega BreadcrumbList (Inicio › Recetas › receta) al JSON-LD. */
   breadcrumbJsonLd?: boolean;
+  /** Ingrediente alternativo (p. ej. David Rio en lugar de ChillOut). Solo se muestra en la receta; NO va en recipeIngredient del JSON-LD ni en la calculadora. */
+  alternatives?: RecipeAlternative[];
   published: boolean;
 }
 
@@ -291,7 +309,7 @@ export const RECIPES: Recipe[] = [
       },
       {
         title: "Leche y decoración",
-        text: "Espuma la leche, sirve y decora con bombones; flaéalos al momento.",
+        text: "Espuma la leche, sirve y decora con bombones; flaméalos al momento.",
         tone: "blue",
         icon: ICO.decor
       }
@@ -4435,7 +4453,7 @@ export const RECIPES: Recipe[] = [
       { ingredient: "20 g de ChillOut Jam maracuyá", sap: "IPC-001", qty: 20, unit: "g" },
       { ingredient: "40 g de ChillOut Mix yogur", sap: "IBP-034", qty: 40, unit: "g" }
     ],
-    title: "Super",
+    title: "Súper",
     titleAccent: "maracuyá",
     kicker: 'Recetas ChillOut',
     category: 'Bebidas frías',
@@ -4479,7 +4497,7 @@ export const RECIPES: Recipe[] = [
       }
     ],
     seo: {
-      title: "Receta Super maracuyá | ChillOut | Café Etrusca",
+      title: "Receta Súper maracuyá | ChillOut | Café Etrusca",
       description: "Frappé de yogur con ChillOut Jam maracuyá y ChillOut Mix yogur, servido sobre ChillOut Jelly maracuyá. Receta ChillOut de Café Etrusca.",
       keywords: "super maracuya, frappe de maracuya, chillout jelly, chillout mix yogur, ChillOut, Café Etrusca"
     },
@@ -4510,6 +4528,18 @@ export const RECIPES: Recipe[] = [
       "20 g de ChillOut Mix chai negro",
       "30 ml de jarabe ChillOut caramelo",
       "260 ml de leche"
+    ],
+    // Alternativo David Rio (pedido de Héctor, 29-oct-2026): mismo tipo, chai en polvo tradicional de té negro.
+    alternatives: [
+      {
+        replaces: "ChillOut Mix chai negro",
+        ingredient: "Chai David Rio Tigre tradicional (Tiger Spice), bote 1.814 kg",
+        sap: "IBP-085",
+        url: "https://tienda.cafeetrusca.com/producto/detalle/IBP-085/DAVID-RIO-CHAI-TIGRE-BASE-EN-POLVO-SABOR-TRADICIONAL-BOTE-1-814-kg",
+        brandPath: "/insumos-para-cafeterias/bases-en-polvo/david-rio",
+        brandLabel: "Ver chai David Rio",
+        note: "[Por confirmar: dosis con David Rio]"
+      }
     ],
     tools: ["Jarra de acero", "Vaporizador", "Taza"],
     steps: [
@@ -4781,7 +4811,7 @@ export const RECIPES: Recipe[] = [
     steps: [
       {
         title: 'Paso 1',
-        text: 'Coloca en el sifón el agua y matcha y mezcla hasta diluir, cierra correctamente y enseguida inyecta la capsula de nitrógeno.',
+        text: 'Coloca en el sifón el agua y matcha y mezcla hasta diluir, cierra correctamente y enseguida inyecta la cápsula de nitrógeno.',
         tone: 'green',
         icon: ICO.base
       },

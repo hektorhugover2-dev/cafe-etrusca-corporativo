@@ -7,10 +7,10 @@
     </div>
   }
 
-  <div class="grinder-marquee-wrap">
+  <div class="grinder-marquee-wrap" aria-hidden="true">
     <div class="grinder-marquee">
       @for (n of marqueeLoop; track n) {
-        <span>{{ brand.marquee }}</span>
+        <span [attr.data-text]="brand.marquee"></span>
       }
     </div>
   </div>
@@ -36,7 +36,7 @@
 
       @if (ficha.length) {
         <div class="grinder-specs">
-          <h5>FICHA TÉCNICA</h5>
+          <h5 aria-level="3">Ficha técnica</h5>
           <div class="grinder-specs-grid">
             <table>
               <tbody>
@@ -77,7 +77,7 @@
       </div>
 
       @if ((slide?.colores?.length || 0) > 1) {
-        <div class="grinder-dots" role="tablist" aria-label="Colores">
+        <div class="grinder-dots" role="group" aria-label="Colores">
           @for (c of slide!.colores; track c.name; let i = $index) {
             <button
               type="button"
@@ -86,6 +86,7 @@
               [style.background]="c.hex"
               [attr.title]="c.name"
               [attr.aria-label]="c.name"
+              [attr.aria-pressed]="colorAt === i"
               (click)="pickColor(i)">
             </button>
           }

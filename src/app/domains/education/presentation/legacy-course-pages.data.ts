@@ -75,7 +75,7 @@ const KW: ReadonlyArray<string> = [
   "sca cafe,cursos de baristas en León,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
   "sca cafe,cursos de baristas en Monterrey,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
   "sca cafe,cursos de baristas en Puebla,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
-  "sca cafe,cursos de baristas en Queretaro,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
+  "sca cafe,cursos de baristas en Querétaro,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
   "sca cafe,cursos de baristas en Tijuana,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
   "sca cafe,cursos de baristas en Toluca,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
   "sca cafe,cursos de baristas en Viaducto CDMX,accesorios barista,cursos de café,accesorios para baristas,cursos para baristas,para coffee,curso para barista de cafe,cursos baristas,accesorios de barista,maquina de barista,cursos sobre cafe,taller de barista,equipo para barista,accesorios para barista,cursos de baristas de cafe,maquinas de cafe barista,baristas cursos,maquina para barista,equipo de barista,taller barista,curso barista de cafe,para barista,maquinas baristas,equipo barista,cursos baristas cafe,curso para cafe,maquinas para baristas,maquina de cafe para barista,accesorios barista café,maquina para cafe barista",
@@ -91,7 +91,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "p",
-        "html": "Un barista es una persona especializada en la preparación de bebidas a base de café bajo un alto estándar de calidad, sin dejar de lado su presentación e imagen y exponenciando los mejores atributos para cualquier café."
+        "html": "Un barista es una persona especializada en la preparación de bebidas a base de café bajo un alto estándar de calidad, sin dejar de lado su presentación e imagen y potenciando los mejores atributos para cualquier café."
       },
       {
         "type": "p",
@@ -113,10 +113,10 @@ const S: ReadonlyArray<LegacySection> = [
             "html": "Ratio"
           },
           {
-            "html": "Caracteristicas y evaluacion del espresso"
+            "html": "Características y evaluación del espresso"
           },
           {
-            "html": "Las 4 M ́s"
+            "html": "Las 4 M"
           },
           {
             "html": "Leche y sus compuestos"
@@ -225,7 +225,7 @@ const S: ReadonlyArray<LegacySection> = [
             "html": "<strong>Definición de Barista</strong>"
           },
           {
-            "html": "<strong>Definición de expresso (sca)</strong>"
+            "html": "<strong>Definición de espresso (sca)</strong>"
           },
           {
             "html": "<strong>Ratio</strong>"
@@ -249,7 +249,7 @@ const S: ReadonlyArray<LegacySection> = [
             ]
           },
           {
-            "html": "<strong>Subextración y sobre extracción</strong>"
+            "html": "<strong>Subextracción y sobre extracción</strong>"
           },
           {
             "html": "<strong>Identificación de sabores primarios en la lengua</strong>"
@@ -506,7 +506,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Introducir nuevas texturas y presentaciones atractivas para captar la atención en redes sociales, como jellies, brûlées personalizados y crystal bobba."
+        "html": "Introducir nuevas texturas y presentaciones atractivas para captar la atención en redes sociales, como jellies, brûlées personalizados y crystal boba."
       }
     ]
   },
@@ -686,7 +686,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Eficientar la operación dentro del negocio que se traduce en optimizaciónn de procesos, estandarización de bebidas, calidad e innovación para asegurar un negocio exitoso y rentable ante las exigencias del consumidor moderno."
+        "html": "Eficientar la operación dentro del negocio que se traduce en optimización de procesos, estandarización de bebidas, calidad e innovación para asegurar un negocio exitoso y rentable ante las exigencias del consumidor moderno."
       }
     ]
   },
@@ -722,7 +722,7 @@ const S: ReadonlyArray<LegacySection> = [
             "html": "Prácticas de higiene y seguridad"
           },
           {
-            "html": "Clasificaciónes de bebidas"
+            "html": "Clasificaciones de bebidas"
           },
           {
             "html": "Nuevos toppings"
@@ -837,7 +837,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "<strong>Duración del taller:</strong> 6 hrs efectivas."
+        "html": "<strong>Duración del taller:</strong> 6 h efectivas."
       }
     ]
   },
@@ -862,7 +862,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Guadalajara como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Guadalajara como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -956,7 +956,7 @@ const S: ReadonlyArray<LegacySection> = [
         "type": "ul",
         "items": [
           {
-            "html": "Aprenderás a <strong>preparar de manera adecuada</strong> un expresso."
+            "html": "Aprenderás a <strong>preparar de manera adecuada</strong> un espresso."
           },
           {
             "html": "Aprenderás la <strong>técnica para un espumado de leche</strong>adecuado."
@@ -1046,7 +1046,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Monterrey como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Monterrey como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -1089,7 +1089,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Queretaro como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Querétaro como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -1118,7 +1118,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "📍 <strong>Dirección:</strong> Av Tecnológico 10-Sur, Niños Heroes, 76010 Santiago de Querétaro, Qro. <a href=\"https://maps.app.goo.gl/RjvbAAH4x9MuAwTQ9\" target=\"_blank\" rel=\"noopener\">Ver en Google Maps</a>"
+        "html": "📍 <strong>Dirección:</strong> Av Tecnológico 10-Sur, Niños Héroes, 76010 Santiago de Querétaro, Qro. <a href=\"https://maps.app.goo.gl/RjvbAAH4x9MuAwTQ9\" target=\"_blank\" rel=\"noopener\">Ver en Google Maps</a>"
       }
     ]
   },
@@ -1132,7 +1132,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Puebla como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Puebla como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -1459,7 +1459,7 @@ const S: ReadonlyArray<LegacySection> = [
             "html": "Promoción válida únicamente donde se registre la asistencia a la Experiencia."
           },
           {
-            "html": "El descuento sólo podrá utilizarse el mismo día de la inscripción a la Experiencia."
+            "html": "El descuento solo podrá utilizarse el mismo día de la inscripción a la Experiencia."
           },
           {
             "html": "No aplica en productos que ya cuenten con descuentos o promociones vigentes."
@@ -1553,7 +1553,7 @@ const S: ReadonlyArray<LegacySection> = [
       {
         "type": "img",
         "src": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.svg`,
-        "alt": "Cursos y Talleres Cafe Etrusca"
+        "alt": "Cursos y Talleres Café Etrusca"
       },
       {
         "type": "p",
@@ -1888,7 +1888,7 @@ const S: ReadonlyArray<LegacySection> = [
         "type": "ul",
         "items": [
           {
-            "html": "Año con año las tendencias de preparaciones van cambiando, por lo cuál actualizarse en la formulación para extraer de forma correcta la preparación de métodos de extracción, siempre basados en los estándares proporcionados por la SCA (Specialty Coffee Association)."
+            "html": "Año con año las tendencias de preparaciones van cambiando, por lo cual actualizarse en la formulación para extraer de forma correcta la preparación de métodos de extracción, siempre basados en los estándares proporcionados por la SCA (Specialty Coffee Association)."
           },
           {
             "html": "Son 7 los elementos que tenemos que conocer para que el sabor de las bebidas resulte de forma placentera al paladar de nuestros clientes o bien un consumo propio."
@@ -1963,7 +1963,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Tijuana como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Tijuana como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -1988,7 +1988,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Toluca como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Toluca como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -2013,7 +2013,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Zona Rosa CDMX como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Zona Rosa CDMX como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -2294,7 +2294,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Leon como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en León como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -2337,7 +2337,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Xalapa como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Xalapa como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -2358,11 +2358,11 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "p",
-        "html": "Objetivo general: Capacitar al personal de barras o consumo en casa en la elaboración de coctelería con y sin café, integrando técnicas básicas, insumos con los que contamos también en nuestra barra y se les pueda dar más de un solo uso, ofertar un menú más amplio o bien en una reunión en casa y disfrutar de una charla con un buen cocktel."
+        "html": "Objetivo general: Capacitar al personal de barras o consumo en casa en la elaboración de coctelería con y sin café, integrando técnicas básicas, insumos con los que contamos también en nuestra barra y se les pueda dar más de un solo uso, ofertar un menú más amplio o bien en una reunión en casa y disfrutar de una charla con un buen cóctel."
       },
       {
         "type": "p",
-        "html": "También se adaptarán bebidas sin alcohol o conocidas como mockteleria experimentando con texturas, sabores y técnicas diversas."
+        "html": "También se adaptarán bebidas sin alcohol o conocidas como moctelería / coctelería sin alcohol experimentando con texturas, sabores y técnicas diversas."
       }
     ]
   },
@@ -2423,7 +2423,7 @@ const S: ReadonlyArray<LegacySection> = [
           {
             "html": "<strong>8. El desafío creativo</strong>",
             "sub": [
-              "Competencia amistosa y “Mistery Box Challenge”."
+              "Competencia amistosa y “Mystery / Misterio Box Challenge”."
             ]
           }
         ]
@@ -2652,7 +2652,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Profundizar con diferentes fórmulas, así como el uso de herrmientas para entender de mejor manera tus habilidades como barista."
+        "html": "Profundizar con diferentes fórmulas, así como el uso de herramientas para entender de mejor manera tus habilidades como barista."
       }
     ]
   },
@@ -2673,7 +2673,7 @@ const S: ReadonlyArray<LegacySection> = [
     "blocks": [
       {
         "type": "p",
-        "html": "El toque final en una bebida como un cappuccino, latte o flatwhite, es el arte latte, una técnica que permite crear un atractivo visual sobre la superficie de tu bebidas, y que mejor, que resaltar ese atractivo con diseños más allá de los patrones básicos, donde solo se necesitan dos elementos principales: café y leche. Manejar un buen arte latte en tu cafetería, genera un valor agregado no solo a tus bebidas, sino también a tu negocio e inclusive a tus redes sociales."
+        "html": "El toque final en una bebida como un cappuccino, latte o flat white, es el arte latte, una técnica que permite crear un atractivo visual sobre la superficie de tus bebidas, y que mejor, que resaltar ese atractivo con diseños más allá de los patrones básicos, donde solo se necesitan dos elementos principales: café y leche. Manejar un buen arte latte en tu cafetería, genera un valor agregado no solo a tus bebidas, sino también a tu negocio e inclusive a tus redes sociales."
       },
       {
         "type": "p",
@@ -2711,7 +2711,7 @@ const S: ReadonlyArray<LegacySection> = [
             "html": "Tipos de jarras y sus características"
           },
           {
-            "html": "Estandard de leche al espumar"
+            "html": "Estándar de leche al espumar"
           },
           {
             "html": "Latte art standard según la SCA"
@@ -2811,7 +2811,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Desarrollar un perfil exclusivo de tueste para tu cafetería ahora es posible. Lo logramos gracias a nuestros catadores y maestros tostadores certificados quienes cuentan con las habilidades necesarias para ayudarte a determinar los sabores que quieres obtener en taza, mezclando origenes y grados de tueste."
+        "html": "Desarrollar un perfil exclusivo de tueste para tu cafetería ahora es posible. Lo logramos gracias a nuestros catadores y maestros tostadores certificados quienes cuentan con las habilidades necesarias para ayudarte a determinar los sabores que quieres obtener en taza, mezclando orígenes y grados de tueste."
       }
     ]
   },
@@ -2920,7 +2920,7 @@ const S: ReadonlyArray<LegacySection> = [
             "html": "Promoción válida únicamente donde se registre la asistencia a la Experiencia."
           },
           {
-            "html": "El descuento sólo podrá utilizarse el mismo día de la inscripción a la Experiencia."
+            "html": "El descuento solo podrá utilizarse el mismo día de la inscripción a la Experiencia."
           },
           {
             "html": "No aplica en productos que ya cuenten con descuentos o promociones vigentes."
@@ -3060,7 +3060,7 @@ const S: ReadonlyArray<LegacySection> = [
       },
       {
         "type": "p",
-        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latteen Viaducto CDMX como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
+        "html": "Te enseñaremos técnicas de espumado y vertido de leche para crear diseños básicos de arte latte en Viaducto CDMX como: corazón, rosetta y tulipán, generando una sinergia de sabor a partir de una correcta extracción del espresso."
       }
     ]
   },
@@ -3151,7 +3151,7 @@ const S: ReadonlyArray<LegacySection> = [
         "type": "ul",
         "items": [
           {
-            "html": "A dominar las categorías de bebidas del menú frío: bebidas frías, frappes, sodas y smoothies; formas de preparación y presentación con alto impacto visual."
+            "html": "A dominar las categorías de bebidas del menú frío: bebidas frías, frappés, sodas y smoothies; formas de preparación y presentación con alto impacto visual."
           },
           {
             "html": "Aplicar técnicas de preparación de forma adecuada."
@@ -4085,7 +4085,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
       },
       {
         "icon": "time",
-        "label": "6 hrs efectivas"
+        "label": "6 h efectivas"
       }
     ],
     "sections": [
@@ -4170,15 +4170,15 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   },
   {
     "path": "taller-de-arte-latte-nivel-basico-en-queretaro",
-    "title": "Taller básico de arte latte en Queretaro - Aprende a realizar figuras en taza",
-    "description": "Taller de arte latte en Queretaro está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
+    "title": "Taller básico de arte latte en Querétaro - Aprende a realizar figuras en taza",
+    "description": "Taller de arte latte en Querétaro está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "Querétaro",
     "kicker": "Taller",
-    "h1": "Taller Básico Arte Latte en Queretaro",
+    "h1": "Taller Básico Arte Latte en Querétaro",
     "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
@@ -4348,7 +4348,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "keywords": KW[5],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
-    "h1": "Curso de cafe",
+    "h1": "Curso de café",
     "sections": [
       S[60],
       S[61],
@@ -4662,7 +4662,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "keywords": KW[5],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
-    "h1": "Curso de cafeteria",
+    "h1": "Curso de cafetería",
     "sections": [
       S[60],
       S[61],
@@ -4681,15 +4681,15 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   },
   {
     "path": "taller-de-arte-latte-nivel-basico-en-leon",
-    "title": "Taller básico de arte latte en Leon - Aprende a realizar figuras en taza",
-    "description": "Taller de arte latte en Leon está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
+    "title": "Taller básico de arte latte en León - Aprende a realizar figuras en taza",
+    "description": "Taller de arte latte en León está desarrollado por Campeones Nacionales para perfeccionar tu técnica de espumado/vaciado para realizar figuras perfectas.",
     "keywords": KW[4],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "city": "León",
     "kicker": "Taller",
-    "h1": "Taller Básico Arte Latte en Leon",
+    "h1": "Taller Básico Arte Latte en León",
     "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
@@ -4768,7 +4768,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
       },
       {
         "icon": "time",
-        "label": "3 hrs efectivas"
+        "label": "3 h efectivas"
       }
     ],
     "sections": [
@@ -4864,7 +4864,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
       },
       {
         "icon": "time",
-        "label": "6 hrs efectivas"
+        "label": "6 h efectivas"
       }
     ],
     "sections": [
@@ -4884,7 +4884,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
     "accent": "#d5b183",
     "courseSlug": "arte-latte",
     "kicker": "Taller",
-    "h1": "Cuso de Arte Latte",
+    "h1": "Curso de Arte Latte",
     "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/arte-latte.svg`,
     "meta": [
       {
@@ -4990,7 +4990,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
       },
       {
         "icon": "time",
-        "label": "3 hrs efectivas"
+        "label": "3 h efectivas"
       }
     ],
     "sections": [
@@ -5163,16 +5163,16 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   },
   {
     "path": "taller-basico-para-baristas-en-queretaro",
-    "title": "Taller básico para baristas en Queretaro - Impartido por instructores de la SCA",
-    "description": "Cursos Para Baristas y Talleres Para Cafeterías en Queretaro destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
+    "title": "Taller básico para baristas en Querétaro - Impartido por instructores de la SCA",
+    "description": "Cursos Para Baristas y Talleres Para Cafeterías en Querétaro destinados para quien desea iniciarse en el Barismo, especializarse como Baristas y emprender una cafetería.",
     "keywords": KW[16],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "formacion-barista",
     "city": "Querétaro",
     "kicker": "Taller",
-    "h1": "Formación para un barista en Queretaro",
-    "subtitle": "Taller básico para Baristas en Queretaro",
+    "h1": "Formación para un barista en Querétaro",
+    "subtitle": "Taller básico para Baristas en Querétaro",
     "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/formacion-para-un-barista.svg`,
     "meta": [
       {
@@ -5496,8 +5496,8 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   },
   {
     "path": "taller-de-bubble-tea-&-iced-coffee-en-leon",
-    "title": "Taller de Bubble tea & iced coffee en Leon",
-    "description": "Taller de Bubble tea & iced en Leon, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
+    "title": "Taller de Bubble tea & iced coffee en León",
+    "description": "Taller de Bubble tea & iced en León, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
@@ -5601,15 +5601,15 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   },
   {
     "path": "taller-de-bubble-tea-&-iced-coffee-en-queretaro",
-    "title": "Taller de Bubble tea & iced coffee en Queretaro",
-    "description": "Taller de Bubble tea & iced en Queretaro, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
+    "title": "Taller de Bubble tea & iced coffee en Querétaro",
+    "description": "Taller de Bubble tea & iced en Querétaro, combina diferentes aspectos que lo hacen único: Toppings originales que le dan textura a la bebida, combinación de sabores, presentación atractiva y la posibilidad de personalizar tu bebida.",
     "keywords": KW[1],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",
     "courseSlug": "bubble-tea-iced-coffee",
     "city": "Querétaro",
     "kicker": "TALLER",
-    "h1": "Taller de Bubble Tea & Iced Coffee en Queretaro",
+    "h1": "Taller de Bubble Tea & Iced Coffee en Querétaro",
     "icon": `${ASSETS_BASE_URL}/images/educacion/legacy/bubble-tea.svg`,
     "meta": [
       {
@@ -5739,7 +5739,7 @@ export const LEGACY_COURSE_PAGES: ReadonlyArray<LegacyCoursePage> = [
   {
     "path": "taller-de-catacion-de-cafes-mexicanos-en-zona-rosa-cdmx",
     "title": "Curso básico de catación de café en Zona Rosa - Catando de la Semilla a lo Sensorial",
-    "description": "Taller de Catación de Cafés Mexicanos  en Zona Rosa, es un taller del más alto nivel ya que es impartido por Catadores Profesionales 'Licensed Q Grader' ¡Regístrate Ya!",
+    "description": "Taller de Catación de Cafés Mexicanos  en Zona Rosa, es un taller del más alto nivel, ya que es impartido por Catadores Profesionales 'Licensed Q Grader' ¡Regístrate Ya!",
     "keywords": KW[22],
     "image": `${ASSETS_BASE_URL}/images/educacion/legacy/cursos-talleres-logo.webp`,
     "accent": "#d5b183",

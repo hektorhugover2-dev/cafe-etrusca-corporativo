@@ -60,11 +60,11 @@ export class ProductsPageComponent implements OnInit {
   ];
 
   brands = [
-    { src: `${ASSETS_BASE_URL}/images/productos/logo-reneka.webp`, alt: 'Reneka' },
-    { src: `${ASSETS_BASE_URL}/images/productos/logo-torani.webp`, alt: 'Torani' },
-    { src: `${ASSETS_BASE_URL}/images/productos/logo-pietro.webp`, alt: 'Pietro Grinders' },
-    { src: `${ASSETS_BASE_URL}/images/productos/logo-lafenice.webp`, alt: 'La Fenice' },
-    { src: `${ASSETS_BASE_URL}/images/productos/logo-chillout.webp`, alt: 'Chill Out' }
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-reneka.webp`, alt: 'Logo de Reneka' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-torani.webp`, alt: 'Logo de Torani' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-pietro.webp`, alt: 'Logo de Pietro Grinders' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-lafenice.webp`, alt: 'Logo de La Fenice' },
+    { src: `${ASSETS_BASE_URL}/images/productos/logo-chillout.webp`, alt: 'Logo de ChillOut' }
   ];
 
   traits = [

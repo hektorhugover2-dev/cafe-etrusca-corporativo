@@ -1,17 +1,17 @@
 @if (course) {
-<div class="edu-page">
-  <nav class="edu-crumbs" aria-label="Breadcrumb">
-    @for (c of crumbs; track c.label; let last = $last) {
-      @if (!last && c.path) {
-        <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
-      } @else {
-        <span aria-current="page">{{ c.label }}</span>
-      }
-    }
-  </nav>
+<div class="edu-page edu-page--flush">
   <section class="edu-hero">
     <div class="edu-hero-copy">
-      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">
+      <nav class="edu-crumbs" aria-label="Breadcrumb">
+        @for (c of crumbs; track c.label; let last = $last) {
+          @if (!last && c.path) {
+            <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+          } @else {
+            <span aria-current="page">{{ c.label }}</span>
+          }
+        }
+      </nav>
+      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#bf3267;">
         {{ course.kicker }} presencial
         @if (landing) {
           <span> · {{ landing.cityLabel }}</span>
@@ -44,7 +44,7 @@
     <div class="edu-grid-3">
       @for (h of course.highlights; track h.title) {
         <article class="edu-path">
-          <h3>{{ h.title }}</h3>
+          <h3 aria-level="2">{{ h.title }}</h3>
           <p>{{ h.text }}</p>
         </article>
       }
@@ -109,7 +109,7 @@
         <article class="edu-date-card">
           <div class="date-block">
             <span class="days">{{ d.days }}</span>
-            <span class="month">{{ d.month }}</span>
+            <span class="month">{{ d.month?.toLowerCase() }}</span>
           </div>
           <div class="info-block">
             <div class="location">

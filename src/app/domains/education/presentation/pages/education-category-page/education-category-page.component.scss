@@ -171,3 +171,42 @@
     &:last-child { border-bottom: 0; }
   }
 }
+
+/* sesiones-hero / talleres-hero: imagen propia por categoria */
+.cat-hero-media[data-cat='sesiones'] {
+  &::before { display: none; }
+  img {
+    inset: auto;
+    left: 50%;
+    top: calc(112px + 1.5rem);
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 90%;
+    height: calc(100% - 112px - 2rem);
+    max-height: 460px;
+    object-fit: contain;
+    margin-top: 0;
+    filter: drop-shadow(0 22px 26px rgba(60, 35, 15, 0.22));
+  }
+}
+.cat-hero-media[data-cat='talleres'] {
+  &::before { display: none; }
+  img {
+    top: 112px;
+    height: calc(100% - 112px);
+    margin-top: 0;
+    object-fit: cover;
+    object-position: 60% center;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 38%);
+  }
+}
+@media (max-width: 900px) {
+  .cat-hero-media[data-cat='sesiones'] img { top: 0.5rem; height: calc(100% - 110px); max-height: none; }
+  .cat-hero-media[data-cat='sesiones'] { min-height: 300px; }
+  .cat-hero-media[data-cat='talleres'] img {
+    top: 0; height: 100%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 35%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 35%);
+  }
+}

@@ -43,7 +43,7 @@ export const MARCAS_DESTACADAS = [
   {
     name: 'Torani',
     text: 'Sabor que inspira posibilidades. Jarabes, salsas y purés con más de 100 años elevando la experiencia de bebidas en todo el mundo.',
-    logo: `${ASSETS_BASE_URL}/images/insumos/logo-torani.png`,
+    logo: `${ASSETS_BASE_URL}/images/productos/logo-torani.webp`,
     image: `${ASSETS_BASE_URL}/images/insumos/product-cluster.png`,
     link: '/insumos-para-cafeterias/jarabes/torani'
   },
@@ -474,8 +474,8 @@ export interface InsumosBrandLogo {
 export const INSUMOS_BRAND_LOGOS: InsumosBrandLogo[] = [
   { id: 'torani', name: 'Torani', link: '/insumos-para-cafeterias/jarabes/torani', image: { src: `${ASSETS_BASE_URL}/images/productos/logo-torani.webp`, width: 200, height: 102 } },
   { id: 'chillout', name: 'ChillOut', link: '/insumos-para-cafeterias/bases-en-polvo/chillout', image: { src: `${ASSETS_BASE_URL}/images/productos/logo-chillout.webp`, width: 220, height: 118 } },
-  { id: 'david-rio', name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`, width: 154, height: 88 } },
-  { id: 'mocafe', name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`, width: 115, height: 76 } },
+  { id: 'david-rio', name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo/david-rio', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`, width: 154, height: 88 } },
+  { id: 'mocafe', name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo/mocafe', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`, width: 115, height: 76 } },
   { id: 'cool-capps', name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`, width: 81, height: 77 } },
   { id: 'cappuccine', name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`, width: 150, height: 54 } },
   { id: 'hollander', name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`, width: 251, height: 90 } },
@@ -486,8 +486,8 @@ export const INSUMOS_BRAND_LOGOS: InsumosBrandLogo[] = [
 export const INSUMOS_BRAND_STRIP: Array<{ name: string; link: string }> = [
   { name: 'Torani', link: '/insumos-para-cafeterias/jarabes/torani' },
   { name: 'ChillOut', link: '/insumos-para-cafeterias/bases-en-polvo/chillout' },
-  { name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo' },
-  { name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo/david-rio' },
+  { name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo/mocafe' },
   { name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo' },
   { name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo' },
   { name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo' },

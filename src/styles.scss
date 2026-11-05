@@ -1,9 +1,55 @@
 @import 'leaflet/dist/leaflet.css';
 
 /* POPPINS GLOBAL */
+/* Fallback con métricas de Poppins sobre Arial: evita el salto (CLS) cuando entra la webfont (font-display: swap) */
+@font-face {
+  font-family: 'Poppins Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans'), local('Arimo');
+  ascent-override: 93.62%;
+  descent-override: 31.21%;
+  line-gap-override: 8.92%;
+  size-adjust: 112.16%;
+  font-weight: 100 500;
+}
+@font-face {
+  font-family: 'Poppins Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('LiberationSans-Bold'), local('Arimo Bold'), local('Arimo-Bold');
+  font-weight: 600 900;
+  ascent-override: 97.76%;
+  descent-override: 32.59%;
+  line-gap-override: 9.31%;
+  size-adjust: 107.41%;
+}
+/* Fallbacks con métricas de Figtree y Outfit (calculadas de los woff2 de Google Fonts vs Arial) */
+@font-face {
+  font-family: 'Figtree Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans'), local('Arimo');
+  font-weight: 100 500;
+  ascent-override: 95.39%;
+  descent-override: 25.10%;
+  line-gap-override: 0%;
+  size-adjust: 99.60%;
+}
+@font-face {
+  font-family: 'Figtree Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('LiberationSans-Bold'), local('Arimo Bold'), local('Arimo-Bold');
+  font-weight: 600 900;
+  ascent-override: 100.38%;
+  descent-override: 26.42%;
+  line-gap-override: 0%;
+  size-adjust: 94.64%;
+}
+@font-face {
+  font-family: 'Outfit Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('LiberationSans-Bold'), local('Arimo Bold'), local('Arimo-Bold');
+  ascent-override: 104.89%;
+  descent-override: 27.27%;
+  line-gap-override: 0%;
+  size-adjust: 95.34%;
+}
 :root {
-  --etrusca-font: 'Poppins', sans-serif;
-  --bs-font-sans-serif: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --etrusca-font: 'Poppins', 'Poppins Fallback', sans-serif;
+  --bs-font-sans-serif: 'Poppins', 'Poppins Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --bs-body-font-family: var(--bs-font-sans-serif);
 }
 
@@ -245,7 +291,7 @@ textarea,
   overflow-x: auto;
 }
 .legal-page a {
-  color: #c45c12;
+  color: #a84d0c;
   font-weight: 600;
 }
 @media (max-width: 575px) {
@@ -288,7 +334,7 @@ h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line)::aft
   border: 0 !important;
   border-radius: 0 !important;
   transform: none !important;
-  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png') center / contain no-repeat !important;
+  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.webp') center / contain no-repeat !important;
 }
 /* Rayas propias que ya traían algunos H2: se ocultan para no duplicar la línea */
 h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line) + .rule,
@@ -352,6 +398,35 @@ h2.section-title-center:not(#stc-noop):not(.section-title-center--has-line) + .n
 @media (max-width: 991.98px) {
   main > * > :is(.ins-page, .acc-page, .prod-page, .cafe-page):not(#hdr-gap-noop) { padding-top: 80px !important; }
 }
+/* Laptop (992–1499px): el header se compacta a ~83px (header.component.scss, .navbar.py-3), pero los wrappers
+   traen padding-top 112px → franja blanca de ~29px. Se iguala al alto real del header. Respaldo: Downloads\backup-espacio-header-2026-10-29 */
+@media (min-width: 992px) and (max-width: 1499.98px) {
+  main > * > :is(.ins-page, .acc-page, .prod-page, .cafe-page, .co-page):not(#hdr-gap-noop) { padding-top: 83px !important; }
+}
 
 /* H2: texto en formato oración en el código (SEO) y en mayúsculas visualmente en todo el sitio. :not(#id) refuerza la especificidad frente a overrides de temas. */
 h2:not(#h2-uc-noop) { text-transform: uppercase !important; }
+
+/* Hotjar: ocultar solo el widget de Feedback/Surveys (pestaña 'Comentario').
+   El script de tracking (heatmaps/grabaciones) sigue cargando. display:none lo saca del orden de foco (aria-hidden-focus). */
+._hj-widget-container,
+#_hj_feedback_container,
+._hj_feedback_container {
+  display: none !important;
+}
+
+/* CLS (build31): en movil el breadcrumb de educacion va en un solo renglon con scroll horizontal; asi su alto no depende de cuantos renglones ocupe con la fuente de respaldo vs Poppins. */
+@media (max-width: 600px) {
+  .edu-hero nav.edu-crumbs.edu-crumbs {
+    flex-wrap: nowrap !important; // gana a la regla del componente (.edu-page :is(.edu-hero-copy) > .edu-crumbs)
+    overflow-x: auto;
+    max-width: 100% !important;
+    min-width: 0;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  // El hero es grid: sin min-width 0 la columna crece al ancho del breadcrumb y desborda.
+  .edu-hero > .edu-hero-copy { min-width: 0; }
+  .edu-hero nav.edu-crumbs.edu-crumbs::-webkit-scrollbar { display: none; }
+  .edu-hero nav.edu-crumbs.edu-crumbs > * { flex: 0 0 auto; }
+}

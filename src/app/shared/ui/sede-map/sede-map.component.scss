@@ -1,7 +1,7 @@
 /* «Visítanos»: Poppins, paleta del mockup (amarillo #FDD640/#E4A62A, turquesa #71C2C5, crema #FFF8F1, navy #192966). */
 :host {
   display: block;
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
   --vm-navy: #192966;
   --vm-yellow: #fdd640;
   --vm-yellow-soft: #ffe88d;
@@ -44,7 +44,7 @@
   background: #fff;
   padding: 0 42px 0 16px;
   color: #5e5e5e;
-  font: 500 13px 'Poppins', system-ui, sans-serif;
+  font: 500 13px 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
   outline: none;
   text-overflow: ellipsis;
   cursor: pointer;
@@ -59,7 +59,7 @@
   color: #666;
   border-radius: 999px;
   padding: 10px 18px;
-  font: 600 12px 'Poppins', system-ui, sans-serif;
+  font: 600 12px 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -134,7 +134,7 @@
   min-height: 44px;
   padding: 11px 22px;
   border-radius: 999px;
-  font: 700 12px 'Poppins', system-ui, sans-serif;
+  font: 700 12px 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
   text-decoration: none;
   transition: 0.2s ease;
 }

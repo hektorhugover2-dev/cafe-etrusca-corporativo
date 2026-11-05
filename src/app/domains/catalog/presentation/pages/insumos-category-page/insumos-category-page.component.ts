@@ -1,3 +1,6 @@
+import { uniqueFlavors } from '../../components/flavors-modal/flavor-count';
+import { flavorFromName as sharedFlavorFromName } from '../../components/flavors-modal/catalog-flavors.service';
+import { FlavorsModalComponent } from '../../components/flavors-modal/flavors-modal.component';
 import { HeroCrumbsComponent, HeroCrumb, breadcrumbJsonLd } from '../../../../../shared/ui/hero-crumbs/hero-crumbs.component';
 import { isPlatformBrowser } from '@angular/common';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, PLATFORM_ID, afterNextRender, inject, signal } from '@angular/core';
@@ -22,7 +25,7 @@ const JAR = `${ASSETS_BASE_URL}/images/insumos/jarabes`;
 @Component({
   selector: 'app-insumos-category-page',
   standalone: true,
-  imports: [HeroCrumbsComponent, RouterLink, RecipeCardComponent, InsumosNavComponent, InsumosCtaComponent, ScrollWaveComponent, SeleccionCardsComponent],
+  imports: [FlavorsModalComponent, HeroCrumbsComponent, RouterLink, RecipeCardComponent, InsumosNavComponent, InsumosCtaComponent, ScrollWaveComponent, SeleccionCardsComponent],
   templateUrl: './insumos-category-page.component.html',
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', '../../pures-theme.scss']
 })
@@ -234,6 +237,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
       tone: 'cyan',
       apiMode: 'bases-david-rio',
+      page: '/insumos-para-cafeterias/bases-en-polvo/david-rio',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
     },
     {
@@ -248,6 +252,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
       tone: 'lime',
       apiMode: 'bases-mocafe',
+      page: '/insumos-para-cafeterias/bases-en-polvo/mocafe',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
     },
     {
@@ -341,13 +346,13 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       num: 1,
       label: 'Tapioca',
       tone: 'cyan',
-      names: ['Tapioca', 'Tapioca instantánea']
+      names: ['Tapioca', 'Tapioca instantánea', 'Jarabe Longan']
     },
     {
       num: 2,
       label: 'Perlas',
       tone: 'lime',
-      names: ['POP', 'Perlas explosivas', 'Crystal Boba']
+      names: ['Popping Boba', 'POP', 'Perlas explosivas', 'Crystal Boba']
     },
     {
       num: 3,
@@ -359,7 +364,13 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       num: 4,
       label: 'Jelly',
       tone: 'coral',
-      names: ['Jelly']
+      names: ['Jelly', 'Jalea en pieza']
+    },
+    {
+      num: 5,
+      label: 'ChillOut Toppings',
+      tone: 'lime',
+      names: ['Mini caramelos', 'Mini mochis', 'Crema vegetal', 'Crème brûlée']
     }
   ];
 
@@ -381,6 +392,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
       tone: 'cyan',
       apiMode: 'toppings-tapioca',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-008' }, { code: 'ICT-055' }, { code: 'ICT-009' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
     },
     {
@@ -396,6 +409,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
       tone: 'lime',
       apiMode: 'toppings-tapioca-instantanea',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-056' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
     },
     {
@@ -403,7 +418,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       brand: 'Popping Boba',
       sub: '',
       description: 'Perlas con cubierta gelatinosa y relleno líquido de diferentes sabores.',
-      sabores: '14 opciones',
+      sabores: '16',
       presentacion: '3.4 kg',
       rendimiento: 'Hasta 113 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-1.webp`,
@@ -411,6 +426,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
       tone: 'coral',
       apiMode: 'toppings-popping-boba',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-028', flavor: 'Fresa' }, { code: 'ICT-029', flavor: 'Granada' }, { code: 'ICT-030', flavor: 'Kiwi' }, { code: 'ICT-031', flavor: 'Mango' }, { code: 'ICT-032', flavor: 'Lichi' }, { code: 'ICT-033', flavor: 'Manzana verde' }, { code: 'ICT-034', flavor: 'Maracuyá' }, { code: 'ICT-035', flavor: 'Piña', img: `${ASSETS_BASE_URL}/images/insumos/toppings/ICT-035-transparente.webp` }, { code: 'ICT-036', flavor: 'Naranja', img: `${ASSETS_BASE_URL}/images/insumos/toppings/ICT-036-transparente.webp` }, { code: 'ICT-037', flavor: 'Yogur' }, { code: 'ICT-038', flavor: 'Mora azul' }, { code: 'ICT-039', flavor: 'Durazno' }, { code: 'ICT-040', flavor: 'Cereza' }, { code: 'ICT-059', flavor: 'Chicle' }, { code: 'ICT-060', flavor: 'Taro' }, { code: 'ICT-061', flavor: 'Pitahaya' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
     },
     {
@@ -433,14 +450,16 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       brand: 'Perlas explosivas',
       sub: '',
       description: 'Perlas rellenas de líquido sabor a frutas. Ideales para complementar bebidas frías.',
-      sabores: '3 opciones',
+      sabores: '7',
       presentacion: '3.2 kg',
-      rendimiento: 'Hasta 106 bebidas aprox.*',
+      rendimiento: 'Hasta 90 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-3.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/line-3.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
       tone: 'cyan',
       apiMode: 'toppings-perlas-explosivas',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-041', flavor: 'Mango' }, { code: 'ICT-047', flavor: 'Cereza' }, { code: 'ICT-043', flavor: 'Fresa' }, { code: 'ICT-044', flavor: 'Maracuyá' }, { code: 'ICT-046', flavor: 'Mora azul' }, { code: 'ICT-045', flavor: 'Lichi' }, { code: 'ICT-048', flavor: 'Manzana verde' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
     },
     {
@@ -448,14 +467,16 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       brand: 'Crystal Boba',
       sub: '',
       description: 'Perlas de konjac semitransparentes y suaves para agregar textura y un toque visual único.',
-      sabores: '6 opciones',
-      presentacion: '2 kg y 1 kg',
+      sabores: '7',
+      presentacion: '2 kg',
       rendimiento: 'Hasta 66 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-4.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/line-4.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
       tone: 'lime',
       apiMode: 'toppings-crystal-boba',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-079', flavor: 'Neutras' }, { code: 'ICT-080', flavor: 'Lichi' }, { code: 'ICT-081', flavor: 'Cereza' }, { code: 'ICT-082', flavor: 'Matcha' }, { code: 'ICT-083', flavor: 'Taro' }, { code: 'ICT-084', flavor: 'Mango' }, { code: 'ICT-085', flavor: 'Azúcar morena' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
     },
     {
@@ -463,13 +484,15 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       brand: 'Trozos de jalea',
       sub: '',
       description: 'Trozos de jalea versátiles para aportar textura y dulzura natural a bebidas y postres.',
-      sabores: '5 opciones',
+      sabores: '6',
       presentacion: '4 kg',
       rendimiento: 'Hasta 133 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
       tone: 'yellow',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-021', flavor: 'Lichi' }, { code: 'ICT-022', flavor: 'Manzana verde' }, { code: 'ICT-024', flavor: 'Mango' }, { code: 'ICT-025', flavor: 'Fresa' }, { code: 'ICT-026', flavor: 'Mix yogo tropical' }, { code: 'ICT-027', flavor: 'Café' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
     },
     {
@@ -477,17 +500,117 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       brand: 'Jelly',
       sub: '',
       description: 'Gelatinas pequeñas con consistencia firme, agregando sabor y textura.',
-      sabores: '8 opciones',
+      sabores: '11',
       presentacion: '3.85 kg',
-      rendimiento: 'Hasta 128 bebidas aprox.*',
+      rendimiento: 'Hasta 85 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
       tone: 'coral',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-086', flavor: 'Fresa (corazón)' }, { code: 'ICT-087', flavor: 'Mango (estrella)' }, { code: 'ICT-011', flavor: 'Lichi' }, { code: 'ICT-012', flavor: 'Coco' }, { code: 'ICT-013', flavor: 'Manzana verde' }, { code: 'ICT-014', flavor: 'Mango' }, { code: 'ICT-015', flavor: 'Fresa' }, { code: 'ICT-016', flavor: 'Piña' }, { code: 'ICT-017', flavor: 'Maracuyá' }, { code: 'ICT-018', flavor: 'Uva' }, { code: 'ICT-019', flavor: 'Cereza' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
-    }
-  ];
-
+    },
+    {
+      name: 'Jarabe Longan',
+      brand: 'Jarabe',
+      sub: 'LONGAN',
+      description: 'Jarabe que mantiene, hidrata y endulza la tapioca; ayuda a conservar el color negro brillante de las perlas.',
+      sabores: 'Longan',
+      presentacion: '1 l',
+      rendimiento: 'Hasta 13 porciones de 74 ml aprox.*',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      tone: 'yellow',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'IJA-154' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+    },
+    {
+      name: 'Jalea en pieza',
+      brand: 'Jalea',
+      sub: 'EN PIEZA',
+      description: 'Jalea en una sola pieza de forma rectangular, con trocitos de fruta o flores de acuerdo con el sabor. Hecha con konjac; lista para usarse y cortarse en la forma y tamaño deseado.',
+      sabores: '4',
+      presentacion: '1 kg',
+      rendimiento: 'Hasta 33 bebidas aprox.*',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      tone: 'yellow',
+      noStore: true,
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-067', flavor: 'Yogur' }, { code: 'ICT-068', flavor: 'Piña' }, { code: 'ICT-069', flavor: 'Osmanthus' }, { code: 'ICT-070', flavor: 'Manzana' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+    },
+    {
+      name: 'Mini caramelos',
+      brand: 'Mini caramelos',
+      sub: '',
+      description: 'Pequeños caramelos de sabor fresa y mora azul que dan un toque diferente y doble textura a las bebidas.',
+      sabores: '2',
+      presentacion: '800 g',
+      rendimiento: 'Hasta 90 bebidas aprox.*',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      tone: 'coral',
+      noStore: true,
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-089', flavor: 'Fresa' }, { code: 'ICT-090', flavor: 'Mora azul' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+    },
+    {
+      name: 'Mini mochis',
+      brand: 'Mini mochis',
+      sub: '',
+      description: 'Dulces tradicionales japoneses hechos de arroz, de textura suave. Complemento para bebidas, yogur y postres.',
+      sabores: 'Según presentación',
+      presentacion: '800 g',
+      rendimiento: 'Hasta 15 bebidas aprox.*',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      tone: 'cyan',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-088' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+    },
+    {
+      name: 'Crema vegetal',
+      brand: 'Crema vegetal',
+      sub: '',
+      description: 'Crema para topping (espuma de queso o tapa de leche) para bubble tea: una espuma cremosa y sedosa de textura espesa, similar a una nube.',
+      sabores: '2',
+      presentacion: '800 g',
+      rendimiento: 'Hasta 90 bebidas aprox.*',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      tone: 'lime',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'ICT-071', flavor: 'Matcha' }, { code: 'ICT-072', flavor: 'Camote morado' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
+    },
+    {
+      name: 'Crème brûlée',
+      brand: 'Crème brûlée',
+      sub: '',
+      description: 'Postre francés en polvo para topping o bebidas frías.',
+      sabores: '1',
+      presentacion: '2 kg y 800 g',
+      rendimiento: 'Hasta 40 / 16 bebidas o 8 / 3 l de crema aprox.*',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      tone: 'yellow',
+      /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      pdf: [{ code: 'IBP-206', flavor: 'Crème brûlée' }, { code: 'IBP-207', flavor: 'Crème brûlée' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+    }
+  ];
+
   toppingsMenu = inspiraRecipes('toppings');
 
   toppingsMaquinasRec = [
@@ -711,10 +834,18 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     if (this.cat?.layout === 'bases' && name === 'Hollander') return 'HOLLANDER CHOCOLATE';
     if (this.cat?.layout === 'toppings' && name === 'Tapioca') return 'TAPIOCA';
     if (this.cat?.layout === 'toppings' && name === 'Tapioca instantánea') return 'CHILLOUT PERLAS DE TAPIOCA INSTANTANEAS';
-    if (this.cat?.layout === 'toppings' && name === 'Crystal Boba') return 'CRYSTAL BOBA ORIGINAL';
+    if (this.cat?.layout === 'toppings' && name === 'Crystal Boba') return 'CRYSTAL BOBA';
     if (this.cat?.layout === 'toppings' && name === 'Perlas explosivas') return 'TEA ZONE PERLAS EXPLOSIVAS';
     if (this.cat?.layout === 'toppings' && name === 'POP') return 'CHILLOUT CAVIAR POPPING';
-    if (this.cat?.layout === 'toppings' && name === 'Popping Boba') return 'POPPING BOBA';
+    if (this.cat?.layout === 'toppings' && name === 'Popping Boba') return 'CHILLOUT PEARL';
+    if (this.cat?.layout === 'toppings' && name === 'Trozos de jalea') return 'TEA ZONE JELLY';
+    if (this.cat?.layout === 'toppings' && name === 'Jelly') return 'CHILLOUT JELLY';
+    if (this.cat?.layout === 'toppings' && name === 'Jarabe Longan') return 'LONGAN';
+    if (this.cat?.layout === 'toppings' && name === 'Jalea en pieza') return 'CHILLOUT JELLY';
+    if (this.cat?.layout === 'toppings' && name === 'Mini caramelos') return 'CHILLOUT MINI CARAMELOS';
+    if (this.cat?.layout === 'toppings' && name === 'Mini mochis') return 'MINI MOCHIS';
+    if (this.cat?.layout === 'toppings' && name === 'Crema vegetal') return 'CHILLOUT CREMA PARA TOPPING';
+    if (this.cat?.layout === 'toppings' && name === 'Crème brûlée') return 'CHILLOUT MIX BASE EN POLVO SABOR CREME BRULEE';
     const map: Record<string, string> = {
       'Clásico': 'TORANI JARABE CLASICO SABOR',
       'ChillOut Chamoy': 'chamoy'
@@ -880,7 +1011,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     } else if (line.name === 'Clásico') {
       needle = 'TORANI JARABE CLASICO SABOR';
     }
-    const exact = needle.length > 0;
+    // Líneas con códigos del PDF: pedir la lista completa (sin limit=20) para encontrarlos todos.
+    const exact = needle.length > 0 || !!(line as { pdf?: unknown[] }).pdf?.length;
     this.fetchProducts(q, exact).then((rows) => this.applyProductRows(line, rows, needle, exact, mode));
   }
 
@@ -912,8 +1044,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       .replace(/\s+/g, ' ')
       .trim();
     return (
-      n.includes('LIBRE DE CAFEINA') ||
-      n.includes('LIBRE CAFEINA') ||
+      n.includes('LIBRE DE CAFEÍNA') ||
+      n.includes('LIBRE CAFEÍNA') ||
       n.includes('DECAF') ||
       n.includes('DESCAFEIN') ||
       n.includes('CAFFEINE FREE') ||
@@ -922,7 +1054,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   }
 
   private applyProductRows(
-    line: { name: string; sabores: string; image?: string; apiMode?: string },
+    line: { name: string; sabores: string; image?: string; apiMode?: string; pdf?: { code: string; flavor?: string; img?: string }[]; noStore?: boolean },
     rows: Array<Record<string, string>>,
     needle: string,
     exact: boolean,
@@ -937,7 +1069,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
         .trim();
     const needleN = norm(needle);
     const needleParts = needleN.split('|').map((p) => p.trim()).filter(Boolean);
-    const list = (Array.isArray(rows) ? rows : []).filter((row) => {
+    // Si la línea trae códigos del catálogo PDF, solo esos productos (quita ajenos de la API).
+    const pdfCodes = line.pdf?.length ? new Set(line.pdf.map((p) => p.code)) : null;
+    const pdfRows = pdfCodes ? (Array.isArray(rows) ? rows : []).filter((row) => pdfCodes.has(String(row['codigo'] || row['Codigo'] || '').trim().toUpperCase())) : null;
+    const list = pdfRows ?? (Array.isArray(rows) ? rows : []).filter((row) => {
       if (!exact) return true;
       const name = norm(row['nombre'] || row['Title'] || '');
       if (!needleParts.length) return false;
@@ -975,6 +1110,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     const host = 'https://cafeetrusca.com';
     const productKeys = new Set<string>();
     const slides: { src: string; alt: string; key: string }[] = [];
+    const flv = new Set<string>();
     for (const row of list) {
       const alt = row['nombre'] || row['Title'] || row['title'] || line.name;
       const key = String(row['codigo'] || row['Codigo'] || alt)
@@ -985,6 +1121,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
         .trim();
       if (!key || productKeys.has(key)) continue;
       productKeys.add(key);
+      const flavor = this.flavorFromName(alt, needleParts[0] || '');
+      if (flavor) flv.add((/ SABOR /i.test(alt) ? '~' : '') + flavor);
 
       const raw = row['image'] || row['image_thumbnail'] || row['Image'] || row['ImageThumbnail'] || '';
       const built = raw.startsWith('http') ? raw : raw ? host + (raw.startsWith('/') ? raw : '/' + raw) : '';
@@ -992,6 +1130,16 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       if (!src) continue;
       slides.push({ src, alt, key });
     }
+    // Fotos propias de códigos del PDF sin foto en la API (ej. ICT-035/036).
+    for (const p of line.pdf || []) if (p.img && !slides.some((sl) => sl.key === p.code)) slides.push({ src: p.img, alt: line.name + ' ' + (p.flavor || ''), key: p.code });
+    // Disponibilidad: códigos del PDF que no están en la tienda → aviso de sucursal / Call Center.
+    if (pdfCodes && pdfRows && Array.isArray(rows) && rows.length) {
+      const inStore = new Set(pdfRows.map((r) => String(r['codigo'] || r['Codigo'] || '').trim().toUpperCase()));
+      const pdfList = line.pdf || [];
+      const missing = uniqueFlavors(pdfList.filter((p) => p.flavor && !inStore.has(p.code) && !pdfList.some((q) => q.flavor === p.flavor && inStore.has(q.code))).map((p) => p.flavor!));
+      this.unavailableByLine = { ...this.unavailableByLine, [line.name]: missing };
+      this.noStoreLine = { ...this.noStoreLine, [line.name]: inStore.size === 0 };
+    }
     const logoSrc = ((line as { logo?: string }).logo || '').trim();
     const productSlides = exact ? slides : slides.slice(0, 12);
     const withLogo = logoSrc
@@ -1006,7 +1154,16 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       // keep line.image as logo fallback; do not overwrite with product shot
       if (!line.image && withLogo[0]?.src) line.image = withLogo[0].src;
     }
-    if (productKeys.size) line.sabores = String(productKeys.size);
+    // Solo filas con 'SABOR' si las hay (evita colar productos ajenos de busquedas no exactas).
+    const sabRows = [...flv].filter((f) => f.startsWith('~'));
+    if (sabRows.length) { flv.clear(); sabRows.forEach((f) => flv.add(f.slice(1))); } else if (!exact) flv.clear();
+    // La tarjeta cuenta los mismos sabores únicos que muestra el modal (no presentaciones/SKUs).
+    const pdfFlavors = (line.pdf || []).map((p) => p.flavor || '').filter(Boolean);
+    const uniq = uniqueFlavors(pdfCodes ? pdfFlavors : [...flv]).sort((a, b) => a.localeCompare(b, 'es'));
+    if (uniq.length) {
+      this.flavorsByLine = { ...this.flavorsByLine, [line.name]: uniq };
+      line.sabores = String(uniq.length);
+    }
     this.cdr.markForCheck();
   }
 
@@ -1019,6 +1176,24 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     const seconds = Math.floor(Date.now() / 1000);
     const sep = src.includes('?') ? '&' : '?';
     return src + sep + 'v=1.' + seconds;
+  }
+
+  // ── Modal de sabores (cards LÍNEAS) ──
+  flavorsByLine: Record<string, string[]> = {};
+  /** Sabores del PDF que no están en la tienda en línea (se muestran con aviso de sucursal / Call Center). */
+  unavailableByLine: Record<string, string[]> = {};
+  noStoreLine: Record<string, boolean> = {};
+  isNoStore(line: { name: string; noStore?: boolean }) { return this.noStoreLine[line.name] ?? !!line.noStore; }
+  flavorLine: { name: string; brand?: string; sub?: string; tone?: string } | null = null;
+  openFlavors(line: { name: string; brand?: string; sub?: string; tone?: string }) { this.flavorLine = line; this.cdr.markForCheck(); }
+  closeFlavors() { this.flavorLine = null; this.cdr.markForCheck(); }
+  flavorTitle(l: { name: string; brand?: string; sub?: string }) {
+    const t = [l.brand, l.sub].filter(Boolean).join(' ').trim() || l.name;
+    return t.charAt(0) + t.slice(1).toLowerCase().replace(/(^|\s)\S/g, (m) => m.toUpperCase());
+  }
+  /** "TORANI JARABE CLASICO SABOR CARAMEL BOTELLA PET 750ml" → "Caramel". */
+  private flavorFromName(nombre: string, prefix: string): string {
+    return sharedFlavorFromName(nombre, prefix);
   }
 
   slideSrc(line: { name: string; image?: string }) {
@@ -1074,7 +1249,13 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       Jelly: 'coral',
       'Trozos de jalea': 'yellow',
       Tapioca: 'cyan',
-      'Tapioca instantánea': 'lime'
+      'Tapioca instantánea': 'lime',
+      'Jarabe Longan': 'yellow',
+      'Jalea en pieza': 'yellow',
+      'Mini caramelos': 'coral',
+      'Mini mochis': 'cyan',
+      'Crema vegetal': 'lime',
+      'Crème brûlée': 'yellow'
     };
     return map[linea] || 'yellow';
   }

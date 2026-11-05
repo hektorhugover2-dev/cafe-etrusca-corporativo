@@ -19,7 +19,7 @@ export const OPINIONS: ReviewCard[] = [
     initials: 'LM',
     name: 'Laura M.',
     rating: 3,
-    text: 'Todo super. Los filtrados del Brew Bar se entendieron muy claro.'
+    text: 'Todo súper. Los filtrados del Brew Bar se entendieron muy claro.'
   },
   {
     id: 'maria-j',

@@ -128,6 +128,28 @@ export class LegacyCoursePageComponent implements OnInit {
     ];
   }
 
+  /** talleres-diseno: foto real del curso (education.data banner) para el hero estilo emprendiendo; sin foto, hero de ícono. */
+  get heroPhoto(): string | null {
+    const p = this.page;
+    return (p?.courseSlug && courseBySlug(p.courseSlug)?.banner) || null;
+  }
+
+  /** Texto introductorio del hero: subtítulo de la página vieja, si no el resumen del curso. */
+  get heroLead(): string {
+    const p = this.page;
+    return p?.subtitle || (p?.courseSlug ? courseBySlug(p.courseSlug)?.summary : '') || '';
+  }
+
+  get heroDuration(): string {
+    const c = this.catalog;
+    return c ? `${daysLabel(c)} · ${hoursLabel(c)}` : '';
+  }
+
+  get heroPrice(): string {
+    const c = this.catalog;
+    return c ? formatMXN(c.price) : '';
+  }
+
   /** Official SAP course of the page (by the old page's categoryId, else its course slug). */
   get catalog(): CatalogCourse | undefined {
     const p = this.page;

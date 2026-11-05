@@ -1,7 +1,7 @@
 /* Guías /blog/<slug>/ · guía de estilo de Lizbeth: Poppins, navy, mucho aire, tono editorial. */
 :host {
   display: block;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
   color: var(--etrusca-navy-900, #283039);
   background: #fff;
 }
@@ -96,7 +96,7 @@ table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
 caption { text-align: left; font-weight: 600; margin-bottom: 0.6rem; }
 th, td { padding: 0.75rem 0.85rem; border-bottom: 1px solid #e6e9ee; text-align: left; vertical-align: top; }
 th { background: #f3f5f8; font-weight: 600; }
-td.blog-pc { color: #9a7400; font-style: italic; }
+td.blog-pc { color: #6b5100; font-style: italic; }
 
 .blog-faq-item {
   border-bottom: 1px solid #e6e9ee;
@@ -142,3 +142,8 @@ td.blog-pc { color: #9a7400; font-style: italic; }
   .blog-hero { grid-template-columns: 1fr; }
   .blog-hero-media { order: -1; }
 }
+
+/* breadcrumbs-homologados: mismo patrón que app-hero-crumbs (insumos) */
+.blog .blog-crumbs{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:.85rem;font-weight:600;color:#192966;margin:0 0 1.1rem;padding:0;max-width:none;background:none;text-align:left;text-transform:none;letter-spacing:normal;line-height:1.4;
+  a{color:#192966;text-decoration:none;font-weight:600} a:hover{text-decoration:underline} a:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:2px}
+  [aria-current]{color:#a43c40;font-weight:600} span[aria-hidden]{color:#192966}}

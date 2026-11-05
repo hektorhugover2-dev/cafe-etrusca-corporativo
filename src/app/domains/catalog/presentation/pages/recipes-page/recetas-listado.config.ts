@@ -58,7 +58,7 @@ export interface RecetarioDefault {
  * Pon null para mostrar todas las recetas al cargar.
  * Ejemplos: { coleccion: 'verano-2026', label: 'Verano' } · { coleccion: 'san-valentin-2026', label: 'San Valentín' }
  */
-export const RECETARIO_DEFAULT: RecetarioDefault | null = { coleccion: 'calabaza', label: 'Calabaza' };
+export const RECETARIO_DEFAULT: RecetarioDefault | null = { coleccion: 'invierno-2024', label: 'Invierno' }; // antes: { coleccion: 'calabaza', label: 'Calabaza' }
 
 /* ================================= FILTROS ================================= */
 

@@ -22,9 +22,12 @@ import { Recipe, publishedRecipes } from '../../../../domains/catalog/presentati
 export class HomePageComponent implements OnInit, OnDestroy {
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
   protected readonly assetsBase = ASSETS_BASE_URL;
+  /** Hero: false = solo el slide "CAFE ETRUSCA" (sin dots/flechas/autoplay). true = reactiva los 7 slides. */
+  protected readonly heroShowAllSlides = false;
   private http = inject(HttpClient);
 
-  homeRecipes: Recipe[] = ['pumpkin-cold-brew', 'dirty-pumpkin-chai', 'mokalabaza-latte', 'bubble-pumpkin']
+  homeRecipes: Recipe[] = /* Temporada actual: invierno (colección invierno-2024). Calabaza: ['pumpkin-cold-brew', 'dirty-pumpkin-chai', 'mokalabaza-latte', 'bubble-pumpkin'] */
+    ['noche-de-invierno-latte', 'copito-de-chocolate-blanco', 'latte-de-noel', 'winter-peach']
     .map((slug) => publishedRecipes().find((r) => r.slug === slug))
     .filter((r): r is Recipe => !!r);
 

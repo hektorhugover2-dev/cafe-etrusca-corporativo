@@ -28,14 +28,22 @@
         <p class="vt-meta">Duración {{ active.duration }}</p>
       }
       <div class="vt-frame">
-        <iframe
-          [src]="embedUrl(active)"
-          title="{{ active.title }}"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-        ></iframe>
+        @if (playing) {
+          <iframe
+            [src]="embedUrl(active)"
+            title="{{ active.title }}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        } @else {
+          <!-- Fachada: el reproductor de YouTube solo se carga al dar clic (sin cookies de terceros al abrir la página) -->
+          <button type="button" class="vt-facade" (click)="play()">
+            <img [src]="active.thumb" alt="" loading="lazy" width="1280" height="720">
+            <span class="vt-facade-play" aria-hidden="true"></span>
+            <span class="visually-hidden">Reproducir: {{ active.title }}</span>
+          </button>
+        }
       </div>
     </div>
   </section>
@@ -43,7 +51,7 @@
   <section class="vt-grid-sec">
     <div class="container">
       <h2>Todos los episodios</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="" class="vt-sep">
+      <img src="{{ assetsBase }}/images/separador.webp" alt="" class="vt-sep">
       <div class="vt-grid">
         @for (v of videos; track v.id) {
           <button type="button" class="vt-card" [class.active]="v.id === active.id" (click)="select(v)">

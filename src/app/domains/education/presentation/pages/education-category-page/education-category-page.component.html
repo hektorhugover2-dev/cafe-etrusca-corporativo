@@ -2,12 +2,17 @@
 <div class="edu-page cat-page">
   <section class="cat-hero">
     <div class="cat-hero-copy">
+      <nav class="edu-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/cursos-para-baristas-y-talleres-para-cafeterias">Educación</a><span aria-hidden="true">›</span>
+        <span aria-current="page">{{ cat.title }}</span>
+      </nav>
       <h1>{{ cat.title }}</h1>
       <span class="cat-rule" aria-hidden="true"></span>
       <p>{{ cat.subtitle }}</p>
     </div>
-    <div class="cat-hero-media">
-      <img [src]="cat.heroImage" [alt]="cat.title">
+    <div class="cat-hero-media" [attr.data-cat]="cat.slug">
+      <img [src]="cat.slug === 'sesiones' ? '/assets/images/educacion/sesiones-bebida-sin-fondo.webp' : cat.slug === 'talleres' ? '/assets/images/educacion/talleres-hero-arte-latte.webp' : cat.heroImage" [alt]="cat.title">
     </div>
     <aside class="cat-info">
       @for (s of cat.stats; track s.label) {
@@ -36,10 +41,10 @@
     <div class="edu-cards">
       @for (c of courses; track c.slug) {
         <article class="edu-card">
-          <img [src]="c.image" [alt]="'Foto del ' + c.kicker">
+          <img [src]="c.image" [alt]="(c.kicker === 'Sesión' ? 'Sesión sabatina' : c.kicker) + ' ' + c.title + ' en Café Etrusca'">
           <div class="body">
             <div class="kicker">{{ c.kicker }}</div>
-            <h3>{{ c.title }}</h3>
+            <h2>{{ c.title }}</h2>
             @if (c.clave) { <p class="edu-clave">Clave: {{ c.clave }}</p> }
             <p>{{ c.summary }}</p>
             <div class="row">
@@ -54,7 +59,7 @@
 
   @if (courses.length > 1) {
     <section class="edu-section">
-      <h2 class="section-title-center">¿Cuál {{ cat.label.toLowerCase() }} es para ti?</h2>
+      <h2 class="section-title-center">¿Cuáles {{ cat.label.toLowerCase() }} son para ti?</h2>
       <div class="edu-grid-2">
         @for (c of courses; track c.slug; let last = $last) {
           <article class="edu-path">

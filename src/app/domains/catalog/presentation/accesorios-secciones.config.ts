@@ -82,8 +82,8 @@ export const ACC_SECTIONS: Record<AccSectionSlug, AccSectionConfig> = {
       { key: 'prensas-francesas', label: 'Prensas francesas', match: [{ start: ['PRENSA'] }] },
       { key: 'chemex', label: 'Chemex', match: [{ any: ['CHEMEX'] }] },
       { key: 'aeropress', label: 'AeroPress', match: [{ any: ['AEROPRESS'] }] },
-      { key: 'sifon-japones', label: 'Sifón japonés', match: [{ any: ['SIFON JAPONES'] }] },
-      { key: 'toddy-cold-brew', label: 'Toddy/cold brew', match: [{ any: ['TODDY', 'COLD BREW', 'MIZUDASHI', 'TORRE EN FRIO', 'CAFE FRIO'] }] },
+      { key: 'sifon-japones', label: 'Sifón japonés', match: [{ any: ['SIFÓN JAPONES'] }] },
+      { key: 'toddy-cold-brew', label: 'Toddy/cold brew', match: [{ any: ['TODDY', 'COLD BREW', 'MIZUDASHI', 'TORRE EN FRÍO', 'CAFÉ FRIO'] }] },
       {
         key: 'jarras-cuello-ganso',
         label: 'Jarras cuello de ganso',
@@ -98,7 +98,7 @@ export const ACC_SECTIONS: Record<AccSectionSlug, AccSectionConfig> = {
       {
         key: 'moka-otros-metodos',
         label: 'Cafeteras moka y otros métodos',
-        match: [{ start: ['MOKITA', 'MOKA', 'CAFETERA MOKA', 'CAFETERA MANUAL', 'KIT PARA PREPARAR CAFE', 'METODO DE EXTRACCION'] }]
+        match: [{ start: ['MOKITA', 'MOKA', 'CAFETERA MOKA', 'CAFETERA MANUAL', 'KIT PARA PREPARAR CAFÉ', 'MÉTODO DE EXTRACCION'] }]
       },
       {
         key: 'filtros',

@@ -44,7 +44,7 @@ $tones: (
   background: #fff;
   color: $ink;
   overflow-x: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
 }
 
 .acc-br {
@@ -117,7 +117,7 @@ $tones: (
 
   h1 {
     margin: 0 0 0.35rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Poppins Fallback', sans-serif;
     font-weight: 900;
     font-size: clamp(3.2rem, 8vw, 5.8rem);
     line-height: 0.88;
@@ -190,6 +190,9 @@ $tones: (
 // Una columna: el texto va arriba sobre el beige liso de la pared y la foto completa (todos los
 // productos visibles) ocupa la parte baja del hero, fundida con el beige (igual que Métodos).
 @media (max-width: 800px) {
+  // CLS: con Poppins el lead del hub ocupa 3 renglones y con la fuente de respaldo 2; reservamos los 3.
+  .acc-hero__lead:not(.acc-hero__lead--sub) { min-height: 3.45em; }
+
   .jar-hero {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -275,7 +278,7 @@ $tones: (
   left: u(24);
   top: u(69);
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
   font-weight: 700;
   font-size: u(38);
   line-height: 1.5;
@@ -464,7 +467,7 @@ $tones: (
 
 .acc-help__title {
   margin: 0;
-  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-family: 'Outfit', 'Outfit Fallback', 'Poppins', 'Poppins Fallback', sans-serif;
   font-weight: 700;
   font-size: max(2rem, #{u(65)});
   line-height: 1.2;
@@ -474,7 +477,7 @@ $tones: (
 
 .acc-help__text {
   margin: 0;
-  font-family: 'Figtree', 'Poppins', sans-serif;
+  font-family: 'Figtree', 'Figtree Fallback', 'Poppins', 'Poppins Fallback', sans-serif;
   font-size: max(1.05rem, #{u(24.5)});
   line-height: 1.35;
   color: $help-text;
@@ -492,7 +495,7 @@ $tones: (
   align-items: center;
   justify-content: center;
   gap: u(12);
-  font-family: 'Figtree', 'Poppins', sans-serif;
+  font-family: 'Figtree', 'Figtree Fallback', 'Poppins', 'Poppins Fallback', sans-serif;
   text-decoration: none;
   border-radius: u(8);
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;

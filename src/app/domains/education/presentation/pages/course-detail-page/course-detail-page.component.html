@@ -1,5 +1,7 @@
 @if (course) {
-<div class="edu-page">
+<div class="edu-page edu-page--flush">
+  <section class="edu-hero">
+    <div class="edu-hero-copy">
   <nav class="edu-crumbs" aria-label="Breadcrumb">
     @for (c of crumbs; track c.label; let last = $last) {
       @if (!last && c.path) {
@@ -9,9 +11,7 @@
       }
     }
   </nav>
-  <section class="edu-hero">
-    <div class="edu-hero-copy">
-      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#e23b7a;">{{ course.kicker }} presencial</p>
+      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#bf3267;">{{ course.kicker }} presencial</p>
       <h1>{{ course.title }}</h1>
       @if (course.clave) { <p class="edu-clave">Clave: {{ course.clave }}</p> }
       <p class="lead">{{ course.summary }}</p>
@@ -37,7 +37,7 @@
     <div class="edu-grid-3">
       @for (h of course.highlights; track h.title) {
         <article class="edu-path">
-          <h3>{{ h.title }}</h3>
+          <h3 aria-level="2">{{ h.title }}</h3>
           <p>{{ h.text }}</p>
         </article>
       }
@@ -124,7 +124,7 @@
           <!-- Bloque Izquierdo: Fecha -->
           <div class="date-block">
             <span class="days">{{ d.days }}</span>
-            <span class="month">{{ d.month }}</span>
+            <span class="month">{{ d.month?.toLowerCase() }}</span>
           </div>
 
           <!-- Bloque Derecho: Información -->
@@ -187,7 +187,7 @@
     <div class="edu-cards">
       @for (c of related; track c.slug) {
         <article class="edu-card">
-          <img [src]="c.image" [alt]="'Foto del ' + c.kicker">
+          <img [src]="c.image" [alt]="(c.kicker === 'Sesión' ? 'Sesión sabatina' : c.kicker) + ' ' + c.title + ' en Café Etrusca'">
           <div class="body">
             <div class="kicker">{{ c.kicker }}</div>
             <h3>{{ c.title }}</h3>

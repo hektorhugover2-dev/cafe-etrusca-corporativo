@@ -37,7 +37,7 @@ export class CourseDetailPageComponent implements OnInit {
   readonly experienceIncludes: readonly string[] = [
     '5% de descuento en accesorios e insumos, sin compra mínima.',
     'Promoción válida únicamente donde se registre la asistencia a la Experiencia.',
-    'El descuento sólo podrá utilizarse el mismo día de la inscripción a la Experiencia.',
+    'El descuento solo podrá utilizarse el mismo día de la inscripción a la Experiencia.',
     'No aplica en productos que ya cuenten con descuentos o promociones vigentes.'
   ];
 

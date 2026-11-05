@@ -3443,7 +3443,7 @@
   height: 30px !important;
   margin: 0.35rem auto 1.6rem !important;
   border-radius: 0 !important;
-  background: url("https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png") center / contain no-repeat !important;
+  background: url("https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.webp") center / contain no-repeat !important;
 }
 
 /* Enlace a la página de jarabes Torani (/insumos-para-cafeterias/jarabes/torani/) */
@@ -3520,3 +3520,23 @@
 @media (prefers-reduced-motion: reduce) {
   .layout-tisanas .tis-steam { display: none; }
 }
+
+/* Cards LÍNEAS: bloque "Sabores" abre el modal de sabores (pedido de Héctor, 29-oct-2026). */
+.jar-feat > button.jar-feat-sabores {
+  display: grid; grid-template-columns: 36px 1fr; gap: 0.55rem; align-items: center;
+  width: 100%; margin: 0 -0.4rem; padding: 0.3rem 0.4rem; box-sizing: content-box;
+  font: inherit; font-size: 0.86rem; line-height: 1.25; text-align: left; color: inherit;
+  background: transparent; border: 1.5px dashed transparent; border-radius: 12px; cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease;
+  img { width: 36px; height: auto; }
+  strong { display: block; }
+  .jar-feat-more { display: inline-block; margin-left: .5rem; font-style: normal; font-weight: 700; font-size: .78rem; text-decoration: underline; text-underline-offset: 3px; opacity: .85; }
+  i { font-style: normal; }
+  &:hover { background: rgba(40, 48, 57, .05); border-color: rgba(40, 48, 57, .25); }
+  &:focus-visible { outline: 3px solid #283039; outline-offset: 2px; }
+}
+
+/* Aviso de disponibilidad (códigos del PDF sin venta en línea) */
+.jar-actions:has(.ask-branch) { flex-wrap: wrap; }
+.ask-branch { flex: 1 1 100%; margin: 0 0 .5rem; font-size: .85rem; line-height: 1.35; color: #4a525c; }
+.ask-branch a { color: #283039; font-weight: 700; text-decoration: underline; }

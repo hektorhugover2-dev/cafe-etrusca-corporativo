@@ -241,6 +241,11 @@
   gap: 0.35rem 1.2rem;
 }
 
+/* Café: opciones en una sola columna */
+.mega-links.mega-links--col {
+  grid-template-columns: 1fr;
+}
+
 .mega-link {
   display: flex;
   gap: 0.7rem;
@@ -832,3 +837,17 @@
     padding-bottom: .1rem !important;
   }
 }
+
+
+/* Correcciones UI/UX 30-oct-2026: íconos de cursos y talleres (panel 2 de Educación) sin color */
+/* iconos-edu-linea: cursos/talleres usan SVG de linea #0D1742 locales (nav-linea/); sin filter */
+
+/* nav-categorias-negro: iconos de categorias Educacion (Cursos/Talleres/Experiencias/Sesiones) en linea negra, sin relleno de color */
+.mega-cat .mega-cup,
+.mega-cat.active .mega-cup,
+.mega-cat.active[data-tone] .mega-cup,
+.mega-cat:hover .mega-cup { background: #ececec !important; }
+.mega-cat .mega-cup-ico { filter: none !important; border-radius: 0 !important; }
+/* icono-recomendamos: estrella en linea negra sobre circulo gris, como las categorias */
+.te-recomendamos-title .mega-bottle { background: #ececec !important; }
+.te-recomendamos-title .mega-cup-ico { filter: none !important; border-radius: 0 !important; }

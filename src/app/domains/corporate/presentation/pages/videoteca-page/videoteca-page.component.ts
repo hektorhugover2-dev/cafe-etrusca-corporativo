@@ -27,6 +27,8 @@ export class VideotecaPageComponent implements OnInit {
   readonly playlistUrl = VIDEOTECA_PLAYLIST_URL;
   videos: VideotecaVideo[] = TRAVESIAS_DEL_SABOR;
   active: VideotecaVideo = this.videos[this.videos.length - 1] || this.videos[0];
+  /** El iframe de YouTube se monta solo tras un clic (fachada). */
+  playing = false;
 
   ngOnInit() {
     const brand = 'Café Etrusca';
@@ -63,14 +65,20 @@ export class VideotecaPageComponent implements OnInit {
 
   select(v: VideotecaVideo) {
     this.active = v;
-    if (typeof document !== 'undefined') {
-      document.getElementById('vt-player')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.playing = true;
+    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+      const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      document.getElementById('vt-player')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     }
+  }
+
+  play() {
+    this.playing = true;
   }
 
   embedUrl(v: VideotecaVideo): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1`
+      `https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1&autoplay=1`
     );
   }
 }

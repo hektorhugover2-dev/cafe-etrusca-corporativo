@@ -66,6 +66,10 @@
   margin-right: 2.5rem;
   opacity: 0.95;
 }
+/* Marquesina decorativa (aria-hidden): el texto va en ::before para que no cuente como texto de contenido */
+.grinder-marquee span::before {
+  content: attr(data-text);
+}
 
 @keyframes grinder-marq {
   from { transform: translateX(0); }
@@ -78,9 +82,8 @@
   max-width: 90ch;
   margin: 0 auto;
   text-align: center;
-  opacity: 0.9;
   font-weight: 600;
-  color: var(--grinder-lead, #111);
+  color: var(--grinder-lead, #111); // sin opacity: el contraste AA se calcula con el color sólido
 }
 
 .grinder-carousel {
@@ -305,7 +308,7 @@
 .grinder-sku {
   margin-top: 8px;
   font-size: 14px;
-  color: #0009;
+  color: var(--grinder-lead, #000c); // AA: mismo tono de la marca que el texto principal
   font-weight: 700;
   justify-self: end;
   padding-right: 10px;

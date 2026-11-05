@@ -1,0 +1,206 @@
+<div class="ins-page layout-jarabes layout-bases tor-page chl-page dr-page">
+  <section class="jar-hero tor-hero">
+    <img class="jar-hero-blob tor-hero-blob" src="{{ assetsBase }}/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy tor-hero-copy">
+      <nav class="tor-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias">Insumos</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias/bases-en-polvo">Bases en polvo</a><span aria-hidden="true">›</span>
+        <span aria-current="page">David Rio</span>
+      </nav>
+      <p class="dr-brand">David Rio</p>
+      <h1><span class="tor-h1-main">Chai David Rio </span><span class="tor-h1-sub dr-h1-sub-hidden">para cafetería</span></h1>
+      <p class="lead"><span class="accent">Un animal para cada sabor</span> de chai en polvo</p>
+      <p class="body">
+        David Rio es una marca de chai en polvo y cada sabor tiene su animal. Según la marca, su chai es una mezcla de
+        té negro y especias premium, como canela, cardamomo y clavo. Se prepara con agua caliente o con leche.
+      </p>
+      <div class="tor-ctas">
+        <a class="btn-jar" [href]="storeUrl" target="_blank" rel="noopener">Comprar en tienda en línea</a>
+        <a class="tor-btn-ghost" [routerLink]="path" fragment="animales">Conoce a los animales</a>
+      </div>
+      <ul class="tor-facts" aria-label="Datos de la línea David Rio">
+        <li><strong>8</strong><span>sabores de chai</span></li>
+        <li><strong>2</strong><span>sin azúcar</span></li>
+        <li><strong>1.814 kg</strong><span>bote para barra</span></li>
+      </ul>
+    </div>
+    <div class="jar-hero-media tor-hero-media dr-hero-media">
+      @for (c of ['IBP-085', 'IBP-086', 'IBP-092']; track c; let i = $index) {
+        @if (image(c)) {
+          <img [class]="'tor-bottle ' + ['b-left', 'b-center', 'b-right'][i]" [src]="image(c)" [alt]="['Chai David Rio Tigre (Tiger Spice) en bote de 1.814 kg', 'Chai David Rio Elefante (Elephant Vanilla) en bote de 1.814 kg', 'Chai David Rio Flamingo (Flamingo Vanilla) en bote de 1.520 kg'][i]">
+        }
+      }
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="tor-section dr-animals" id="animales" aria-labelledby="dr-animales">
+    <header class="tor-head">
+      <p class="tor-kicker">Chai David Rio</p>
+      <h2 class="section-title-center" id="dr-animales">Conoce a los animales de David Rio</h2>
+      <p class="tor-intro">Cada sabor de chai tiene un animal. Elige el tamaño en cada tarjeta, revisa la ficha en la tienda o calcula tu precio de venta.</p>
+    </header>
+    <div class="dr-grid">
+      @for (a of animals; track a.slug) {
+        <article class="dr-card" [id]="'chai-' + a.slug" [style.--dr-c]="a.color" [style.--dr-soft]="a.soft">
+          <div class="dr-card-media">
+            @if (art(a.slug)) {
+              <img class="dr-animal-art" [src]="art(a.slug)" alt="" aria-hidden="true" loading="lazy">
+            } @else {
+              <span class="dr-animal" aria-hidden="true">{{ a.animal }}</span>
+            }
+            @if (image(sku(a).code)) {
+              <img [src]="image(sku(a).code)" [alt]="'Chai David Rio ' + a.animal + ' (' + a.official + ') en ' + sku(a).presentation.toLowerCase()" loading="lazy" width="320" height="320">
+            }
+          </div>
+          <div class="dr-card-body">
+            <h3><span class="dr-name">{{ a.animal }}</span></h3>
+            <p class="dr-official">{{ a.official }}</p>
+            <p class="dr-etrusca">{{ a.etrusca | catalogName }}</p>
+            <p class="dr-desc">{{ a.description }}</p>
+            <div class="dr-chips" role="group" [attr.aria-label]="'Presentaciones de ' + (a.etrusca | catalogName)">
+              @for (s of a.skus; track s.code; let i = $index) {
+                <button type="button" class="dr-chip" [class.on]="sku(a).code === s.code" [attr.aria-pressed]="sku(a).code === s.code" (click)="pick(a, i)">{{ s.label }}</button>
+              }
+            </div>
+            <p class="dr-meta"><span>Clave {{ sku(a).code }}</span></p>
+            <app-product-facts [code]="sku(a).code" [showPortions]="false" />
+            @if (sku(a).servings) { <p class="dr-yield" aria-live="polite">Rinde aprox. {{ sku(a).servings }} porciones de 100 ml</p> }
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(a.etrusca + ' ' + sku(a).presentation, sku(a).code, sku(a).apiName, $event)">Comprar<span class="visually-hidden"> {{ a.etrusca | catalogName }} {{ sku(a).presentation }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ a.etrusca | catalogName }}</span></a>
+            </div>
+            <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: sku(a).code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ a.etrusca | catalogName }}</span> ›</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="tor-band" id="presentaciones" aria-labelledby="dr-pres">
+    <app-scroll-wave position="top" fillColor="#fff6ea"></app-scroll-wave>
+    <div class="tor-band-inner">
+      <div class="tor-split">
+        <div class="tor-split-copy">
+          <p class="tor-kicker">Presentaciones</p>
+          <h2 id="dr-pres">Para tu cafetería y para casa</h2>
+          <p>Los botes grandes de 1.814 kg y 1.520 kg son los de uso en barra. Los botes chicos de 398 g, 337 g y 456 g sirven para probar sabores o para casa.</p>
+          <ul class="tor-chips">
+            <li>Bote 1.814 kg</li><li>Bote 1.520 kg</li><li>Bote 398 g</li><li>Bote 337 g</li><li>Bote 456 g</li>
+          </ul>
+          <p>Rinde aprox. (porciones de 100 ml): 1.814 kg, 136 · 1.520 kg, 114 · 398 g, 30 · 337 g, 25.</p>
+        </div>
+        <div class="tor-split-media">
+          @if (image('IBP-089')) {
+            <img [src]="image('IBP-089')" alt="Chai David Rio Orca (Orca Spice) en bote de 1.520 kg" loading="lazy">
+          }
+        </div>
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fff6ea"></app-scroll-wave>
+  </section>
+
+  <section class="tor-section" id="mas-alla-del-chai" aria-labelledby="dr-extras">
+    <header class="tor-head">
+      <p class="tor-kicker">Matcha y cúrcuma</p>
+      <h2 id="dr-extras">Más allá del chai</h2>
+      <p class="tor-intro">David Rio también tiene matcha, latte de cúrcuma y Soup Latte.</p>
+    </header>
+    <div class="tor-grid">
+      @for (e of extras; track e.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + (i % 2 ? 'yellow' : 'coral')">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            @if (image(e.code)) {
+              <img [src]="image(e.code)" [alt]="extraName(e.name, e.presentation)" loading="lazy" width="320" height="320">
+            }
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">David Rio{{ e.official ? ' · ' + e.official : '' }}</span>
+            <h3>{{ e.name | catalogName }}</h3>
+            <p class="tor-pres">{{ e.presentation }} · Clave {{ e.code }}</p>
+            <app-product-facts [code]="e.code" [showPortions]="false" />
+            @if (e.servings) { <p class="dr-yield">Rinde aprox. {{ e.servings }} porciones de 100 ml</p> }
+            @if (e.note) { <p class="dr-ph-inline">[{{ e.note }}]</p> }
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(extraName(e.name, e.presentation), e.code, e.apiName, $event)">Comprar<span class="visually-hidden"> {{ e.name | catalogName }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ e.name | catalogName }}</span></a>
+            </div>
+            <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: e.code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ e.name | catalogName }}</span> ›</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="jar-inspira tor-inspira" aria-labelledby="dr-recetas">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="dr-recetas">¿Buscas ideas? Mira nuestras recetas</h2>
+      <div class="rule"></div>
+    </div>
+    @if (recipes.length) {
+      <p class="tor-intro tor-intro-center">Recetas de Café Etrusca preparadas con chai David Rio.</p>
+      <div class="jar-inspira-grid">
+        @for (r of recipes; track r.slug; let i = $index) {
+          <article class="jar-drink" [class]="'jar-drink ' + ['pink', 'yellow', 'lime'][i % 3]">
+            <div class="bar">{{ r.title }} {{ r.titleAccent || '' }}</div>
+            <img [src]="r.image" [alt]="r.title + ' ' + (r.titleAccent || '')" loading="lazy">
+            <a class="more" [routerLink]="recipeLink(r)">Ver receta →</a>
+          </article>
+        }
+      </div>
+    }
+    <p class="tor-more dr-center"><a routerLink="/recetas">Ver todas las recetas ›</a></p>
+  </section>
+
+  <section class="tor-course dr-calc" aria-labelledby="dr-calc">
+    <div>
+      <p class="tor-kicker">Precio de venta</p>
+      <h2 id="dr-calc">¿Cuánto cobrar por un chai?</h2>
+      <p>Con la calculadora de Café Etrusca calculas el costo por vaso y tu precio de venta a partir de los insumos de tu receta.</p>
+    </div>
+    <a class="tor-btn tor-btn-navy" routerLink="/calculadora-de-precios">Ir a la calculadora de precios</a>
+  </section>
+
+  <section class="tor-section dr-guide" aria-label="Guía de sabores">
+    <p>¿Quieres conocer cada sabor a fondo? Lee la <a routerLink="/blog/chai-david-rio-sabores">guía de sabores de chai David Rio</a>.
+      ¿Buscas otro chai? También hay <a routerLink="/insumos-para-cafeterias/bases-en-polvo/chillout">bases ChillOut</a>.</p>
+  </section>
+
+  <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="dr-faq-title">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="dr-faq-title">Preguntas frecuentes</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tor-faq-list">
+      @for (f of publicFaq; track f.q; let first = $first) {
+        <details [attr.open]="first ? '' : null" [class.dr-pending]="f.pending">
+          <summary>{{ f.q }}</summary>
+          @if (f.rich) {
+            <p>@for (p of f.rich; track $index) {@if (p.route) {<a [routerLink]="p.route">{{ p.t }}</a>} @else if (p.href) {<a [href]="p.href" target="_blank" rel="noopener">{{ p.t }}</a>} @else {<span>{{ p.t }}</span>}}</p>
+          } @else {
+            <p>{{ f.a }}</p>
+          }
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta tor-cta">
+    <app-scroll-wave position="top" fillColor="#fce4c0"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿Buscas chai David Rio para tu negocio?</h2>
+      <p>Compra en línea o habla con un asesor para elegir los sabores de tu menú.</p>
+      <div class="tor-ctas">
+        <a [href]="storeUrl" target="_blank" rel="noopener">Ir a la tienda en línea</a>
+        <a class="tor-cta-alt" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <a class="tor-back" routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a>
+    </div>
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+</div>

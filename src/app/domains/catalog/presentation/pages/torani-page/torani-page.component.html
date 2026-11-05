@@ -8,7 +8,7 @@
         <a routerLink="/insumos-para-cafeterias/jarabes">Jarabes</a><span aria-hidden="true">›</span>
         <span aria-current="page">Torani</span>
       </nav>
-      <img class="tor-logo" src="{{ assetsBase }}/images/insumos/logo-torani.png" alt="Torani" width="150" height="60">
+      <img class="tor-logo" src="{{ assetsBase }}/images/productos/logo-torani.webp" alt="Torani" width="150" height="60">
       <h1><span class="tor-h1-main">JARABES TORANI </span><span class="tor-h1-sub visually-hidden">para cafetería</span></h1>
       <p class="lead"><span class="accent">Sabores, Sugar Free y salsas</span> para tu menú</p>
       <p class="body">
@@ -62,10 +62,10 @@
           <h3 class="brand">{{ line.name }}<span class="sub">{{ line.sub }}</span></h3>
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ flavorCount(line) }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -95,17 +95,20 @@
         <article class="tor-card" [class]="'tor-card ' + tone(i)">
           <div class="tor-card-media">
             <span class="tor-card-blob" aria-hidden="true"></span>
-            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+            <img [src]="p.image" [alt]="p.name | catalogName" loading="lazy" width="320" height="320">
           </div>
           <div class="tor-card-body">
             <span class="tor-line">Torani {{ p.line }}</span>
             <h3>{{ p.flavor }}</h3>
             <p class="tor-pres">{{ p.presentation }}</p>
+              @if (p.presentation.includes('750 ml')) { <p class="tor-pres tor-yield">Rinde aprox. 25 bebidas de 450 ml</p> }
+            <app-product-facts [code]="p.code" />
             <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
             <div class="tor-actions">
-              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
-              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name | catalogName }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name | catalogName }}</span></a>
             </div>
+            <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: p.code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ p.name | catalogName }}</span> ›</a>
           </div>
         </article>
       }
@@ -135,17 +138,20 @@
           <article class="tor-card" [class]="'tor-card ' + tone(i + 1)">
             <div class="tor-card-media">
               <span class="tor-card-blob" aria-hidden="true"></span>
-              <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+              <img [src]="p.image" [alt]="p.name | catalogName" loading="lazy" width="320" height="320">
             </div>
             <div class="tor-card-body">
               <span class="tor-line">Torani {{ p.line }}</span>
               <h3>{{ p.flavor }}</h3>
               <p class="tor-pres">{{ p.presentation }}</p>
+              @if (p.presentation.includes('750 ml')) { <p class="tor-pres tor-yield">Rinde aprox. 25 bebidas de 450 ml</p> }
+              <app-product-facts [code]="p.code" />
               <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
               <div class="tor-actions">
-                <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
-                <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+                <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name | catalogName }}</span></button>
+                <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name | catalogName }}</span></a>
               </div>
+              <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: p.code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ p.name | catalogName }}</span> ›</a>
             </div>
           </article>
         }
@@ -186,17 +192,20 @@
         <article class="tor-card" [class]="'tor-card ' + tone(i)">
           <div class="tor-card-media">
             <span class="tor-card-blob" aria-hidden="true"></span>
-            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+            <img [src]="p.image" [alt]="p.name | catalogName" loading="lazy" width="320" height="320">
           </div>
           <div class="tor-card-body">
             <span class="tor-line">Torani {{ p.line }}</span>
             <h3>{{ p.flavor }}</h3>
             <p class="tor-pres">{{ p.presentation }}</p>
+              @if (p.presentation.includes('750 ml')) { <p class="tor-pres tor-yield">Rinde aprox. 25 bebidas de 450 ml</p> }
+            <app-product-facts [code]="p.code" />
             <!-- Comprar → modal (en línea: ficha de la tienda, la misma URL de "Ver producto"; o en sucursal) -->
             <div class="tor-actions">
-              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
-              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name | catalogName }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name | catalogName }}</span></a>
             </div>
+            <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: p.code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ p.name | catalogName }}</span> ›</a>
           </div>
         </article>
       }
@@ -258,3 +267,7 @@
     <app-scroll-wave position="bottom" fillColor="#ffd4c8"></app-scroll-wave>
   </section>
 </div>
+
+@if (flavorLine; as fl) {
+  <app-flavors-modal [title]="fl.name + ' ' + fl.sub" [tone]="fl.tone" [flavors]="flavorsFor(fl)" (closed)="flavorLine = null" />
+}

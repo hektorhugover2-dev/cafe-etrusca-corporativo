@@ -51,7 +51,7 @@ $tones: (
   color: #000;
   overflow-x: clip;
   overflow-y: visible;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
 }
 
 .acc-br {
@@ -78,7 +78,7 @@ $tones: (
 
 .jar-head h2 {
   margin: 0 0 0.35rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
   font-weight: 700;
   font-size: 2.2rem;
   letter-spacing: normal;
@@ -92,7 +92,7 @@ $tones: (
   height: 30px;
   margin: 0.35rem auto 1.6rem;
   border-radius: 0;
-  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png') center / contain no-repeat;
+  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.webp') center / contain no-repeat;
 }
 
 /* ================= HERO =================
@@ -141,7 +141,7 @@ $tones: (
 
   h1 {
     margin: 0 0 1.4rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Poppins Fallback', sans-serif;
     font-weight: 900;
     font-size: clamp(2.9rem, 7vw, 6.4rem);
     line-height: 0.95;
@@ -260,7 +260,7 @@ $tones: (
 
 .acc-help__title {
   margin: 0;
-  font-family: 'Outfit', 'Poppins', sans-serif;
+  font-family: 'Outfit', 'Outfit Fallback', 'Poppins', 'Poppins Fallback', sans-serif;
   font-weight: 700;
   font-size: max(2rem, #{u(65)});
   line-height: 1.2;
@@ -269,7 +269,7 @@ $tones: (
 
 .acc-help__text {
   margin: 0;
-  font-family: 'Figtree', 'Poppins', sans-serif;
+  font-family: 'Figtree', 'Figtree Fallback', 'Poppins', 'Poppins Fallback', sans-serif;
   font-size: max(1.05rem, #{u(24.5)});
   line-height: 1.35;
   color: $help-text;
@@ -287,7 +287,7 @@ $tones: (
   align-items: center;
   justify-content: center;
   gap: u(12);
-  font-family: 'Figtree', 'Poppins', sans-serif;
+  font-family: 'Figtree', 'Figtree Fallback', 'Poppins', 'Poppins Fallback', sans-serif;
   text-decoration: none;
   border-radius: u(8);
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;

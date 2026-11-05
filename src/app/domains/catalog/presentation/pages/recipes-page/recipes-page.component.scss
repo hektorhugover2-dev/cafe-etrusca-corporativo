@@ -694,3 +694,8 @@ $rc-fondos-tipo: (
     background-repeat: no-repeat, repeat;
   }
 }
+
+/* breadcrumbs-homologados: mismo patrón que app-hero-crumbs (insumos) */
+.ins-page .rc-crumbs{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:.85rem;font-weight:600;color:#192966;margin:0 0 1.1rem;padding:0;max-width:none;background:none;text-align:left;text-transform:none;letter-spacing:normal;line-height:1.4;
+  a{color:#192966;text-decoration:none;font-weight:600} a:hover{text-decoration:underline} a:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:2px}
+  [aria-current]{color:#a43c40;font-weight:600} span[aria-hidden]{color:#192966}}

@@ -16,7 +16,7 @@
 }
 
 .tor-page {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
   color: var(--tor-navy);
   /* .ins-page (insumos-theme) usa overflow-x: hidden, que obliga a overflow-y: auto; como la ola
      inferior del CTA sobresale del contenedor, aparecía una segunda barra de scroll interna.
@@ -612,3 +612,6 @@
 @media (max-width: 640px) {
   .tor-grid.chl-grid-2 { grid-template-columns: 1fr; }
 }
+
+/* Enlace 'Calcula tu precio' por card (mismo patrón que David Rio). */
+.dr-calc-link { display: inline-block; margin-top: 0.7rem; font-weight: 800; font-size: 0.88rem; color: #283039; text-decoration: underline; text-underline-offset: 3px; }

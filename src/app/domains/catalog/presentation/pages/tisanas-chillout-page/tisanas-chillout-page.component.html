@@ -76,11 +76,13 @@
             <span class="tor-line">ChillOut {{ p.line }}</span>
             <h3>{{ p.flavor }}</h3>
             <p class="tor-pres">{{ p.presentation }}</p>
+            <app-product-facts [code]="p.code" />
             <!-- Comprar → modal (en línea: ficha de la tienda, ficha directa o, si no hay ficha, búsqueda en la tienda; sucursal; asesoría) -->
             <div class="tor-actions">
-              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
-              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name | catalogName }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name | catalogName }}</span></a>
             </div>
+            <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: p.code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ p.name | catalogName }}</span> ›</a>
           </div>
         </article>
       }

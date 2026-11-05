@@ -1,0 +1,160 @@
+/* Página Bienestar: hereda insumos-theme + jarabes-theme + ChillOut (tor-*).
+   Guía Lizbeth: Poppins, navy #070C3B/#192966, un acento curado (verde lima suave) para la categoría,
+   títulos editoriales grandes, olas orgánicas, producto recortado, cards de 3 columnas, responsive. */
+$bn-accent: #bbdc17;
+$bn-soft: #f3f9e2;
+$bn-mid: #e3f3a0;
+$bn-ink: #4f6410;
+
+.bn-page { font-family: 'Poppins', 'Poppins Fallback', system-ui, sans-serif; }
+.bn-page .tor-hero { background: $bn-soft; }
+.bn-kicker { margin: 0 0 .3rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: $bn-ink; font-size: .85rem; }
+.bn-page h1 { color: #070C3B; font-weight: 900; letter-spacing: -0.03em; line-height: 1.02; }
+/* Oculto visualmente pero presente en el H1 (SEO / lectores de pantalla); mismo patrón que .visually-hidden de Bootstrap. */
+.bn-page .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; clip-path: inset(50%) !important; white-space: nowrap !important; border: 0 !important; }
+.bn-h1-main { text-transform: uppercase; }
+.bn-h1-sub { display: block; font-size: .55em; font-weight: 800; color: #192966; letter-spacing: -0.01em; margin-top: .3rem; }
+.bn-page .tor-bottle.bn-cut { mix-blend-mode: normal; box-shadow: none; border-radius: 0; background: transparent; filter: drop-shadow(0 18px 24px rgba(7,12,59,.25)); object-fit: contain; }
+
+/* 4 líneas: 2x2 en escritorio ancho, 1 en móvil */
+.tor-lines-grid.bn-lines-grid { grid-template-columns: repeat(2, 1fr); max-width: 1040px; }
+@media (max-width: 800px) { .tor-lines-grid.bn-lines-grid { grid-template-columns: 1fr; } }
+.bn-page .jar-card .shot { mix-blend-mode: multiply; object-fit: contain; }
+.bn-page .jar-actions button.buy { flex: 1; border: 0; cursor: pointer; font-family: inherit; text-align: center; font-weight: 800; font-size: .82rem; padding: .48rem .2rem; border-radius: 999px; }
+
+.bn-center { text-align: center; }
+/* H2 centrados: mismo patrón que /insumos-para-cafeterias/jarabes/ (.jar-head > h2.section-title-center + .rule, estilos globales). */
+.bn-head { text-align: center; .jar-head { margin-bottom: .6rem; } }
+
+.bn-enjoy-list {
+  list-style: none; margin: 0 auto; padding: 0; max-width: 1120px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem;
+  li { background: $bn-soft; border: 1.5px solid $bn-mid; border-radius: 22px; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .25rem; }
+  strong { font-size: 1.15rem; font-weight: 900; color: #070C3B; }
+  span { font-size: .9rem; color: #283039; line-height: 1.45; }
+  @media (max-width: 900px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 520px) { grid-template-columns: 1fr; }
+}
+
+.bn-table-wrap { max-width: 1120px; margin: 0 auto; overflow-x: auto; border-radius: 22px; background: #fff; box-shadow: 0 10px 26px rgba(7, 12, 59, .07); }
+.bn-table {
+  width: 100%; border-collapse: collapse; font-size: .92rem; color: #283039; min-width: 720px;
+  th, td { text-align: left; padding: .85rem 1rem; vertical-align: top; border-bottom: 1px solid #eef0f2; }
+  thead th { background: #192966; color: #fff; font-weight: 700; }
+  tbody th { font-weight: 800; color: #070C3B; }
+  tbody tr:nth-child(even) { background: #fafcf3; }
+}
+
+.bn-grid3 {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; max-width: 1120px; margin: 0 auto;
+  article { background: #fff; border-radius: 24px; padding: 1.5rem 1.6rem; box-shadow: 0 10px 26px rgba(7, 12, 59, .07); border-top: 6px solid $bn-accent; }
+  h3 { margin: 0 0 .5rem; font-weight: 900; color: #070C3B; }
+  p { margin: 0; color: #283039; line-height: 1.55; }
+  @media (max-width: 800px) { grid-template-columns: 1fr; }
+}
+.bn-where { text-align: center; p { max-width: 760px; margin: .6rem auto 0; color: #283039; line-height: 1.6; } a { color: #192966; font-weight: 800; } }
+
+/* Modal de sabores */
+.bn-modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1.5rem; font-family: 'Poppins', 'Poppins Fallback', system-ui, sans-serif; }
+.bn-modal-backdrop { position: absolute; inset: 0; background: rgba(7, 12, 59, .55); }
+.bn-modal-dialog { position: relative; width: min(820px, 100%); max-height: min(86vh, 860px); display: flex; flex-direction: column; background: #fff; border-radius: 22px; border: 2px solid $bn-accent; box-shadow: 0 24px 60px rgba(0,0,0,.22); overflow: hidden; }
+.bn-modal-head { display: flex; justify-content: space-between; gap: 1rem; padding: 1.4rem 1.6rem 1rem; background: $bn-soft;
+  h2 { margin: .1rem 0 0; font-size: 1.35rem; font-weight: 800; color: #070C3B; } }
+.bn-modal-kicker { margin: 0; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: $bn-ink; }
+.bn-modal-count { margin: .2rem 0 0; font-size: .85rem; color: #4a525c; }
+.bn-modal-close { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid $bn-accent; background: #fff; color: #283039; cursor: pointer; }
+.bn-modal-body { overflow-y: auto; overscroll-behavior: contain; padding: 1rem 1.6rem 1.6rem; }
+.bn-flavors { list-style: none; margin: 0; padding: 0; }
+.bn-flavor { display: grid; grid-template-columns: 96px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #eef0f2;
+  h3 { margin: 0 0 .3rem; font-size: 1.05rem; font-weight: 800; color: #070C3B; } }
+.bn-flavor-img { width: 96px; height: 96px; object-fit: contain; border-radius: 16px; background: $bn-soft; mix-blend-mode: multiply; }
+.bn-variant { padding: .4rem 0 .6rem; & + & { border-top: 1px dashed #e2e6ea; } }
+.bn-variant-head { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.bn-chip { display: inline-block; padding: .15rem .7rem; border-radius: 999px; background: $bn-mid; color: #2a3304; font-size: .78rem; font-weight: 700; }
+.bn-code { font-size: .78rem; color: #4a525c; }
+.bn-allergen { margin: .35rem 0 0; font-size: .8rem; color: #283039; }
+.bn-seals { list-style: none; margin: .4rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem;
+  li { background: #000; color: #fff; font-size: .68rem; font-weight: 800; padding: .25rem .5rem; border-radius: 6px; letter-spacing: .02em; } }
+.bn-legend { margin: .35rem 0 0; font-size: .72rem; font-weight: 800; color: #070C3B; letter-spacing: .02em; }
+.bn-label { margin-top: .4rem; border-top: 1px solid #eef0f2; padding-top: .3rem;
+  summary { cursor: pointer; font-size: .82rem; font-weight: 700; color: #283039; }
+  p { margin: .4rem 0 0; font-size: .78rem; line-height: 1.5; color: #4a525c; } }
+.bn-nutri { width: 100%; margin-top: .4rem; border: 1.5px solid #283039; border-radius: 10px; border-collapse: separate; padding: .3rem .6rem; font-size: .74rem; color: #283039;
+  caption { text-align: left; font-size: .72rem; color: #4a525c; caption-side: top; padding-bottom: .15rem; }
+  th { text-align: left; font-weight: 400; padding: .1rem 0; } td { text-align: right; font-weight: 700; } }
+.bn-calc-btn { display: inline-block; margin-top: .55rem; padding: .45rem 1rem; border-radius: 999px; background: #192966; color: #fff; font-size: .82rem; font-weight: 700; text-decoration: none; }
+.bn-calc-btn:hover { background: #070C3B; }
+.bn-modal-more { margin: 1rem 0 0; a { color: #192966; font-weight: 800; } }
+@media (max-width: 640px) {
+  .bn-modal { align-items: flex-end; padding: 0; }
+  .bn-modal-dialog { max-height: 88vh; border-radius: 22px 22px 0 0; }
+  .bn-flavor { grid-template-columns: 64px 1fr; }
+  .bn-flavor-img { width: 64px; height: 64px; }
+}
+.bn-page .tor-kicker { background: #e3f3a0; color: #4f6410; }
+
+
+/* bn-cta-color: el CTA final hereda --tor-peach de chillout; en Bienestar va del mismo verde que sus ondas (#f3f9e2) */
+.tor-cta { background: $bn-soft; }
+
+
+/* bn-hero-video: mismo bloque que torani-page (video 960x800 con fondo #f3f9e2 y blob estático incluido) */
+/* Video HyperFrames (V1 Pulso): trae su propio fondo y blob, por eso se oculta el blob HTML */
+.tor-hero-blob.is-hidden { display: none; }
+/* Con video: la columna deja de ser contenedor y el video se ancla a la esquina inferior
+   derecha de .jar-hero (igual que .jar-hero-blob original). Queda bajo el texto (z 3)
+   y bajo la ola (z 1) para que la ola siga recortando el borde inferior. */
+.tor-hero-media.has-video {
+  position: static;
+  z-index: auto;
+}
+.tor-hero-video {
+  /* Base aprobada por Héctor en 1905px */
+  position: absolute;
+  right: 0;
+  bottom: 10vh;
+  z-index: 0;
+  display: block;
+  height: min(100%, 560px);
+  width: auto;
+  max-width: 50%;
+  aspect-ratio: 6 / 5;
+  object-fit: cover;
+  object-position: right bottom;
+  background: $bn-soft;
+  pointer-events: none;
+  /* Funde las orillas izquierda y superior con el fondo del hero (evita la "caja" rosa
+     por la ligera diferencia de color del video comprimido). */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%), linear-gradient(to bottom, transparent 0, #000 12%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0, #000 14%), linear-gradient(to bottom, transparent 0, #000 12%);
+  mask-composite: intersect;
+}
+/* Intermedios: menos alto y un poco más ancho para no chocar con el texto ni la ola */
+@media (max-width: 1400px) and (min-width: 801px) {
+  .tor-hero-video { height: min(100%, 480px); max-width: 52%; bottom: 7rem; }
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+  .tor-hero-video { height: min(100%, 400px); max-width: 50%; bottom: 6rem; }
+}
+@media (max-width: 800px) {
+  .tor-hero-media.has-video { min-height: 0; }
+  .tor-hero-media.has-video .tor-hero-video {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: calc(100% + 2 * clamp(1.2rem, 5vw, 5rem));
+    max-width: none;
+    height: auto;
+    margin: 0 calc(-1 * clamp(1.2rem, 5vw, 5rem)) 1.5rem;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 10%);
+  }
+}
+.tor-hero-media .sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tor-hero-video { display: none; }
+}
+

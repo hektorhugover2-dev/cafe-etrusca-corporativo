@@ -1,4 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { ProductFactsComponent } from '../../components/product-facts/product-facts.component';
+import { flavorCountLabel, uniqueFlavors } from '../../components/flavors-modal/flavor-count';
+import { CatalogFlavorsService } from '../../components/flavors-modal/catalog-flavors.service';
+import { FlavorsModalComponent } from '../../components/flavors-modal/flavors-modal.component';
+import { Component, afterNextRender, inject, signal } from '@angular/core';
+import { CatalogNamePipe } from '../../../../../shared/ui/catalog-name.pipe';
 import { RouterLink } from '@angular/router';
 import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
 import { InsumosNavComponent } from '../../components/insumos-nav/insumos-nav.component';
@@ -33,11 +38,12 @@ function usesChilloutPowder(r: Recipe): boolean {
 @Component({
   selector: 'app-chillout-page',
   standalone: true,
-  imports: [RouterLink, InsumosNavComponent, ScrollWaveComponent],
+  imports: [CatalogNamePipe, ProductFactsComponent, FlavorsModalComponent, RouterLink, InsumosNavComponent, ScrollWaveComponent],
   templateUrl: './chillout-page.component.html',
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './chillout-page.component.scss']
 })
 export class ChilloutPageComponent {
+  readonly calcPath = '/calculadora-de-precios';
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
   protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
@@ -54,6 +60,37 @@ export class ChilloutPageComponent {
     );
   }
   readonly lines = CHILLOUT_LINES;
+  /** Modal de sabores de la card de línea. */
+  flavorLine: (typeof this.lines)[number] | null = null;
+  openFlavors(line: (typeof this.lines)[number]) { this.flavorLine = line; }
+  /** Sabores reales por línea desde el catálogo (misma lógica que las páginas de categoría). */
+  private catalogFlavors = inject(CatalogFlavorsService);
+  private readonly catalogLines: Record<string, { needle: string; dropSalsa?: boolean }> = {
+    'MIX': { needle: 'CHILLOUT MIX BASE EN POLVO' },
+    'JUST FRUIT': { needle: 'CHILLOUT JUST FRUIT' }
+  };
+  readonly catalogByLine = signal<Record<string, string[]>>({});
+  private readonly loadCatalog = afterNextRender(() => {
+    for (const [sub, c] of Object.entries(this.catalogLines)) {
+      this.catalogFlavors.lineFlavors(c.needle, { dropSalsa: c.dropSalsa }).then((list) => {
+        if (list.length) this.catalogByLine.update((m) => ({ ...m, [sub]: list }));
+      });
+    }
+  });
+  /** Respaldo si el catálogo falla o no trae datos: la lista local del código. */
+  private fallbackFlavors(line: { sub: string; anchor: string }): string[] {
+    const m: Record<string, { flavor: string }[]> = { 'MIX': this.mix, 'JUST FRUIT': this.justFruit };
+    return uniqueFlavors((m[line.sub] || []).map((p) => p.flavor));
+  }
+  flavorsFor(line: { sub: string; anchor: string }): string[] {
+    const fromCatalog = this.catalogByLine()[line.sub];
+    return fromCatalog?.length ? fromCatalog : this.fallbackFlavors(line);
+  }
+  /** Conteo de la tarjeta = sabores únicos del modal. */
+  flavorCount(line: { sub: string; anchor: string; sabores: string }): string {
+    const n = this.flavorsFor(line).length;
+    return n ? flavorCountLabel(n) : line.sabores;
+  }
   readonly mix = CHILLOUT_MIX;
   readonly sinAzucar = CHILLOUT_SIN_AZUCAR;
   readonly justFruit = CHILLOUT_JUST_FRUIT;

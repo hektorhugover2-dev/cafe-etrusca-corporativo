@@ -15,7 +15,7 @@
     <div class="container">
       <div class="text-center mb-5">
         <h2 class="section-title-center section-title-center--has-line">Sucursales</h2>
-        <img src="{{ assetsBase }}/images/separador.png" alt="" class="ct-sep" />
+        <img src="{{ assetsBase }}/images/separador.webp" alt="" class="ct-sep" />
         <p class="ct-sub">
           Elige una sede para ver su mapa de Google, sus datos de contacto y cómo llegar.
         </p>
@@ -28,10 +28,10 @@
   <section id="contacto-form" class="ct-form-sec">
     <app-scroll-wave position="top" fillColor="var(--navy)"></app-scroll-wave>
     <div class="container">
-      <div class="row g-5 align-items-start">
+      <div class="row g-4 g-lg-5 align-items-start">
         <div class="col-lg-5">
           <h2>Escríbenos</h2>
-          <img src="{{ assetsBase }}/images/separador.png" alt="" class="ct-sep ct-sep-left" />
+          <img src="{{ assetsBase }}/images/separador.webp" alt="" class="ct-sep ct-sep-left" />
           <p class="ct-sub">
             Cuéntanos qué necesitas para tu cafetería. Un asesor te contacta con la información de sucursales, insumos o maquinaria.
           </p>
@@ -122,7 +122,7 @@
             }
 
             <button type="submit" class="ct-submit" [disabled]="submitting">
-              {{ submitting ? 'Enviandoâ€¦' : 'Enviar' }}
+              {{ submitting ? 'Enviando…' : 'Enviar' }}
             </button>
           </form>
         </div>
@@ -136,14 +136,15 @@
       <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
         <div>
           <h2>Sucursales y distribuidores</h2>
-          <img src="{{ assetsBase }}/images/separador.png" alt="" class="ct-sep ct-sep-left" />
+          <img src="{{ assetsBase }}/images/separador.webp" alt="" class="ct-sep ct-sep-left" />
         </div>
-        <div class="ct-chips" role="tablist" aria-label="Filtrar directorio">
+        <div class="ct-chips" role="group" aria-label="Filtrar directorio">
           @for (kind of locatorKinds; track kind) {
             <button
               type="button"
               class="ct-chip"
               [class.is-on]="locatorFilter === kind"
+              [attr.aria-pressed]="locatorFilter === kind"
               (click)="locatorFilter = kind"
             >
               {{ kind }}
@@ -179,7 +180,7 @@
                   @if (row.email) {
                     <a [href]="'mailto:' + row.email">{{ row.email }}</a>
                   } @else {
-                    <span class="text-muted">â€”</span>
+                    <span class="text-muted">—</span>
                   }
                 </td>
               </tr>

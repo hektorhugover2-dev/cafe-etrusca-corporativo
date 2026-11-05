@@ -625,3 +625,136 @@ $ns-heading: clamp(1.55rem, 2.6vw, 2.15rem);
   z-index: 0;
 }
 
+
+/* ========== MARCAS: 4ª tarjeta TENZYU + carrusel lento ========== */
+.card-tenzyu {
+  border-color: #badc58; // verde de "PRODUCTOS" en el footer (footer.component.scss .heading-productos)
+  .brand-body strong { color: #657e1b; /* Verde del footer (#badc58) oscurecido para contraste AA 4.6:1 sobre blanco (aprobado por Héctor, build 29) */ }
+  .brand-bottom-bar { background-color: #badc58; }
+}
+
+.ns-marcas-carousel {
+  position: relative;
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+.ns-marcas-carousel .ns-marcas-grid {
+  grid-template-columns: none !important;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * 1.8rem) / 3);
+  max-width: none !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 8px 2px 18px;
+  outline-offset: 4px;
+  &::-webkit-scrollbar { display: none; }
+
+  /* position: relative para que la franja (.brand-bottom-bar, absolute) se desplace con su tarjeta dentro del carrusel */
+  .brand-card { width: auto; scroll-snap-align: start; position: relative; }
+  /* Mismo ancho de franja que antes (24% del ancho de la rejilla de 80vw), ahora medido dentro de la tarjeta */
+  .brand-bottom-bar { width: min(calc(80vw * 0.24), 76%); }
+}
+
+.ns-car-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: #1a1612;
+  color: #fff;
+  font-size: 1.9rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(26, 22, 18, 0.18);
+  transition: background .2s ease;
+  &:hover { background: #3a322c; }
+  &:focus-visible { outline: 3px solid #6b7d3a; outline-offset: 3px; }
+  span { margin-top: -4px; }
+}
+.ns-car-prev { left: -58px; }
+.ns-car-next { right: -58px; }
+
+.ns-car-dots {
+  display: flex;
+  justify-content: center;
+  gap: .4rem;
+  margin-top: 1.2rem;
+
+  button {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    &::before {
+      content: '';
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #d9cdbd;
+      transition: background .2s ease, transform .2s ease;
+    }
+    &.active::before { background: #1a1612; transform: scale(1.15); }
+    &:focus-visible { outline: 2px solid #1a1612; border-radius: 50%; }
+  }
+}
+
+@media (max-width: 1024px) {
+  .ns-marcas-carousel .ns-marcas-grid { grid-auto-columns: calc((100% - 1.8rem) / 2); }
+}
+
+@media (max-width: 768px) {
+  .ns-marcas-carousel .ns-marcas-grid { grid-auto-columns: 100%; }
+  .ns-car-btn { width: 36px; height: 36px; font-size: 1.5rem; }
+  .ns-car-prev { left: -40px; }
+  .ns-car-next { right: -40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ns-marcas-carousel .ns-marcas-grid { scroll-behavior: auto; }
+}
+
+
+/* ===== Correcciones UI/UX 30-oct-2026 ===== */
+/* Marcas: sin franja de color; solo logo, más grande */
+.brand-bottom-bar { display: none !important; }
+.brand-band {
+  height: 150px;
+  padding: 1rem 1.2rem 1.4rem;
+  img { max-height: 120px; max-width: 92%; }
+}
+/* Carrusel: la tarjeta activa (centro) crece; las demás se reducen */
+.ns-marcas-carousel .ns-marcas-grid { padding: 22px 2px 26px; }
+.ns-marcas-carousel .brand-card {
+  transform: scale(0.9);
+  opacity: 0.78;
+  transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease;
+  &:hover { transform: scale(0.92); }
+  &.is-active {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 14px 30px rgba(26, 22, 18, 0.12);
+  }
+}
+@media (max-width: 768px) {
+  .ns-marcas-carousel .brand-card { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ns-marcas-carousel .brand-card { transition: none; }
+}
+/* Títulos homologados con el home (barra golden pink global de .section-title-center) */
+.ns-marcas h2.section-title-center { margin-bottom: 2.4rem !important; }
+.ns-sellos h2.section-title-center { margin-bottom: 1.6rem !important; }

@@ -1,20 +1,59 @@
 @if (page) {
-<div class="edu-page lc-page" [style.--lc-accent]="page.accent">
-  <nav class="edu-crumbs" aria-label="Breadcrumb">
-    @for (c of crumbs; track c.label; let last = $last) {
-      @if (!last && c.path) {
-        <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
-      } @else {
-        <span aria-current="page">{{ c.label }}</span>
-      }
-    }
-  </nav>
+<div class="edu-page edu-page--flush lc-page" [style.--lc-accent]="page.accent">
 
+  @if (heroPhoto; as photo) {
+  <section class="edu-hero lc-photo-hero">
+    <div class="edu-hero-copy">
+      <nav class="edu-crumbs" aria-label="Breadcrumb">
+        @for (c of crumbs; track c.label; let last = $last) {
+          @if (!last && c.path) {
+            <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+          } @else {
+            <span aria-current="page">{{ c.label }}</span>
+          }
+        }
+      </nav>
+      <p class="kicker" style="font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#bf3267;">{{ page.kicker || 'Curso' }} presencial</p>
+      <h1>{{ page.h1 }}</h1>
+      @if (catalog; as c) { <p class="edu-clave">Clave: {{ c.clave }}</p> }
+      @if (heroLead) { <p class="lead">{{ heroLead }}</p> }
+      @if (resolved?.generated && cityLocation; as loc) {
+        <p class="lc-city-intro">Consulta las próximas fechas de este taller en la {{ loc.name }} de Café Etrusca, en {{ introAddress(loc) }}.</p>
+      }
+      <div class="meta">
+        @if (catalog; as c) {
+          <div><strong>Duración</strong>{{ heroDuration }}</div>
+          <div><strong>Horario</strong>{{ c.schedule }}</div>
+          <div><strong>Inversión</strong>{{ heroPrice }}</div>
+        } @else {
+          @for (m of metaItems; track m.label) { <div>{{ m.label }}</div> }
+        }
+      </div>
+      @if (combo) { <p class="edu-combo">{{ combo }}</p> }
+      <div class="edu-actions">
+        <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
+        <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
+      </div>
+    </div>
+    <div class="edu-hero-media">
+      <img [src]="photo" [alt]="page.h1">
+    </div>
+  </section>
+  } @else {
   <section class="lc-hero">
     <svg class="lc-hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 64c180 48 360 56 540 32s360-72 540-64 270 40 360 56v32H0z" fill="#fff" />
     </svg>
     <div class="lc-hero-copy">
+      <nav class="edu-crumbs" aria-label="Breadcrumb">
+        @for (c of crumbs; track c.label; let last = $last) {
+          @if (!last && c.path) {
+            <a [routerLink]="c.path">{{ c.label }}</a><span class="edu-crumbs-sep" aria-hidden="true">›</span>
+          } @else {
+            <span aria-current="page">{{ c.label }}</span>
+          }
+        }
+      </nav>
       @if (page.kicker) { <p class="lc-kicker">{{ page.kicker }}</p> }
       <h1>{{ page.h1 }}</h1>
       @if (catalog; as c) { <p class="edu-clave lc-clave">Clave: {{ c.clave }}</p> }
@@ -51,6 +90,7 @@
       </div>
     }
   </section>
+  }
 
   <div class="lc-body">
     @for (item of items; track $index) {
@@ -144,7 +184,7 @@
                   <article class="edu-date-card">
                     <div class="date-block">
                       <span class="days">{{ d.days }}</span>
-                      <span class="month">{{ d.month }}</span>
+                      <span class="month">{{ d.month?.toLowerCase() }}</span>
                     </div>
                     <div class="info-block">
                       @if (allCourses && e.course) { <div class="lc-course">{{ e.course }}</div> }

@@ -5,7 +5,7 @@ $muted: #5b6080;
 $line: #e3e6f0;
 
 .br-page {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
   color: $navy;
   background: #fff;
 }
@@ -237,3 +237,8 @@ $line: #e3e6f0;
 .br-map-sec { padding-bottom: 1rem; }
 
 .br-card-note{margin:-.35rem 0 .5rem;font-size:.85rem;font-style:italic;color:#6b6b6b;}
+
+/* breadcrumbs-homologados: mismo patrón que app-hero-crumbs (insumos) */
+.br-page .br-crumbs{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;font-size:.85rem;font-weight:600;color:#192966;margin:0 0 1.1rem;padding:0;max-width:none;background:none;text-align:left;text-transform:none;letter-spacing:normal;line-height:1.4;
+  a{color:#192966;text-decoration:none;font-weight:600} a:hover{text-decoration:underline} a:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:2px}
+  [aria-current]{color:#a43c40;font-weight:600} span[aria-hidden]{color:#192966}}

@@ -29,19 +29,14 @@
           <img class="blob" [src]="line.blob" alt="">
           <div class="shot-slider">
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-            @if (slideCount(line) > 1) {
-              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
-            }
           </div>
           <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -62,7 +57,7 @@
 
   <section class="jar-torani-link" aria-label="Jarabes Torani">
     <a routerLink="/insumos-para-cafeterias/jarabes/torani">
-      <img src="{{ assetsBase }}/images/insumos/logo-torani.png" alt="Torani" width="120" height="48">
+      <img src="{{ assetsBase }}/images/productos/logo-torani.webp" alt="Torani" width="120" height="48">
       <span>Sabores Torani Clásico, Sugar Free y salsas: encuentra el tuyo</span>
       <strong>Ver jarabes Torani ›</strong>
     </a>
@@ -118,9 +113,9 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
@@ -162,19 +157,14 @@
           <img class="blob" [src]="line.blob" alt="">
           <div class="shot-slider">
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-            @if (slideCount(line) > 1) {
-              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
-            }
           </div>
           <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -227,7 +217,7 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
     <img src="{{ assetsBase }}/images/insumos/salsas-barista.png" alt="Asesor de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#c8e84a"></app-scroll-wave>
@@ -283,19 +273,14 @@
           <img class="blob" [src]="line.blob" alt="">
           <div class="shot-slider">
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-            @if (slideCount(line) > 1) {
-              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
-            }
           </div>
           <h3 class="brand">{{ line.brand }}</h3>
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -375,9 +360,9 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#ff7eab"></app-scroll-wave>
   </section>
 
@@ -418,19 +403,14 @@
           <img class="blob" [src]="line.blob" alt="">
           <div class="shot-slider">
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-            @if (slideCount(line) > 1) {
-              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
-            }
           </div>
           <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -498,9 +478,9 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
@@ -551,19 +531,14 @@
           <img class="blob" [src]="line.blob" alt="">
           <div class="shot-slider">
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-            @if (slideCount(line) > 1) {
-              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
-            }
           </div>
           <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -639,9 +614,9 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
@@ -683,19 +658,18 @@
           <img class="blob" [src]="line.blob" alt="">
           <div class="shot-slider">
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-            @if (slideCount(line) > 1) {
-              <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-              <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-              <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
-            }
           </div>
-          <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          @if (line.page) {
+            <h3 class="brand"><a class="brand-link" style="color:inherit;text-decoration:none" [routerLink]="line.page" [attr.aria-label]="'Ver ' + line.brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></a></h3>
+          } @else {
+            <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+          }
           <p>{{ line.description }}</p>
           <div class="jar-feat">
-            <div>
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
               <img [src]="line.icons.sabor" alt="">
-              <span><strong>Sabores</strong>{{ line.sabores }}</span>
-            </div>
+              <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
             <div>
               <img [src]="line.icons.pres" alt="">
               <span><strong>Presentación</strong>{{ line.presentacion }}</span>
@@ -719,6 +693,20 @@
       <img src="/assets/images/marcas/logo-chillout-mix.webp" alt="ChillOut Mix" width="120" height="48">
       <span>Sabores ChillOut Mix, Just Fruit y sin azúcar: encuentra el tuyo</span>
       <strong>Ver bases ChillOut ›</strong>
+    </a>
+  </section>
+
+  <section class="jar-torani-link jar-chillout-link jar-davidrio-link" aria-label="Chai David Rio">
+    <a routerLink="/insumos-para-cafeterias/bases-en-polvo/david-rio">
+      <span>Chai David Rio: Tigre, Elefante, Tortuga, Orca, Flamingo y más. Conoce a los animales</span>
+      <strong>Ver David Rio ›</strong>
+    </a>
+  </section>
+
+  <section class="jar-torani-link jar-chillout-link jar-davidrio-link" aria-label="Bases en polvo Mocafe">
+    <a routerLink="/insumos-para-cafeterias/bases-en-polvo/mocafe">
+      <span>Mocafe: frappés, chai, matcha y bases para smoothie</span>
+      <strong>Ver Mocafe ></strong>
     </a>
   </section>
 
@@ -771,9 +759,9 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
@@ -823,42 +811,42 @@
       <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
-    @for (block of toppingsBloques; track block.num) {
-      <div class="toppings-bloque" [attr.data-tone]="block.tone">
-        <div class="toppings-bloque-head">
-          <span class="toppings-bloque-num">Bloque {{ block.num }}</span>
-          <h3>{{ block.label }}</h3>
-        </div>
-        <div class="jar-lines-grid">
-          @for (line of linesForBlock(block); track line.name) {
-            <article class="jar-card" [class]="line.tone">
-              <img class="blob" [src]="line.blob" alt="">
-              <div class="shot-slider">
-                <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-                @if (slideCount(line) > 1) {
-                  <button type="button" class="shot-nav prev" (click)="stepSlide(line, -1)" aria-label="Presentación anterior"></button>
-                  <button type="button" class="shot-nav next" (click)="stepSlide(line, 1)" aria-label="Siguiente presentación"></button>
-                  <span class="shot-count">{{ (slideAt[line.name] || 0) + 1 }}/{{ slideCount(line) }}</span>
+    @for (block of toppingsBloques; track block.num) {
+      <div class="toppings-bloque" [attr.data-tone]="block.tone">
+        <div class="toppings-bloque-head">
+          <span class="toppings-bloque-num">Bloque {{ block.num }}</span>
+          <h3>{{ block.label }}</h3>
+        </div>
+        <div class="jar-lines-grid">
+          @for (line of linesForBlock(block); track line.name) {
+            <article class="jar-card" [class]="line.tone">
+              <img class="blob" [src]="line.blob" alt="">
+              <div class="shot-slider">
+                <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+              </div>
+              <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+              <p>{{ line.description }}</p>
+              <div class="jar-feat">
+                <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
+                  <img [src]="line.icons.sabor" alt="">
+                  <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+                </button>
+                <div>
+                  <img [src]="line.icons.pres" alt="">
+                  <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+                </div>
+                <div>
+                  <img [src]="line.icons.rend" alt="">
+                  <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+                </div>
+              </div>
+              @if (isNoStore(line)) {
+                <p class="ask-branch">Pregunta disponibilidad en tu <a routerLink="/sucursales">sucursal</a> o en el <a routerLink="/contacto">Call Center</a>.</p>
+              }
+              <div class="jar-actions">
+                @if (!isNoStore(line)) {
+                  <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
                 }
-              </div>
-              <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
-              <p>{{ line.description }}</p>
-              <div class="jar-feat">
-                <div>
-                  <img [src]="line.icons.sabor" alt="">
-                  <span><strong>Sabores</strong>{{ line.sabores }}</span>
-                </div>
-                <div>
-                  <img [src]="line.icons.pres" alt="">
-                  <span><strong>Presentación</strong>{{ line.presentacion }}</span>
-                </div>
-                <div>
-                  <img [src]="line.icons.rend" alt="">
-                  <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
-                </div>
-              </div>
-              <div class="jar-actions">
-                <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
                 <a class="help" routerLink="/contacto">Asesoría</a>
               </div>
             </article>
@@ -917,9 +905,9 @@
     <div class="copy">
       <h2>¿No sabes qué necesitas?</h2>
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-      <a routerLink="/contacto" fragment="contacto-form">Contactar a Café Etrusca</a>
+      <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Cafe Etrusca">
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#9fe4ea"></app-scroll-wave>
   </section>
 
@@ -1018,4 +1006,8 @@
   <app-insumos-cta></app-insumos-cta>
 </div>
 }
+}
+
+@if (flavorLine; as fl) {
+  <app-flavors-modal [title]="flavorTitle(fl)" [tone]="fl.tone || ''" [flavors]="flavorsByLine[fl.name]" [unavailable]="unavailableByLine[fl.name]" (closed)="closeFlavors()" />
 }

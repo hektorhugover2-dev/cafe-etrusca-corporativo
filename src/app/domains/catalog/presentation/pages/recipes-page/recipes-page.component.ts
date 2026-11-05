@@ -5,6 +5,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
+import { DrinkVideoHeroComponent } from '../../../../../shared/ui/drink-video-hero/drink-video-hero.component';
 import { Recipe, publishedRecipes, recipeBySlug } from './recetas.data';
 import {
   APRENDE_VIENDO_IDS,
@@ -39,7 +40,7 @@ interface ChipTemporada {
 @Component({
   selector: 'app-recipes-page',
   standalone: true,
-  imports: [RouterLink, ScrollWaveComponent],
+  imports: [RouterLink, ScrollWaveComponent, DrinkVideoHeroComponent],
   templateUrl: './recipes-page.component.html',
   /* Hero, H2 y línea: mismos estilos de Jarabes (insumos-theme + jarabes-theme), como Torani/Máquinas. */
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './recipes-page.component.scss']

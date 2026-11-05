@@ -1,4 +1,9 @@
+import { ProductFactsComponent } from '../../components/product-facts/product-facts.component';
+import { flavorCountLabel, uniqueFlavors } from '../../components/flavors-modal/flavor-count';
+import { CatalogFlavorsService } from '../../components/flavors-modal/catalog-flavors.service';
+import { FlavorsModalComponent } from '../../components/flavors-modal/flavors-modal.component';
 import { Component, PLATFORM_ID, afterNextRender, inject, signal } from '@angular/core';
+import { CatalogNamePipe } from '../../../../../shared/ui/catalog-name.pipe';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
@@ -35,11 +40,12 @@ function mentionsTorani(r: Recipe): boolean {
 @Component({
   selector: 'app-torani-page',
   standalone: true,
-  imports: [RouterLink, InsumosNavComponent, ScrollWaveComponent, RecipeCardComponent],
+  imports: [CatalogNamePipe, ProductFactsComponent, FlavorsModalComponent, RouterLink, InsumosNavComponent, ScrollWaveComponent, RecipeCardComponent],
   templateUrl: './torani-page.component.html',
   styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './torani-page.component.scss']
 })
 export class ToraniPageComponent {
+  readonly calcPath = '/calculadora-de-precios';
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
   protected readonly assetsBase = ASSETS_BASE_URL;
   private seo = inject(SeoService);
@@ -56,6 +62,38 @@ export class ToraniPageComponent {
     );
   }
   readonly lines = TORANI_LINES;
+  /** Modal de sabores de la card de línea. */
+  flavorLine: (typeof this.lines)[number] | null = null;
+  openFlavors(line: (typeof this.lines)[number]) { this.flavorLine = line; }
+  /** Sabores reales por línea desde el catálogo (misma lógica que las páginas de categoría). */
+  private catalogFlavors = inject(CatalogFlavorsService);
+  private readonly catalogLines: Record<string, { needle: string; dropSalsa?: boolean }> = {
+    'CLÁSICO': { needle: 'TORANI JARABE CLASICO SABOR', dropSalsa: true },
+    'SUGAR FREE': { needle: 'TORANI JARABE SUGAR FREE SABOR', dropSalsa: true },
+    'PUREMADE': { needle: 'TORANI JARABE PUREMADE', dropSalsa: true }
+  };
+  readonly catalogByLine = signal<Record<string, string[]>>({});
+  private readonly loadCatalog = afterNextRender(() => {
+    for (const [sub, c] of Object.entries(this.catalogLines)) {
+      this.catalogFlavors.lineFlavors(c.needle, { dropSalsa: c.dropSalsa }).then((list) => {
+        if (list.length) this.catalogByLine.update((m) => ({ ...m, [sub]: list }));
+      });
+    }
+  });
+  /** Respaldo si el catálogo falla o no trae datos: la lista local del código. */
+  private fallbackFlavors(line: { sub: string; anchor: string }): string[] {
+    const m: Record<string, { flavor: string }[]> = { 'CLÁSICO': this.clasico, 'SUGAR FREE': this.sugarFree };
+    return uniqueFlavors((m[line.sub] || []).map((p) => p.flavor));
+  }
+  flavorsFor(line: { sub: string; anchor: string }): string[] {
+    const fromCatalog = this.catalogByLine()[line.sub];
+    return fromCatalog?.length ? fromCatalog : this.fallbackFlavors(line);
+  }
+  /** Conteo de la tarjeta = sabores únicos del modal. */
+  flavorCount(line: { sub: string; anchor: string; sabores: string }): string {
+    const n = this.flavorsFor(line).length;
+    return n ? flavorCountLabel(n) : line.sabores;
+  }
   readonly clasico = TORANI_CLASICO;
   readonly sugarFree = TORANI_SUGAR_FREE;
   readonly salsas = TORANI_SALSAS;

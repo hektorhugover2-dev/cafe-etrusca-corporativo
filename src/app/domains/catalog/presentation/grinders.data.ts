@@ -68,14 +68,14 @@ function slidesFromProducts(
 
 const THEMES: Record<string, { bg: string; leadColor: string }> = {
   Reneka: { bg: '#D4B06A', leadColor: '#5c3a10' },
-  Melitta: { bg: '#E07A6A', leadColor: '#6b2218' },
+  Melitta: { bg: '#E07A6A', leadColor: '#551b13' },
   'Hamilton Beach': { bg: '#7EB6D9', leadColor: '#16324a' },
   Blendtec: { bg: '#E8C44A', leadColor: '#5a4308' },
   'Coffee Tech': { bg: '#C49A6C', leadColor: '#4a3014' },
   Ceado: { bg: '#DDB07A', leadColor: '#6b3b12' },
-  Eureka: { bg: '#E07A5F', leadColor: '#6b2410' },
+  Eureka: { bg: '#E07A5F', leadColor: '#531c0c' },
   Anfim: { bg: '#8FA0B5', leadColor: '#243044' },
-  Mahlkönig: { bg: '#E57373', leadColor: '#6b1212' }
+  Mahlkönig: { bg: '#E57373', leadColor: '#5b0f0f' }
 };
 
 export function sliderFromBlock(block: {
@@ -154,7 +154,7 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     marquee: 'EUREKA',
     lead: 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.',
     bg: '#E07A5F',
-    leadColor: '#6b2410',
+    leadColor: '#531c0c',
     logo: img('logo-eureka.webp'),
     slides: slidesFromProducts('Eureka', 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.', [
       { name: 'ZENITH 65 NEO', sku: 'MMO-095', image: img('eureka-zenith.webp'), specs: ['Negro · 110 V', 'Tolva 1.2 kg'] },
@@ -169,7 +169,7 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     marquee: 'PIETRO GRINDERS',
     lead: 'Pietro no es simplemente un molinillo de café manual; es un estilo que brinda a los amantes del café la máxima libertad de expresión.',
     bg: '#E3B27A',
-    leadColor: '#ac6112',
+    leadColor: '#6e3e0c',
     logo: img('logo-pietro-white.svg'),
     slides: [
       {
@@ -204,7 +204,7 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     marquee: 'COMANDANTE',
     lead: 'COMANDANTE® se especializa en el desarrollo y fabricación de molinillos de café de alto rendimiento.',
     bg: '#8CC03D',
-    leadColor: '#3d5203',
+    leadColor: '#364903',
     logo: img('logo-comandante.webp'),
     slides: [
       {
@@ -286,7 +286,7 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     marquee: 'MAHLKÖNIG',
     lead: 'Referente mundial en molienda premium. La elección de baristas en todo el mundo.',
     bg: '#E57373',
-    leadColor: '#6b1212',
+    leadColor: '#5b0f0f',
     logo: img('logo-mahlkonig.webp'),
     slides: slidesFromProducts('Mahlkönig', 'Referente mundial en molienda premium. La elección de baristas en todo el mundo.', [
       { name: 'E65S', image: img('mahlkonig-e65s.webp'), specs: ['Molino profesional Mahlkönig'] },

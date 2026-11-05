@@ -1,18 +1,19 @@
 @if (recipe) {
 <div class="co-page" [class.origin-septiembre-2026]="recipe.origin === 'septiembre-2026'" [class.origin-verano-2026]="recipe.origin === 'verano-2026'" [class.origin-san-valentin-2026]="recipe.origin === 'san-valentin-2026'" [class.origin-navidad-2023]="recipe.origin === 'navidad-2023' || recipe.origin === 'invierno-2024'" [class.origin-calabaza]="recipe.origin === 'calabaza'">
-  <nav class="co-crumbs container" aria-label="Miga de pan">
-    <a routerLink="/">Inicio</a>
-    <span aria-hidden="true">›</span>
-    <a routerLink="/recetas">Recetario</a>
-    <span aria-hidden="true">›</span>
-    <span>{{ recipe.category }}</span>
-    <span aria-hidden="true">›</span>
-    <strong>{{ displayTitle(recipe) }}</strong>
-  </nav>
+
 
   <section class="co-hero">
     <div class="container co-hero-grid">
       <div class="co-hero-copy">
+          <nav class="co-crumbs" aria-label="Ruta de navegación">
+            <a routerLink="/">Inicio</a>
+            <span aria-hidden="true">›</span>
+            <a routerLink="/recetas">Recetario</a>
+            <span aria-hidden="true">›</span>
+            <span>{{ recipe.category }}</span>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{{ displayTitle(recipe) }}</span>
+          </nav>
         <span class="co-badge">{{ recipe.kicker }}</span>
         <h1>
           <span class="t1">{{ recipe.title }}</span>
@@ -70,11 +71,22 @@
           <ul class="co-checks">
             @for (item of recipe.ingredients; track item; let i = $index) {
               <li>
-                <button type="button" class="box" [class.on]="checked[i]" (click)="toggleIngredient(i)" [attr.aria-pressed]="!!checked[i]"></button>
-                <span class="ing-text" [class.done]="checked[i]" [innerHTML]="brandHtml(item)"></span>
+                <button type="button" class="box" [class.on]="checked[i]" (click)="toggleIngredient(i)" [attr.aria-pressed]="!!checked[i]" [attr.aria-labelledby]="'ing-' + i"></button>
+                <span class="ing-text" [id]="'ing-' + i" [class.done]="checked[i]" [innerHTML]="brandHtml(item)"></span>
               </li>
             }
           </ul>
+          @if (recipe.alternatives?.length) {
+            <div class="ing-alt">
+              <h3>Ingrediente alternativo</h3>
+              @for (alt of recipe.alternatives; track alt.sap) {
+                <p>En lugar de {{ alt.replaces }} puedes usar <a [href]="alt.url" target="_blank" rel="noopener">{{ alt.ingredient }}</a> (clave {{ alt.sap }}).
+                  @if (alt.brandPath) { <a class="ing-alt-brand" [routerLink]="alt.brandPath">{{ alt.brandLabel || 'Ver marca' }} ›</a> }
+                </p>
+                @if (alt.note && !alt.note.startsWith('[Por confirmar')) { <p class="ing-alt-ph">{{ alt.note }}</p> }
+              }
+            </div>
+          }
         </div>
         <div>
           <h2>Necesitas <i></i></h2>
@@ -82,7 +94,7 @@
             @for (tool of recipe.tools; track tool) {
               <div class="co-tool">
                 <div class="co-tool-ico" aria-hidden="true">
-                  <img [src]="recipe.toolIcon || (assetsBase + '/images/recetas/icons/tool-licuadora.svg')" [alt]="tool">
+                  <img [src]="recipe.toolIcon || (assetsBase + '/images/recetas/icons/tool-licuadora.svg')" alt="">
                 </div>
                 <span>{{ tool }}</span>
               </div>
@@ -116,7 +128,7 @@
             <div class="num">{{ stepNum(i) }}</div>
             <div class="ico" aria-hidden="true">
               @if (step.icon) {
-                <img [src]="step.icon" [alt]="step.title">
+                <img [src]="step.icon" alt="">
               }
             </div>
             @if (i < (recipe.steps?.length || 0) - 1) {

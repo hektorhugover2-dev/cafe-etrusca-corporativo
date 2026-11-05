@@ -74,7 +74,7 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
   }
 
   get heroAccent(): string {
-    return this.firstBrand?.leadColor || '#c45c4a';
+    return this.firstBrand?.leadColor || '#c0523f';
   }
 
   /** Catálogo de una sección (destino de "Comprar" en las tarjetas; sin URL por producto en los datos). */
@@ -105,11 +105,11 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
         'Máquina y equipo para poner, renovar o innovar tu cafetería. Cada equipo se eligió por calidad, desempeño y durabilidad: te asesoramos, instalamos y damos servicio para alargar su vida útil.';
       this.heroImage = MAQ_HERO_FALLBACK;
       this.seo.set({
-        title: 'Maquina y Equipo para poner una cafetería - Encuentra todo lo que necesitas',
+        title: 'Máquina y Equipo para poner una cafetería - Encuentra todo lo que necesitas',
         description:
-          'Maquina y Equipo para poner una cafetería: En Etrusca encontrarás todo lo que necesitas para poner, renovar o innovar en tu negocio de cafetería',
+          'Máquina y Equipo para poner una cafetería: En Etrusca encontrarás todo lo que necesitas para poner, renovar o innovar en tu negocio de cafetería',
         keywords:
-          'Maquina y Equipo para poner una cafetería, cafeteria,como iniciar una cafeteria,como poner una cafeteria,maquinas de espresso,molinos,licuadoras,tostadores',
+          'Máquina y Equipo para poner una cafetería, cafeteria,como iniciar una cafeteria,como poner una cafeteria,maquinas de espresso,molinos,licuadoras,tostadores',
         image: this.heroImage,
         ogType: 'website',
         jsonLd: ({ origin, url }) => [

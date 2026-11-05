@@ -22,7 +22,7 @@
             <textPath href="#seal-circle" startOffset="0%">CALIDAD  ·  CONFIANZA  ·  INNOVACIÓN  ·</textPath>
           </text>
         </svg>
-        <img src="{{ assetsBase }}/images/productos/hero-drink.webp" alt="Bebida de café con crema y caramelo">
+        <img src="/assets/images/productos/hero-cafe-frio.webp" width="791" height="800" alt="Café frío con crema batida y caramelo" decoding="async" fetchpriority="high">
       </div>
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
@@ -30,8 +30,7 @@
 
   <section class="prod-section">
     <header class="prod-section__head">
-      <h2 class="section-title-center section-title-center--has-line">Explora nuestras categorías</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="" class="prod-sep">
+      <h2 class="section-title-center">Explora nuestras categorías</h2>
     </header>
     <div class="prod-cats">
       @for (c of cats; track c.slug) {
@@ -53,8 +52,7 @@
 
   <section class="prod-section prod-brands">
     <header class="prod-section__head">
-      <h2 class="section-title-center section-title-center--has-line">Marcas destacadas</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="" class="prod-sep">
+      <h2 class="section-title-center">Marcas destacadas</h2>
       <p>Un portafolio de marcas aliadas, creadas para brindar soluciones integrales en cada etapa de tu proyecto.</p>
     </header>
     <div class="prod-brands__row">
@@ -68,11 +66,11 @@
   <section class="prod-asesoria">
     <app-scroll-wave position="top" fillColor="#ffe270"></app-scroll-wave>
     <div class="prod-asesoria__inner">
-      <img src="{{ assetsBase }}/images/productos/asesoria-baristas.webp" alt="Asesores de Café Etrusca revisando un tablero en tablet">
+      <img src="/assets/images/productos/asesoria-lucky-sin-fondo.webp" width="251" height="267" alt="Ilustración de una clienta recibiendo asesoría de Café Etrusca" loading="lazy" decoding="async">
       <div class="prod-asesoria__copy">
         <h2>Asesoría especializada</h2>
         <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
-        <a class="prod-btn" routerLink="/contacto" fragment="contacto-form">Más información <span aria-hidden="true">→</span></a>
+        <a class="prod-btn" href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Más información por WhatsApp (se abre en otra pestaña)">Más información <span aria-hidden="true">→</span></a>
       </div>
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
@@ -80,8 +78,7 @@
 
   <section class="prod-section prod-traits">
     <header class="prod-section__head">
-      <h2 class="section-title-center section-title-center--has-line">Qué nos caracteriza</h2>
-      <img src="{{ assetsBase }}/images/separador.png" alt="" class="prod-sep">
+      <h2 class="section-title-center">Qué nos caracteriza</h2>
     </header>
     <div class="prod-traits__row">
       @for (t of traits; track t.key) {

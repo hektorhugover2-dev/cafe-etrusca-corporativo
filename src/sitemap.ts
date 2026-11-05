@@ -107,6 +107,12 @@ export async function buildSitemapXml(options: SitemapOptions = {}): Promise<str
   push('/insumos-para-cafeterias/jarabes/torani', 'weekly', '0.8');
   // Brand landing ChillOut (linked from /insumos-para-cafeterias/bases-en-polvo/ and the Insumos home).
   push('/insumos-para-cafeterias/bases-en-polvo/chillout', 'weekly', '0.8');
+  // Brand landing David Rio (enlazada desde Marcas destacadas del header y las listas de marcas de insumos).
+  push('/insumos-para-cafeterias/bases-en-polvo/david-rio', 'weekly', '0.8');
+  // Bienestar: opciones sin azúcar (enlazada desde el mega menú de Insumos; 30-oct-2026).
+  push('/insumos-para-cafeterias/bienestar', 'weekly', '0.8', '2026-10-30');
+  // Brand landing Mocafe (sin liga en menú/home/footer; publicada 30-oct-2026).
+  push('/insumos-para-cafeterias/bases-en-polvo/mocafe', 'weekly', '0.8', '2026-10-30');
   // Tisanas ChillOut (no está en el menú; enlazada desde /insumos-para-cafeterias/tisanas/).
   push('/insumos-para-cafeterias/tisanas/chillout', 'weekly', '0.8');
   // Accesorios › Métodos de extracción (página propia; enlazada desde el hub y el menú de Accesorios).

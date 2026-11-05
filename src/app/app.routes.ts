@@ -305,6 +305,24 @@ export const routes: Routes = [
             .then(m => m.TisanasChilloutPageComponent)
       },
       {
+        path: 'insumos-para-cafeterias/bases-en-polvo/david-rio',
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/david-rio-page/david-rio-page.component')
+            .then(m => m.DavidRioPageComponent)
+      },
+      {
+        path: 'insumos-para-cafeterias/bienestar',
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/bienestar-page/bienestar-page.component')
+            .then(m => m.BienestarPageComponent)
+      },
+      {
+        path: 'insumos-para-cafeterias/bases-en-polvo/mocafe',
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/mocafe-page/mocafe-page.component')
+            .then(m => m.MocafePageComponent)
+      },
+      {
         path: 'insumos-para-cafeterias/bases-en-polvo/chillout',
         loadComponent: () =>
           import('./domains/catalog/presentation/pages/chillout-page/chillout-page.component')

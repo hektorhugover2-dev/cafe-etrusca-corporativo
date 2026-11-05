@@ -106,6 +106,13 @@ app.use(
 );
 
 /**
+ * /.well-known/* without a real file: 404 (not the SPA shell), so agents/Lighthouse don't read HTML as a manifest.
+ */
+app.use('/.well-known', (_req, res) => {
+  res.status(404).type('text/plain').send('Not found');
+});
+
+/**
  * Handle all other requests by rendering the Angular application.
  */
 app.use('/**', (req, res, next) => {

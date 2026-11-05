@@ -146,7 +146,7 @@ export const EDU_NAV: EduCategory[] = [
   }
 ];
 
-const SESION_H = { duration: '1 día', hours: '4 hrs' } as const;
+const SESION_H = { duration: '1 día', hours: '4 h' } as const;
 const sesionQro = (days: string, month: string) => [{ days, month, branch: 'Querétaro', ...SESION_H }];
 const sesionMty = (days: string, month: string) =>
   ['Monterrey', 'Viaducto (CDMX)', 'Puebla', 'Tijuana', 'Iztapalapa (CDMX)'].map((branch) => ({
@@ -790,7 +790,7 @@ const RAW_COURSES: Course[] = [
       { title: 'Flujo de estación', text: 'Manejo de estaciones, higiene y rapidez en barra.' },
       { title: 'Leche y servicio', text: 'Espumado, vertido, estándares SCA y servicio al cliente.' }
     ],
-    synopsis: 'Taller práctico para el manejo y operación de barras de café, impartido por instructores certificados por la SCA. Analizamos el espresso como base de la bebida, el espacio de trabajo para un flujo constante y herramientas para medir sólidos disueltos y la espresso brew formula.',
+    synopsis: 'Taller práctico para el manejo y operación de barras de café, impartido por instructores certificados por la SCA. Analizamos el espresso como base de la bebida, el espacio de trabajo para un flujo constante y herramientas para medir sólidos disueltos y la espresso brew fórmula.',
     syllabus: [
       { title: 'Procesos del espresso', text: 'Molienda, dosificación y compactación bajo estándares internacionales.' },
       { title: 'Preparación del espresso ideal', text: 'Espresso brew fórmula, porcentaje de extracción, TDS y cuadro de control.' },
@@ -1000,7 +1000,7 @@ const RAW_COURSES: Course[] = [
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-power-session.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-power-session.webp`,
     highlights: [
-      { title: 'Bubble tea', text: 'Perlas, tes y ensamble de vaso.' },
+      { title: 'Bubble tea', text: 'Perlas, tés y ensamble de vaso.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
       { title: 'Sin costo', text: 'Sesión gratuita de calendario Etrusca.' }
     ],
@@ -1330,8 +1330,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/sesion-un-otono-calido.webp`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-un-otono-calido.webp`,
+    image: '/assets/images/educacion/sesiones/sesion-un-otono-calido.webp',
+    banner: '/assets/images/educacion/sesiones/sesion-un-otono-calido.webp',
     highlights: [
       { title: 'Otoño en taza', text: 'Bebidas calientes y especiadas para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1369,8 +1369,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/sesion-sorbos-de-chillout-en-otono.webp`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-sorbos-de-chillout-en-otono.webp`,
+    image: '/assets/images/educacion/sesiones/sesion-sorbos-de-chillout-en-otono.webp',
+    banner: '/assets/images/educacion/sesiones/sesion-sorbos-de-chillout-en-otono.webp',
     highlights: [
       { title: 'ChillOut de otoño', text: 'Recetas frías con vibe de temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1402,8 +1402,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/sesion-cafe-de-temporada.webp`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-cafe-de-temporada.webp`,
+    image: '/assets/images/educacion/sesiones/sesion-cafe-de-temporada.webp',
+    banner: '/assets/images/educacion/sesiones/sesion-cafe-de-temporada.webp',
     highlights: [
       { title: 'Café de temporada', text: 'Perfiles y recetas para nov-dic.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1442,8 +1442,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-para-las-posadas.webp`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-para-las-posadas.webp`,
+    image: '/assets/images/educacion/sesiones/sesion-tisanas-para-las-posadas.webp',
+    banner: '/assets/images/educacion/sesiones/sesion-tisanas-para-las-posadas.webp',
     highlights: [
       { title: 'Tisanas de posadas', text: 'Infusiones y servicio para la temporada.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },
@@ -1475,8 +1475,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/sesion-nochebuena-calida.webp`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/sesion-nochebuena-calida.webp`,
+    image: '/assets/images/educacion/sesiones/sesion-nochebuena-calida.webp',
+    banner: '/assets/images/educacion/sesiones/sesion-nochebuena-calida.webp',
     highlights: [
       { title: 'Nochebuena', text: 'Bebidas cálidas y festivas para diciembre.' },
       { title: 'Cupo limitado', text: 'Grupos chicos por sucursal.' },

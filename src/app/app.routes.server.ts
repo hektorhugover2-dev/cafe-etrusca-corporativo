@@ -37,6 +37,11 @@ export const serverRoutes: ServerRoute[] = [
     }
   },
   {
+    // Bienestar (opciones sin azúcar), enlazada desde el mega menú de Insumos. Antes de :slug.
+    path: 'insumos-para-cafeterias/bienestar',
+    renderMode: RenderMode.Prerender
+  },
+  {
     path: 'insumos-para-cafeterias/:slug',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
@@ -64,6 +69,16 @@ export const serverRoutes: ServerRoute[] = [
   {
     // ChillOut brand landing (bases en polvo), clon de la de Torani.
     path: 'insumos-para-cafeterias/bases-en-polvo/chillout',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    // David Rio brand landing (bases en polvo), modelo Torani/ChillOut; no está en el menú.
+    path: 'insumos-para-cafeterias/bases-en-polvo/david-rio',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    // Mocafe brand landing (bases en polvo), modelo David Rio/ChillOut; no está en el menú.
+    path: 'insumos-para-cafeterias/bases-en-polvo/mocafe',
     renderMode: RenderMode.Prerender
   },
   // Old course/taller URLs kept as pages (legacy-course-paths.ts): explicit prerender list.

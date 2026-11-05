@@ -85,7 +85,7 @@
     <ul class="acc-logos">
       @for (b of logos; track b.id) {
         <li [class]="'acc-logo acc-logo--' + b.id">
-          <img [src]="b.image.src" [attr.srcset]="srcset(b.image)" [alt]="b.name"
+          <img [src]="b.image.src" [attr.srcset]="srcset(b.image)" [alt]="'Logo de ' + b.name"
                [attr.width]="b.image.width" [attr.height]="b.image.height" [style.max-width.px]="b.image.width"
                loading="lazy" decoding="async">
         </li>

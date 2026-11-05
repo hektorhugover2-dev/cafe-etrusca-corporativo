@@ -142,7 +142,7 @@ const ACCESORIOS_SUBCAT_SEO: Record<string, { title: string; description: string
       width: min(549px, 80%);
       height: 30px;
       margin: 0.35rem auto 1.6rem;
-      background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.png') center / contain no-repeat;
+      background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.webp') center / contain no-repeat;
     }
 
     .hub-subcats {
@@ -324,10 +324,10 @@ export class ProductHubPageComponent {
         keywords: 'Accesorios para poner una cafetería, equipo para barista, jarras, molinos, Café Etrusca'
       },
       maquinas: {
-        title: 'Maquina y Equipo para poner una cafetería - Encuentra todo lo que necesitas',
+        title: 'Máquina y Equipo para poner una cafetería - Encuentra todo lo que necesitas',
         description:
-          'Maquina y Equipo para poner una cafetería: En Etrusca encontrarás todo lo que necesitas para poner, renovar o innovar en tu negocio de cafetería',
-        keywords: 'Maquina y Equipo para poner una cafetería, cafeteria,como iniciar una cafeteria,como poner una cafeteria'
+          'Máquina y Equipo para poner una cafetería: En Etrusca encontrarás todo lo que necesitas para poner, renovar o innovar en tu negocio de cafetería',
+        keywords: 'Máquina y Equipo para poner una cafetería, cafeteria,como iniciar una cafeteria,como poner una cafeteria'
       }
     };
     const seo = seoMap[key];

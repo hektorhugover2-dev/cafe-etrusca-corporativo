@@ -12,7 +12,7 @@
   <section class="ns-mosaic">
     <div class="ns-mosaic-grid">
     <article class="ns-cell ns-photo">
-      <img src="{{ assetsBase }}/images/soy-etrusca.png" alt="Soy Etrusca">
+      <img src="{{ assetsBase }}/images/soy-etrusca.png" alt="Letrero Soy Etrusca en las instalaciones de Café Etrusca">
     </article>
 
     <article class="ns-cell ns-cyan">
@@ -65,7 +65,6 @@
 
     <article class="ns-card ns-vision">
       <h2>Visión</h2>
-      <span class="ns-rule"></span>
       <p>Ser una empresa certificada que innove dentro del sector de café y bebidas, fomentando nuestra pasión y excelencia. Socialmente responsable en la cadena productiva. Ofreciendo productos y equipos de alta calidad que cuiden el medio ambiente y el uso eficiente de los recursos.</p>
     </article>
     </div>
@@ -108,7 +107,11 @@
   <section id="nuestras-marcas" class="ns-marcas">
     <h2 class="section-title-center">Nuestras marcas</h2>
     
-    <div class="ns-marcas-grid">
+    <div class="ns-marcas-carousel" role="region" aria-roledescription="carrusel" aria-label="Nuestras marcas"
+         (mouseenter)="pauseMarcas(true)" (mouseleave)="pauseMarcas(false)"
+         (focusin)="pauseMarcas(true)" (focusout)="pauseMarcas(false)">
+    <button type="button" class="ns-car-btn ns-car-prev" aria-label="Marca anterior" (click)="moveMarcas(-1)"><span aria-hidden="true">&#8249;</span></button>
+    <div class="ns-marcas-grid" #marcasTrack tabindex="0" aria-live="off">
       <!-- TARJETA 1: LA FENICE -->
       <article class="brand-card card-fenice">
         <div class="brand-body">
@@ -116,9 +119,7 @@
           <p>La Fenice es tu mejor aliado para disfrutar de este ritual. Contamos con <strong>todo tipo de accesorios</strong> que te ayudan a rendir culto al café y té; para hacer de ellos <strong>toda una experiencia</strong>.</p>
         </div>
         <div class="brand-band">
-          <img src="{{ assetsBase }}/images/fenice.webp" alt="La Fenice">
-            <!-- Franja detras del logo -->
-        <div class="brand-bottom-bar"></div>
+          <img src="{{ assetsBase }}/images/fenice.webp" alt="Logo de La Fenice">
         </div>
       
       </article>
@@ -131,9 +132,7 @@
           <p>La misión es <strong>preservar y presentar cafés de especialidad</strong> para nuestros clientes, posicionando al café mexicano entre los mejores del mundo.</p>
         </div>
         <div class="brand-band">
-          <img src="{{ assetsBase }}/images/barista-champ.webp" alt="Barista Champ">
-          <!-- Franja detras del logo-->
-          <div class="brand-bottom-bar"></div>
+          <img src="{{ assetsBase }}/images/barista-champ.webp" alt="Logo de Barista Champ">
         </div>
         
       </article>
@@ -145,21 +144,36 @@
           <p>En el corazón de nuestra filosofía se encuentra la pasión por la innovación y en un futuro cercano, ampliaremos nuestras líneas existentes con nuevos y emocionantes sabores.</p>
         </div>
         <div class="brand-band">
-          <img src="{{ assetsBase }}/images/ChillOut.webp" alt="ChillOut">
-            <!-- Franja detras logo -->
-            <div class="brand-bottom-bar"></div>
+          <img src="{{ assetsBase }}/images/ChillOut.webp" alt="Logo de ChillOut">
         </div>
       
       </article>
+
+      <!-- TARJETA 4: TENZYU -->
+      <article class="brand-card card-tenzyu">
+        <div class="brand-body">
+          <p>Una filosofía arraigada a la esencia de la vida. Tés e infusiones de calidades superiores, con un proceso de <strong>selección gourmet</strong>, el <strong>sobre viene en forma de pirámide con hojas enteras</strong> en su contenido, esto los hace únicos en el mercado.</p>
+        </div>
+        <div class="brand-band">
+          <img src="{{ assetsBase }}/images/nosotros/tenzyu-logo.webp" alt="Logo de Tenzyu Gourmet Tea" loading="lazy">
+        </div>
+      </article>
+    </div>
+    <button type="button" class="ns-car-btn ns-car-next" aria-label="Marca siguiente" (click)="moveMarcas(1)"><span aria-hidden="true">&#8250;</span></button>
+    </div>
+    <div class="ns-car-dots">
+      @for (d of marcaDots; track d) {
+        <button type="button" [class.active]="activeMarca === d" [attr.aria-label]="'Ir a la posición ' + (d + 1) + ' de ' + marcaDots.length" [attr.aria-current]="activeMarca === d ? 'true' : null" (click)="goMarca(d)"></button>
+      }
     </div>
   </section>
 
   <!-- ================= SELLOS ================= -->
   <section class="ns-sellos">
-    <h3>ORGULLOSAMENTE PARTE DE</h3>
+    <h2 class="section-title-center">Orgullosamente parte de</h2>
     <div class="ns-sellos-row">
-      <img src="{{ assetsBase }}/images/nosotros/MEM 2.webp" alt="Mejores Empresas Mexicanas">
-      <img src="{{ assetsBase }}/images/nosotros/Insignia 2026 Color 1.webp" alt="Certificación Empresa TOP 2026">
+      <img src="{{ assetsBase }}/images/nosotros/MEM 2.webp" alt="Distintivo Mejores Empresas Mexicanas">
+      <img src="{{ assetsBase }}/images/nosotros/Insignia 2026 Color 1.webp" alt="Insignia de certificación Empresa TOP 2026">
     </div>
   </section>
 

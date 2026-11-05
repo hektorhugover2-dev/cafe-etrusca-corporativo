@@ -311,7 +311,7 @@ export const MAQ_SECTIONS: MaqSection[] = [
           { name: 'Solar Automático 2 kg',
             sku: 'MTO-002',
             image: img('tostador-solar.webp'), specs: ['Cap. de lote 0.1–2.4 kg', 'Ciclo 16–18 min', '220–240 V'] },
-          { name: 'Silón Automático 7 kg',
+          { name: '¿Silón? (verificar) Automático 7 kg',
             sku: 'MTO-003',
             image: img('tostador-silon.webp'), specs: ['Cap. de lote 1–7 kg', 'Ciclo 11–17 min', '230–380 V'] }
         ]

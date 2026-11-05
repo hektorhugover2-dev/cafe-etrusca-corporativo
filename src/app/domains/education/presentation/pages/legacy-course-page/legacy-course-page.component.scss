@@ -6,7 +6,7 @@ $ink: #2c2a3a;
 
 .lc-page {
   --lc-accent: #d5b183;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
 }
 
 .lc-hero {
@@ -282,7 +282,7 @@ $ink: #2c2a3a;
     border: 2px solid color-mix(in srgb, var(--lc-accent) 70%, #fff);
     border-radius: 999px;
     background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23070c3b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 1rem center;
-    font: 600 0.95rem 'Poppins', sans-serif;
+    font: 600 0.95rem 'Poppins', 'Poppins Fallback', sans-serif;
     color: $navy;
     text-transform: none;
     letter-spacing: 0;

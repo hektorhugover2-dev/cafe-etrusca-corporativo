@@ -17,6 +17,21 @@ import { BLOG_BY_SLUG, BLOG_DATE_PUBLISHED, BlogArticle, PODCAST_URL, WEBINAR_UR
   styleUrl: './blog-article-page.component.scss'
 })
 export class BlogArticlePageComponent {
+  /** Notas internas (por confirmar, pendientes, brief): se conservan en los datos pero no se publican. Poner en true solo para revisión local. */
+  readonly showInternalNotes = false;
+  visibleFaq<T extends { pending?: boolean }>(faq: T[]): T[] { return this.showInternalNotes ? faq : faq.filter((f) => !f.pending); }
+  /** Quita marcas internas ("por confirmar") del texto publicado; con showInternalNotes=true se ven tal cual. */
+  pub(s: string): string {
+    if (this.showInternalNotes || !s) return s;
+    return s
+      .replace(/especificaciones por confirmar/gi, 'consulta especificaciones con un asesor')
+      .replace(/\s*\([^()]*por confirmar[^()]*\)/gi, '')
+      .replace(/^\s*por confirmar.*$/i, '—');
+  }
+  /** Celda de tabla: si trae "por confirmar" se publica como guion. */
+  pubCell(c: string): string {
+    return !this.showInternalNotes && /por confirmar/i.test(c ?? '') ? '—' : c;
+  }
   readonly webinarUrl = WEBINAR_URL;
   readonly podcastUrl = PODCAST_URL;
   private seo = inject(SeoService);

@@ -2,12 +2,16 @@
   <!-- HERO: misma estructura que Jarabes (.jar-hero / .jar-hero-copy / .jar-hero-media + ola) -->
   <section class="jar-hero">
     <div class="jar-hero-copy">
+      <nav class="tor-crumbs rc-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <span aria-current="page">Recetas</span>
+      </nav>
       <p class="eyebrow">Historias en cada bebida</p>
       <h1>RECETAS</h1>
       <p class="lead">Ideas, sabores e inspiración para preparar en casa bebidas increíbles.</p>
     </div>
     <div class="jar-hero-media">
-      <img class="photo" src="{{ assetsBase }}/images/recetas/recetas-hero-frappe.webp" alt="Frappé de fresa con crema batida">
+      <app-drink-video-hero></app-drink-video-hero>
     </div>
     <app-scroll-wave position="bottom" fillColor="#ffe270"></app-scroll-wave>
   </section>
@@ -165,7 +169,7 @@
         <div class="rc-videos-grid">
           @for (v of videos; track v.id) {
             <article class="rc-video">
-              <button type="button" class="rc-video-thumb" (click)="abrirVideo(v)" [attr.aria-label]="'Reproducir video: ' + v.titulo">
+              <button type="button" class="rc-video-thumb" (click)="abrirVideo(v)" [attr.aria-label]="'Reproducir video: ' + v.titulo + (v.duracion ? ', ' + v.duracion : '')">
                 <img [src]="thumb(v)" [alt]="v.titulo" loading="lazy" width="480" height="360">
                 <span class="rc-video-play" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M9 7v10l8-5z"/></svg>

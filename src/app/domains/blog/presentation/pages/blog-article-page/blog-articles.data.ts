@@ -278,7 +278,7 @@ const FRAPPE: BlogArticle = {
     ] },
     { h2: 'Base neutra o base con sabor', blocks: [
       { t: 'p', html: 'La base neutra no trae sabor: da cuerpo, textura y estabilidad, y el sabor lo pones con jarabes o salsas. Te permite tener muchos sabores con una sola base. La base con sabor ya lo trae listo, así que la bebida sale igual con menos pasos.' },
-      { t: 'p', html: `Encuentra bases ChillOut, Mocafe y otras en ${A('/insumos-para-cafeterias/bases-en-polvo/', 'bases en polvo')} y la línea completa en ${A('/insumos-para-cafeterias/bases-en-polvo/chillout/', 'ChillOut')}.` }
+      { t: 'p', html: `Encuentra bases ChillOut, ${A('/insumos-para-cafeterias/bases-en-polvo/mocafe/', 'Mocafe')} y otras en ${A('/insumos-para-cafeterias/bases-en-polvo/', 'bases en polvo')} y la línea completa en ${A('/insumos-para-cafeterias/bases-en-polvo/chillout/', 'ChillOut')}.` }
     ] },
     { h2: 'Cómo dosificar', blocks: [
       { t: 'p', html: 'Un frappé se arma en capas: base en polvo, líquido y hielo, y se licúa hasta que quede uniforme. Lo importante es usar siempre la misma medida por tamaño de vaso para que salga igual.' },
@@ -490,7 +490,7 @@ const METODOS: BlogArticle = {
         ['Chemex', 'Goteo / percolación', 'Papel grueso Chemex', PC, PC, 'Muy limpia, cuerpo ligero', '3 tazas'],
         ['Kalita Wave', 'Goteo, fondo plano', 'Papel ondulado Kalita', PC, PC, 'Pareja, más dulce', 'Kalita Wave 185 (2 a 4 tazas)'],
         ['Sifón japonés', 'Vacío + calor', 'Filtro de tela del sifón', PC, PC, 'Aromática, cuerpo medio', 'Hario de 5 tazas'],
-        ['Toddy cold brew', 'Inmersión en frío', 'Fieltro reusable o papel Toddy', PC, `${PC} (horas)`, 'Baja acidez, para bebidas frías', 'Sistema de 2.13 L']
+        ['Toddy cold brew', 'Inmersión en frío', 'Fieltro reutilizable o papel Toddy', PC, `${PC} (horas)`, 'Baja acidez, para bebidas frías', 'Sistema de 2.13 L']
       ] },
       { t: 'todo', html: TODO('molienda y tiempo de cada método, y validar con el instructor la descripción de la taza.') }
     ] },
@@ -587,8 +587,11 @@ const CHAI: BlogArticle = {
     { h2: '¿Qué es el chai?', blocks: [
       { t: 'p', html: 'El chai es un té negro especiado de origen indio. David Rio lo vende listo en polvo, así que solo se mezcla con leche, caliente o fría.' }
     ] },
+    { h2: 'Toda la línea David Rio', blocks: [
+      { t: 'p', html: `Mira los ocho animales, sus presentaciones y compra en la página de ${A('/insumos-para-cafeterias/bases-en-polvo/david-rio/', 'chai David Rio')}.` }
+    ] },
     { h2: 'Otras bases de chai', blocks: [
-      { t: 'p', html: `Además de David Rio hay chai de ChillOut, Mocafe Spiced Chai y Cool Capp chai vainilla. Revísalos en ${A('/insumos-para-cafeterias/bases-en-polvo/', 'bases en polvo')}, la línea ${A('/insumos-para-cafeterias/bases-en-polvo/chillout/', 'ChillOut')} y nuestros ${A('/insumos-para-cafeterias/te/', 'tés')}. Para bebidas frías, mira el ${A('/educacion/talleres/bebidas-frias/', 'taller de bebidas frías')} y las ${A('/recetas/', 'recetas')}.` }
+      { t: 'p', html: `Además de ${A('/insumos-para-cafeterias/bases-en-polvo/david-rio/', 'David Rio')} hay chai de ChillOut, ${A('/insumos-para-cafeterias/bases-en-polvo/mocafe/', 'Mocafe Spiced Chai')} y Cool Capp chai vainilla. Revísalos en ${A('/insumos-para-cafeterias/bases-en-polvo/', 'bases en polvo')}, la línea ${A('/insumos-para-cafeterias/bases-en-polvo/chillout/', 'ChillOut')} y nuestros ${A('/insumos-para-cafeterias/te/', 'tés')}. Para bebidas frías, mira el ${A('/educacion/talleres/bebidas-frias/', 'taller de bebidas frías')} y las ${A('/recetas/', 'recetas')}.` }
     ] }
   ],
   recipesCta: { text: 'Inspírate con más recetas para tu cafetería: lattes, chai y bebidas frías.', label: 'Explorar todas nuestras recetas' },
@@ -602,6 +605,7 @@ const CHAI: BlogArticle = {
     { q: '¿El chai tiene cafeína?', a: 'Lleva té, así que sí tiene cafeína. La cantidad está por confirmar con la ficha técnica; si no se confirma, esta pregunta se quita.', pending: true }
   ],
   cta: { text: 'Encuentra el chai David Rio y otras bases para tu menú.', links: [
+    { label: 'Chai David Rio', path: '/insumos-para-cafeterias/bases-en-polvo/david-rio/' },
     { label: 'Bases en polvo', path: '/insumos-para-cafeterias/bases-en-polvo/' },
     { label: 'Contacto', path: '/contacto/' }
   ] }
@@ -787,7 +791,7 @@ const MOLINOS: BlogArticle = {
       { t: 'table', caption: 'Comparativa de molinos', head: ['', 'Fiorenzato F64 EVO', 'Comandante C40', 'Baratza Encore'], rows: [
         ['Tipo', 'Eléctrico, espresso', 'Manual', 'Eléctrico'],
         ['Uso ideal', 'Barra comercial', 'Filtrado, barista', 'Filtrado, molino de entrada'],
-        ['Fresas', PC, 'Acero inoxidable extra afiladas', PC],
+        ['Fresas', PC, 'De acero inoxidable, extra afiladas', PC],
         ['Capacidad', `Tolva ${PC}`, 'Frasco de 40 g (versión cherry)', 'Tolva de 225 g'],
         ['Voltaje', PC, 'No aplica', '110 V'],
         ['Colores / SKU', `${PC} (MMO-061 / MMO-062)`, 'Negro AAB-054, rojo AAB-053, cherry AAB-052', 'Blanco MMO-007, negro MMO-008'],
@@ -1554,7 +1558,7 @@ const PROVEEDORES: BlogArticle = {
       { t: 'h3', text: '1. Surtido completo de una sola fuente' },
       { t: 'p', html: 'Café, jarabes, polvos, desechables y equipo con el mismo proveedor: menos pedidos, menos facturas y un solo contacto cuando algo falla.' },
       { t: 'h3', text: '2. Marcas reconocidas' },
-      { t: 'p', html: `Marcas para uso profesional como Torani, Mocafe, David Rio y ChillOut dan sabor constante de un pedido a otro. Mira ${A('/insumos-para-cafeterias/jarabes/torani/', 'jarabes Torani')}, ${A('/insumos-para-cafeterias/bases-en-polvo/', 'bases en polvo')} y ${A('/blog/chai-david-rio-sabores/', 'los sabores de chai David Rio')}.` },
+      { t: 'p', html: `Marcas para uso profesional como Torani, ${A('/insumos-para-cafeterias/bases-en-polvo/mocafe/', 'Mocafe')}, ${A('/insumos-para-cafeterias/bases-en-polvo/david-rio/', 'David Rio')} y ChillOut dan sabor constante de un pedido a otro. Mira ${A('/insumos-para-cafeterias/jarabes/torani/', 'jarabes Torani')}, ${A('/insumos-para-cafeterias/bases-en-polvo/', 'bases en polvo')} y ${A('/blog/chai-david-rio-sabores/', 'los sabores de chai David Rio')}.` },
       { t: 'h3', text: '3. Disponibilidad y tiempos de entrega en tu ciudad' },
       { t: 'p', html: 'Pregunta cuánto tarda un pedido en llegar a tu ciudad y qué pasa si un producto se agota. Quedarte sin café o sin tu jarabe más vendido detiene la barra.' },
       { t: 'h3', text: '4. Servicio técnico y refacciones' },

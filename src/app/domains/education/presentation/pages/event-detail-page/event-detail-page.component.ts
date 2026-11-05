@@ -97,7 +97,7 @@ export class EventDetailPageComponent implements OnInit {
 
   get dateLabel(): string {
     const ds = String(this.event?.dateString || '').split('/')[0].trim();
-    if (ds) return ds.charAt(0).toUpperCase() + ds.slice(1);
+    if (ds) return ds.charAt(0).toLowerCase() + ds.slice(1);
     const start = new Date(this.event?.start);
     return isNaN(start.getTime())
       ? ''

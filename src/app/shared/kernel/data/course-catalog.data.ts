@@ -40,17 +40,17 @@ export interface CatalogCombo {
 }
 
 export const COURSE_CATALOG: ReadonlyArray<CatalogCourse> = [
-  { clave: 'TYC-001', name: 'Formación de emprendedores', price: 4000, schedule: 'Día 1: 9:00 a 17:30 hrs · Día 2: 9:00 a 15:30 hrs', hours: 14, days: 2, categoryIds: [10], courseSlugs: ['formacion-de-emprendedores'] },
-  { clave: 'TYC-003', name: 'Tostado básico', price: 4000, schedule: 'Día 1: 9:00 a 17:30 hrs · Día 2: 9:00 a 17:30 hrs', hours: 14, days: 2, categoryIds: [5], courseSlugs: ['tostado-basico'] },
-  { clave: 'TYC-005', name: 'Formación para un barista básico', price: 2500, schedule: '10:00 a 17:00 hrs', hours: 6, days: 1, categoryIds: [1], courseSlugs: ['formacion-barista'], combo: 'C07' },
-  { clave: 'TYC-006', name: 'Formación para un barista especializado', price: 2500, schedule: '10:00 a 17:00 hrs', hours: 6, days: 1, categoryIds: [16], courseSlugs: ['formacion-barista-especializado'], combo: 'C07' },
-  { clave: 'TYC-007', name: 'Arte latte básico', price: 2500, schedule: '10:00 a 17:00 hrs', hours: 6, days: 1, categoryIds: [2], courseSlugs: ['arte-latte'], combo: 'C23' },
-  { clave: 'TYC-008', name: 'Arte latte especializado', price: 3000, schedule: '10:00 a 17:00 hrs', hours: 6, days: 1, categoryIds: [26], courseSlugs: ['arte-latte-especializado'], combo: 'C23' },
-  { clave: 'TYC-009', name: 'Brew & Cold Brew', price: 2000, schedule: '10:00 a 17:00 hrs', hours: 6, days: 1, categoryIds: [4], courseSlugs: ['metodos-de-extraccion'] },
-  { clave: 'TYC-014', name: 'Mixología', price: 1500, schedule: '10:00 a 14:00 hrs', hours: 4, days: 1, categoryIds: [9], courseSlugs: ['mixologia'] },
-  { clave: 'TYC-021', name: 'Bubble Tea básico', price: 2000, schedule: '10:00 a 15:00 hrs', hours: 5, days: 1, categoryIds: [7], courseSlugs: ['bubble-tea-iced-coffee'], combo: 'C01' },
-  { clave: 'TYC-031', name: 'Bubble Tea especializado', price: 2000, schedule: '10:00 a 15:00 hrs', hours: 5, days: 1, categoryIds: [12], courseSlugs: ['bubble-tea-especializado'], combo: 'C01' },
-  { clave: 'TYC-037', name: 'Básico de bebidas frías', price: 2000, schedule: '10:00 a 15:00 hrs', hours: 5, days: 1, categoryIds: [38], courseSlugs: ['bebidas-frias'] },
+  { clave: 'TYC-001', name: 'Formación de emprendedores', price: 4000, schedule: 'Día 1: 9:00 a 17:30 h · Día 2: 9:00 a 15:30 h', hours: 14, days: 2, categoryIds: [10], courseSlugs: ['formacion-de-emprendedores'] },
+  { clave: 'TYC-003', name: 'Tostado básico', price: 4000, schedule: 'Día 1: 9:00 a 17:30 h · Día 2: 9:00 a 17:30 h', hours: 14, days: 2, categoryIds: [5], courseSlugs: ['tostado-basico'] },
+  { clave: 'TYC-005', name: 'Formación para un barista básico', price: 2500, schedule: '10:00 a 17:00 h', hours: 6, days: 1, categoryIds: [1], courseSlugs: ['formacion-barista'], combo: 'C07' },
+  { clave: 'TYC-006', name: 'Formación para un barista especializado', price: 2500, schedule: '10:00 a 17:00 h', hours: 6, days: 1, categoryIds: [16], courseSlugs: ['formacion-barista-especializado'], combo: 'C07' },
+  { clave: 'TYC-007', name: 'Arte latte básico', price: 2500, schedule: '10:00 a 17:00 h', hours: 6, days: 1, categoryIds: [2], courseSlugs: ['arte-latte'], combo: 'C23' },
+  { clave: 'TYC-008', name: 'Arte latte especializado', price: 3000, schedule: '10:00 a 17:00 h', hours: 6, days: 1, categoryIds: [26], courseSlugs: ['arte-latte-especializado'], combo: 'C23' },
+  { clave: 'TYC-009', name: 'Brew & Cold Brew', price: 2000, schedule: '10:00 a 17:00 h', hours: 6, days: 1, categoryIds: [4], courseSlugs: ['metodos-de-extraccion'] },
+  { clave: 'TYC-014', name: 'Mixología', price: 1500, schedule: '10:00 a 14:00 h', hours: 4, days: 1, categoryIds: [9], courseSlugs: ['mixologia'] },
+  { clave: 'TYC-021', name: 'Bubble Tea básico', price: 2000, schedule: '10:00 a 15:00 h', hours: 5, days: 1, categoryIds: [7], courseSlugs: ['bubble-tea-iced-coffee'], combo: 'C01' },
+  { clave: 'TYC-031', name: 'Bubble Tea especializado', price: 2000, schedule: '10:00 a 15:00 h', hours: 5, days: 1, categoryIds: [12], courseSlugs: ['bubble-tea-especializado'], combo: 'C01' },
+  { clave: 'TYC-037', name: 'Básico de bebidas frías', price: 2000, schedule: '10:00 a 15:00 h', hours: 5, days: 1, categoryIds: [38], courseSlugs: ['bebidas-frias'] },
   // Experiencias (3 h): inmersiona-té 21, coffee lovers 27, crear mezcla 37, servicio al cliente 31,
   // arte y creatividad mixología 34, oasis bebidas frías 23 (categoryIds of the old pages);
   // 2026 experiences (BD event_category): coffee lover en invierno 40, inmersiona-té navidad 41, mixología 42.
@@ -58,7 +58,7 @@ export const COURSE_CATALOG: ReadonlyArray<CatalogCourse> = [
     clave: 'TYC-015',
     name: 'Experiencias',
     price: 800,
-    schedule: '10:00 a 13:00 hrs',
+    schedule: '10:00 a 13:00 h',
     hours: 3,
     days: 1,
     categoryIds: [21, 27, 37, 31, 34, 23, 40, 41, 42],
@@ -126,7 +126,7 @@ export function catalogOffer(c: CatalogCourse, url: string) {
   };
 }
 
-/** Start/end times per day parsed from the schedule ("Día 1: 9:00 a 17:30 hrs · Día 2: …") as HH:MM. */
+/** Start/end times per day parsed from the schedule ("Día 1: 9:00 a 17:30 h · Día 2: …") as HH:MM. */
 export function catalogTimes(c: CatalogCourse): Array<[string, string]> {
   const pad = (t: string) => (t.length === 4 ? '0' + t : t);
   return [...c.schedule.matchAll(/(\d{1,2}:\d{2})\s*a\s*(\d{1,2}:\d{2})/g)].map((m) => [pad(m[1]), pad(m[2])] as [string, string]);
