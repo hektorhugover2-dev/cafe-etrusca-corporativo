@@ -159,7 +159,7 @@ export const routes: Routes = [
 
       {
 
-        path: 'productos',
+        path: 'insumos-y-equipo-para-cafeterias',
 
         loadComponent: () =>
 

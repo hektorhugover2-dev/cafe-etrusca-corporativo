@@ -341,7 +341,7 @@ export class ProductHubPageComponent {
       this.activeLink = sub ? sub.link : '';
       const hubPath = key === 'cafe' ? '/productos/cafe' : '';
       const hubLabel = key === 'cafe' ? 'Café' : '';
-      this.crumbs = hubPath ? [{ label: 'Inicio', path: '/' }, { label: hubLabel, path: hubPath }] : [];
+      this.crumbs = hubPath ? [{ label: 'Inicio', path: '/' }, { label: 'Insumos y equipo para cafeterías', path: '/insumos-y-equipo-para-cafeterias' }, { label: hubLabel, path: hubPath }] : [];
       this.title = sub ? sub.title.toUpperCase() : hubTitle;
       this.lead = sub ? sub.desc : hubLead;
       const meta = subSeo || seo;

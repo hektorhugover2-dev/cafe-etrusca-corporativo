@@ -15,6 +15,7 @@ import { CITY_COURSES, CITY_COURSE_BY_CATEGORY } from '../../legacy-city-matrix'
 import { LegacySection, legacyCoursePage } from '../../legacy-course-pages.data';
 import { PAST_EVENT_FORM_TARGET, cityPageForEvent, eventDetailPath } from '../../event-paths';
 import { EMPRENDE_PATH } from '../course-branch-page/course-branch.data';
+import { primaryPath } from '../../primary-urls';
 
 /** Sede shown on the page: static snapshot (locations.data.ts) or, if missing, the event's own location. */
 interface EventSede {
@@ -174,7 +175,8 @@ export class EventDetailPageComponent implements OnInit {
       this.coursePath = `/${EMPRENDE_PATH}`;
     } else {
       this.courseLabel = course?.crumb || this.categoryName;
-      this.coursePath = course?.basePage ? `/${course.basePage}` : null;
+      // URL primaria (sin 301 intermedio), p. ej. /taller-basico-para-baristas → /educacion/talleres/formacion-barista.
+      this.coursePath = course?.basePage ? primaryPath(`/${course.basePage}`) : null;
     }
     this.courseSections = (basePage?.sections || [])
       .filter((s) => !s.calendar && !s.card && /aprender|temario|objetivo|temas/i.test(s.heading))

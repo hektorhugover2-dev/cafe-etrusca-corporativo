@@ -140,6 +140,7 @@ export class CafeCategoryPageComponent implements OnInit, OnDestroy {
       const page = this.pages[raw];
       this.crumbs = [
         { label: 'Inicio', path: '/' },
+        { label: 'Insumos y equipo para cafeterías', path: '/insumos-y-equipo-para-cafeterias' },
         { label: 'Café', path: '/productos/cafe' },
         { label: CafeCategoryPageComponent.CRUMB_LABEL[raw], path: '/productos/cafe/' + raw }
       ];

@@ -55,6 +55,7 @@ export interface SeoRedirect {
 const MANUAL_REDIRECTS: SeoRedirect[] = [
   { from: "/Contacto", to: "/contacto/", source: "mapa-redirecciones alta", clicks: 405 },
   { from: "/Productos/Cafe", to: "/productos/cafe/", source: "mapa-redirecciones alta", clicks: 280 },
+  { from: '/productos', to: '/insumos-y-equipo-para-cafeterias/', source: 'hub movido (Hector 5-nov-2026)', clicks: 0 },
   { from: "/politicas-externas-cursos-talleres", to: "/politicas-externas-cursos/", source: "mapa-redirecciones alta", clicks: 125 },
   { from: "/Nosotros", to: "/nosotros/", source: "mapa-redirecciones alta", clicks: 45 },
   { from: "/insumos-for-cafeterias", to: "/insumos-para-cafeterias/", source: "mapa-redirecciones alta", clicks: 1 },

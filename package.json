@@ -6,7 +6,7 @@
     "start": "ng serve",
     "prebuild": "node scripts/update-event-archive.mjs && node scripts/write-sitemap.mjs",
     "build": "ng build",
-    "postbuild": "node scripts/write-iis-webconfig.mjs dist/cafe-etrusca-corporativo/browser",
+    "postbuild": "node scripts/write-iis-webconfig.mjs dist/cafe-etrusca-corporativo/browser && node scripts/finalize-pages-build.mjs dist/cafe-etrusca-corporativo/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:cafe-etrusca-corporativo": "node dist/cafe-etrusca-corporativo/server/server.mjs"

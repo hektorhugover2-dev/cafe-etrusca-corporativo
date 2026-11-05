@@ -154,9 +154,9 @@ export const CITY_COURSE_BY_CATEGORY: Readonly<Record<number, string>> = {
 
 /** Course keywords in /cursos-y-talleres/<slug> event slugs → course base slug (most specific first). */
 export const EVENT_SLUG_COURSES: ReadonlyArray<[RegExp, string]> = [
-  [/bubble-tea-especializado/, 'taller-de-bubble-tea-especializado'],
+  [/bubble-tea-especializado|bubble-tea-avanzado/, 'taller-de-bubble-tea-especializado'],
   [/bubble/, 'taller-de-bubble-tea-&-iced-coffee'],
-  [/arte-latte-especializado/, 'taller-de-arte-latte-especializados'],
+  [/arte-latte-especializado|avanzado-arte-latte|arte-latte-avanzado/, 'taller-de-arte-latte-especializados'],
   [/latte/, 'taller-de-arte-latte-nivel-basico'],
   [/baristas?-especializados?/, 'taller-para-baristas-especializados'],
   [/barista|barismo/, 'taller-basico-para-baristas'],

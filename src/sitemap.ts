@@ -19,7 +19,7 @@ const SITE = SITE_ORIGIN;
 const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/nosotros', changefreq: 'monthly', priority: '0.7' },
-  { path: '/productos', changefreq: 'weekly', priority: '0.8' },
+  { path: '/insumos-y-equipo-para-cafeterias', changefreq: 'weekly', priority: '0.8' },
   { path: '/productos/cafe', changefreq: 'weekly', priority: '0.7' },
   { path: '/productos/cafe/premium', changefreq: 'weekly', priority: '0.7' },
   { path: '/productos/cafe/especialidad', changefreq: 'weekly', priority: '0.7' },
@@ -186,6 +186,11 @@ export async function buildSitemapXml(options: SitemapOptions = {}): Promise<str
   // Guías /blog/<slug>/ (sin índice /blog/; fuera de menú, home y footer).
   for (const article of BLOG_ARTICLES) {
     push(`/blog/${article.slug}`, 'monthly', '0.6');
+  }
+
+  // SITEMAP_EXTRA_2026_11_05: paginas indexables con canonical propio que faltaban (aprobado por Hector 5-nov-2026).
+  for (const p of ['/experiencia-el-oasis-del-sabor-con-bebidas-frias', '/taller-basico-para-baristas-en-zona-rosa-cdmx', '/taller-basico-para-baristas-en-viaducto-cdmx', '/educacion/experiencias/experiencia-sensorial', '/educacion/experiencias/crear-mezcla-de-cafe', '/educacion/experiencias/arte-creatividad-mixologia', '/educacion/experiencias/oasis-bebidas-frias', '/educacion/experiencias/catacion-de-cafe', '/educacion/sesiones/bubble-lab', '/educacion/sesiones/tisanas-en-verano', '/educacion/sesiones/versatilidad-mezcla-especial-1', '/educacion/sesiones/elixir-del-terror', '/educacion/sesiones/pumpkin-vibes', '/educacion/sesiones/orgullo-mexicano', '/educacion/sesiones/innovacion-en-jarabes', '/educacion/sesiones/bubble-power-session', '/educacion/sesiones/verano-chillout', '/educacion/sesiones/matchamania', '/taller-de-cold-brew-en-merida', '/taller-basico-para-baristas-en-iztapalapa-cdmx', '/experiencia-aprende-a-crear-tu-propia-mezcla-de-cafe']) {
+    push(p, 'weekly', '0.7', '2026-11-05');
   }
 
   if (includeEvents) {

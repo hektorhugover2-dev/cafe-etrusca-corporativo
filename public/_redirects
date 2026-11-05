@@ -498,16 +498,16 @@
 /Blog/Detail/vainilla-matcha/ /recetas/ 301
 /Producto/Detalle/IJA-005/TORANI-JARABE-CLASICO-SABOR-CHOCOLATE-BLANCO-BOTELLA-750ml /insumos-para-cafeterias/jarabes/torani/ 301
 /Producto/Detalle/IJA-005/TORANI-JARABE-CLASICO-SABOR-CHOCOLATE-BLANCO-BOTELLA-750ml/ /insumos-para-cafeterias/jarabes/torani/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-guadalajara-julio-2026 /taller-de-arte-latte-nivel-basico-en-guadalajara/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-guadalajara-julio-2026/ /taller-de-arte-latte-nivel-basico-en-guadalajara/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-leon-julio-2026 /taller-de-arte-latte-nivel-basico-en-leon/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-leon-julio-2026/ /taller-de-arte-latte-nivel-basico-en-leon/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-monterrey-julio-2026 /taller-de-arte-latte-nivel-basico-en-monterrey/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-monterrey-julio-2026/ /taller-de-arte-latte-nivel-basico-en-monterrey/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-queretaro-julio-2026 /taller-de-arte-latte-nivel-basico-en-queretaro/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-queretaro-julio-2026/ /taller-de-arte-latte-nivel-basico-en-queretaro/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-viaducto-cdmx-julio-2026 /taller-de-arte-latte-nivel-basico-en-viaducto-cdmx/ 301
-/cursos-y-talleres/curso-avanzado-arte-latte-en-viaducto-cdmx-julio-2026/ /taller-de-arte-latte-nivel-basico-en-viaducto-cdmx/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-guadalajara-julio-2026 /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-guadalajara-julio-2026/ /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-leon-julio-2026 /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-leon-julio-2026/ /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-monterrey-julio-2026 /taller-de-arte-latte-especializados-en-monterrey/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-monterrey-julio-2026/ /taller-de-arte-latte-especializados-en-monterrey/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-queretaro-julio-2026 /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-queretaro-julio-2026/ /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-viaducto-cdmx-julio-2026 /taller-de-arte-latte-especializados/ 301
+/cursos-y-talleres/curso-avanzado-arte-latte-en-viaducto-cdmx-julio-2026/ /taller-de-arte-latte-especializados/ 301
 /cursos-y-talleres/curso-barista-especializado-guadalajara-julio-2026 /taller-para-baristas-especializados/ 301
 /cursos-y-talleres/curso-barista-especializado-guadalajara-julio-2026/ /taller-para-baristas-especializados/ 301
 /cursos-y-talleres/curso-barista-especializado-merida-julio-2026 /taller-para-baristas-especializados/ 301
@@ -1183,3 +1183,13 @@
 /Blog/Detail/C%C3%B3mo%20elegir%20la%20ubicaci%C3%B3n%20perfecta%20para%20%20tu%20cafeter%C3%ADa/ /blog/como-abrir-una-cafeteria-en-mexico/ 301
 /Blog/Detail/C%C3%B3mo%20elegir%20la%20ubicaci%C3%B3n%20perfecta%20para%20tu%20cafeter%C3%ADa /blog/como-abrir-una-cafeteria-en-mexico/ 301
 /Blog/Detail/C%C3%B3mo%20elegir%20la%20ubicaci%C3%B3n%20perfecta%20para%20tu%20cafeter%C3%ADa/ /blog/como-abrir-una-cafeteria-en-mexico/ 301
+# SEO pre-migración (5-nov-2026): URLs con 301 cuyo destino daba 404 / sin regla en Pages
+/cursos-y-talleres /cursos-para-baristas-y-talleres-para-cafeterias/ 301
+/cursos-y-talleres/ /cursos-para-baristas-y-talleres-para-cafeterias/ 301
+/insumos-provenientes-de-torani /insumos-para-cafeterias/jarabes/torani/ 301
+/insumos-provenientes-de-torani/ /insumos-para-cafeterias/jarabes/torani/ 301
+/urnex /accesorios-para-poner-una-cafeteria/limpieza/ 301
+/urnex/ /accesorios-para-poner-una-cafeteria/limpieza/ 301
+# Hub de productos movido a /insumos-y-equipo-para-cafeterias/ (Hector, 5-nov-2026)
+/productos /insumos-y-equipo-para-cafeterias/ 301
+/productos/ /insumos-y-equipo-para-cafeterias/ 301

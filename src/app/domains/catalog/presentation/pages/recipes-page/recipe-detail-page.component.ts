@@ -94,7 +94,8 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
       ogType: 'article',
       jsonLd: ({ origin, url }) => {
         const data = this.buildRecipeJsonLd(recipe, origin, url);
-        if (!recipe.breadcrumbJsonLd) return data;
+        // BreadcrumbList en todas las recetas; solo se omite con breadcrumbJsonLd: false.
+        if (recipe.breadcrumbJsonLd === false) return data;
         const { ['@context']: _ctx, ...node } = data;
         return {
           '@context': 'https://schema.org',

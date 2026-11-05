@@ -19,7 +19,7 @@ export class ProductsPageComponent implements OnInit {
 
   ngOnInit() {
     this.seo.set({
-      title: 'Productos para cafeterías | Café Etrusca',
+      title: 'Insumos y equipo para cafeterías | Café Etrusca',
       description: 'Café, insumos, maquinaria, equipo y accesorios para poner, renovar o innovar tu cafetería.',
       keywords: 'productos para cafetería,café de especialidad,insumos,maquinaria,accesorios,Café Etrusca'
     });
