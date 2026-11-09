@@ -476,7 +476,7 @@ export const INSUMOS_BRAND_LOGOS: InsumosBrandLogo[] = [
   { id: 'chillout', name: 'ChillOut', link: '/insumos-para-cafeterias/bases-en-polvo/chillout', image: { src: `${ASSETS_BASE_URL}/images/productos/logo-chillout.webp`, width: 220, height: 118 } },
   { id: 'david-rio', name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo/david-rio', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`, width: 154, height: 88 } },
   { id: 'mocafe', name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo/mocafe', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`, width: 115, height: 76 } },
-  { id: 'cool-capps', name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`, width: 81, height: 77 } },
+  { id: 'cool-capps', name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo/cool-capps', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`, width: 81, height: 77 } },
   { id: 'cappuccine', name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`, width: 150, height: 54 } },
   { id: 'hollander', name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`, width: 251, height: 90 } },
   { id: 'tea-zone', name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings', image: { src: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`, width: 239, height: 35 } }
@@ -488,11 +488,111 @@ export const INSUMOS_BRAND_STRIP: Array<{ name: string; link: string }> = [
   { name: 'ChillOut', link: '/insumos-para-cafeterias/bases-en-polvo/chillout' },
   { name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo/david-rio' },
   { name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo/mocafe' },
-  { name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo' },
+  { name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo/cool-capps' },
   { name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo' },
   { name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo' },
   { name: 'Don Gustavo', link: '/insumos-para-cafeterias/bases-en-polvo' },
   { name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings' },
   { name: 'Stash', link: '/insumos-para-cafeterias/te' },
   { name: 'Euro Te', link: '/insumos-para-cafeterias/te' }
+];
+
+/* ===================== CATEGORÍAS (hub insumos) =====================
+ * Cards con el mismo diseño que /accesorios-para-poner-una-cafeteria/.
+ * Colores = $cat-colors de insumos-theme. Imágenes y copy reutilizan
+ * INSUMOS_CATEGORIES / líneas existentes (sin inventar productos).
+ * ================================================================== */
+export type InsumosHubCardTone =
+  | 'ins-jarabes'
+  | 'ins-salsas'
+  | 'ins-pures'
+  | 'ins-te'
+  | 'ins-tisanas'
+  | 'ins-bases'
+  | 'ins-toppings';
+
+export interface InsumosHubCategoryCard {
+  slug: string;
+  titleLines: [string, string];
+  descLines: [string, string];
+  tags: string[];
+  tone: InsumosHubCardTone;
+  image: { src: string; src2x: string; width: number; height: number };
+  imageAlt: string;
+}
+
+const hubImg = (src: string, width: number, height: number) => ({
+  src,
+  src2x: src,
+  width,
+  height
+});
+
+/** Flag: sección "Marcas destacadas" oculta en el hub (datos MARCAS_DESTACADAS conservados). */
+export const SHOW_MARCAS_DESTACADAS = false;
+
+export const INSUMOS_HUB_CATEGORY_CARDS: InsumosHubCategoryCard[] = [
+  {
+    slug: 'jarabes',
+    titleLines: ['Jarabes', ''],
+    descLines: ['Sabor y versatilidad', 'para cada bebida'],
+    tags: ['ChillOut', 'Clásico', 'Puremade'],
+    tone: 'ins-jarabes',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/jarabes/bottle-chillout.webp`, 190, 710),
+    imageAlt: 'Jarabe ChillOut'
+  },
+  {
+    slug: 'salsas',
+    titleLines: ['Salsas', ''],
+    descLines: ['Textura y sabor', 'para dar el toque final'],
+    tags: ['ChillOut', 'Chamoy', 'Puremade'],
+    tone: 'ins-salsas',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/line-defaults/salsas-puremade.webp`, 200, 430),
+    imageAlt: 'Salsa Puremade'
+  },
+  {
+    slug: 'pures',
+    titleLines: ['Purés y', 'concentrados'],
+    descLines: ['Sabor auténtico', 'y consistente'],
+    tags: ['Concentrados', 'ChillOut Jam', 'Purée Blend'],
+    tone: 'ins-pures',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/line-defaults/pures-smoothie.webp`, 140, 269),
+    imageAlt: 'Puré Torani mango'
+  },
+  {
+    slug: 'te',
+    titleLines: ['Té', ''],
+    descLines: ['Aromas y perfiles', 'para disfrutar en cada taza'],
+    tags: ['Euro Te', 'Stash', 'Descafeinado'],
+    tone: 'ins-te',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/te/hub-stash-spice-dragon-2026-11-09.webp`, 168, 250),
+    imageAlt: 'Caja de té Stash Spice Dragon'
+  },
+  {
+    slug: 'tisanas',
+    titleLines: ['Tisanas', ''],
+    descLines: ['Mezclas que llenan', 'de sabor cada infusión'],
+    tags: ['ChillOut', 'Euro Te'],
+    tone: 'ins-tisanas',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/tisanas/hub-iti-114-2026-11-09.webp`, 200, 305),
+    imageAlt: 'Bolsa ChillOut tisana mango fresa'
+  },
+  {
+    slug: 'bases-en-polvo',
+    titleLines: ['Bases en', 'polvo'],
+    descLines: ['Una base,', 'muchas posibilidades'],
+    tags: ['ChillOut', 'David Rio', 'MoCafé'],
+    tone: 'ins-bases',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/bases/hub-chillout-just-fruit-2026-11-09.webp`, 200, 252),
+    imageAlt: 'Bolsa ChillOut Just Fruit base en polvo'
+  },
+  {
+    slug: 'toppings',
+    titleLines: ['Bubble', 'tea'],
+    descLines: ['Perlas, jellies y tapiocas', 'para bubble tea y frappés'],
+    tags: ['Popping Boba', 'Crystal Boba', 'Tapioca'],
+    tone: 'ins-toppings',
+    image: hubImg(`${ASSETS_BASE_URL}/images/insumos/toppings/hub-teazone-popping-lychee-2026-11-09.webp`, 210, 218),
+    imageAlt: 'Perlas explosivas Tea Zone lychee'
+  }
 ];

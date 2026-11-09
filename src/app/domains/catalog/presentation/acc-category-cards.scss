@@ -1,0 +1,268 @@
+// Shared "Categorías" cards (Accesorios hub design). Used by accesorios-page and insumos-page.
+// Frame reference: 1440 px. Scale with --u (set by the host page).
+
+$acc-card-ink: #000 !default;
+$acc-card-text: #2b2b2b !default;
+$acc-card-chip-text: #6b7682 !default;
+$acc-card-chip-border: #e3e6ea !default;
+$acc-card-arrow: #091b3e !default;
+
+// Accesorios PDF tones + Insumos category accent colors (insumos-theme $cat-colors).
+$acc-card-tones: (
+  'yellow': #ffe270,
+  'cyan': #96dde1,
+  'orange': #ffc145,
+  'purple': #ccaaff,
+  'pink': #ff9496,
+  'lime': #c3e02e,
+  // Insumos hub (exact accents from insumos-theme $cat-colors)
+  'ins-jarabes': #f6e27a,
+  'ins-salsas': #dff08a,
+  'ins-pures': #8fe8f4,
+  'ins-te': #ffb6bc,
+  'ins-tisanas': #ffd19a,
+  'ins-bases': #c6f08a,
+  'ins-toppings': #ffc2e0
+) !default;
+
+@function acc-u($n) {
+  @return calc(var(--u, 1px) * #{$n});
+}
+
+.acc-cats {
+  padding-top: 2.5rem;
+}
+
+.acc-cards {
+  display: grid;
+  grid-template-columns: repeat(3, acc-u(416));
+  column-gap: acc-u(30);
+  row-gap: acc-u(26);
+  list-style: none;
+  padding: 0;
+}
+
+.acc-card {
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 416 / 348;
+  border-radius: acc-u(16);
+  background: #eee;
+  isolation: isolate;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(7, 12, 59, 0.14);
+  }
+
+  &:focus-within {
+    outline: 3px solid $acc-card-arrow;
+    outline-offset: 3px;
+  }
+
+  &.is-active {
+    box-shadow: 0 0 0 3px $acc-card-arrow;
+  }
+
+  > * {
+    --u: calc(100cqw / 416);
+  }
+
+  @each $name, $color in $acc-card-tones {
+    &--#{$name} { background: $color; }
+  }
+}
+
+.acc-card__img {
+  position: absolute;
+  z-index: 1;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.acc-card__title {
+  position: absolute;
+  z-index: 2;
+  left: acc-u(24);
+  top: acc-u(69);
+  margin: 0;
+  font-family: 'Poppins', 'Poppins Fallback', sans-serif;
+  font-weight: 700;
+  font-size: acc-u(38);
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: $acc-card-ink;
+
+  span {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
+.acc-card__link {
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: calc(var(--u) * -400);
+    z-index: 3;
+  }
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.acc-card__desc {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  left: acc-u(24);
+  top: acc-u(206);
+  margin: 0;
+  font-size: max(13px, #{acc-u(16)});
+  line-height: 1.375;
+  color: $acc-card-text;
+
+  span { display: block; white-space: nowrap; }
+}
+
+.acc-card__tags {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  left: acc-u(22);
+  top: acc-u(295);
+  display: flex;
+  gap: acc-u(7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    height: acc-u(25);
+    padding: 0 acc-u(9.5);
+    background: #fff;
+    border: 1px solid $acc-card-chip-border;
+    border-radius: 999px;
+    font-size: max(9.5px, #{acc-u(10.2)});
+    line-height: 1;
+    color: $acc-card-chip-text;
+    white-space: nowrap;
+  }
+}
+
+.acc-card__arrow {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  right: acc-u(22);
+  bottom: acc-u(28);
+  display: grid;
+  place-items: center;
+  width: acc-u(43);
+  height: acc-u(43);
+  border-radius: 50%;
+  background: $acc-card-arrow;
+  color: #fff;
+}
+
+// Accesorios PDF image placements
+.acc-card--yellow .acc-card__img { right: acc-u(-29); top: acc-u(28); width: acc-u(249); }
+.acc-card--cyan   .acc-card__img { right: acc-u(-9);  top: acc-u(70); width: acc-u(234); }
+.acc-card--orange .acc-card__img { right: acc-u(18);  top: acc-u(73); width: acc-u(208); }
+.acc-card--purple .acc-card__img { right: acc-u(9);   top: acc-u(25); width: acc-u(159); }
+.acc-card--pink   .acc-card__img { right: acc-u(12);  top: acc-u(122); width: acc-u(199); }
+.acc-card--lime   .acc-card__img { right: acc-u(1);   top: 0;     width: acc-u(243); }
+
+.acc-card--cyan,
+.acc-card--pink {
+  .acc-card__title,
+  .acc-card__desc { left: acc-u(30); }
+  .acc-card__tags { left: acc-u(30); }
+}
+
+.acc-card--orange .acc-card__tags { left: acc-u(24); }
+.acc-card--purple { .acc-card__title, .acc-card__desc { left: acc-u(23); } }
+.acc-card--lime { .acc-card__title { left: acc-u(21); } .acc-card__desc { left: acc-u(26); } }
+
+.acc-card--purple,
+.acc-card--pink,
+.acc-card--lime {
+  .acc-card__title { top: acc-u(56); }
+}
+
+// Insumos hub: product package cut-outs (balanced vs title text)
+.acc-card--ins-jarabes .acc-card__img,
+.acc-card--ins-salsas .acc-card__img,
+.acc-card--ins-tisanas .acc-card__img,
+.acc-card--ins-bases .acc-card__img,
+.acc-card--ins-toppings .acc-card__img {
+  right: acc-u(8);
+  top: acc-u(42);
+  width: acc-u(198);
+  max-height: acc-u(255);
+}
+
+/* Té Stash box: keep clear of single-line title */
+.acc-card--ins-te .acc-card__img {
+  right: acc-u(4);
+  top: acc-u(52);
+  width: acc-u(168);
+  max-height: acc-u(230);
+}
+
+/* Purés jug is tall — keep clear of 2-line title */
+.acc-card--ins-pures .acc-card__img {
+  right: acc-u(22);
+  top: acc-u(72);
+  width: acc-u(140);
+  max-height: acc-u(210);
+}
+
+@media (min-width: 1024px) {
+  .acc-cats {
+    padding-top: acc-u(40);
+  }
+
+  .acc-cards {
+    margin: 0 0 0 acc-u(65);
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .acc-cards {
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .acc-cards {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-card { transition: none; }
+  .acc-card:hover { transform: none; }
+}

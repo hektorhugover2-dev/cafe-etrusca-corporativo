@@ -81,6 +81,11 @@ export const serverRoutes: ServerRoute[] = [
     path: 'insumos-para-cafeterias/bases-en-polvo/mocafe',
     renderMode: RenderMode.Prerender
   },
+  {
+    // Cool Capps brand landing (bases en polvo), modelo Mocafe/Torani; brief 2026-11-09.
+    path: 'insumos-para-cafeterias/bases-en-polvo/cool-capps',
+    renderMode: RenderMode.Prerender
+  },
   // Old course/taller URLs kept as pages (legacy-course-paths.ts): explicit prerender list.
   ...LEGACY_COURSE_PATHS.map((path): ServerRoute => ({ path, renderMode: RenderMode.Prerender })),
   {
@@ -92,7 +97,14 @@ export const serverRoutes: ServerRoute[] = [
         { slug: 'autoservicio' },
         { slug: 'licuadoras' },
         { slug: 'molinos' },
-        { slug: 'tostadores' }
+        { slug: 'tostadores' },
+        { slug: 'fiorenzato' },
+        { slug: 'eureka' },
+        { slug: 'comandante' },
+        { slug: 'anfim' },
+        { slug: 'mahlkonig' },
+        { slug: 'blendtec' },
+        { slug: 'melitta' }
       ];
     }
   },

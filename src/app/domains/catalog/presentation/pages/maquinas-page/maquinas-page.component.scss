@@ -470,3 +470,15 @@
   padding-right: 0;
 }
 
+
+.maq-disc-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+.btn-jar--outline {
+  background: transparent !important;
+  color: #070c3b !important;
+  border: 1.5px solid #070c3b;
+}

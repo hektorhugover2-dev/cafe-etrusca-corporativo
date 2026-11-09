@@ -803,6 +803,7 @@ const MOLINOS: BlogArticle = {
       { t: 'todo', html: TODO('diferencias entre F64 EVO y F64 EVO PRO, y especificaciones técnicas.') }
     ] },
     { h2: 'Comandante C40', blocks: [
+      { t: 'p', html: 'Nota: Comandante ya no forma parte de nuestro catálogo activo. Para molinos vigentes revisa <a href="/maquinaria-y-equipo-para-cafeterias/fiorenzato/">Fiorenzato</a> (incluye el molino manual Pietro) y Ceado en la categoría de <a href="/maquinaria-y-equipo-para-cafeterias/molinos/">molinos</a>.' },
       { t: 'p', html: 'Molino manual hecho en Alemania, con fresas de acero inoxidable extra afiladas. Se usa sobre todo para métodos de filtrado y es la herramienta personal de muchos baristas. Lo vendemos en negro, rojo y cherry.' },
       { t: 'todo', html: TODO('versión de Comandante que se vende (¿C40 MK4?).') }
     ] },
@@ -819,7 +820,7 @@ const MOLINOS: BlogArticle = {
       { t: 'p', html: `Si vas a preparar métodos de filtrado, revisa los ${A('/accesorios-para-poner-una-cafeteria/metodo-extraccion/', 'accesorios para métodos de extracción')}, nuestra ${A('/blog/metodos-de-extraccion-de-cafe-comparativa/', 'comparativa de métodos')} y el ${A('/taller-de-brew-bar/', 'taller de brew bar')}.` }
     ] },
     { h2: 'Otros molinos que vendemos', blocks: [
-      { t: 'p', html: `También tenemos molinos Ceado, Eureka y Pietro. Revísalos en la categoría de ${A('/maquinaria-y-equipo-para-cafeterias/molinos/', 'molinos')} y elige máquina con nuestra guía para ${A('/blog/como-elegir-maquina-de-espresso-para-cafeteria/', 'elegir máquina de espresso')}.` }
+      { t: 'p', html: `También tenemos molinos Ceado y Fiorenzato (incluye Pietro). Revísalos en la categoría de ${A('/maquinaria-y-equipo-para-cafeterias/molinos/', 'molinos')} y elige máquina con nuestra guía para ${A('/blog/como-elegir-maquina-de-espresso-para-cafeteria/', 'elegir máquina de espresso')}.` }
     ] },
     { h2: 'Limpieza del molino', blocks: [
       { t: 'p', html: `Las fresas acumulan aceites que cambian el sabor. Te explicamos cómo usar Grindz en ${A('/blog/como-limpiar-maquina-de-espresso-y-molino/', 'cómo limpiar tu máquina de espresso y molino')}.` }

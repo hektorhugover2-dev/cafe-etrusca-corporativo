@@ -16,21 +16,57 @@
 
   <app-insumos-nav [allColor]="true"></app-insumos-nav>
 
-  <section class="ins-section">
-    <h2 class="section-title-center">Marcas destacadas</h2>
-    <div class="ins-brands">
-      @for (b of brands; track b.name) {
-        <article class="ins-brand">
-          <img class="shot" [src]="b.image" [alt]="b.name">
-          <h3>{{ b.name }}</h3>
-          <p>{{ b.text }}</p>
-          <a [routerLink]="b.link">Ver línea completa</a>
+  <!-- Marcas destacadas: oculta (SHOW_MARCAS_DESTACADAS=false). Datos en MARCAS_DESTACADAS. -->
+  @if (showMarcasDestacadas) {
+    <section class="ins-section">
+      <h2 class="section-title-center">Marcas destacadas</h2>
+      <div class="ins-brands">
+        @for (b of brands; track b.name) {
+          <article class="ins-brand">
+            <img class="shot" [src]="b.image" [alt]="b.name">
+            <h3>{{ b.name }}</h3>
+            <p>{{ b.text }}</p>
+            <a [routerLink]="b.link">Ver línea completa</a>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- CATEGORÍAS: mismo diseño que /accesorios-para-poner-una-cafeteria/ -->
+  <section class="acc-cats acc-frame" id="categorias-insumos" aria-labelledby="ins-cats-title">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="ins-cats-title">Categorías</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="acc-cards acc-cards--insumos-hub">
+      @for (c of categories; track c.slug) {
+        <article class="acc-card" [class]="'acc-card acc-card--' + c.tone">
+          <img class="acc-card__img" [src]="c.image.src" [attr.srcset]="srcset(c.image)" [alt]="c.imageAlt"
+               [attr.width]="c.image.width" [attr.height]="c.image.height" loading="lazy" decoding="async">
+          <h3 class="acc-card__title">
+            <a [routerLink]="catLink(c)" class="acc-card__link">
+              <span>{{ c.titleLines[0] }}</span>@if (c.titleLines[1]) { <span>{{ c.titleLines[1] }}</span> }
+            </a>
+          </h3>
+          <p class="acc-card__desc"><span>{{ c.descLines[0] }}</span> <span>{{ c.descLines[1] }}</span></p>
+          <ul class="acc-card__tags" [attr.aria-label]="'Productos de ' + titleOf(c)">
+            @for (t of c.tags; track t) {
+              <li>{{ t }}</li>
+            }
+          </ul>
+          <span class="acc-card__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+              <path d="M9.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </article>
       }
     </div>
   </section>
 
-  <!-- ============ MARCAS (mismo markup que accesorios-page) ============ -->
+<!-- ============ MARCAS (mismo markup que accesorios-page) ============ -->
   <section class="acc-brands acc-frame" aria-labelledby="ins-brands-title">
     <div class="jar-head">
       <h2 class="section-title-center" id="ins-brands-title">Marcas</h2>

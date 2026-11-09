@@ -71,12 +71,11 @@ export class HeaderComponent implements OnDestroy {
   ];
 
     maquinaLinks: MegaLink[] = [
-    { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/espresso.png`, title: 'Espresso', desc: 'Máquinas Reneka para barra profesional', link: '/maquinaria-y-equipo-para-cafeterias/espresso', tone: 'yellow' },
-    { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/autoservicio.png`, title: 'Autoservicio', desc: 'Equipos Melitta de alto volumen', link: '/maquinaria-y-equipo-para-cafeterias/autoservicio', tone: 'cyan' },
-    { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.png`, title: 'Licuadoras', desc: 'Hamilton Beach y Blendtec para barra', link: '/maquinaria-y-equipo-para-cafeterias/licuadoras', tone: 'lime' },
-    { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.png`, title: 'Molinos', desc: 'Ceado, Eureka, Pietro, Fiorenzato y más', link: '/maquinaria-y-equipo-para-cafeterias/molinos', tone: 'orange' },
-    { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.png`, title: 'Tostadores', desc: 'Tostadores Coffee Tech de laboratorio a tienda', link: '/maquinaria-y-equipo-para-cafeterias/tostadores', tone: 'coral' }
-  ];
+  { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/espresso.png`, title: 'Espresso', desc: 'Máquinas Reneka para barra profesional', link: '/maquinaria-y-equipo-para-cafeterias/espresso' },
+  { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.png`, title: 'Licuadoras', desc: 'Hamilton Beach para barra profesional', link: '/maquinaria-y-equipo-para-cafeterias/licuadoras' },
+  { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.png`, title: 'Molinos', desc: 'Ceado y Fiorenzato para espresso y filtro', link: '/maquinaria-y-equipo-para-cafeterias/molinos' },
+  { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.png`, title: 'Tostadores', desc: 'Tostadores Coffee Tech de laboratorio a tienda', link: '/maquinaria-y-equipo-para-cafeterias/tostadores' }
+];
 
     insumoLinks: MegaLink[] = [
     { icon: `${ASSETS_BASE_URL}/images/insumos/categorias/bases-en-polvo.png`, title: 'Polvos', desc: 'Bases y sabores en polvo', link: '/insumos-para-cafeterias/bases-en-polvo', tone: 'lime' },

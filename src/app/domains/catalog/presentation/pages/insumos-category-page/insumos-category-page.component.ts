@@ -266,6 +266,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
       tone: 'coral',
+      apiMode: 'bases-cool-capps',
+      page: '/insumos-para-cafeterias/bases-en-polvo/cool-capps',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
     },
     {

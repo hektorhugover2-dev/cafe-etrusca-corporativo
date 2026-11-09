@@ -126,3 +126,46 @@ $strip-all-text: #031131;
 @media (max-width: 800px) {
   .ins-hero .ins-hero-blob { height: auto; max-height: 52%; max-width: 92%; }
 }
+
+/* =====================================================================
+   CATEGORÍAS (acc-category-cards.scss) — escala --u como en Accesorios
+   ===================================================================== */
+.ins-page {
+  --u: 1px;
+}
+
+.acc-cats.acc-frame {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+  .ins-page {
+    --u: min(1px, calc(100vw / 1440));
+  }
+
+  .acc-cats.acc-frame {
+    position: relative;
+    width: calc(var(--u) * 1440);
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .acc-cats.acc-frame {
+    padding-left: clamp(1.1rem, 5vw, 2.5rem);
+    padding-right: clamp(1.1rem, 5vw, 2.5rem);
+  }
+}
+
+/* Separador de títulos (mismo webp que Accesorios; evita bloqueo PNG). */
+.acc-cats .jar-head .rule {
+  background: url('https://imagenes.cafeetrusca.com/corporativo/assets/images/separador.webp') center / contain no-repeat !important;
+}
+
+/* 7 categorías: última card sola en fila de 3 → centrarla (Lizbeth: limpio, intencional). */
+@media (min-width: 1024px) {
+  .acc-cards--insumos-hub .acc-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
+}

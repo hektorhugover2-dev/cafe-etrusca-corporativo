@@ -1,4 +1,4 @@
-<section class="grinder-brand" [attr.id]="'grinder-' + brand.id" [style.--grinder-bg]="brand.bg" [style.--grinder-lead]="brand.leadColor">
+<section class="grinder-brand" [attr.id]="'grinder-' + brand.id" [class.grinder-brand--discontinued]="discontinued" [style.--grinder-bg]="brand.bg" [style.--grinder-lead]="brand.leadColor">
   <div class="grinder-bg" aria-hidden="true"></div>
 
   @if (brand.logo && !hideLogo) {
@@ -17,21 +17,44 @@
 
   <p class="grinder-lead">{{ lead }}</p>
 
+  @if (discontinued) {
+    <aside class="grinder-disc" role="note">
+      <p class="grinder-disc__badge">Este equipo ya no forma parte de nuestro catálogo</p>
+      <p class="grinder-disc__text">
+        Te ayudamos con servicio, mantenimiento o a elegir un equipo vigente.
+        @if (altLinks.length) {
+          Alternativas actuales:
+          @for (a of altLinks; track a.href; let last = $last) {
+            <a [routerLink]="a.href">{{ a.label }}</a>@if (!last) {, }
+          }.
+        }
+      </p>
+      <div class="grinder-disc__actions">
+        <a class="grinder-btn grinder-btn--solid" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
+        <a class="grinder-btn grinder-btn--outline" href="https://etrusca.biz/" target="_blank" rel="noopener noreferrer">Etrusca Biz</a>
+        <a class="grinder-btn grinder-btn--outline" href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </aside>
+  }
+
   <div class="grinder-carousel">
     <div class="grinder-copy">
       <h3 class="grinder-title">{{ titulo }}</h3>
-      <p class="grinder-desc">{{ descripcion }}</p>
+      @if (descripcion && descripcion !== lead) {
+        <p class="grinder-desc">{{ descripcion }}</p>
+      }
 
-      <!-- Mismos botones que las tarjetas de Accesorios: Comprar (modal en línea / sucursal) + Asesoría (contacto) -->
       <div class="grinder-actions">
-        @if (catalogUrl) {
+        @if (catalogUrl && !discontinued) {
           <button type="button" class="grinder-btn grinder-btn--solid" aria-haspopup="dialog" (click)="buy($event)">
             Comprar<span class="visually-hidden"> {{ titulo }}</span>
           </button>
         }
-        <a class="grinder-btn grinder-btn--outline" routerLink="/contacto" fragment="contacto-form">
-          Asesoría<span class="visually-hidden"> sobre {{ titulo }}</span>
-        </a>
+        @if (!discontinued) {
+          <a class="grinder-btn grinder-btn--outline" routerLink="/contacto" fragment="contacto-form">
+            Asesoría<span class="visually-hidden"> sobre {{ titulo }}</span>
+          </a>
+        }
       </div>
 
       @if (ficha.length) {

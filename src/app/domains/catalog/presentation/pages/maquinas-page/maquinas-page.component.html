@@ -6,7 +6,15 @@
       <h1>{{ heroTitle }}</h1>
       <p class="lead"><span class="accent" [style.color]="heroAccent">{{ heroLead }}</span></p>
       <p class="body">{{ heroBody }}</p>
-      <a class="btn-jar" [href]="catalogUrl" target="_blank" rel="noopener">Explora el catálogo</a>
+      @if (catalogUrl) {
+        <a class="btn-jar" [href]="catalogUrl" target="_blank" rel="noopener">Explora el catálogo</a>
+      } @else if (showDiscBanner || brandOnly?.discontinued) {
+        <div class="maq-disc-ctas">
+          <a class="btn-jar" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
+          <a class="btn-jar btn-jar--outline" href="https://etrusca.biz/" target="_blank" rel="noopener noreferrer">Etrusca Biz</a>
+          <a class="btn-jar btn-jar--outline" href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+      }
     </div>
     <div class="jar-hero-media">
       <img class="photo" [src]="heroImage" alt="Máquinas y equipo para cafeterías">
@@ -25,34 +33,49 @@
     }
   </nav>
 
-  @for (sec of sections; track sec.id) {
-    <section class="maq-sec ins-section" [id]="sec.id">
-      @if (!slug) {
-        <header class="maq-sec__head">
-          <p class="maq-kicker">{{ sec.kicker }}</p>
-          <h2 class="section-title-center">{{ sec.title }}</h2>
-          <p class="maq-intro">{{ sec.intro }}</p>
-        </header>
-      }
-
-      @if (firstOf(sec); as first) {
-        @if (first.logo) {
-          <div class="maq-sec-logo">
-            <img [src]="first.logo" [alt]="first.name">
-          </div>
-        }
-      }
-
+  @if (brandOnly) {
+    <section class="maq-sec ins-section" [id]="brandOnly.id">
       <div class="maq-wave-top">
-        <app-scroll-wave position="top" [fillColor]="waveTopOf(sec)"></app-scroll-wave>
+        <app-scroll-wave position="top" [fillColor]="brandOnly.bg"></app-scroll-wave>
       </div>
-
-      @for (g of slidersOf(sec); track g.id; let first = $first) {
-        <app-grinder-slider [brand]="g" [hideLogo]="first" [catalogUrl]="catalogOf(sec)"></app-grinder-slider>
-      }
-
-      <app-scroll-wave class="maq-sec-wave" position="bottom" [fillColor]="waveOf(sec)"></app-scroll-wave>
+      <app-grinder-slider [brand]="brandOnly" [hideLogo]="false" [discontinued]="!!brandOnly.discontinued" [catalogUrl]="catalogUrl"></app-grinder-slider>
+      <app-scroll-wave class="maq-sec-wave" position="bottom" [fillColor]="brandOnly.bg"></app-scroll-wave>
     </section>
+  } @else {
+    @for (sec of sections; track sec.id) {
+      <section class="maq-sec ins-section" [id]="sec.id">
+        @if (!slug) {
+          <header class="maq-sec__head">
+            <p class="maq-kicker">{{ sec.kicker }}</p>
+            <h2 class="section-title-center">{{ sec.title }}</h2>
+            <p class="maq-intro">{{ sec.intro }}</p>
+          </header>
+        }
+
+        @if (firstOf(sec); as first) {
+          @if (first.logo) {
+            <div class="maq-sec-logo">
+              <img [src]="first.logo" [alt]="first.name">
+            </div>
+          }
+        }
+
+        <div class="maq-wave-top">
+          <app-scroll-wave position="top" [fillColor]="waveTopOf(sec)"></app-scroll-wave>
+        </div>
+
+        @for (g of slidersOf(sec); track g.id; let first = $first) {
+          <app-grinder-slider
+            [brand]="g"
+            [hideLogo]="first"
+            [discontinued]="!!g.discontinued"
+            [catalogUrl]="g.discontinued ? '' : catalogOf(sec)">
+          </app-grinder-slider>
+        }
+
+        <app-scroll-wave class="maq-sec-wave" position="bottom" [fillColor]="waveOf(sec)"></app-scroll-wave>
+      </section>
+    }
   }
 
   <app-insumos-cta></app-insumos-cta>

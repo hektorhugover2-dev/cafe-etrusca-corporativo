@@ -56,6 +56,7 @@ const MANUAL_REDIRECTS: SeoRedirect[] = [
   { from: "/Contacto", to: "/contacto/", source: "mapa-redirecciones alta", clicks: 405 },
   { from: "/Productos/Cafe", to: "/productos/cafe/", source: "mapa-redirecciones alta", clicks: 280 },
   { from: '/productos', to: '/insumos-y-equipo-para-cafeterias/', source: 'hub movido (Hector 5-nov-2026)', clicks: 0 },
+  { from: '/maquinaria-y-equipo-para-cafeterias/pietro', to: '/maquinaria-y-equipo-para-cafeterias/fiorenzato/', source: 'Pietro es molino Fiorenzato (Hector 5-nov-2026)', clicks: 0 },
   { from: '/cursos-y-talleres/taller-basico-de-tostado-vallejo-cdmx-noviembre-2026', to: '/cursos-y-talleres/taller-basico-de-tostado-zona-rosa-cdmx-diciembre-2026/', source: 'slug corregido tostado id 2100 Zona Rosa dic-2026 (Hector 5-nov-2026)', clicks: 0 },
   { from: "/politicas-externas-cursos-talleres", to: "/politicas-externas-cursos/", source: "mapa-redirecciones alta", clicks: 125 },
   { from: "/Nosotros", to: "/nosotros/", source: "mapa-redirecciones alta", clicks: 45 },

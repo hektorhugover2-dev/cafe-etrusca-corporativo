@@ -23,11 +23,12 @@ export class GrinderSliderComponent implements OnInit {
   @Input({ required: true }) brand!: GrinderBrand;
   @Input() hideLogo = false;
   /**
-   * Respaldo de "Comprar en línea" (catálogo de la sección, el de "Explora el catálogo"). Con SKU, el modal busca
-   * la ficha en la tienda (/api/Product por marca; sólo si hay existencia); si no, abre este catálogo.
-   * TODO(contenido): SKU para los modelos que no lo tienen (Reneka, Melitta, licuadoras, Fiorenzato API…).
+   * Respaldo de "Comprar en línea" (catálogo de la sección). Con SKU, el modal busca
+   * la ficha en la tienda; si no, abre este catálogo.
    */
   @Input() catalogUrl = '';
+  /** Marca fuera de catálogo: oculta Comprar y muestra aviso + CTAs de asesoría. */
+  @Input() discontinued = false;
 
   private http = inject(HttpClient);
   private buyModal = inject(BuyModalService);
@@ -40,7 +41,27 @@ export class GrinderSliderComponent implements OnInit {
   colorAt = 0;
   marqueeLoop = [0, 1, 2, 3, 4, 5, 6, 7];
 
+  /** Enlaces a marcas vigentes según la categoría de la marca descontinuada. */
+  get altLinks(): Array<{ label: string; href: string }> {
+    const id = this.brand?.id || '';
+    const cat = this.brand?.categoryId || '';
+    if (cat === 'molinos' || ['eureka', 'comandante', 'anfim', 'mahlkonig'].includes(id)) {
+      return [
+        { label: 'Fiorenzato', href: '/maquinaria-y-equipo-para-cafeterias/molinos' },
+        { label: 'Ceado', href: '/maquinaria-y-equipo-para-cafeterias/molinos' }
+      ];
+    }
+    if (cat === 'licuadoras' || id === 'blendtec') {
+      return [
+        { label: 'Hamilton Beach', href: '/maquinaria-y-equipo-para-cafeterias/licuadoras' }
+      ];
+    }
+    // Melitta / autoservicio: sin alternativa de marca en catálogo; solo asesoría.
+    return [];
+  }
+
   ngOnInit() {
+    this.discontinued = this.discontinued || !!this.brand.discontinued;
     this.slides = this.brand.slides;
     this.lead = this.brand.lead;
     if (this.brand.api && this.isBrowser) {
@@ -48,7 +69,9 @@ export class GrinderSliderComponent implements OnInit {
         next: (data) => {
           const mapped = mapFiorenzatoApi(data);
           if (mapped.length) {
-            this.slides = mapped;
+            // Conserva slides estáticos de Pietro (sin foto en API de Fiorenzato eléctrica).
+            const pietro = this.brand.slides.filter((s) => /pietro/i.test(s.titulo));
+            this.slides = [...mapped, ...pietro];
             this.index = 0;
             this.colorAt = 0;
           }
@@ -97,8 +120,8 @@ export class GrinderSliderComponent implements OnInit {
     return this.ficha.slice(Math.ceil(this.ficha.length / 2));
   }
 
-  /** "Comprar" → modal de compra (en línea / en sucursal). */
   buy(ev: Event) {
+    if (this.discontinued) return;
     const sku = this.sku;
     this.buyModal.open(
       {

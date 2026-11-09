@@ -5,7 +5,14 @@ import { InsumosNavComponent } from '../../components/insumos-nav/insumos-nav.co
 import { RecipeCardComponent } from '../../../../../shared/ui/recipe-card/recipe-card.component';
 import { InsumosCtaComponent } from '../../components/insumos-cta/insumos-cta.component';
 import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll-wave.component';
-import { MARCAS_DESTACADAS, INSUMOS_BRAND_LOGOS, INSUMOS_BRAND_STRIP } from '../../insumos.data';
+import {
+  MARCAS_DESTACADAS,
+  INSUMOS_BRAND_LOGOS,
+  INSUMOS_BRAND_STRIP,
+  INSUMOS_HUB_CATEGORY_CARDS,
+  SHOW_MARCAS_DESTACADAS,
+  InsumosHubCategoryCard
+} from '../../insumos.data';
 import { ACC_ALL_BRANDS_LINK } from '../../accesorios.data';
 import { inspiraRecipes } from '../../insumos-inspira';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
@@ -16,7 +23,12 @@ import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url'
   standalone: true,
   imports: [HeroCrumbsComponent, RouterLink, RecipeCardComponent, InsumosNavComponent, InsumosCtaComponent, ScrollWaveComponent],
   templateUrl: './insumos-page.component.html',
-  styleUrls: ['../../insumos-theme.scss', '../../jarabes-theme.scss', './insumos-page.component.scss']
+  styleUrls: [
+    '../../insumos-theme.scss',
+    '../../jarabes-theme.scss',
+    '../../acc-category-cards.scss',
+    './insumos-page.component.scss'
+  ]
 })
 export class InsumosPageComponent implements OnInit {
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
@@ -33,10 +45,29 @@ export class InsumosPageComponent implements OnInit {
     });
   }
 
+  /** Datos conservados; la sección se oculta con showMarcasDestacadas. */
   brands = MARCAS_DESTACADAS;
+  readonly showMarcasDestacadas = SHOW_MARCAS_DESTACADAS;
+
+  /** Cards de categorías (diseño Accesorios). */
+  readonly categories = INSUMOS_HUB_CATEGORY_CARDS;
+  readonly insumosHub = '/insumos-para-cafeterias';
+
   /** Sección "Marcas" (mismo diseño que /accesorios-para-poner-una-cafeteria/). */
   readonly logos = INSUMOS_BRAND_LOGOS;
   readonly strip = INSUMOS_BRAND_STRIP;
   readonly allBrands = ACC_ALL_BRANDS_LINK;
   menu = inspiraRecipes('general');
+
+  catLink(c: InsumosHubCategoryCard): string {
+    return `${this.insumosHub}/${c.slug}`;
+  }
+
+  srcset(i: { src: string; src2x: string }): string {
+    return `${i.src} 1x, ${i.src2x} 2x`;
+  }
+
+  titleOf(c: InsumosHubCategoryCard): string {
+    return c.titleLines.filter(Boolean).join(' ');
+  }
 }

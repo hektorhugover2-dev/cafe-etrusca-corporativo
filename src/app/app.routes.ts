@@ -322,6 +322,12 @@ export const routes: Routes = [
           import('./domains/catalog/presentation/pages/mocafe-page/mocafe-page.component')
             .then(m => m.MocafePageComponent)
       },
+  {
+    path: 'insumos-para-cafeterias/bases-en-polvo/cool-capps',
+    loadComponent: () =>
+      import('./domains/catalog/presentation/pages/cool-capps-page/cool-capps-page.component')
+        .then(m => m.CoolCappsPageComponent)
+  },
       {
         path: 'insumos-para-cafeterias/bases-en-polvo/chillout',
         loadComponent: () =>

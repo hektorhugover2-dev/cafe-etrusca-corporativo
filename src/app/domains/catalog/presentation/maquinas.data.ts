@@ -11,6 +11,8 @@ export interface MaqBrandBlock {
   brand: string;
   logo: string;
   text: string;
+  /** Marca fuera de catálogo activo: se oculta del hub/listados; la página de marca sigue viva. */
+  discontinued?: boolean;
   products: MaqProduct[];
 }
 
@@ -33,10 +35,22 @@ export interface MaqNavItem {
   seoTitle: string;
   seoDescription: string;
   seoKeywords: string;
+  /** Si es false, no aparece en menú / chips (la ruta puede seguir viva). */
+  showInNav?: boolean;
 }
 
 export const MAQ_HUB = '/maquinaria-y-equipo-para-cafeterias';
 export const MAQ_CATALOG_HUB = 'https://equipos-accesorios.cafeetrusca.com';
+
+/** Marcas descontinuadas con página propia indexable (además de la categoría). */
+export const MAQ_DISCONTINUED_BRAND_IDS = [
+  'melitta',
+  'blendtec',
+  'eureka',
+  'comandante',
+  'anfim',
+  'mahlkonig'
+] as const;
 
 export const MAQ_NAV: MaqNavItem[] = [
   {
@@ -55,37 +69,38 @@ export const MAQ_NAV: MaqNavItem[] = [
     id: 'autoservicio',
     label: 'Autoservicio',
     icon: `${ASSETS_BASE_URL}/images/maquinas/nav/autoservicio.png`,
-    desc: 'Equipos Melitta de alto volumen',
+    desc: 'Equipos de autoservicio para alto volumen',
     link: '/maquinaria-y-equipo-para-cafeterias/autoservicio',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/57',
-    seoTitle: 'Máquinas de autoservicio para cafeterías - Melitta | Café Etrusca',
+    showInNav: false,
+    seoTitle: 'Máquinas de autoservicio para cafeterías | Café Etrusca',
     seoDescription:
-      'Equipos Melitta de autoservicio para cafeterías, oficinas y food service. Consistencia, rapidez y menú amplio.',
-    seoKeywords: 'máquinas de autoservicio, Melitta, autoservicio cafetería, equipo self service café'
+      'Información sobre equipos de autoservicio para cafeterías. Asesoría de servicio, mantenimiento y alternativas vigentes.',
+    seoKeywords: 'máquinas de autoservicio, autoservicio cafetería, equipo self service café'
   },
   {
     id: 'licuadoras',
     label: 'Licuadoras',
     icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.png`,
-    desc: 'Hamilton Beach y Blendtec para barra',
+    desc: 'Hamilton Beach para barra profesional',
     link: '/maquinaria-y-equipo-para-cafeterias/licuadoras',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/48',
-    seoTitle: 'Licuadoras para cafeterías - Hamilton Beach y Blendtec | Café Etrusca',
+    seoTitle: 'Licuadoras para cafeterías - Hamilton Beach | Café Etrusca',
     seoDescription:
-      'Licuadoras profesionales Hamilton Beach y Blendtec para barra, salsas, batidos y bebidas de cafetería.',
-    seoKeywords: 'licuadoras para cafetería, Hamilton Beach, Blendtec, licuadora profesional barista'
+      'Licuadoras profesionales Hamilton Beach para barra, salsas, batidos y bebidas de cafetería.',
+    seoKeywords: 'licuadoras para cafetería, Hamilton Beach, licuadora profesional barista'
   },
   {
     id: 'molinos',
     label: 'Molinos',
     icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.png`,
-    desc: 'Ceado, Eureka, Pietro, Fiorenzato y más',
+    desc: 'Ceado y Fiorenzato para espresso y filtro',
     link: '/maquinaria-y-equipo-para-cafeterias/molinos',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/44',
-    seoTitle: 'Molinos de café para cafeterías - Ceado, Eureka, Pietro | Café Etrusca',
+    seoTitle: 'Molinos de café para cafeterías - Ceado y Fiorenzato | Café Etrusca',
     seoDescription:
-      'Molinos profesionales para espresso y filtro. Ceado, Eureka, Pietro, Comandante, Fiorenzato, Anfim y Mahlkönig.',
-    seoKeywords: 'molinos de café, molino espresso, Ceado, Eureka, Pietro, Fiorenzato, Comandante, Mahlkönig'
+      'Molinos profesionales para espresso y filtro. Ceado y Fiorenzato, con asesoría para tu barra.',
+    seoKeywords: 'molinos de café, molino espresso, Ceado, Fiorenzato, molino para cafetería'
   },
   {
     id: 'tostadores',
@@ -101,18 +116,29 @@ export const MAQ_NAV: MaqNavItem[] = [
   }
 ];
 
+/** Ítems visibles en menú, mega menú y chips de categoría. */
+export function maqNavVisible(): MaqNavItem[] {
+  return MAQ_NAV.filter((n) => n.showInNav !== false);
+}
+
 export function findMaqNav(id: string): MaqNavItem | undefined {
   return MAQ_NAV.find((n) => n.id === id);
 }
 
-export const MAQ_HERO_FALLBACK = `${ASSETS_BASE_URL}/images/maquinas/hero.webp`;
+export const MAQ_HERO_FALLBACK = `${ASSETS_BASE_URL}/images/maquinas/maq-hero-viva-black-2g-transparente-2026-11-06.webp`;
 
-/** First product image in a section (first block → first product with image), else fallback. */
+/** First product image in a section (first active block → first product with image), else fallback. */
 export function firstMaqProductImage(
   sec: MaqSection | undefined | null,
   fallback: string = MAQ_HERO_FALLBACK
 ): string {
   if (!sec) return fallback;
+  for (const block of sec.blocks) {
+    if (block.discontinued) continue;
+    for (const p of block.products) {
+      if (p.image) return p.image;
+    }
+  }
   for (const block of sec.blocks) {
     for (const p of block.products) {
       if (p.image) return p.image;
@@ -128,7 +154,8 @@ export const MAQ_SECTIONS: MaqSection[] = [
     id: 'espresso',
     kicker: 'Reneka',
     title: 'Máquinas para espresso',
-    intro: 'Seleccionamos cada equipo por calidad, desempeño y durabilidad. Nuestros expertos te ayudan a elegir la que mejor se adapte a tu barra, y nos encargamos de instalación, preventivo y servicio.',
+    intro:
+      'Seleccionamos cada equipo por su calidad, desempeño y durabilidad. Nuestros expertos te ayudarán a elegir el equipo que mejor se adapte a las necesidades de tu barra, y también nos encargamos de la instalación, el servicio preventivo y el servicio mayor, alargando con ello la vida útil de tu inversión.',
     brandLogo: img('logo-reneka.svg'),
     blocks: [
       {
@@ -137,10 +164,12 @@ export const MAQ_SECTIONS: MaqSection[] = [
         text: 'Máquinas de espresso profesionales, pensadas para operación diaria en cafetería.',
         products: [
           {
-            name: 'VIVA',
+            name: 'Viva Basic 1 Grupo',
+            sku: 'MCA-001',
             image: img('viva.webp'),
+            description: 'Cafetera Reneka Viva Basic de 1 grupo, AP 110 V.',
             specs: [
-              '110 V · también 2 grupos a 220 V',
+              '1 grupo · AP 110 V',
               'Aroma Perfect · Multicoffee system',
               'Pre-infusión en ciclos de 1 y 2 tazas',
               'Automática, lanceta de vapor y agua caliente',
@@ -148,10 +177,38 @@ export const MAQ_SECTIONS: MaqSection[] = [
             ]
           },
           {
-            name: 'OEM',
-            image: img('espresso-oem.webp'),
+            name: 'Viva 2 Grupos',
+            sku: 'MCA-002',
+            image: img('maq-hero-viva-black-2g-transparente-2026-11-06.webp'),
+            description: 'Cafetera Reneka Viva de 2 grupos, AP 220 V.',
             specs: [
-              '2 grupos · automática',
+              '2 grupos · AP 220 V',
+              'Aroma Perfect · Multicoffee system',
+              'Pre-infusión en ciclos de 1 y 2 tazas',
+              'Automática, lanceta de vapor y agua caliente',
+              'Seguridad contra falta de agua'
+            ]
+          },
+          {
+            name: 'Viva Basic 2 Grupos',
+            sku: 'MCA-049',
+            image: img('viva-basic-2.webp'),
+            description: 'Cafetera Reneka Viva Basic de 2 grupos, AP negra 220 V.',
+            specs: [
+              '2 grupos · AP 220 V · Negra',
+              'Aroma Perfect · Multicoffee system',
+              'Pre-infusión en ciclos de 1 y 2 tazas',
+              'Automática, lanceta de vapor y agua caliente',
+              'Seguridad contra falta de agua'
+            ]
+          },
+          {
+            name: 'OEM 2 Grupos',
+            sku: 'MCA-004',
+            image: img('espresso-oem.webp'),
+            description: 'Cafetera Reneka OEM de 2 grupos, 220 V.',
+            specs: [
+              '2 grupos · automática · 220 V',
               'Depósito de agua: 11 L',
               '2 lancetas de vapor',
               '1 salida de agua caliente',
@@ -159,10 +216,12 @@ export const MAQ_SECTIONS: MaqSection[] = [
             ]
           },
           {
-            name: 'LIFE',
+            name: 'Life 2 Grupos',
+            sku: 'MCA-003',
             image: img('life.webp'),
+            description: 'Cafetera Reneka Life de 2 grupos, AP 220 V.',
             specs: [
-              '2 grupos · automática',
+              '2 grupos · automática · AP 220 V',
               'Aroma Perfect · LC Display',
               'Modo eco y limpieza automática',
               'Área de taza iluminada',
@@ -170,14 +229,16 @@ export const MAQ_SECTIONS: MaqSection[] = [
             ]
           },
           {
-            name: 'VIVA BASIC 2',
-            image: img('viva-basic-2.webp'),
+            name: 'Life Touch 2 Grupos',
+            sku: 'MCA-051',
+            image: img('maq-life-touch-2g-2026-11-05.webp'),
+            description: 'Cafetera Reneka Life Touch de 2 grupos, AP 220 V, con pantalla táctil.',
             specs: [
-              '110 V',
-              'Aroma Perfect · Multicoffee system',
-              'Pre-infusión en ciclos de 1 y 2 tazas',
-              'Automática, lanceta de vapor y agua caliente',
-              'Seguridad contra falta de agua'
+              '2 grupos · AP 220 V',
+              'Pantalla táctil (serie Life Touch)',
+              'Control PID de temperatura de caldera',
+              'Aroma Perfect · Latte Art opcional',
+              'Fuente: ficha Reneka Life Touch / código MCA-051'
             ]
           }
         ]
@@ -186,15 +247,17 @@ export const MAQ_SECTIONS: MaqSection[] = [
   },
   {
     id: 'autoservicio',
-    kicker: 'Melitta',
+    kicker: 'Autoservicio',
     title: 'Máquinas de autoservicio',
-    intro: 'Soluciones Melitta para operación de alto volumen: consistencia, rapidez y menú amplio en autoservicio.',
+    intro:
+      'Este equipo ya no forma parte de nuestro catálogo activo. Te asesoramos en servicio, mantenimiento y en la elección de un equipo vigente.',
     brandLogo: img('logo-melitta.svg'),
     blocks: [
       {
         brand: 'Melitta',
         logo: img('logo-melitta.svg'),
-        text: 'Equipos de autoservicio para cafeterías, oficinas y food service.',
+        text: 'Equipos de autoservicio Melitta (ya no comercializados).',
+        discontinued: true,
         products: [
           { name: 'XT-6', image: img('xt-6.webp'), specs: ['Autoservicio Melitta', 'Ideal para operación continua'] },
           { name: 'CT-8', image: img('ct-8.webp'), specs: ['Autoservicio Melitta', 'Mayor capacidad de menú'] },
@@ -205,9 +268,10 @@ export const MAQ_SECTIONS: MaqSection[] = [
   },
   {
     id: 'licuadoras',
-    kicker: 'Hamilton Beach · Blendtec',
+    kicker: 'Hamilton Beach',
     title: 'Licuadoras',
-    intro: 'Diseño vanguardista y versátil, ideales para salsas, batidos y bebidas de barra. Varios modelos cuentan con tecnología que lleva los ingredientes hacia la cuchilla, con menos manipulación y más seguridad.',
+    intro:
+      'Diseño vanguardista y versátil, ideales para salsas, batidos y bebidas de barra. Varios modelos cuentan con tecnología que lleva los ingredientes hacia la cuchilla, con menos manipulación y más seguridad.',
     blocks: [
       {
         brand: 'Hamilton Beach',
@@ -227,19 +291,21 @@ export const MAQ_SECTIONS: MaqSection[] = [
       {
         brand: 'Blendtec',
         logo: img('logo-blendtec.webp'),
-        text: 'Tecnología patentada que lleva los ingredientes hacia la cuchilla en lugar de girar en círculo.',
+        text: 'Tecnología patentada Blendtec (ya no comercializada en nuestro catálogo).',
+        discontinued: true,
         products: [
           { name: 'CHEF 600', image: img('chef600.webp'), specs: ['Blendtec'] },
-          { name: 'CONNOISSEUR 825', image: img('connoisseur-825.webp'), specs: ['Blendtec', '3.8 Hp · 110 V'] }
+          { name: 'CONNOISSEUR 825', sku: 'MLI-017', image: img('connoisseur-825.webp'), specs: ['Blendtec', '3.8 Hp · 110 V'] }
         ]
       }
     ]
   },
   {
     id: 'molinos',
-    kicker: 'Ceado · Eureka · Pietro · Comandante · Fiorenzato · Anfim · Mahlkönig',
+    kicker: 'Ceado · Fiorenzato',
     title: 'Molinos',
-    intro: 'Molienda precisa para espresso y filtro. Marcas italianas y alemanas seleccionadas por consistencia, durabilidad y ergonomía.',
+    intro:
+      'Molienda precisa para espresso y filtro. Ceado y Fiorenzato (incluye el molino manual Pietro) seleccionados por consistencia, durabilidad y ergonomía.',
     blocks: [
       {
         brand: 'Ceado',
@@ -256,7 +322,8 @@ export const MAQ_SECTIONS: MaqSection[] = [
       {
         brand: 'Eureka',
         logo: img('logo-eureka.webp'),
-        text: 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.',
+        text: 'Molinillos profesionales italianos (ya no comercializados en nuestro catálogo).',
+        discontinued: true,
         products: [
           { name: 'ZENITH 65 NEO', sku: 'MMO-095', image: img('eureka-zenith.webp'), specs: ['Color: Negro', '110 V', 'Tolva 1.2 kg'] },
           { name: 'HELIOS 65', sku: 'MMO-096', image: img('eureka-helios.webp'), specs: ['Color: Negro', '110 V', 'Tolva 1.2 kg'] },
@@ -267,7 +334,8 @@ export const MAQ_SECTIONS: MaqSection[] = [
       {
         brand: 'Anfim',
         logo: img('logo-anfim.webp'),
-        text: 'Diseño funcional y cultura del espresso italiano, para barra profesional y uso doméstico.',
+        text: 'Diseño funcional italiano (ya no comercializado en nuestro catálogo).',
+        discontinued: true,
         products: [
           { name: 'Caimano On Demand', image: img('anfim-caimano.webp'), specs: ['Negro · 110 V', 'Tolva 2000 g'] }
         ]
@@ -275,7 +343,8 @@ export const MAQ_SECTIONS: MaqSection[] = [
       {
         brand: 'Mahlkönig',
         logo: img('logo-mahlkonig.webp'),
-        text: 'Referente mundial en molienda premium. La elección de baristas en todo el mundo.',
+        text: 'Molienda premium (ya no comercializada en nuestro catálogo).',
+        discontinued: true,
         products: [
           { name: 'E65S', image: img('mahlkonig-e65s.webp'), specs: ['Molino profesional Mahlkönig'] },
           { name: 'E65S GbW', image: img('mahlkonig-e65s-gbw.webp'), specs: ['Negro/blanco · 110 V', 'Tolva 1.2 kg'] },
@@ -308,12 +377,18 @@ export const MAQ_SECTIONS: MaqSection[] = [
               '220–240 V'
             ]
           },
-          { name: 'Solar Automático 2 kg',
+          {
+            name: 'Solar Automático 2 kg',
             sku: 'MTO-002',
-            image: img('tostador-solar.webp'), specs: ['Cap. de lote 0.1–2.4 kg', 'Ciclo 16–18 min', '220–240 V'] },
-          { name: '¿Silón? (verificar) Automático 7 kg',
+            image: img('tostador-solar.webp'),
+            specs: ['Cap. de lote 0.1–2.4 kg', 'Ciclo 16–18 min', '220–240 V']
+          },
+          {
+            name: 'Silón Automático 7 kg',
             sku: 'MTO-003',
-            image: img('tostador-silon.webp'), specs: ['Cap. de lote 1–7 kg', 'Ciclo 11–17 min', '230–380 V'] }
+            image: img('tostador-silon.webp'),
+            specs: ['Cap. de lote 1–7 kg', 'Ciclo 11–17 min', '230–380 V']
+          }
         ]
       }
     ]

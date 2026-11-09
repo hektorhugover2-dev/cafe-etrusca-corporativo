@@ -1,0 +1,234 @@
+<div class="ins-page layout-jarabes layout-bases tor-page chl-page dr-page mc-page cc-page">
+  <section class="jar-hero tor-hero">
+    <img class="jar-hero-blob tor-hero-blob" src="{{ assetsBase }}/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy tor-hero-copy">
+      <nav class="tor-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias">Insumos</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias/bases-en-polvo">Bases en polvo</a><span aria-hidden="true">›</span>
+        <span aria-current="page">Cool Capps</span>
+      </nav>
+      <img class="cc-hero-logo" src="https://imagenes.cafeetrusca.com/corporativo/assets/images/insumos/cool-capps/cool-capps-logo-2026-11-09.webp" alt="Cool Capps" width="480" height="592">
+      <h1><span class="tor-h1-main cc-h1-main">Cool Capps </span><span class="tor-h1-sub visually-hidden">para cafetería</span></h1>
+      
+      <p class="lead"><span class="accent">Frappé, chai y matcha</span> en bases en polvo</p>
+      <p class="body">
+        Cool Capps (Cool Capp®) es una marca estadounidense de bases en polvo completas para frappé, latte, chai, matcha y smoothie
+        (la marca dice “Est. 1991”). Se preparan con agua, leche o bebida vegetal; caliente, sobre hielo o licuadas.
+      </p>
+      <div class="tor-ctas">
+        <a class="btn-jar" [routerLink]="calcPath">Calcula tu precio</a>
+        <a class="tor-btn-ghost" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <ul class="tor-facts" aria-label="Datos de Cool Capps">
+        <li><strong>4</strong><span>líneas</span></li>
+        <li><strong>13</strong><span>sabores</span></li>
+        <li><strong>22</strong><span>claves</span></li>
+      </ul>
+    </div>
+    <div class="jar-hero-media tor-hero-media">
+      @for (b of heroBags; track b.code) {
+        <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
+      }
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  <section class="jar-lines tor-lines" id="lineas" aria-labelledby="cc-lineas">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="cc-lineas">Líneas de Cool Capps</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="jar-lines-grid tor-lines-grid cc-lines-grid">
+      @for (line of lines; track line.anchor) {
+        <article class="jar-card" [class]="'jar-card ' + line.tone">
+          <img class="blob" [src]="icons(line.tone).blob" alt="">
+          <div class="shot-slider">
+            <img class="shot" [src]="image(line.cover)" [alt]="'Cool Capps ' + line.sub.toLowerCase()">
+          </div>
+          <h3 class="brand">{{ line.name }}<span class="sub">{{ line.sub }}</span></h3>
+          <p>{{ line.description }}</p>
+          <div class="jar-feat">
+            <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
+              <img [src]="icons(line.tone).sabor" alt="">
+              <span><strong>Sabores</strong>{{ flavorCount(line) }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+            </button>
+            <div>
+              <img [src]="icons(line.tone).pres" alt="">
+              <span><strong>Presentación</strong>{{ presentations(line) }}</span>
+            </div>
+            <div>
+              <img [src]="icons(line.tone).rend" alt="">
+              <span><strong>Prep</strong>gramos por 100 ml</span>
+            </div>
+          </div>
+          <div class="jar-actions">
+            <a class="buy" [routerLink]="path" [fragment]="line.anchor">Ver productos</a>
+            <a class="help" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  @for (line of lines; track line.anchor; let li = $index) {
+    <section class="tor-section cc-line" [id]="line.anchor" [attr.aria-labelledby]="'cc-h-' + line.anchor">
+      <header class="tor-head cc-head">
+        <p class="tor-kicker">Cool Capps</p>
+        <div class="jar-head">
+          <h2 class="section-title-center" [id]="'cc-h-' + line.anchor">{{ line.sub.charAt(0) + line.sub.slice(1).toLowerCase() }}</h2>
+          <div class="rule"></div>
+        </div>
+        <p class="tor-intro">{{ line.description }}</p>
+      </header>
+      <div class="tor-grid">
+        @for (p of line.products; track p.code; let i = $index) {
+          <article class="tor-card" [class]="'tor-card ' + tone(i + li)">
+            <div class="tor-card-media">
+              <span class="tor-card-blob" aria-hidden="true"></span>
+              <img [src]="image(p.code)" [alt]="alt(p)" loading="lazy" width="320" height="320">
+            </div>
+            <div class="tor-card-body">
+              <span class="tor-line">Cool Capps · {{ p.official }}</span>
+              <h3>{{ p.name }}</h3>
+              <p class="dr-desc">{{ p.description }}</p>
+              <p class="tor-pres">{{ p.presentation }} · Clave {{ p.code }}</p>
+              <app-product-facts [code]="p.code" />
+              @if (!hasFacts(p.code)) { <p class="cc-allergens">{{ p.allergens }}</p> }
+              <p class="dr-yield">{{ p.yield }}</p>
+              @if (p.prep) { <p class="cc-prep-note">Prep: {{ p.prep }}</p> }
+              <div class="tor-actions">
+                <a class="tor-act tor-act--solid" [routerLink]="calcPath" [queryParams]="calcQuery(p.code)">Calcula tu precio<span class="visually-hidden"> de Cool Capps {{ p.name }}</span></a>
+                <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span></a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <section class="tor-band" id="presentaciones" aria-labelledby="cc-pres">
+    <app-scroll-wave position="top" fillColor="#fff6ea"></app-scroll-wave>
+    <div class="tor-band-inner">
+      <div class="tor-split">
+        <div class="tor-split-copy">
+          <p class="tor-kicker">Presentaciones</p>
+          <h2 id="cc-pres">Bolsa de 1.58 kg y bolsa de 1.36 kg</h2>
+          <p>En Café Etrusca encontrarás Cool Capps en bolsa de 1.58 kg (todos los sabores de la API) y, en varios sabores, también en bolsa de 1.36 kg.</p>
+          <ul class="tor-chips"><li>Bolsa 1.58 kg</li><li>Bolsa 1.36 kg</li></ul>
+          <p class="cc-storage">{{ storage }}</p>
+        </div>
+        <div class="tor-split-media">
+          <img [src]="image('IBP-074')" alt="Cool Capps Moka en bolsa de 1.58 kg" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fff6ea"></app-scroll-wave>
+  </section>
+
+  <section class="tor-section mc-prep" id="como-se-prepara" aria-labelledby="cc-prep">
+    <header class="tor-head cc-head">
+      <p class="tor-kicker">Preparación según etiqueta MX</p>
+      <div class="jar-head">
+        <h2 class="section-title-center" id="cc-prep">Cómo se prepara</h2>
+        <div class="rule"></div>
+      </div>
+      <p class="tor-intro">Gramajes oficiales por vaso de 100 ml. Nunca en scoops: siempre en gramos. No usar leche. No es necesario agregar azúcar.</p>
+    </header>
+    <div class="cc-prep-grid">
+      <article>
+        <h3>Mayoría 1.58 kg</h3>
+        <p>10.41 g de polvo + 37.5 ml de agua + 52 g de hielo. Rinde aprox. 152 bebidas por bolsa.</p>
+      </article>
+      <article>
+        <h3>Doble moka 1.58 kg</h3>
+        <p>17.5 g de polvo + 37.5 ml de agua + 52 g de hielo. Rinde aprox. 90.8 bebidas (neto 1.590 kg).</p>
+      </article>
+      <article>
+        <h3>Matcha 1.36 kg</h3>
+        <p>17.5 g de polvo + 31.25 ml de agua + 37.5 g de hielo. Rinde aprox. 78 bebidas. Otras bolsas 1.36 kg: rendimiento ~130.6; gramos de prep pendientes.</p>
+      </article>
+    </div>
+    <p class="cc-storage">{{ storage }}</p>
+  </section>
+
+  <section class="jar-inspira tor-inspira" aria-labelledby="cc-recetas">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="cc-recetas">¿Buscas ideas? Mira nuestras recetas</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="tor-intro" style="text-align:center;max-width:720px;margin:0 auto 1rem">
+      Ideas de frappé y chai en nuestro blog y en el recetario. Aún no hay fichas de receta con Cool Capps como ingrediente.
+    </p>
+    <p class="tor-more dr-center">
+      <a routerLink="/recetas">Ver todas las recetas ›</a> ·
+      <a routerLink="/blog/frappe-para-cafeteria">Frappé para cafetería ›</a> ·
+      <a routerLink="/blog/chai-david-rio-sabores">Chai: sabores y marcas ›</a>
+    </p>
+  </section>
+
+  <section class="tor-course dr-calc" aria-labelledby="cc-calc">
+    <div>
+      <p class="tor-kicker">Precio de venta</p>
+      <h2 id="cc-calc">¿Cuánto cobrar por un frappé?</h2>
+      <p>Con la calculadora de Café Etrusca calculas el costo por vaso y tu precio de venta a partir de los insumos de tu receta.</p>
+    </div>
+    <a class="tor-btn tor-btn-navy" [routerLink]="calcPath">Calcula tu precio</a>
+  </section>
+
+  <section class="tor-section dr-guide" aria-labelledby="cc-aprende">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="cc-aprende">Otras bases en polvo</h2>
+      <div class="rule"></div>
+    </div>
+    <p>¿Buscas chai con animales? Mira <a routerLink="/insumos-para-cafeterias/bases-en-polvo/david-rio">David Rio</a>.
+      ¿Frappés Mocafe? Mira <a routerLink="/insumos-para-cafeterias/bases-en-polvo/mocafe">Mocafe</a>.
+      ¿Bases neutras? Mira <a routerLink="/insumos-para-cafeterias/bases-en-polvo/chillout">ChillOut</a>.
+      ¿Jarabes? Mira <a routerLink="/insumos-para-cafeterias/jarabes/torani">Torani</a>.</p>
+  </section>
+
+  <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="cc-faq-title">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="cc-faq-title">Preguntas frecuentes</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tor-faq-list">
+      @for (f of publicFaq; track f.q; let first = $first) {
+        <details [attr.open]="first ? '' : null">
+          <summary>{{ f.q }}</summary>
+          @if (f.rich) {
+            <p>@for (p of f.rich; track $index) {@if (p.route) {<a [routerLink]="p.route">{{ p.t }}</a>} @else if (p.href) {<a [href]="p.href" target="_blank" rel="noopener">{{ p.t }}</a>} @else {<span>{{ p.t }}</span>}}</p>
+          } @else {
+            <p>{{ f.a }}</p>
+          }
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta tor-cta">
+    <app-scroll-wave position="top" fillColor="#fce4c0"></app-scroll-wave>
+    <div class="copy">
+      <h2>¿Buscas Cool Capps para tu negocio?</h2>
+      <p>Compra en línea o habla con un asesor para mayoreo y para armar el menú (B2B y B2C).</p>
+      <div class="tor-ctas">
+        <a [href]="storeUrl" target="_blank" rel="noopener">Ir a la tienda en línea</a>
+        <a class="tor-cta-alt" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <div class="cc-cta-links">
+        <a [href]="bizUrl" target="_blank" rel="noopener">Etrusca Biz ›</a>
+        <a [href]="waUrl" target="_blank" rel="noopener">WhatsApp ›</a>
+      </div>
+      <a class="tor-back" routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a>
+    </div>
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+</div>
+
+@if (flavorLine; as fl) {
+  <app-flavors-modal [title]="fl.name + ' ' + fl.sub" [tone]="fl.tone" [flavors]="flavorsFor(fl)" (closed)="flavorLine = null" />
+}

@@ -29,6 +29,10 @@ export interface GrinderBrand {
   leadColor: string;
   logo?: string;
   api?: string;
+  /** Fuera de catálogo activo: sin Comprar; página sigue indexable. */
+  discontinued?: boolean;
+  /** Categoría padre (molinos/licuadoras/autoservicio/espresso). */
+  categoryId?: string;
   slides: GrinderSlide[];
 }
 
@@ -78,12 +82,16 @@ const THEMES: Record<string, { bg: string; leadColor: string }> = {
   Mahlkönig: { bg: '#E57373', leadColor: '#5b0f0f' }
 };
 
-export function sliderFromBlock(block: {
-  brand: string;
-  logo: string;
-  text: string;
-  products: Array<{ name: string; sku?: string; image?: string; description?: string; specs: string[] }>;
-}): GrinderBrand {
+export function sliderFromBlock(
+  block: {
+    brand: string;
+    logo: string;
+    text: string;
+    discontinued?: boolean;
+    products: Array<{ name: string; sku?: string; image?: string; description?: string; specs: string[] }>;
+  },
+  categoryId?: string
+): GrinderBrand {
   const theme = THEMES[block.brand] || { bg: '#C8B89A', leadColor: '#3d2a14' };
   const id = block.brand
     .normalize('NFD')
@@ -98,19 +106,21 @@ export function sliderFromBlock(block: {
     bg: theme.bg,
     leadColor: theme.leadColor,
     logo: block.logo,
+    discontinued: !!block.discontinued,
+    categoryId,
     slides: slidesFromProducts(block.brand, block.text, block.products)
   };
 }
 
 const PIETRO_COLORS: GrinderColor[] = [
-  { name: 'black', hex: '#0b0b0b', img: img('pietro-negro.webp'), titulo: 'MOLINO MANUAL PIETRO B-MODAL NEGRO', descripcion: 'Molino Manual Vertical para café de origen Italiano. Fresas verticales planas de 58 mm.', sku: 'AAB-211' },
-  { name: 'white', hex: '#DDDDDD', img: img('pietro-blanco.webp'), titulo: 'MOLINO MANUAL PIETRO B-MODAL BLANCO', descripcion: 'Versión blanca con igual desempeño y fresas de 58 mm.', sku: 'AAB-209' },
-  { name: 'green', hex: '#136D26', img: img('pietro-verde.webp'), titulo: 'MOLINO MANUAL PIETRO B-MODAL VERDE', descripcion: 'Edición verde bosque. Geometría de fresas diseñada para extracción perfecta.', sku: 'AAB-210' }
+  { name: 'black', hex: '#0b0b0b', img: img('pietro-negro.webp'), titulo: 'MOLINO MANUAL FIORENZATO PIETRO B-MODAL NEGRO', descripcion: 'Molino Manual Vertical para café de origen Italiano. Fresas verticales planas de 58 mm.', sku: 'AAB-211' },
+  { name: 'white', hex: '#DDDDDD', img: img('pietro-blanco.webp'), titulo: 'MOLINO MANUAL FIORENZATO PIETRO B-MODAL BLANCO', descripcion: 'Versión blanca con igual desempeño y fresas de 58 mm.', sku: 'AAB-209' },
+  { name: 'green', hex: '#136D26', img: img('pietro-verde.webp'), titulo: 'MOLINO MANUAL FIORENZATO PIETRO B-MODAL VERDE', descripcion: 'Edición verde bosque. Geometría de fresas diseñada para extracción perfecta.', sku: 'AAB-210' }
 ];
 
 const PIETRO_FICHA: GrinderSpec[] = [
-  ['Marca', 'Pietro'],
-  ['Modelo', 'B-Modal'],
+  ['Marca', 'Fiorenzato'],
+  ['Modelo', 'Pietro B-Modal'],
   ['Material', 'Acero inoxidable y plástico'],
   ['Dimensiones', '20 × 12 × 30 cm'],
   ['Peso', '1.5 kg'],
@@ -134,6 +144,7 @@ const COMANDANTE_FICHA: GrinderSpec[] = [
 export const GRINDER_BRANDS: GrinderBrand[] = [
   {
     id: 'ceado',
+    categoryId: 'molinos',
     name: 'Ceado',
     marquee: 'CEADO',
     lead: 'Marca italiana líder en equipos profesionales para café. Precisión e innovación para resaltar el sabor en cada taza.',
@@ -150,6 +161,8 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
   },
   {
     id: 'eureka',
+    discontinued: true,
+    categoryId: 'molinos',
     name: 'Eureka',
     marquee: 'EUREKA',
     lead: 'Molinillos profesionales italianos de alta precisión, con rendimiento, durabilidad y diseño ergonómico.',
@@ -164,42 +177,9 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
     ])
   },
   {
-    id: 'pietro',
-    name: 'Pietro',
-    marquee: 'PIETRO GRINDERS',
-    lead: 'Pietro no es simplemente un molinillo de café manual; es un estilo que brinda a los amantes del café la máxima libertad de expresión.',
-    bg: '#E3B27A',
-    leadColor: '#6e3e0c',
-    logo: img('logo-pietro-white.svg'),
-    slides: [
-      {
-        titulo: 'MOLINO MANUAL PIETRO B-MODAL NEGRO',
-        descripcion: 'Molino Manual Vertical para café de origen Italiano. Fresas verticales planas de 58 mm.',
-        sku: 'AAB-211',
-        img: img('pietro-negro.webp'),
-        colores: PIETRO_COLORS,
-        ficha: PIETRO_FICHA
-      },
-      {
-        titulo: 'MOLINO MANUAL PIETRO B-MODAL BLANCO',
-        descripcion: 'Versión color Blanco con el mismo desempeño profesional.',
-        sku: 'AAB-209',
-        img: img('pietro-blanco.webp'),
-        colores: PIETRO_COLORS,
-        ficha: PIETRO_FICHA
-      },
-      {
-        titulo: 'MOLINO MANUAL PIETRO B-MODAL VERDE',
-        descripcion: 'Edición verde bosque. Geometría de fresas diseñada para extracción perfecta.',
-        sku: 'AAB-210',
-        img: img('pietro-verde.webp'),
-        colores: PIETRO_COLORS,
-        ficha: PIETRO_FICHA
-      }
-    ]
-  },
-  {
     id: 'comandante',
+    discontinued: true,
+    categoryId: 'molinos',
     name: 'Comandante',
     marquee: 'COMANDANTE',
     lead: 'COMANDANTE® se especializa en el desarrollo y fabricación de molinillos de café de alto rendimiento.',
@@ -235,9 +215,10 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
   },
   {
     id: 'fiorenzato',
+    categoryId: 'molinos',
     name: 'Fiorenzato',
     marquee: 'FIORENZATO',
-    lead: 'Preciso, fiable, fácil de usar. Fiorenzato se ha diseñado para simplificar el trabajo de los baristas y obtener resultados perfectos.',
+    lead: 'Preciso, fiable, fácil de usar. Fiorenzato incluye molinos eléctricos de barra y el molino manual Pietro B-Modal.',
     bg: '#9595F1',
     leadColor: '#0c1d68',
     logo: img('logo-fiorenzato.webp'),
@@ -265,11 +246,37 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
           ['Voltaje', '110 V'],
           ['Capacidad tolva', '500 g']
         ]
+      },
+      {
+        titulo: 'MOLINO MANUAL FIORENZATO PIETRO B-MODAL NEGRO',
+        descripcion: 'Molino Manual Vertical para café de origen Italiano. Fresas verticales planas de 58 mm.',
+        sku: 'AAB-211',
+        img: img('pietro-negro.webp'),
+        colores: PIETRO_COLORS,
+        ficha: PIETRO_FICHA
+      },
+      {
+        titulo: 'MOLINO MANUAL FIORENZATO PIETRO B-MODAL BLANCO',
+        descripcion: 'Versión color Blanco con el mismo desempeño profesional.',
+        sku: 'AAB-209',
+        img: img('pietro-blanco.webp'),
+        colores: PIETRO_COLORS,
+        ficha: PIETRO_FICHA
+      },
+      {
+        titulo: 'MOLINO MANUAL FIORENZATO PIETRO B-MODAL VERDE',
+        descripcion: 'Edición verde bosque. Geometría de fresas diseñada para extracción perfecta.',
+        sku: 'AAB-210',
+        img: img('pietro-verde.webp'),
+        colores: PIETRO_COLORS,
+        ficha: PIETRO_FICHA
       }
     ]
   },
   {
     id: 'anfim',
+    discontinued: true,
+    categoryId: 'molinos',
     name: 'Anfim',
     marquee: 'ANFIM',
     lead: 'Diseño funcional y cultura del espresso italiano, para barra profesional y uso doméstico.',
@@ -282,6 +289,8 @@ export const GRINDER_BRANDS: GrinderBrand[] = [
   },
   {
     id: 'mahlkonig',
+    discontinued: true,
+    categoryId: 'molinos',
     name: 'Mahlkönig',
     marquee: 'MAHLKÖNIG',
     lead: 'Referente mundial en molienda premium. La elección de baristas en todo el mundo.',
@@ -349,4 +358,21 @@ export function mapFiorenzatoApi(data: any[]): GrinderSlide[] {
 export function fiorenzatoLeadFromApi(data: any[]): string | null {
   const desc = data?.[0]?.Marca?.Descripcion;
   return desc ? String(desc) : null;
+}
+
+
+export function findGrinderBrand(id: string): GrinderBrand | undefined {
+  return GRINDER_BRANDS.find((b) => b.id === id);
+}
+
+export function brandIdFromName(brand: string): string {
+  return brand
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-');
+}
+
+export function activeGrinderBrands(brands: ReadonlyArray<GrinderBrand> = GRINDER_BRANDS): GrinderBrand[] {
+  return brands.filter((b) => !b.discontinued);
 }

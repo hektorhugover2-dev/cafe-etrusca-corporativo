@@ -32,6 +32,13 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
   { path: '/maquinaria-y-equipo-para-cafeterias/licuadoras', changefreq: 'weekly', priority: '0.7' },
   { path: '/maquinaria-y-equipo-para-cafeterias/molinos', changefreq: 'weekly', priority: '0.7' },
   { path: '/maquinaria-y-equipo-para-cafeterias/tostadores', changefreq: 'weekly', priority: '0.7' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/fiorenzato', changefreq: 'weekly', priority: '0.6' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/eureka', changefreq: 'weekly', priority: '0.5' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/comandante', changefreq: 'weekly', priority: '0.5' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/anfim', changefreq: 'weekly', priority: '0.5' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/mahlkonig', changefreq: 'weekly', priority: '0.5' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/blendtec', changefreq: 'weekly', priority: '0.5' },
+  { path: '/maquinaria-y-equipo-para-cafeterias/melitta', changefreq: 'weekly', priority: '0.5' },
   { path: '/cursos-para-baristas-y-talleres-para-cafeterias', changefreq: 'weekly', priority: '0.9' },
   { path: '/educacion/cursos', changefreq: 'weekly', priority: '0.8' },
   { path: '/educacion/talleres', changefreq: 'weekly', priority: '0.8' },
@@ -113,6 +120,8 @@ export async function buildSitemapXml(options: SitemapOptions = {}): Promise<str
   push('/insumos-para-cafeterias/bienestar', 'weekly', '0.8', '2026-10-30');
   // Brand landing Mocafe (sin liga en menú/home/footer; publicada 30-oct-2026).
   push('/insumos-para-cafeterias/bases-en-polvo/mocafe', 'weekly', '0.8', '2026-10-30');
+  // Brand landing Cool Capps (brief 2026-11-09).
+  push('/insumos-para-cafeterias/bases-en-polvo/cool-capps', 'weekly', '0.8', '2026-11-09');
   // Tisanas ChillOut (no está en el menú; enlazada desde /insumos-para-cafeterias/tisanas/).
   push('/insumos-para-cafeterias/tisanas/chillout', 'weekly', '0.8');
   // Accesorios › Métodos de extracción (página propia; enlazada desde el hub y el menú de Accesorios).
