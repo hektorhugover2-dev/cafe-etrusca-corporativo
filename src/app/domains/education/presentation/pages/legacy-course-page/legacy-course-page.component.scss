@@ -123,7 +123,7 @@ $ink: #2c2a3a;
 .lc-section {
   padding: 2.2rem 0 0.4rem;
 
-  h2 {
+  h2:not(.lc-sub-heading) {
     margin: 0;
     font-weight: 900;
     font-size: clamp(1.6rem, 3.2vw, 2.4rem);
@@ -132,7 +132,8 @@ $ink: #2c2a3a;
     color: $navy;
   }
 
-  h3 {
+  h3,
+  h2.lc-sub-heading {
     margin: 0 0 0.7rem;
     font-weight: 800;
     font-size: clamp(1.15rem, 2vw, 1.4rem);

@@ -112,6 +112,21 @@ $sand: #efe6d6;
   &.active { background: $navy; color: #fff; }
   &:hover { color: $navy; }
   &.active:hover { color: #fff; }
+
+/* Botón Talleres: fondo #F7E4E4 y texto navy #070C3B (AA 15.27:1; #BF3267 no llega a 4.5:1). */
+.edu-pill-talleres,
+.edu-pill-talleres:hover,
+.edu-pill-talleres:focus-visible,
+.edu-pill-talleres.active,
+.edu-pill-talleres.active:hover {
+  background: #f7e4e4;
+  color: #070c3b;
+}
+.edu-pill-talleres:focus-visible {
+  outline: 3px solid #070c3b;
+  outline-offset: 2px;
+}
+
 }
 
 .edu-section {

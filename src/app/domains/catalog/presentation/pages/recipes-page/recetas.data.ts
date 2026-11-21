@@ -991,13 +991,13 @@ export const RECIPES: Recipe[] = [
       {
         label: 'ChillOut Jam Mango',
         description: 'Sabor intenso y auténtico.',
-        image: `${ASSETS_BASE_URL}/images/insumos/matcha-can.png`,
+        image: `${ASSETS_BASE_URL}/images/insumos/matcha-can.webp`,
         link: '/insumos-para-cafeterias'
       },
       {
         label: 'Crystal Boba Mango',
         description: 'Textura única y divertida.',
-        image: `${ASSETS_BASE_URL}/images/insumos/product-tall-2.png`,
+        image: `${ASSETS_BASE_URL}/images/insumos/product-tall-2.webp`,
         link: '/insumos-para-cafeterias/toppings'
       },
       {
@@ -2757,8 +2757,8 @@ export const RECIPES: Recipe[] = [
     collection: 'invierno-2024',
     origin: 'invierno-2024',
     summary: "Bebida caliente 360 ml con ChillOut chocolate blanco y Torani crema de menta, con escarchado de chocolate blanco y diamantina.",
-    image: `${ASSETS_BASE_URL}/images/recetas/invierno/copito-de-chocolate-blanco.webp`,
-    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/copito-de-chocolate-blanco.webp`,
+    image: `${ASSETS_BASE_URL}/images/recetas/invierno/copito-de-chocolate-blanco-v2.webp`,
+    banner: `${ASSETS_BASE_URL}/images/recetas/invierno/copito-de-chocolate-blanco-v2.webp`,
     tone: 'sky',
     brand: "ChillOut",
     time: '5 min',

@@ -1,9 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Observable, catchError, map, of, shareReplay } from 'rxjs';
 /** Misma API que las tarjetas de Accesorios (services/acc-brand-products.ts); aquí sin importar su config. */
-const PRODUCT_API = 'https://cafeetrusca.com/api/Product';
+const PRODUCT_API = apiUrl('Product');
 import { storeUrlIfInStock } from '../../services/store-links';
 
 /** Datos del producto para el modal "Comprar" (en línea o en sucursal). */

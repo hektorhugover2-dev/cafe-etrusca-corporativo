@@ -54,7 +54,7 @@ export function breadcrumbJsonLd(crumbs: ReadonlyArray<HeroCrumb>) {
     .tor-crumbs a { color: #192966; text-decoration: none; }
     .tor-crumbs a:hover { text-decoration: underline; }
     .tor-crumbs a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
-    .tor-crumbs [aria-current] { color: #8a2e32; }
+    .tor-crumbs [aria-current] { color: #842d30; } /* AA 4.5:1 sobre heros #f2a8a8 / #b4b4fa (antes #8a2e32) */
     .tor-crumbs.is-light, .tor-crumbs.is-light a { color: #fff; }
     .tor-crumbs.is-light [aria-current] { color: #fdd640; }
   `]

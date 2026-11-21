@@ -32,16 +32,12 @@ export interface RecetaDelMesConfig {
 }
 
 export const RECETA_DEL_MES: RecetaDelMesConfig = {
-  slug: 'mangonada-chillout',
-  titulo: 'Chamoyada de Mango',
-  descripcion:
-    'El balance perfecto entre lo dulce, lo picosito y lo refrescante. Una bebida icónica que siempre sabe a verano.',
-  imagen: `${ASSETS_BASE_URL}/images/recetas/receta-del-mes/chamoyada-de-mango.webp`,
+  slug: 'latte-de-noel',
   etiqueta: 'Receta destacada',
-  /* La playlist no tiene video de la Chamoyada todavía → el botón lleva a /videoteca. */
+  /* No hay video de Latte de Noel en la videoteca ni en los videos nuevos. */
   videoId: null,
   videoUrl: null,
-  mostrarBotonVideo: true
+  mostrarBotonVideo: false
 };
 
 /* ========================= RECETARIO: VISTA INICIAL ========================= */
@@ -202,12 +198,15 @@ export interface RecetaVideo {
 export const RECETAS_VIDEOS: RecetaVideo[] = [
   { id: '5qQtwbCftks', titulo: 'Rosa Mini Mochis', descripcion: 'Bebida de 480 ml, dulce, cremosa y con mini mochis.', duracion: '1:51' },
   { id: 'llgVFLgysEk', titulo: 'Soda tea de Piña y Osmanthus', descripcion: 'Refrescante, floral y burbujeante.', duracion: '1:26' },
-  { id: '515wfcBZEFw', titulo: 'Matcha Brûlée', descripcion: 'Matcha cremoso con un toque caramelizado.', duracion: '1:17' },
+  // Reemplazado nov 2026 (Matcha Brûlée, 515wfcBZEFw): se conserva comentado para revertir.
+  // { id: '515wfcBZEFw', titulo: 'Matcha Brûlée', descripcion: 'Matcha cremoso con un toque caramelizado.', duracion: '1:17' },
+  { id: 'x_d5OYw3rxo', titulo: 'Chamoyada de Mango', descripcion: 'Bebida de 480 ml, refrescante, picosita y llena de sabor.', duracion: '1:54' },
   { id: 'EnNFV4UDyec', titulo: 'Cursos y Talleres', descripcion: 'Conoce los cursos y talleres de Café Etrusca.', duracion: '1:04' },
   { id: 'LM6rSTbZ_GA', titulo: 'Taller Formación para un Barista', descripcion: 'Las bases para crecer detrás de la barra.', duracion: '0:49' },
   { id: 'EFrRIQuUbJM', titulo: 'Curso de Bubble Tea & Iced Coffee', descripcion: 'Bebidas frías y bubble tea para tu menú.', duracion: '0:53' },
   { id: '0oBmKnkBTtI', titulo: 'Taller de Catación', descripcion: 'De la semilla a lo sensorial.', duracion: '0:44' }
 ];
 
-/** Los 3 videos que se muestran en "Aprende viendo" (en este orden). */
-export const APRENDE_VIENDO_IDS: string[] = ['5qQtwbCftks', 'llgVFLgysEk', '515wfcBZEFw'];
+/** Los 3 videos que se muestran en "Aprende viendo" (en este orden).
+ *  El tercer lugar era 515wfcBZEFw (Matcha Brûlée); se reemplazó por Chamoyada de Mango. */
+export const APRENDE_VIENDO_IDS: string[] = ['5qQtwbCftks', 'llgVFLgysEk', 'x_d5OYw3rxo'];

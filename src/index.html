@@ -19,7 +19,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Outfit:wght@700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
     /* ==================================================
@@ -103,224 +102,35 @@
       }
     }
 
-    .chat-message-markdown img{ max-width: 50% !important; height: auto; margin-left: 5vw; }
+        /* Lucky: miniaturas de producto (~120×120), también si n8n inserta <img> sin clase. */
+    .lucky-window img:not(.lucky-keep-size),
+    .lucky-messages img,
+    .lucky-msg img,
+    .chat-window .chat-body img,
+    .chat-message img,
+    .chat-message-markdown img,
+    .chat-message-from-bot img {
+      max-width: 120px !important;
+      max-height: 120px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: left center;
+      display: block;
+      margin: 6px 0;
+      border-radius: 8px;
+      cursor: zoom-in;
+      background: transparent;
+    }
+    .lucky-img-link { display: inline-block; max-width: 120px; vertical-align: top; }
   </style>
 </head>
 <body>
   <app-root></app-root>
 <!-- ==============================================
-       SCRIPT GLOBAL DEL CHAT N8N Y LUCKY
+       SCRIPT GLOBAL DEL CHAT LUCKY
+       (widget propio: public/assets/js/lucky-widget.js)
        ============================================== -->
-  <script type="module">
-    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-    createChat({
-        webhookUrl: 'https://n8n.cafeetrusca.com/webhook/86206c5e-1a01-4e6a-bcb8-66ea24eccd64/chat',
-        botName: 'Lucky',
-        // Sin precarga de sesion: el webhook responde 403 (reto de Cloudflare) al preflight y ensuciaba la consola en cada carga.
-        loadPreviousSession: false,
-        defaultLanguage: 'en',
-        initialMessages: [
-            '¡Hola!',
-            'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?'
-        ],
-        i18n: {
-            en: {
-                title: '¡Hola!',
-                subtitle: 'Estamos en línea para ayudarte.',
-                footer: '',
-                getStarted: 'Nueva conversación',
-                inputPlaceholder: 'Escribe tu pregunta aquí...',
-                closeButtonTooltip: 'Cerrar chat'
-            }
-        }
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        // Avatar de Lucky + punto verde en el encabezado (idempotente: data-lucky-added).
-        const luckySetup = (node) => {
-                            // Cambiar el Header por el Avatar en video de Lucky
-                            const heading = node.querySelector('.chat-heading > h1, .n8n-chat-header h1');
-                            if (heading && !heading.dataset.luckyAdded) {
-                                heading.dataset.luckyAdded = "true";
-                                heading.innerHTML = `
-                                    <div style="display: flex; align-items: center; gap: 10px; position: relative;">
-                                        <div id="avatar-wrapper" style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('/assets/images/chat/lucky.jpg'); background-size: cover; background-position: center; overflow: hidden;"></div>
-                                        <span style="font-weight: bold;">Lucky</span>
-                                        <span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>
-                                    </div>
-                                `;
-
-                                // Lógica del Video de Lucky
-                                const avatarWrapper = heading.querySelector("#avatar-wrapper");
-                                const videoList = ["https://intranet.cafeetrusca.com/video/elia-1.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-2.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-3.mp4?v=1.2", "https://intranet.cafeetrusca.com/video/elia-4.mp4?v=1.2"];
-                                let currentIndex = 0;
-
-                                function showVideo() {
-                                    if (!document.contains(avatarWrapper)) return; // Se detiene si cierran el chat
-                                    const videoSrc = videoList[currentIndex];
-                                    currentIndex = (currentIndex + 1) % videoList.length;
-                                    const video = document.createElement('video');
-                                    video.src = videoSrc;
-                                    video.autoplay = true;
-                                    video.muted = true;
-                                    video.playsInline = true;
-                                    video.style.cssText = `position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; z-index: 1;`;
-                                    // Si el video no carga (p. ej. bloqueado cross-origin) no debe tapar la foto con un circulo negro.
-                                    video.style.opacity = '0';
-                                    video.addEventListener('playing', () => { video.style.opacity = '1'; });
-                                    video.onerror = () => { video.remove(); setTimeout(showVideo, 5000); };
-                                    avatarWrapper.appendChild(video);
-                                    video.onended = () => {
-                                        if(avatarWrapper.contains(video)) avatarWrapper.removeChild(video);
-                                        setTimeout(showVideo, 5000);
-                                    };
-                                }
-                                setTimeout(showVideo, 5000);
-                            }
-
-                            const subtitle = node.querySelector('.n8n-chat-header-subtitle, .chat-header > p');
-                            if (subtitle && /Start a chat|help you 24|Hi there/i.test(subtitle.textContent || '')) {
-                                subtitle.textContent = 'Estamos en línea para ayudarte.';
-                            }
-
-                            const inputtext = node.querySelector('.chat-inputs textarea, .n8n-chat-input textarea');
-                            if (inputtext) inputtext.placeholder = "Escribe tu pregunta aquí...";
-
-        };
-        // Observamos todo el BODY para detectar cuando n8n abre la ventana del chat
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                mutation.addedNodes.forEach((node) => {
-                    if (node.nodeType !== 1) return;
-
-                    // 1. INTERCEPTAR MENSAJES Y TRADUCIRLOS AL ESPAÑOL
-                    if (node.classList.contains("chat-message-from-bot")) {
-                        const markdown = node.querySelector(".chat-message-markdown");
-                        if (!markdown || markdown.dataset.rendered) return;
-                        markdown.dataset.rendered = "true";
-                        
-                        const text = markdown.textContent || '';
-                        // Traduccion de los saludos por defecto de n8n (solo esos mensajes se reemplazan como texto).
-                        if (text.includes('Hi there!')) { markdown.textContent = '¡Hola!'; return; }
-                        if (/My name is (Nathan|n8n)|how can I assist/i.test(text)) { markdown.textContent = 'Soy Lucky, su asistente virtual. ¿En qué puedo ayudarle hoy?'; return; }
-                        // El resto conserva el HTML que ya genero @n8n/chat (markdown-it): antes se reescribia con
-                        // textContent y se perdian las imagenes ![alt](url) y los enlaces.
-                        const okHost = (h) => h === 'cafeetrusca.com' || h.endsWith('.cafeetrusca.com');
-                        markdown.querySelectorAll('img').forEach((img) => {
-                            let src = img.getAttribute('src') || '';
-                            if (src.startsWith('/img/')) src = 'https://cafeetrusca.com' + src;
-                            let url = null;
-                            try { url = new URL(src); } catch (e) {}
-                            if (!url || url.protocol !== 'https:' || !okHost(url.hostname)) { img.remove(); return; }
-                            img.src = url.href;
-                            img.alt = img.getAttribute('alt') || '';
-                            img.loading = 'lazy';
-                            img.decoding = 'async';
-                            img.style.cssText = 'display:block;max-width:100%;height:auto;border-radius:12px;margin:6px 0;';
-                        });
-                    }
-
-                    // 2. INYECTAR A LUCKY Y TEXTOS AL ABRIR EL CHAT
-                    if (
-                        node.classList.contains("chat-window") ||
-                        node.classList.contains("chat-message-wrapper") ||
-                        node.querySelector?.('.chat-header, .chat-heading, .n8n-chat-header')
-                    ) {
-                        const applySpanishUi = (root) => {
-                            const headingTitle = root.querySelector('.chat-header > p, .chat-heading + p, .n8n-chat-header p');
-                            if (headingTitle && /Hi there|Start a chat/i.test(headingTitle.textContent || '')) {
-                                headingTitle.textContent = 'Estamos en línea para ayudarte.';
-                            }
-
-                            const subtitle = root.querySelector('.n8n-chat-header-subtitle, .chat-header p, .chat-subtitle');
-                            if (subtitle && /Start a chat|help you 24/i.test(subtitle.textContent || '')) {
-                                subtitle.textContent = 'Estamos en línea para ayudarte.';
-                            }
-
-                            const titles = root.querySelectorAll('h1, h2, .chat-heading, .n8n-chat-header');
-                            titles.forEach((el) => {
-                                if ((el.textContent || '').includes('Hi there')) {
-                                    el.childNodes.forEach((n) => {
-                                        if (n.nodeType === 3 && n.textContent.includes('Hi there')) {
-                                            n.textContent = n.textContent.replace(/Hi there!?\s*👋?/g, '¡Hola!');
-                                        }
-                                    });
-                                    if (el.childNodes.length === 0 || el.textContent.includes('Hi there')) {
-                                        el.textContent = (el.textContent || '').replace(/Hi there!?\s*👋?/g, '¡Hola!');
-                                    }
-                                }
-                            });
-
-                            const inputtext = root.querySelector('.chat-inputs textarea, .n8n-chat-input textarea, textarea');
-                            if (inputtext && /Type your/i.test(inputtext.placeholder || '')) {
-                                inputtext.placeholder = "Escribe tu pregunta aquí...";
-                            }
-                        };
-
-                        applySpanishUi(node.nodeType === 1 ? node : document.body);
-                        setTimeout(() => applySpanishUi(document.body), 200);
-                        setTimeout(() => applySpanishUi(document.body), 800);
-
-                        setTimeout(() => luckySetup(node), 400);
-                    }
-                });
-            });
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-        // @n8n/chat 1.43 monta la ventana antes de este listener y al abrir solo la muestra: el observer ya no ve
-        // el encabezado como nodo nuevo, por eso Lucky dejo de salir. Se aplica tambien al cargar y al abrir.
-        const runLucky = () => { const w = document.querySelector('.chat-window'); if (w) luckySetup(w); };
-        runLucky();
-        document.addEventListener('click', (ev) => {
-            if (ev.target.closest && ev.target.closest('.chat-window-toggle')) { setTimeout(runLucky, 100); setTimeout(runLucky, 500); }
-        });
-    });
-
-    // 3. WIDGET DE AYUDA Y BOTÓN BURBUJA FLOTANTE
-    setTimeout(() => {
-        const help = `<div id="etrusca-help-widget" style="position: fixed; bottom: 20px; right: 96px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 16px; max-width: 280px; font-family: 'Poppins', sans-serif; font-size: 14px; z-index: 9999; display: flex; align-items: flex-start; gap: 10px;">
-          <button onclick="document.getElementById('etrusca-help-widget').style.display='none'" style="border: none; background: transparent; font-size: 16px; font-weight: bold; cursor: pointer; position: absolute; top: 4px; right: 4px; color: #999; min-width: 32px; min-height: 32px; line-height: 32px;">&times;</button>
-          <div style="padding-right: 20px;">
-            <strong>¿Necesitas ayuda?</strong><br>
-            Habla con <strong>Lucky</strong>, tu experto en Café Etrusca, y descubre beneficios exclusivos pensados para ti.
-          </div>
-        </div>`;
-
-        const n8nChat = document.querySelector('.n8n-chat');
-        if (n8nChat) {
-            n8nChat.insertAdjacentHTML('afterbegin', help);
-            const hideHelpWidget = () => {
-                const widget = document.getElementById('etrusca-help-widget');
-                if (widget) widget.style.display = 'none';
-            };
-            setTimeout(hideHelpWidget, 10000); // Se oculta solo en 10 segundos
-            n8nChat.addEventListener('click', hideHelpWidget); // O si hacen click
-        }
-
-        const toggle = document.querySelector(".chat-window-toggle");
-        if (toggle) {
-            const originalSVG = `<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8"></path></svg>`;
-            const originalSVGminimizar = `<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"></path></svg>`;
-            let estado = 'imagen';
-
-            toggle.innerHTML = `<div style="position: relative; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #ccc; background-image: url('/assets/images/chat/lucky.jpg')!important; background-size: cover; background-position: center; overflow: hidden;"></div><span style="position: absolute; top: 48px; left: 48px; width: 14px; height: 14px; background-color: #28a745; border: 2px solid white; border-radius: 50%; z-index: 20; box-shadow: 0 0 4px #28a745aa;"></span>`;
-
-            toggle.addEventListener("click", function () {
-                if (estado === 'imagen') {
-                    toggle.innerHTML = originalSVGminimizar;
-                    estado = 'minimizar';
-                } else if (estado === 'minimizar') {
-                    toggle.innerHTML = originalSVG;
-                    estado = 'globo';
-                } else {
-                    toggle.innerHTML = originalSVGminimizar;
-                    estado = 'minimizar';
-                }
-            });
-        }
-    }, 2500);
-  </script>
+  <script src="/assets/js/lucky-widget.js?v=94b05951" defer></script>
 </body>
 </html>

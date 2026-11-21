@@ -26,6 +26,8 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   recipe: Recipe | null = null;
   related: Recipe[] = [];
   checked: Record<number, boolean> = {};
+  /** El iframe de YouTube se monta solo tras el clic en la fachada (evita cookies de terceros al cargar). */
+  videoPlaying = false;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -36,6 +38,7 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
       }
       this.recipe = found;
       this.checked = {};
+      this.videoPlaying = false;
       this.related = relatedRecipes(found.slug, 6);
       this.applySeo(found);
       this.scrollToTop();
@@ -70,9 +73,13 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     return text.replace(/ChillOut/g, '<b class="co-brand">ChillOut</b>');
   }
 
-  /** URL del iframe de YouTube (sanitizada) para recetas con video. */
+  playVideo() {
+    this.videoPlaying = true;
+  }
+
+  /** URL del iframe de YouTube (sanitizada) para recetas con video. autoplay=1: se monta tras el clic en la fachada. */
   videoEmbed(id: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id));
+    return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0');
   }
 
   displayTitle(recipe: Recipe): string {

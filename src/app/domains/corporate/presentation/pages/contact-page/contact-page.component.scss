@@ -10,8 +10,20 @@
   position: relative;
   background: var(--navy);
   color: #fff;
-  padding: 5.5rem 0 4.5rem;
+  /* padding-bottom: 8vh de solape de la onda (alto 20vh, offset -12vh) + aire.
+     padding-top despeja el header fijo (~83px compacto, ~112px en 1920). */
+  padding: 8.5rem 0 calc(8vh + 3.75rem);
   overflow: hidden;
+
+  @media (max-height: 700px) and (min-width: 768px) {
+    padding-top: 6.75rem;
+    padding-bottom: calc(8vh + 3.75rem);
+  }
+
+  @media (max-width: 767px) {
+    padding-top: 7.5rem;
+    padding-bottom: calc(8vh + 3.5rem);
+  }
 
   h1 {
     font-weight: 800;
@@ -99,12 +111,13 @@
 }
 
 .ct-form-sec {
-  scroll-margin-top: 120px;
+  scroll-margin-top: 160px;
   position: relative;
   overflow: visible;
   background: var(--navy);
   color: #fff;
-  padding: 5rem 0 4.5rem;
+  /* padding-top: despega H2 y el form de la onda superior (solape 8vh). */
+  padding: calc(8vh + 5.25rem) 0 calc(8vh + 4.5rem);
 
   h2 {
     color: #fff;
@@ -244,8 +257,8 @@
 .ct-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 720px;
-  font-size: 0.92rem;
+  min-width: 880px;
+  font-size: 1rem; // cuerpo 16px
 
   th {
     position: sticky;
@@ -257,12 +270,29 @@
     font-weight: 700;
     letter-spacing: 0.03em;
     z-index: 1;
+    font-size: 0.9375rem; // 15px
   }
 
   td {
     padding: 0.95rem 1rem;
     border-bottom: 1px solid #eee8dc;
     vertical-align: top;
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 12rem;
+    min-width: 12rem;
+    white-space: nowrap;
+  }
+
+  td:nth-child(3) a {
+    white-space: nowrap;
+  }
+
+  td:nth-child(4) a {
+    overflow-wrap: break-word;
+    word-break: normal;
   }
 
   tr:nth-child(even) td {
@@ -283,13 +313,13 @@
 
 .ct-kind {
   display: inline-block;
-  font-size: 0.68rem;
+  font-size: 0.8125rem; // 13px
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: #efe8d8;
   color: var(--navy);
   border-radius: 999px;
-  padding: 0.12rem 0.5rem;
+  padding: 0.15rem 0.55rem;
   margin-bottom: 0.3rem;
   font-weight: 800;
 }
@@ -430,3 +460,23 @@
 .sucursal-card li:nth-child(3) .ct-ico { background: #dff08a; }
 /* Horario: reloj (reloj.png, mismo trazo #111 que los otros 3) sobre lila, siguiente tono de la paleta del sitio. */
 .sucursal-card li:nth-child(4) .ct-ico { background: #d3b5ff; }
+
+/* Tipografía de la tarjeta junto al mapa, solo en /contacto (guía Lizbeth, tamaños más legibles). */
+:host ::ng-deep app-sede-map {
+  .vm-badge { font-size: 12px !important; }
+  .vm-panel h3 { font-size: 2.15rem !important; }
+  .vm-city { font-size: 1rem !important; }
+  .vm-note { font-size: 0.9375rem !important; }
+  .vm-row strong { font-size: 12px !important; }
+  .vm-row p { font-size: 1rem !important; line-height: 1.55; }
+  .vm-btn {
+    font-size: 15px !important;
+    font-weight: 700;
+    font-family: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
+  }
+
+  @media (max-width: 560px) {
+    .vm-panel h3 { font-size: 1.75rem; }
+    .vm-btn { font-size: 15px; }
+  }
+}

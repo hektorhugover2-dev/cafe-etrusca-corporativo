@@ -9,6 +9,7 @@ import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { siteUrl } from '../../../../../shared/kernel/config/site-url';
 import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 import { publishedRecipes, type Recipe } from '../recipes-page/recetas.data';
 import { storeProductUrl } from '../../services/store-links';
 import {
@@ -26,7 +27,7 @@ import {
 /** Página de marca David Rio (bases en polvo). Modelo: páginas Torani / ChillOut. Sin liga desde menú, home ni footer. */
 export const DAVID_RIO_PAGE_PATH = '/insumos-para-cafeterias/bases-en-polvo/david-rio';
 
-const API = 'https://cafeetrusca.com/api/product';
+const API = apiUrl('product');
 const API_HOST = 'https://cafeetrusca.com';
 /** Solo el mapa saneado (solo imagen) viaja en el HTML; la respuesta cruda de la API NO (trae campos de oferta). */
 const DR_STATE = makeStateKey<Record<string, ApiInfo>>('david-rio-api');

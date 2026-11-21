@@ -48,3 +48,11 @@ h2,
 h4 {
   line-height: 1.3;
 }
+
+/* Conserva el tamaño de los antiguos h4 (1.25rem) al pasar a h2 por el orden de encabezados. */
+.legal-page__body h2.poppins_bold {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 1.75rem 0 0.65rem;
+  line-height: 1.35;
+}

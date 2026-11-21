@@ -142,7 +142,7 @@ export const MOCAFE_LINES: MocafeLine[] = [
   }
 ];
 
-export const MOCAFE_LINE_ICONS = (tone: string) => ({ sabor: `${JAR}/icon-sabor-${tone}.png`, pres: `${JAR}/icon-pres-${tone}.png`, rend: `${JAR}/icon-rend-${tone}.png`, blob: `${JAR}/blob-${tone}.png` });
+export const MOCAFE_LINE_ICONS = (tone: string) => ({ sabor: `${JAR}/icon-sabor-${tone}.webp`, pres: `${JAR}/icon-pres-${tone}.webp`, rend: `${JAR}/icon-rend-${tone}.webp`, blob: `${JAR}/blob-${tone}.webp` });
 
 export const MOCAFE_PRODUCTS: MocafeProduct[] = MOCAFE_LINES.flatMap((l) => l.products);
 export const MOCAFE_CODES: string[] = MOCAFE_PRODUCTS.map((p) => p.code);

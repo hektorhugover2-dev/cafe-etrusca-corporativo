@@ -42,7 +42,8 @@ $rc-navy-2: #192966;
   margin: 0 auto;
   border-radius: 22px;
   overflow: hidden;
-  background: #ffe39a;
+  /* Navy para armonizar con la foto navideña del Latte de Noel (contraste AA). */
+  background: #070c3b;
   box-shadow: 0 18px 40px rgba(7, 12, 59, 0.08);
 }
 .rc-mes-media {
@@ -69,20 +70,20 @@ $rc-navy-2: #192966;
     font-size: clamp(2rem, 3.6vw, 3rem);
     line-height: 1.02;
     letter-spacing: -0.02em;
-    color: #111;
+    color: #fff;
   }
   p {
     margin: 0;
     max-width: 30rem;
     font-size: 1.02rem;
     line-height: 1.55;
-    color: $rc-ink;
+    color: #f4eee4;
   }
 }
 .rc-mes-pill {
   display: inline-block;
   background: #fdd640;
-  color: $rc-ink;
+  color: #070c3b;
   border-radius: 99px;
   padding: 0.35rem 0.95rem;
   font-size: 0.68rem;
@@ -116,14 +117,16 @@ $rc-navy-2: #192966;
     .fill { fill: currentColor; stroke: none; }
   }
   &.is-solid {
-    background: $rc-navy;
-    color: #fff;
-    &:hover { background: $rc-navy-2; border-color: $rc-navy-2; color: #fff; }
+    background: #fff;
+    color: #070c3b;
+    border-color: #fff;
+    &:hover, &:focus-visible { background: #f4eee4; border-color: #f4eee4; color: #070c3b; }
   }
   &.is-outline {
     background: transparent;
-    color: $rc-navy;
-    &:hover { background: $rc-navy; color: #fff; }
+    color: #fff;
+    border-color: #fff;
+    &:hover, &:focus-visible { background: #fff; color: #070c3b; }
   }
 }
 

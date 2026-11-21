@@ -491,6 +491,7 @@
   p { margin: 0; max-width: 40rem; color: rgba(255, 255, 255, 0.85); }
   .tor-kicker { background: rgba(255, 148, 150, 0.2); color: #ffb4b5; }
   .tor-btn { background: var(--tor-yellow); color: var(--tor-navy); flex-shrink: 0; margin-top: 0; }
+  .tor-btn.tor-btn-navy { background: var(--tor-navy); color: #fff; &:hover { color: #fff; } }
 }
 
 /* ---------- FAQ ---------- */

@@ -11,8 +11,9 @@
  */
 import { ACC_RULE_ORDER, ACC_SECTIONS, AccMatch, AccSectionSlug } from '../accesorios-secciones.config';
 import { storeUrlIfInStock } from './store-links';
+import { apiUrl } from '../../../../shared/kernel/config/api-url';
 
-export const PRODUCT_API = 'https://cafeetrusca.com/api/Product';
+export const PRODUCT_API = apiUrl('Product');
 export const PRODUCT_API_HOST = 'https://cafeetrusca.com';
 
 export type AccTone = 'yellow' | 'pink' | 'teal' | 'lime' | 'purple' | 'beige';

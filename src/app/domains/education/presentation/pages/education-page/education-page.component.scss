@@ -101,8 +101,8 @@ $ink: #14110e;
 
 .btn-gold {
   background: $gold;
-  color: #fff;
-  &:hover { color: #fff; }
+  color: $navy; // AA 4.5:1 sobre $gold (el blanco quedaba en 2.6:1)
+  &:hover { color: $navy; }
 }
 
 .btn-ghost-light {
@@ -191,7 +191,7 @@ $ink: #14110e;
     }
   }
 
-  h3 {
+  h2 {
     font-size: 1.05rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -201,10 +201,10 @@ $ink: #14110e;
   &.experiencias .ico { background: #d77a96; }
   &.talleres .ico { background: $navy; }
   &.sesiones .ico { background: #2f6b4f; }
-  &.cursos h3 { color: #6b2744; }
-  &.experiencias h3 { color: #c45b7c; }
-  &.talleres h3 { color: $navy; }
-  &.sesiones h3 { color: #2f6b4f; }
+  &.cursos h2 { color: #6b2744; }
+  &.experiencias h2 { color: #b95675; } // AA 4.5:1 sobre blanco (antes #c45b7c, 4.08:1)
+  &.talleres h2 { color: $navy; }
+  &.sesiones h2 { color: #2f6b4f; }
 }
 
 .edu-offer-phone {
@@ -1114,19 +1114,19 @@ $ink: #14110e;
 
   &.barista {
     h3 { background: #1d4e89; }
-    li a, li span { background: #4a7ab5; }
+    li a, li span { background: #4978b3; } // AA con blanco (antes #4a7ab5, 4.42:1)
   }
   &.catador {
     h3 { background: #2f6b4f; }
-    li a, li span { background: #5a9a78; }
+    li a, li span { background: #4c8165; } // AA con blanco (antes #5a9a78, 3.31:1)
   }
   &.tostador {
     h3 { background: #6b3e2e; }
-    li a, li span { background: #a06a52; }
+    li a, li span { background: #9f6a52; } // AA con blanco (antes #a06a52, 4.48:1)
   }
   &.lover {
     h3 { background: #c2185b; }
-    li a, li span { background: #e07aa3; }
+    li a, li span { background: #ac5e7e; } // AA con blanco (antes #e07aa3, 2.8:1)
   }
 }
 

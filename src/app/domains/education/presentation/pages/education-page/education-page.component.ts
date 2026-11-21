@@ -47,10 +47,10 @@ function decodeHtml(value: string) {
 }
 
 const KIND_ICONS: Record<string, string> = {
-  cursos: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
-  experiencias: `${ASSETS_BASE_URL}/images/educacion/icon-experiencias.png`,
-  talleres: `${ASSETS_BASE_URL}/images/educacion/icon-talleres.png`,
-  sesiones: `${ASSETS_BASE_URL}/images/educacion/icon-sesiones.png`
+  cursos: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.webp`,
+  experiencias: `${ASSETS_BASE_URL}/images/educacion/icon-experiencias.webp`,
+  talleres: `${ASSETS_BASE_URL}/images/educacion/icon-talleres.webp`,
+  sesiones: `${ASSETS_BASE_URL}/images/educacion/icon-sesiones.webp`
 };
 
 @Component({
@@ -134,7 +134,7 @@ export class EducationPageComponent implements OnInit, OnDestroy {
       title,
       description,
       keywords,
-      image: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
+      image: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.webp`,
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {

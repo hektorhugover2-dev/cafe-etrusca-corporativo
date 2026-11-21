@@ -87,9 +87,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Nuestros cursos',
     subtitle: 'Formación completa para quienes quieren construir bases sólidas, profesionalizarse y llevar su pasión por el café al siguiente nivel.',
     body: 'Formación completa para quienes quieren construir bases sólidas, profesionalizarse y llevar su pasión por el café al siguiente nivel.',
-    icon: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.webp`,
     tone: 'lime',
-    heroImage: `${ASSETS_BASE_URL}/images/educacion/cursos-card.png`,
+    heroImage: `${ASSETS_BASE_URL}/images/educacion/cursos-card.webp`,
     stats: [
       { label: 'Metodología', value: '100% integral', hint: '(Teoría + Práctica)' },
       { label: 'Duración', value: '2 días', hint: '(14 horas)' },
@@ -103,9 +103,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Experiencias',
     subtitle: 'Encuentros sensoriales para vivir el café y el té con todos los sentidos.',
     body: 'Sesiones cortas, inmersivas y diseñadas para descubrir perfiles, orígenes y rituales.',
-    icon: `${ASSETS_BASE_URL}/images/educacion/icon-experiencias.png`,
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-experiencias.webp`,
     tone: 'sand',
-    heroImage: `${ASSETS_BASE_URL}/images/educacion/curso-photo.png`,
+    heroImage: `${ASSETS_BASE_URL}/images/educacion/curso-photo.webp`,
     stats: [
       { label: 'Formato', value: 'Inmersivo', hint: '(Sensorial + cata)' },
       { label: 'Duración', value: '1 día', hint: '(3 a 4 horas)' },
@@ -119,9 +119,9 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Talleres de especialización',
     subtitle: 'Práctica intensiva para perfeccionar una técnica puntual.',
     body: 'Arte latte, métodos de extracción y más. Un día, manos a la barra.',
-    icon: `${ASSETS_BASE_URL}/images/educacion/icon-talleres.png`,
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-talleres.webp`,
     tone: 'cream',
-    heroImage: `${ASSETS_BASE_URL}/images/educacion/baristas.png`,
+    heroImage: `${ASSETS_BASE_URL}/images/educacion/baristas.webp`,
     stats: [
       { label: 'Metodología', value: '70% práctica', hint: '(Manos a la barra)' },
       { label: 'Duración', value: '1 día', hint: '(6 horas)' },
@@ -135,7 +135,7 @@ export const EDU_NAV: EduCategory[] = [
     title: 'Sesiones sabatinas',
     subtitle: 'Encuentros de fin de semana para seguir aprendiendo en comunidad.',
     body: 'Formato abierto, calendario rotativo y cupo limitado por sucursal.',
-    icon: `${ASSETS_BASE_URL}/images/educacion/icon-sesiones.png`,
+    icon: `${ASSETS_BASE_URL}/images/educacion/icon-sesiones.webp`,
     tone: 'yellow',
     heroImage: `${ASSETS_BASE_URL}/images/calendario-sesiones-slider.webp`,
     stats: [
@@ -429,8 +429,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '10:00 a.m. - 2:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/cursos-card.png`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-card.png`,
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-card.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-card.webp`,
     highlights: [
       { title: 'Aromas de referencia', text: 'Identifica notas con kits y ejercicios guiados.' },
       { title: 'Rueda de sabores', text: 'Pasa de “me gusta” a un vocabulario preciso.' },
@@ -471,8 +471,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '4 horas',
     schedule: '9:00 a.m. - 1:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.webp`,
     highlights: [
       { title: 'Protocolo SCA', text: 'Tostión de muestra, molienda, tiempo y puntaje.' },
       { title: 'Defectos en taza', text: 'Reconoce fermento, fenólico, rio y más.' },
@@ -647,8 +647,8 @@ const RAW_COURSES: Course[] = [
     duration: '1 día',
     hours: '6 horas',
     schedule: '9:00 a.m. - 3:00 p.m.',
-    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
-    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.webp`,
+    banner: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.webp`,
     highlights: [
       { title: 'Filtro caliente', text: 'V60, chemex y batch brew con recetas repetibles.' },
       { title: 'Cold brew y toddy', text: 'Ratios, tiempo y servicio en barra.' },
@@ -1606,12 +1606,12 @@ export const SCA_CERTS: ScaCert[] = [
 ];
 
 export const LEARN_ITEMS = [
-  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-coffee.png`, label: 'Bases técnicas reales' },
-  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-machine.png`, label: 'Práctica con equipo profesional' },
-  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-person.png`, label: 'Acompañamiento de instructores' },
-  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-docs.png`, label: 'Material de apoyo' },
-  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-diploma.png`, label: 'Certificado de participación' },
-  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-book.png`, label: 'Aplicación inmediata' }
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-coffee.webp`, label: 'Bases técnicas reales' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-machine.webp`, label: 'Práctica con equipo profesional' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-person.webp`, label: 'Acompañamiento de instructores' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-docs.webp`, label: 'Material de apoyo' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-diploma.webp`, label: 'Certificado de participación' },
+  { icon: `${ASSETS_BASE_URL}/images/educacion/icon-book.webp`, label: 'Aplicación inmediata' }
 ];
 
 export const METHODOLOGY = [

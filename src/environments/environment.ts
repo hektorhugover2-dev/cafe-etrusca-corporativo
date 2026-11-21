@@ -12,10 +12,15 @@
  *   OJO: los url() de los .scss usan la URL del CDN escrita literal (SCSS no puede leer
  *   esta constante); para revertirlos busca y reemplaza
  *   "https://imagenes.cafeetrusca.com/corporativo/assets/" por "/assets/".
+ * - apiBaseUrl: origen de Product/Event/ContactUs/newsletter/Location/CourseContact.
+ *   Relativo /api en el navegador (la Pages Function reenvía a api-origin).
+ *   El prerender/SSR usa apiSsrOrigin porque una URL relativa se resolvería contra localhost.
  */
 export const environment = {
   siteOrigin: 'https://cafeetrusca.com',
   indexableHosts: ['cafeetrusca.com', 'www.cafeetrusca.com'] as readonly string[],
   useCdnAssets: true,
   assetsCdnBaseUrl: 'https://imagenes.cafeetrusca.com/corporativo/assets',
+  apiBaseUrl: '/api',
+  apiSsrOrigin: 'https://cafeetrusca.com',
 };

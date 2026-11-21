@@ -1923,7 +1923,7 @@ $white: #ffffff;
 .cafe-verde {
   --cv-lime: #d6ea82;
   --cv-mint: #eef6e4;
-  --cv-green: #5c8a2f;
+  --cv-green: #496e26; // AA 4.5:1 sobre blanco y sobre --cv-lime (antes #5c8a2f)
 
   .cv-hero {
     position: relative;
@@ -2235,7 +2235,7 @@ $white: #ffffff;
   .cv-value-note {
     text-align: center;
     max-width: none !important;
-    color: rgba(20, 17, 14, 0.5) !important;
+    color: rgba(20, 17, 14, 0.6) !important; // AA 4.5:1 sobre blanco (0.5 quedaba en ~3.5:1)
     font-size: 0.95rem;
   }
 
@@ -2377,7 +2377,7 @@ $white: #ffffff;
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #e38b12;
+    color: #995d0c; // AA 4.5:1 sobre --ce-cyan (antes #e38b12, 2.23:1)
     font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   }
 

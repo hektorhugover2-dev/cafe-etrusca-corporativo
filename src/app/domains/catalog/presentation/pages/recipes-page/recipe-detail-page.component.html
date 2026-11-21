@@ -146,10 +146,19 @@
     <section class="co-video" style="padding: 2.5rem 1.2rem 1rem;">
       <div class="container" style="max-width: 860px; margin: 0 auto;">
         <div style="position: relative; padding-top: 56.25%; border-radius: 18px; overflow: hidden; background: #000;">
-          <iframe [src]="videoEmbed(recipe.video.youtubeId)" [title]="'Video: ' + recipe.video.name" loading="lazy"
-            style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          @if (videoPlaying) {
+            <iframe [src]="videoEmbed(recipe.video.youtubeId)" [title]="'Video: ' + recipe.video.name"
+              style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          } @else {
+            <!-- Fachada: el reproductor de YouTube solo se carga al dar clic (sin cookies de terceros al abrir la página) -->
+            <button type="button" class="co-video-facade" (click)="playVideo()">
+              <img [src]="recipe.video.thumbnailUrl" alt="" loading="lazy" width="480" height="360">
+              <span class="co-video-play" aria-hidden="true"></span>
+              <span class="visually-hidden">Reproducir video: {{ recipe.video.name }}</span>
+            </button>
+          }
         </div>
       </div>
     </section>

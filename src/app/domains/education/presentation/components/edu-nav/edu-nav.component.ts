@@ -10,6 +10,7 @@ import { EDU_NAV } from '../../education.data';
     <nav class="edu-nav" aria-label="Categorías de educación">
       @for (item of items; track item.slug) {
         <a class="edu-pill"
+           [class.edu-pill-talleres]="item.slug === 'talleres'"
            [routerLink]="['/educacion', item.slug]"
            routerLinkActive="active">{{ item.navLabel }}</a>
       }

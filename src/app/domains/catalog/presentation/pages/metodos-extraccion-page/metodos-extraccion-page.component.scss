@@ -165,19 +165,17 @@ $tones: (
   justify-content: center;
   gap: 1.4rem;
   background: $btn;
-  color: #fff;
+  color: $title; // AA 4.5:1 sobre $btn #71c2c5 (el blanco quedaba en 2.6:1, también contra la sombra)
   font-weight: 700;
   border: 0;
   border-radius: 999px;
   padding: 0.95rem 1.8rem;
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  // Blanco sobre #71c2c5 no llega a AA: sombra de texto sutil + peso 700 (texto grande del diseño).
-  text-shadow: 0 1px 2px rgba(0, 60, 64, 0.45);
 
   svg { width: 20px; height: 20px; flex: 0 0 auto; }
 
-  &:hover { color: #fff; filter: brightness(0.95); transform: translateY(-1px); }
+  &:hover { color: $title; filter: brightness(0.95); transform: translateY(-1px); }
   &:focus-visible { outline: 3px solid $hero-ink; outline-offset: 3px; }
 }
 

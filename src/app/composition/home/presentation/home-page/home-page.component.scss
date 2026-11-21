@@ -253,6 +253,8 @@
 .circle-green { background-color: #cde35f; }
 .circle-yellow { background-color: #ffe270; }
 .circle-blue { background-color: #96dde1; }
+.circle-yellow-500 { background-color: #FDDB4F; }
+.circle-pink { background-color: #FFA9AB; }
 
 // Botón Rosa de Promociones
 .btn-promociones {
@@ -1128,3 +1130,86 @@ letter-spacing: 1px;
 }
 @media (max-width: 991px) { .home-visit-title { font-size: 2.4rem; } }
 @media (max-width: 575px) { .home-visit-title { font-size: 2.3rem; } }
+
+
+/* MOBILE HERO CAFE 1:1 (2026-11-10): título y botones dentro del cuadrado, fuera de header/ola/indicadores */
+@media (max-width: 480px) {
+  .hero-section .hero-slide-cafe .carousel-caption {
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding-top: 5.5rem !important;
+    padding-bottom: 7.5rem !important;
+    padding-inline: 3.25rem !important;
+    box-sizing: border-box;
+  }
+
+  .hero-section .hero-slide-cafe .title-hero {
+    font-family: inherit;
+    font-size: clamp(1.65rem, 7vw, 2.2rem);
+    line-height: 1.15;
+    letter-spacing: 1px;
+    margin-bottom: 0.55rem !important;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-section .hero-slide-cafe .hero-cafe-actions {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0.4rem !important;
+    margin-top: 0 !important;
+    width: min(100%, 16.5rem);
+  }
+
+  .hero-section .hero-slide-cafe .hero-cafe-actions .btn {
+    min-height: 44px;
+    font-size: 0.9rem;
+    padding: 0.45rem 1.1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 399.98px) {
+  .hero-section .hero-slide-cafe .carousel-caption {
+    padding-top: 5.15rem !important;
+    padding-bottom: 7.35rem !important;
+  }
+
+  .hero-section .hero-slide-cafe .title-hero {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .hero-section .hero-slide-cafe .hero-cafe-actions {
+    gap: 0.3rem !important;
+  }
+
+  .hero-section .hero-slide-cafe .hero-cafe-actions .btn {
+    min-height: 42px;
+    font-size: 0.86rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-section .hero-slide-cafe .carousel-caption {
+    padding-top: 5rem !important;
+    padding-bottom: 7.4rem !important;
+  }
+
+  .hero-section .hero-slide-cafe .title-hero {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .hero-section .hero-slide-cafe .hero-cafe-actions {
+    gap: 0.25rem !important;
+  }
+
+  .hero-section .hero-slide-cafe .hero-cafe-actions .btn {
+    min-height: 40px;
+    font-size: 0.84rem;
+    padding: 0.35rem 0.95rem;
+  }
+}

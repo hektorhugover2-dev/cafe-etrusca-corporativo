@@ -39,6 +39,11 @@ const DISC_NOTICE = 'Este equipo ya no forma parte de nuestro catálogo';
 })
 export class MaquinasPageComponent implements OnInit, OnDestroy {
   protected readonly assetsBase = ASSETS_BASE_URL;
+  /** Foto a sangre del hero del hub (mismo patron que Accesorios). Las subpaginas no la usan. */
+  readonly hubHero = {
+    desktop: `${ASSETS_BASE_URL}/images/maquinas/maquinaria-equipo-cafeteria-reneka-ceado-hamilton-beach.webp`,
+    mobile: `${ASSETS_BASE_URL}/images/maquinas/maquinaria-equipo-cafeteria-reneka-ceado-hamilton-beach-movil.webp`
+  };
   private seo = inject(SeoService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -47,6 +52,30 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
   nav = maqNavVisible();
   hub = MAQ_HUB;
   crumbs: HeroCrumb[] = [];
+  readonly hubBrands = [
+    { key: 'reneka', name: 'Reneka', logo: `${ASSETS_BASE_URL}/images/maquinas/logo-reneka.svg`, link: '/maquinaria-y-equipo-para-cafeterias/espresso' },
+    { key: 'hamilton', name: 'Hamilton Beach', logo: `${ASSETS_BASE_URL}/images/maquinas/logo-hamilton.webp`, link: '/maquinaria-y-equipo-para-cafeterias/licuadoras' },
+    { key: 'ceado', name: 'Ceado', logo: `${ASSETS_BASE_URL}/images/maquinas/logo-ceado.svg`, link: '/maquinaria-y-equipo-para-cafeterias/ceado' },
+    { key: 'fiorenzato', name: 'Fiorenzato', logo: `${ASSETS_BASE_URL}/images/maquinas/logo-fiorenzato.webp`, link: '/maquinaria-y-equipo-para-cafeterias/fiorenzato' },
+    { key: 'coffeetech', name: 'Coffee Tech', logo: `${ASSETS_BASE_URL}/images/maquinas/logo-coffeetech.webp`, link: '/maquinaria-y-equipo-para-cafeterias/tostadores' }
+  ];
+  /** Cards 2x2 del hub: título de la sección, texto y liga del menú existentes; foto de producto existente. */
+  private readonly hubSubcatMedia: Record<string, { shot: string; tone: string }> = {
+    espresso: { shot: `${ASSETS_BASE_URL}/images/maquinas/viva.webp`, tone: 'yellow' },
+    licuadoras: { shot: `${ASSETS_BASE_URL}/images/maquinas/hbh755.webp`, tone: 'cyan' },
+    molinos: { shot: `${ASSETS_BASE_URL}/images/maquinas/ceado-e37s.webp`, tone: 'pink' },
+    tostadores: { shot: `${ASSETS_BASE_URL}/images/maquinas/tostador-solar.webp`, tone: 'lime' }
+  };
+  readonly hubSubcats = maqNavVisible()
+    .filter((n) => !!this.hubSubcatMedia[n.id])
+    .map((n) => ({
+      id: n.id,
+      title: MAQ_SECTIONS.find((s) => s.id === n.id)?.title || n.label,
+      desc: n.desc,
+      link: n.link,
+      icon: n.icon,
+      ...this.hubSubcatMedia[n.id]
+    }));
   sections: MaqSection[] = MAQ_SECTIONS;
   slug: string | null = null;
   /** Página de una sola marca (descontinuada o Fiorenzato directa). */
@@ -145,7 +174,7 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
 
     if (!slug) {
       this.crumbs = [{ label: 'Inicio', path: '/' }, { label: 'Máquinas', path: MAQ_HUB }];
-      this.sections = MAQ_SECTIONS.filter((s) => s.id !== 'autoservicio');
+      this.sections = MAQ_SECTIONS.filter((s) => !s.hideShowcaseOnHub && s.id !== 'autoservicio');
       this.heroTitle = 'MÁQUINAS';
       this.heroLead = 'Rendimiento y tecnología para tu operación';
       this.heroBody =

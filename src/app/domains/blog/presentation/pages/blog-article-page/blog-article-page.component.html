@@ -78,7 +78,7 @@
                     <thead><tr>@for (h of $any(b).head; track $index) { <th scope="col">{{ h }}</th> }</tr></thead>
                     <tbody>
                       @for (r of $any(b).rows; track $index) {
-                        <tr>@for (c of r; track $index) { <td [class.blog-pc]="showInternalNotes && c.startsWith('por confirmar')">{{ pubCell(c) }}</td> }</tr>
+                        <tr>@for (c of r; track $index; let first = $first) { @if (first) { <th scope="row" [class.blog-pc]="showInternalNotes && c.startsWith('por confirmar')">{{ pubCell(c) }}</th> } @else { <td [class.blog-pc]="showInternalNotes && c.startsWith('por confirmar')">{{ pubCell(c) }}</td> } }</tr>
                       }
                     </tbody>
                   </table>

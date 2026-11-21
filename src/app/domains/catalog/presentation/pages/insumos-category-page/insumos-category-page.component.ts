@@ -19,6 +19,7 @@ import {
 import { inspiraRecipes } from '../../insumos-inspira';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 
 const JAR = `${ASSETS_BASE_URL}/images/insumos/jarabes`;
 
@@ -67,9 +68,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1 L',
       rendimiento: 'Aprox. 30 bebidas de 450 ml',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-chillout.webp`,
-      blob: JAR + '/blob-coral.png',
+      blob: JAR + '/blob-coral.webp',
       tone: 'coral',
-      icons: { sabor: JAR + '/icon-sabor-coral.png', pres: JAR + '/icon-pres-coral.png', rend: JAR + '/icon-rend-coral.png' }
+      icons: { sabor: JAR + '/icon-sabor-coral.webp', pres: JAR + '/icon-pres-coral.webp', rend: JAR + '/icon-rend-coral.webp' }
     },
     {
       name: 'Clásico',
@@ -80,9 +81,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '750 ml',
       rendimiento: 'Aprox. 25 bebidas de 450 ml',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-clasico.webp`,
-      blob: JAR + '/blob-yellow.png',
+      blob: JAR + '/blob-yellow.webp',
       tone: 'yellow',
-      icons: { sabor: JAR + '/icon-sabor-yellow.png', pres: JAR + '/icon-pres-yellow.png', rend: JAR + '/icon-rend-yellow.png' }
+      icons: { sabor: JAR + '/icon-sabor-yellow.webp', pres: JAR + '/icon-pres-yellow.webp', rend: JAR + '/icon-rend-yellow.webp' }
     },
     {
       name: 'Sugar Free',
@@ -93,9 +94,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '750 ml',
       rendimiento: 'Aprox. 25 bebidas de 450 ml',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-sugarfree.webp`,
-      blob: JAR + '/blob-cyan.png',
+      blob: JAR + '/blob-cyan.webp',
       tone: 'cyan',
-      icons: { sabor: JAR + '/icon-sabor-cyan.png', pres: JAR + '/icon-pres-cyan.png', rend: JAR + '/icon-rend-cyan.png' }
+      icons: { sabor: JAR + '/icon-sabor-cyan.webp', pres: JAR + '/icon-pres-cyan.webp', rend: JAR + '/icon-rend-cyan.webp' }
     },
     {
       name: 'Puremade',
@@ -106,9 +107,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '750 ml',
       rendimiento: 'Aprox. 25 bebidas de 450 ml',
       image: `${ASSETS_BASE_URL}/images/insumos/jarabes/bottle-puremade.webp`,
-      blob: JAR + '/blob-lime.png',
+      blob: JAR + '/blob-lime.webp',
       tone: 'lime',
-      icons: { sabor: JAR + '/icon-sabor-lime.png', pres: JAR + '/icon-pres-lime.png', rend: JAR + '/icon-rend-lime.png' }
+      icons: { sabor: JAR + '/icon-sabor-lime.webp', pres: JAR + '/icon-pres-lime.webp', rend: JAR + '/icon-rend-lime.webp' }
     }
   ];
 
@@ -124,10 +125,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '250 g y 1 kg',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/te/line-vector.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       apiMode: 'euro',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'Stash Descafeinado',
@@ -138,10 +139,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '18 y 20 sobres',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/te/line-frame.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'stash-decaf',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'Stash',
@@ -152,10 +153,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '18 y 20 sobres',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/te/hero-teapot.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       apiMode: 'stash',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     }
   ];
 
@@ -172,10 +173,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: 'Bolsa 250 g',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/tisanas/line-a.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'tisana-chillout',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'Euro Te Tisana',
@@ -186,10 +187,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: 'Bolsa 250 g',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/tisanas/line-b.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       apiMode: 'tisana-euro',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     }
   ];
 
@@ -206,10 +207,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '2 kg y 700 g',
       rendimiento: 'Según preparación',
       image: `/assets/images/marcas/logo-chillout-mix.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'bases-mix',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'ChillOut Just Fruit',
@@ -220,10 +221,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '2 kg y 700 g',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-chillout-2.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       apiMode: 'bases-just-fruit',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'David Rio Chai',
@@ -234,11 +235,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: 'Desde 398 g',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       apiMode: 'bases-david-rio',
       page: '/insumos-para-cafeterias/bases-en-polvo/david-rio',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     },
     {
       name: 'MoCafé',
@@ -249,11 +250,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.360 kg',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       apiMode: 'bases-mocafe',
       page: '/insumos-para-cafeterias/bases-en-polvo/mocafe',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     },
     {
       name: 'Cool Capps',
@@ -264,11 +265,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.580 kg',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'bases-cool-capps',
       page: '/insumos-para-cafeterias/bases-en-polvo/cool-capps',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'Cappuccine',
@@ -279,9 +280,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.360 kg',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'Hollander',
@@ -292,10 +293,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.130 kg',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       apiMode: 'bases-hollander',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     },
     {
       name: 'Don Gustavo',
@@ -305,11 +306,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       sabores: '1 sabor',
       presentacion: 'Diferentes formatos',
       rendimiento: 'Según preparación',
-      image: `${ASSETS_BASE_URL}/images/insumos/bottle-cpm.png`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      image: `${ASSETS_BASE_URL}/images/insumos/bottle-cpm.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       apiMode: 'bases-don-gustavo',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     }
   ];
 
@@ -391,12 +392,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 100 / 33 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout-1.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout-1.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       apiMode: 'toppings-tapioca',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-008' }, { code: 'ICT-055' }, { code: 'ICT-009' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     },
     {
       name: 'Tapioca instantánea',
@@ -408,12 +409,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: '50 bebidas (1 sobre por bebida)',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout-2.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout-2.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       apiMode: 'toppings-tapioca-instantanea',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-056' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     },
     {
       name: 'Popping Boba',
@@ -425,12 +426,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 113 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-1.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/line-1.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'toppings-popping-boba',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-028', flavor: 'Fresa' }, { code: 'ICT-029', flavor: 'Granada' }, { code: 'ICT-030', flavor: 'Kiwi' }, { code: 'ICT-031', flavor: 'Mango' }, { code: 'ICT-032', flavor: 'Lichi' }, { code: 'ICT-033', flavor: 'Manzana verde' }, { code: 'ICT-034', flavor: 'Maracuyá' }, { code: 'ICT-035', flavor: 'Piña', img: `${ASSETS_BASE_URL}/images/insumos/toppings/ICT-035-transparente.webp` }, { code: 'ICT-036', flavor: 'Naranja', img: `${ASSETS_BASE_URL}/images/insumos/toppings/ICT-036-transparente.webp` }, { code: 'ICT-037', flavor: 'Yogur' }, { code: 'ICT-038', flavor: 'Mora azul' }, { code: 'ICT-039', flavor: 'Durazno' }, { code: 'ICT-040', flavor: 'Cereza' }, { code: 'ICT-059', flavor: 'Chicle' }, { code: 'ICT-060', flavor: 'Taro' }, { code: 'ICT-061', flavor: 'Pitahaya' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'POP',
@@ -442,10 +443,10 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 43 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-2.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/line-2.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       apiMode: 'toppings-pop',
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'Perlas explosivas',
@@ -457,12 +458,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 90 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-3.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/line-3.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       apiMode: 'toppings-perlas-explosivas',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-041', flavor: 'Mango' }, { code: 'ICT-047', flavor: 'Cereza' }, { code: 'ICT-043', flavor: 'Fresa' }, { code: 'ICT-044', flavor: 'Maracuyá' }, { code: 'ICT-046', flavor: 'Mora azul' }, { code: 'ICT-045', flavor: 'Lichi' }, { code: 'ICT-048', flavor: 'Manzana verde' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     },
     {
       name: 'Crystal Boba',
@@ -474,12 +475,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 66 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/line-4.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/line-4.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       apiMode: 'toppings-crystal-boba',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-079', flavor: 'Neutras' }, { code: 'ICT-080', flavor: 'Lichi' }, { code: 'ICT-081', flavor: 'Cereza' }, { code: 'ICT-082', flavor: 'Matcha' }, { code: 'ICT-083', flavor: 'Taro' }, { code: 'ICT-084', flavor: 'Mango' }, { code: 'ICT-085', flavor: 'Azúcar morena' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     },
     {
       name: 'Trozos de jalea',
@@ -491,11 +492,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 133 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-021', flavor: 'Lichi' }, { code: 'ICT-022', flavor: 'Manzana verde' }, { code: 'ICT-024', flavor: 'Mango' }, { code: 'ICT-025', flavor: 'Fresa' }, { code: 'ICT-026', flavor: 'Mix yogo tropical' }, { code: 'ICT-027', flavor: 'Café' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'Jelly',
@@ -507,11 +508,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 85 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-086', flavor: 'Fresa (corazón)' }, { code: 'ICT-087', flavor: 'Mango (estrella)' }, { code: 'ICT-011', flavor: 'Lichi' }, { code: 'ICT-012', flavor: 'Coco' }, { code: 'ICT-013', flavor: 'Manzana verde' }, { code: 'ICT-014', flavor: 'Mango' }, { code: 'ICT-015', flavor: 'Fresa' }, { code: 'ICT-016', flavor: 'Piña' }, { code: 'ICT-017', flavor: 'Maracuyá' }, { code: 'ICT-018', flavor: 'Uva' }, { code: 'ICT-019', flavor: 'Cereza' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'Jarabe Longan',
@@ -523,11 +524,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 13 porciones de 74 ml aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'IJA-154' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'Jalea en pieza',
@@ -539,12 +540,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 33 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       noStore: true,
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-067', flavor: 'Yogur' }, { code: 'ICT-068', flavor: 'Piña' }, { code: 'ICT-069', flavor: 'Osmanthus' }, { code: 'ICT-070', flavor: 'Manzana' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
       name: 'Mini caramelos',
@@ -556,12 +557,12 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 90 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       noStore: true,
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-089', flavor: 'Fresa' }, { code: 'ICT-090', flavor: 'Mora azul' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
       name: 'Mini mochis',
@@ -573,11 +574,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 15 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-088' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     },
     {
       name: 'Crema vegetal',
@@ -589,11 +590,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 90 bebidas aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'ICT-071', flavor: 'Matcha' }, { code: 'ICT-072', flavor: 'Camote morado' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     },
     {
       name: 'Crème brûlée',
@@ -605,11 +606,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       rendimiento: 'Hasta 40 / 16 bebidas o 8 / 3 l de crema aprox.*',
       image: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
       logo: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-chillout.webp`,
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
       pdf: [{ code: 'IBP-206', flavor: 'Crème brûlée' }, { code: 'IBP-207', flavor: 'Crème brûlée' }],
-      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png` }
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     }
   ];
 
@@ -648,9 +649,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.89 L y 443 ml',
       rendimiento: 'Según dosificación',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/salsas-hollander.webp`,
-      blob: JAR + '/blob-coral.png',
+      blob: JAR + '/blob-coral.webp',
       tone: 'coral',
-      icons: { sabor: JAR + '/icon-sabor-coral.png', pres: JAR + '/icon-pres-coral.png', rend: JAR + '/icon-rend-coral.png' }
+      icons: { sabor: JAR + '/icon-sabor-coral.webp', pres: JAR + '/icon-pres-coral.webp', rend: JAR + '/icon-rend-coral.webp' }
     },
     {
       name: 'ChillOut Chamoy',
@@ -661,9 +662,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1 L',
       rendimiento: 'Aprox. 33 bebidas de 480 ml*',
       image: `${ASSETS_BASE_URL}/images/insumos/salsas-bottle-chamoy.webp`,
-      blob: JAR + '/blob-yellow.png',
+      blob: JAR + '/blob-yellow.webp',
       tone: 'yellow',
-      icons: { sabor: JAR + '/icon-sabor-yellow.png', pres: JAR + '/icon-pres-yellow.png', rend: JAR + '/icon-rend-yellow.png' }
+      icons: { sabor: JAR + '/icon-sabor-yellow.webp', pres: JAR + '/icon-pres-yellow.webp', rend: JAR + '/icon-rend-yellow.webp' }
     },
     {
       name: 'Sugar Free',
@@ -674,9 +675,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.89 L',
       rendimiento: 'Aprox. 63 bebidas de 480 ml*',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/salsas-sugarfree.webp`,
-      blob: JAR + '/blob-cyan.png',
+      blob: JAR + '/blob-cyan.webp',
       tone: 'cyan',
-      icons: { sabor: JAR + '/icon-sabor-cyan.png', pres: JAR + '/icon-pres-cyan.png', rend: JAR + '/icon-rend-cyan.png' }
+      icons: { sabor: JAR + '/icon-sabor-cyan.webp', pres: JAR + '/icon-pres-cyan.webp', rend: JAR + '/icon-rend-cyan.webp' }
     },
     {
       name: 'Puremade',
@@ -687,9 +688,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       presentacion: '1.89 L y 488 ml',
       rendimiento: 'Hasta 63 bebidas aprox. en 1.89 L*',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/salsas-puremade.webp`,
-      blob: JAR + '/blob-lime.png',
+      blob: JAR + '/blob-lime.webp',
       tone: 'lime',
-      icons: { sabor: JAR + '/icon-sabor-lime.png', pres: JAR + '/icon-pres-lime.png', rend: JAR + '/icon-rend-lime.png' }
+      icons: { sabor: JAR + '/icon-sabor-lime.webp', pres: JAR + '/icon-pres-lime.webp', rend: JAR + '/icon-rend-lime.webp' }
     }
   ];
 
@@ -700,59 +701,59 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       name: 'ChillOut Fruit Concentrate',
       brand: 'ChillOut Fruit Concentrate',
       tone: 'concentrate',
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       description: 'Concentrados líquidos para preparar bebidas con sabores intensos de forma rápida y práctica.',
       sabores: '6',
       presentacion: '5 kg',
       rendimiento: 'Hasta 167 bebidas',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/pures-concentrate.webp`,
-      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.png`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.png`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.png`}
+      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp`}
     },
     {
       name: 'ChillOut Jam',
       brand: 'ChillOut Jam',
       tone: 'jam',
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       description: 'Preparados de fruta tipo mermelada. Incluye trozos de fruta que aportan más sabor.',
       sabores: '9',
       presentacion: '4.5 / 4.2 / 1.3 / 1.2 / 1.1 kg',
       rendimiento: '24–100',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/pures-jam.webp`,
-      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.png`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.png`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.png`}
+      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp`}
     },
     {
       name: 'Torani Purée Blend',
       brand: 'Torani Purée Blend',
       tone: 'puree',
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       description: 'Fruta cocida y colada, con textura espesa y sabor intenso para bebidas y coctelería.',
       sabores: '5',
       presentacion: '1.89 L',
       rendimiento: 'Hasta 66',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/pures-blend.webp`,
-      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png`}
+      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp`}
     },
     {
       name: 'Torani Smoothie Mix',
       brand: 'Torani Smoothie Mix',
       tone: 'smoothie',
-      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.png`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       description: 'Preparados de fruta con consistencia homogénea, ideales para smoothies, frappés y bebidas frutales.',
       sabores: '6',
       presentacion: '1.89 L',
       rendimiento: 'Hasta 63',
       image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/pures-smoothie.webp`,
-      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.png`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.png`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.png`}
+      icons: {"sabor":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`,"pres":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`,"rend":`${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp`}
     }
   ];
 
   /** "Disfruta en" → /recetas?tipo=<chip real de recetas-listado.config.ts>. */
   puresEnjoy = [
-    { label: 'Frappés', image: `${ASSETS_BASE_URL}/images/insumos/pures%20y%20concentrados/Frame.png`, tipo: 'frias', ariaLabel: 'Ver recetas de bebidas frías (frappés) en el recetario' },
-    { label: 'Smoothies', image: `${ASSETS_BASE_URL}/images/insumos/pures%20y%20concentrados/Frame-1.png`, tipo: 'frias', ariaLabel: 'Ver recetas de bebidas frías (smoothies) en el recetario' },
-    { label: 'Sodas italianas', image: `${ASSETS_BASE_URL}/images/insumos/pures%20y%20concentrados/Frame-2.png`, tipo: 'frias', ariaLabel: 'Ver recetas de bebidas frías (sodas italianas) en el recetario' },
-    { label: 'Coctelería', image: `${ASSETS_BASE_URL}/images/insumos/pures%20y%20concentrados/Frame-3.png`, tipo: 'cocteleria', ariaLabel: 'Ver recetas de coctelería en el recetario' },
-    { label: 'Bebidas frías', image: `${ASSETS_BASE_URL}/images/insumos/pures%20y%20concentrados/Frame-4.png`, tipo: 'frias', ariaLabel: 'Ver recetas de bebidas frías en el recetario' }
+    { label: 'Frappés', image: `${ASSETS_BASE_URL}/images/insumos/pures-y-concentrados/Frame.webp`, tipo: 'frias', ariaLabel: 'Ver recetas de frappés en el recetario' },
+    { label: 'Smoothies', image: `${ASSETS_BASE_URL}/images/insumos/pures-y-concentrados/Frame-1.webp`, tipo: 'frias', ariaLabel: 'Ver recetas de smoothies en el recetario' },
+    { label: 'Sodas italianas', image: `${ASSETS_BASE_URL}/images/insumos/pures-y-concentrados/Frame-2.webp`, tipo: 'frias', ariaLabel: 'Ver recetas de sodas italianas en el recetario' },
+    { label: 'Coctelería', image: `${ASSETS_BASE_URL}/images/insumos/pures-y-concentrados/Frame-3.webp`, tipo: 'cocteleria', ariaLabel: 'Ver recetas de coctelería en el recetario' },
+    { label: 'Bebidas frías', image: `${ASSETS_BASE_URL}/images/insumos/pures-y-concentrados/Frame-4.webp`, tipo: 'frias', ariaLabel: 'Ver recetas de bebidas frías en el recetario' }
   ];
 
   puresMenu = inspiraRecipes('pures');
@@ -937,7 +938,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     let params = new HttpParams().set('q', q).set('Type', '1');
     if (!exact) params = params.set('limit', '20');
     const req = new Promise<Array<Record<string, string>>>((resolve) => {
-      this.http.get<Array<Record<string, string>>>('https://cafeetrusca.com/api/product', { params }).subscribe({
+      this.http.get<Array<Record<string, string>>>(apiUrl('product'), { params }).subscribe({
         next: (rows) => {
           const list = Array.isArray(rows) ? rows : [];
           this.writeProductCache(key, list);

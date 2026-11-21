@@ -138,9 +138,9 @@ export class AboutPageComponent implements OnInit, AfterViewInit, OnDestroy {
           email: 'atencion@cafeetrusca.com',
           sameAs: [
             'https://www.facebook.com/CafeEtrusca',
-            'https://www.instagram.com/cafeetrusca',
+            'https://www.instagram.com/cafe.etrusca/',
             'https://www.youtube.com/@CafeEtrusca',
-            'https://www.tiktok.com/@cafeetrusca'
+            'https://www.tiktok.com/@cafe_etrusca'
           ]
         }
       ]

@@ -20,7 +20,7 @@ export class CoursePoliciesPageComponent implements OnInit {
       description:
         'Consulta las políticas externas de cursos y talleres Café Etrusca 2026: inscripciones, cancelaciones y lineamientos.',
       keywords: 'políticas cursos Café Etrusca, talleres, cancelaciones, inscripciones',
-      image: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.png`,
+      image: `${ASSETS_BASE_URL}/images/educacion/icon-cursos.webp`,
       ogType: 'website',
       jsonLd: ({ origin, url }) => ({
         '@context': 'https://schema.org',

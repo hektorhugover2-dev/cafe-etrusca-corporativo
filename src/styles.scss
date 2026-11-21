@@ -162,6 +162,64 @@ textarea,
 
 /* Leaflet markers are injected outside Angular encapsulation.
    Bootstrap/index.html img { max-width:100%; height:auto } shrinks pins. */
+/* Lucky: miniaturas de producto (~120×120), también si n8n inserta <img> sin clase. */
+.lucky-window img:not(.lucky-keep-size),
+.lucky-messages img,
+.lucky-msg img,
+.chat-window .chat-body img,
+.chat-message img,
+.chat-message-markdown img,
+.chat-message-from-bot img {
+  max-width: 120px !important;
+  max-height: 120px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: left center;
+  display: block;
+  margin: 6px 0;
+  border-radius: 8px;
+  cursor: zoom-in;
+  background: transparent;
+}
+.lucky-img-link { display: inline-block; max-width: 120px; vertical-align: top; }
+
+/* Lucky widget: 3 huellitas en el indicador de escritura (mismo trazo que huellita.svg). */
+.lucky-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 16px;
+  padding-bottom: 1px;
+}
+.lucky-dots .lucky-paw {
+  width: 12px;
+  height: 12px;
+  display: block;
+  flex: 0 0 12px;
+  fill: #192966;
+  opacity: .4;
+  transform-origin: 50% 80%;
+  animation: luckyPawWalk 1.35s ease-in-out infinite;
+  --paw-tilt: -10deg;
+}
+.lucky-dots .lucky-paw:nth-child(1) { animation-delay: 0s; }
+.lucky-dots .lucky-paw:nth-child(2) { animation-delay: .22s; --paw-tilt: 10deg; }
+.lucky-dots .lucky-paw:nth-child(3) { animation-delay: .44s; --paw-tilt: -10deg; }
+@keyframes luckyPawWalk {
+  0%, 70%, 100% { transform: translateY(0) rotate(var(--paw-tilt)); opacity: .4; }
+  20% { transform: translateY(-3px) rotate(calc(var(--paw-tilt) * .35)); opacity: 1; }
+  35% { transform: translateY(0) rotate(var(--paw-tilt)); opacity: .7; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lucky-dots .lucky-paw {
+    animation: none !important;
+    opacity: 1;
+    transform: rotate(var(--paw-tilt));
+  }
+}
+
+
 .leaflet-container img {
   max-width: none !important;
   max-height: none !important;

@@ -169,3 +169,66 @@ $strip-all-text: #031131;
     grid-column: 2;
   }
 }
+
+/* Hero del hub de Insumos: mismo patron que Accesorios/Cafe/Maquinas.
+   Foto a sangre + ola compacta blanca. Sin vaso recortado ni mancha. Solo este hub. */
+.ins-hero.ins-hero-photo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #ffffff;
+  background-image: none;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+.ins-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ins-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  display: block;
+}
+.ins-hero.ins-hero-photo app-scroll-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.ins-hero.ins-hero-photo .ins-hero-copy {
+  position: relative;
+  z-index: 3;
+}
+.ins-hero.ins-hero-photo .ins-hero-copy h1,
+.ins-hero.ins-hero-photo .ins-hero-copy .lead,
+.ins-hero.ins-hero-photo .ins-hero-copy .body,
+.ins-hero.ins-hero-photo .ins-hero-copy ::ng-deep .tor-crumbs,
+.ins-hero.ins-hero-photo .ins-hero-copy ::ng-deep .tor-crumbs a {
+  text-shadow: 0 0 10px rgba(250, 235, 219, 0.9), 0 0 2px rgba(250, 235, 219, 0.9);
+}
+.ins-hero.ins-hero-photo .ins-hero-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1.4rem -2.4rem -1.6rem -2rem;
+  border-radius: 32px;
+  background: radial-gradient(ellipse at 28% 40%, rgba(250, 235, 219, 0.86) 0%, rgba(250, 235, 219, 0.48) 48%, rgba(250, 235, 219, 0) 76%);
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .ins-hero.ins-hero-photo {
+    min-height: min(830px, calc(100vw * 830 / 1440));
+    padding: 3.75rem clamp(1.2rem, 3.8vw, 3.44rem) 11.875rem;
+  }
+}
+@media (max-width: 800px) {
+  .ins-hero__bg img { object-position: center 68%; }
+  .ins-hero.ins-hero-photo app-scroll-wave ::ng-deep .scroll-wave-divider.compact svg { height: 56px; }
+}

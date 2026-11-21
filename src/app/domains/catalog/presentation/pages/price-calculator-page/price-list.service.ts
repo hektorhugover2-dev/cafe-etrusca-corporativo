@@ -1,5 +1,6 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 
 /** Lista de precios: 1 = Público, 5 = Fronterizo (cafeetrusca.com/api/product?type=N). */
 export type PriceListType = 1 | 5;
@@ -15,7 +16,7 @@ export interface PriceProduct {
   sizeUnit: 'ml' | 'g' | 'pza' | null;
 }
 
-const API = 'https://cafeetrusca.com/api/product?type=';
+const API = apiUrl('product') + '?type=';
 const IMG = 'https://cafeetrusca.com';
 
 /** Líneas de insumos (bebidas) que tienen sentido en la calculadora. */

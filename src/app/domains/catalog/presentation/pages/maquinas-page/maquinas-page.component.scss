@@ -482,3 +482,490 @@
   color: #070c3b !important;
   border: 1.5px solid #070c3b;
 }
+/* Secciones añadidas del mockup (solo hub): reparación, marcas y asesoría. */
+.maq-repair-inner,
+.maq-advice-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 1.75rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.maq-repair-inner img,
+.maq-advice-inner img {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+  border-radius: 24px;
+}
+
+.maq-repair-copy p,
+.maq-advice-copy p {
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #3d342c;
+}
+
+.maq-repair-notice {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  background: #f4eee4;
+  border-radius: 14px;
+  padding: 0.75rem 1rem;
+  color: #3d342c;
+  font-weight: 600;
+}
+
+.maq-repair-notice .notice-i {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #283039;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+
+.maq-repair-small {
+  font-size: 0.92rem !important;
+  color: #3d342c;
+}
+
+.maq-advice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+.maq-brand-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem 2.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0 1rem;
+}
+
+.maq-brand-list img {
+  height: 48px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+.maq-brand-list a {
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .maq-repair-inner,
+  .maq-advice-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== rediseno-maquinas-2026-11-11: según mockup de Héctor (contenido intacto) ===== */
+$maq-vino: #6e1f3a;
+$maq-navy: #070c3b;
+$maq-lav: #ebe8fb;
+$maq-yellow: #f5d56a;
+
+.maq-page .cta-arrow {
+  display: inline-block;
+  margin-left: 0.55rem;
+  transition: transform 0.18s ease;
+}
+.maq-page a:hover .cta-arrow,
+.maq-page a:focus-visible .cta-arrow { transform: translateX(3px); }
+.maq-page a:focus-visible { outline: 3px solid #192966; outline-offset: 3px; }
+
+/* CTAs vino (sólido y outline) */
+.maq-page .btn-jar {
+  background: $maq-vino;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.9rem 1.7rem;
+  box-shadow: 0 10px 20px rgba(110, 31, 58, 0.22);
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  &:hover, &:focus-visible { color: #fff; filter: brightness(1.08); transform: translateY(-1px); }
+}
+.maq-page .btn-jar--outline {
+  background: transparent !important;
+  color: $maq-vino !important;
+  border: 2px solid $maq-vino;
+  box-shadow: none;
+  &:hover, &:focus-visible { background: rgba(110, 31, 58, 0.06) !important; }
+}
+
+/* Blob amarillo del hero (misma silueta que el blob existente, en amarillo).
+   La máscara va con ruta local (/assets, mismo origen): mask-image exige CORS y R2
+   (imagenes.cafeetrusca.com) no manda Access-Control-Allow-Origin -> el blob no se pintaba y salía error en consola. */
+.maq-hero .maq-hero-blob {
+  display: block;
+  width: min(60%, 700px);
+  height: min(94%, 760px);
+  background: $maq-yellow;
+  -webkit-mask: url('/assets/images/insumos/jarabes/blob-hero.webp') right bottom / contain no-repeat;
+  mask: url('/assets/images/insumos/jarabes/blob-hero.webp') right bottom / contain no-repeat;
+}
+.maq-hero .jar-hero-media .photo { filter: drop-shadow(0 22px 26px rgba(7, 12, 59, 0.22)); }
+
+/* H2: estándar global h2.section-title-center (mayúsculas + separador del sitio). */
+
+/* Chips pastel: Espresso amarillo, Licuadoras turquesa, Molinos rosa, Tostadores lima */
+.maq-nav .maq-chip.ins-cat { width: 108px; }
+.maq-nav .maq-chip.ins-cat .ins-cat-icon {
+  width: 92px;
+  height: 92px;
+  box-shadow: 0 8px 18px rgba(7, 12, 59, 0.08);
+}
+.maq-nav .maq-chip.ins-cat .ins-cat-label { color: $maq-navy; }
+.maq-nav.ins-nav { gap: 1.2rem 2.6rem; }
+.maq-nav.all-color .maq-cat-espresso .ins-cat-icon,
+.maq-nav .maq-cat-espresso.active .ins-cat-icon { background: #f6e27a !important; }
+.maq-nav.all-color .maq-cat-licuadoras .ins-cat-icon,
+.maq-nav .maq-cat-licuadoras.active .ins-cat-icon { background: #8fe8f4 !important; }
+.maq-nav.all-color .maq-cat-molinos .ins-cat-icon,
+.maq-nav .maq-cat-molinos.active .ins-cat-icon { background: #ffc2e0 !important; }
+.maq-nav.all-color .maq-cat-tostadores .ins-cat-icon,
+.maq-nav .maq-cat-tostadores.active .ins-cat-icon { background: #dff08a !important; }
+.maq-nav.all-color .maq-cat-autoservicio .ins-cat-icon { background: #e8e8e8 !important; }
+
+/* Subcategorías 2x2 */
+.maq-subcats { padding-top: 3.4rem; }
+.maq-subcat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.maq-subcat {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 1rem;
+  min-height: 280px;
+  padding: 1.8rem 1.6rem 1.8rem 1.8rem;
+  border-radius: 30px;
+  background: #f6e27a;
+  color: $maq-navy;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  &[data-tone='cyan'] { background: #8fe8f4; }
+  &[data-tone='pink'] { background: #ffc2e0; }
+  &[data-tone='lime'] { background: #dff08a; }
+
+  &:hover, &:focus-visible {
+    color: $maq-navy;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px rgba(7, 12, 59, 0.12);
+  }
+  &:hover .maq-subcat-go, &:focus-visible .maq-subcat-go { transform: translateX(3px); }
+}
+.maq-subcat-copy { display: flex; flex-direction: column; gap: 0.85rem; position: relative; z-index: 2; }
+.maq-subcat-head { display: flex; align-items: center; gap: 0.85rem; }
+.maq-subcat-head h3 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  color: $maq-navy;
+}
+.maq-subcat-icon {
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  img { width: 34px; height: 42px; object-fit: contain; }
+}
+.maq-subcat-desc { font-size: 1rem; line-height: 1.5; color: #1d2240; max-width: 20rem; }
+.maq-subcat-shot {
+  width: 100%;
+  height: 230px;
+  object-fit: contain;
+  object-position: center bottom;
+  transform: scale(1.18);
+  transform-origin: center bottom;
+  filter: drop-shadow(0 14px 18px rgba(7, 12, 59, 0.2));
+  position: relative;
+  z-index: 1;
+}
+.maq-subcat-go {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 3;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  transition: transform 0.18s ease;
+}
+
+/* Bandas con onda (lavanda reparación / amarilla asesoría) */
+.maq-repair,
+.maq-advice {
+  position: relative;
+  padding-top: 150px !important;
+}
+.maq-band-wave { position: static; }
+.maq-repair {
+  background: $maq-lav;
+  padding-bottom: 150px !important;
+  margin-top: 2.5rem;
+}
+.maq-repair-inner img {
+  aspect-ratio: 4 / 3.6;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: 30px;
+  box-shadow: 0 18px 34px rgba(7, 12, 59, 0.14);
+}
+.maq-repair-copy p,
+.maq-advice-copy p { color: #1d2240; }
+.maq-repair-notice {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: #f6e27a !important;
+  border-radius: 999px !important;
+  padding: 0.6rem 1.2rem 0.6rem 0.7rem !important;
+  color: $maq-navy !important;
+}
+.maq-repair-notice .notice-i { background: $maq-navy; width: 1.6rem; height: 1.6rem; }
+
+.maq-brands { padding-top: 3.6rem; padding-bottom: 3rem; }
+.maq-brand-list {
+  gap: 1.2rem 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 84px;
+    padding: 0 clamp(1.2rem, 3vw, 2.6rem);
+    border-left: 1px solid #d9d6e8;
+    &:first-child { border-left: 0; }
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 84px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+    &:hover { transform: translateY(-2px); }
+  }
+  /* Tamaños ópticos homogéneos: cada logo trae proporción / márgenes distintos */
+  li[data-brand='reneka'] img { height: 80px; max-width: none; }
+  li[data-brand='hamilton'] img { width: 190px; height: 44px; max-width: none; object-fit: cover; }
+  li[data-brand='ceado'] img { height: 36px; max-width: none; }
+  li[data-brand='fiorenzato'] img { height: 42px; max-width: none; }
+  li[data-brand='coffeetech'] img { width: 230px; height: auto; max-width: none; }
+}
+
+.maq-advice {
+  background: $maq-yellow;
+  padding-bottom: 0 !important;
+  margin-top: 1rem;
+}
+.maq-advice-inner {
+  align-items: end;
+}
+.maq-advice-inner img {
+  max-height: 440px !important;
+  object-position: center bottom;
+  align-self: end;
+  display: block;
+}
+.maq-advice-copy { padding-bottom: 3.5rem; }
+.maq-advice-buttons { gap: 0.85rem; }
+
+.maq-cta.after-advice ::ng-deep .ins-cta-band { background: #f4eee4; }
+
+@media (max-width: 900px) {
+  .maq-subcat-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 800px) {
+  .maq-repair, .maq-advice { padding-top: 110px !important; }
+  .maq-repair { padding-bottom: 110px !important; }
+  .maq-advice-inner { display: flex !important; flex-direction: column-reverse; }
+  .maq-advice-inner img { max-height: 320px !important; width: auto !important; max-width: 100%; margin: 0 auto; }
+  .maq-advice-copy { padding-bottom: 0; }
+  .maq-repair-copy, .maq-advice-copy { text-align: center; }
+  .maq-repair-notice { text-align: left; }
+  .maq-advice-buttons { justify-content: center; }
+}
+@media (max-width: 640px) {
+  .maq-hero .jar-hero-copy { min-width: 0; max-width: 100%; }
+  .maq-hero .btn-jar,
+  .maq-repair .btn-jar,
+  .maq-advice-buttons .btn-jar { width: 100%; }
+  .maq-nav.ins-nav { gap: 1rem 1.2rem; }
+  .maq-subcat {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 1.5rem 1.3rem 1.3rem;
+  }
+  .maq-subcat-shot { height: 190px; transform: none; }
+  .maq-brand-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    li { border-left: 0; padding: 0 0.5rem; }
+    li:last-child { grid-column: 1 / -1; }
+    li[data-brand='hamilton'] img { width: 150px; height: 36px; }
+    li[data-brand='coffeetech'] img { width: 200px; }
+    li[data-brand='reneka'] img { height: 72px; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .maq-subcat, .maq-subcat-go, .maq-page .cta-arrow, .maq-page .btn-jar, .maq-brand-list a { transition: none; }
+}
+
+/* --- ajustes tras revisar capturas --- */
+.maq-hero .jar-hero-copy h1 { color: $maq-navy; }
+.maq-repair-copy h2.section-title-center:not(#stc-noop),
+.maq-advice-copy h2.section-title-center:not(#stc-noop) { text-align: left !important; margin-left: 0 !important; }
+.maq-repair-copy h2.section-title-center:not(#stc-noop)::after,
+.maq-advice-copy h2.section-title-center:not(#stc-noop)::after {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 1rem !important;
+  background-position: left center !important;
+}
+.maq-brand-list {
+  li { padding: 0 clamp(0.9rem, 1.8vw, 1.7rem); }
+  li[data-brand='reneka'] img { height: 88px; }
+  li[data-brand='fiorenzato'] img { height: 50px; }
+  li[data-brand='coffeetech'] img { width: 200px; }
+}
+/* Logo de Hamilton en el encabezado de su sección: el archivo trae mucho margen transparente */
+.maq-sec-logo img[src*='logo-hamilton'] {
+  width: min(300px, 70vw);
+  height: 70px;
+  max-width: none;
+  object-fit: cover;
+}
+@media (max-width: 800px) {
+  .maq-page.layout-jarabes .jar-hero.maq-hero,
+  .maq-hero.jar-hero {
+    grid-template-columns: 1fr;
+    padding-bottom: 8rem;
+  }
+  .maq-hero .maq-hero-blob { width: 92%; height: 52%; }
+  .maq-hero .jar-hero-media { min-height: 260px; }
+  .maq-hero .jar-hero-media .photo { max-height: 300px; }
+  .maq-repair-copy h2.section-title-center:not(#stc-noop),
+  .maq-advice-copy h2.section-title-center:not(#stc-noop) { text-align: center !important; margin-left: auto !important; }
+  .maq-repair-copy h2.section-title-center:not(#stc-noop)::after,
+  .maq-advice-copy h2.section-title-center:not(#stc-noop)::after { margin-left: auto !important; background-position: center !important; }
+}
+@media (max-width: 640px) {
+  .maq-brand-list li[data-brand='reneka'] img { height: 76px; }
+  .maq-brand-list li[data-brand='fiorenzato'] img { height: 40px; }
+  .maq-brand-list li[data-brand='coffeetech'] img { width: 200px; }
+}
+
+/* Hero del hub de maquinaria: mismo patron que Accesorios/Cafe/Insumos (foto a sangre + ola compacta).
+   Especificidad por encima de .maq-page.layout-jarabes .jar-hero.maq-hero (grid 2 col, min-height 0, padding de jarabes).
+   Solo este hub: las subpaginas no usan .maq-hero-photo. */
+.maq-page.layout-jarabes .jar-hero.maq-hero.maq-hero-photo,
+.maq-hero.maq-hero-photo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #ffffff;
+  background-image: none;
+  grid-template-columns: 1fr;
+  align-items: start;
+  min-height: 0;
+}
+.maq-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.maq-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+  display: block;
+}
+.maq-page.layout-jarabes .jar-hero.maq-hero.maq-hero-photo app-scroll-wave,
+.maq-hero.maq-hero-photo app-scroll-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.maq-hero.maq-hero-photo .jar-hero-copy {
+  position: relative;
+  z-index: 3;
+}
+.maq-hero.maq-hero-photo .jar-hero-copy h1,
+.maq-hero.maq-hero-photo .jar-hero-copy .lead,
+.maq-hero.maq-hero-photo .jar-hero-copy .body,
+.maq-hero.maq-hero-photo .jar-hero-copy ::ng-deep .tor-crumbs,
+.maq-hero.maq-hero-photo .jar-hero-copy ::ng-deep .tor-crumbs a {
+  text-shadow: 0 0 10px rgba(250, 235, 219, 0.9), 0 0 2px rgba(250, 235, 219, 0.9);
+}
+.maq-hero.maq-hero-photo .jar-hero-copy::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -1.4rem -2.4rem -1.6rem -2rem;
+  border-radius: 32px;
+  background: radial-gradient(ellipse at 28% 40%, rgba(250, 235, 219, 0.86) 0%, rgba(250, 235, 219, 0.48) 48%, rgba(250, 235, 219, 0) 76%);
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .maq-page.layout-jarabes .jar-hero.maq-hero.maq-hero-photo,
+  .maq-hero.maq-hero-photo {
+    min-height: min(830px, calc(100vw * 830 / 1440));
+    padding: 3.75rem clamp(1.2rem, 3.8vw, 3.44rem) 11.875rem;
+  }
+}
+/* Tablet/movil: mismo padding que Cafe/Insumos (.ins-hero), no el recorte a 8rem de jarabes. */
+@media (max-width: 1023.98px) {
+  .maq-page.layout-jarabes .jar-hero.maq-hero.maq-hero-photo,
+  .maq-hero.maq-hero-photo {
+    padding: 2.2rem clamp(1.2rem, 5vw, 5rem) 11rem;
+  }
+}
+@media (max-width: 800px) {
+  .maq-page.layout-jarabes .jar-hero.maq-hero.maq-hero-photo,
+  .maq-hero.maq-hero-photo {
+    padding-top: 1.4rem;
+    padding-bottom: 11rem;
+  }
+  .maq-hero__bg img { object-position: center 72%; }
+  .maq-hero.maq-hero-photo app-scroll-wave ::ng-deep .scroll-wave-divider.compact svg { height: 56px; }
+}

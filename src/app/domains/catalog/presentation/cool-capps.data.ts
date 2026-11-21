@@ -136,10 +136,10 @@ export const COOL_CAPPS_LINES: CoolCappsLine[] = [
 ];
 
 export const COOL_CAPPS_LINE_ICONS = (tone: string) => ({
-  sabor: `${JAR}/icon-sabor-${tone}.png`,
-  pres: `${JAR}/icon-pres-${tone}.png`,
-  rend: `${JAR}/icon-rend-${tone}.png`,
-  blob: `${JAR}/blob-${tone}.png`
+  sabor: `${JAR}/icon-sabor-${tone}.webp`,
+  pres: `${JAR}/icon-pres-${tone}.webp`,
+  rend: `${JAR}/icon-rend-${tone}.webp`,
+  blob: `${JAR}/blob-${tone}.webp`
 });
 
 export const COOL_CAPPS_PRODUCTS: CoolCappsProduct[] = COOL_CAPPS_LINES.flatMap((l) => l.products);

@@ -14,8 +14,9 @@ import {
   type Branch,
   type Locator, DISTRIBUTORS } from './contacto.data';
 import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../../shared/kernel/config/assets-url';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 
-const CONTACT_US_URL = 'https://cafeetrusca.com/api/ContactUs';
+const CONTACT_US_URL = apiUrl('ContactUs');
 
 @Component({
   selector: 'app-contact-page',

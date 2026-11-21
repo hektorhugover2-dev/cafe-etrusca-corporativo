@@ -22,7 +22,7 @@
         @for (c of cats; track c.slug) {
           <a class="edu-cat" [class]="c.slug" [routerLink]="['/educacion', c.slug]">
             <span class="ico"><img [src]="c.icon" alt="Café con arte latte"></span>
-            <h3>{{ c.label }}</h3>
+            <h2>{{ c.label }}</h2>
           </a>
         }
       </div>

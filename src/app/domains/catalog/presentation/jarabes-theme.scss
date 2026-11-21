@@ -2394,7 +2394,7 @@
 
 
 
-  color: #0aa3a0;
+  color: #099290; // AA 3:1 texto grande sobre #ffe566 (antes #0aa3a0, 2.46:1)
 
 
 
@@ -3070,7 +3070,7 @@
 
 
 
-  h3 {
+  h2, h3 {
 
 
 
@@ -3134,19 +3134,19 @@
 
 
 
-.layout-toppings .toppings-tipo.cyan { background: #d8d8ff; h3 { color: #3a3a8a; } }
+.layout-toppings .toppings-tipo.cyan { background: #d8d8ff; h2, h3 { color: #3a3a8a; } }
 
 
 
-.layout-toppings .toppings-tipo.lime { background: #c8e84a; h3 { color: #3f5a10; } }
+.layout-toppings .toppings-tipo.lime { background: #c8e84a; h2, h3 { color: #3f5a10; } }
 
 
 
-.layout-toppings .toppings-tipo.yellow { background: #ffe566; h3 { color: #8a6a10; } }
+.layout-toppings .toppings-tipo.yellow { background: #ffe566; h2, h3 { color: #80620f; } } /* AA 4.5:1 (antes #8a6a10, 4.01:1) */
 
 
 
-.layout-toppings .toppings-tipo.coral { background: #ff9eb8; h3 { color: #8a2040; } }
+.layout-toppings .toppings-tipo.coral { background: #ff9eb8; h2, h3 { color: #8a2040; } }
 
 
 
@@ -3316,7 +3316,7 @@
 
   background: #ffe566;
 
-  color: #8a6a10 !important;
+  color: #80620f !important; // AA 4.5:1 sobre #ffe566 (antes #8a6a10, 4.01:1)
 
 }
 

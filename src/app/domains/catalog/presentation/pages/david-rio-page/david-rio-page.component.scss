@@ -96,3 +96,14 @@
 .dr-page .tor-btn-navy { background: #070c3b; }
 /* Fotos de producto ya transparentes: sin multiply (pedido de Héctor, 29-oct-2026). */
 .dr-page .tor-card-media img, .dr-page .dr-card-media > img:not(.dr-animal-art), .dr-page .tor-split-media img, .dr-page .tor-bottle { mix-blend-mode: normal; }
+
+/* Contraste AA: nombres (texto grande 3:1 sobre blanco) y chips activos (4.5:1 con blanco). */
+#chai-tigre .dr-name { color: #da7e24; }
+#chai-tigre .dr-chip.on { background: #ae641d; color: #fff; }
+#chai-elefante .dr-chip.on { background: #7d6dac; color: #fff; }
+#chai-tortuga .dr-chip.on { background: #488354; color: #fff; }
+#chai-flamingo .dr-name { color: #e56e92; }
+#chai-flamingo .dr-chip.on { background: #b75875; color: #fff; }
+#chai-tucan .dr-name { color: #c08c00; }
+#chai-tucan .dr-chip.on { background: #987000; color: #fff; }
+#chai-panda .dr-chip.on { background: #c4533c; color: #fff; }

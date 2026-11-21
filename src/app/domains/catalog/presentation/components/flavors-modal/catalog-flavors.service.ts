@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { uniqueFlavors } from './flavor-count';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 
 type Row = Record<string, string>;
 
@@ -46,7 +47,7 @@ export class CatalogFlavorsService {
     } catch {}
     const params = new HttpParams().set('q', q).set('Type', '1');
     const req = new Promise<Row[]>((resolve) => {
-      this.http.get<Row[]>('https://cafeetrusca.com/api/product', { params }).subscribe({
+      this.http.get<Row[]>(apiUrl('product'), { params }).subscribe({
         next: (rows) => {
           const list = Array.isArray(rows) ? rows : [];
           try { localStorage.setItem(key, JSON.stringify({ at: Date.now(), rows: list })); } catch {}

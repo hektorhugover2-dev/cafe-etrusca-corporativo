@@ -144,7 +144,7 @@ export const MET_COURSES: MetCourse[] = [
   {
     kicker: 'Taller',
     title: 'Métodos De Extracción',
-    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.png`,
+    image: `${ASSETS_BASE_URL}/images/educacion/cursos-photo.webp`,
     slug: 'metodos-de-extraccion'
   },
   {

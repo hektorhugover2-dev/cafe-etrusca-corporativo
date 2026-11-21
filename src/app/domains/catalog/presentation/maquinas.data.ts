@@ -23,6 +23,8 @@ export interface MaqSection {
   intro: string;
   brandLogo?: string;
   blocks: MaqBrandBlock[];
+  /** Si es true, el showcase de esta categoría no se muestra en el hub de maquinaria. */
+  hideShowcaseOnHub?: boolean;
 }
 
 export interface MaqNavItem {
@@ -56,7 +58,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'espresso',
     label: 'Espresso',
-    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/espresso.png`,
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/espresso.webp`,
     desc: 'Máquinas Reneka para barra profesional',
     link: '/maquinaria-y-equipo-para-cafeterias/espresso',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/43',
@@ -68,7 +70,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'autoservicio',
     label: 'Autoservicio',
-    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/autoservicio.png`,
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/autoservicio.webp`,
     desc: 'Equipos de autoservicio para alto volumen',
     link: '/maquinaria-y-equipo-para-cafeterias/autoservicio',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/57',
@@ -81,7 +83,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'licuadoras',
     label: 'Licuadoras',
-    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.png`,
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.webp`,
     desc: 'Hamilton Beach para barra profesional',
     link: '/maquinaria-y-equipo-para-cafeterias/licuadoras',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/48',
@@ -93,7 +95,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'molinos',
     label: 'Molinos',
-    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.png`,
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.webp`,
     desc: 'Ceado y Fiorenzato para espresso y filtro',
     link: '/maquinaria-y-equipo-para-cafeterias/molinos',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/44',
@@ -105,7 +107,7 @@ export const MAQ_NAV: MaqNavItem[] = [
   {
     id: 'tostadores',
     label: 'Tostadores',
-    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.png`,
+    icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.webp`,
     desc: 'Tostadores Coffee Tech de laboratorio a tienda',
     link: '/maquinaria-y-equipo-para-cafeterias/tostadores',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/52',
@@ -152,6 +154,7 @@ const img = (f: string) => `${ASSETS_BASE_URL}/images/maquinas/${f}`;
 export const MAQ_SECTIONS: MaqSection[] = [
   {
     id: 'espresso',
+    hideShowcaseOnHub: true,
     kicker: 'Reneka',
     title: 'Máquinas para espresso',
     intro:
@@ -268,6 +271,7 @@ export const MAQ_SECTIONS: MaqSection[] = [
   },
   {
     id: 'licuadoras',
+    hideShowcaseOnHub: true,
     kicker: 'Hamilton Beach',
     title: 'Licuadoras',
     intro:
@@ -302,6 +306,7 @@ export const MAQ_SECTIONS: MaqSection[] = [
   },
   {
     id: 'molinos',
+    hideShowcaseOnHub: true,
     kicker: 'Ceado · Fiorenzato',
     title: 'Molinos',
     intro:
@@ -356,6 +361,7 @@ export const MAQ_SECTIONS: MaqSection[] = [
   },
   {
     id: 'tostadores',
+    hideShowcaseOnHub: true,
     kicker: 'Coffee Tech',
     title: 'Tostadores',
     intro: 'El estándar de oro en tecnología de tostado de café, del laboratorio a la tienda.',

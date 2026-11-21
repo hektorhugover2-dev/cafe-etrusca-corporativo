@@ -164,3 +164,22 @@
 }
 
 .vm-note{margin:-.35rem 0 .5rem;font-size:.85rem;font-style:italic;color:#6b6b6b;}
+
+/* /contacto/: tipografía más legible de la tarjeta, sin cambiar otras páginas. */
+:host-context(.contacto-page) {
+  .vm-badge { font-size: 12px; }
+  .vm-panel h3 { font-size: 2.15rem; }
+  .vm-city { font-size: 1rem; }
+  .vm-note { font-size: 0.9375rem; }
+  .vm-row strong { font-size: 12px; }
+  .vm-row p { font-size: 1rem; }
+  .vm-btn {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Poppins', 'Poppins Fallback', system-ui, sans-serif;
+  }
+
+  @media (max-width: 560px) {
+    .vm-panel h3 { font-size: 1.75rem; }
+  }
+}

@@ -1,6 +1,7 @@
 import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../shared/kernel/config/assets-url';
+import { apiUrl } from '../../../../shared/kernel/config/api-url';
 ﻿import { DISTRIBUTORS } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
-import { Component, ElementRef, QueryList, ViewChildren, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren, OnDestroy, OnInit, inject, afterNextRender } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { swalToast } from '../../../../shared/kernel/utils/swal-toast';
 import { CommonModule } from '@angular/common';
@@ -23,11 +24,17 @@ export class HomePageComponent implements OnInit, OnDestroy {
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
   protected readonly assetsBase = ASSETS_BASE_URL;
   /** Hero: false = solo el slide "CAFE ETRUSCA" (sin dots/flechas/autoplay). true = reactiva los 7 slides. */
-  protected readonly heroShowAllSlides = false;
+  protected readonly heroShowAllSlides = true; // LOCAL TEST slider 1x1 2026-11-09
+  /** Desarrollo 2026-11-10: oculta del carrusel hero los slides de kits (La Fenice, Barista básico, Bubble Tea, Toddy 1 y 2) y, a petición de Héctor (t690u), también Hario. Poner true para reactivarlos. */
+  protected readonly heroShowKitSlides = false;
+  /** Índices de indicadores solo para slides visibles. Con kits y Hario ocultos: Promociones, Aromas de invierno, Recetario, CAFÉ ETRUSCA (4). Si heroShowKitSlides=true, son 10. */
+  protected get heroIndicatorIndexes(): number[] {
+    return this.heroShowKitSlides ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] : [0, 1, 2, 3];
+  }
   private http = inject(HttpClient);
 
   homeRecipes: Recipe[] = /* Temporada actual: invierno (colección invierno-2024). Calabaza: ['pumpkin-cold-brew', 'dirty-pumpkin-chai', 'mokalabaza-latte', 'bubble-pumpkin'] */
-    ['noche-de-invierno-latte', 'copito-de-chocolate-blanco', 'latte-de-noel', 'winter-peach']
+    ['noche-de-invierno-latte', 'copito-de-chocolate-blanco', 'latte-de-noel', 'solsticio-de-lavanda-frio']
     .map((slug) => publishedRecipes().find((r) => r.slug === slug))
     .filter((r): r is Recipe => !!r);
 
@@ -56,7 +63,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   private readonly luckyPool = [
     `${ASSETS_BASE_URL}/images/lucky-idle.webp`,
     `${ASSETS_BASE_URL}/images/lucky-writing.webp`,
-    `${ASSETS_BASE_URL}/images/mascota.png`
+    `${ASSETS_BASE_URL}/images/mascota.webp`
   ];
   private luckyRotateTimer: ReturnType<typeof setInterval> | null = null;
 
@@ -152,6 +159,156 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ];
   currentBranch: any = null;
 
+
+  // Últimos videos: el sorteo corre en el navegador (afterNextRender) para que
+  // cambie al recargar. En SSR/prerender se usa el primer elemento de cada lista.
+  readonly ultimosTiktok: { url: string; image: string; title: string; alt: string }[] = [
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7707789202460527880',
+      image: 'tiktok-equilibrar-gastos-urnex-dezcal.webp',
+      title: '¡Las promociones llegaron!',
+      alt: 'Hombre con lentes meditando sobre una mesa de madera con un bote Urnex Dezcal en la cabeza'
+    },
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7707050055617776914',
+      image: 'tiktok-conoces-nuestros-cursos.webp',
+      title: '¿Ya conoces todos nuestros cursos?',
+      alt: 'Mujer con mandil de Café Etrusca Cursos y Talleres sentada frente a un fondo de ladrillo'
+    },
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7698404438922235154',
+      image: 'tiktok-senal-para-emprender.webp',
+      title: 'Esta es tu señal para comenzar a emprender.',
+      alt: 'Hombre trabajando en una mesa con una caja de té Ten Zyu, un vaso de té y una computadora'
+    },
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7696229075475533063',
+      image: 'tiktok-pasado-presente-futuro-bebida.webp',
+      title: 'Ayer fue un sueño. Hoy es una bebida que cobra vida.',
+      alt: 'Tres momentos de una bebida ChillOut Chocomenta: insumos, preparación y cata'
+    },
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7695081146052300050',
+      image: 'tiktok-cuatro-propuestas-menu.webp',
+      title: 'Cuatro propuestas para renovar tu menú',
+      alt: 'Cuatro propuestas de menú sobre una mesa de madera: Dulce Matcha de calabaza frío, Otoñal de manzana dorada frío, Ancestral de cempasúchil frío y Choco spice frío'
+    },
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7694744678234623250',
+      image: 'tiktok-jarabe-calabaza-chai-chillout.webp',
+      title: 'Te compartimos una idea para aprovechar al máximo nuestros insumos',
+      alt: 'Primer plano de una botella de jarabe de agave ChillOut sabor calabaza chai'
+    },
+    {
+      url: 'https://www.tiktok.com/@cafe_etrusca/video/7694369906170629383',
+      image: 'tiktok-productos-en-descuento-catalogo.webp',
+      title: 'Esto y más productos en descuento, pregunta por nuestro catálogo',
+      alt: 'Mujer con cabello rosa sosteniendo dos latas ChillOut Mix de dulce de calabaza y chocomenta'
+    }
+  ];
+  // Facebook e Instagram: los 5 y 6 más recientes (Instagram omite el post fijado).
+  // barista-champ-global-coffee-awards-2026-silver.webp y taller-mixologia-cafe-etrusca.webp se conservan en R2; ya no entran en la rotación por no estar entre esos posts.
+  readonly ultimosFacebook: { url: string; image: string; title: string; alt: string }[] = [
+    {
+      url: 'https://www.facebook.com/cafeetrusca/posts/pfbid02ApK68K3udPZcwu5hjLh9n1onV2mUJNdneRFndgf8wFkkCNpmZPxb4xrEXnsn3a3Bl',
+      image: 'facebook-taller-mixologia-7-tecnicas.webp',
+      title: '7 técnicas. Nuevas combinaciones.',
+      alt: 'Mano sirviendo un cóctel rojo en copa, taller de mixología de Café Etrusca'
+    },
+    {
+      url: 'https://www.facebook.com/cafeetrusca/videos/1194390896354141/',
+      image: 'facebook-programa-24-marca-negocios-eventos.webp',
+      title: 'Programa 24 | Tu marca en negocios o eventos corporativos',
+      alt: 'Hombre en un escritorio de madera durante una transmisión de Café Etrusca'
+    },
+    {
+      url: 'https://www.facebook.com/reel/2051234655566314/',
+      image: 'instagram-todo-lo-que-tu-negocio-necesita.webp',
+      title: '¡Todo lo que tu negocio necesita está a un clic de distancia!',
+      alt: 'Mujer de cabello rosa junto a un anaquel de productos en una sucursal de Café Etrusca'
+    },
+    {
+      url: 'https://www.facebook.com/cafeetrusca/posts/pfbid0AdHNVq5jTGYezQsMtjJ1fg9aihZKbr9b67zkNe1VfAhAviFeVk5Vby3PTJjW6Ewrl',
+      image: 'facebook-etrusclass-haz-que-tu-marca-llegue.webp',
+      title: '¡Haz que tu marca llegue más lejos!',
+      alt: 'Cartel del webinar Etrusclass con Fernando Cruz, 19 de noviembre, de 2:00 a 2:30 p.m.'
+    },
+    {
+      url: 'https://www.facebook.com/reel/1167640925608344/',
+      image: 'instagram-etrusca-comercial-asesoria.webp',
+      title: 'Desde café e insumos hasta equipos, accesorios, capacitación y asesoría',
+      alt: 'Hombre con chaqueta del 30 aniversario de Café Etrusca y el texto Con Etrusca Comercial, no vayas a ciegas'
+    }
+  ];
+  readonly ultimosInstagram: { url: string; image: string; title: string; alt: string }[] = [
+    {
+      url: 'https://www.instagram.com/p/Df-scoVCOTm/',
+      image: 'instagram-limpieza-equipo-urnex.webp',
+      title: '¿Sientes que tu café ya no sabe igual?',
+      alt: 'Logo Urnex y texto sobre la limpieza del equipo de café, con un producto Urnex a la derecha'
+    },
+    {
+      url: 'https://www.instagram.com/p/Df8lCe9FATq/',
+      image: 'instagram-taller-mixologia-7-tecnicas.webp',
+      title: '7 técnicas. Nuevas combinaciones.',
+      alt: 'Mano con tatuaje de flor vertiendo de un shaker, arte del taller de mixología'
+    },
+    {
+      url: 'https://www.instagram.com/reel/Df5_VdYk13V/',
+      image: 'instagram-todo-lo-que-tu-negocio-necesita.webp',
+      title: '¡Todo lo que tu negocio necesita está a un clic de distancia!',
+      alt: 'Mujer de cabello rosa junto a un anaquel de productos en una sucursal de Café Etrusca'
+    },
+    {
+      url: 'https://www.instagram.com/reel/Df3S0PPnH4N/',
+      image: 'instagram-etrusca-comercial-asesoria.webp',
+      title: 'Desde café e insumos hasta equipos, accesorios, capacitación y asesoría',
+      alt: 'Hombre con chaqueta del 30 aniversario de Café Etrusca y el texto Con Etrusca Comercial, no vayas a ciegas'
+    },
+    {
+      url: 'https://www.instagram.com/p/Df2obVdFMuX/',
+      image: 'instagram-si-tuvieras-que-elegir-uno.webp',
+      title: 'Si tuvieras que elegir uno…',
+      alt: 'Mujer bebiendo de un vaso junto a un empaque ChillOut Mix cúrcuma latte'
+    },
+    {
+      url: 'https://www.instagram.com/p/DfyNFt4CVKk/',
+      image: 'instagram-interes-por-el-cafe-conocimientos.webp',
+      title: '¿Te gustaría convertir tu interés por el café en nuevos conocimientos?',
+      alt: 'Vertido de leche sobre un latte art de Café Etrusca'
+    }
+  ];
+  selectedTiktok = this.ultimosTiktok[0];
+  selectedFacebook = this.ultimosFacebook[0];
+  selectedInstagram = this.ultimosInstagram[0];
+
+  constructor() {
+    afterNextRender(() => {
+      const stem = (image: string) => image.replace(/^(tiktok|instagram|facebook)-/i, "").toLowerCase();
+      const sameContent = (
+        a: { image: string; title: string },
+        b: { image: string; title: string }
+      ) =>
+        a.image === b.image ||
+        stem(a.image) === stem(b.image) ||
+        a.title.trim().toLowerCase() === b.title.trim().toLowerCase();
+      const pick = <T,>(items: T[]): T => items[Math.floor(Math.random() * items.length)];
+      const pickAvoiding = <T extends { image: string; title: string }>(
+        items: T[],
+        taken: T[]
+      ): T => {
+        const available = items.filter((item) => !taken.some((t) => sameContent(item, t)));
+        return pick(available.length ? available : items);
+      };
+      this.selectedInstagram = pick(this.ultimosInstagram);
+      this.selectedFacebook = pickAvoiding(this.ultimosFacebook, [this.selectedInstagram]);
+      this.selectedTiktok = pickAvoiding(this.ultimosTiktok, [
+        this.selectedInstagram,
+        this.selectedFacebook
+      ]);
+    });
+  }
+
  ngOnInit() {
     const brand = 'Café Etrusca';
     this.seo.set({
@@ -175,9 +332,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
           email: 'atencion@cafeetrusca.com',
           sameAs: [
             'https://www.facebook.com/CafeEtrusca',
-            'https://www.instagram.com/cafeetrusca',
+            'https://www.instagram.com/cafe.etrusca/',
             'https://www.youtube.com/@CafeEtrusca',
-            'https://www.tiktok.com/@cafeetrusca'
+            'https://www.tiktok.com/@cafe_etrusca'
           ]
         },
         {
@@ -224,7 +381,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   dudaPrivacy = false;
   dudaSubmitting = false;
 
-  private readonly contactUsUrl = 'https://cafeetrusca.com/api/ContactUs';
+  private readonly contactUsUrl = apiUrl('ContactUs');
 
   sendHomeContact() {
     const name = (this.dudaName || '').trim();
@@ -339,7 +496,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
     this.http
       .post(
-        'https://cafeetrusca.com/api/newsletter',
+        apiUrl('newsletter'),
         { first_name, last_name, email },
         { headers: { 'Content-Type': 'application/json' } }
       )

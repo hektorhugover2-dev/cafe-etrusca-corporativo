@@ -48,24 +48,24 @@ export const TORANI_LINES: ToraniLine[] = [
     description: 'Jarabe con una amplia variedad de sabores para agregar sabor a cafés, cócteles, postres y más.',
     formulacion: 'Azúcar de caña',
     sabores: '60 opciones', presentacion: '750 ml', rendimiento: 'Aprox. 25 bebidas de 450 ml',
-    image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-clasico.webp`, blob: JAR + '/blob-yellow.png', tone: 'yellow', anchor: 'sabores',
-    icons: { sabor: JAR + '/icon-sabor-yellow.png', pres: JAR + '/icon-pres-yellow.png', rend: JAR + '/icon-rend-yellow.png' }
+    image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-clasico.webp`, blob: JAR + '/blob-yellow.webp', tone: 'yellow', anchor: 'sabores',
+    icons: { sabor: JAR + '/icon-sabor-yellow.webp', pres: JAR + '/icon-pres-yellow.webp', rend: JAR + '/icon-rend-yellow.webp' }
   },
   {
     name: 'Torani', sub: 'SUGAR FREE',
     description: 'Formulación sin azúcar para cafés, coctelería y postres con el mismo perfil de sabor.',
     formulacion: 'Sucralosa',
     sabores: '17 opciones', presentacion: '750 ml', rendimiento: 'Aprox. 25 bebidas de 450 ml',
-    image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-sugarfree.webp`, blob: JAR + '/blob-cyan.png', tone: 'cyan', anchor: 'sugar-free',
-    icons: { sabor: JAR + '/icon-sabor-cyan.png', pres: JAR + '/icon-pres-cyan.png', rend: JAR + '/icon-rend-cyan.png' }
+    image: `${ASSETS_BASE_URL}/images/insumos/line-defaults/jarabes-sugarfree.webp`, blob: JAR + '/blob-cyan.webp', tone: 'cyan', anchor: 'sugar-free',
+    icons: { sabor: JAR + '/icon-sabor-cyan.webp', pres: JAR + '/icon-pres-cyan.webp', rend: JAR + '/icon-rend-cyan.webp' }
   },
   {
     name: 'Torani', sub: 'PUREMADE',
     description: 'Ingredientes naturales, sin conservadores ni colorantes artificiales.',
     formulacion: 'Ingredientes naturales',
     sabores: '2 opciones', presentacion: '750 ml', rendimiento: 'Aprox. 25 bebidas de 450 ml',
-    image: JAR + '/bottle-puremade.webp', blob: JAR + '/blob-lime.png', tone: 'lime', anchor: 'sabores',
-    icons: { sabor: JAR + '/icon-sabor-lime.png', pres: JAR + '/icon-pres-lime.png', rend: JAR + '/icon-rend-lime.png' }
+    image: JAR + '/bottle-puremade.webp', blob: JAR + '/blob-lime.webp', tone: 'lime', anchor: 'sabores',
+    icons: { sabor: JAR + '/icon-sabor-lime.webp', pres: JAR + '/icon-pres-lime.webp', rend: JAR + '/icon-rend-lime.webp' }
   }
 ];
 

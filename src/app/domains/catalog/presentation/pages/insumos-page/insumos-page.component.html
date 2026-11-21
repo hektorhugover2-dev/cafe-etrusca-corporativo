@@ -1,6 +1,9 @@
 <div class="ins-page">
-  <section class="ins-hero">
-    <img class="jar-hero-blob ins-hero-blob" src="/assets/images/insumos/blob-hero-rosa.webp" alt="" aria-hidden="true">
+  <section class="ins-hero ins-hero-photo">
+    <picture class="ins-hero__bg" aria-hidden="true">
+      <source media="(max-width: 800px)" [attr.srcset]="hubHero.mobile" type="image/webp">
+      <img [src]="hubHero.desktop" alt="" width="1653" height="951" fetchpriority="high" decoding="async">
+    </picture>
     <div class="ins-hero-copy">
       <app-hero-crumbs [items]="crumbs" />
       <h1>INSUMOS</h1>
@@ -8,10 +11,7 @@
       <p class="body">Ingredientes y soluciones profesionales para elevar tu creatividad y tener consistencia en cada preparación.</p>
       <a class="btn-catalog" href="https://cafeetrusca.com" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
-    <div class="ins-hero-media">
-      <img src="{{ assetsBase }}/images/insumos/kiwi-hero.png" alt="Kiwi lemonade">
-    </div>
-    <app-scroll-wave position="bottom" fillColor="#f4eee4"></app-scroll-wave>
+    <app-scroll-wave position="bottom" fillColor="#ffffff" [compact]="true"></app-scroll-wave>
   </section>
 
   <app-insumos-nav [allColor]="true"></app-insumos-nav>

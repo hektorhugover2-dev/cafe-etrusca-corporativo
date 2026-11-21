@@ -397,7 +397,7 @@ $cat-colors: (
   .copy { padding: 2rem 1.8rem; }
   .tag {
     display: inline-block;
-    background: $pink;
+    background: #c42a64; // AA con texto blanco (antes $pink #e23b7a, 4.08:1)
     color: #fff;
     font-weight: 800;
     font-size: 0.75rem;
@@ -575,7 +575,7 @@ $cat-colors: (
     font-size: clamp(1.35rem, 2.4vw, 1.85rem);
     line-height: 1.15;
     color: #2b2b2b;
-    .accent { color: #8fb31a; }
+    .accent { color: #779416; } // AA 3:1 texto grande sobre #f4eee4 (antes #8fb31a, 2.1:1)
   }
 
   .body {
@@ -647,7 +647,7 @@ $cat-colors: (
     margin-top: 0.85rem;
     font-weight: 800;
     font-size: 0.88rem;
-    color: #c45a1a;
+    color: #ab4e17; // AA 4.5:1 sobre #ffe6c4 (antes #c45a1a, 3.59:1)
   }
 }
 
@@ -669,7 +669,7 @@ $cat-colors: (
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: #e23b7a;
+    background: #c42a64; // AA con texto blanco (antes #e23b7a, 4.08:1)
     color: #fff;
     font-size: 0.95rem;
     display: grid;

@@ -37,7 +37,7 @@ export class BienestarPageComponent {
   readonly calcPath = '/calculadora-de-precios';
   readonly tone = 'lime';
   readonly warn = 'CONTIENE EDULCORANTES, NO RECOMENDABLE EN NIÑOS';
-  readonly icons = { sabor: `${JAR}/icon-sabor-lime.png`, pres: `${JAR}/icon-pres-lime.png`, blob: `${JAR}/blob-lime.png` };
+  readonly icons = { sabor: `${JAR}/icon-sabor-lime.webp`, pres: `${JAR}/icon-pres-lime.webp`, blob: `${JAR}/blob-lime.webp` };
   readonly heroItems = [
     { code: 'IBP-102', cls: 'b-left', alt: 'David Rio Orca chai sin azúcar, lata de 337 g', src: BN_HERO('IBP-102') },
     { code: 'IJA-197', cls: 'b-center', alt: 'Jarabe Torani Sugar Free fresa, botella PET de 750 ml', src: BN_HERO('IJA-197') },

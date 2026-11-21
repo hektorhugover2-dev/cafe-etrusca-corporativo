@@ -3,6 +3,7 @@ import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { TrackingService } from './shared/kernel/services/tracking.service';
+import { PromoAvisoService } from './shared/kernel/services/promo-aviso.service';
 import { BuyModalComponent } from './domains/catalog/presentation/components/buy-modal/buy-modal.component';
 import { BuyModalService } from './domains/catalog/presentation/components/buy-modal/buy-modal.service';
 
@@ -19,6 +20,7 @@ export class AppComponent {
 
   constructor() {
     inject(TrackingService).init();
+    inject(PromoAvisoService).init();
     this.setupSmartScroll();
   }
 

@@ -238,7 +238,7 @@
         } @else {
           <section class="lc-section" [class.lc-sub]="s.level >= 3">
             @if (s.heading) {
-              @if (s.level >= 3) { <h3>{{ s.heading }}</h3> } @else { <h2>{{ s.heading }}</h2><span class="lc-rule" aria-hidden="true"></span> }
+              @if (s.level >= 3) { @if (isPromotedSectionHeading(s)) { <h2 class="lc-sub-heading">{{ s.heading }}</h2> } @else { <h3>{{ s.heading }}</h3> } } @else { <h2>{{ s.heading }}</h2><span class="lc-rule" aria-hidden="true"></span> }
             }
             @for (b of s.blocks; track $index) {
               @switch (b.type) {

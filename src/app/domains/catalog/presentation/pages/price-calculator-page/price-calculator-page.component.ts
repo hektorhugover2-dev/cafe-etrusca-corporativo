@@ -24,6 +24,12 @@ interface IngRow {
 
 /** Regla del cliente: cada espresso (shot de 30 ml) = 16 g de café en grano. */
 export const ESPRESSO_G_PER_SHOT = 16;
+/** Query ?lista=: fronterizo (o frontera) elige la lista 5; ausente o valor invalido deja Publico (1). Case-insensitive. */
+export function parseListaParam(raw: string | null | undefined): PriceListType {
+  const v = String(raw || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (v === 'fronterizo' || v === 'frontera') return 5;
+  return 1;
+}
 const ESPRESSO_ML_PER_SHOT = 30;
 /** Regla del cliente: cold brew = 60 ml por porción cuando la receta no indica ml. */
 export const COLD_BREW_DEFAULT_ML = 60;
@@ -112,8 +118,10 @@ export class PriceCalculatorPageComponent implements OnInit {
     });
     this.route.queryParamMap.subscribe((q) => {
       const slug = q.get('receta');
-      const lista = q.get('lista');
-      if (lista === 'fronterizo') this.list = 5;
+      const nextList = parseListaParam(q.get('lista'));
+      const listChanged = nextList !== this.list;
+      this.list = nextList;
+      if (listChanged && this.queryReady) this.loadPrices();
       const r = slug ? recipeBySlug(slug) : null;
       if (r) {
         this.mode = 'receta';
@@ -125,10 +133,13 @@ export class PriceCalculatorPageComponent implements OnInit {
       const sku = q.get('producto');
       if (sku) this.pendingSku = sku;
     });
+    this.queryReady = true;
     this.loadPrices();
   }
 
   private pendingSku: string | null = null;
+  /** True after the initial queryParamMap emit + first loadPrices in ngOnInit. */
+  private queryReady = false;
 
   async loadPrices() {
     if (!this.isBrowser) return;
@@ -148,6 +159,13 @@ export class PriceCalculatorPageComponent implements OnInit {
   setList(t: PriceListType) {
     if (this.list === t) return;
     this.list = t;
+    if (this.isBrowser) {
+      this.router.navigate([], {
+        queryParams: { lista: t === 5 ? 'fronterizo' : null },
+        queryParamsHandling: 'merge',
+        replaceUrl: true
+      });
+    }
     this.loadPrices();
   }
 
@@ -229,7 +247,7 @@ export class PriceCalculatorPageComponent implements OnInit {
     }
     this.rows = rows;
     if (scroll && this.isBrowser) {
-      this.router.navigate([], { queryParams: { receta: r.slug }, replaceUrl: true });
+      this.router.navigate([], { queryParams: { receta: r.slug }, queryParamsHandling: 'merge', replaceUrl: true });
     }
   }
 

@@ -4,6 +4,7 @@ import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { catchError, concat, EMPTY, map, Observable, of, shareReplay, switchMap, tap } from 'rxjs';
 import { EVENTS_SNAPSHOT } from './events-snapshot.token';
 import { catalogByCategory, catalogHoursLabel } from '../data/course-catalog.data';
+import { apiUrl as buildApiUrl } from '../config/api-url';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class EventService {
   /** Server/prerender only: local events snapshot when the API is unreachable. */
   private snapshot = inject(EVENTS_SNAPSHOT, { optional: true });
   private transfer = inject(TransferState);
-  private apiUrl = 'https://cafeetrusca.com/api/Event';
+  private apiUrl = buildApiUrl('Event');
   private list$?: Observable<any[]>;
 
   /**

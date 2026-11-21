@@ -50,15 +50,15 @@ export const CHILLOUT_LINES: ChilloutLine[] = [
     name: 'ChillOut', sub: 'MIX',
     description: 'Línea de polvos saborizados con gran variedad de opciones para crear tus propias recetas especiales.',
     sabores: '31 sabores', presentacion: '2 kg y 700 g', rendimiento: 'Según preparación',
-    image: CHL + '/linea-chillout-mix.webp', blob: JAR + '/blob-coral.png', tone: 'coral', anchor: 'sabores',
-    icons: { sabor: JAR + '/icon-sabor-coral.png', pres: JAR + '/icon-pres-coral.png', rend: JAR + '/icon-rend-coral.png' }
+    image: CHL + '/linea-chillout-mix.webp', blob: JAR + '/blob-coral.webp', tone: 'coral', anchor: 'sabores',
+    icons: { sabor: JAR + '/icon-sabor-coral.webp', pres: JAR + '/icon-pres-coral.webp', rend: JAR + '/icon-rend-coral.webp' }
   },
   {
     name: 'ChillOut', sub: 'JUST FRUIT',
     description: 'Polvos de fruta deshidratada para bebidas naturales, refrescantes y llenas de sabor frutal intenso.',
     sabores: '3 sabores', presentacion: '2 kg y 700 g', rendimiento: 'Según preparación',
-    image: CHL + '/linea-chillout-just-fruit.webp', blob: JAR + '/blob-yellow.png', tone: 'yellow', anchor: 'just-fruit',
-    icons: { sabor: JAR + '/icon-sabor-yellow.png', pres: JAR + '/icon-pres-yellow.png', rend: JAR + '/icon-rend-yellow.png' }
+    image: CHL + '/linea-chillout-just-fruit.webp', blob: JAR + '/blob-yellow.webp', tone: 'yellow', anchor: 'just-fruit',
+    icons: { sabor: JAR + '/icon-sabor-yellow.webp', pres: JAR + '/icon-pres-yellow.webp', rend: JAR + '/icon-rend-yellow.webp' }
   }
 ];
 

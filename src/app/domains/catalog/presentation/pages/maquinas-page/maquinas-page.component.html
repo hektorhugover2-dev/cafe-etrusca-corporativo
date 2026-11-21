@@ -1,13 +1,25 @@
 <div class="ins-page maq-page layout-jarabes">
-  <section class="jar-hero maq-hero" [style.background]="heroColor">
-    <img class="jar-hero-blob" src="{{ assetsBase }}/images/insumos/jarabes/blob-hero.webp" alt="" aria-hidden="true">
+  <section
+    class="jar-hero maq-hero"
+    [class.maq-hero-photo]="!slug && !brandOnly"
+    [style.background]="!slug && !brandOnly ? null : heroColor"
+  >
+    @if (!slug && !brandOnly) {
+      <picture class="maq-hero__bg" aria-hidden="true">
+        <source media="(max-width: 800px)" [attr.srcset]="hubHero.mobile" type="image/webp">
+        <img [src]="hubHero.desktop" alt="" width="1774" height="887" fetchpriority="high" decoding="async">
+      </picture>
+    }
+    @if (slug || brandOnly) {
+      <span class="jar-hero-blob maq-hero-blob" aria-hidden="true"></span>
+    }
     <div class="jar-hero-copy">
       <app-hero-crumbs [items]="crumbs" />
       <h1>{{ heroTitle }}</h1>
       <p class="lead"><span class="accent" [style.color]="heroAccent">{{ heroLead }}</span></p>
       <p class="body">{{ heroBody }}</p>
       @if (catalogUrl) {
-        <a class="btn-jar" [href]="catalogUrl" target="_blank" rel="noopener">Explora el catálogo</a>
+        <a class="btn-jar" [href]="catalogUrl" target="_blank" rel="noopener">Explora el catálogo <span class="cta-arrow" aria-hidden="true">→</span></a>
       } @else if (showDiscBanner || brandOnly?.discontinued) {
         <div class="maq-disc-ctas">
           <a class="btn-jar" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
@@ -16,13 +28,15 @@
         </div>
       }
     </div>
-    <div class="jar-hero-media">
-      <img class="photo" [src]="heroImage" alt="Máquinas y equipo para cafeterías">
-    </div>
-    <app-scroll-wave position="bottom" [fillColor]="heroColor"></app-scroll-wave>
+    @if (slug || brandOnly) {
+      <div class="jar-hero-media">
+        <img class="photo" [src]="heroImage" alt="Máquinas y equipo para cafeterías">
+      </div>
+    }
+    <app-scroll-wave position="bottom" [fillColor]="!slug && !brandOnly ? '#ffffff' : heroColor" [compact]="!slug && !brandOnly"></app-scroll-wave>
   </section>
 
-  <nav class="maq-nav ins-nav" aria-label="Categorías de máquinas">
+  <nav class="maq-nav ins-nav" [class.all-color]="!slug && !brandOnly" aria-label="Categorías de máquinas">
     @for (n of nav; track n.id) {
       <a class="maq-chip ins-cat" [class]="'maq-chip ins-cat maq-cat-' + n.id" [routerLink]="n.link" routerLinkActive="active">
         <span class="ins-cat-icon" aria-hidden="true">
@@ -32,6 +46,27 @@
       </a>
     }
   </nav>
+
+  @if (!slug && !brandOnly) {
+    <section class="ins-section maq-subcats" id="subcategorias" aria-labelledby="maq-subcats-title">
+      <h2 class="section-title-center" id="maq-subcats-title">Subcategorías de máquinas</h2>
+      <div class="maq-subcat-grid">
+        @for (c of hubSubcats; track c.id) {
+          <a class="maq-subcat" [attr.data-tone]="c.tone" [routerLink]="c.link">
+            <span class="maq-subcat-copy">
+              <span class="maq-subcat-head">
+                <span class="maq-subcat-icon" aria-hidden="true"><img [src]="c.icon" alt="" width="40" height="53"></span>
+                <h3>{{ c.title }}</h3>
+              </span>
+              <span class="maq-subcat-desc">{{ c.desc }}</span>
+            </span>
+            <img class="maq-subcat-shot" [src]="c.shot" alt="" width="320" height="320" loading="lazy" decoding="async">
+            <span class="maq-subcat-go" aria-hidden="true">→</span>
+          </a>
+        }
+      </div>
+    </section>
+  }
 
   @if (brandOnly) {
     <section class="maq-sec ins-section" [id]="brandOnly.id">
@@ -78,5 +113,55 @@
     }
   }
 
-  <app-insumos-cta></app-insumos-cta>
+  @if (!slug && !brandOnly) {
+    <section class="ins-section maq-repair" id="mantenimiento" aria-labelledby="maq-repair-title">
+      <app-scroll-wave class="maq-band-wave" position="top" [compact]="true" fillColor="#ffffff"></app-scroll-wave>
+      <div class="maq-repair-inner">
+        <img [src]="assetsBase + '/images/nosotros-maquina.webp'" width="710" height="1029" alt="Barista preparando espresso en una máquina profesional" loading="lazy" decoding="async">
+        <div class="maq-repair-copy">
+          <h2 class="section-title-center" id="maq-repair-title">Reparación y mantenimiento</h2>
+          <p>Mantén tus equipos en óptimas condiciones y alarga su vida útil.</p>
+          <p class="maq-repair-notice">
+            <span class="notice-i" aria-hidden="true">i</span>
+            <span>Aplica para equipos o marcas que comercializamos.</span>
+          </p>
+          <p class="maq-repair-small">Sujeto a disponibilidad.</p>
+          <a class="btn-jar" href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Consultar disponibilidad por WhatsApp (se abre en otra pestaña)">Consultar disponibilidad <span class="cta-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <app-scroll-wave class="maq-band-wave" position="bottom" [compact]="true" fillColor="#ffffff"></app-scroll-wave>
+    </section>
+
+    <section class="ins-section maq-brands" id="marcas" aria-labelledby="maq-brands-title">
+      <h2 class="section-title-center" id="maq-brands-title">Marcas</h2>
+      <ul class="maq-brand-list" aria-label="Marcas de maquinaria">
+        @for (b of hubBrands; track b.name) {
+          <li [attr.data-brand]="b.key">
+            <a [routerLink]="b.link" [attr.aria-label]="'Ver ' + b.name">
+              <img [src]="b.logo" [alt]="b.name" loading="lazy" decoding="async">
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <section class="ins-section maq-advice" id="elegir-equipo" aria-labelledby="maq-advice-title">
+      <app-scroll-wave class="maq-band-wave" position="top" [compact]="true" fillColor="#ffffff"></app-scroll-wave>
+      <div class="maq-advice-inner">
+        <img [src]="assetsBase + '/images/productos/asesoria-baristas.webp'" width="640" height="640" alt="Baristas revisando información en una tableta" loading="lazy" decoding="async">
+        <div class="maq-advice-copy">
+          <h2 class="section-title-center" id="maq-advice-title">Te ayudamos a elegir el equipo ideal</h2>
+          <p>En Café Etrusca te guiamos según tu tipo de negocio, tu menú y tus metas, y te conectamos con Etrusca Biz, nuestra asesoría especializada para cafeterías y proyectos de café.</p>
+          <div class="maq-advice-buttons">
+            <a class="btn-jar" routerLink="/contacto" fragment="contacto-form">Solicitar asesoría <span class="cta-arrow" aria-hidden="true">→</span></a>
+            <a class="btn-jar btn-jar--outline" href="https://etrusca.biz/" target="_blank" rel="noopener noreferrer">Ir a Etrusca Biz <span class="cta-arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+
+  <div class="maq-cta" [class.after-advice]="!slug && !brandOnly">
+    <app-insumos-cta></app-insumos-cta>
+  </div>
 </div>

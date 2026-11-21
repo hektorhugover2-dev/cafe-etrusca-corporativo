@@ -58,7 +58,11 @@
   p { margin: 0 0 1.2rem; }
   h3 { font-size: 1.22rem; font-weight: 600; margin: 2rem 0 0.7rem; }
   ul, ol { padding-left: 1.3rem; margin: 0 0 1.4rem; li { margin-bottom: 0.5rem; } }
-  ::ng-deep a { color: #1f5f8b; font-weight: 500; text-underline-offset: 3px; }
+  ::ng-deep a:not(.blog-btn) { color: #1f5f8b; font-weight: 500; text-underline-offset: 3px; }
+  /* Los enlaces del CTA (a veces via innerHTML, sin atributo de encapsulado) no heredaban el blanco del bloque oscuro. */
+  ::ng-deep .blog-cta-group--highlight a { color: #fff; }
+  ::ng-deep .blog-cta-group--highlight .blog-btn { color: #283039; }
+  ::ng-deep .blog-cta-group--highlight .blog-btn--ghost { color: #fff; }
 }
 
 .blog-figure {
@@ -96,7 +100,9 @@ table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
 caption { text-align: left; font-weight: 600; margin-bottom: 0.6rem; }
 th, td { padding: 0.75rem 0.85rem; border-bottom: 1px solid #e6e9ee; text-align: left; vertical-align: top; }
 th { background: #f3f5f8; font-weight: 600; }
-td.blog-pc { color: #6b5100; font-style: italic; }
+/* Primera columna = encabezado de fila (th scope="row", accesibilidad td-has-header); se ve igual que td */
+tbody th[scope="row"] { background: transparent; font-weight: inherit; }
+td.blog-pc, th.blog-pc { color: #6b5100; font-style: italic; }
 
 .blog-faq-item {
   border-bottom: 1px solid #e6e9ee;

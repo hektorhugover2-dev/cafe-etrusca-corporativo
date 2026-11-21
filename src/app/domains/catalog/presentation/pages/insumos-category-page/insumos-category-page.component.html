@@ -139,7 +139,7 @@
       <a class="btn-jar" href="https://insumos.cafeetrusca.com/#page/26" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="sal-hero-media">
-      <img class="photo" src="{{ assetsBase }}/images/insumos/salsas-hero-drink.png" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/salsas-hero-drink.webp" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#f4eee4"></app-scroll-wave>
   </section>
@@ -219,7 +219,7 @@
       <p>Te acompañamos a elegir las mejores soluciones para tu negocio. Hablemos.</p>
       <a href="https://wa.me/525541668777" target="_blank" rel="noopener noreferrer" aria-label="Contactar a Café Etrusca por WhatsApp (se abre en otra pestaña)">Contactar a Café Etrusca</a>
     </div>
-    <img src="{{ assetsBase }}/images/insumos/salsas-barista.png" alt="Asesor de Café Etrusca">
+    <img src="{{ assetsBase }}/images/insumos/salsas-barista.webp" alt="Asesor de Café Etrusca">
     <app-scroll-wave position="bottom" fillColor="#c8e84a"></app-scroll-wave>
   </section>
 
@@ -246,7 +246,7 @@
 } @else if (cat.layout === 'pures') {
 <div class="ins-page layout-pures">
   <section class="pur-hero">
-    <img class="pur-hero-blob" src="{{ assetsBase }}/images/insumos/pures-blob-hero.png" alt="" aria-hidden="true">
+    <img class="pur-hero-blob" src="{{ assetsBase }}/images/insumos/pures-blob-hero.webp" alt="" aria-hidden="true">
         <div class="pur-hero-copy">
       <app-hero-crumbs [items]="crumbs" />
       <h1>Purés y<br>Concentrados</h1>
@@ -255,7 +255,7 @@
       <a class="btn-pur" href="https://insumos.cafeetrusca.com/#page/31" target="_blank" rel="noopener">Explora el Catálogo</a>
     </div>
     <div class="pur-hero-media">
-      <img class="photo" src="{{ assetsBase }}/images/insumos/pures-drink-2.png" [alt]="cat.heroAlt">
+      <img class="photo" src="{{ assetsBase }}/images/insumos/pures-drink-2.webp" [alt]="cat.heroAlt">
     </div>
     <app-scroll-wave position="bottom" fillColor="#a4f6fb"></app-scroll-wave>
   </section>
@@ -324,7 +324,7 @@
       <p class="pur-note">** Las presentaciones de ChillOut Jam varían según el sabor. Consulta la tabla.</p>
     </div>
     <div class="pur-table-photo">
-      <img src="{{ assetsBase }}/images/insumos/pures-drink-1.png" alt="Bebida roja preparada con ChillOut Jam">
+      <img src="{{ assetsBase }}/images/insumos/pures-drink-1.webp" alt="Bebida roja preparada con ChillOut Jam">
     </div>
   </section>
 
@@ -660,7 +660,7 @@
             <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
           </div>
           @if (line.page) {
-            <h3 class="brand"><a class="brand-link" style="color:inherit;text-decoration:none" [routerLink]="line.page" [attr.aria-label]="'Ver ' + line.brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></a></h3>
+            <h3 class="brand"><a class="brand-link" style="color:inherit;text-decoration:none" [routerLink]="line.page">{{ line.brand }}<span class="sub">{{ line.sub }}</span></a></h3>
           } @else {
             <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
           }
@@ -806,7 +806,7 @@
       @for (t of toppingsTipos; track t.title) {
         <article class="toppings-tipo" [class]="t.tone">
           <img [src]="t.image" [alt]="t.title">
-          <h3>{{ t.title }}</h3>
+          <h2>{{ t.title }}</h2>
           <p>{{ t.description }}</p>
         </article>
       }
@@ -818,39 +818,39 @@
       <h2 class="section-title-center">Líneas</h2>
       <div class="rule"></div>
     </div>
-    @for (block of toppingsBloques; track block.num) {
-      <div class="toppings-bloque" [attr.data-tone]="block.tone">
-        <div class="toppings-bloque-head">
-          <span class="toppings-bloque-num">Bloque {{ block.num }}</span>
-          <h3>{{ block.label }}</h3>
-        </div>
-        <div class="jar-lines-grid">
-          @for (line of linesForBlock(block); track line.name) {
-            <article class="jar-card" [class]="line.tone">
-              <img class="blob" [src]="line.blob" alt="">
-              <div class="shot-slider">
-                <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
-              </div>
-              <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
-              <p>{{ line.description }}</p>
-              <div class="jar-feat">
-                <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
-                  <img [src]="line.icons.sabor" alt="">
-                  <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
-                </button>
-                <div>
-                  <img [src]="line.icons.pres" alt="">
-                  <span><strong>Presentación</strong>{{ line.presentacion }}</span>
-                </div>
-                <div>
-                  <img [src]="line.icons.rend" alt="">
-                  <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
-                </div>
-              </div>
+    @for (block of toppingsBloques; track block.num) {
+      <div class="toppings-bloque" [attr.data-tone]="block.tone">
+        <div class="toppings-bloque-head">
+          <span class="toppings-bloque-num">Bloque {{ block.num }}</span>
+          <h3>{{ block.label }}</h3>
+        </div>
+        <div class="jar-lines-grid">
+          @for (line of linesForBlock(block); track line.name) {
+            <article class="jar-card" [class]="line.tone">
+              <img class="blob" [src]="line.blob" alt="">
+              <div class="shot-slider">
+                <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
+              </div>
+              <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
+              <p>{{ line.description }}</p>
+              <div class="jar-feat">
+                <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
+                  <img [src]="line.icons.sabor" alt="">
+                  <span><strong>Sabores</strong>{{ line.sabores }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+                </button>
+                <div>
+                  <img [src]="line.icons.pres" alt="">
+                  <span><strong>Presentación</strong>{{ line.presentacion }}</span>
+                </div>
+                <div>
+                  <img [src]="line.icons.rend" alt="">
+                  <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
+                </div>
+              </div>
               @if (isNoStore(line)) {
                 <p class="ask-branch">Pregunta disponibilidad en tu <a routerLink="/sucursales">sucursal</a> o en el <a routerLink="/contacto">Call Center</a>.</p>
               }
-              <div class="jar-actions">
+              <div class="jar-actions">
                 @if (!isNoStore(line)) {
                   <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
                 }

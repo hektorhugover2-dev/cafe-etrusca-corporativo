@@ -75,3 +75,9 @@ th {
   vertical-align: top;
   border-bottom: 1px solid #eee;
 }
+
+/* Primera columna de la tabla de puntos de venta = encabezado de fila (td-has-header); se ve igual que td */
+.order-table th[scope="row"] {
+  font-weight: 400;
+  text-align: left;
+}

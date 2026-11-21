@@ -174,5 +174,254 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
     "duration": "54:45",
     "thumb": "https://i.ytimg.com/vi/8hKHHTAnbaU/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=8hKHHTAnbaU"
+  },
+  {
+    "id": "Ss_5JobaQSI",
+    "title": "EP. 22 - Travesías del sabor | Exploradores del café, invitado José Antonio Maya",
+    "duration": "49:13",
+    "thumb": "https://i.ytimg.com/vi/Ss_5JobaQSI/hqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=Ss_5JobaQSI"
+  },
+  {
+    "id": "JVawDocikro",
+    "title": "EP. 23 - Travesías del sabor con Ediberto Zapata",
+    "duration": "43:49",
+    "thumb": "https://i.ytimg.com/vi/JVawDocikro/hqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=JVawDocikro"
+  },
+  {
+    "id": "p8Bc8hgRUYM",
+    "title": "EP. 24 | Travesías del sabor Negocios y Café (Fabiola Baza)",
+    "duration": "49:04",
+    "thumb": "https://i.ytimg.com/vi/p8Bc8hgRUYM/hqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=p8Bc8hgRUYM"
+  },
+  {
+    "id": "rqC_7W4viI0",
+    "title": "EP 25- Travesías del sabor -  Las competencias mexicanas de baristas con Hector García",
+    "duration": "57:41",
+    "thumb": "https://i.ytimg.com/vi/rqC_7W4viI0/hqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=rqC_7W4viI0"
+  },
+  {
+    "id": "02Ubu0mdtRw",
+    "title": "EP 26 - Travesías del sabor | Drip café de especialidad y fincas con Santiago Sota",
+    "duration": "45:03",
+    "thumb": "https://i.ytimg.com/vi/02Ubu0mdtRw/hqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=02Ubu0mdtRw"
   }
 ];
+
+export type VideotecaCategoria = 'todas' | 'recetas' | 'travesias';
+
+export const VIDEOTECA_TABS: { id: VideotecaCategoria; label: string }[] = [
+  { id: 'todas', label: 'Todas' },
+  { id: 'recetas', label: 'Recetas' },
+  { id: 'travesias', label: 'Travesías del Sabor' }
+];
+
+/** Recetas en video del canal (videoteca y «Ver más» de /recetas/?categoria=recetas). */
+export const RECETAS_VIDEOTECA: VideotecaVideo[] = [
+  {
+    id: 'K00VqctTWuA',
+    title: 'Yogur mango y matcha',
+    duration: '2:16',
+    thumb: 'https://i.ytimg.com/vi/K00VqctTWuA/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=K00VqctTWuA',
+    series: 'recetas'
+  },
+  {
+    id: 's3cxb78bM1M',
+    title: 'Taro foam purple',
+    duration: '2:07',
+    thumb: 'https://i.ytimg.com/vi/s3cxb78bM1M/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=s3cxb78bM1M',
+    series: 'recetas'
+  },
+  {
+    id: '7OGhB29YjfQ',
+    title: 'Galaxy Bubba',
+    duration: '2:04',
+    thumb: 'https://i.ytimg.com/vi/7OGhB29YjfQ/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=7OGhB29YjfQ',
+    series: 'recetas'
+  },
+  {
+    id: 'WT_-rfXhGbE',
+    title: 'Maracuyá Tea Mix',
+    duration: '1:12',
+    thumb: 'https://i.ytimg.com/vi/WT_-rfXhGbE/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=WT_-rfXhGbE',
+    series: 'recetas'
+  },
+  {
+    id: 'XluYLWRwivk',
+    title: 'Kiwi Manzana',
+    duration: '1:26',
+    thumb: 'https://i.ytimg.com/vi/XluYLWRwivk/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=XluYLWRwivk',
+    series: 'recetas'
+  },
+  {
+    id: 'DDfeynHEMCo',
+    title: 'Lichi & Osmanthus',
+    duration: '1:16',
+    thumb: 'https://i.ytimg.com/vi/DDfeynHEMCo/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=DDfeynHEMCo',
+    series: 'recetas'
+  },
+  {
+    id: '3GurB1Ipwa8',
+    title: 'Limonada Cósmica',
+    duration: '1:26',
+    thumb: 'https://i.ytimg.com/vi/3GurB1Ipwa8/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=3GurB1Ipwa8',
+    series: 'recetas'
+  },
+  {
+    id: 'muyQpdTreTc',
+    title: 'Buuuuble Green Rush',
+    duration: '0:49',
+    thumb: 'https://i.ytimg.com/vi/muyQpdTreTc/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=muyQpdTreTc',
+    series: 'recetas'
+  },
+  {
+    id: '-AggxhKOexw',
+    title: 'Receta de temporada: Innova tu menú',
+    duration: '1:18',
+    thumb: 'https://i.ytimg.com/vi/-AggxhKOexw/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=-AggxhKOexw',
+    series: 'recetas'
+  },
+  {
+    id: 'doLg_rOOtz8',
+    title: 'Sol de Primavera',
+    duration: '2:04',
+    thumb: 'https://i.ytimg.com/vi/doLg_rOOtz8/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=doLg_rOOtz8',
+    series: 'recetas'
+  },
+  {
+    id: 'rhUfo-551cM',
+    title: 'Daiquiri frutas tropicales',
+    duration: '0:56',
+    thumb: 'https://i.ytimg.com/vi/rhUfo-551cM/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=rhUfo-551cM',
+    series: 'recetas'
+  },
+  {
+    id: 'Uvi9UlrKxuw',
+    title: 'Sandía fresh',
+    duration: '0:48',
+    thumb: 'https://i.ytimg.com/vi/Uvi9UlrKxuw/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=Uvi9UlrKxuw',
+    series: 'recetas'
+  },
+  {
+    id: 'ju4jy1mf4Mk',
+    title: 'Horchata navideña',
+    duration: '0:50',
+    thumb: 'https://i.ytimg.com/vi/ju4jy1mf4Mk/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=ju4jy1mf4Mk',
+    series: 'recetas'
+  },
+  {
+    id: 'NiBOrJOolRI',
+    title: 'Moka',
+    duration: '0:51',
+    thumb: 'https://i.ytimg.com/vi/NiBOrJOolRI/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=NiBOrJOolRI',
+    series: 'recetas'
+  },
+  {
+    id: 'InKAeSeWxkA',
+    title: 'Ponche de invierno',
+    duration: '0:47',
+    thumb: 'https://i.ytimg.com/vi/InKAeSeWxkA/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=InKAeSeWxkA',
+    series: 'recetas'
+  },
+  {
+    id: 'yqWSHTjvOFk',
+    title: 'Smoothie de kiwi',
+    duration: '0:33',
+    thumb: 'https://i.ytimg.com/vi/yqWSHTjvOFk/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=yqWSHTjvOFk',
+    series: 'recetas'
+  },
+  {
+    id: 'P4ntzTbOIxY',
+    title: 'Smoothie Colada',
+    duration: '0:45',
+    thumb: 'https://i.ytimg.com/vi/P4ntzTbOIxY/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=P4ntzTbOIxY',
+    series: 'recetas'
+  },
+  {
+    id: 'OlEuSA70iY4',
+    title: 'Frappé de taro',
+    duration: '0:46',
+    thumb: 'https://i.ytimg.com/vi/OlEuSA70iY4/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=OlEuSA70iY4',
+    series: 'recetas'
+  },
+  {
+    id: 'KKrQ5nu5BVg',
+    title: 'Ice tea',
+    duration: '0:49',
+    thumb: 'https://i.ytimg.com/vi/KKrQ5nu5BVg/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=KKrQ5nu5BVg',
+    series: 'recetas'
+  },
+  {
+    id: '5qQtwbCftks',
+    title: 'Rosa Mini Mochis',
+    duration: '1:51',
+    thumb: 'https://i.ytimg.com/vi/5qQtwbCftks/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=5qQtwbCftks',
+    series: 'recetas'
+  },
+  {
+    id: 'llgVFLgysEk',
+    title: 'Soda tea de Piña y Osmanthus',
+    duration: '1:26',
+    thumb: 'https://i.ytimg.com/vi/llgVFLgysEk/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=llgVFLgysEk',
+    series: 'recetas'
+  },
+  {
+    // Reemplazado nov 2026 (Matcha Brûlée, 515wfcBZEFw): se conserva comentado para revertir.
+    // id: '515wfcBZEFw', title: 'Matcha Brûlée', duration: '1:17',
+    // thumb: 'https://i.ytimg.com/vi/515wfcBZEFw/hqdefault.jpg',
+    // url: 'https://www.youtube.com/watch?v=515wfcBZEFw',
+    id: 'x_d5OYw3rxo',
+    title: 'Chamoyada de Mango 480 ml',
+    duration: '1:54',
+    thumb: 'https://i.ytimg.com/vi/x_d5OYw3rxo/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=x_d5OYw3rxo',
+    series: 'recetas'
+  }
+];
+
+/** Video del canal que no es receta (aparece en «Todas», no en el filtro Recetas). */
+export const VIDEOTECA_TIPS: VideotecaVideo[] = [
+  {
+    id: '7NqfA_pJtG4',
+    title: '¿Cómo se logra la taza perfecta?',
+    duration: '2:15',
+    thumb: 'https://i.ytimg.com/vi/7NqfA_pJtG4/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=7NqfA_pJtG4',
+    series: 'tips'
+  }
+];
+
+export function videotecaVideos(): VideotecaVideo[] {
+  return [...RECETAS_VIDEOTECA, ...VIDEOTECA_TIPS, ...TRAVESIAS_DEL_SABOR];
+}
+
+export function videotecaFilter(videos: VideotecaVideo[], cat: VideotecaCategoria): VideotecaVideo[] {
+  if (cat === 'todas') return videos;
+  if (cat === 'recetas') return videos.filter((v) => v.series === 'recetas');
+  return videos.filter((v) => v.series !== 'recetas' && v.series !== 'tips');
+}

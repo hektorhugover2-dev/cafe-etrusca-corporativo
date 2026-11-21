@@ -18,8 +18,9 @@ import { HttpClient } from '@angular/common/http';
 import { swalToast } from '../../../../../shared/kernel/utils/swal-toast';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CourseDate } from '../../education.data';
+import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 
-const COURSE_CONTACT_URL = 'https://cafeetrusca.com/api/CourseContact';
+const COURSE_CONTACT_URL = apiUrl('CourseContact');
 const FALLBACK_EMAIL = 'educacion@cafeetrusca.com';
 const FALLBACK_PHONE = '(55) 4166 8777';
 const OCCUPATIONS = ['Emprendedor', 'Barista', 'Consumidor'] as const;

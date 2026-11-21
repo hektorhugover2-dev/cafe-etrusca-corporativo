@@ -1695,7 +1695,7 @@ const NAVIDAD: BlogArticle = {
   recipesCta: { text: 'Encuentra más bebidas navideñas y de invierno en nuestras recetas.', label: 'Ver recetas de invierno', path: RECETAS_INVIERNO,
     cards: ['pan-de-jengibre-latte', 'copito-de-chocolate-blanco', 'tiramisu-menta', 'caramelo-navideno-frio'].map((s) => {
       const r = NAVIDAD_RECETAS.find((x) => x.slug === s)!;
-      return { name: r.name, path: `/recetas/${s}/`, img: IMG(`recetas/${s === 'copito-de-chocolate-blanco' ? 'invierno' : 'navidad'}/${s}.webp`) };
+      return { name: r.name, path: `/recetas/${s}/`, img: IMG(`recetas/${s === 'copito-de-chocolate-blanco' ? 'invierno' : 'navidad'}/${s === 'copito-de-chocolate-blanco' ? 'copito-de-chocolate-blanco-v2' : s}.webp`) };
     }) },
   webinarCta: { text: 'Aprende con nuestros expertos en el webinar en vivo de los jueves.' },
   faq: [

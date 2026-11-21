@@ -33,6 +33,11 @@ import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url'
 export class InsumosPageComponent implements OnInit {
   /** Base de imágenes/videos (CDN R2 o /assets local). Ver assets-url.ts */
   protected readonly assetsBase = ASSETS_BASE_URL;
+  /** Foto a sangre del hero del hub (mismo patron que Accesorios). */
+  readonly hubHero = {
+    desktop: `${ASSETS_BASE_URL}/images/insumos/insumos-para-cafeterias-jarabes-salsas-polvos-torani-chillout-hollander.webp`,
+    mobile: `${ASSETS_BASE_URL}/images/insumos/insumos-para-cafeterias-jarabes-salsas-polvos-torani-chillout-hollander-movil.webp`
+  };
   private seo = inject(SeoService);
   readonly crumbs: HeroCrumb[] = [{ label: 'Inicio', path: '/' }, { label: 'Insumos', path: '/insumos-para-cafeterias' }];
 

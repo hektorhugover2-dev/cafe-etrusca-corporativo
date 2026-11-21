@@ -191,6 +191,17 @@ export class LegacyCoursePageComponent implements OnInit {
   }
 
   /** Consecutive "card" sections (image + text + link) render as a grid. */
+  /**
+   * If the first heading after the H1 is marked as h3 in the data (no preceding h2),
+   * render it as h2 with the h3 look so the heading order does not skip a level.
+   */
+  isPromotedSectionHeading(s: LegacySection): boolean {
+    const first = this.items.find((it) =>
+      it.kind === 'section' ? !!it.section.heading : it.sections.some((x) => !!x.heading)
+    );
+    return !!first && first.kind === 'section' && first.section === s && s.level >= 3;
+  }
+
   private group(sections: ReadonlyArray<LegacySection>): RenderItem[] {
     const out: RenderItem[] = [];
     for (const s of sections) {

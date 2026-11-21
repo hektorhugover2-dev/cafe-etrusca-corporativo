@@ -4,14 +4,14 @@
       <p class="vt-kicker">Café Etrusca</p>
       <h1>VIDEOTECA</h1>
       <p class="vt-lead">
-        <span class="accent">Travesías del Sabor</span> — podcast del canal oficial
+        <span class="accent">{{ leadAccent }}</span>{{ leadRest }}
       </p>
-      <p class="vt-body">
-        Historias, técnica y negocio del café. Mira los episodios aquí o en YouTube.
-      </p>
+      <p class="vt-body">{{ bodyText }}</p>
       <div class="vt-hero-actions">
-        <a class="vt-btn" [href]="playlistUrl" target="_blank" rel="noopener">Ver playlist en YouTube</a>
-        <a class="vt-btn ghost" [href]="channelUrl" target="_blank" rel="noopener">Canal Café Etrusca</a>
+        @if (showPlaylist) {
+          <a class="vt-btn" [href]="playlistUrl" target="_blank" rel="noopener">Ver playlist en YouTube</a>
+        }
+        <a class="vt-btn" [class.ghost]="showPlaylist" [href]="channelUrl" target="_blank" rel="noopener">Canal Café Etrusca</a>
       </div>
     </div>
     <div class="vt-hero-media">
@@ -22,7 +22,7 @@
 
   <section class="vt-player-sec" id="vt-player">
     <div class="container">
-      <p class="vt-series">Travesías del Sabor</p>
+      <p class="vt-series">{{ seriesLabel }}</p>
       <h2>{{ active.title }}</h2>
       @if (active.duration) {
         <p class="vt-meta">Duración {{ active.duration }}</p>
@@ -50,7 +50,19 @@
 
   <section class="vt-grid-sec">
     <div class="container">
-      <h2>Todos los episodios</h2>
+      <div class="vt-tabs" role="tablist" aria-label="Filtrar videos">
+        @for (t of tabs; track t.id) {
+          <button
+            type="button"
+            class="vt-tab"
+            role="tab"
+            [class.is-active]="categoria === t.id"
+            [attr.aria-selected]="categoria === t.id"
+            (click)="setCategoria(t.id)"
+          >{{ t.label }}</button>
+        }
+      </div>
+      <h2>{{ gridTitle }}</h2>
       <img src="{{ assetsBase }}/images/separador.webp" alt="" class="vt-sep">
       <div class="vt-grid">
         @for (v of videos; track v.id) {

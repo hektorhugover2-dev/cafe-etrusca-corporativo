@@ -68,6 +68,27 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "desarrollo": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "50kb",
+                  "maximumError": "100kb"
+                }
+              ],
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.desarrollo.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

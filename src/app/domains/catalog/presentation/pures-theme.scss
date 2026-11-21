@@ -389,7 +389,7 @@
   margin: 1.1rem 0 0;
   text-align: center;
   font-size: 0.8rem;
-  color: #777;
+  color: #767676; // AA 4.5:1 sobre blanco (antes #777, 4.47:1)
 }
 
 .pur-inspira-grid {
@@ -468,7 +468,7 @@
     letter-spacing: -0.03em;
     line-height: 0.95;
     text-transform: uppercase;
-    color: #fff;
+    color: #163238; // AA 3:1 sobre --pur-pink (el blanco quedaba en 2.37:1)
   }
   p {
     margin: 0 0 0.95rem;
@@ -573,7 +573,7 @@
 .pur-card.concentrate { --tone: #f0a31a; }
 .pur-card.jam { --tone: #7cb342; }
 .pur-card.puree { --tone: #d4576a; }
-.pur-card.smoothie { --tone: #f06292; }
+.pur-card.smoothie { --tone: #c14f76; } // AA 4.5:1 (antes #f06292, 3.05:1)
 
 .pur-card .buy {
   background: #fff;
@@ -596,10 +596,10 @@
   padding: 3.6rem clamp(1.2rem, 5vw, 5rem) 3.2rem;
 }
 
-.layout-pures .jar-card.concentrate { --tone: #f0a31a; border-color: #f0a31a; }
-.layout-pures .jar-card.jam { --tone: #7cb342; border-color: #7cb342; }
-.layout-pures .jar-card.puree { --tone: #c9a0e8; border-color: #c9a0e8; }
-.layout-pures .jar-card.smoothie { --tone: #f06292; border-color: #f06292; }
+.layout-pures .jar-card.concentrate { --tone: #a06c11; border-color: #a06c11; } // AA 4.5:1 (antes #f0a31a)
+.layout-pures .jar-card.jam { --tone: #5a8130; border-color: #5a8130; } // AA 4.5:1 (antes #7cb342)
+.layout-pures .jar-card.puree { --tone: #876c9c; border-color: #876c9c; } // AA 4.5:1 (antes #c9a0e8)
+.layout-pures .jar-card.smoothie { --tone: #c14f76; border-color: #c14f76; } // AA 4.5:1 (antes #f06292)
 
 .layout-pures .jar-card .shot {
   max-width: 150px;

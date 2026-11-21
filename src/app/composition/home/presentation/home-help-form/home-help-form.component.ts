@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { swalToast } from '../../../../shared/kernel/utils/swal-toast';
+import { apiUrl } from '../../../../shared/kernel/config/api-url';
 
 type HelpMode = 'newsletter' | 'contact';
 type AnimDir = 'forward' | 'back';
@@ -51,8 +52,8 @@ export class HomeHelpFormComponent {
     { value: 'otro', label: 'Otro comentario' }
   ] as const;
 
-  private readonly contactUsUrl = 'https://cafeetrusca.com/api/ContactUs';
-  private readonly newsletterUrl = 'https://cafeetrusca.com/api/newsletter';
+  private readonly contactUsUrl = apiUrl('ContactUs');
+  private readonly newsletterUrl = apiUrl('newsletter');
 
   /** Notifica al home el modo activo y si hay campos con texto (Lucky). */
   readonly modeChange = output<HelpMode | null>();
