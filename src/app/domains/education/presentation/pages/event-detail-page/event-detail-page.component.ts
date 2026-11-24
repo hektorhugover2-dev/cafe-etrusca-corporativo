@@ -7,6 +7,9 @@ import { EventService } from '../../../../../shared/kernel/services/event.servic
 import { EtruscaLocation, locationById } from '../../../../../shared/kernel/data/locations.data';
 import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
+import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
+import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
+import { opinionRatingJsonLd } from '../../opinions.data';
 import { Course, CourseDate, COURSES } from '../../education.data';
 import { coursePublicPath } from '../../course-public-paths';
 import { absoluteAsset, eventSeoForCategory } from './event-seo';
@@ -40,7 +43,7 @@ interface EventSede {
 @Component({
   selector: 'app-event-detail-page',
   standalone: true,
-  imports: [RouterLink, EduNavComponent, CourseInterestModalComponent],
+  imports: [RouterLink, EduNavComponent, CourseInterestModalComponent, PriceDisclaimerComponent, ReviewsSliderComponent],
   templateUrl: './event-detail-page.component.html',
   styleUrls: ['../../edu-theme.scss', './event-detail-page.component.scss']
 })
@@ -258,12 +261,19 @@ export class EventDetailPageComponent implements OnInit {
             description: about,
             provider: org,
             inLanguage: 'es-MX',
+            ...opinionRatingJsonLd(),
+            ...(isFinite(price) && price > 0
+              ? { offers: { '@type': 'Offer', url, price, priceCurrency: 'MXN', availability: 'https://schema.org/InStock', category: 'Paid' } }
+              : {}),
             hasCourseInstance: {
               '@type': 'CourseInstance',
               courseMode: 'Onsite',
               startDate,
               ...(endDate ? { endDate } : {}),
-              ...(place ? { location: place } : {})
+              ...(place ? { location: place } : {}),
+              ...(isFinite(price) && price > 0
+                ? { offers: { '@type': 'Offer', url, price, priceCurrency: 'MXN', availability: 'https://schema.org/InStock', category: 'Paid' } }
+                : {})
             }
           },
           breadcrumbJsonLd(origin, this.crumbs, url)

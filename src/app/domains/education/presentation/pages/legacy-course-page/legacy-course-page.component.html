@@ -30,6 +30,7 @@
         }
       </div>
       @if (combo) { <p class="edu-combo">{{ combo }}</p> }
+      @if (heroPrice || combo) { <app-price-disclaimer></app-price-disclaimer> }
       <div class="edu-actions">
         <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
@@ -78,6 +79,7 @@
         </ul>
       }
       @if (combo) { <p class="edu-combo lc-combo">{{ combo }}</p> }
+      @if (heroPrice || combo) { <app-price-disclaimer></app-price-disclaimer> }
       <div class="edu-actions">
         <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
@@ -270,6 +272,8 @@
     }
   </div>
 
+
+  <app-reviews-slider></app-reviews-slider>
   <section class="edu-cta">
     <h2>¿Quieres comenzar tu camino?</h2>
     <p>Consulta fechas y sedes con un asesor de Café Etrusca.</p>

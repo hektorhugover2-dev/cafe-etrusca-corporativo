@@ -726,7 +726,7 @@ export class ProductHubPageComponent {
 
     const seoMap: Record<string, { title: string; description: string; keywords: string }> = {
       cafe: {
-        title: 'Cafés Especiales: Mezclas especiales y Café de Especialidad Mexicano',
+        title: 'Mezclas especiales y café de especialidad | Café Etrusca',
         description:
           'Cafés especiales de alta calidad, de buenas prácticas agrícolas, procesos muy bien cuidados y de trabajo directo en campo junto con los productores.',
         keywords: 'Café,Premium,Mezcla,Especial,cafeteria,cafe puro,tueste'

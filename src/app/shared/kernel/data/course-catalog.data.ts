@@ -150,6 +150,20 @@ export function catalogDuration(c: CatalogCourse): string {
   return `PT${c.hours}H`;
 }
 
+/** schema.org CourseInstance: presencial, con duración y horario de la tabla oficial. */
+export function catalogCourseInstance(
+  c: CatalogCourse,
+  extra: Record<string, unknown> = {}
+): Record<string, unknown> {
+  return {
+    '@type': 'CourseInstance',
+    courseMode: 'Onsite',
+    duration: catalogDuration(c),
+    ...(c.schedule ? { description: `Horario: ${c.schedule}` } : {}),
+    ...extra
+  };
+}
+
 function norm(v: string): string {
   return v.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim();
 }

@@ -28,6 +28,7 @@
           <div><strong>Sucursal</strong>{{ landing.cityLabel }}</div>
         }
       </div>
+      @if (course.price) { <app-price-disclaimer></app-price-disclaimer> }
       <div class="edu-actions">
         <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
@@ -144,6 +145,8 @@
     </div>
   </section>
 
+
+  <app-reviews-slider></app-reviews-slider>
   <section class="edu-cta">
     <h2>¿Quieres comenzar tu camino?</h2>
     <p>Entérate de las nuevas fechas en sucursal o habla con un asesor.</p>

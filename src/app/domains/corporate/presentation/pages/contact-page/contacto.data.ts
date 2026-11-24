@@ -10,6 +10,17 @@ export interface Branch {
   ciudad: string;
   estado: string;
   tipo?: 'sucursal' | 'distribuidor';
+  /** Si es true, no se muestra en el directorio ni en los mapas públicos. */
+  oculto?: boolean;
+}
+
+/** Sedes que se conservan en los datos (p. ej. cursos) pero no salen en el directorio ni en los mapas de /sucursales/, /contacto/ y el home. */
+export function isHiddenFromDirectory(place: { nombre?: string; oculto?: boolean } | string | null | undefined): boolean {
+  if (!place) return false;
+  if (typeof place !== 'string' && place.oculto) return true;
+  const nombre = typeof place === 'string' ? place : (place.nombre || '');
+  const n = nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  return n.includes('centro de tostion');
 }
 
 export interface Locator {
@@ -56,7 +67,7 @@ export const BRANCHES: Branch[] = [
   {
     lat: 19.4257134, lng: -99.16132894907378, nombre: 'Sucursal Zona Rosa',
     direccion: 'Liverpool #91, Colonia Juárez, CDMX',
-    horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-13:00 HRS',
+    horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-18:00 HRS',
     email: 'zonarosa@cafeetrusca.com', telefono: '(55) 5533 9402 / 04 / 05 / 06',
     ciudad: 'Ciudad de México', estado: 'CDMX'
   },
@@ -121,7 +132,8 @@ export const BRANCHES: Branch[] = [
     direccion: 'Av. Poniente 134 #413, Bodega B2, entrada por un lado de las vías del tren, Industrial Vallejo, Azcapotzalco, Ciudad de México, CDMX',
     horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-13:00 HRS',
     telefono: '(55) 5579 9860 / (55) 5590 5407 / (55) 5604 1159',
-    email: 'atencion@cafeetrusca.com', ciudad: 'Ciudad de México', estado: 'CDMX'
+    email: 'atencion@cafeetrusca.com', ciudad: 'Ciudad de México', estado: 'CDMX',
+    oculto: true
   },
   {
     lat: 19.530488, lng: -96.934478, nombre: 'Sucursal Xalapa',
@@ -191,7 +203,7 @@ export const DISTRIBUTORS: Branch[] = [
   {
     lat: 20.7432094, lng: -103.3899373, nombre: 'Centro de Distribución Zapopan',
     direccion: 'Industria Galletera #121, Col. Industrial Zapopan Norte, Zapopan, Jalisco',
-    email: 'zapopan@cafeetrusca.com', telefono: '(33) 3165 5527 / (33) 3365 0595', horarios: 'Centro de distribución',
+    email: 'zapopan@cafeetrusca.com', telefono: '(33) 3165 5527 / (33) 3365 0595', horarios: 'Lunes a viernes 09:00–18:00 h · Sábado 09:00–13:00 h',
     ciudad: 'Zapopan', estado: 'Jalisco', tipo: 'distribuidor'
   },
   {

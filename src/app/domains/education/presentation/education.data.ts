@@ -76,6 +76,13 @@ const INCLUDES_BASE = [
   'Acompañamiento del instructor'
 ];
 
+/** Sesiones sabatinas: no incluyen prácticas guiadas ni diploma (a diferencia de cursos y talleres). */
+const INCLUDES_SESIONES = [
+  'Material de apoyo',
+  'Uso de equipos profesionales',
+  'Acompañamiento del instructor'
+];
+
 // Course dates come ONLY from /api/Event (live in the browser; public/data/events.json snapshot
 // while prerendering). The old sample arrays (June/July "Viaducto / Zona Rosa / Vallejo") were removed.
 
@@ -979,7 +986,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Bebidas frías', 'Menú de temporada', 'Ritmo de barra', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionQro('30', 'Junio'), ...sesionMty('04', 'Julio'), ...sesionGdl('11', 'Julio')],
     seo: {
       title: 'Verano ChillOut | Sesiones Café Etrusca',
@@ -1012,7 +1019,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Bubble tea', 'Perlas', 'Montaje', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionGdl('04', 'Julio'), ...sesionQro('07', 'Julio'), ...sesionMty('11', 'Julio')],
     seo: {
       title: 'Bubble Power Session | Sesiones Café Etrusca',
@@ -1045,7 +1052,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Tisanas', 'Infusión', 'Menú de verano', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionQro('14', 'Julio'), ...sesionMty('18', 'Julio'), ...sesionGdl('25', 'Julio')],
     seo: {
       title: 'Tisanas en verano | Sesiones Café Etrusca',
@@ -1078,7 +1085,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Mezcla especial', 'Espresso', 'Filtro', 'Menú'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionGdl('18', 'Julio'),
       ...sesionQro('21', 'Julio'),
@@ -1118,7 +1125,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Café mexicano', 'Cata', 'Origen', 'Menú'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionQro('28', 'Julio'),
       ...sesionMty('01', 'Agosto'),
@@ -1158,7 +1165,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Bubble tea', 'Perlas', 'Recetas', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionGdl('01', 'Agosto'), ...sesionQro('04', 'Agosto'), ...sesionMty('08', 'Agosto')],
     seo: {
       title: 'Bubble Lab | Sesiones Café Etrusca',
@@ -1191,7 +1198,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Jarabes', 'Balance', 'Menú', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionQro('11', 'Agosto'),
       ...sesionQro('15', 'Agosto'),
@@ -1232,7 +1239,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Matcha', 'Latte', 'Textura', 'Menú'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionGdl('15', 'Agosto'),
       ...sesionQro('18', 'Agosto'),
@@ -1273,7 +1280,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Bebidas de temporada', 'Presentación', 'Ritmo de barra', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionGdl('03', 'Octubre'), ...sesionQro('05', 'Octubre'), ...sesionMty('10', 'Octubre')],
     seo: {
       title: 'Elixir del terror | Sesiones Café Etrusca',
@@ -1306,7 +1313,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Sabores pumpkin', 'Menú de otoño', 'Ritmo de barra', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionMty('03', 'Octubre'),
       ...sesionGdl('10', 'Octubre'),
@@ -1345,7 +1352,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Bebidas cálidas', 'Especias de temporada', 'Ritmo de barra', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionGdl('17', 'Octubre'),
       ...sesionMty('24', 'Octubre'),
@@ -1384,7 +1391,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['ChillOut', 'Bebidas frías', 'Temporada', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionMty('31', 'Octubre'), ...sesionGdl('07', 'Noviembre'), ...sesionQro('10', 'Noviembre')],
     seo: {
       title: 'Sorbos de ChillOut en otoño | Sesiones Café Etrusca',
@@ -1417,7 +1424,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Café de temporada', 'Extracción', 'Recetas', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionGdl('21', 'Noviembre'),
       ...sesionMty('21', 'Noviembre'),
@@ -1457,7 +1464,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Tisanas', 'Infusiones', 'Temporada', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [...sesionGdl('28', 'Noviembre'), ...sesionQro('30', 'Noviembre'), ...sesionMty('05', 'Diciembre')],
     seo: {
       title: 'Tisanas para las posadas | Sesiones Café Etrusca',
@@ -1490,7 +1497,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Bebidas cálidas', 'Temporada festiva', 'Ritmo de barra', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Alumnos Etrusca.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_SESIONES,
     dates: [
       ...sesionMty('28', 'Noviembre'),
       ...sesionGdl('05', 'Diciembre'),

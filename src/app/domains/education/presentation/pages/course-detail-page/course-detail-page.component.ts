@@ -5,12 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
+import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
+import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
+import { opinionRatingJsonLd } from '../../opinions.data';
 import { Course, CourseDate, courseBySlug, COURSES, upcomingCourseDates } from '../../education.data';
 import { coursePublicPath, EDUCATION_HUB_PATH } from '../../course-public-paths';
 import { educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
 import { EventService } from '../../../../../shared/kernel/services/event.service';
 import {
   catalogByCourseSlug,
+  catalogCourseInstance,
   catalogDuration,
   catalogOffer,
   comboFor,
@@ -21,7 +25,7 @@ import {
 @Component({
   selector: 'app-course-detail-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, EduNavComponent, CourseInterestModalComponent],
+  imports: [RouterLink, FormsModule, EduNavComponent, CourseInterestModalComponent, PriceDisclaimerComponent, ReviewsSliderComponent],
   templateUrl: './course-detail-page.component.html',
   styleUrls: ['../../edu-theme.scss']
 })
@@ -133,7 +137,15 @@ export class CourseDetailPageComponent implements OnInit {
           },
           educationalLevel: course.kind,
           inLanguage: 'es-MX',
-          ...(cat ? { courseCode: cat.clave, timeRequired: catalogDuration(cat), offers: catalogOffer(cat, url) } : {})
+          ...opinionRatingJsonLd(),
+          ...(cat
+            ? {
+                courseCode: cat.clave,
+                timeRequired: catalogDuration(cat),
+                offers: catalogOffer(cat, url),
+                hasCourseInstance: catalogCourseInstance(cat, { offers: catalogOffer(cat, url) })
+              }
+            : {})
         };
         const crumbs = educationCrumbs(course.title);
         return [courseLd, breadcrumbJsonLd(origin, crumbs, url)];

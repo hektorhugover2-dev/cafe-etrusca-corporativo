@@ -1,13 +1,13 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import {
   COURSE_VENUES,
   EtruscaLocation,
   locationById
 } from '../../../../../shared/kernel/data/locations.data';
-import { BRANCHES } from '../contact-page/contacto.data';
+import { BRANCHES, DISTRIBUTORS, isHiddenFromDirectory } from '../contact-page/contacto.data';
 import { SedeMapComponent } from '../../../../../shared/ui/sede-map/sede-map.component';
 import { MapPlace, placeDirectionsUrl, placeLabel } from '../../../../../shared/kernel/utils/google-maps';
 import { canonicalOverride, primaryPath } from '../../../../education/presentation/primary-urls';
@@ -87,9 +87,19 @@ function formatPhone(raw: string): BranchPhone {
   return { label: pretty, href: `tel:+52${digits}` };
 }
 
-function scheduleFor(id: number): string {
+/** Horarios que no están en BRANCHES: CEDIS Zapopan (id 49). Mismo formato crudo que contacto.data.ts. */
+const RAW_HOURS_BY_ID: Record<number, string> = {
+  49: 'L-V 09:00-18:00 HRS SABADO 09:00-13:00 HRS'
+};
+
+function rawHoursFor(id: number): string {
+  if (RAW_HOURS_BY_ID[id]) return RAW_HOURS_BY_ID[id];
   const name = SCHEDULE_SOURCE[id];
-  const raw = name ? BRANCHES.find((b) => b.nombre === name)?.horarios || '' : '';
+  return name ? BRANCHES.find((b) => b.nombre === name)?.horarios || '' : '';
+}
+
+function scheduleFor(id: number): string {
+  const raw = rawHoursFor(id);
   const m = raw.match(/^L-V\s+(\d{2}:\d{2})-(\d{2}:\d{2})\s+HRS\s+S[AÁ]BADO\s+(\d{2}:\d{2})-(\d{2}:\d{2})\s+HRS$/i);
   if (!m) return raw;
   return `Lunes a viernes ${m[1]}–${m[2]} h · Sábado ${m[3]}–${m[4]} h`;
@@ -97,8 +107,7 @@ function scheduleFor(id: number): string {
 
 /** openingHoursSpecification solo si el horario tiene el formato conocido. */
 function openingHours(id: number): any[] | undefined {
-  const name = SCHEDULE_SOURCE[id];
-  const raw = name ? BRANCHES.find((b) => b.nombre === name)?.horarios || '' : '';
+  const raw = rawHoursFor(id);
   const m = raw.match(/^L-V\s+(\d{2}:\d{2})-(\d{2}:\d{2})\s+HRS\s+S[AÁ]BADO\s+(\d{2}:\d{2})-(\d{2}:\d{2})\s+HRS$/i);
   if (!m) return undefined;
   return [
@@ -147,7 +156,7 @@ function pick(ids: number[], pool: ReadonlyArray<EtruscaLocation>): BranchView[]
 
 export const BRANCH_VIEWS: BranchView[] = pick(VENUE_ORDER, COURSE_VENUES);
 export const OPERATION_VIEWS: BranchView[] = OPERATIONS_IDS.map((id) => locationById(id))
-  .filter((l): l is EtruscaLocation => !!l)
+  .filter((l): l is EtruscaLocation => !!l && !isHiddenFromDirectory(l.name))
   .map(toView);
 
 /** Tarjeta extra (sin JSON-LD): sede de contacto.data.ts BRANCHES que no viene en locations.data.ts como tal. */
@@ -177,6 +186,33 @@ export const EXTRA_VIEWS: ExtraView[] = CEDIS_SRC
     }]
   : [];
 
+function distributorAnchor(nombre: string): string {
+  return nombre
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** Distribuidores autorizados (contacto.data.ts DISTRIBUTORS). Se excluye el CEDIS Zapopan, que ya está en operaciones. */
+export const DISTRIBUTOR_VIEWS: ExtraView[] = DISTRIBUTORS
+  .filter((d) => d.tipo === 'distribuidor' && /^Distribuidor\b/.test(d.nombre))
+  .map((src, i) => ({
+    id: -100 - i,
+    anchor: distributorAnchor(src.nombre),
+    name: src.nombre,
+    label: placeLabel(src),
+    cityLabel: src.ciudad || '',
+    address: src.direccion,
+    phones: String(src.telefono || '').split('/').map((p) => p.trim()).filter(Boolean).map(formatPhone),
+    email: src.email || '',
+    schedule: '',
+    mapsUrl: '',
+    coursesPath: null,
+    place: { ...src, horarios: undefined }
+  }));
+
 @Component({
   selector: 'app-branches-page',
   standalone: true,
@@ -187,10 +223,16 @@ export const EXTRA_VIEWS: ExtraView[] = CEDIS_SRC
 export class BranchesPageComponent implements OnInit {
   private seo = inject(SeoService);
   private doc = inject(DOCUMENT);
+  private route = inject(ActivatedRoute);
+  /** /distribuidores/ muestra primero a los distribuidores; /sucursales/ conserva el orden actual. */
+  readonly distributorsFirst = signal(this.route.snapshot.data['directoryFocus'] === 'distribuidores');
 
   readonly branches = BRANCH_VIEWS;
   readonly operations = OPERATION_VIEWS;
   readonly extras = EXTRA_VIEWS;
+  readonly distributors = DISTRIBUTOR_VIEWS;
+  readonly distributorMapPlaces: MapPlace[] = DISTRIBUTOR_VIEWS.map((d) => d.place);
+  distMapSelected: MapPlace | null = null;
 
   /** Sedes del mapa de Google (mismo componente que el home y /contacto); un MapPlace por tarjeta. */
   private readonly placeById = new Map<number, MapPlace>(
@@ -212,6 +254,11 @@ export class BranchesPageComponent implements OnInit {
 
   /** «Ver en el mapa»: cambia la sede del mapa y sube a él (solo se ejecuta tras un clic en el navegador). */
   showOnMap(b: BranchView | ExtraView): void {
+    if (this.distributors.some((d) => d.id === b.id)) {
+      this.distMapSelected = 'place' in b ? b.place : null;
+      this.doc.getElementById('br-mapa-dist')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     this.mapSelected = ('place' in b ? b.place : this.placeById.get(b.id)) ?? null;
     this.doc.getElementById('br-mapa')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
@@ -223,32 +270,52 @@ export class BranchesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const count = this.branches.length;
-    const title = 'Sucursales Café Etrusca en México | Direcciones y teléfonos';
-    const description =
-      `Las ${count} sucursales de Café Etrusca: dirección, teléfono, correo, horario y cómo llegar ` +
-      'en CDMX, Guadalajara, Monterrey, Puebla, Querétaro, León, Mérida y más.';
+    this.route.data.subscribe((d) => {
+      this.distributorsFirst.set(d['directoryFocus'] === 'distribuidores');
+      this.applySeo();
+    });
+  }
+
+  private applySeo(): void {
+    const distFirst = this.distributorsFirst();
+    const branchCount = this.branches.length;
+    const distCount = this.distributors.length;
+    const title = distFirst
+      ? 'Distribuidores Café Etrusca | Direcciones y teléfonos'
+      : 'Sucursales Café Etrusca en México | Direcciones y teléfonos';
+    const description = distFirst
+      ? `Los ${distCount} distribuidores autorizados de Café Etrusca: dirección, teléfono, correo y cómo llegar ` +
+        'en CDMX, Estado de México, Sinaloa, Chihuahua, Baja California Sur y más.'
+      : `Las ${branchCount} sucursales de Café Etrusca: dirección, teléfono, correo, horario y cómo llegar ` +
+        'en CDMX, Guadalajara, Monterrey, Puebla, Querétaro, León, Mérida y más.';
+    const keywords = distFirst
+      ? 'distribuidores Café Etrusca,distribuidores autorizados Café Etrusca,Café Etrusca México'
+      : 'sucursales Café Etrusca,Café Etrusca cerca de mí,tienda insumos cafetería,Café Etrusca CDMX,Café Etrusca Guadalajara,Café Etrusca Monterrey';
     const all = [...this.branches, ...this.operations];
+    const pageName = distFirst ? 'Distribuidores Café Etrusca' : 'Sucursales Café Etrusca';
+    const crumbName = distFirst ? 'Distribuidores' : 'Sucursales';
+    const listForPage = distFirst ? this.distributors : all;
 
     this.seo.set({
       title,
       description,
-      keywords: 'sucursales Café Etrusca,Café Etrusca cerca de mí,tienda insumos cafetería,Café Etrusca CDMX,Café Etrusca Guadalajara,Café Etrusca Monterrey',
+      keywords,
+      path: distFirst ? '/distribuidores/' : '/sucursales/',
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           '@id': url + '#webpage',
-          name: 'Sucursales Café Etrusca',
+          name: pageName,
           url,
           description,
           isPartOf: { '@id': origin + '/#website' },
           about: { '@id': origin + '/#organization' },
           mainEntity: {
             '@type': 'ItemList',
-            numberOfItems: all.length,
-            itemListElement: all.map((b, i) => ({
+            numberOfItems: listForPage.length,
+            itemListElement: listForPage.map((b, i) => ({
               '@type': 'ListItem',
               position: i + 1,
               item: { '@id': `${url}#${b.anchor}` }
@@ -260,10 +327,10 @@ export class BranchesPageComponent implements OnInit {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Inicio', item: origin + '/' },
-            { '@type': 'ListItem', position: 2, name: 'Sucursales', item: url }
+            { '@type': 'ListItem', position: 2, name: crumbName, item: url }
           ]
         },
-        ...all.map((b) => {
+        ...(distFirst ? [] : all.map((b) => {
           const loc = b.location;
           const lat = Number(loc.latitude);
           const lng = Number(loc.longitude);
@@ -293,6 +360,32 @@ export class BranchesPageComponent implements OnInit {
           if (b.mapsUrl) node['hasMap'] = b.mapsUrl;
           const hours = openingHours(loc.id);
           if (hours) node['openingHoursSpecification'] = hours;
+          return node;
+        })),
+        ...this.distributors.map((b) => {
+          const p = b.place;
+          const phone = b.phones.find((ph) => ph.href);
+          const node: Record<string, any> = {
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            '@id': `${url}#${b.anchor}`,
+            name: `Café Etrusca ${b.name}`,
+            url: `${url}#${b.anchor}`,
+            image: absoluteAssetUrl('images/logo-etrusca.webp'),
+            parentOrganization: { '@id': origin + '/#organization' },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: b.address,
+              addressLocality: p.ciudad || b.cityLabel || undefined,
+              addressRegion: p.estado || undefined,
+              addressCountry: 'MX'
+            }
+          };
+          if (phone?.href) node['telephone'] = phone.href.replace('tel:', '');
+          if (b.email) node['email'] = b.email;
+          if (Number.isFinite(p.lat) && Number.isFinite(p.lng) && p.lat && p.lng) {
+            node['geo'] = { '@type': 'GeoCoordinates', latitude: p.lat, longitude: p.lng };
+          }
           return node;
         })
       ]

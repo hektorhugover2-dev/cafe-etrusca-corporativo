@@ -102,6 +102,13 @@ export const routes: Routes = [
             .then(m => m.BranchesPageComponent)
       },
       {
+        path: 'distribuidores',
+        loadComponent: () =>
+          import('./domains/corporate/presentation/pages/branches-page/branches-page.component')
+            .then(m => m.BranchesPageComponent),
+        data: { directoryFocus: 'distribuidores' }
+      },
+      {
 
         path: 'Contacto',
 

@@ -36,9 +36,13 @@ export class CompromisoComponent implements AfterViewInit, OnDestroy {
         });
       }, { threshold: 0.5 }); // Se activa cuando el elemento se ve al menos al 50%
 
-      // Asignamos el detector a cada número encontrado
+      // Asignamos el detector a cada número encontrado.
+      // El HTML del servidor/prerender ya trae el número final (SEO y sin JS); solo en el
+      // navegador lo regresamos a 0 justo antes de animarlo cuando entra en pantalla.
       this.counters.forEach(counter => {
-        this.observer?.observe(counter.nativeElement);
+        const el = counter.nativeElement as HTMLElement;
+        el.innerText = (el.getAttribute('data-prefix') || '') + '0';
+        this.observer?.observe(el);
       });
     }
   }

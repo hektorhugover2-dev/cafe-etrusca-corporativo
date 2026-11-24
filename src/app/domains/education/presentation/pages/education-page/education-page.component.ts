@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, afterNextRender, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PAST_EVENT_FORM_FRAGMENT } from '../../event-paths';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
@@ -18,7 +17,8 @@ import {
   THIS_MONTH,
   Barista
 } from '../../education.data';
-import { OPINIONS, ReviewCard } from '../../opinions.data';
+import { opinionRatingJsonLd } from '../../opinions.data';
+import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
 import { PATH_QUIZ, PATH_QUIZ_RESULTS, PATH_QUIZ_RESULTS_EXPERIENCIA, PathProfile, PathQuizResult } from '../../path-quiz.data';
 import { coursePublicPath } from '../../course-public-paths';
 import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
@@ -27,23 +27,6 @@ interface QuizCourseLink {
   title: string;
   kicker: string;
   path: string;
-}
-
-interface CertificadoRow {
-  Id?: string;
-  Nombre?: string;
-  ApellidoPaterno?: string;
-  Comentarios?: string;
-  CalificacionTallerista?: string;
-}
-
-function decodeHtml(value: string) {
-  return value
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>');
 }
 
 const KIND_ICONS: Record<string, string> = {
@@ -56,7 +39,7 @@ const KIND_ICONS: Record<string, string> = {
 @Component({
   selector: 'app-education-page',
   standalone: true,
-  imports: [RouterLink, CompromisoComponent, ScrollWaveComponent, CourseInterestModalComponent],
+  imports: [RouterLink, CompromisoComponent, ScrollWaveComponent, CourseInterestModalComponent, ReviewsSliderComponent],
   templateUrl: './education-page.component.html',
   styleUrls: ['../../edu-theme.scss', './education-page.component.scss']
 })
@@ -73,12 +56,6 @@ export class EducationPageComponent implements OnInit, OnDestroy {
   private baristaTimer: ReturnType<typeof setInterval> | null = null;
   private baristaPaused = false;
   quiz = PATH_QUIZ;
-  reviews: ReviewCard[] = OPINIONS;
-  reviewIndex = 0;
-  starSlots = [1, 2, 3, 4, 5];
-  private reviewTimer: ReturnType<typeof setInterval> | null = null;
-  private reviewPaused = false;
-  private http = inject(HttpClient);
   /** Current wizard step (0..quiz.length-1); quiz.length = result. */
   step = 0;
   /** Selected option index per question. */
@@ -148,12 +125,12 @@ export class EducationPageComponent implements OnInit, OnDestroy {
           about: {
             '@type': 'Thing',
             name: 'Educación para baristas y cafeterías'
-          }
+          },
+          ...opinionRatingJsonLd()
         }
       ]
     });
     this.startBaristaTimer();
-    this.loadReviews();
     if (isPlatformBrowser(this.platformId)) {
       // /cursos-para-baristas-y-talleres-para-cafeterias/#solicitar-informacion: target of past or
       // unknown /cursos-y-talleres/<slug> URLs without a course page (IIS/server 301, event resolver).
@@ -174,7 +151,6 @@ export class EducationPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.stopBaristaTimer();
-    this.stopReviewTimer();
   }
 
   get branches() {
@@ -387,86 +363,6 @@ export class EducationPageComponent implements OnInit, OnDestroy {
       // Drop #solicitar-informacion so a reload does not reopen the form.
       this.router.navigate([], { relativeTo: this.route, replaceUrl: true, queryParamsHandling: 'preserve' });
     }
-  }
-  get visibleReviews(): ReviewCard[] {
-    const n = this.reviews.length;
-    if (!n) return [];
-    const count = Math.min(3, n);
-    const out: ReviewCard[] = [];
-    for (let i = 0; i < count; i++) {
-      out.push(this.reviews[(this.reviewIndex + i) % n]);
-    }
-    return out;
-  }
-
-  nextReview() {
-    const n = this.reviews.length;
-    if (!n) return;
-    this.reviewIndex = (this.reviewIndex + 1) % n;
-    this.restartReviewTimer();
-  }
-
-  prevReview() {
-    const n = this.reviews.length;
-    if (!n) return;
-    this.reviewIndex = (this.reviewIndex - 1 + n) % n;
-    this.restartReviewTimer();
-  }
-
-  pauseReviews() { this.reviewPaused = true; }
-  resumeReviews() { this.reviewPaused = false; }
-
-  private loadReviews() {
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.startReviewTimer();
-    this.http.get<{ data?: CertificadoRow[] }>('https://intranet.cafeetrusca.com/api/v1/venta/certificados/-1').subscribe({
-      next: (res) => {
-        const rows: CertificadoRow[] = Array.isArray(res.data) ? res.data : [];
-        const mapped = rows.map((row) => this.mapCertificado(row)).filter((x): x is ReviewCard => !!x);
-        if (mapped.length >= 3) {
-          this.reviews = mapped.slice(0, 24);
-          this.reviewIndex = 0;
-        }
-      },
-      error: () => {}
-    });
-  }
-
-  private mapCertificado(row: CertificadoRow): ReviewCard | null {
-    const text = decodeHtml(String(row.Comentarios || '')).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    const low = text.toLowerCase();
-    const skip = ['', 'no', 'n/a', 'na', 'ninguno', 'ninguna', 'si', 'sí', '.', '-', 'ok'];
-    if (text.length < 8 || skip.indexOf(low) >= 0) return null;
-    const first = String(row.Nombre || '').trim();
-    const last = String(row.ApellidoPaterno || '').trim();
-    const firstToken = first.split(/\s+/)[0] || '';
-    const lastInitial = last.charAt(0);
-    const name = lastInitial ? firstToken + ' ' + lastInitial + '.' : firstToken;
-    const initials = ((firstToken.charAt(0) || '') + (lastInitial || '')).toUpperCase() || '?';
-    const rating = Math.min(5, Math.max(1, parseInt(String(row.CalificacionTallerista || '5'), 10) || 5));
-    return { id: String(row.Id || name + text.slice(0, 12)), initials, name, rating, text };
-  }
-
-  private startReviewTimer() {
-    if (!isPlatformBrowser(this.platformId) || this.reviewTimer) return;
-    this.reviewTimer = setInterval(() => {
-      if (this.reviewPaused) return;
-      const n = this.reviews.length;
-      if (n < 2) return;
-      this.reviewIndex = (this.reviewIndex + 1) % n;
-    }, 5000);
-  }
-
-  private stopReviewTimer() {
-    if (this.reviewTimer) {
-      clearInterval(this.reviewTimer);
-      this.reviewTimer = null;
-    }
-  }
-
-  private restartReviewTimer() {
-    this.stopReviewTimer();
-    this.startReviewTimer();
   }
 
 }

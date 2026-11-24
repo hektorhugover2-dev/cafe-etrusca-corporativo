@@ -1,0 +1,145 @@
+/* Estilos tomados de education-page (sección Opiniones de clientes). */
+:host { display: block; }
+
+.edu-reviews-sec {
+  position: relative;
+  overflow: visible;
+  padding: 5.4rem clamp(1.2rem, 5vw, 5rem) 4.5rem;
+
+  .reviews-head {
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto 1.8rem;
+    h2 {
+      margin: 0;
+      color: #182247;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    }
+    .sub {
+      margin: 0.7rem auto 0;
+      max-width: 36rem;
+      color: #5c564e;
+      line-height: 1.45;
+    }
+  }
+
+  app-scroll-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+.rule {
+  display: none;
+  width: 132px;
+  height: 5px;
+  margin: 0.7rem auto 1rem;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #8a5424, #d4a056, #8a5424);
+}
+
+.reviews-slider {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: stretch;
+  gap: 0.7rem;
+  position: relative;
+  z-index: 2;
+}
+
+.rev-viewport { overflow: hidden; }
+
+.rev-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.rev-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 1.25rem 1.3rem 1.35rem;
+  margin: 0;
+  box-shadow: 0 10px 28px rgba(24, 34, 71, 0.08);
+  border: 1px solid #f0e6d6;
+  min-height: 180px;
+
+  p {
+    margin: 0.85rem 0 0;
+    color: #3f372f;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+}
+
+.rev-who {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  strong {
+    display: block;
+    color: #182247;
+    font-weight: 800;
+  }
+}
+
+.rev-avatar {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #182247;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.rev-stars {
+  display: flex;
+  gap: 0.12rem;
+  line-height: 1;
+  .star {
+    color: #d9d0c3;
+    font-size: 1.05rem;
+    &.on { color: #f5c400; }
+  }
+}
+
+.rev-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  align-self: center;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    width: 12px;
+    height: 12px;
+    border-left: 2.5px solid #3a3a3a;
+    border-bottom: 2.5px solid #3a3a3a;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &.next::before {
+    left: 46%;
+    transform: translate(-50%, -50%) rotate(-135deg);
+  }
+}
+
+@media (max-width: 1000px) {
+  .reviews-slider { grid-template-columns: 32px 1fr 32px; }
+  .rev-track { grid-template-columns: 1fr; }
+}

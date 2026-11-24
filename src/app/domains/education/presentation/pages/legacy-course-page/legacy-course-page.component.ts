@@ -4,6 +4,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { EventService } from '../../../../../shared/kernel/services/event.service';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
+import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
+import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
+import { opinionRatingJsonLd } from '../../opinions.data';
 import { CourseDate, courseBySlug } from '../../education.data';
 import { COURSE_PUBLIC_PATH_BY_SLUG } from '../../course-public-paths';
 import { EduCrumb, EDUCATION_HUB_PATH, educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
@@ -15,6 +18,7 @@ import {
   CatalogCourse,
   catalogByCategory,
   catalogByCourseSlug,
+  catalogCourseInstance,
   catalogDuration,
   catalogOffer,
   comboFor,
@@ -67,7 +71,7 @@ type RenderItem =
 @Component({
   selector: 'app-legacy-course-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, CourseInterestModalComponent],
+  imports: [RouterLink, FormsModule, CourseInterestModalComponent, PriceDisclaimerComponent, ReviewsSliderComponent],
   templateUrl: './legacy-course-page.component.html',
   styleUrls: ['../../edu-theme.scss', './legacy-course-page.component.scss']
 })
@@ -270,8 +274,18 @@ export class LegacyCoursePageComponent implements OnInit {
           },
           educationalLevel: course?.kind || 'talleres',
           inLanguage: 'es-MX',
+          ...opinionRatingJsonLd(),
           ...(cat ? { courseCode: cat.clave, timeRequired: catalogDuration(cat), offers: catalogOffer(cat, url) } : {}),
-          ...(this.resolved?.location ? { hasCourseInstance: courseInstance(this.resolved.location) } : {})
+          ...(cat
+            ? {
+                hasCourseInstance: catalogCourseInstance(cat, {
+                  offers: catalogOffer(cat, url),
+                  ...(this.resolved?.location ? { location: courseInstance(this.resolved.location).location } : {})
+                })
+              }
+            : this.resolved?.location
+              ? { hasCourseInstance: courseInstance(this.resolved.location) }
+              : {})
         },
         breadcrumbJsonLd(origin, this.crumbsFor(p), url)
       ]

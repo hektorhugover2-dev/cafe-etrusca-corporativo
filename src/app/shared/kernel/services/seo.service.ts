@@ -20,6 +20,11 @@ export interface SeoInput {
   keywords?: string;
   /** Absolute URL or site-relative path. Falls back to brand OG image. */
   image?: string;
+  /** Texto alternativo de la imagen para og:image:alt / twitter:image:alt (por defecto, el de la imagen de marca o el título). */
+  imageAlt?: string;
+  /** Medidas reales de `image` en px (og:image:width/height). Sin ellas no se publican esas etiquetas. */
+  imageWidth?: number;
+  imageHeight?: number;
   /** schema.org JSON-LD, or a factory that receives the canonical origin/url */
   jsonLd?:
     | Record<string, unknown>
@@ -39,9 +44,14 @@ export class SeoService {
   private document = inject(DOCUMENT);
   private router = inject(Router);
 
-  /** Default social share image (landscape hero on CDN). */
-  private readonly defaultImage =
-    `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`;
+  /**
+   * Imagen por defecto al compartir: banner «Aromas de invierno» del carrusel del home,
+   * en JPG 1200×630 (formato que WhatsApp/Facebook leen mejor). Archivo nuevo en R2 (2026-11-22).
+   */
+  private readonly defaultImage = `${ASSETS_BASE_URL}/images/og/og-aromas-de-invierno-2026.jpg`;
+  private readonly defaultImageAlt = 'Aromas de invierno: selección de productos Café Etrusca para la temporada';
+  private readonly defaultImageWidth = 1200;
+  private readonly defaultImageHeight = 630;
 
   /**
    * Canonical origin. Deliberately NOT the request/window host: prerender runs on
@@ -63,7 +73,11 @@ export class SeoService {
     input = { ...input, title: seoTitle(input.title), description: seoDescription(input.description) };
     const origin = this.resolveOrigin();
     const url = this.canonicalUrl(input.path);
+    const usesDefaultImage = !input.image;
     const image = siteAssetUrl(input.image || this.defaultImage);
+    const imageAlt = input.imageAlt || (usesDefaultImage ? this.defaultImageAlt : input.title);
+    const imageWidth = usesDefaultImage ? this.defaultImageWidth : input.imageWidth;
+    const imageHeight = usesDefaultImage ? this.defaultImageHeight : input.imageHeight;
 
     this.title.setTitle(input.title);
     this.meta.updateTag({ name: 'description', content: input.description });
@@ -83,12 +97,20 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:site_name', content: 'Café Etrusca' });
     this.meta.updateTag({ property: 'og:locale', content: 'es_MX' });
     this.meta.updateTag({ property: 'og:image', content: image });
-    this.meta.updateTag({ property: 'og:image:alt', content: 'Café Etrusca' });
+    this.meta.updateTag({ property: 'og:image:alt', content: imageAlt });
+    if (imageWidth && imageHeight) {
+      this.meta.updateTag({ property: 'og:image:width', content: String(imageWidth) });
+      this.meta.updateTag({ property: 'og:image:height', content: String(imageHeight) });
+    } else {
+      this.meta.removeTag("property='og:image:width'");
+      this.meta.removeTag("property='og:image:height'");
+    }
 
     this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.meta.updateTag({ name: 'twitter:title', content: input.title });
     this.meta.updateTag({ name: 'twitter:description', content: input.description });
     this.meta.updateTag({ name: 'twitter:image', content: image });
+    this.meta.updateTag({ name: 'twitter:image:alt', content: imageAlt });
 
     this.setCanonical(url);
 

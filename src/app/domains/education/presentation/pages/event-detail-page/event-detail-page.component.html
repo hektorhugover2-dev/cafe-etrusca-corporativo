@@ -31,6 +31,7 @@
         @if (course) { <div><strong>Duración</strong>{{ course.duration }}</div> }
         @if (priceLabel) { <div><strong>Inversión</strong>{{ priceLabel }} MXN</div> }
       </div>
+      @if (priceLabel) { <app-price-disclaimer></app-price-disclaimer> }
       <div class="edu-actions">
         <button type="button" class="btn-pink" (click)="openInterest()">Me interesa</button>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
@@ -197,6 +198,8 @@
     </div>
   </section>
 
+
+  <app-reviews-slider></app-reviews-slider>
   <section class="edu-section">
     <h2 class="section-title-center">Te puede interesar</h2>
     <div class="edu-cards">

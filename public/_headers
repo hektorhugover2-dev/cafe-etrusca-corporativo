@@ -34,3 +34,7 @@ https://:version.:project.pages.dev/*
 /api/*
   Cache-Control: no-store
 # /img/* lo proxifica functions/img/[[path]].ts hacia IIS (API_ORIGIN).
+# /e-commerce/* y /ecommerce/* las proxifican functions/e-commerce/[[path]].ts
+# y functions/ecommerce/[[path]].ts con el mismo mecanismo y el mismo origen IIS
+# (API_ORIGIN). /ecommerce/ (sin guion) se reescribe al prefijo con guion; no es
+# la página de la tienda (el menú va a tienda.cafeetrusca.com).

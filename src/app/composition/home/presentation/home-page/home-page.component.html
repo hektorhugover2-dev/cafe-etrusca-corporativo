@@ -20,14 +20,24 @@
         @if (heroShowAllSlides) {
 
 
-        <!-- SLIDE 0: Promociones Noviembre-Diciembre 2026 -->
+        <!-- SLIDE: Nueva imagen ¡Descúbrela! (2026-11-23). Sin enlace: no hay destino indicado; el patrón de Aromas de invierno tampoco lleva link. -->
         <div class="carousel-item active h-100">
+          <picture>
+            <source srcset="{{ assetsBase }}/images/home/banners/nueva-imagen-descubrela-2026-11-23-1x1.webp" media="(max-width: 480px)">
+            <source srcset="{{ assetsBase }}/images/home/banners/nueva-imagen-descubrela-2026-11-23.webp" media="(max-width: 2559px)">
+            <source srcset="{{ assetsBase }}/images/home/banners/nueva-imagen-descubrela-2026-11-23.webp" media="(min-width: 2560px)">
+            <img src="{{ assetsBase }}/images/home/banners/nueva-imagen-descubrela-2026-11-23.webp" class="d-block w-100 img-slider" width="1920" height="1080" fetchpriority="high" loading="eager" alt="Nueva imagen de Café Etrusca: descúbrela, con una laptop que muestra el sitio nuevo">
+          </picture>
+        </div>
+
+        <!-- SLIDE 0: Promociones Noviembre-Diciembre 2026 -->
+        <div class="carousel-item h-100">
           <a href="https://promos-insumos.cafeetrusca.com/" target="_blank" rel="noopener" title="Promociones de insumos Café Etrusca, noviembre - diciembre 2026">
             <picture>
-              <source srcset="/assets/images/home/banners/promociones-nov-dic-2026-1x1.webp" media="(max-width: 480px)">
-              <source srcset="/assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10.webp" media="(max-width: 2559px)">
+              <source srcset="/assets/images/home/banners/promociones-nov-dic-2026-1x1-828w.webp 828w, /assets/images/home/banners/promociones-nov-dic-2026-1x1.webp 1080w" sizes="100vw" media="(max-width: 480px)">
+              <source srcset="/assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10-960w.webp 960w, /assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10-1280w.webp 1280w, /assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10.webp 1920w" sizes="100vw" media="(max-width: 2559px)">
               <source srcset="/assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10.webp" media="(min-width: 2560px)">
-              <img src="/assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10.webp" class="d-block w-100 img-slider" width="1920" height="1080" fetchpriority="high" loading="eager" alt="Promociones de insumos Café Etrusca, noviembre - diciembre 2026">
+              <img src="/assets/images/home/banners/promociones-nov-dic-2026-leyenda-arriba-2026-11-10.webp" class="d-block w-100 img-slider" width="1920" height="1080" loading="lazy" alt="Promociones de insumos Café Etrusca, noviembre - diciembre 2026">
             </picture>
           </a>
         </div>
@@ -40,17 +50,6 @@
             <source srcset="{{ assetsBase }}/images/home/banners/aromas-de-invierno-2026.webp" media="(min-width: 2560px)">
             <img src="{{ assetsBase }}/images/home/banners/aromas-de-invierno-2026.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Aromas de invierno: selección de productos Café Etrusca para la temporada" loading="lazy">
           </picture>
-        </div>
-        <!-- SLIDE 1 LOCAL TEST: Recetario de invierno 1x1 -->
-        <div class="carousel-item h-100">
-          <a href="/contacto" title="Habla con tu asesor — Recetario de invierno">
-            <picture>
-              <source srcset="/assets/images/home/banners/banner_home_recetario_invierno-1x1-v4-calabaza-2026-11-10.webp" media="(max-width: 480px)">
-              <source srcset="/assets/images/home/banners/banner_home_recetario_invierno-1920x1080-calabaza-2026-11-10.webp" media="(max-width: 2559px)">
-              <source srcset="/assets/images/home/banners/banner_home_recetario_invierno-1920x1080-calabaza-2026-11-10.webp" media="(min-width: 2560px)">
-              <img src="/assets/images/home/banners/banner_home_recetario_invierno-1920x1080-calabaza-2026-11-10.webp" class="d-block w-100 img-slider" width="1920" height="1080" alt="Recetario de invierno Café Etrusca — habla con tu asesor" loading="lazy">
-            </picture>
-          </a>
         </div>
 
         @if (heroShowKitSlides) {
@@ -200,7 +199,7 @@
         <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
           <a routerLink="/productos/cafe" class="text-decoration-none text-center">
             <div class="img-wrapper mb-3">
-              <img src="{{ assetsBase }}/images/icon-cafe.webp" alt="" class="img-fluid" style="height: 180px; object-fit: contain;">
+              <img src="{{ assetsBase }}/images/icon-cafe.webp" alt="Bolsa de café Café Etrusca" class="img-fluid" style="height: 180px; object-fit: contain;">
             </div>
             <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-cafe">Café</span>
           </a>
@@ -209,7 +208,7 @@
         <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
           <a routerLink="/insumos-para-cafeterias" class="text-decoration-none text-center">
             <div class="img-wrapper mb-3">
-              <img src="{{ assetsBase }}/images/nuestros-productos/insumos.webp" alt="" width="406" height="360" loading="lazy" decoding="async" class="img-fluid" style="height: 180px; object-fit: contain;">
+              <img src="{{ assetsBase }}/images/nuestros-productos/insumos.webp" alt="Insumos para cafetería: jarabes, salsas y bases en polvo" width="406" height="360" loading="lazy" decoding="async" class="img-fluid" style="height: 180px; object-fit: contain;">
             </div>
             <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-insumos">Insumos</span>
           </a>
@@ -218,7 +217,7 @@
         <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
           <a routerLink="/accesorios-para-poner-una-cafeteria" class="text-decoration-none text-center">
             <div class="img-wrapper mb-3">
-              <img src="{{ assetsBase }}/images/nuestros-productos/accesorios.webp" alt="" width="391" height="360" loading="lazy" decoding="async" class="img-fluid" style="height: 180px; object-fit: contain;">
+              <img src="{{ assetsBase }}/images/nuestros-productos/accesorios.webp" alt="Accesorios para barista y cafetería" width="391" height="360" loading="lazy" decoding="async" class="img-fluid" style="height: 180px; object-fit: contain;">
             </div>
             <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-accesorios">Accesorios</span>
           </a>
@@ -227,7 +226,7 @@
         <div class="col-6 col-md-3 d-flex flex-column align-items-center product-category">
           <a routerLink="/maquinaria-y-equipo-para-cafeterias" class="text-decoration-none text-center">
             <div class="img-wrapper mb-3">
-              <img src="{{ assetsBase }}/images/nuestros-productos/maquinas.webp" alt="" width="442" height="360" loading="lazy" decoding="async" class="img-fluid" style="height: 180px; object-fit: contain;">
+              <img src="{{ assetsBase }}/images/nuestros-productos/maquinas.webp" alt="Máquina de espresso para cafetería" width="442" height="360" loading="lazy" decoding="async" class="img-fluid" style="height: 180px; object-fit: contain;">
             </div>
             <span class="badge rounded-pill text-dark fw-bold px-4 py-2 fs-6 category-badge badge-maquinas">Máquinas</span>
           </a>
@@ -296,7 +295,7 @@
         <div class="col-md-4 d-flex flex-column align-items-center promo-item">
           <a href="https://tienda.cafeetrusca.com/productos?search=CHILLOUT%20TAPIOCA%20BOLSA%203kg" target="_blank" rel="noopener" class="text-decoration-none d-flex flex-column align-items-center">
             <div class="circle-bg circle-pink mb-4">
-              <img src="{{ assetsBase }}/images/perlas-tapioca-chillout-3kg.webp" alt="Perlas de tapioca ChillOut, bolsa de 3 kg" class="img-fluid promo-img">
+              <img src="{{ assetsBase }}/images/insumos/toppings/tapioca-chillout-2026.webp" alt="Perlas de tapioca ChillOut, bolsa de 3 kg" class="img-fluid promo-img">
             </div>
             <p class="fw-bold text-dark px-3 fs-6">Perlas de Tapioca<br>ChillOut</p>
           </a>
@@ -538,7 +537,7 @@
         </div>
 
         <div class="col-6">
-          <a href="https://barista-champ.cafeetrusca.com/" target="_blank" rel="noopener" class="descargable-card tone-verde">
+          <a href="https://baristachamp.cafeetrusca.com/" target="_blank" rel="noopener" class="descargable-card tone-verde">
             <div class="desc-img-wrap">
               <img src="{{ assetsBase }}/images/catalogo-barista-champ.webp" alt="Catálogo Barista Champ" class="desc-img">
             </div>
@@ -588,7 +587,7 @@
           <a href="https://equipos-accesorios.cafeetrusca.com/" target="_blank" rel="noopener" class="d-block flex-fill descargable-card-desktop tone-cian shadow-sm" style="height: 50%;">
             <img src="{{ assetsBase }}/images/catalogo-accesorios.webp" alt="Catálogo Equipos y Accesorios" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
-          <a href="https://barista-champ.cafeetrusca.com/" target="_blank" rel="noopener" class="d-block flex-fill descargable-card-desktop tone-verde shadow-sm" style="height: 50%;">
+          <a href="https://baristachamp.cafeetrusca.com/" target="_blank" rel="noopener" class="d-block flex-fill descargable-card-desktop tone-verde shadow-sm" style="height: 50%;">
             <img src="{{ assetsBase }}/images/catalogo-barista-champ.webp" alt="Catálogo Barista Champ" class="w-100 h-100 object-fit-cover rounded-3">
           </a>
         </div>

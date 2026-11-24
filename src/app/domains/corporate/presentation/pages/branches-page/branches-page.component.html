@@ -4,55 +4,50 @@
       <nav class="br-crumbs" aria-label="Ruta de navegación">
         <a routerLink="/">Inicio</a>
         <span aria-hidden="true">›</span>
-        <span aria-current="page">Sucursales</span>
+        <span aria-current="page">{{ distributorsFirst() ? 'Distribuidores' : 'Sucursales' }}</span>
       </nav>
       <p class="br-kicker">Café Etrusca en México</p>
-      <h1>Sucursales Café Etrusca</h1>
-      <p class="br-lead">
-        Visítanos en cualquiera de nuestras {{ branches.length }} sucursales. Aquí encuentras la dirección,
-        el teléfono, el correo y el horario de cada una, además de la ruta en Google Maps.
-        Nuestras sucursales también son sede de los cursos y talleres de Café Etrusca.
-      </p>
-      <ul class="br-jump" aria-label="Ir a una sucursal">
-        @for (b of branches; track b.id) {
-          <li><a [href]="'#' + b.anchor">{{ b.location.venueLabel || b.cityLabel }}</a></li>
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section class="br-section br-map-sec" id="br-mapa" aria-labelledby="br-mapa-t">
-    <div class="br-wrap">
-      <h2 id="br-mapa-t">Encuentra tu sucursal en el mapa</h2>
-      <app-sede-map [places]="mapPlaces" [(selected)]="mapSelected" idPrefix="br-sede" [showNotes]="true"></app-sede-map>
-    </div>
-  </section>
-
-  <section class="br-section" aria-labelledby="br-sucursales">
-    <div class="br-wrap">
-      <h2 id="br-sucursales">Sucursales</h2>
-      <div class="br-grid">
-        @for (b of branches; track b.id) {
-          <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
-        }
-      </div>
-    </div>
-  </section>
-
-  @if (operations.length || extras.length) {
-    <section class="br-section br-section--alt" aria-labelledby="br-operaciones">
-      <div class="br-wrap">
-        <h2 id="br-operaciones">Centro de tostión y distribución</h2>
-        <div class="br-grid">
-          @for (b of operations; track b.id) {
-            <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+      @if (distributorsFirst()) {
+        <h1>Distribuidores Café Etrusca</h1>
+        <p class="br-lead">
+          Visítanos en cualquiera de nuestros {{ distributors.length }} distribuidores autorizados. Aquí encuentras la dirección,
+          el teléfono y el correo de cada uno, además de la ruta en Google Maps.
+          Más abajo también encuentras nuestras sucursales y el centro de distribución.
+        </p>
+        <ul class="br-jump" aria-label="Ir a un distribuidor">
+          @for (b of distributors; track b.id) {
+            <li><a [href]="'#' + b.anchor">{{ b.label.replace('Distribuidor ', '') }}</a></li>
           }
-          @for (b of extras; track b.id) {
-            <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+          <li><a href="#br-sucursales">Sucursales</a></li>
+        </ul>
+      } @else {
+        <h1>Sucursales Café Etrusca</h1>
+        <p class="br-lead">
+          Visítanos en cualquiera de nuestras {{ branches.length }} sucursales. Aquí encuentras la dirección,
+          el teléfono, el correo y el horario de cada una, además de la ruta en Google Maps.
+          Nuestras sucursales también son sede de los cursos y talleres de Café Etrusca.
+          Más abajo también encuentras a nuestros distribuidores autorizados.
+        </p>
+        <ul class="br-jump" aria-label="Ir a una sucursal">
+          @for (b of branches; track b.id) {
+            <li><a [href]="'#' + b.anchor">{{ b.location.venueLabel || b.cityLabel }}</a></li>
           }
-        </div>
-      </div>
-    </section>
+          <li><a href="#br-distribuidores">Distribuidores</a></li>
+        </ul>
+      }
+    </div>
+  </section>
+
+  @if (distributorsFirst()) {
+    <ng-container *ngTemplateOutlet="distributorsBlock"></ng-container>
+    <ng-container *ngTemplateOutlet="branchesMapBlock"></ng-container>
+    <ng-container *ngTemplateOutlet="branchesCardsBlock"></ng-container>
+    <ng-container *ngTemplateOutlet="operationsBlock"></ng-container>
+  } @else {
+    <ng-container *ngTemplateOutlet="branchesMapBlock"></ng-container>
+    <ng-container *ngTemplateOutlet="branchesCardsBlock"></ng-container>
+    <ng-container *ngTemplateOutlet="operationsBlock"></ng-container>
+    <ng-container *ngTemplateOutlet="distributorsBlock"></ng-container>
   }
 
   <section class="br-cta">
@@ -68,6 +63,77 @@
     </div>
   </section>
 </main>
+
+<ng-template #branchesMapBlock>
+  <section class="br-section br-map-sec" id="br-mapa" aria-labelledby="br-mapa-t">
+    <div class="br-wrap">
+      <h2 id="br-mapa-t">Encuentra tu sucursal en el mapa</h2>
+      <app-sede-map [places]="mapPlaces" [(selected)]="mapSelected" idPrefix="br-sede" [showNotes]="true"></app-sede-map>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #branchesCardsBlock>
+  <section class="br-section" aria-labelledby="br-sucursales">
+    <div class="br-wrap">
+      <h2 id="br-sucursales">Sucursales</h2>
+      <div class="br-grid">
+        @for (b of branches; track b.id) {
+          <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+        }
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #operationsBlock>
+  @if (operations.length || extras.length) {
+    <section class="br-section br-section--alt" aria-labelledby="br-operaciones">
+      <div class="br-wrap">
+        <h2 id="br-operaciones">Centro de distribución</h2>
+        <div class="br-grid br-grid--2">
+          @for (b of operations; track b.id) {
+            <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+          }
+          @for (b of extras; track b.id) {
+            <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+          }
+        </div>
+      </div>
+    </section>
+  }
+</ng-template>
+
+<ng-template #distributorsBlock>
+  <section class="br-section" id="br-distribuidores" aria-labelledby="br-distribuidores-t">
+    <div class="br-wrap">
+      @if (!distributorsFirst()) {
+        <p class="br-kicker">Café Etrusca en México</p>
+      }
+      <h2 id="br-distribuidores-t">Distribuidores</h2>
+      @if (!distributorsFirst()) {
+        <p class="br-section-lead">
+          También puedes visitarnos en nuestros distribuidores autorizados de Café Etrusca.
+          Aquí encuentras la dirección, el teléfono y el correo de cada uno, además de la ruta en Google Maps.
+        </p>
+        <ul class="br-jump" aria-label="Ir a un distribuidor">
+          @for (b of distributors; track b.id) {
+            <li><a [href]="'#' + b.anchor">{{ b.label.replace('Distribuidor ', '') }}</a></li>
+          }
+        </ul>
+      }
+      <div class="br-dist-map" id="br-mapa-dist">
+        <h3 id="br-mapa-dist-t" class="br-subhead">Encuentra tu distribuidor en el mapa</h3>
+        <app-sede-map [places]="distributorMapPlaces" [(selected)]="distMapSelected" idPrefix="br-dist" [showNotes]="false"></app-sede-map>
+      </div>
+      <div class="br-grid">
+        @for (b of distributors; track b.id) {
+          <ng-container *ngTemplateOutlet="card; context: { $implicit: b }"></ng-container>
+        }
+      </div>
+    </div>
+  </section>
+</ng-template>
 
 <ng-template #card let-b>
   <article class="br-card" [id]="b.anchor">

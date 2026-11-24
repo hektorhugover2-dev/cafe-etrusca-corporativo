@@ -12,7 +12,7 @@ import {
   CITIES,
   LOCATORS,
   type Branch,
-  type Locator, DISTRIBUTORS } from './contacto.data';
+  type Locator, DISTRIBUTORS, isHiddenFromDirectory } from './contacto.data';
 import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../../shared/kernel/config/assets-url';
 import { apiUrl } from '../../../../../shared/kernel/config/api-url';
 
@@ -45,7 +45,7 @@ export class ContactPageComponent implements OnInit {
   locatorFilter: 'Todos' | Locator['kind'] = 'Todos';
 
   /** Sedes del mapa: sucursales + distribuidores (el componente filtra por tipo y estado). */
-  readonly mapPlaces: Branch[] = [...BRANCHES, ...DISTRIBUTORS];
+  readonly mapPlaces: Branch[] = [...BRANCHES, ...DISTRIBUTORS].filter((p) => !isHiddenFromDirectory(p));
   currentBranch: Branch | null = null;
 
   name = '';
@@ -68,7 +68,7 @@ export class ContactPageComponent implements OnInit {
         'Contacta a ' + brand + ': sucursales, distribuidores y CEDIS. Escríbenos y un asesor te atiende. Tel. (55) 4166 8777.',
       keywords:
         'contacto Café Etrusca, sucursales, distribuidores, CEDIS Vallejo, atención a clientes, mapa sucursales',
-      image: `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`,
+      // Sin `image`: usa la miniatura por defecto (banner Aromas de invierno 1200x630, ver SeoService).
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {

@@ -6,12 +6,16 @@ import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { EventService } from '../../../../../shared/kernel/services/event.service';
 import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
+import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
+import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
+import { opinionRatingJsonLd } from '../../opinions.data';
 import { Course, CourseDate, courseBySlug } from '../../education.data';
 import { educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
 import { EDUCATION_HUB_PATH } from '../../course-public-paths';
 import { cityPageIndexing } from '../../page-indexing';
 import {
   catalogByCourseSlug,
+  catalogCourseInstance,
   catalogDuration,
   catalogOffer,
   formatMXN
@@ -28,7 +32,7 @@ import {
 @Component({
   selector: 'app-course-branch-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, EduNavComponent, CourseInterestModalComponent],
+  imports: [RouterLink, FormsModule, EduNavComponent, CourseInterestModalComponent, PriceDisclaimerComponent, ReviewsSliderComponent],
   templateUrl: './course-branch-page.component.html',
   styleUrls: ['../../edu-theme.scss']
 })
@@ -178,7 +182,8 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
         url: 'https://cafeetrusca.com/'
       },
       educationalCredentialAwarded: 'Diploma de participación',
-      inLanguage: 'es-MX'
+      inLanguage: 'es-MX',
+      ...opinionRatingJsonLd()
     };
     const cat = catalogByCourseSlug('formacion-de-emprendedores');
     if (cat) {
@@ -196,6 +201,12 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
           addressCountry: 'MX'
         }
       };
+    }
+    if (cat) {
+      payload['hasCourseInstance'] = catalogCourseInstance(cat, {
+        offers: catalogOffer(cat, url),
+        ...(payload['location'] ? { location: payload['location'] } : {})
+      });
     }
     const el = this.document.createElement('script');
     el.type = 'application/ld+json';

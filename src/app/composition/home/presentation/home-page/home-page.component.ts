@@ -1,6 +1,6 @@
 import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../shared/kernel/config/assets-url';
 import { apiUrl } from '../../../../shared/kernel/config/api-url';
-﻿import { DISTRIBUTORS } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
+﻿import { DISTRIBUTORS, isHiddenFromDirectory } from '../../../../domains/corporate/presentation/pages/contact-page/contacto.data';
 import { Component, ElementRef, QueryList, ViewChildren, OnDestroy, OnInit, inject, afterNextRender } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { swalToast } from '../../../../shared/kernel/utils/swal-toast';
@@ -27,7 +27,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   protected readonly heroShowAllSlides = true; // LOCAL TEST slider 1x1 2026-11-09
   /** Desarrollo 2026-11-10: oculta del carrusel hero los slides de kits (La Fenice, Barista básico, Bubble Tea, Toddy 1 y 2) y, a petición de Héctor (t690u), también Hario. Poner true para reactivarlos. */
   protected readonly heroShowKitSlides = false;
-  /** Índices de indicadores solo para slides visibles. Con kits y Hario ocultos: Promociones, Aromas de invierno, Recetario, CAFÉ ETRUSCA (4). Si heroShowKitSlides=true, son 10. */
+  /** Índices de indicadores solo para slides visibles. Con kits y Hario ocultos: Nueva imagen, Promociones, Aromas de invierno, CAFÉ ETRUSCA (4). Si heroShowKitSlides=true, son 10. */
   protected get heroIndicatorIndexes(): number[] {
     return this.heroShowKitSlides ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] : [0, 1, 2, 3];
   }
@@ -78,7 +78,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     },
     {
       lat: 19.4257134, lng: -99.16132894907378, nombre: 'Sucursal Zona Rosa',
-      direccion: 'Liverpool #91, Colonia Juárez, CDMX', horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-13:00 HRS',
+      direccion: 'Liverpool #91, Colonia Juárez, CDMX', horarios: 'L-V 09:00-18:00 HRS SABADO 09:00-18:00 HRS',
       email: "zonarosa@cafeetrusca.com", telefono: "(55) 5533 9402 / 04 / 05 / 06", ciudad: "Ciudad de México", estado: "CDMX"
     },
     {
@@ -154,7 +154,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   /** Sedes del mapa «Visítanos»: sucursales + distribuidores (el componente filtra por tipo y estado). */
   readonly mapPlaces: any[] = [
-    ...this.branches.map((b) => ({ ...b, tipo: 'sucursal' })),
+    ...this.branches.filter((b) => !isHiddenFromDirectory(b)).map((b) => ({ ...b, tipo: 'sucursal' })),
     ...DISTRIBUTORS
   ];
   currentBranch: any = null;
@@ -318,7 +318,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
         ' Todo Para Tu Cafetería: Cursos para Baristas, Talleres para Cafeterías, Insumos, Maquinaria, Equipo, Accesorios y más para potenciar tu negocio',
       keywords:
         'arte latte,Brew Bar,Cold Brew,Mezcla Personalizada,Cafés especiales,Mezclas especiales,Café Etrusca,insumos,cafeterías,equipo para cafetería,barras de café,cursos para barista,maquinas de espresso,certificaciones',
-      image: `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`,
+      // Sin `image`: usa la miniatura por defecto (banner Aromas de invierno 1200x630, ver SeoService).
       ogType: 'website',
       jsonLd: ({ origin }) => [
         {

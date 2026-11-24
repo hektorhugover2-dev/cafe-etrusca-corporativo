@@ -21,6 +21,7 @@
         @if (priceLabel) { <div><strong>Inversión</strong>{{ priceLabel }}</div> }
       </div>
       @if (combo) { <p class="edu-combo">{{ combo }}</p> }
+      @if (priceLabel || combo) { <app-price-disclaimer></app-price-disclaimer> }
       <div class="edu-actions">
         <a class="btn-pink" href="#calendario">Ver fechas disponibles</a>
         <a class="btn-navy" routerLink="/contacto">Hablar con un asesor</a>
@@ -186,6 +187,8 @@
     </div>
   </section>
 
+
+  <app-reviews-slider></app-reviews-slider>
   <section class="edu-section">
     <h2 class="section-title-center">Te puede interesar</h2>
     <div class="edu-cards">

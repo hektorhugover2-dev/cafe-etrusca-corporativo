@@ -112,7 +112,7 @@ export class AboutPageComponent implements OnInit, AfterViewInit, OnDestroy {
         'Conoce a ' + brand + ': referente de la industria del café en México desde 1995. Insumos, equipo, capacitación y acompañamiento para cafeterías.',
       keywords:
         'Café Etrusca,nosotros,quiénes somos,misión,visión,cafetería México,insumos,capacitación baristas,La Fenice,Barista Champ,ChillOut,Tenzyu',
-      image: `${ASSETS_BASE_URL}/images/home/banners/banner_home_la_fenice.webp`,
+      // Sin `image`: usa la miniatura por defecto (banner Aromas de invierno 1200x630, ver SeoService).
       ogType: 'website',
       jsonLd: ({ origin, url }) => [
         {

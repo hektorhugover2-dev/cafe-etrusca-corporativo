@@ -58,7 +58,7 @@
                       <span class="mega-bar"></span>
                       <span class="mega-cup" aria-hidden="true">
                         @if (c.icon) {
-                          <img class="mega-cup-ico" [src]="c.icon" alt="" width="40" height="40">
+                          <img class="mega-cup-ico" [src]="c.icon" [alt]="c.label" width="40" height="40">
                         }
                       </span>
                       {{ c.label }}
@@ -256,7 +256,7 @@
                       <span class="mega-bar"></span>
                       <span class="mega-cup" aria-hidden="true">
                         @if (c.icon) {
-                          <img class="mega-cup-ico" [src]="c.icon" alt="" width="40" height="40">
+                          <img class="mega-cup-ico" [src]="c.icon" [alt]="c.label" width="40" height="40">
                         }
                       </span>
                       {{ c.label }}
@@ -271,7 +271,7 @@
                   @if (!isEduSection) {
                                         <h3 class="mega-panel-title te-recomendamos-title">
                       <span class="mega-bottle" aria-hidden="true">
-                        <img class="mega-cup-ico" src="/assets/images/educacion/nav-linea/cat-recomendados-negro.webp" alt="" width="40" height="40">
+                        <img class="mega-cup-ico" src="/assets/images/educacion/nav-linea/cat-recomendados-negro.webp" alt="Te recomendamos" width="40" height="40">
                       </span>
                       Te recomendamos
                     </h3>

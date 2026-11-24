@@ -7,7 +7,7 @@
       </nav>
       <h1>Aprende, <em>emprende</em> y sorprende</h1>
       <p class="lead">Formación, experiencias y encuentros diseñados para todos los que quieren llevar su pasión por el café más allá.</p>
-      <a class="btn-burgundy" href="#oferta">Conoce nuestra oferta</a>
+      <a class="btn-burgundy" routerLink="/educacion/cursos">Conoce nuestra oferta</a>
     </div>
     <div class="edu-hero-media">
       <img src="/assets/images/educacion/cursos-hero-emprendedores.webp" alt="Curso Formación de emprendedores en Café Etrusca" width="750" height="375" fetchpriority="high">
@@ -302,37 +302,7 @@
     <p class="baristas-hint">El destacado cambia solo. También puedes elegir a alguien de la cuadrícula.</p>
   </section>
 
-    <section class="edu-section edu-reviews-sec">
-    <header class="edu-heading reviews-head">
-      <h2 class="section-title-center">Opiniones de clientes</h2>
-      <span class="rule" aria-hidden="true"></span>
-      <p class="sub">Nos encanta ver cómo nuestra comunidad crece con cada taza y cada práctica. Aquí algunas reseñas reales de personas que han vivido la experiencia Café Etrusca.</p>
-    </header>
-    <div class="reviews-slider" (mouseenter)="pauseReviews()" (mouseleave)="resumeReviews()">
-      <button type="button" class="rev-arrow prev" (click)="prevReview()" aria-label="Anterior"></button>
-      <div class="rev-viewport">
-        <div class="rev-track">
-          @for (r of visibleReviews; track r.id) {
-            <article class="rev-card">
-              <div class="rev-who">
-                <span class="rev-avatar">{{ r.initials }}</span>
-                <div>
-                  <strong>{{ r.name }}</strong>
-                  <div class="rev-stars" [attr.aria-label]="r.rating + ' de 5'">
-                    @for (s of starSlots; track s) {
-                      <span class="star" [class.on]="s <= r.rating">★</span>
-                    }
-                  </div>
-                </div>
-              </div>
-              <p>{{ r.text }}</p>
-            </article>
-          }
-        </div>
-      </div>
-      <button type="button" class="rev-arrow next" (click)="nextReview()" aria-label="Siguiente"></button>
-    </div>
-    </section>
+    <app-reviews-slider></app-reviews-slider>
 
   <section class="edu-section edu-gallery-sec">
     <header class="edu-heading">

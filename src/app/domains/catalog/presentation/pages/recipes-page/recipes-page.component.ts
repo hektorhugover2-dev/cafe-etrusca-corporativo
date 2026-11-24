@@ -79,7 +79,11 @@ export class RecipesPageComponent implements OnInit {
     this.temporada.set(temporada);
     this.ultimoFiltro.set(chip ? 'tipo' : 'temporada');
   }
-  recipes: Recipe[] = publishedRecipes();
+  /** Recetas publicadas; las de la temporada actual (RECETARIO_DEFAULT) van primero en el listado y en el ItemList. */
+  recipes: Recipe[] = publishedRecipes()
+    .map((r, i) => ({ r, i, temporada: RECETARIO_DEFAULT && r.collection === RECETARIO_DEFAULT.coleccion ? 0 : 1 }))
+    .sort((a, b) => a.temporada - b.temporada || a.i - b.i)
+    .map((x) => x.r);
 
   /* ---------- Receta del mes (se configura en recetas-listado.config.ts) ---------- */
   readonly delMes = RECETA_DEL_MES;
@@ -234,12 +238,15 @@ export class RecipesPageComponent implements OnInit {
   ngOnInit() {
     const brand = 'Caf\u00e9 Etrusca';
     this.seo.set({
-      title: 'Recetas para cafeter\u00eda | Fiestas Patrias, Verano y San Valent\u00edn 2026 | ' + brand,
+      title: 'Recetario de invierno para cafeter\u00eda | ' + brand,
       description:
-        'Recetario ChillOut, Calabaza, Fiestas Patrias, Verano y San Valentín 2026: mangonada, micheladas, cold brew, sodas y m\u00e1s bebidas de barra.',
+        'Recetario de invierno para cafeter\u00eda: Latte de Noel, Ponche navide\u00f1o calentito, Noche de invierno latte, Copito de chocolate blanco y m\u00e1s bebidas de temporada.',
       keywords:
-        'recetas cafeter\u00eda, Fiestas Patrias, Verano 2026, San Valent\u00edn 2026, ChillOut, mangonada, cold brew, Caf\u00e9 Etrusca, recetas barista',
-      image: `${ASSETS_BASE_URL}/images/recetas/mangonada-card.webp`,
+        'recetas cafeter\u00eda, recetario de invierno, bebidas navide\u00f1as, Latte de Noel, ponche navide\u00f1o, chai, ChillOut, Caf\u00e9 Etrusca, recetas barista',
+      image: `${ASSETS_BASE_URL}/images/recetas/invierno/latte-de-noel.webp`,
+      imageAlt: 'Latte de Noel: chai latte con Torani cereza, receta de invierno de Caf\u00e9 Etrusca',
+      imageWidth: 1066,
+      imageHeight: 1600,
       ogType: 'website',
       jsonLd: ({ origin, url }) => {
         const items = this.recipes.map((r, i) => ({

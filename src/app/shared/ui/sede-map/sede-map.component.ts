@@ -81,6 +81,13 @@ export class SedeMapComponent {
     return sel && list.includes(sel) ? sel : (list[0] ?? null);
   });
   readonly kind = computed<Kind>(() => {
+    const list = this.places();
+    const hasS = list.some((p) => kindOf(p) === 'sucursal');
+    const hasD = list.some((p) => kindOf(p) === 'distribuidor');
+    // Un solo tipo en el input: usarlo siempre. kindState arranca en sucursal y el
+    // toggle solo aparece si hay ambos tipos; un mapa solo de distribuidores no pintaba pines.
+    if (hasD && !hasS) return 'distribuidor';
+    if (hasS && !hasD) return 'sucursal';
     if (this.pinsMode()) return this.kindState();
     const c = this.current();
     return c ? kindOf(c) : 'sucursal';

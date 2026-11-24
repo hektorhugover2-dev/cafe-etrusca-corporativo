@@ -47,6 +47,7 @@ const STATIC_PATHS: Array<{ path: string; changefreq: string; priority: string }
   { path: `/${EMPRENDE_PATH}`, changefreq: 'weekly', priority: '0.8' },
   { path: '/contacto', changefreq: 'monthly', priority: '0.6' },
   { path: '/sucursales', changefreq: 'monthly', priority: '0.7' },
+  { path: '/distribuidores', changefreq: 'monthly', priority: '0.7' },
   { path: '/recetas', changefreq: 'weekly', priority: '0.8' },
   { path: '/calculadora-de-precios', changefreq: 'monthly', priority: '0.6' },
   { path: '/videoteca', changefreq: 'monthly', priority: '0.5' },
