@@ -27,9 +27,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
   protected readonly heroShowAllSlides = true; // LOCAL TEST slider 1x1 2026-11-09
   /** Desarrollo 2026-11-10: oculta del carrusel hero los slides de kits (La Fenice, Barista básico, Bubble Tea, Toddy 1 y 2) y, a petición de Héctor (t690u), también Hario. Poner true para reactivarlos. */
   protected readonly heroShowKitSlides = false;
-  /** Índices de indicadores solo para slides visibles. Con kits y Hario ocultos: Nueva imagen, Promociones, Aromas de invierno, CAFÉ ETRUSCA (4). Si heroShowKitSlides=true, son 10. */
+  /** Índices de indicadores solo para slides visibles. Con kits y Hario ocultos: Nueva imagen, Calculadora de precios, Promociones, Aromas de invierno, CAFÉ ETRUSCA (5). Si heroShowKitSlides=true, son 11. */
   protected get heroIndicatorIndexes(): number[] {
-    return this.heroShowKitSlides ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] : [0, 1, 2, 3];
+    return this.heroShowKitSlides ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : [0, 1, 2, 3, 4];
   }
   private http = inject(HttpClient);
 
