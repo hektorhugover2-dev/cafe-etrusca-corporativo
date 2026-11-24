@@ -17,7 +17,6 @@ import {
   THIS_MONTH,
   Barista
 } from '../../education.data';
-import { opinionRatingJsonLd } from '../../opinions.data';
 import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
 import { PATH_QUIZ, PATH_QUIZ_RESULTS, PATH_QUIZ_RESULTS_EXPERIENCIA, PathProfile, PathQuizResult } from '../../path-quiz.data';
 import { coursePublicPath } from '../../course-public-paths';
@@ -125,8 +124,7 @@ export class EducationPageComponent implements OnInit, OnDestroy {
           about: {
             '@type': 'Thing',
             name: 'Educación para baristas y cafeterías'
-          },
-          ...opinionRatingJsonLd()
+          }
         }
       ]
     });

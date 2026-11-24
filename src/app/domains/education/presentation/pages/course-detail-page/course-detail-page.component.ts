@@ -7,7 +7,6 @@ import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
 import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
 import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
-import { opinionRatingJsonLd } from '../../opinions.data';
 import { Course, CourseDate, courseBySlug, COURSES, upcomingCourseDates } from '../../education.data';
 import { coursePublicPath, EDUCATION_HUB_PATH } from '../../course-public-paths';
 import { educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
@@ -137,7 +136,6 @@ export class CourseDetailPageComponent implements OnInit {
           },
           educationalLevel: course.kind,
           inLanguage: 'es-MX',
-          ...opinionRatingJsonLd(),
           ...(cat
             ? {
                 courseCode: cat.clave,

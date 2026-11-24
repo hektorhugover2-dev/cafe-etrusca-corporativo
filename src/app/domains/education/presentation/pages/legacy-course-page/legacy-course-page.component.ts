@@ -6,7 +6,6 @@ import { EventService } from '../../../../../shared/kernel/services/event.servic
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
 import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
 import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
-import { opinionRatingJsonLd } from '../../opinions.data';
 import { CourseDate, courseBySlug } from '../../education.data';
 import { COURSE_PUBLIC_PATH_BY_SLUG } from '../../course-public-paths';
 import { EduCrumb, EDUCATION_HUB_PATH, educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
@@ -274,7 +273,6 @@ export class LegacyCoursePageComponent implements OnInit {
           },
           educationalLevel: course?.kind || 'talleres',
           inLanguage: 'es-MX',
-          ...opinionRatingJsonLd(),
           ...(cat ? { courseCode: cat.clave, timeRequired: catalogDuration(cat), offers: catalogOffer(cat, url) } : {}),
           ...(cat
             ? {

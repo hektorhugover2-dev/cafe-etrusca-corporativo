@@ -9,7 +9,6 @@ import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
 import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
 import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
-import { opinionRatingJsonLd } from '../../opinions.data';
 import { Course, CourseDate, COURSES } from '../../education.data';
 import { coursePublicPath } from '../../course-public-paths';
 import { absoluteAsset, eventSeoForCategory } from './event-seo';
@@ -249,8 +248,11 @@ export class EventDetailPageComponent implements OnInit {
             eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
             ...(place ? { location: place } : {}),
             organizer: org,
+            // The Event API has no instructor field; Café Etrusca runs the event.
+            performer: org,
+            // offers.validFrom: Héctor confirmed the registration date is the event start date.
             ...(isFinite(price) && price > 0
-              ? { offers: { '@type': 'Offer', url, price, priceCurrency: 'MXN', availability: 'https://schema.org/InStock' } }
+              ? { offers: { '@type': 'Offer', url, price, priceCurrency: 'MXN', availability: 'https://schema.org/InStock', validFrom: startDate } }
               : {})
           },
           {
@@ -261,7 +263,6 @@ export class EventDetailPageComponent implements OnInit {
             description: about,
             provider: org,
             inLanguage: 'es-MX',
-            ...opinionRatingJsonLd(),
             ...(isFinite(price) && price > 0
               ? { offers: { '@type': 'Offer', url, price, priceCurrency: 'MXN', availability: 'https://schema.org/InStock', category: 'Paid' } }
               : {}),

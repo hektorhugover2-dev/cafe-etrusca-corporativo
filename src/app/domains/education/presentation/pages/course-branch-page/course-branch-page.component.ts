@@ -8,7 +8,6 @@ import { EduNavComponent } from '../../components/edu-nav/edu-nav.component';
 import { CourseInterestModalComponent } from '../../components/course-interest-modal/course-interest-modal.component';
 import { PriceDisclaimerComponent } from '../../components/price-disclaimer/price-disclaimer.component';
 import { ReviewsSliderComponent } from '../../components/reviews-slider/reviews-slider.component';
-import { opinionRatingJsonLd } from '../../opinions.data';
 import { Course, CourseDate, courseBySlug } from '../../education.data';
 import { educationCrumbs, breadcrumbJsonLd } from '../../edu-breadcrumb';
 import { EDUCATION_HUB_PATH } from '../../course-public-paths';
@@ -182,8 +181,7 @@ export class CourseBranchPageComponent implements OnInit, OnDestroy {
         url: 'https://cafeetrusca.com/'
       },
       educationalCredentialAwarded: 'Diploma de participación',
-      inLanguage: 'es-MX',
-      ...opinionRatingJsonLd()
+      inLanguage: 'es-MX'
     };
     const cat = catalogByCourseSlug('formacion-de-emprendedores');
     if (cat) {
