@@ -132,10 +132,7 @@
     color: #dca05a;
   }
 
-  &[data-k='Metodología'] {
-    background: #6b2744;
-    color: #fff;
-  }
+  &[data-k='Metodología'],
   &[data-k='Duración'],
   &[data-k='Horario'],
   &[data-k='Formato'] {

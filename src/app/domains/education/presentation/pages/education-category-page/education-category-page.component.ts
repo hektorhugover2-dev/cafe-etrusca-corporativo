@@ -48,6 +48,14 @@ export class EducationCategoryPageComponent implements OnInit {
       // Experiencias y sesiones sabatinas sin fechas no se listan (cursos y talleres sí, con formulario de solicitud).
       const hideEmpty = found.slug === 'experiencias' || found.slug === 'sesiones';
       this.courses = coursesByKind(found.slug as EduKind).filter((c) => !hideEmpty || (c.dates?.length ?? 0) > 0);
+      // Diploma/certificado solo en cursos y talleres.
+      const withDiploma = found.slug === 'cursos' || found.slug === 'talleres';
+      this.learn = withDiploma
+        ? LEARN_ITEMS
+        : LEARN_ITEMS.filter((i) => i.label !== 'Certificado de participación');
+      this.faq = withDiploma
+        ? FAQ
+        : FAQ.filter((f) => !/diploma|certificado|constancia/i.test(f.q + ' ' + f.a));
       this.seo.set({
         title: found.title + ' | Café Etrusca',
         description: found.subtitle || found.body,

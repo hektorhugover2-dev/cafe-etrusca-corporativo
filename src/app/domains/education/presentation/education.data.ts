@@ -83,6 +83,14 @@ const INCLUDES_SESIONES = [
   'Acompañamiento del instructor'
 ];
 
+/** Experiencias: no incluyen diploma (a diferencia de cursos y talleres). */
+const INCLUDES_EXPERIENCIAS = [
+  'Material de apoyo',
+  'Prácticas guiadas',
+  'Uso de equipos profesionales',
+  'Acompañamiento del instructor'
+];
+
 // Course dates come ONLY from /api/Event (live in the browser; public/data/events.json snapshot
 // while prerendering). The old sample arrays (June/July "Viaducto / Zona Rosa / Vallejo") were removed.
 
@@ -132,7 +140,7 @@ export const EDU_NAV: EduCategory[] = [
     stats: [
       { label: 'Metodología', value: '70% práctica', hint: '(Manos a la barra)' },
       { label: 'Duración', value: '1 día', hint: '(6 horas)' },
-      { label: 'Horario', value: '9:00 a.m. inicio' }
+      { label: 'Horario', value: '10:00 a.m. inicio' }
     ]
   },
   {
@@ -147,7 +155,7 @@ export const EDU_NAV: EduCategory[] = [
     heroImage: `${ASSETS_BASE_URL}/images/calendario-sesiones-slider.webp`,
     stats: [
       { label: 'Formato', value: 'Comunidad', hint: '(Cupo limitado)' },
-      { label: 'Duración', value: '1 sábado', hint: '(4 horas)' },
+      { label: 'Duración', value: '1 sábado', hint: '(2 horas)' },
       { label: 'Horario', value: '10:00 a.m. inicio' }
     ]
   }
@@ -350,7 +358,7 @@ const RAW_COURSES: Course[] = [
       'Baristas y dueños que quieren ampliar carta.',
       'Equipos de matcha bar o bubble tea.'
     ],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [...sesionGdl('14', 'Diciembre'), ...sesionMty('14', 'Diciembre'), ...sesionQro('14', 'Diciembre')],
     seo: {
       title: "Inmersiona-Té en Navidad | Experiencia Café Etrusca",
@@ -384,7 +392,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Mixología', 'Presentación', 'Menú de barra', 'Servicio'],
     audience: ['Baristas.', 'Dueños de cafetería.', 'Equipos de barra.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [...sesionGdl('12', 'Octubre'), ...sesionMty('12', 'Octubre'), ...sesionQro('12', 'Octubre')],
     seo: {
       title: 'Mixología | Experiencia Café Etrusca',
@@ -418,7 +426,7 @@ const RAW_COURSES: Course[] = [
     ],
     learn: ['Café de invierno', 'Cata', 'Bebidas cálidas', 'Menú'],
     audience: ['Coffee lovers.', 'Baristas.', 'Dueños de cafetería.'],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [...sesionGdl('09', 'Noviembre'), ...sesionMty('09', 'Noviembre'), ...sesionQro('09', 'Noviembre')],
     seo: {
       title: 'Coffee lover en invierno | Experiencia Café Etrusca',
@@ -460,7 +468,7 @@ const RAW_COURSES: Course[] = [
       'Baristas en formación.',
       'Equipos de calidad.'
     ],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [],
     seo: {
       title: "Experiencia sensorial de café | Café Etrusca",
@@ -502,7 +510,7 @@ const RAW_COURSES: Course[] = [
       'Tostadores.',
       'Baristas avanzados.'
     ],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [],
     seo: {
       title: "Catación de café | Protocolo SCA - Café Etrusca",
@@ -547,7 +555,7 @@ const RAW_COURSES: Course[] = [
       'Coffee lovers que quieren entender el perfil de taza.',
       'Equipos que compran café de especialidad.'
     ],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [],
     seo: {
       title: 'Experiencia ¡Aprende a crear tu propia mezcla de café!',
@@ -591,7 +599,7 @@ const RAW_COURSES: Course[] = [
       'Baristas de bebidas frías.',
       'Coffee lovers interesados en mixología sin alcohol.'
     ],
-    includes: INCLUDES_BASE,
+    includes: INCLUDES_EXPERIENCIAS,
     dates: [],
     seo: {
       title: 'Experiencia el oasis del sabor con bebidas frías',
@@ -969,8 +977,8 @@ const RAW_COURSES: Course[] = [
     title: 'Verano ChillOut',
     summary: 'Sesión gratuita de temporada para armar bebidas frías de verano, con recetas listas para barra.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-verano-chillout.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-verano-chillout.webp`,
     highlights: [
@@ -1002,8 +1010,8 @@ const RAW_COURSES: Course[] = [
     title: 'Bubble Power Session',
     summary: 'Sesión gratuita para dominar bubble tea y bebidas con perlas, de la receta al servicio.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-power-session.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-power-session.webp`,
     highlights: [
@@ -1035,8 +1043,8 @@ const RAW_COURSES: Course[] = [
     title: 'Tisanas en verano',
     summary: 'Sesión gratuita de tisanas e infusiones para el menú de temporada.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-en-verano.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-tisanas-en-verano.webp`,
     highlights: [
@@ -1068,8 +1076,8 @@ const RAW_COURSES: Course[] = [
     title: 'Versatilidad de la mezcla especial No. 1',
     summary: 'Sesión gratuita para explorar la Mezcla Especial No. 1 en espresso, filtro y bebidas de barra.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-versatilidad-mezcla-especial-1.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-versatilidad-mezcla-especial-1.webp`,
     highlights: [
@@ -1108,8 +1116,8 @@ const RAW_COURSES: Course[] = [
     title: 'Orgullo mexicano: nuestros galardonados',
     summary: 'Sesión gratuita alrededor de los cafés mexicanos galardonados de Etrusca.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-orgullo-mexicano.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-orgullo-mexicano.webp`,
     highlights: [
@@ -1148,8 +1156,8 @@ const RAW_COURSES: Course[] = [
     title: 'Bubble Lab',
     summary: 'Laboratorio gratuito de bubble tea: recetas, perlas y montaje de vaso.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-lab.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-bubble-lab.webp`,
     highlights: [
@@ -1181,8 +1189,8 @@ const RAW_COURSES: Course[] = [
     title: 'Innovación en jarabes',
     summary: 'Sesión gratuita para armar bebidas con jarabes de temporada y técnicas de barra.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-innovacion-en-jarabes.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-innovacion-en-jarabes.webp`,
     highlights: [
@@ -1222,8 +1230,8 @@ const RAW_COURSES: Course[] = [
     title: 'Matchamanía',
     summary: 'Sesión gratuita de matcha: batido, recetas y bebidas de menú.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-matchamania.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-matchamania.webp`,
     highlights: [
@@ -1263,8 +1271,8 @@ const RAW_COURSES: Course[] = [
     title: 'Elixir del terror',
     summary: 'Sesión gratuita de temporada para armar bebidas de terror listas para barra en octubre.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-elixir-del-terror.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-elixir-del-terror.webp`,
     highlights: [
@@ -1296,8 +1304,8 @@ const RAW_COURSES: Course[] = [
     title: 'Pumpkin vibes',
     summary: 'Sesión gratuita de bebidas pumpkin para la temporada de otoño.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: `${ASSETS_BASE_URL}/images/educacion/sesion-pumpkin-vibes.webp`,
     banner: `${ASSETS_BASE_URL}/images/educacion/sesion-pumpkin-vibes.webp`,
     highlights: [
@@ -1335,8 +1343,8 @@ const RAW_COURSES: Course[] = [
     title: 'Un otoño cálido',
     summary: 'Sesión gratuita de bebidas cálidas y reconfortantes de otoño.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: '/assets/images/educacion/sesiones/sesion-un-otono-calido.webp',
     banner: '/assets/images/educacion/sesiones/sesion-un-otono-calido.webp',
     highlights: [
@@ -1374,8 +1382,8 @@ const RAW_COURSES: Course[] = [
     title: 'Sorbos de ChillOut en otoño',
     summary: 'Sesión gratuita ChillOut con bebidas frescas adaptadas al otoño.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: '/assets/images/educacion/sesiones/sesion-sorbos-de-chillout-en-otono.webp',
     banner: '/assets/images/educacion/sesiones/sesion-sorbos-de-chillout-en-otono.webp',
     highlights: [
@@ -1407,8 +1415,8 @@ const RAW_COURSES: Course[] = [
     title: 'Café de temporada',
     summary: 'Sesión gratuita para trabajar cafés y bebidas de temporada en barra.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: '/assets/images/educacion/sesiones/sesion-cafe-de-temporada.webp',
     banner: '/assets/images/educacion/sesiones/sesion-cafe-de-temporada.webp',
     highlights: [
@@ -1447,8 +1455,8 @@ const RAW_COURSES: Course[] = [
     title: 'Tisanas para las posadas',
     summary: 'Sesión gratuita de tisanas e infusiones para la temporada de posadas.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: '/assets/images/educacion/sesiones/sesion-tisanas-para-las-posadas.webp',
     banner: '/assets/images/educacion/sesiones/sesion-tisanas-para-las-posadas.webp',
     highlights: [
@@ -1480,8 +1488,8 @@ const RAW_COURSES: Course[] = [
     title: 'Nochebuena cálida',
     summary: 'Sesión gratuita de bebidas cálidas para la temporada de Nochebuena.',
     duration: '1 día',
-    hours: '4 horas',
-    schedule: '10:00 a.m. - 2:00 p.m.',
+    hours: '2 horas',
+    schedule: '10:00 a.m. - 12:00 p.m.',
     image: '/assets/images/educacion/sesiones/sesion-nochebuena-calida.webp',
     banner: '/assets/images/educacion/sesiones/sesion-nochebuena-calida.webp',
     highlights: [
@@ -1520,8 +1528,14 @@ const RAW_COURSES: Course[] = [
  */
 export const COURSES: Course[] = RAW_COURSES.map((c) => {
   const cat = catalogByCourseSlug(c.slug);
-  if (!cat) return c;
-  return { ...c, duration: daysLabel(cat), hours: hoursLabel(cat), schedule: cat.schedule, clave: cat.clave, price: cat.price };
+  const course = !cat
+    ? c
+    : { ...c, duration: daysLabel(cat), hours: hoursLabel(cat), schedule: cat.schedule, clave: cat.clave, price: cat.price };
+  if (course.kind !== 'sesiones') return course;
+  return {
+    ...course,
+    dates: course.dates.map((d) => (d.hours === '4 h' ? { ...d, hours: '2 h' } : d))
+  };
 });
 
 export const THIS_MONTH = [

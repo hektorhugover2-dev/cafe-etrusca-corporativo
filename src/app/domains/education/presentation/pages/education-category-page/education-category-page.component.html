@@ -19,7 +19,7 @@
         <div class="cat-info-item">
           <span class="cat-info-ico" [attr.data-k]="s.label">
             @if (s.label === 'Metodología') {
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v2H7V3zm1 4h8l1 12H7L8 7zm3 3h2v6h-2v-6z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6M10 3v5.2L6.6 18.2A1.9 1.9 0 0 0 8.4 21h7.2a1.9 1.9 0 0 0 1.8-2.8L14 8.2V3"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M12 11v6"/></svg>
             } @else if (s.label === 'Duración') {
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M8 3v3M16 3v3M5 9.5h14"/></svg>
             } @else {
@@ -48,7 +48,7 @@
             @if (c.clave) { <p class="edu-clave">Clave: {{ c.clave }}</p> }
             <p>{{ c.summary }}</p>
             <div class="row">
-              <span>{{ c.duration }} · {{ c.hours }}</span>
+              <span>{{ c.duration }} · {{ cat.slug === 'sesiones' ? '2 horas' : c.hours }}</span>
               <a class="btn-pink" [routerLink]="courseLink(c)">Me interesa</a>
             </div>
           </div>
@@ -99,7 +99,11 @@
 
   <section class="edu-banner">
     <h2>Vive la experiencia Etrusca</h2>
-    <p>70% práctica y 30% teórica. Menos teoría aburrida, más manos en la masa. Al finalizar, recibirás un diploma con valor curricular que respalda tus nuevas habilidades.</p>
+    @if (cat.slug === 'cursos' || cat.slug === 'talleres') {
+      <p>70% práctica y 30% teórica. Menos teoría aburrida, más manos en la masa. Al finalizar, recibirás un diploma con valor curricular que respalda tus nuevas habilidades.</p>
+    } @else {
+      <p>70% práctica y 30% teórica. Menos teoría aburrida, más manos en la masa.</p>
+    }
   </section>
 
   <section class="edu-section">
