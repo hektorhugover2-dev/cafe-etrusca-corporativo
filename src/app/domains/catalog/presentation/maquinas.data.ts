@@ -302,7 +302,6 @@ export const MAQ_SECTIONS: MaqSection[] = [
         text: 'Licuadoras para barra de cafetería, con vasos de 1.2 a 4 l y conexión a 110 V.',
         products: [
           { name: 'HS-608E', sku: 'MLI-038', image: img('licuadora-la-fenice-hs-608e-mli-038-2026-11-25.webp'), specs: ['Licuadora blender gris', 'Vaso: 2 l', '110 V'] },
-          { name: 'ANS-5780B', sku: 'MLI-035', image: img('licuadora-la-fenice-ans-5780b-mli-035-2026-11-25.webp'), specs: ['Licuadora blender gris', 'Vaso: 3.5 l', '110 V'] },
           { name: 'ANS-2580K', sku: 'MLI-037', image: img('licuadora-la-fenice-ans-2580k-mli-037-2026-11-25.webp'), specs: ['Licuadora blender gris', 'Vaso: 1.8 l', '110 V'] },
           { name: 'HS-213', sku: 'MLI-036', image: img('licuadora-la-fenice-hs-213-mli-036-2026-11-25.webp'), specs: ['Licuadora blender negra', 'Vaso: 4 l', '110 V'] },
           { name: 'Multifuncional', sku: 'MLI-033', image: img('licuadora-multifuncional-la-fenice-mli-033-2026-11-25.webp'), specs: ['Licuadora multifuncional', 'Vaso: 1.2 l para extracción de té', '2 Hp · 110 V'] }
