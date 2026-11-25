@@ -158,7 +158,7 @@ export class MaquinasPageComponent implements OnInit, OnDestroy {
       '@type': 'Product',
       name: s.titulo,
       description: s.descripcion || brand.lead,
-      brand: { '@type': 'Brand', name: brand.name },
+      brand: { '@type': 'Brand', name: s.marca || brand.name },
       image: s.img || undefined,
       sku: s.sku || undefined,
       url

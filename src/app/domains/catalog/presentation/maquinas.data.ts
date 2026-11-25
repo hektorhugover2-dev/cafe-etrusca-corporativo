@@ -2,6 +2,8 @@ import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
 export interface MaqProduct {
   name: string;
   sku?: string;
+  /** Marca del equipo si difiere de la del bloque (ficha técnica y JSON-LD). */
+  brand?: string;
   image?: string;
   description?: string;
   specs: string[];
@@ -84,13 +86,13 @@ export const MAQ_NAV: MaqNavItem[] = [
     id: 'licuadoras',
     label: 'Licuadoras',
     icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.webp`,
-    desc: 'Hamilton Beach para barra profesional',
+    desc: 'Hamilton Beach y La Fenice para barra profesional',
     link: '/maquinaria-y-equipo-para-cafeterias/licuadoras',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/48',
-    seoTitle: 'Licuadoras para cafeterías - Hamilton Beach | Café Etrusca',
+    seoTitle: 'Licuadoras para cafeterías - Hamilton Beach y La Fenice | Café Etrusca',
     seoDescription:
-      'Licuadoras profesionales Hamilton Beach para barra, salsas, batidos y bebidas de cafetería.',
-    seoKeywords: 'licuadoras para cafetería, Hamilton Beach, licuadora profesional barista'
+      'Licuadoras profesionales Hamilton Beach y La Fenice para barra, salsas, batidos y bebidas de cafetería.',
+    seoKeywords: 'licuadoras para cafetería, Hamilton Beach, La Fenice, licuadora profesional barista'
   },
   {
     id: 'molinos',
@@ -272,7 +274,7 @@ export const MAQ_SECTIONS: MaqSection[] = [
   {
     id: 'licuadoras',
     hideShowcaseOnHub: true,
-    kicker: 'Hamilton Beach',
+    kicker: 'Hamilton Beach · La Fenice',
     title: 'Licuadoras',
     intro:
       'Diseño vanguardista y versátil, ideales para salsas, batidos y bebidas de barra. Varios modelos cuentan con tecnología que lleva los ingredientes hacia la cuchilla, con menos manipulación y más seguridad.',
@@ -290,6 +292,20 @@ export const MAQ_SECTIONS: MaqSection[] = [
           { name: 'HBH850', image: img('hbh850.webp'), specs: ['Hamilton Beach Summit', '3 Hp · 120 V'] },
           { name: 'HBB908R', image: img('hbb908r.webp'), specs: ['Hamilton Beach'] },
           { name: 'HBH510', image: img('hbh510.webp'), specs: ['Hamilton Beach'] }
+        ]
+      },
+      {
+        // 2026-11-25 (Héctor): datos de SAP (línea LA FENICE) y fotos sin fondo por código SAP.
+        // MLI-041 (ANS-6180E) queda fuera: no hay foto. MLI-033 va como La Fenice (decisión de Héctor).
+        brand: 'La Fenice',
+        logo: `${ASSETS_BASE_URL}/images/fenice.webp`,
+        text: 'Licuadoras para barra de cafetería, con vasos de 1.2 a 4 l y conexión a 110 V.',
+        products: [
+          { name: 'HS-608E', sku: 'MLI-038', image: img('licuadora-la-fenice-hs-608e-mli-038-2026-11-25.webp'), specs: ['Licuadora blender gris', 'Vaso: 2 l', '110 V'] },
+          { name: 'ANS-5780B', sku: 'MLI-035', image: img('licuadora-la-fenice-ans-5780b-mli-035-2026-11-25.webp'), specs: ['Licuadora blender gris', 'Vaso: 3.5 l', '110 V'] },
+          { name: 'ANS-2580K', sku: 'MLI-037', image: img('licuadora-la-fenice-ans-2580k-mli-037-2026-11-25.webp'), specs: ['Licuadora blender gris', 'Vaso: 1.8 l', '110 V'] },
+          { name: 'HS-213', sku: 'MLI-036', image: img('licuadora-la-fenice-hs-213-mli-036-2026-11-25.webp'), specs: ['Licuadora blender negra', 'Vaso: 4 l', '110 V'] },
+          { name: 'Multifuncional', sku: 'MLI-033', image: img('licuadora-multifuncional-la-fenice-mli-033-2026-11-25.webp'), specs: ['Licuadora multifuncional', 'Vaso: 1.2 l para extracción de té', '2 Hp · 110 V'] }
         ]
       },
       {

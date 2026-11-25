@@ -72,7 +72,7 @@ export class HeaderComponent implements OnDestroy {
 
     maquinaLinks: MegaLink[] = [
   { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/espresso.webp`, title: 'Espresso', desc: 'Máquinas Reneka para barra profesional', link: '/maquinaria-y-equipo-para-cafeterias/espresso' },
-  { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.webp`, title: 'Licuadoras', desc: 'Hamilton Beach para barra profesional', link: '/maquinaria-y-equipo-para-cafeterias/licuadoras' },
+  { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/licuadoras.webp`, title: 'Licuadoras', desc: 'Hamilton Beach y La Fenice para barra profesional', link: '/maquinaria-y-equipo-para-cafeterias/licuadoras' },
   { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/molinos.webp`, title: 'Molinos', desc: 'Ceado y Fiorenzato para espresso y filtro', link: '/maquinaria-y-equipo-para-cafeterias/molinos' },
   { icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.webp`, title: 'Tostadores', desc: 'Tostadores Coffee Tech de laboratorio a tienda', link: '/maquinaria-y-equipo-para-cafeterias/tostadores' }
 ];

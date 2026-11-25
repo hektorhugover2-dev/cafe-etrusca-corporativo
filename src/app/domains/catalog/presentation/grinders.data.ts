@@ -13,6 +13,8 @@ export interface GrinderColor {
 
 export interface GrinderSlide {
   titulo: string;
+  /** Marca del equipo si difiere de la marca del carrusel (JSON-LD). */
+  marca?: string;
   descripcion: string;
   sku?: string;
   img: string;
@@ -58,15 +60,16 @@ function specRows(brand: string, name: string, sku: string | undefined, specs: s
 function slidesFromProducts(
   brand: string,
   lead: string,
-  products: Array<{ name: string; sku?: string; image?: string; description?: string; specs: string[] }>
+  products: Array<{ name: string; sku?: string; brand?: string; image?: string; description?: string; specs: string[] }>
 ): GrinderSlide[] {
   return products.map((p) => ({
     titulo: p.name.toUpperCase(),
+    marca: p.brand && p.brand !== brand ? p.brand : undefined,
     descripcion: p.description || lead,
     sku: p.sku,
     img: p.image || '',
     colores: [],
-    ficha: specRows(brand, p.name, p.sku, p.specs)
+    ficha: specRows(p.brand || brand, p.name, p.sku, p.specs)
   }));
 }
 
@@ -74,6 +77,7 @@ const THEMES: Record<string, { bg: string; leadColor: string }> = {
   Reneka: { bg: '#D4B06A', leadColor: '#5c3a10' },
   Melitta: { bg: '#E07A6A', leadColor: '#551b13' },
   'Hamilton Beach': { bg: '#7EB6D9', leadColor: '#16324a' },
+  'La Fenice': { bg: '#F2A65A', leadColor: '#5a2a06' },
   Blendtec: { bg: '#E8C44A', leadColor: '#5a4308' },
   'Coffee Tech': { bg: '#C49A6C', leadColor: '#4a3014' },
   Ceado: { bg: '#DDB07A', leadColor: '#6b3b12' },
@@ -88,7 +92,7 @@ export function sliderFromBlock(
     logo: string;
     text: string;
     discontinued?: boolean;
-    products: Array<{ name: string; sku?: string; image?: string; description?: string; specs: string[] }>;
+    products: Array<{ name: string; sku?: string; brand?: string; image?: string; description?: string; specs: string[] }>;
   },
   categoryId?: string
 ): GrinderBrand {
