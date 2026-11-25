@@ -78,7 +78,7 @@ export class BuyModalComponent {
     this.sub?.unsubscribe();
     this.resolved.set(null);
     this.resolving.set(false);
-    if (!r.onlineUrl && r.lookup?.code) {
+    if (!r.hideOnline && !r.onlineUrl && r.lookup?.code) {
       this.resolving.set(true);
       this.sub = this.svc.resolve(r.lookup).subscribe((url) => {
         this.resolved.set(url);

@@ -15,6 +15,8 @@ export interface GrinderSlide {
   titulo: string;
   /** Marca del equipo si difiere de la marca del carrusel (JSON-LD). */
   marca?: string;
+  /** Sin venta en línea: el modal "Comprar" muestra sólo sucursal y asesoría. */
+  hideEcommerce?: boolean;
   descripcion: string;
   sku?: string;
   img: string;
@@ -60,11 +62,12 @@ function specRows(brand: string, name: string, sku: string | undefined, specs: s
 function slidesFromProducts(
   brand: string,
   lead: string,
-  products: Array<{ name: string; sku?: string; brand?: string; image?: string; description?: string; specs: string[] }>
+  products: Array<{ name: string; sku?: string; brand?: string; hideEcommerce?: boolean; image?: string; description?: string; specs: string[] }>
 ): GrinderSlide[] {
   return products.map((p) => ({
     titulo: p.name.toUpperCase(),
     marca: p.brand && p.brand !== brand ? p.brand : undefined,
+    hideEcommerce: p.hideEcommerce || undefined,
     descripcion: p.description || lead,
     sku: p.sku,
     img: p.image || '',
@@ -80,6 +83,7 @@ const THEMES: Record<string, { bg: string; leadColor: string }> = {
   'La Fenice': { bg: '#F2A65A', leadColor: '#5a2a06' },
   Blendtec: { bg: '#E8C44A', leadColor: '#5a4308' },
   'Coffee Tech': { bg: '#C49A6C', leadColor: '#4a3014' },
+  'Nucleus Link': { bg: '#B8C4CF', leadColor: '#1f2b38' },
   Ceado: { bg: '#DDB07A', leadColor: '#6b3b12' },
   Eureka: { bg: '#E07A5F', leadColor: '#531c0c' },
   Anfim: { bg: '#8FA0B5', leadColor: '#243044' },
@@ -92,7 +96,7 @@ export function sliderFromBlock(
     logo: string;
     text: string;
     discontinued?: boolean;
-    products: Array<{ name: string; sku?: string; brand?: string; image?: string; description?: string; specs: string[] }>;
+    products: Array<{ name: string; sku?: string; brand?: string; hideEcommerce?: boolean; image?: string; description?: string; specs: string[] }>;
   },
   categoryId?: string
 ): GrinderBrand {

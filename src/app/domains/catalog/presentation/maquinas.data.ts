@@ -4,6 +4,8 @@ export interface MaqProduct {
   sku?: string;
   /** Marca del equipo si difiere de la del bloque (ficha técnica y JSON-LD). */
   brand?: string;
+  /** Sin venta en línea: el modal "Comprar" muestra sólo sucursal y asesoría. */
+  hideEcommerce?: boolean;
   image?: string;
   description?: string;
   specs: string[];
@@ -110,13 +112,13 @@ export const MAQ_NAV: MaqNavItem[] = [
     id: 'tostadores',
     label: 'Tostadores',
     icon: `${ASSETS_BASE_URL}/images/maquinas/nav/tostadores.webp`,
-    desc: 'Tostadores Coffee Tech de laboratorio a tienda',
+    desc: 'Tostadores Coffee Tech y Nucleus Link de laboratorio a tienda',
     link: '/maquinaria-y-equipo-para-cafeterias/tostadores',
     catalogUrl: 'https://equipos-accesorios.cafeetrusca.com/#page/52',
-    seoTitle: 'Tostadores de café para cafeterías - Coffee Tech | Café Etrusca',
+    seoTitle: 'Tostadores de café para cafeterías - Coffee Tech y Nucleus Link | Café Etrusca',
     seoDescription:
-      'Tostadores Coffee Tech para laboratorio, tienda y producción. Del lote pequeño a la operación continua.',
-    seoKeywords: 'tostadores de café, Coffee Tech, tostador para cafetería, tueste de café'
+      'Tostadores Coffee Tech y Nucleus Link para laboratorio, tienda y producción. Del lote pequeño a la operación continua.',
+    seoKeywords: 'tostadores de café, Coffee Tech, Nucleus Link, tostador para cafetería, tueste de café'
   }
 ];
 
@@ -377,7 +379,7 @@ export const MAQ_SECTIONS: MaqSection[] = [
   {
     id: 'tostadores',
     hideShowcaseOnHub: true,
-    kicker: 'Coffee Tech',
+    kicker: 'Coffee Tech · Nucleus Link',
     title: 'Tostadores',
     intro: 'El estándar de oro en tecnología de tostado de café, del laboratorio a la tienda.',
     brandLogo: img('logo-coffeetech.webp'),
@@ -409,6 +411,21 @@ export const MAQ_SECTIONS: MaqSection[] = [
             sku: 'MTO-003',
             image: img('tostador-silon.webp'),
             specs: ['Cap. de lote 1–7 kg', 'Ciclo 11–17 min', '230–380 V']
+          }
+        ]
+      },
+      {
+        // 2026-11-25 (Héctor): MTO-004, línea SAP NUCLEUS LINK; texto del catálogo p. 51.
+        brand: 'Nucleus Link',
+        logo: img('logo-nucleus-link-2026-11-25.webp'),
+        text: 'Diseñado para tostar pequeñas muestras de café con gran precisión. No necesitas gran experiencia de tueste: personalizas la curva, simple o compleja, según el perfil que busques.',
+        products: [
+          {
+            name: 'Link',
+            sku: 'MTO-004',
+            hideEcommerce: true,
+            image: img('tostador-portatil-nucleus-link-mto-004-2026-11-25.webp'),
+            specs: ['Tostador de café portátil', 'Capacidad de lote: 100 g', '110 V']
           }
         ]
       }

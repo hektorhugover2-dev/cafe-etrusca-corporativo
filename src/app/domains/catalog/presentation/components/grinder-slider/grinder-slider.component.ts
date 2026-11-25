@@ -130,6 +130,7 @@ export class GrinderSliderComponent implements OnInit {
         lookup: sku ? { query: this.brand.name, code: sku } : null,
         fallbackUrl: this.catalogUrl,
         fallbackLabel: 'Catálogo de equipos',
+        hideOnline: !!this.slide?.hideEcommerce,
         theme: { btn: this.brand.leadColor || '#070c3b', ink: '#fff' }
       },
       ev

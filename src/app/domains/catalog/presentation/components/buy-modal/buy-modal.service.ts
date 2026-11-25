@@ -23,6 +23,8 @@ export interface BuyRequest {
   fallbackUrl: string;
   /** Texto del destino de respaldo (p. ej. "Catálogo de accesorios"). */
   fallbackLabel?: string;
+  /** Sin venta en línea (p. ej. equipo que sólo se vende con asesoría): oculta la tarjeta "Comprar en línea". */
+  hideOnline?: boolean;
   /** Colores del botón principal del modal (por página/marca). */
   theme?: { btn: string; ink: string };
 }
