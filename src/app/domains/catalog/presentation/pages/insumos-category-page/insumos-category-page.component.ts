@@ -20,6 +20,7 @@ import { inspiraRecipes } from '../../insumos-inspira';
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
 import { apiUrl } from '../../../../../shared/kernel/config/api-url';
+import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
 
 const JAR = `${ASSETS_BASE_URL}/images/insumos/jarabes`;
 
@@ -36,6 +37,32 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   private http = inject(HttpClient);
   private cdr = inject(ChangeDetectorRef);
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private buyModal = inject(BuyModalService);
+
+  /** Búsqueda en la tienda en línea para una card de Líneas: el nombre de la línea tal como se muestra (Torani + sublínea si hace falta). */
+  storeSearchTerm(line: { name: string; brand?: string }): string {
+    const name = (line.name || '').trim();
+    const brand = (line.brand || '').trim();
+    if (/^torani$/i.test(brand) && !/torani/i.test(name)) return `Torani ${name}`;
+    return name;
+  }
+
+  storeSearchUrl(line: { name: string; brand?: string }): string {
+    // La tienda busca sin acentos: se quitan sólo en la consulta (el nombre mostrado no cambia).
+    const q = this.storeSearchTerm(line).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return `https://tienda.cafeetrusca.com/productos?search=${encodeURIComponent(q)}`;
+  }
+
+  /** "Comprar" de las cards de Líneas: abre el modal (en línea / sucursal / asesoría). Ctrl/Cmd/Shift+clic abre la tienda directo. */
+  buyLine(line: { name: string; brand?: string }, ev: MouseEvent): void {
+    if (!this.isBrowser || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.button !== 0) return;
+    ev.preventDefault();
+    const url = this.storeSearchUrl(line);
+    this.buyModal.open(
+      { title: this.storeSearchTerm(line), brand: line.brand, onlineUrl: url, fallbackUrl: url, fallbackLabel: 'la tienda en línea' },
+      ev
+    );
+  }
   /** Vapor animado sobre la taza del hero de Tisanas: solo en cliente y sin prefers-reduced-motion. */
   readonly steamOn = signal(false);
   private readonly steamInit = afterNextRender(() => {

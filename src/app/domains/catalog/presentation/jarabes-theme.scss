@@ -3540,3 +3540,6 @@
 .jar-actions:has(.ask-branch) { flex-wrap: wrap; }
 .ask-branch { flex: 1 1 100%; margin: 0 0 .5rem; font-size: .85rem; line-height: 1.35; color: #4a525c; }
 .ask-branch a { color: #283039; font-weight: 700; text-decoration: underline; }
+
+/* Móvil: la foto de la card siguiente (absolute, z-index 2) tapaba Comprar/Asesoría de la anterior. */
+.jar-actions { position: relative; z-index: 3; }

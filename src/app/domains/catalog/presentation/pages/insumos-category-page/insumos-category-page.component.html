@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="jar-actions">
-            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
             <a class="help" routerLink="/contacto">Asesoría</a>
           </div>
         </article>
@@ -175,7 +175,7 @@
             </div>
           </div>
           <div class="jar-actions">
-            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
             <a class="help" routerLink="/contacto">Asesoría</a>
           </div>
         </article>
@@ -291,7 +291,7 @@
             </div>
           </div>
           <div class="jar-actions">
-            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
             <a class="help" routerLink="/contacto">Asesoría</a>
           </div>
         </article>
@@ -421,7 +421,7 @@
             </div>
           </div>
           <div class="jar-actions">
-            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
             <a class="help" routerLink="/contacto">Asesoría</a>
           </div>
         </article>
@@ -549,7 +549,7 @@
             </div>
           </div>
           <div class="jar-actions">
-            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
             <a class="help" routerLink="/contacto">Asesoría</a>
           </div>
         </article>
@@ -680,7 +680,7 @@
             </div>
           </div>
           <div class="jar-actions">
-            <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+            <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
             <a class="help" routerLink="/contacto">Asesoría</a>
           </div>
         </article>
@@ -852,7 +852,7 @@
               }
               <div class="jar-actions">
                 @if (!isNoStore(line)) {
-                  <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+                  <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
                 }
                 <a class="help" routerLink="/contacto">Asesoría</a>
               </div>
@@ -986,7 +986,7 @@
               <div><strong>Rendimiento</strong> · {{ line.rendimiento }}</div>
             </div>
             <div class="ins-actions">
-              <a class="buy" href="https://insumos.cafeetrusca.com/" target="_blank" rel="noopener">Comprar</a>
+              <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
               <a class="help" routerLink="/contacto">Asesoría</a>
             </div>
           </article>
