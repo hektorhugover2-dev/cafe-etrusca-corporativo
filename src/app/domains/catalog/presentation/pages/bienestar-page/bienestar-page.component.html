@@ -77,6 +77,34 @@
     </div>
   </section>
 
+  @if (showActive) {
+  <section class="tor-section bn-active" id="chillout-active" aria-labelledby="bn-active">
+    <header class="tor-head bn-head">
+      <div class="jar-head">
+        <h2 class="section-title-center" id="bn-active">ChillOut Active con semilla de capomo</h2>
+        <div class="rule"></div>
+      </div>
+      <p class="tor-intro">{{ osh.paragraphs[0] }} Según la marca, aporta proteína vegetal, fibra y nutrientes esenciales.</p>
+    </header>
+    <div class="tor-grid bn-active-grid">
+      @for (p of active; track p.code) {
+        <article class="tor-card yellow">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            <img [src]="p.image" [alt]="p.name" loading="lazy" width="320" height="320">
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">ChillOut {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <a class="dr-calc-link" [routerLink]="p.line === 'Active' ? '/insumos-para-cafeterias/bases-en-polvo/chillout' : '/insumos-para-cafeterias/tisanas/chillout'" [fragment]="p.line === 'Active' ? 'active' : undefined">Ver en la página ChillOut<span class="visually-hidden"> {{ p.name }}</span> ›</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+  }
+
   <section class="tor-section bn-enjoy" aria-labelledby="bn-disfruta">
     <header class="tor-head bn-head">
       <p class="tor-kicker">Disfruta en</p>

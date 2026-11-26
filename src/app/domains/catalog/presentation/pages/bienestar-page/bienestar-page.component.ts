@@ -7,6 +7,7 @@ import { ScrollWaveComponent } from '../../../../../shared/ui/scroll-wave/scroll
 import { SeoService } from '../../../../../shared/kernel/services/seo.service';
 import { siteUrl } from '../../../../../shared/kernel/config/site-url';
 import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
+import { CHILLOUT_ACTIVE, OSH_STORY } from '../../chillout.data';
 import { BN_CODES, BN_FAQ, BN_HERO, BN_LINES, BN_PRODUCTS, BN_STORE_URL, bnPhoto, type BnLine, type BnProduct } from '../../bienestar.data';
 
 /** Página "Bienestar": opciones sin azúcar (Torani SF, David Rio, ChillOut). Ligada desde el mega menú de Insumos. */
@@ -34,6 +35,10 @@ export class BienestarPageComponent {
   readonly lines = BN_LINES;
   readonly faq = BN_FAQ;
   readonly total = BN_PRODUCTS.length;
+  /** Apoyo (HUG-10): ChillOut Active con semilla de capomo. NO entra a BN_PRODUCTS / ItemList / conteos: no es sin azúcar. Oculto en pausa de etiquetado (26-nov-2026). */
+  readonly showActive = false;
+  readonly active = CHILLOUT_ACTIVE;
+  readonly osh = OSH_STORY;
   readonly calcPath = '/calculadora-de-precios';
   readonly tone = 'lime';
   readonly warn = 'CONTIENE EDULCORANTES, NO RECOMENDABLE EN NIÑOS';

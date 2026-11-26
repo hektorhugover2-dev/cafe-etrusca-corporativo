@@ -26,8 +26,9 @@ import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
  * TODO(Héctor) — por confirmar antes de publicar más detalle (hoy NO aparece en texto ni en schema):
  * - Confirmar contra la intranet (SAP) el nombre de ITI-109 Piña coco, ITI-110 Guayaba, ITI-113 Cosecha de manzana,
  *   ITI-115 Fresa e ITI-117 Menta tropical (hoy solo vienen de la API del sitio y del empaque; sus fichas dan 404).
- *   ITI-117: la API dice «CON SEMILLA DE CAPOMO», otra lista decía «CON SEÑA DE PEPINO»; en la página va solo
- *   «Menta tropical» hasta confirmar. ITI-117 no tiene foto (queda bloque neutro).
+ *   ITI-117: la API dice «CON SEMILLA DE CAPOMO», otra lista decía «CON SEÑA DE PEPINO». 26-nov-2026: la foto del
+ *   empaque (Héctor) dice «TISANA SABOR MENTA TROPICAL CON SEMILLA DE CAPOMO · 250 g» → nombre y sabor ya con capomo
+ *   (confirmed sigue en false: su ficha de tienda da 404 el 26-nov-2026) y foto propia.
  * - ITI-116 «Matcha kiwi»: hay foto (ITI-116_1.webp) y título en la API, pero no está entre los 13: ¿se agrega?
  * - Cuando la tienda publique las fichas 109, 110, 113, 115 y 117, pasar `direct` a true y poner la URL de ficha.
  *   Revisar que cada ficha muestre el MISMO sabor que el nombre de la tarjeta.
@@ -68,6 +69,7 @@ export const TISANAS_CATEGORY_PATH = '/insumos-para-cafeterias/tisanas';
 export const TISANAS_CHILLOUT_STORE_URL = 'https://tienda.cafeetrusca.com/productos?search=CHILLOUT%20TISANA';
 
 const IMG = `${ASSETS_BASE_URL}/images/insumos/tisanas/chillout`;
+/** Foto de ITI-117 (26-nov-2026, subida a R2 junto con las de ChillOut Active). */
 const STORE = 'https://tienda.cafeetrusca.com/producto/detalle';
 
 /** Búsqueda en la tienda: ?search=<término>, con %20 en los espacios (formato que pidió Héctor). */
@@ -93,7 +95,7 @@ export const TISANAS_CHILLOUT: TisanaProduct[] = [
   { code: 'ITI-113', flavor: 'Cosecha de manzana', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR COSECHA DE MANZANA BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA FRUTAL SABOR COSECHA DE MANZANA'), direct: false, image: IMG + '/iti-113.webp' },
   { code: 'ITI-114', flavor: 'Mango fresa', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR MANGO FRESA BOLSA 250g', confirmed: true, url: STORE + '/ITI-114/CHILLOUT-TISANA-FRUTAL-SABOR-MANGO-FRESA-BOLSA-250g', direct: true, image: IMG + '/iti-114.webp' },
   { code: 'ITI-115', flavor: 'Fresa', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR FRESA BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA FRUTAL SABOR FRESA'), direct: false, image: IMG + '/iti-115.webp' },
-  // ITI-117: sin foto (bloque neutro) y sin ficha; el sabor completo está por confirmar (capomo / pepino)
+  // ITI-117: sin foto (bloque neutro) y sin ficha; el sabor completo está por confirmar (capomo / pepino). Pausa etiquetado 26-nov-2026: no se muestra el empaque nuevo.
   { code: 'ITI-117', flavor: 'Menta tropical', line: 'Tisana', presentation: P, name: 'CHILLOUT TISANA SABOR MENTA TROPICAL BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA SABOR MENTA TROPICAL'), direct: false }
 ];
 

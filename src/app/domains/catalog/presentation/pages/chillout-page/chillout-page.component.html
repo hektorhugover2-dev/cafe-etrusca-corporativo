@@ -8,7 +8,7 @@
         <a routerLink="/insumos-para-cafeterias/bases-en-polvo">Bases en polvo</a><span aria-hidden="true">›</span>
         <span aria-current="page">ChillOut</span>
       </nav>
-      <img class="tor-logo" src="/assets/images/marcas/logo-chillout-mix.webp" alt="ChillOut Mix" width="150" height="60">
+      <img class="tor-logo" src="{{ assetsBase }}/images/marcas/chillout-logo-sin-mix-2026-11-26.webp" alt="ChillOut" width="150" height="60">
       <h1><span class="tor-h1-main">Bases en polvo ChillOut </span><span class="tor-h1-sub">para cafetería</span></h1>
       <p class="lead"><span class="accent">Sabores, Just Fruit y sin azúcar</span> para tu menú</p>
       <p class="body">
@@ -187,6 +187,51 @@
     </div>
     <p class="tor-more"><a routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a></p>
   </section>
+
+  @if (showActive) {
+  <section class="tor-section" id="active" aria-labelledby="chl-active">
+    <header class="tor-head">
+      <p class="tor-kicker">OSH Mayan Superfood</p>
+      <h2 class="section-title-center" id="chl-active">ChillOut Active con semilla de capomo</h2>
+      <p class="tor-intro">Dos bases en polvo (chocolate y vainilla, bote de 700 g) y una tisana sabor menta tropical (bolsa de 250 g), todas con semilla de capomo. Cada tarjeta te lleva a la tienda, con precio y disponibilidad actualizados.</p>
+    </header>
+    <div class="chl-osh">
+      <div class="chl-osh-story">
+        <h3>{{ osh.title }}</h3>
+        @for (para of osh.paragraphs; track para) { <p>{{ para }}</p> }
+      </div>
+      <div class="chl-osh-info">
+        <h4>{{ osh.infoTitle }}</h4>
+        <ul class="chl-osh-benefits">
+          @for (b of osh.benefits; track b.title) { <li><strong>{{ b.title }}</strong><span>{{ b.text }}</span></li> }
+        </ul>
+      </div>
+    </div>
+    <div class="tor-grid">
+      @for (p of active; track p.code; let i = $index) {
+        <article class="tor-card" [class]="'tor-card ' + tone(i)">
+          <div class="tor-card-media">
+            <span class="tor-card-blob" aria-hidden="true"></span>
+            <img [src]="p.image" [alt]="p.name | catalogName" loading="lazy" width="320" height="320">
+          </div>
+          <div class="tor-card-body">
+            <span class="tor-line">ChillOut {{ p.line }}</span>
+            <h3>{{ p.flavor }}</h3>
+            <p class="tor-pres">{{ p.presentation }}</p>
+            <app-product-facts [code]="p.code" />
+            <!-- Comprar → modal (en línea: búsqueda en la tienda, la ficha aún no existe; o en sucursal) -->
+            <div class="tor-actions">
+              <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name | catalogName }}</span></button>
+              <a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name | catalogName }}</span></a>
+            </div>
+            <a class="dr-calc-link" [routerLink]="calcPath" [queryParams]="{ producto: p.code }">Calcula tu precio<span class="visually-hidden"> de venta con {{ p.name | catalogName }}</span> ›</a>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="tor-more"><a routerLink="/insumos-para-cafeterias/tisanas/chillout">Ver todas las tisanas ChillOut ›</a></p>
+  </section>
+  }
 
   @if (recipes.length) {
     <section class="jar-inspira tor-inspira" aria-labelledby="chl-recetas">

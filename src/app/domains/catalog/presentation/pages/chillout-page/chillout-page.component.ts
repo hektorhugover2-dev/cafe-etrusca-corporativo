@@ -13,7 +13,9 @@ import { siteUrl } from '../../../../../shared/kernel/config/site-url';
 import { publishedRecipes, type Recipe } from '../recipes-page/recetas.data';
 import { COURSE_PUBLIC_PATH_BY_SLUG } from '../../../../education/presentation/course-public-paths';
 import {
+  CHILLOUT_ACTIVE,
   CHILLOUT_FAQ,
+  OSH_STORY,
   CHILLOUT_JUST_FRUIT,
   CHILLOUT_LINES,
   CHILLOUT_MIX,
@@ -21,7 +23,7 @@ import {
   CHILLOUT_STORE_URL,
   type ChilloutProduct
 } from '../../chillout.data';
-import { ASSETS_BASE_URL } from '../../../../../shared/kernel/config/assets-url';
+import { ASSETS_BASE_URL, absoluteAssetUrl } from '../../../../../shared/kernel/config/assets-url';
 
 /** Página de marca ChillOut (bases en polvo). Clon de la página Torani (/insumos-para-cafeterias/jarabes/torani/). */
 export const CHILLOUT_PAGE_PATH = '/insumos-para-cafeterias/bases-en-polvo/chillout';
@@ -94,6 +96,10 @@ export class ChilloutPageComponent {
   readonly mix = CHILLOUT_MIX;
   readonly sinAzucar = CHILLOUT_SIN_AZUCAR;
   readonly justFruit = CHILLOUT_JUST_FRUIT;
+  /** ChillOut Active con semilla de capomo (2 bases en polvo + 1 tisana). Oculto en pausa de etiquetado (26-nov-2026). */
+  readonly showActive = false;
+  readonly active = CHILLOUT_ACTIVE;
+  readonly osh = OSH_STORY;
   readonly faq = CHILLOUT_FAQ;
   readonly tallerPath = COURSE_PUBLIC_PATH_BY_SLUG['bebidas-frias'] || '/cursos-para-baristas-y-talleres-para-cafeterias';
   readonly recipes = publishedRecipes().filter(usesChilloutPowder).slice(0, 3);
@@ -130,7 +136,13 @@ export class ChilloutPageComponent {
   }
 
   private itemListLd(url: string) {
-    const all: ChilloutProduct[] = [...this.mix, ...this.sinAzucar, ...this.justFruit];
+    // Pausa etiquetado: las bases Active no entran al ItemList hasta que se publiquen de nuevo.
+    const all: ChilloutProduct[] = [
+      ...this.mix,
+      ...this.sinAzucar,
+      ...this.justFruit,
+      ...(this.showActive ? this.active.filter((p) => p.line === 'Active') : [])
+    ];
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
@@ -142,7 +154,7 @@ export class ChilloutPageComponent {
         position: i + 1,
         name: `ChillOut ${p.line} ${p.flavor} (${p.presentation})`,
         url: p.url,
-        image: p.image
+        image: absoluteAssetUrl(p.image)
       }))
     };
   }

@@ -13,6 +13,12 @@ import { ASSETS_BASE_URL } from '../../../shared/kernel/config/assets-url';
  *
  * TODO(Héctor): sin imagen en catálogo para Just Fruit Piña colada (IBP-234) ni Cappuccino sin azúcar
  * (IBP-240/241); agregarlos cuando tengan foto.
+ *
+ * ChillOut Active (OSH Mayan Superfood, 26-nov-2026): IBP-271, IBP-272 e ITI-117. Nombre = el de la API del sitio;
+ * fotos propias de Héctor (webp sin fondo, subidas a R2 en images/insumos/chillout/). Sus fichas de tienda dan 404
+ * (productos nuevos, stock 0): el enlace es la búsqueda de la tienda; cuando la ficha pase a 200, ponerla en `url`.
+ * Sin precios (la API trae oferta vigente 09/11–30/12/2026, pero esta página no muestra precios), sin rendimiento,
+ * dosis, ingredientes ni claims: solo lo que dicen el nombre y la etiqueta (capomo, 700 g / 250 g).
  */
 
 export interface ChilloutProduct {
@@ -88,6 +94,30 @@ export const CHILLOUT_JUST_FRUIT: ChilloutProduct[] = [
   { code: 'IBP-219', flavor: 'Moka blanco', line: 'Just Fruit', presentation: 'Bolsa 2 kg', name: "CHILLOUT JUST FRUIT BASE EN POLVO SABOR MOKA BLANCO BOLSA 2 kg", url: 'https://tienda.cafeetrusca.com/producto/detalle/IBP-219/CHILLOUT-JUST-FRUIT-BASE-EN-POLVO-SABOR-MOKA-BLANCO-BOLSA-2-kg', image: 'https://cafeetrusca.com/img/thumbnail/IBP-219.webp' },
   { code: 'IBP-040', flavor: 'Choco-fresa', line: 'Just Fruit', presentation: 'Bote 800 g', name: "CHILLOUT JUST FRUIT BASE EN POLVO SABOR CHOCO-FRESA BOTE 800 g", url: 'https://tienda.cafeetrusca.com/producto/detalle/IBP-040/CHILLOUT-JUST-FRUIT-BASE-EN-POLVO-SABOR-CHOCO-FRESA-BOTE-800-g', image: 'https://cafeetrusca.com/img/thumbnail/IBP-040.webp' }
 ];
+
+/** ChillOut Active (OSH Mayan Superfood): 2 bases en polvo y 1 tisana, todas "con semilla de capomo". */
+const storeSearch = (term: string) => 'https://tienda.cafeetrusca.com/productos?search=' + encodeURIComponent(term);
+export const CHILLOUT_ACTIVE: ChilloutProduct[] = [
+  { code: 'IBP-271', flavor: 'Chocolate con semilla de capomo', line: 'Active', presentation: 'Bote 700 g', name: "CHILLOUT ACTIVE BASE EN POLVO SABOR CHOCOLATE CON SEMILLA DE CAPOMO BOTE 700g", url: storeSearch('CHILLOUT ACTIVE BASE EN POLVO SABOR CHOCOLATE'), image: CHL + '/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-26.webp' },
+  { code: 'IBP-272', flavor: 'Vainilla con semilla de capomo', line: 'Active', presentation: 'Bote 700 g', name: "CHILLOUT ACTIVE BASE EN POLVO SABOR VAINILLA CON SEMILLA DE CAPOMO BOTE 700g", url: storeSearch('CHILLOUT ACTIVE BASE EN POLVO SABOR VAINILLA'), image: CHL + '/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-26.webp' },
+  { code: 'ITI-117', flavor: 'Menta tropical con semilla de capomo', line: 'Tisana', presentation: 'Bolsa 250 g', name: "CHILLOUT TISANA SABOR MENTA TROPICAL CON SEMILLA DE CAPOMO BOLSA 250g", url: storeSearch('CHILLOUT TISANA SABOR MENTA TROPICAL'), image: CHL + '/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-26-v2.webp' }
+];
+
+/** Texto del folleto oficial OSH / ChillOut (HUG-10, 26-nov-2026), adaptado: afirmaciones atribuidas a la marca. */
+export const OSH_STORY = {
+  title: 'OSH: tesoro ancestral del Mayab',
+  paragraphs: [
+    'Osh Mayan Superfood y ChillOut unen su pasión para conectar el legado ancestral del Mayab con el bienestar. Desde la antigüedad, la semilla de capomo ha sido un alimento de vida para la civilización maya: fuente de energía y vitalidad.',
+    'Hoy, según la marca, se transforma en un superalimento que aporta proteína vegetal, fibra y nutrientes esenciales a tu rutina. Lo encuentras en polvos para preparar bebidas sabor chocolate y vainilla, y en tisanas sabor menta. Producto cosechado con alto compromiso social y ambiental.'
+  ],
+  infoTitle: 'Información de la marca sobre la semilla de capomo',
+  benefits: [
+    { title: 'Todos los aminoácidos esenciales', text: 'Ayuda a la reparación de tejidos y a la absorción de nutrientes.' },
+    { title: 'Rico en calcio y fibra', text: 'Apoya el proceso digestivo y a fortalecer los huesos.' },
+    { title: 'Buena fuente de proteína vegetal', text: 'Ayuda al cuerpo a reparar células y mantenerlo saludable.' },
+    { title: 'Buena fuente de vitaminas y minerales', text: 'Contribuye al buen funcionamiento del corazón y los músculos.' }
+  ]
+};
 
 export interface ChilloutFaq {
   q: string;
