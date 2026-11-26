@@ -209,6 +209,13 @@ export const TRAVESIAS_DEL_SABOR: VideotecaVideo[] = [
     "duration": "45:03",
     "thumb": "https://i.ytimg.com/vi/02Ubu0mdtRw/hqdefault.jpg",
     "url": "https://www.youtube.com/watch?v=02Ubu0mdtRw"
+  },
+  {
+    "id": "WYGR0lRc4Bk",
+    "title": "EP. 27 | Travesías del sabor | ¿Qué es el programa de cumplimiento? (José Antonio Oloarte)",
+    "duration": "49:01",
+    "thumb": "https://i.ytimg.com/vi/WYGR0lRc4Bk/hqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=WYGR0lRc4Bk"
   }
 ];
 
