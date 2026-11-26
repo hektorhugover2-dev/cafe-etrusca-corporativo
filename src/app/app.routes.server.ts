@@ -4,6 +4,7 @@ import { publishedRecipes } from './domains/catalog/presentation/pages/recipes-p
 import { LEGACY_COURSE_PATHS } from './domains/education/presentation/legacy-course-paths';
 import { upcomingEventSlugs } from '../events-snapshot.server';
 import { BLOG_ARTICLES } from './domains/blog/presentation/pages/blog-article-page/blog-articles.data';
+import { PRODUCT_SHEETS } from './domains/catalog/presentation/product-sheets/product-sheets.data';
 
 /**
  * Slugs of the upcoming events (/api/Event, all categories; public/data/events.json if the API is
@@ -84,6 +85,26 @@ export const serverRoutes: ServerRoute[] = [
   {
     // Cool Capps brand landing (bases en polvo), modelo Mocafe/Torani; brief 2026-11-09.
     path: 'insumos-para-cafeterias/bases-en-polvo/cool-capps',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    // hollander brand landing (bases en polvo), brief SEO 2026-11-26.
+    path: 'insumos-para-cafeterias/bases-en-polvo/hollander',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    // cappuccine brand landing (bases en polvo), brief SEO 2026-11-26.
+    path: 'insumos-para-cafeterias/bases-en-polvo/cappuccine',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    // don-gustavo brand landing (bases en polvo), brief SEO 2026-11-26.
+    path: 'insumos-para-cafeterias/bases-en-polvo/don-gustavo',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    // tea-zone brand landing (toppings / bubble tea), brief SEO 2026-11-26.
+    path: 'insumos-para-cafeterias/toppings/tea-zone',
     renderMode: RenderMode.Prerender
   },
   // Old course/taller URLs kept as pages (legacy-course-paths.ts): explicit prerender list.
@@ -209,6 +230,15 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       return BLOG_ARTICLES.map((a) => ({ slug: a.slug }));
+    }
+  },
+  {
+    // Fichas de producto /Producto/Detalle/<CÓDIGO>/<SLUG>/: una página estática por SKU con foto
+    // (snapshot de la lista de precios: scripts/snapshot-product-sheets.mjs).
+    path: 'Producto/Detalle/:codigo/:slug',
+    renderMode: RenderMode.Prerender,
+    async getPrerenderParams() {
+      return PRODUCT_SHEETS.map((p) => ({ codigo: p.c, slug: p.s }));
     }
   },
   {

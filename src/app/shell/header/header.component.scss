@@ -327,6 +327,9 @@
   overflow: hidden;
 
   img { width: 58px; height: 82px; object-fit: contain; }
+
+  &[data-tone='lime'] { background: #d7ee7a; }
+  &[data-tone='orange'] { background: #ffd19a; }
 }
 
 .mega-brands {

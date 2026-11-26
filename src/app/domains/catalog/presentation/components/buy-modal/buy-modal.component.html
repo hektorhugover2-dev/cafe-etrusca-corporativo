@@ -1,5 +1,5 @@
 <div class="bm-backdrop" (click)="onBackdrop($event)">
-  <div #dialog class="bm-dialog" role="dialog" aria-modal="true" aria-labelledby="bm-title" aria-describedby="bm-desc">
+  <div #dialog class="bm-dialog" role="dialog" aria-modal="true" aria-labelledby="bm-title" aria-describedby="bm-desc" [attr.data-sku]="req().sku || null">
     <button type="button" class="bm-close" aria-label="Cerrar" (click)="close()">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
         <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
@@ -13,6 +13,9 @@
           Elige la opción que mejor se adapte a tus necesidades y continua tu compra.
           <span class="visually-hidden"> Producto: {{ req().title }}.</span>
         </p>
+        @if (req().sku) {
+          <p class="bm-sku">{{ req().title }} <span class="bm-sku__code">SKU {{ req().sku }}</span></p>
+        }
       </header>
 
       <div class="bm-options" [class.bm-options--two]="req().hideOnline">

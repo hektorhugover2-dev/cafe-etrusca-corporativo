@@ -133,6 +133,15 @@ export const routes: Routes = [
       },
 
       {
+        // Fichas de producto en la URL del sitio anterior (/Producto/Detalle/<CÓDIGO>/<SLUG>/): una por SKU con foto
+        // de la lista de precios (product-sheets.data.ts). Indexables, sin enlaces desde home, menú ni listados.
+        path: 'Producto/Detalle/:codigo/:slug',
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/product-sheet-page/product-sheet-page.component')
+            .then(m => m.ProductSheetPageComponent)
+      },
+
+      {
 
         path: 'recetas',
 
@@ -335,11 +344,43 @@ export const routes: Routes = [
       import('./domains/catalog/presentation/pages/cool-capps-page/cool-capps-page.component')
         .then(m => m.CoolCappsPageComponent)
   },
+  {
+    // Landing de marca Bases en polvo (hollander), brief SEO 2026-11-26. Una plantilla para las tres marcas (powder-brand-page).
+    path: 'insumos-para-cafeterias/bases-en-polvo/hollander',
+    data: { brand: 'hollander' },
+    loadComponent: () =>
+      import('./domains/catalog/presentation/pages/powder-brand-page/powder-brand-page.component')
+        .then(m => m.PowderBrandPageComponent)
+  },
+  {
+    // Landing de marca Bases en polvo (cappuccine), brief SEO 2026-11-26. Una plantilla para las tres marcas (powder-brand-page).
+    path: 'insumos-para-cafeterias/bases-en-polvo/cappuccine',
+    data: { brand: 'cappuccine' },
+    loadComponent: () =>
+      import('./domains/catalog/presentation/pages/powder-brand-page/powder-brand-page.component')
+        .then(m => m.PowderBrandPageComponent)
+  },
+  {
+    // Landing de marca Bases en polvo (don-gustavo), brief SEO 2026-11-26. Una plantilla para las tres marcas (powder-brand-page).
+    path: 'insumos-para-cafeterias/bases-en-polvo/don-gustavo',
+    data: { brand: 'don-gustavo' },
+    loadComponent: () =>
+      import('./domains/catalog/presentation/pages/powder-brand-page/powder-brand-page.component')
+        .then(m => m.PowderBrandPageComponent)
+  },
       {
         path: 'insumos-para-cafeterias/bases-en-polvo/chillout',
         loadComponent: () =>
           import('./domains/catalog/presentation/pages/chillout-page/chillout-page.component')
             .then(m => m.ChilloutPageComponent)
+      },
+      {
+        // Landing de marca Tea Zone (bubble tea), brief SEO 2026-11-26. Misma plantilla que las marcas de powder-brand-page.
+        path: 'insumos-para-cafeterias/toppings/tea-zone',
+        data: { brand: 'tea-zone' },
+        loadComponent: () =>
+          import('./domains/catalog/presentation/pages/powder-brand-page/powder-brand-page.component')
+            .then(m => m.PowderBrandPageComponent)
       },
       {
         path: 'insumos-para-cafeterias/:slug',

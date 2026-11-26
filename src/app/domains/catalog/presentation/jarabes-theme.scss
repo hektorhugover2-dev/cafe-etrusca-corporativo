@@ -2441,6 +2441,28 @@
 
 }
 
+/* Tés Líneas: esta regla (3 col) va después de los @media genéricos y los anula.
+   Desktop (>=1024) se queda en 3 columnas; tablet 2; móvil 1. */
+@media (max-width: 1023px) {
+  .layout-te .jar-lines-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 720px;
+  }
+  .layout-te .jar-card .brand,
+  .layout-te .jar-feat,
+  .layout-te .jar-feat > * {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (max-width: 767px) {
+  .layout-te .jar-lines-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+
 
 
 

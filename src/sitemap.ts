@@ -13,6 +13,8 @@ import {
 } from './app/domains/education/presentation/legacy-course-paths';
 import { SITE_ORIGIN, canonicalPath } from './app/shared/kernel/config/site-url';
 import { eventSlug, isUpcomingEvent, loadEvents } from './events-snapshot.server';
+import { PRODUCT_SHEETS, PRODUCT_SHEETS_SNAPSHOT_DATE } from './app/domains/catalog/presentation/product-sheets/product-sheets.data';
+import { productSheetPath } from './app/domains/catalog/presentation/product-sheets/product-sheet.model';
 
 const SITE = SITE_ORIGIN;
 
@@ -123,6 +125,12 @@ export async function buildSitemapXml(options: SitemapOptions = {}): Promise<str
   push('/insumos-para-cafeterias/bases-en-polvo/mocafe', 'weekly', '0.8', '2026-10-30');
   // Brand landing Cool Capps (brief 2026-11-09).
   push('/insumos-para-cafeterias/bases-en-polvo/cool-capps', 'weekly', '0.8', '2026-11-09');
+  // Brand landings Hollander, Cappuccine y Don Gustavo (briefs 2026-11-26; enlazadas desde el hub de Bases en polvo).
+  push('/insumos-para-cafeterias/bases-en-polvo/hollander', 'weekly', '0.8', '2026-11-26');
+  push('/insumos-para-cafeterias/bases-en-polvo/cappuccine', 'weekly', '0.8', '2026-11-26');
+  push('/insumos-para-cafeterias/bases-en-polvo/don-gustavo', 'weekly', '0.8', '2026-11-26');
+  // Brand landing Tea Zone (brief 2026-11-26; enlazada desde el hub de Insumos).
+  push('/insumos-para-cafeterias/toppings/tea-zone', 'weekly', '0.8', '2026-11-26');
   // Tisanas ChillOut (no está en el menú; enlazada desde /insumos-para-cafeterias/tisanas/).
   push('/insumos-para-cafeterias/tisanas/chillout', 'weekly', '0.8');
   // Accesorios › Métodos de extracción (página propia; enlazada desde el hub y el menú de Accesorios).
@@ -201,6 +209,11 @@ export async function buildSitemapXml(options: SitemapOptions = {}): Promise<str
   // SITEMAP_EXTRA_2026_11_05: paginas indexables con canonical propio que faltaban (aprobado por Hector 5-nov-2026).
   for (const p of ['/experiencia-el-oasis-del-sabor-con-bebidas-frias', '/taller-basico-para-baristas-en-zona-rosa-cdmx', '/taller-basico-para-baristas-en-viaducto-cdmx', '/educacion/experiencias/experiencia-sensorial', '/educacion/experiencias/crear-mezcla-de-cafe', '/educacion/experiencias/arte-creatividad-mixologia', '/educacion/experiencias/oasis-bebidas-frias', '/educacion/experiencias/catacion-de-cafe', '/educacion/sesiones/bubble-lab', '/educacion/sesiones/tisanas-en-verano', '/educacion/sesiones/versatilidad-mezcla-especial-1', '/educacion/sesiones/elixir-del-terror', '/educacion/sesiones/pumpkin-vibes', '/educacion/sesiones/orgullo-mexicano', '/educacion/sesiones/innovacion-en-jarabes', '/educacion/sesiones/bubble-power-session', '/educacion/sesiones/verano-chillout', '/educacion/sesiones/matchamania', '/taller-de-cold-brew-en-merida', '/taller-basico-para-baristas-en-iztapalapa-cdmx', '/experiencia-aprende-a-crear-tu-propia-mezcla-de-cafe']) {
     push(p, 'weekly', '0.7', '2026-11-05');
+  }
+
+  // Fichas de producto /Producto/Detalle/<CÓDIGO>/<SLUG>/ (prerenderizadas; sin enlaces desde menú ni listados).
+  for (const sheet of PRODUCT_SHEETS) {
+    push(productSheetPath(sheet), 'monthly', '0.5', PRODUCT_SHEETS_SNAPSHOT_DATE);
   }
 
   if (includeEvents) {

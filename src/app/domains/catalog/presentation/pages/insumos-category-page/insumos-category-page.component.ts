@@ -203,6 +203,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'tisana-chillout',
+      page: '/insumos-para-cafeterias/tisanas/chillout',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
@@ -237,6 +238,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       apiMode: 'bases-mix',
+      page: '/insumos-para-cafeterias/bases-en-polvo/chillout',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
@@ -251,7 +253,28 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
       apiMode: 'bases-just-fruit',
+      page: '/insumos-para-cafeterias/bases-en-polvo/chillout',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
+    },
+    {
+      name: 'ChillOut Active',
+      brand: 'ChillOut',
+      sub: 'ACTIVE',
+      description: 'Bases en polvo con semilla de capomo, de OSH Mayan Superfood, en sabores chocolate y vainilla.',
+      sabores: '2 sabores',
+      presentacion: 'Bote 700 g',
+      rendimiento: 'Según preparación',
+      image: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-26.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
+      tone: 'lime',
+      apiMode: 'bases-chillout-active',
+      page: '/insumos-para-cafeterias/bases-en-polvo/chillout',
+      /** Códigos del portal de precios (26-nov-2026); la API no trae foto: se usan las fotos propias. */
+      pdf: [
+        { code: 'IBP-271', flavor: 'Chocolate', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-26.webp` },
+        { code: 'IBP-272', flavor: 'Vainilla', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-26.webp` }
+      ],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     },
     {
       name: 'David Rio Chai',
@@ -304,11 +327,15 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       sub: '',
       description: 'Premezclas para bebidas de rápida preparación: lattes, cappuccinos, mocha y más opciones deliciosas.',
       sabores: '16 sabores',
-      presentacion: '1.360 kg',
-      rendimiento: 'Según preparación',
-      image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`,
+      presentacion: '1.362 kg',
+      rendimiento: '10.41 g por 100 ml (aprox. 131 porciones)',
+      image: '/assets/images/insumos/cappuccine/cappuccine-frosted-latte-bolsa-1362g-2026-11-26-sin-fondo.webp',
+      pinImage: true,
+      // IBP-011 Cinnamon Bun: sin foto oficial ni tabla; oculto en la página y en esta tarjeta. La ficha /Producto/Detalle/ no se toca.
+      hideSkus: ['IBP-011'],
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-yellow.webp`,
       tone: 'yellow',
+      page: '/insumos-para-cafeterias/bases-en-polvo/cappuccine',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
@@ -316,27 +343,31 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       brand: 'Hollander',
       sub: 'CHOCOLATE',
       description: 'Chocolate en polvo elaborado con cacao de alta calidad para bebidas calientes y frías de autor.',
-      sabores: '1 sabor',
+      sabores: '3 sabores',
       presentacion: '1.130 kg',
       rendimiento: 'Según preparación',
       image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-cyan.webp`,
       tone: 'cyan',
       apiMode: 'bases-hollander',
+      page: '/insumos-para-cafeterias/bases-en-polvo/hollander',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-cyan.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-cyan.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-cyan.webp` }
     },
     {
       name: 'Don Gustavo',
       brand: 'Don Gustavo',
       sub: 'CHOCOLATE',
-      description: 'Chocolate Don Gustavo, chocolate tradicional mexicano con cerca de 100 años de historia.',
+      description: 'Chocolate Don Gustavo en polvo, chocolate mexicano tradicional con canela.',
       sabores: '1 sabor',
-      presentacion: 'Diferentes formatos',
-      rendimiento: 'Según preparación',
-      image: `${ASSETS_BASE_URL}/images/insumos/bottle-cpm.webp`,
+      presentacion: '2.025 kg',
+      rendimiento: '50 g por bebida de 480 ml, 40 bebidas por empaque',
+      // Caja de 2.025 kg (foto de Héctor, recortada). Local hasta subirla a R2; pinImage evita que la foto de 200 px de la API la reemplace.
+      image: '/assets/images/insumos/don-gustavo/chocolate-don-gustavo-caja-2025kg-2026-11-26.webp',
+      pinImage: true,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       apiMode: 'bases-don-gustavo',
+      page: '/insumos-para-cafeterias/bases-en-polvo/don-gustavo',
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     }
   ];
@@ -858,6 +889,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     if (this.cat?.layout === 'tisanas' && name === 'Euro Te Tisana') return 'EUROTÉ TISANA';
     if (this.cat?.layout === 'bases' && name === 'ChillOut') return 'CHILLOUT MIX BASE EN POLVO';
     if (this.cat?.layout === 'bases' && name === 'ChillOut Just Fruit') return 'CHILLOUT JUST FRUIT';
+    if (this.cat?.layout === 'bases' && name === 'ChillOut Active') return 'CAPOMO';
     if (this.cat?.layout === 'bases' && name === 'David Rio Chai') return 'DAVID RIO CHAI';
     if (this.cat?.layout === 'bases' && name === 'MoCafé') return 'MOCAFE BASE EN POLVO';
     if (this.cat?.layout === 'bases' && name === 'Don Gustavo') return 'DON GUSTAVO CHOCOLATE EN POLVO';
@@ -883,6 +915,11 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     return map[name] || name;
   }
 
+  /** Pausa etiquetado 26-nov-2026: oculta la card ChillOut Active en Bases en polvo. */
+  get visibleBasesLines() {
+    return this.basesLines.filter((l) => l.name !== 'ChillOut Active');
+  }
+
   private activeLines() {
     const layout = this.cat?.layout;
     if (layout === 'salsas') return this.salsasLines;
@@ -890,7 +927,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     if (layout === 'jarabes') return this.jarabesLines;
     if (layout === 'te') return this.teLines;
     if (layout === 'tisanas') return this.tisanasLines;
-    if (layout === 'bases') return this.basesLines;
+    if (layout === 'bases') return this.basesLines.filter((l) => l.name !== 'ChillOut Active');
     if (layout === 'toppings') return this.toppingsLines;
     return null;
   }
@@ -1143,6 +1180,9 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     const flv = new Set<string>();
     for (const row of list) {
       const alt = row['nombre'] || row['Title'] || row['title'] || line.name;
+      const rawCode = String(row['codigo'] || row['Codigo'] || '').trim().toUpperCase();
+      const hidden = new Set(((line as { hideSkus?: string[] }).hideSkus || []).map((s) => s.toUpperCase()));
+      if (rawCode && hidden.has(rawCode)) continue;
       const key = String(row['codigo'] || row['Codigo'] || alt)
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
@@ -1162,6 +1202,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     }
     // Fotos propias de códigos del PDF sin foto en la API (ej. ICT-035/036).
     for (const p of line.pdf || []) if (p.img && !slides.some((sl) => sl.key === p.code)) slides.push({ src: p.img, alt: line.name + ' ' + (p.flavor || ''), key: p.code });
+    // Fotos propias de productos que la API trae sin imagen y no pertenecen a una línea con códigos del PDF (ej. ITI-117).
+    for (const p of (line as { extraImgs?: { code: string; flavor?: string; img: string }[] }).extraImgs || []) if (!slides.some((sl) => sl.key === p.code)) slides.push({ src: p.img, alt: line.name + ' ' + (p.flavor || ''), key: p.code });
     // Disponibilidad: códigos del PDF que no están en la tienda → aviso de sucursal / Call Center.
     if (pdfCodes && pdfRows && Array.isArray(rows) && rows.length) {
       const inStore = new Set(pdfRows.map((r) => String(r['codigo'] || r['Codigo'] || '').trim().toUpperCase()));
@@ -1175,7 +1217,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     const withLogo = logoSrc
       ? [{ src: this.toWebp(logoSrc), alt: line.name, key: 'logo-default' }, ...productSlides.filter((sl) => sl.src !== this.toWebp(logoSrc))]
       : productSlides;
-    if (withLogo.length) {
+    if (withLogo.length && !(line as { pinImage?: boolean }).pinImage) {
       this.presentations = {
         ...this.presentations,
         [line.name]: withLogo
@@ -1272,6 +1314,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       Hollander: 'cyan',
       'Don Gustavo': 'lime',
       'ChillOut Just Fruit': 'yellow',
+      'ChillOut Active': 'lime',
       'Popping Boba': 'coral',
       POP: 'yellow',
       'Perlas explosivas': 'cyan',

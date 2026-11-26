@@ -393,15 +393,15 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
         tone: 'yellow',
         description: 'Premezclas para bebidas de rápida preparación: lattes, cappuccinos, mocha y más opciones deliciosas.',
         sabores: '16 sabores',
-        presentacion: '1.360 kg',
-        rendimiento: 'Según preparación',
+        presentacion: '1.362 kg',
+        rendimiento: '10.41 g por 100 ml (aprox. 131 porciones)',
         image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`
       },
       {
         name: 'Hollander',
         tone: 'cyan',
         description: 'Chocolate en polvo elaborado con cacao de alta calidad para bebidas calientes y frías de autor.',
-        sabores: '1 sabor',
+        sabores: '3 sabores',
         presentacion: '1.130 kg',
         rendimiento: 'Según preparación',
         image: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`
@@ -409,11 +409,11 @@ export const INSUMOS_CATEGORIES: InsumosCategory[] = [
       {
         name: 'Don Gustavo',
         tone: 'lime',
-        description: 'Chocolate Don Gustavo, chocolate tradicional mexicano con cerca de 100 años de historia.',
+        description: 'Chocolate Don Gustavo en polvo, chocolate mexicano tradicional con canela.',
         sabores: '1 sabor',
-        presentacion: 'Diferentes formatos',
-        rendimiento: 'Según preparación',
-        image: `${ASSETS_BASE_URL}/images/insumos/bottle-cpm.webp`
+        presentacion: '2.025 kg',
+        rendimiento: '50 g por bebida de 480 ml, 40 bebidas por empaque',
+        image: '/assets/images/insumos/don-gustavo/chocolate-don-gustavo-caja-2025kg-2026-11-26.webp'
       }
     ],
     extra: {
@@ -477,9 +477,9 @@ export const INSUMOS_BRAND_LOGOS: InsumosBrandLogo[] = [
   { id: 'david-rio', name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo/david-rio', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-2.webp`, width: 154, height: 88 } },
   { id: 'mocafe', name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo/mocafe', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-3.webp`, width: 115, height: 76 } },
   { id: 'cool-capps', name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo/cool-capps', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-4.webp`, width: 81, height: 77 } },
-  { id: 'cappuccine', name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`, width: 150, height: 54 } },
-  { id: 'hollander', name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`, width: 251, height: 90 } },
-  { id: 'tea-zone', name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings', image: { src: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`, width: 239, height: 35 } }
+  { id: 'cappuccine', name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo/cappuccine', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-5.webp`, width: 150, height: 54 } },
+  { id: 'hollander', name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo/hollander', image: { src: `${ASSETS_BASE_URL}/images/insumos/bases/logo-6.webp`, width: 251, height: 90 } },
+  { id: 'tea-zone', name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings/tea-zone', image: { src: `${ASSETS_BASE_URL}/images/insumos/toppings/logo-teazone.webp`, width: 239, height: 35 } }
 ];
 
 /** Tira de marcas de insumos (incluye las que no tienen logo en el CDN: Don Gustavo, Stash, Euro Te). */
@@ -489,10 +489,10 @@ export const INSUMOS_BRAND_STRIP: Array<{ name: string; link: string }> = [
   { name: 'David Rio', link: '/insumos-para-cafeterias/bases-en-polvo/david-rio' },
   { name: 'MoCafé', link: '/insumos-para-cafeterias/bases-en-polvo/mocafe' },
   { name: 'Cool Capps', link: '/insumos-para-cafeterias/bases-en-polvo/cool-capps' },
-  { name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo' },
-  { name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo' },
-  { name: 'Don Gustavo', link: '/insumos-para-cafeterias/bases-en-polvo' },
-  { name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings' },
+  { name: 'Cappuccine', link: '/insumos-para-cafeterias/bases-en-polvo/cappuccine' },
+  { name: 'Hollander', link: '/insumos-para-cafeterias/bases-en-polvo/hollander' },
+  { name: 'Don Gustavo', link: '/insumos-para-cafeterias/bases-en-polvo/don-gustavo' },
+  { name: 'Tea Zone', link: '/insumos-para-cafeterias/toppings/tea-zone' },
   { name: 'Stash', link: '/insumos-para-cafeterias/te' },
   { name: 'Euro Te', link: '/insumos-para-cafeterias/te' }
 ];

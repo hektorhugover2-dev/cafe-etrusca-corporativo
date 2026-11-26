@@ -12,6 +12,8 @@ export interface BuyRequest {
   /** Nombre del producto (encabezado del modal). */
   title: string;
   brand?: string;
+  /** Clave (SKU) del producto: si viene, el modal la muestra junto al nombre (fichas /Producto/Detalle/). Opcional. */
+  sku?: string | null;
   /** Ficha de la tienda en línea ya conocida (Torani / ChillOut / Accesorios con existencia). */
   onlineUrl?: string | null;
   /**

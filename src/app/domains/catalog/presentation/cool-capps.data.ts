@@ -153,9 +153,9 @@ export const COOL_CAPPS_FAQ: CoolCappsFaq[] = [
   { q: '¿Cuál es la diferencia entre las líneas?', a: 'Los frappés y lattes de café llevan café arábica; las cremas y smoothies (chocolate blanco, fresa, vainilla smoothie) son bases cremosas; los chai son té negro con especias; el matcha es té verde matcha.' },
   {
     q: '¿Cómo preparo un frappé Cool Capps?',
-    a: 'Según la etiqueta MX: vaso de 100 ml con agua (37.5 ml en la mayoría; 31.25 ml en Matcha 1.36 kg), hielo (52 g / 37.5 g en Matcha 1.36 kg) y el polvo indicado (10.41 g en la mayoría; 17.5 g en Doble moka y Matcha 1.36 kg). No uses leche ni agregues azúcar. Ideas en /recetas/.',
+    a: 'Vaso de 100 ml con agua (37.5 ml en la mayoría; 31.25 ml en Matcha 1.36 kg), hielo (52 g / 37.5 g en Matcha 1.36 kg) y el polvo indicado (10.41 g en la mayoría; 17.5 g en Doble moka y Matcha 1.36 kg). No uses leche ni agregues azúcar. Ideas en /recetas/.',
     rich: [
-      { t: 'Según la etiqueta MX: vaso de 100 ml con agua (37.5 ml en la mayoría; 31.25 ml en Matcha 1.36 kg), hielo (52 g / 37.5 g en Matcha 1.36 kg) y el polvo indicado (10.41 g en la mayoría; 17.5 g en Doble moka y Matcha 1.36 kg). No uses leche ni agregues azúcar. Ideas en ' },
+      { t: 'Vaso de 100 ml con agua (37.5 ml en la mayoría; 31.25 ml en Matcha 1.36 kg), hielo (52 g / 37.5 g en Matcha 1.36 kg) y el polvo indicado (10.41 g en la mayoría; 17.5 g en Doble moka y Matcha 1.36 kg). No uses leche ni agregues azúcar. Ideas en ' },
       { t: 'nuestras recetas', route: '/recetas' },
       { t: '.' }
     ]
