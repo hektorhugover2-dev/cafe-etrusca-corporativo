@@ -1,0 +1,352 @@
+<div class="ins-page layout-jarabes layout-bases tor-page chl-page dr-page cc-page pb-page" [class.pb-single]="brand.single" [attr.data-brand]="brand.id">
+  <section class="jar-hero tor-hero">
+    <img class="jar-hero-blob tor-hero-blob" src="{{ assetsBase }}/images/insumos/bases/blob-hero.webp" alt="" aria-hidden="true">
+    <div class="jar-hero-copy tor-hero-copy">
+      <nav class="tor-crumbs" aria-label="Ruta de navegación">
+        <a routerLink="/">Inicio</a><span aria-hidden="true">›</span>
+        <a routerLink="/insumos-para-cafeterias">Insumos</a><span aria-hidden="true">›</span>
+        <a [routerLink]="cat.path">{{ cat.name }}</a><span aria-hidden="true">›</span>
+        <span aria-current="page">{{ brand.brandName }}</span>
+      </nav>
+      @if (brand.logo; as logo) {
+        <img class="cc-hero-logo pb-hero-logo" [src]="logo.src" [alt]="logo.alt" [attr.width]="logo.width" [attr.height]="logo.height">
+      }
+      <h1><span class="tor-h1-main cc-h1-main">{{ brand.h1Main }}</span><span class="tor-h1-sub visually-hidden">{{ brand.h1Sub }}</span></h1>
+      <p class="lead"><span class="accent">{{ brand.leadAccent }}</span>{{ brand.leadRest }}</p>
+      <p class="body">{{ brand.body }}</p>
+      <div class="tor-ctas">
+        <a class="btn-jar" [routerLink]="calcPath">Calcula tu precio</a>
+        <a class="tor-btn-ghost" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <ul class="tor-facts" [attr.aria-label]="'Datos de ' + brand.brandName">
+        @for (f of brand.facts; track f.label) {
+          <li><strong>{{ f.n }}</strong><span>{{ f.label }}</span></li>
+        }
+      </ul>
+    </div>
+    <div class="jar-hero-media tor-hero-media">
+      @for (b of heroBags; track b.code) {
+        <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
+      }
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+
+  <app-insumos-nav></app-insumos-nav>
+
+  @if (!brand.single) {
+    <section class="jar-lines tor-lines" id="lineas" aria-labelledby="pb-lineas">
+      <div class="jar-head">
+        <h2 class="section-title-center" id="pb-lineas">{{ brand.linesTitle }}</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="jar-lines-grid tor-lines-grid pb-lines-grid" [attr.data-count]="brand.lines.length">
+        @for (line of brand.lines; track line.anchor) {
+          <article class="jar-card" [class]="'jar-card ' + line.tone">
+            <img class="blob" [src]="icons(line.tone).blob" alt="">
+            <div class="shot-slider">
+              <img class="shot" [src]="image(line.cover)" [alt]="altFor(line.cover)">
+            </div>
+            <h3 class="brand">{{ line.name }}<span class="sub">{{ line.sub }}</span></h3>
+            <p>{{ line.description }}</p>
+            <div class="jar-feat">
+              @if (line.noModal) {
+                <div>
+                  <img [src]="icons(line.tone).sabor" alt="">
+                  <span><strong>Productos</strong>{{ productCount(line) }}</span>
+                </div>
+              } @else {
+                <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
+                  <img [src]="icons(line.tone).sabor" alt="">
+                  <span><strong>Sabores</strong>{{ flavorCount(line) }}<em class="jar-feat-more">Ver sabores<i aria-hidden="true"> ›</i></em></span>
+                </button>
+              }
+              <div>
+                <img [src]="icons(line.tone).pres" alt="">
+                <span><strong>Presentación</strong>{{ presentations(line) }}</span>
+              </div>
+              @if (yieldOf(line)) {
+                <div>
+                  <img [src]="icons(line.tone).rend" alt="">
+                  <span><strong>Rendimiento</strong>{{ yieldOf(line) }}</span>
+                </div>
+              }
+            </div>
+            <div class="jar-actions">
+              <a class="buy" [routerLink]="brand.path" [fragment]="line.anchor">Ver productos</a>
+              <a class="help" routerLink="/contacto" fragment="contacto-form">Asesoría</a>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  @for (line of brand.lines; track line.anchor; let li = $index) {
+    <section class="tor-section cc-line pb-line" [id]="line.anchor" [attr.aria-labelledby]="'pb-h-' + line.anchor">
+      <header class="tor-head cc-head">
+        <p class="tor-kicker">{{ brand.brandName }}</p>
+        <div class="jar-head">
+          <h2 class="section-title-center" [id]="'pb-h-' + line.anchor">{{ brand.single ? brand.linesTitle : sectionTitle(line) }}</h2>
+          <div class="rule"></div>
+        </div>
+        <p class="tor-intro">{{ line.description }}</p>
+        @if (line.moreLink; as ml) { <p class="tor-more dr-center"><a [routerLink]="ml.route">{{ ml.t }} ›</a></p> }
+      </header>
+      <div class="tor-grid pb-grid">
+        @for (p of productsOf(line); track p.code; let i = $index) {
+          <article class="tor-card" [class]="'tor-card ' + tone(i + li)" [attr.data-sku]="p.code">
+            <div class="tor-card-media">
+              <span class="tor-card-blob" aria-hidden="true"></span>
+              <img [src]="p.photo" [alt]="p.photoAlt" [attr.loading]="brand.single ? null : 'lazy'" width="320" height="320">
+            </div>
+            <div class="tor-card-body">
+              <span class="tor-line">{{ brand.brandName }}@if (p.official) { · {{ p.official }} }</span>
+              <h3>{{ p.name }}</h3>
+              <p class="dr-desc">{{ p.description }}</p>
+              <p class="tor-pres">{{ p.presentation }} · Clave {{ p.code }}</p>
+              @if (p.allergens) { <p class="cc-allergens pb-allergens">{{ p.allergens }}</p> }
+              @if (p.vegetarian || p.vegan) {
+                <p class="pb-diet">Dato del producto: {{ dietLabel(p) }}.</p>
+              }
+              @if (p.ingredients) {
+                <details class="pb-ingredients" [attr.open]="brand.single ? '' : null">
+                  <summary>Ver ingredientes</summary>
+                  <p>{{ p.ingredients }}</p>
+                </details>
+              }
+              @if (p.nutrition; as n) {
+                <details class="pb-ingredients pb-nutri-acc">
+                  <summary>Declaración nutrimental</summary>
+                  <div class="pb-nutri pb-nutri--card">
+                    <p class="pb-nutri-basis">{{ n.basis }}</p>
+                    <div class="pb-nutri-energy">
+                      <strong>Contenido energético</strong>
+                      @for (e of n.energy; track e) { <span>{{ e }}</span> }
+                    </div>
+                    <table class="pb-nutri-table">
+                      <caption class="visually-hidden">{{ n.title }} de {{ p.name }}</caption>
+                      <tbody>
+                        @for (r of n.rows; track r.label) {
+                          <tr [class.is-strong]="r.strong"><th scope="row">{{ r.label }}</th><td>{{ r.value }}</td></tr>
+                        }
+                      </tbody>
+                    </table>
+                    <ul class="pb-nutri-notes">
+                      @for (note of n.notes; track note) { <li>{{ note }}</li> }
+                    </ul>
+                    <p class="pb-nutri-source">{{ n.source }}</p>
+                  </div>
+                </details>
+              }
+              @if (!p.hideYield) { <p class="dr-yield">Rendimiento: {{ p.yield || 'según preparación' }}</p> }
+              <div class="tor-actions">
+                <button type="button" class="tor-act tor-act--solid" aria-haspopup="dialog" (click)="buy(p, $event)">Comprar<span class="visually-hidden"> {{ p.name }}</span></button>
+                <a class="tor-act tor-act--outline" [routerLink]="calcPath">Calcula tu precio<span class="visually-hidden"> de {{ brand.brandName }} {{ p.name }}</span></a>
+              </div>
+              <p class="pb-advice"><a routerLink="/contacto" fragment="contacto-form">Asesoría<span class="visually-hidden"> sobre {{ p.name }}</span> ›</a></p>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  @if (brand.nutrition; as n) {
+    <section class="tor-section pb-nutri-section" id="declaracion-nutrimental" aria-labelledby="pb-nutri">
+      <header class="tor-head cc-head">
+        <p class="tor-kicker">Etiqueta de la caja</p>
+        <div class="jar-head">
+          <h2 class="section-title-center" id="pb-nutri">{{ n.title }}</h2>
+          <div class="rule"></div>
+        </div>
+      </header>
+      <div class="pb-nutri">
+        <p class="pb-nutri-basis">{{ n.basis }}</p>
+        <div class="pb-nutri-energy">
+          <strong>Contenido energético</strong>
+          @for (e of n.energy; track e) { <span>{{ e }}</span> }
+        </div>
+        <table class="pb-nutri-table">
+          <caption class="visually-hidden">{{ n.title }} por 100 ml de producto preparado</caption>
+          <tbody>
+            @for (r of n.rows; track r.label) {
+              <tr [class.is-strong]="r.strong"><th scope="row">{{ r.label }}</th><td>{{ r.value }}</td></tr>
+            }
+          </tbody>
+        </table>
+        <ul class="pb-nutri-notes">
+          @for (t of n.notes; track t) { <li>{{ t }}</li> }
+        </ul>
+        <p class="pb-nutri-source">{{ n.source }}</p>
+      </div>
+    </section>
+  }
+
+  <section class="tor-band" id="presentaciones" aria-labelledby="pb-pres">
+    <app-scroll-wave position="top" fillColor="#fff6ea"></app-scroll-wave>
+    <div class="tor-band-inner">
+      <div class="tor-split">
+        <div class="tor-split-copy">
+          <p class="tor-kicker">Presentación</p>
+          <h2 id="pb-pres">{{ brand.presentationTitle }}</h2>
+          <p>{{ brand.presentationText }}</p>
+          <ul class="tor-chips">
+            @for (c of brand.presentationChips; track c) { <li>{{ c }}</li> }
+            @if (brand.showYieldChip !== false) { <li>Rendimiento: {{ yieldLabel() }}</li> }
+          </ul>
+          @if (brand.storage) { <p class="cc-storage">{{ brand.storage }}</p> }
+        </div>
+        <div class="tor-split-media">
+          <img [src]="image(brand.presentationPhoto)" [alt]="altFor(brand.presentationPhoto)" loading="lazy">
+        </div>
+      </div>
+      @if (brand.presentationRows; as rows) {
+        <div class="pb-table-wrap">
+          <table class="pb-table">
+            <caption class="visually-hidden">Presentaciones de {{ brand.brandName }}</caption>
+            <thead><tr><th scope="col">Línea</th><th scope="col">Presentación</th><th scope="col">Contenido neto</th><th scope="col">Claves</th></tr></thead>
+            <tbody>
+              @for (r of rows; track r.line + r.presentation) {
+                <tr><th scope="row">{{ r.line }}</th><td>{{ r.presentation }}</td><td>{{ r.content }}</td><td>{{ r.codes }}</td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+    <app-scroll-wave position="bottom" fillColor="#fff6ea"></app-scroll-wave>
+  </section>
+
+  @if (brand.doseTable; as d) {
+    <section class="tor-section pb-dose" id="cuanto-usar" aria-labelledby="pb-dose">
+      <header class="tor-head cc-head">
+        <p class="tor-kicker">Dosis y rendimiento</p>
+        <div class="jar-head">
+          <h2 class="section-title-center" id="pb-dose">{{ d.title }}</h2>
+          <div class="rule"></div>
+        </div>
+        <p class="tor-intro">{{ d.intro }}</p>
+      </header>
+      <div class="pb-table-wrap">
+        <table class="pb-table">
+          <caption class="visually-hidden">{{ d.title }}</caption>
+          <thead><tr>@for (h of d.head; track h) { <th scope="col">{{ h }}</th> }</tr></thead>
+          <tbody>
+            @for (r of d.rows; track r.line + r.presentation) {
+              <tr><th scope="row">{{ r.line }}</th><td>{{ r.presentation }}</td><td>{{ r.dose }}</td><td>{{ r.yield }}</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="pb-table-note">{{ d.note }}</p>
+    </section>
+  }
+
+  <section class="tor-section mc-prep" id="como-se-prepara" aria-labelledby="pb-prep">
+    <header class="tor-head cc-head">
+      <p class="tor-kicker">Preparación</p>
+      <div class="jar-head">
+        <h2 class="section-title-center" id="pb-prep">{{ brand.prepTitle || 'Cómo se prepara' }}</h2>
+        <div class="rule"></div>
+      </div>
+      <p class="tor-intro">{{ brand.prepIntro }}</p>
+    </header>
+    @if (brand.prepCards.length) {
+      <div class="cc-prep-grid">
+        @for (c of brand.prepCards; track c.h) {
+          <article>
+            <h3>{{ c.h }}</h3>
+            <p>{{ c.p }}</p>
+          </article>
+        }
+      </div>
+    }
+    <p class="pb-prep-cta"><a class="tor-act tor-act--outline" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a></p>
+  </section>
+
+  <section class="jar-inspira tor-inspira" aria-labelledby="pb-recetas">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="pb-recetas">¿Buscas ideas? Mira nuestras recetas</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="tor-intro" style="text-align:center;max-width:720px;margin:0 auto 1rem">{{ brand.ideasText }}</p>
+    <p class="tor-more dr-center">
+      @for (l of brand.ideasLinks; track l.route; let last = $last) {
+        <a [routerLink]="l.route">{{ l.t }} ›</a>@if (!last) { · }
+      }
+    </p>
+  </section>
+
+  @if (brand.extraBlock; as x) {
+    <section class="tor-section dr-guide" aria-labelledby="pb-extra">
+      <div class="jar-head">
+        <h2 class="section-title-center" id="pb-extra">{{ x.title }}</h2>
+        <div class="rule"></div>
+      </div>
+      <p>{{ x.text }}
+        @for (l of x.links; track l.route) { <a [routerLink]="l.route">{{ l.t }} ›</a> }
+      </p>
+    </section>
+  }
+
+  <section class="tor-course dr-calc" aria-labelledby="pb-calc">
+    <div>
+      <p class="tor-kicker">Precio de venta</p>
+      <h2 id="pb-calc">{{ brand.calcTitle }}</h2>
+      <p>{{ brand.calcText }}</p>
+    </div>
+    <a class="tor-btn tor-btn-navy" [routerLink]="calcPath">Calcula tu precio</a>
+  </section>
+
+  <section class="tor-section dr-guide" aria-labelledby="pb-otras">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="pb-otras">{{ brand.alsoTitle || 'Otras marcas de bases en polvo' }}</h2>
+      <div class="rule"></div>
+    </div>
+    <p>
+      @for (l of brand.alsoLinks; track l.route; let last = $last) {
+        <a [routerLink]="l.route">{{ l.t }}</a>@if (!last) { · }
+      }
+    </p>
+    <p><a [routerLink]="cat.path">{{ cat.backLabel }} ›</a></p>
+  </section>
+
+  <section class="tor-faq" id="preguntas-frecuentes" aria-labelledby="pb-faq-title">
+    <div class="jar-head">
+      <h2 class="section-title-center" id="pb-faq-title">Preguntas frecuentes</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="tor-faq-list">
+      @for (f of brand.faq; track f.q; let first = $first) {
+        <details [attr.open]="first ? '' : null">
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+      }
+    </div>
+  </section>
+
+  <section class="jar-cta tor-cta">
+    <app-scroll-wave position="top" fillColor="#fce4c0"></app-scroll-wave>
+    <div class="copy">
+      <h2>{{ brand.ctaTitle }}</h2>
+      <p>{{ brand.ctaText || 'Compra en línea o habla con un asesor para mayoreo y para armar el menú (B2B y B2C).' }}</p>
+      <div class="tor-ctas">
+        <a [href]="brand.storeUrl" target="_blank" rel="noopener">Ir a la tienda en línea</a>
+        <a class="tor-cta-alt" routerLink="/contacto" fragment="contacto-form">Hablar con un asesor</a>
+      </div>
+      <div class="cc-cta-links">
+        <a [href]="bizUrl" target="_blank" rel="noopener">Etrusca Biz ›</a>
+        <a [href]="waUrl" target="_blank" rel="noopener">WhatsApp ›</a>
+      </div>
+      <a class="tor-back" [routerLink]="cat.path">{{ cat.backLabel }} ›</a>
+    </div>
+    <img src="{{ assetsBase }}/images/productos/baristas.webp" alt="Asesores de Café Etrusca" loading="lazy">
+    <app-scroll-wave position="bottom" fillColor="#fce4c0"></app-scroll-wave>
+  </section>
+</div>
+
+@if (flavorLine; as fl) {
+  <app-flavors-modal [title]="fl.name + ' ' + sectionTitle(fl)" [tone]="fl.tone" [flavors]="flavorsFor(fl)" (closed)="flavorLine = null" />
+}

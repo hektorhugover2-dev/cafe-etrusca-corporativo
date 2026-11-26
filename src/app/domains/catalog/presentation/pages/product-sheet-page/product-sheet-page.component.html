@@ -1,0 +1,68 @@
+@if (p; as p) {
+  <article class="ps">
+    <nav class="ps-crumbs" aria-label="Ruta de navegación">
+      <ol>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a [routerLink]="p.cp">{{ p.cl }}</a></li>
+        <li aria-current="page">{{ name }}</li>
+      </ol>
+    </nav>
+
+    <section class="ps-hero">
+      <div class="ps-media">
+        <span class="ps-media__halo" aria-hidden="true"></span>
+        <img class="ps-media__img" [src]="p.img" [attr.width]="p.w" [attr.height]="p.h" [alt]="name"
+             [style.max-width.px]="p.w" [style.max-height.px]="p.h" fetchpriority="high" decoding="async" />
+      </div>
+
+      <div class="ps-info">
+        @if (brand) {
+          <p class="ps-brand">{{ brand }}</p>
+        }
+        <h1 class="ps-title">{{ name }}</h1>
+
+        <dl class="ps-facts">
+          @if (brand) {
+            <div class="ps-fact"><dt>Marca</dt><dd>{{ brand }}</dd></div>
+          }
+          <div class="ps-fact"><dt>Categoría</dt><dd><a [routerLink]="p.cp">{{ p.cl }}</a></dd></div>
+          <div class="ps-fact"><dt>SKU</dt><dd>{{ p.c }}</dd></div>
+        </dl>
+
+        <div class="ps-ctas">
+          <button type="button" class="ps-btn ps-btn--primary" [attr.data-sku]="p.c" (click)="buy($event)">
+            Comprar
+          </button>
+          <a class="ps-btn ps-btn--ghost" [routerLink]="calcPath">Calcula tu precio</a>
+        </div>
+
+        @if (p.bp) {
+          <a class="ps-more" [routerLink]="p.bp">Conoce la marca {{ brand }} <span aria-hidden="true">→</span></a>
+        } @else {
+          <a class="ps-more" [routerLink]="p.cp">Ver {{ p.cl.toLowerCase() }} <span aria-hidden="true">→</span></a>
+        }
+      </div>
+    </section>
+
+    @if (p.i || p.a?.length) {
+      <section class="ps-details" aria-label="Información del producto">
+        @if (p.i) {
+          <div class="ps-card">
+            <h2 class="ps-card__title">Ingredientes</h2>
+            <p class="ps-card__text">{{ p.i }}</p>
+          </div>
+        }
+        @if (p.a?.length) {
+          <div class="ps-card">
+            <h2 class="ps-card__title">Alérgenos</h2>
+            <ul class="ps-tags">
+              @for (a of p.a; track a) {
+                <li>{{ a }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </section>
+    }
+  </article>
+}
