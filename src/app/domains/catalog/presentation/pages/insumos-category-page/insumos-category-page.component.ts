@@ -24,6 +24,9 @@ import { BuyModalService } from '../../components/buy-modal/buy-modal.service';
 
 const JAR = `${ASSETS_BASE_URL}/images/insumos/jarabes`;
 
+/** Flag reversible: oculta la linea Mini caramelos en /insumos-para-cafeterias/toppings/. Los datos de la linea se conservan. */
+const HIDE_TOPPINGS_MINI_CARAMELOS = true;
+
 @Component({
   selector: 'app-insumos-category-page',
   standalone: true,
@@ -427,7 +430,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       num: 4,
       label: 'Jelly',
       tone: 'coral',
-      names: ['Jelly', 'Jalea en pieza']
+      names: ['Jelly', 'Jalea en pieza', 'Gelatina de konjac en polvo']
     },
     {
       num: 5,
@@ -438,7 +441,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
   ];
 
   linesForBlock(block: { names: string[] }) {
-    return this.toppingsLines.filter((line) => block.names.includes(line.name));
+    return this.toppingsLines.filter((line) => block.names.includes(line.name) && !line.hidden);
   }
 
   toppingsLines = [
@@ -562,7 +565,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       name: 'Jelly',
       brand: 'Jelly',
       sub: '',
-      description: 'Gelatinas pequeñas con consistencia firme, agregando sabor y textura.',
+      descriptionLead: 'Pequeños trozos que están compuestos en un 70% de pulpa de coco.',
+      description: 'Son ideales para añadir un toque extra de sabor y una agradable textura.',
       sabores: '11',
       presentacion: '3.85 kg',
       rendimiento: 'Hasta 85 bebidas aprox.*',
@@ -608,6 +612,22 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-yellow.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-yellow.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-yellow.webp` }
     },
     {
+      name: 'Gelatina de konjac en polvo',
+      brand: 'Gelatina de konjac',
+      sub: 'EN POLVO',
+      description: 'Polvo para preparar gelatina de konjac.',
+      sabores: '1',
+      presentacion: '1 kg',
+      rendimiento: 'Rinde aprox. 17 l (60 g por 1 l)',
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/chillout-jelly-gelatina-konjac-polvo-1-kg-ibp-226-2026-11-27.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/chillout-jelly-gelatina-konjac-polvo-1-kg-ibp-226-2026-11-27.webp`,
+      blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
+      tone: 'coral',
+      /** Código según el catálogo PDF Bubble Tea 2026, p. 37. */
+      pdf: [{ code: 'IBP-226' }],
+      icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
+    },
+    {
       name: 'Mini caramelos',
       brand: 'Mini caramelos',
       sub: '',
@@ -621,6 +641,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       tone: 'coral',
       noStore: true,
       /** Códigos y sabores según el catálogo PDF Bubble Tea (ago 2024). */
+      hidden: HIDE_TOPPINGS_MINI_CARAMELOS,
       pdf: [{ code: 'ICT-089', flavor: 'Fresa' }, { code: 'ICT-090', flavor: 'Mora azul' }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
@@ -906,6 +927,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     if (this.cat?.layout === 'toppings' && name === 'Jelly') return 'CHILLOUT JELLY';
     if (this.cat?.layout === 'toppings' && name === 'Jarabe Longan') return 'LONGAN';
     if (this.cat?.layout === 'toppings' && name === 'Jalea en pieza') return 'CHILLOUT JELLY';
+    if (this.cat?.layout === 'toppings' && name === 'Gelatina de konjac en polvo') return 'CHILLOUT POLVO PARA GELATINA';
     if (this.cat?.layout === 'toppings' && name === 'Mini caramelos') return 'CHILLOUT MINI CARAMELOS';
     if (this.cat?.layout === 'toppings' && name === 'Mini mochis') return 'MINI MOCHIS';
     if (this.cat?.layout === 'toppings' && name === 'Crema vegetal') return 'CHILLOUT CREMA PARA TOPPING';
@@ -925,7 +947,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     if (layout === 'te') return this.teLines;
     if (layout === 'tisanas') return this.tisanasLines;
     if (layout === 'bases') return this.basesLines;
-    if (layout === 'toppings') return this.toppingsLines;
+    if (layout === 'toppings') return this.toppingsLines.filter((line) => !line.hidden);
     return null;
   }
 
@@ -1322,6 +1344,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       'Tapioca instantánea': 'lime',
       'Jarabe Longan': 'yellow',
       'Jalea en pieza': 'yellow',
+      'Gelatina de konjac en polvo': 'coral',
       'Mini caramelos': 'coral',
       'Mini mochis': 'cyan',
       'Crema vegetal': 'lime',

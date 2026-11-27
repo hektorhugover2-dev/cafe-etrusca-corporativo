@@ -836,7 +836,7 @@
                 <img class="shot" [src]="slideSrc(line)" [alt]="slideAlt(line)">
               </div>
               <h3 class="brand">{{ line.brand }}<span class="sub">{{ line.sub }}</span></h3>
-              <p>{{ line.description }}</p>
+              <p>@if (line.descriptionLead) {<strong>{{ line.descriptionLead }}</strong>} {{ line.description }}</p>
               <div class="jar-feat">
                 <button type="button" class="jar-feat-sabores" aria-haspopup="dialog" (click)="openFlavors(line)">
                   <img [src]="line.icons.sabor" alt="">
@@ -851,10 +851,10 @@
                   <span><strong>Rendimiento</strong>{{ line.rendimiento }}</span>
                 </div>
               </div>
-              @if (isNoStore(line)) {
-                <p class="ask-branch">Pregunta disponibilidad en tu <a routerLink="/sucursales">sucursal</a> o en el <a routerLink="/contacto">Call Center</a>.</p>
-              }
               <div class="jar-actions">
+                @if (isNoStore(line)) {
+                  <p class="ask-branch">Pregunta disponibilidad en tu <a routerLink="/sucursales">sucursal</a> o en el <a routerLink="/contacto">Call Center</a>.</p>
+                }
                 @if (!isNoStore(line)) {
                   <a class="buy" [href]="storeSearchUrl(line)" target="_blank" rel="noopener" aria-haspopup="dialog" (click)="buyLine(line, $event)">Comprar<span class="visually-hidden"> {{ storeSearchTerm(line) }}</span></a>
                 }
