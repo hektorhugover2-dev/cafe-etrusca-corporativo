@@ -619,8 +619,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       sabores: '1',
       presentacion: '1 kg',
       rendimiento: 'Rinde aprox. 17 l (60 g por 1 l)',
-      image: `${ASSETS_BASE_URL}/images/insumos/toppings/chillout-jelly-gelatina-konjac-polvo-1-kg-ibp-226-2026-11-27.webp`,
-      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/chillout-jelly-gelatina-konjac-polvo-1-kg-ibp-226-2026-11-27.webp`,
+      image: `${ASSETS_BASE_URL}/images/insumos/toppings/chillout-jelly-gelatina-konjac-polvo-1-kg-ibp-226-thumb-2026-11-27.webp`,
+      logo: `${ASSETS_BASE_URL}/images/insumos/toppings/chillout-jelly-gelatina-konjac-polvo-1-kg-ibp-226-thumb-2026-11-27.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-coral.webp`,
       tone: 'coral',
       /** Código según el catálogo PDF Bubble Tea 2026, p. 37. */
