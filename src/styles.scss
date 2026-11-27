@@ -488,3 +488,14 @@ h2:not(#h2-uc-noop) { text-transform: uppercase !important; }
   .edu-hero nav.edu-crumbs.edu-crumbs::-webkit-scrollbar { display: none; }
   .edu-hero nav.edu-crumbs.edu-crumbs > * { flex: 0 0 auto; }
 }
+
+/* H1 SEO: el subtitulo .tor-h1-sub («para cafetería» y equivalentes) se mantiene en el H1 pero no se pinta. */
+.tor-h1-sub {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
