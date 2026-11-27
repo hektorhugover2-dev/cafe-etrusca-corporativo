@@ -96,17 +96,16 @@ export class ChilloutPageComponent {
   readonly mix = CHILLOUT_MIX;
   readonly sinAzucar = CHILLOUT_SIN_AZUCAR;
   readonly justFruit = CHILLOUT_JUST_FRUIT;
-  /** ChillOut Active con semilla de capomo (2 bases en polvo + 1 tisana). Oculto en pausa de etiquetado (26-nov-2026). */
-  readonly showActive = false;
+  /** ChillOut Active con semilla de capomo (2 bases en polvo + 1 tisana). */
   readonly active = CHILLOUT_ACTIVE;
   readonly osh = OSH_STORY;
   readonly faq = CHILLOUT_FAQ;
   readonly tallerPath = COURSE_PUBLIC_PATH_BY_SLUG['bebidas-frias'] || '/cursos-para-baristas-y-talleres-para-cafeterias';
   readonly recipes = publishedRecipes().filter(usesChilloutPowder).slice(0, 3);
   readonly heroBottles = [
-    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-mix-matcha.webp`, alt: 'ChillOut Mix base en polvo sabor matcha, bote 700 g', cls: 'b-left' },
-    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-mix-taro.webp`, alt: 'ChillOut Mix base en polvo sabor taro, bolsa 2 kg', cls: 'b-center' },
-    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-base-neutra-sin-azucar.webp`, alt: 'ChillOut Mix base neutra sin azúcar, bolsa 1.6 kg', cls: 'b-right' }
+    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-27.webp`, alt: 'ChillOut Active base en polvo sabor chocolate con semilla de capomo, bote 700 g', cls: 'b-left' },
+    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-27.webp`, alt: 'ChillOut tisana sabor menta tropical con semilla de capomo, bolsa 250 g', cls: 'b-center' },
+    { src: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-27.webp`, alt: 'ChillOut Active base en polvo sabor vainilla con semilla de capomo, bote 700 g', cls: 'b-right' }
   ];
 
   constructor() {
@@ -117,7 +116,10 @@ export class ChilloutPageComponent {
         'Bases en polvo ChillOut Mix y Just Fruit para bebidas frías y calientes: taro, matcha, chai, horchata y opciones sin azúcar. Compra en línea.',
       keywords:
         'chillout, base en polvo chillout, chillout mix, chillout just fruit, chillout sin azúcar, chillout taro, chillout matcha, Café Etrusca',
-      image: `${ASSETS_BASE_URL}/images/insumos/chillout/hero-chillout-mix-taro.webp`,
+      image: `${ASSETS_BASE_URL}/images/og/og-chillout-active-chocolate-capomo-ibp-271-2026-11-27.jpg`,
+      imageAlt: 'ChillOut Active base en polvo sabor chocolate con semilla de capomo, bote 700 g',
+      imageWidth: 1200,
+      imageHeight: 630,
       path: CHILLOUT_PAGE_PATH,
       jsonLd: ({ url }) => [this.itemListLd(url), this.faqLd(url), this.breadcrumbLd()]
     });
@@ -136,13 +138,8 @@ export class ChilloutPageComponent {
   }
 
   private itemListLd(url: string) {
-    // Pausa etiquetado: las bases Active no entran al ItemList hasta que se publiquen de nuevo.
-    const all: ChilloutProduct[] = [
-      ...this.mix,
-      ...this.sinAzucar,
-      ...this.justFruit,
-      ...(this.showActive ? this.active.filter((p) => p.line === 'Active') : [])
-    ];
+    // Las bases en polvo Active entran al ItemList; la tisana (ITI-117) tiene su propia página (/tisanas/chillout).
+    const all: ChilloutProduct[] = [...this.mix, ...this.sinAzucar, ...this.justFruit, ...this.active.filter((p) => p.line === 'Active')];
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',

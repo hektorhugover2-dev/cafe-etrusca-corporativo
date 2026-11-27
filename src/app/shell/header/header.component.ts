@@ -21,6 +21,19 @@ export interface MegaLink {
   icon: string;  tone?: 'yellow' | 'lime' | 'cyan' | 'pink' | 'orange' | 'coral';
 }
 
+export interface MegaFeatured {
+  image: string;
+  alt: string;
+  title: string;
+  brand: string;
+  brandLink: string;
+  brandAria: string;
+  desc: string;
+  link: string;
+  fragment?: string;
+  tone: 'lime' | 'orange';
+}
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -34,6 +47,8 @@ export class HeaderComponent implements OnDestroy {
   isScrolled = false;
   isHome = true;
   productPanel = 'insumos';
+  /** Subcategoría de insumos resaltada en el mega menú (hover); null = según la URL. */
+  insumoHighlight: 'polvos' | 'tisanas' | 'other' | null = null;
   eduPanel = 'cursos';
   /** true when URL is /educacion/:kind (or deeper). Hub uses the recommend layout. */
   isEduSection = false;
@@ -162,6 +177,65 @@ export class HeaderComponent implements OnDestroy {
   }
 
 
+  private readonly megaFeatDefault: MegaFeatured = {
+    image: `${ASSETS_BASE_URL}/images/nav/torani-pumpkin.webp`,
+    alt: 'Jarabe sabor calabaza Torani',
+    title: 'Jarabe sabor calabaza',
+    brand: 'Torani',
+    brandLink: '/insumos-para-cafeterias/jarabes/torani',
+    brandAria: 'Ver jarabes Torani',
+    desc: 'Ideal para bebidas frías y calientes.',
+    link: '/insumos-para-cafeterias/jarabes',
+    tone: 'lime'
+  };
+
+  private readonly megaFeatPolvos: MegaFeatured = {
+    image: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-27.webp`,
+    alt: 'ChillOut Active base en polvo sabor chocolate con semilla de capomo, bote 700 g',
+    title: 'Base en polvo sabor chocolate',
+    brand: 'OSH ChillOut',
+    brandLink: '/insumos-para-cafeterias/bases-en-polvo/chillout',
+    brandAria: 'Ver bases en polvo ChillOut',
+    desc: 'Con semilla de capomo, bote 700 g.',
+    link: '/insumos-para-cafeterias/bases-en-polvo/chillout',
+    fragment: 'active',
+    tone: 'lime'
+  };
+
+  private readonly megaFeatTisanas: MegaFeatured = {
+    image: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-27.webp`,
+    alt: 'ChillOut tisana sabor menta tropical con semilla de capomo, bolsa 250 g',
+    title: 'Tisana sabor menta tropical',
+    brand: 'OSH ChillOut',
+    brandLink: '/insumos-para-cafeterias/tisanas/chillout',
+    brandAria: 'Ver tisanas ChillOut',
+    desc: 'Con semilla de capomo, bolsa 250 g.',
+    link: '/insumos-para-cafeterias/tisanas/chillout',
+    tone: 'orange'
+  };
+
+  onInsumoEnter(item: MegaLink) {
+    const t = (item.title || '').trim().toLowerCase();
+    if (t === 'polvos') this.insumoHighlight = 'polvos';
+    else if (t === 'tisanas') this.insumoHighlight = 'tisanas';
+    else this.insumoHighlight = 'other';
+  }
+
+  private insumoKeyFromUrl(): 'polvos' | 'tisanas' | null {
+    const path = (this.router.url || '').split('?')[0].split('#')[0];
+    if (path.startsWith('/insumos-para-cafeterias/bases-en-polvo')) return 'polvos';
+    if (path.startsWith('/insumos-para-cafeterias/tisanas')) return 'tisanas';
+    return null;
+  }
+
+  get featuredProduct(): MegaFeatured {
+    if (this.productPanel !== 'insumos') return this.megaFeatDefault;
+    const key = this.insumoHighlight ?? this.insumoKeyFromUrl();
+    if (key === 'polvos') return this.megaFeatPolvos;
+    if (key === 'tisanas') return this.megaFeatTisanas;
+    return this.megaFeatDefault;
+  }
+
   get activeProductCat() {
     return this.productCats.find((c) => c.id === this.productPanel) ?? this.productCats[1];
   }
@@ -200,6 +274,7 @@ export class HeaderComponent implements OnDestroy {
       this.syncProductPanelFromUrl(this.router.url);
         this.syncEduFromUrl(this.router.url);
         this.isHome = this.isHomeUrl(e.urlAfterRedirects);
+        this.insumoHighlight = null;
       });
   }
 

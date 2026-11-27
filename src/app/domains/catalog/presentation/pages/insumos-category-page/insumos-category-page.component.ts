@@ -204,6 +204,8 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       tone: 'coral',
       apiMode: 'tisana-chillout',
       page: '/insumos-para-cafeterias/tisanas/chillout',
+      /** Foto propia de ITI-117 (la API no trae imagen): entra al carrusel de la línea. */
+      extraImgs: [{ code: 'ITI-117', flavor: 'Menta tropical con semilla de capomo', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-27.webp` }],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-coral.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-coral.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-coral.webp` }
     },
     {
@@ -264,15 +266,15 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
       sabores: '2 sabores',
       presentacion: 'Bote 700 g',
       rendimiento: 'Según preparación',
-      image: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-26.webp`,
+      image: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-27.webp`,
       blob: `${ASSETS_BASE_URL}/images/insumos/jarabes/blob-lime.webp`,
       tone: 'lime',
       apiMode: 'bases-chillout-active',
       page: '/insumos-para-cafeterias/bases-en-polvo/chillout',
       /** Códigos del portal de precios (26-nov-2026); la API no trae foto: se usan las fotos propias. */
       pdf: [
-        { code: 'IBP-271', flavor: 'Chocolate', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-26.webp` },
-        { code: 'IBP-272', flavor: 'Vainilla', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-26.webp` }
+        { code: 'IBP-271', flavor: 'Chocolate', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-27.webp` },
+        { code: 'IBP-272', flavor: 'Vainilla', img: `${ASSETS_BASE_URL}/images/insumos/chillout/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-27.webp` }
       ],
       icons: { sabor: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-sabor-lime.webp`, pres: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-pres-lime.webp`, rend: `${ASSETS_BASE_URL}/images/insumos/jarabes/icon-rend-lime.webp` }
     },
@@ -915,11 +917,6 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     return map[name] || name;
   }
 
-  /** Pausa etiquetado 26-nov-2026: oculta la card ChillOut Active en Bases en polvo. */
-  get visibleBasesLines() {
-    return this.basesLines.filter((l) => l.name !== 'ChillOut Active');
-  }
-
   private activeLines() {
     const layout = this.cat?.layout;
     if (layout === 'salsas') return this.salsasLines;
@@ -927,7 +924,7 @@ export class InsumosCategoryPageComponent implements OnInit, OnDestroy {
     if (layout === 'jarabes') return this.jarabesLines;
     if (layout === 'te') return this.teLines;
     if (layout === 'tisanas') return this.tisanasLines;
-    if (layout === 'bases') return this.basesLines.filter((l) => l.name !== 'ChillOut Active');
+    if (layout === 'bases') return this.basesLines;
     if (layout === 'toppings') return this.toppingsLines;
     return null;
   }

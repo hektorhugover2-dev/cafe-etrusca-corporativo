@@ -81,7 +81,7 @@
 
                       @for (item of insumoLinks; track item.title) {
 
-                        <a class="mega-link" [routerLink]="item.link" routerLinkActive="active" [attr.data-tone]="item.tone">
+                        <a class="mega-link" [routerLink]="item.link" routerLinkActive="active" [attr.data-tone]="item.tone" (mouseenter)="onInsumoEnter(item)">
 
                           <img class="mega-ico" [src]="item.icon" alt="" aria-hidden="true" width="44" height="44">
 
@@ -182,21 +182,21 @@
 
                   <div class="mega-feat">
 
-                    <div class="mega-feat-img">
+                    <div class="mega-feat-img" [attr.data-tone]="featuredProduct.tone">
 
-                      <img src="{{ assetsBase }}/images/nav/torani-pumpkin.webp" alt="Jarabe sabor calabaza Torani">
+                      <img [src]="featuredProduct.image" [alt]="featuredProduct.alt">
 
                     </div>
 
                     <div>
 
-                      <strong>Jarabe sabor calabaza</strong>
+                      <strong>{{ featuredProduct.title }}</strong>
 
-                      <a class="mega-feat-brand" routerLink="/insumos-para-cafeterias/jarabes/torani" aria-label="Ver jarabes Torani"><em>Torani</em></a>
+                      <a class="mega-feat-brand" [routerLink]="featuredProduct.brandLink" [attr.aria-label]="featuredProduct.brandAria"><em>{{ featuredProduct.brand }}</em></a>
 
-                      <p>Ideal para bebidas frías y calientes.</p>
+                      <p>{{ featuredProduct.desc }}</p>
 
-                      <a routerLink="/insumos-para-cafeterias/jarabes">Ver producto ›</a>
+                      <a [routerLink]="featuredProduct.link" [fragment]="featuredProduct.fragment">Ver producto ›</a>
 
                     </div>
 

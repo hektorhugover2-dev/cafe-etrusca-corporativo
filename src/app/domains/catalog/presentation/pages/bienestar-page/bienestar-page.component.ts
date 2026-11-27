@@ -35,8 +35,7 @@ export class BienestarPageComponent {
   readonly lines = BN_LINES;
   readonly faq = BN_FAQ;
   readonly total = BN_PRODUCTS.length;
-  /** Apoyo (HUG-10): ChillOut Active con semilla de capomo. NO entra a BN_PRODUCTS / ItemList / conteos: no es sin azúcar. Oculto en pausa de etiquetado (26-nov-2026). */
-  readonly showActive = false;
+  /** Apoyo (HUG-10): ChillOut Active con semilla de capomo. NO entra a BN_PRODUCTS / ItemList / conteos: no es sin azúcar. */
   readonly active = CHILLOUT_ACTIVE;
   readonly osh = OSH_STORY;
   readonly calcPath = '/calculadora-de-precios';

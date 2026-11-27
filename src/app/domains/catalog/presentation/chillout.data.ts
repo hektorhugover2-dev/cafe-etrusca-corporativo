@@ -98,9 +98,9 @@ export const CHILLOUT_JUST_FRUIT: ChilloutProduct[] = [
 /** ChillOut Active (OSH Mayan Superfood): 2 bases en polvo y 1 tisana, todas "con semilla de capomo". */
 const storeSearch = (term: string) => 'https://tienda.cafeetrusca.com/productos?search=' + encodeURIComponent(term);
 export const CHILLOUT_ACTIVE: ChilloutProduct[] = [
-  { code: 'IBP-271', flavor: 'Chocolate con semilla de capomo', line: 'Active', presentation: 'Bote 700 g', name: "CHILLOUT ACTIVE BASE EN POLVO SABOR CHOCOLATE CON SEMILLA DE CAPOMO BOTE 700g", url: storeSearch('CHILLOUT ACTIVE BASE EN POLVO SABOR CHOCOLATE'), image: CHL + '/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-26.webp' },
-  { code: 'IBP-272', flavor: 'Vainilla con semilla de capomo', line: 'Active', presentation: 'Bote 700 g', name: "CHILLOUT ACTIVE BASE EN POLVO SABOR VAINILLA CON SEMILLA DE CAPOMO BOTE 700g", url: storeSearch('CHILLOUT ACTIVE BASE EN POLVO SABOR VAINILLA'), image: CHL + '/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-26.webp' },
-  { code: 'ITI-117', flavor: 'Menta tropical con semilla de capomo', line: 'Tisana', presentation: 'Bolsa 250 g', name: "CHILLOUT TISANA SABOR MENTA TROPICAL CON SEMILLA DE CAPOMO BOLSA 250g", url: storeSearch('CHILLOUT TISANA SABOR MENTA TROPICAL'), image: CHL + '/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-26-v2.webp' }
+  { code: 'IBP-271', flavor: 'Chocolate con semilla de capomo', line: 'Active', presentation: 'Bote 700 g', name: "CHILLOUT ACTIVE BASE EN POLVO SABOR CHOCOLATE CON SEMILLA DE CAPOMO BOTE 700g", url: storeSearch('CHILLOUT ACTIVE BASE EN POLVO SABOR CHOCOLATE'), image: CHL + '/chillout-active-chocolate-capomo-bote-700-g-ibp-271-2026-11-27.webp' },
+  { code: 'IBP-272', flavor: 'Vainilla con semilla de capomo', line: 'Active', presentation: 'Bote 700 g', name: "CHILLOUT ACTIVE BASE EN POLVO SABOR VAINILLA CON SEMILLA DE CAPOMO BOTE 700g", url: storeSearch('CHILLOUT ACTIVE BASE EN POLVO SABOR VAINILLA'), image: CHL + '/chillout-active-vainilla-capomo-bote-700-g-ibp-272-2026-11-27.webp' },
+  { code: 'ITI-117', flavor: 'Menta tropical con semilla de capomo', line: 'Tisana', presentation: 'Bolsa 250 g', name: "CHILLOUT TISANA SABOR MENTA TROPICAL CON SEMILLA DE CAPOMO BOLSA 250g", url: storeSearch('CHILLOUT TISANA SABOR MENTA TROPICAL'), image: CHL + '/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-27.webp' }
 ];
 
 /** Texto del folleto oficial OSH / ChillOut (HUG-10, 26-nov-2026), adaptado: afirmaciones atribuidas a la marca. */

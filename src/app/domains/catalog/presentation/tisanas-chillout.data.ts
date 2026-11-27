@@ -69,7 +69,8 @@ export const TISANAS_CATEGORY_PATH = '/insumos-para-cafeterias/tisanas';
 export const TISANAS_CHILLOUT_STORE_URL = 'https://tienda.cafeetrusca.com/productos?search=CHILLOUT%20TISANA';
 
 const IMG = `${ASSETS_BASE_URL}/images/insumos/tisanas/chillout`;
-/** Foto de ITI-117 (26-nov-2026, subida a R2 junto con las de ChillOut Active). */
+/** Foto de ITI-117 (empaque corregido 27-nov-2026, subida a R2 junto con las de ChillOut Active). */
+const IMG_CHL = `${ASSETS_BASE_URL}/images/insumos/chillout`;
 const STORE = 'https://tienda.cafeetrusca.com/producto/detalle';
 
 /** Búsqueda en la tienda: ?search=<término>, con %20 en los espacios (formato que pidió Héctor). */
@@ -80,8 +81,10 @@ export function tisanaSearchUrl(term: string): string {
 const P = 'Bolsa 250 g';
 const LIVE = 'Tisana frutal';
 
-/** Orden = orden por código. Presentación: bolsa 250 g, 1 pieza. Enlaces verificados el 2-oct-2026 (ver arriba). */
+/** Orden: ITI-117 (Menta tropical con semilla de capomo) primero; el resto conserva el orden por código. Presentación: bolsa 250 g, 1 pieza. Enlaces verificados el 2-oct-2026 (ver arriba). */
 export const TISANAS_CHILLOUT: TisanaProduct[] = [
+  // ITI-117 (ChillOut Active, OSH Mayan Superfood): foto del empaque corregido 27-nov-2026; sin ficha de tienda (404) → búsqueda
+  { code: 'ITI-117', flavor: 'Menta tropical con semilla de capomo', line: 'Tisana', presentation: P, name: 'CHILLOUT TISANA SABOR MENTA TROPICAL CON SEMILLA DE CAPOMO BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA SABOR MENTA TROPICAL'), direct: false, image: IMG_CHL + '/chillout-tisana-menta-tropical-capomo-bolsa-250-g-iti-117-2026-11-27.webp' },
   { code: 'ITI-104', flavor: 'Fusión de moras', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR FUSION DE MORAS BOLSA 250g', confirmed: true, url: STORE + '/ITI-104/CHILLOUT-TISANA-FRUTAL-SABOR-FUSION-DE-MORAS-BOLSA-250g', direct: true, image: IMG + '/iti-104.webp' },
   { code: 'ITI-105', flavor: 'Esencia fresa kiwi', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR ESENCIA FRESA KIWI BOLSA 250g', confirmed: true, url: STORE + '/ITI-105/CHILLOUT-TISANA-FRUTAL-SABOR-ESENCIA-FRESA-KIWI-BOLSA-250g', direct: true, image: IMG + '/iti-105.webp' },
   { code: 'ITI-106', flavor: 'Fruta de la pasión', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR FRUTA DE LA PASION BOLSA 250g', confirmed: true, url: STORE + '/ITI-106/CHILLOUT-TISANA-FRUTAL-SABOR-FRUTA-DE-LA-PASION-BOLSA-250g', direct: true, image: IMG + '/iti-106.webp' },
@@ -94,9 +97,7 @@ export const TISANAS_CHILLOUT: TisanaProduct[] = [
   { code: 'ITI-112', flavor: 'Fusión manzana arándano', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR FUSION MANZANA ARANDANO BOLSA 250g', confirmed: true, url: STORE + '/ITI-112/CHILLOUT-TISANA-FRUTAL-SABOR-FUSION-MANZANA-ARANDANO-BOLSA-250g', direct: true, image: IMG + '/iti-112.webp' },
   { code: 'ITI-113', flavor: 'Cosecha de manzana', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR COSECHA DE MANZANA BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA FRUTAL SABOR COSECHA DE MANZANA'), direct: false, image: IMG + '/iti-113.webp' },
   { code: 'ITI-114', flavor: 'Mango fresa', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR MANGO FRESA BOLSA 250g', confirmed: true, url: STORE + '/ITI-114/CHILLOUT-TISANA-FRUTAL-SABOR-MANGO-FRESA-BOLSA-250g', direct: true, image: IMG + '/iti-114.webp' },
-  { code: 'ITI-115', flavor: 'Fresa', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR FRESA BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA FRUTAL SABOR FRESA'), direct: false, image: IMG + '/iti-115.webp' },
-  // ITI-117: sin foto (bloque neutro) y sin ficha; el sabor completo está por confirmar (capomo / pepino). Pausa etiquetado 26-nov-2026: no se muestra el empaque nuevo.
-  { code: 'ITI-117', flavor: 'Menta tropical', line: 'Tisana', presentation: P, name: 'CHILLOUT TISANA SABOR MENTA TROPICAL BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA SABOR MENTA TROPICAL'), direct: false }
+  { code: 'ITI-115', flavor: 'Fresa', line: LIVE, presentation: P, name: 'CHILLOUT TISANA FRUTAL SABOR FRESA BOLSA 250g', confirmed: false, url: tisanaSearchUrl('CHILLOUT TISANA FRUTAL SABOR FRESA'), direct: false, image: IMG + '/iti-115.webp' }
 ];
 
 const COUNT_WORDS = ['cero', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis'];

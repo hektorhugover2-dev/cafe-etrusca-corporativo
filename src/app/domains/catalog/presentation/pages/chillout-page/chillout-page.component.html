@@ -27,6 +27,7 @@
       </ul>
     </div>
     <div class="jar-hero-media tor-hero-media">
+      <span class="chl-hero-new">Nuevo</span>
       @for (b of heroBottles; track b.src) {
         <img class="tor-bottle" [class]="'tor-bottle ' + b.cls" [src]="b.src" [alt]="b.alt">
       }
@@ -188,7 +189,6 @@
     <p class="tor-more"><a routerLink="/insumos-para-cafeterias/bases-en-polvo">Ver todas las bases en polvo ›</a></p>
   </section>
 
-  @if (showActive) {
   <section class="tor-section" id="active" aria-labelledby="chl-active">
     <header class="tor-head">
       <p class="tor-kicker">OSH Mayan Superfood</p>
@@ -231,7 +231,6 @@
     </div>
     <p class="tor-more"><a routerLink="/insumos-para-cafeterias/tisanas/chillout">Ver todas las tisanas ChillOut ›</a></p>
   </section>
-  }
 
   @if (recipes.length) {
     <section class="jar-inspira tor-inspira" aria-labelledby="chl-recetas">
