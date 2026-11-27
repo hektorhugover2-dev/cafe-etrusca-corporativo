@@ -43,11 +43,13 @@
     font-weight: 900;
   }
   .tor-h1-sub {
-    display: block;
-    font-size: clamp(1.6rem, 3.6vw, 2.6rem);
-    font-weight: 800;
-    color: var(--tor-navy-2);
-    letter-spacing: -0.02em;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
   .lead .accent { color: #c2474b; }
   .body { color: #2b2b3a; }

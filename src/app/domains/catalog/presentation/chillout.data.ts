@@ -108,7 +108,8 @@ export const OSH_STORY = {
   title: 'OSH: tesoro ancestral del Mayab',
   paragraphs: [
     'Osh Mayan Superfood y ChillOut unen su pasión para conectar el legado ancestral del Mayab con el bienestar. Desde la antigüedad, la semilla de capomo ha sido un alimento de vida para la civilización maya: fuente de energía y vitalidad.',
-    'Hoy, según la marca, se transforma en un superalimento que aporta proteína vegetal, fibra y nutrientes esenciales a tu rutina. Lo encuentras en polvos para preparar bebidas sabor chocolate y vainilla, y en tisanas sabor menta. Producto cosechado con alto compromiso social y ambiental.'
+    // Oculto (27-nov-2026): se conserva el texto, no se pinta en la página.
+    // 'Hoy, según la marca, se transforma en un superalimento que aporta proteína vegetal, fibra y nutrientes esenciales a tu rutina. Lo encuentras en polvos para preparar bebidas sabor chocolate y vainilla, y en tisanas sabor menta. Producto cosechado con alto compromiso social y ambiental.'
   ],
   infoTitle: 'Información de la marca sobre la semilla de capomo',
   benefits: [
